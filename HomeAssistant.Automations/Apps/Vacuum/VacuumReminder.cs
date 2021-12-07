@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Reactive.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using HomeAssistant.Automations.Extensions;
 using HomeAssistant.Automations.Services;
-using HomeAssistantGenerated;
 using Microsoft.Extensions.Options;
 using NetDaemon.Common;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Common;
+using ObservableExtensions = HomeAssistant.Automations.Extensions.ObservableExtensions;
 
 namespace HomeAssistant.Automations.Apps.Vacuum
 {
@@ -20,15 +18,16 @@ namespace HomeAssistant.Automations.Apps.Vacuum
         private CancellationTokenSource? _cleaningScheduleCancellationToken;
         private IDisposable? _reminderLoopObserver;
 
-        private readonly IOptionsMonitor<VacuumConfig> _config;
-        private readonly HomeAssistantGenerated.Services _services;
         private readonly NotificationService _notificationService;
+        private readonly IOptionsMonitor<VacuumConfig> _config;
 
-        public VacuumReminder(IHaContext context, INetDaemonScheduler scheduler, IOptionsMonitor<VacuumConfig> config)
+        public VacuumReminder(
+            NotificationService notificationService,
+            IOptionsMonitor<VacuumConfig> config)
         {
+            _notificationService = notificationService;
             _config = config;
             _config.OnChange(_ => Reset());
-            _notificationService = new NotificationService(new HomeAssistantGenerated.Services(context));
 
             StartCleaningSchedule(_config.CurrentValue.CleaningSchedule);
             StartResetSchedule();
@@ -37,12 +36,13 @@ namespace HomeAssistant.Automations.Apps.Vacuum
         private async void StartCleaningSchedule(string schedule)
         {
             _cleaningScheduleCancellationToken = new CancellationTokenSource();
-            await CronjobExtensions.ScheduleJob(schedule, StartReminderLoop, _cleaningScheduleCancellationToken.Token);
+            await CronjobExtensions.ScheduleJob(schedule, StartReminderLoop,
+                cancellationToken: _cleaningScheduleCancellationToken.Token, runOnStartup: true);
         }
 
         private async void StartResetSchedule()
         {
-            await CronjobExtensions.ScheduleJob(ResetCrontab, Reset, CancellationToken.None);
+            await CronjobExtensions.ScheduleJob(ResetCrontab, Reset, cancellationToken: CancellationToken.None);
         }
 
         private void Reset()
@@ -56,8 +56,8 @@ namespace HomeAssistant.Automations.Apps.Vacuum
         private void StartReminderLoop()
         {
             _reminderLoopObserver?.Dispose();
-            _reminderLoopObserver = Observable
-                .Interval(TimeSpan.FromMinutes(_config.CurrentValue.ReminderEveryMinutes))
+            _reminderLoopObserver = ObservableExtensions
+                .Interval(TimeSpan.FromMinutes(_config.CurrentValue.ReminderIntervalMinutes), true)
                 .Subscribe(_ => SendReminder());
         }
 

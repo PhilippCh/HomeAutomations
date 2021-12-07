@@ -11,16 +11,16 @@ namespace HomeAssistant.Automations.Extensions
         private static readonly TimeSpan MinTimeSpan = TimeSpan.FromMilliseconds(500);
         private static readonly TimeSpan WaitDelay = TimeSpan.FromMinutes(1);
 
-        public static async Task ScheduleJob(string cronSchedule, Action action, CancellationToken cancellationToken)
+        public static async Task ScheduleJob(string cronSchedule, Action action, bool runOnStartup = false, CancellationToken cancellationToken = default)
         {
             await ScheduleJob(cronSchedule, async () =>
             {
                 action();
                 await Task.CompletedTask;
-            }, cancellationToken);
+            }, runOnStartup, cancellationToken);
         }
         
-        public static async Task ScheduleJob(string cronSchedule, Func<Task> action, CancellationToken cancellationToken)
+        public static async Task ScheduleJob(string cronSchedule, Func<Task> action, bool runOnStartup = false, CancellationToken cancellationToken = default)
         {
             var expression = CronExpression.Parse(cronSchedule);
             var next = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local);
@@ -30,6 +30,11 @@ namespace HomeAssistant.Automations.Extensions
                 await Task.CompletedTask;
             }
 
+            if (runOnStartup && !cancellationToken.IsCancellationRequested)
+            {
+                await action();
+            }
+            
             while (!cancellationToken.IsCancellationRequested)
             {
                 while (next!.Value - DateTimeOffset.Now > MinTimeSpan && !cancellationToken.IsCancellationRequested)
