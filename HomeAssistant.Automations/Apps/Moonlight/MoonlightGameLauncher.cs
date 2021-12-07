@@ -17,9 +17,9 @@ namespace HomeAssistant.Automations.Apps.Moonlight
         private readonly HttpClient _client = new();
         private readonly IReadOnlyDictionary<string, Func<VarEntity?>> _availableGameOptionsFactories;
 
-        public MoonlightGameLauncher(IHaContext haContext)
+        public MoonlightGameLauncher(IHaContext context)
         {
-            _entities = new Entities(haContext);
+            _entities = new Entities(context);
             CreateListeners();
 
             _availableGameOptionsFactories = new Dictionary<string, Func<VarEntity?>>

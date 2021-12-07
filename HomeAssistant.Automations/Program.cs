@@ -1,12 +1,25 @@
 ﻿using System;
+using HomeAssistant.Automations.Apps.Vacuum;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetDaemon;
 
 try
 {
+    var config = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json", false)
+        .Build();
+    
     await Host.CreateDefaultBuilder(args)
         .UseDefaultNetDaemonLogging()
         .UseNetDaemon()
+        .ConfigureServices(services =>
+        {
+            services
+                .AddOptions()
+                .Configure<VacuumConfig>(config.GetSection("Global"));
+        })
         .Build()
         .RunAsync();
 }
