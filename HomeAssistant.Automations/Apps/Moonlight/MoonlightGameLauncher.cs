@@ -7,23 +7,19 @@ using HomeAssistant.Automations.Extensions;
 using HomeAssistantGenerated;
 using NetDaemon.Common;
 using NetDaemon.HassModel.Common;
-using NetDaemon.HassModel.Entities;
 
-namespace HomeAssistant.Automations.Apps
+namespace HomeAssistant.Automations.Apps.Moonlight
 {
     [NetDaemonApp]
     public class MoonlightGameLauncher
     {
-        private readonly IHaContext _haContext;
         private readonly Entities _entities;
-        private readonly HttpClient _client = new HttpClient();
+        private readonly HttpClient _client = new();
         private readonly IReadOnlyDictionary<string, Func<VarEntity?>> _availableGameOptionsFactories;
 
         public MoonlightGameLauncher(IHaContext haContext)
         {
-            _haContext = haContext;
-            _entities = new Entities(_haContext);
-
+            _entities = new Entities(haContext);
             CreateListeners();
 
             _availableGameOptionsFactories = new Dictionary<string, Func<VarEntity?>>
