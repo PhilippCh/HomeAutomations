@@ -21,6 +21,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Cronos" Version="0.7.1" />
+        <PackageReference Include="IoC.StateMachine" Version="2.0.0.3" />
         <PackageReference Include="JoySoftware.NetDaemon.App" Version="21.47.2" />
         <PackageReference Include="JoySoftware.NetDaemon.DaemonRunner" Version="21.47.2" />
         <PackageReference Include="JoySoftware.NetDaemon.HassModel" Version="21.47.2" />

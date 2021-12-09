@@ -1,5 +1,6 @@
 ﻿using System;
 using HomeAssistant.Automations.Apps.Vacuum;
+using HomeAssistant.Automations.Extensions;
 using HomeAssistant.Automations.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,7 @@ try
     var config = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", false)
         .Build();
-    
+
     await Host.CreateDefaultBuilder(args)
         .UseDefaultNetDaemonLogging()
         .UseNetDaemon()
@@ -19,10 +20,8 @@ try
         {
             services
                 .AddOptions()
-                .Configure<VacuumConfig>(config.GetSection("HomeAssistant.Automations:Vacuum"));
-
-            services
-                .AddSingleton<NotificationService>();
+                .Configure<VacuumConfig>(config.GetSection("HomeAssistant.Automations:Vacuum"))
+                .AddAutomationServices();
         })
         .Build()
         .RunAsync();
