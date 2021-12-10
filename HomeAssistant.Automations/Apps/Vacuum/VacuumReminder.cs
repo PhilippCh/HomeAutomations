@@ -38,6 +38,8 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 
 			StartCleaningSchedule(_config.CurrentValue.CleaningSchedule);
 			StartResetSchedule();
+
+			_vacuumService.Start();
 		}
 
 		private async void StartCleaningSchedule(string schedule)

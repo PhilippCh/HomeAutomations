@@ -10,7 +10,6 @@ public static class ServiceCollectionExtensions
 	{
 		return services
 			.AddSingleton<NotificationService>()
-			.AddSingleton<StateMachineService>()
 			.AddVacuumServices();
 	}
 }

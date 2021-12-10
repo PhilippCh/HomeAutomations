@@ -27,9 +27,13 @@ namespace HomeAssistantGenerated
 
 		InputSelectEntities InputSelect { get; }
 
+		InputTextEntities InputText { get; }
+
 		LightEntities Light { get; }
 
 		MediaPlayerEntities MediaPlayer { get; }
+
+		PersistentNotificationEntities PersistentNotification { get; }
 
 		PersonEntities Person { get; }
 
@@ -71,8 +75,10 @@ namespace HomeAssistantGenerated
 		public InputBooleanEntities InputBoolean => new(_haContext);
 		public InputNumberEntities InputNumber => new(_haContext);
 		public InputSelectEntities InputSelect => new(_haContext);
+		public InputTextEntities InputText => new(_haContext);
 		public LightEntities Light => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
+		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
 		public RemoteEntities Remote => new(_haContext);
 		public SensorEntities Sensor => new(_haContext);
@@ -241,6 +247,7 @@ namespace HomeAssistantGenerated
 		public InputNumberEntity KratomIntakeDaily => new(_haContext, "input_number.kratom_intake_daily");
 		public InputNumberEntity MaxShavesBeforeChange => new(_haContext, "input_number.max_shaves_before_change");
 		public InputNumberEntity MeditationTimerMinutes => new(_haContext, "input_number.meditation_timer_minutes");
+		public InputNumberEntity MotionSensorIdleSecs => new(_haContext, "input_number.motion_sensor_idle_secs");
 	}
 
 	public class InputSelectEntities
@@ -254,6 +261,17 @@ namespace HomeAssistantGenerated
 		public InputSelectEntity ChromeRemoteMediaControlDevices => new(_haContext, "input_select.chrome_remote_media_control_devices");
 		public InputSelectEntity MoonlightSelectedGame => new(_haContext, "input_select.moonlight_selected_game");
 		public InputSelectEntity MoonlightSelectedHost => new(_haContext, "input_select.moonlight_selected_host");
+	}
+
+	public class InputTextEntities
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public InputTextEntities(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		public InputTextEntity VacuumStateTest => new(_haContext, "input_text.vacuum_state_test");
 	}
 
 	public class LightEntities
@@ -283,6 +301,17 @@ namespace HomeAssistantGenerated
 		public MediaPlayerEntity SpotifyPhilippChristoph => new(_haContext, "media_player.spotify_philipp_christoph");
 	}
 
+	public class PersistentNotificationEntities
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public PersistentNotificationEntities(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
+	}
+
 	public class PersonEntities
 	{
 		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
@@ -292,6 +321,7 @@ namespace HomeAssistantGenerated
 		}
 
 		public PersonEntity Philipp => new(_haContext, "person.philipp");
+		public PersonEntity Philipp2 => new(_haContext, "person.philipp_2");
 	}
 
 	public class RemoteEntities
@@ -313,6 +343,11 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
+		public SensorEntity E0x00158d0006268613Action => new(_haContext, "sensor.0x00158d0006268613_action");
+		public SensorEntity E0x00158d0006268613Battery => new(_haContext, "sensor.0x00158d0006268613_battery");
+		public SensorEntity E0x00158d0006268613Click => new(_haContext, "sensor.0x00158d0006268613_click");
+		public SensorEntity E0x00158d0006268613Linkquality => new(_haContext, "sensor.0x00158d0006268613_linkquality");
+		public SensorEntity E0x00158d0006268613Voltage => new(_haContext, "sensor.0x00158d0006268613_voltage");
 		public SensorEntity E0x00158d0006269246Action => new(_haContext, "sensor.0x00158d0006269246_action");
 		public SensorEntity E0x00158d0006269246Battery => new(_haContext, "sensor.0x00158d0006269246_battery");
 		public SensorEntity E0x00158d0006269246Click => new(_haContext, "sensor.0x00158d0006269246_click");
@@ -328,6 +363,11 @@ namespace HomeAssistantGenerated
 		public SensorEntity E0x00158d000678ed45Click => new(_haContext, "sensor.0x00158d000678ed45_click");
 		public SensorEntity E0x00158d000678ed45Linkquality => new(_haContext, "sensor.0x00158d000678ed45_linkquality");
 		public SensorEntity E0x00158d000678ed45Voltage => new(_haContext, "sensor.0x00158d000678ed45_voltage");
+		public SensorEntity E0x00158d0006792498Action => new(_haContext, "sensor.0x00158d0006792498_action");
+		public SensorEntity E0x00158d0006792498Battery => new(_haContext, "sensor.0x00158d0006792498_battery");
+		public SensorEntity E0x00158d0006792498Click => new(_haContext, "sensor.0x00158d0006792498_click");
+		public SensorEntity E0x00158d0006792498Linkquality => new(_haContext, "sensor.0x00158d0006792498_linkquality");
+		public SensorEntity E0x00158d0006792498Voltage => new(_haContext, "sensor.0x00158d0006792498_voltage");
 		public SensorEntity E0x54ef441000035f82Battery => new(_haContext, "sensor.0x54ef441000035f82_battery");
 		public SensorEntity E0x54ef441000035f82Illuminance => new(_haContext, "sensor.0x54ef441000035f82_illuminance");
 		public SensorEntity E0x54ef441000035f82IlluminanceLux => new(_haContext, "sensor.0x54ef441000035f82_illuminance_lux");
@@ -380,6 +420,12 @@ namespace HomeAssistantGenerated
 		public SensorEntity GlancesRamFree => new(_haContext, "sensor.glances_ram_free");
 		public SensorEntity GlancesRamUsed => new(_haContext, "sensor.glances_ram_used");
 		public SensorEntity GlancesRamUsedPercent => new(_haContext, "sensor.glances_ram_used_percent");
+		public SensorEntity GlancesRunContainerdRuncK8sIo597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffdRuncFeceffFree => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd_runc_feceff_free");
+		public SensorEntity GlancesRunContainerdRuncK8sIo597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffdRuncFeceffUsed => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd_runc_feceff_used");
+		public SensorEntity GlancesRunContainerdRuncK8sIo597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffdRuncFeceffUsedPercent => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd_runc_feceff_used_percent");
+		public SensorEntity GlancesRunContainerdRuncK8sIo86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97cRuncGmchaeFree => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c_runc_gmchae_free");
+		public SensorEntity GlancesRunContainerdRuncK8sIo86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97cRuncGmchaeUsed => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c_runc_gmchae_used");
+		public SensorEntity GlancesRunContainerdRuncK8sIo86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97cRuncGmchaeUsedPercent => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c_runc_gmchae_used_percent");
 		public SensorEntity GlancesRunning => new(_haContext, "sensor.glances_running");
 		public SensorEntity GlancesSleeping => new(_haContext, "sensor.glances_sleeping");
 		public SensorEntity GlancesSwapFree => new(_haContext, "sensor.glances_swap_free");
@@ -395,6 +441,36 @@ namespace HomeAssistantGenerated
 		public SensorEntity GlancesVarLibKubeletPods04b77e41A7384e78Bd65160022a13dbaVolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_04b77e41_a738_4e78_bd65_160022a13dba_volume_subpaths_mosquitto_config_mosquitto_0_free");
 		public SensorEntity GlancesVarLibKubeletPods04b77e41A7384e78Bd65160022a13dbaVolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_04b77e41_a738_4e78_bd65_160022a13dba_volume_subpaths_mosquitto_config_mosquitto_0_used");
 		public SensorEntity GlancesVarLibKubeletPods04b77e41A7384e78Bd65160022a13dbaVolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_04b77e41_a738_4e78_bd65_160022a13dba_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
+		public SensorEntity GlancesVarLibKubeletPods2e2aa07212a24277B113868eb10fbf2cVolumeSubpathsConfigWgAccessServer2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2e2aa072_12a2_4277_b113_868eb10fbf2c_volume_subpaths_config_wg_access_server_2_free");
+		public SensorEntity GlancesVarLibKubeletPods2e2aa07212a24277B113868eb10fbf2cVolumeSubpathsConfigWgAccessServer2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2e2aa072_12a2_4277_b113_868eb10fbf2c_volume_subpaths_config_wg_access_server_2_used");
+		public SensorEntity GlancesVarLibKubeletPods2e2aa07212a24277B113868eb10fbf2cVolumeSubpathsConfigWgAccessServer2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2e2aa072_12a2_4277_b113_868eb10fbf2c_volume_subpaths_config_wg_access_server_2_used_percent");
+		public SensorEntity GlancesVarLibKubeletPods342f66bf9ab44881Baf5F6e0e59eb645VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_342f66bf_9ab4_4881_baf5_f6e0e59eb645_volume_subpaths_config_mariadb_1_free");
+		public SensorEntity GlancesVarLibKubeletPods342f66bf9ab44881Baf5F6e0e59eb645VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_342f66bf_9ab4_4881_baf5_f6e0e59eb645_volume_subpaths_config_mariadb_1_used");
+		public SensorEntity GlancesVarLibKubeletPods342f66bf9ab44881Baf5F6e0e59eb645VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_342f66bf_9ab4_4881_baf5_f6e0e59eb645_volume_subpaths_config_mariadb_1_used_percent");
+		public SensorEntity GlancesVarLibKubeletPods398e4258495a4a4f82bd9fec6d33d680VolumeSubpathsConfigWgAccessServer2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_398e4258_495a_4a4f_82bd_9fec6d33d680_volume_subpaths_config_wg_access_server_2_free");
+		public SensorEntity GlancesVarLibKubeletPods398e4258495a4a4f82bd9fec6d33d680VolumeSubpathsConfigWgAccessServer2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_398e4258_495a_4a4f_82bd_9fec6d33d680_volume_subpaths_config_wg_access_server_2_used");
+		public SensorEntity GlancesVarLibKubeletPods398e4258495a4a4f82bd9fec6d33d680VolumeSubpathsConfigWgAccessServer2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_398e4258_495a_4a4f_82bd_9fec6d33d680_volume_subpaths_config_wg_access_server_2_used_percent");
+		public SensorEntity GlancesVarLibKubeletPods62ec3bb3Ea404fafB4b235f55ed48f7eVolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_62ec3bb3_ea40_4faf_b4b2_35f55ed48f7e_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
+		public SensorEntity GlancesVarLibKubeletPods62ec3bb3Ea404fafB4b235f55ed48f7eVolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_62ec3bb3_ea40_4faf_b4b2_35f55ed48f7e_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
+		public SensorEntity GlancesVarLibKubeletPods62ec3bb3Ea404fafB4b235f55ed48f7eVolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_62ec3bb3_ea40_4faf_b4b2_35f55ed48f7e_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
+		public SensorEntity GlancesVarLibKubeletPodsB15d522996da4d86942c7f6b686797ceVolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_b15d5229_96da_4d86_942c_7f6b686797ce_volume_subpaths_config_mariadb_1_free");
+		public SensorEntity GlancesVarLibKubeletPodsB15d522996da4d86942c7f6b686797ceVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_b15d5229_96da_4d86_942c_7f6b686797ce_volume_subpaths_config_mariadb_1_used");
+		public SensorEntity GlancesVarLibKubeletPodsB15d522996da4d86942c7f6b686797ceVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_b15d5229_96da_4d86_942c_7f6b686797ce_volume_subpaths_config_mariadb_1_used_percent");
+		public SensorEntity GlancesVarLibKubeletPodsBe3674890ac44bd9869124a58dafa130VolumeSubpathsConfigNginx0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_be367489_0ac4_4bd9_8691_24a58dafa130_volume_subpaths_config_nginx_0_free");
+		public SensorEntity GlancesVarLibKubeletPodsBe3674890ac44bd9869124a58dafa130VolumeSubpathsConfigNginx0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_be367489_0ac4_4bd9_8691_24a58dafa130_volume_subpaths_config_nginx_0_used");
+		public SensorEntity GlancesVarLibKubeletPodsBe3674890ac44bd9869124a58dafa130VolumeSubpathsConfigNginx0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_be367489_0ac4_4bd9_8691_24a58dafa130_volume_subpaths_config_nginx_0_used_percent");
+		public SensorEntity GlancesVarLibKubeletPodsC17d0aa00f2447ac983b1df58ce3a448VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c17d0aa0_0f24_47ac_983b_1df58ce3a448_volume_subpaths_config_mariadb_1_free");
+		public SensorEntity GlancesVarLibKubeletPodsC17d0aa00f2447ac983b1df58ce3a448VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c17d0aa0_0f24_47ac_983b_1df58ce3a448_volume_subpaths_config_mariadb_1_used");
+		public SensorEntity GlancesVarLibKubeletPodsC17d0aa00f2447ac983b1df58ce3a448VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c17d0aa0_0f24_47ac_983b_1df58ce3a448_volume_subpaths_config_mariadb_1_used_percent");
+		public SensorEntity GlancesVarLibKubeletPodsC64bb4ee71714163927c029b3b6de914VolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c64bb4ee_7171_4163_927c_029b3b6de914_volume_subpaths_mosquitto_config_mosquitto_0_free");
+		public SensorEntity GlancesVarLibKubeletPodsC64bb4ee71714163927c029b3b6de914VolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c64bb4ee_7171_4163_927c_029b3b6de914_volume_subpaths_mosquitto_config_mosquitto_0_used");
+		public SensorEntity GlancesVarLibKubeletPodsC64bb4ee71714163927c029b3b6de914VolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c64bb4ee_7171_4163_927c_029b3b6de914_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
+		public SensorEntity GlancesVarLibKubeletPodsD4c4af8e817b4674936c502d2b34ceaaVolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_d4c4af8e_817b_4674_936c_502d2b34ceaa_volume_subpaths_mosquitto_config_mosquitto_0_free");
+		public SensorEntity GlancesVarLibKubeletPodsD4c4af8e817b4674936c502d2b34ceaaVolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_d4c4af8e_817b_4674_936c_502d2b34ceaa_volume_subpaths_mosquitto_config_mosquitto_0_used");
+		public SensorEntity GlancesVarLibKubeletPodsD4c4af8e817b4674936c502d2b34ceaaVolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_d4c4af8e_817b_4674_936c_502d2b34ceaa_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
+		public SensorEntity GlancesVarLibKubeletPodsE176eb38327d4505B9aa284bbc1c13e8VolumeSubpathsConfigWgAccessServer2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_e176eb38_327d_4505_b9aa_284bbc1c13e8_volume_subpaths_config_wg_access_server_2_free");
+		public SensorEntity GlancesVarLibKubeletPodsE176eb38327d4505B9aa284bbc1c13e8VolumeSubpathsConfigWgAccessServer2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_e176eb38_327d_4505_b9aa_284bbc1c13e8_volume_subpaths_config_wg_access_server_2_used");
+		public SensorEntity GlancesVarLibKubeletPodsE176eb38327d4505B9aa284bbc1c13e8VolumeSubpathsConfigWgAccessServer2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_e176eb38_327d_4505_b9aa_284bbc1c13e8_volume_subpaths_config_wg_access_server_2_used_percent");
 		public SensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_free");
 		public SensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_used");
 		public SensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_used_percent");
@@ -421,6 +497,7 @@ namespace HomeAssistantGenerated
 		public SensorEntity MyDogecoinsNodered => new(_haContext, "sensor.my_dogecoins_nodered");
 		public SensorEntity MyDogecoinsProfitNodered => new(_haContext, "sensor.my_dogecoins_profit_nodered");
 		public SensorEntity NetdaemonStatus => new(_haContext, "sensor.netdaemon_status");
+		public SensorEntity Nodered92b5910e7f5ff => new(_haContext, "sensor.nodered_92b5910e_7f5ff");
 		public SensorEntity OpenwindowsCount => new(_haContext, "sensor.openwindows_count");
 		public SensorEntity P90xWorkoutToday => new(_haContext, "sensor.p90x_workout_today");
 		public SensorEntity PupsstationCpuLoad15Min => new(_haContext, "sensor.pupsstation_cpu_load_15_min");
@@ -462,12 +539,16 @@ namespace HomeAssistantGenerated
 		public SensorEntity StockMetroAgProfit => new(_haContext, "sensor.stock_metro_ag_profit");
 		public SensorEntity StockMetroAgShareprice => new(_haContext, "sensor.stock_metro_ag_shareprice");
 		public SensorEntity StockMetroAgTotalvalue => new(_haContext, "sensor.stock_metro_ag_totalvalue");
+		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
 		public SensorEntity ThermostatArbeitszimmerTemperature => new(_haContext, "sensor.thermostat_arbeitszimmer_temperature");
 		public SensorEntity ThermostatArbeitszimmerValvetappet => new(_haContext, "sensor.thermostat_arbeitszimmer_valvetappet");
+		public SensorEntity ThermostatBadezimmer => new(_haContext, "sensor.thermostat_badezimmer");
 		public SensorEntity ThermostatBadezimmerTemperature => new(_haContext, "sensor.thermostat_badezimmer_temperature");
 		public SensorEntity ThermostatBadezimmerValvetappet => new(_haContext, "sensor.thermostat_badezimmer_valvetappet");
+		public SensorEntity ThermostatSchlafzimmer => new(_haContext, "sensor.thermostat_schlafzimmer");
 		public SensorEntity ThermostatSchlafzimmerTemperature => new(_haContext, "sensor.thermostat_schlafzimmer_temperature");
 		public SensorEntity ThermostatSchlafzimmerValvetappet => new(_haContext, "sensor.thermostat_schlafzimmer_valvetappet");
+		public SensorEntity ThermostatWohnzimmer => new(_haContext, "sensor.thermostat_wohnzimmer");
 		public SensorEntity ThermostatWohnzimmerTemperature => new(_haContext, "sensor.thermostat_wohnzimmer_temperature");
 		public SensorEntity ThermostatWohnzimmerValvetappet => new(_haContext, "sensor.thermostat_wohnzimmer_valvetappet");
 	}
@@ -499,6 +580,16 @@ namespace HomeAssistantGenerated
 		public SwitchEntity Bfb8ec2dac052e231ax6tg => new(_haContext, "switch.bfb8ec2dac052e231ax6tg");
 		public SwitchEntity EnableChromeControlLights => new(_haContext, "switch.enable_chrome_control_lights");
 		public SwitchEntity EnableChromeMediaPlayback => new(_haContext, "switch.enable_chrome_media_playback");
+		public SwitchEntity EnableChromeMediaPlayback10 => new(_haContext, "switch.enable_chrome_media_playback_10");
+		public SwitchEntity EnableChromeMediaPlayback11 => new(_haContext, "switch.enable_chrome_media_playback_11");
+		public SwitchEntity EnableChromeMediaPlayback12 => new(_haContext, "switch.enable_chrome_media_playback_12");
+		public SwitchEntity EnableChromeMediaPlayback13 => new(_haContext, "switch.enable_chrome_media_playback_13");
+		public SwitchEntity EnableChromeMediaPlayback4 => new(_haContext, "switch.enable_chrome_media_playback_4");
+		public SwitchEntity EnableChromeMediaPlayback5 => new(_haContext, "switch.enable_chrome_media_playback_5");
+		public SwitchEntity EnableChromeMediaPlayback6 => new(_haContext, "switch.enable_chrome_media_playback_6");
+		public SwitchEntity EnableChromeMediaPlayback7 => new(_haContext, "switch.enable_chrome_media_playback_7");
+		public SwitchEntity EnableChromeMediaPlayback8 => new(_haContext, "switch.enable_chrome_media_playback_8");
+		public SwitchEntity EnableChromeMediaPlayback9 => new(_haContext, "switch.enable_chrome_media_playback_9");
 		public SwitchEntity HarmonyHubKino2 => new(_haContext, "switch.harmony_hub_kino_2");
 		public SwitchEntity HarmonyHubKinoLaptopFup => new(_haContext, "switch.harmony_hub_kino_laptop_fup");
 		public SwitchEntity HarmonyHubListenToMusic => new(_haContext, "switch.harmony_hub_listen_to_music");
@@ -507,13 +598,26 @@ namespace HomeAssistantGenerated
 		public SwitchEntity Kino => new(_haContext, "switch.kino");
 		public SwitchEntity LoudspeakerPup => new(_haContext, "switch.loudspeaker_pup");
 		public SwitchEntity Music => new(_haContext, "switch.music");
+		public SwitchEntity NetdaemonMoonlightgamelauncher => new(_haContext, "switch.netdaemon_moonlightgamelauncher");
 		public SwitchEntity NetdaemonMoonlightinputselectupdater => new(_haContext, "switch.netdaemon_moonlightinputselectupdater");
+		public SwitchEntity NetdaemonVacuumreminder => new(_haContext, "switch.netdaemon_vacuumreminder");
 		public SwitchEntity Pc => new(_haContext, "switch.pc");
 		public SwitchEntity Playstation => new(_haContext, "switch.playstation");
 		public SwitchEntity Schedule4e40b2 => new(_haContext, "switch.schedule_4e40b2");
 		public SwitchEntity Schedule5132c8 => new(_haContext, "switch.schedule_5132c8");
 		public SwitchEntity ScheduleF18168 => new(_haContext, "switch.schedule_f18168");
 		public SwitchEntity ToggleChromeMediaPlayback => new(_haContext, "switch.toggle_chrome_media_playback");
+		public SwitchEntity ToggleChromeMediaPlayback10 => new(_haContext, "switch.toggle_chrome_media_playback_10");
+		public SwitchEntity ToggleChromeMediaPlayback11 => new(_haContext, "switch.toggle_chrome_media_playback_11");
+		public SwitchEntity ToggleChromeMediaPlayback12 => new(_haContext, "switch.toggle_chrome_media_playback_12");
+		public SwitchEntity ToggleChromeMediaPlayback13 => new(_haContext, "switch.toggle_chrome_media_playback_13");
+		public SwitchEntity ToggleChromeMediaPlayback4 => new(_haContext, "switch.toggle_chrome_media_playback_4");
+		public SwitchEntity ToggleChromeMediaPlayback5 => new(_haContext, "switch.toggle_chrome_media_playback_5");
+		public SwitchEntity ToggleChromeMediaPlayback6 => new(_haContext, "switch.toggle_chrome_media_playback_6");
+		public SwitchEntity ToggleChromeMediaPlayback7 => new(_haContext, "switch.toggle_chrome_media_playback_7");
+		public SwitchEntity ToggleChromeMediaPlayback8 => new(_haContext, "switch.toggle_chrome_media_playback_8");
+		public SwitchEntity ToggleChromeMediaPlayback9 => new(_haContext, "switch.toggle_chrome_media_playback_9");
+		public SwitchEntity ToggleKinoPlayback => new(_haContext, "switch.toggle_kino_playback");
 		public SwitchEntity ToggleMeditationSession => new(_haContext, "switch.toggle_meditation_session");
 		public SwitchEntity Windows => new(_haContext, "switch.windows");
 		public SwitchEntity Windowswol => new(_haContext, "switch.windowswol");
@@ -653,6 +757,13 @@ namespace HomeAssistantGenerated
 		}
 	}
 
+	public record InputTextEntity : NetDaemon.HassModel.Entities.Entity<InputTextEntity, NetDaemon.HassModel.Entities.EntityState<InputTextAttributes>, InputTextAttributes>
+	{
+		public InputTextEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+	}
+
 	public record LightEntity : NetDaemon.HassModel.Entities.Entity<LightEntity, NetDaemon.HassModel.Entities.EntityState<LightAttributes>, LightAttributes>
 	{
 		public LightEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -663,6 +774,13 @@ namespace HomeAssistantGenerated
 	public record MediaPlayerEntity : NetDaemon.HassModel.Entities.Entity<MediaPlayerEntity, NetDaemon.HassModel.Entities.EntityState<MediaPlayerAttributes>, MediaPlayerAttributes>
 	{
 		public MediaPlayerEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+	}
+
+	public record PersistentNotificationEntity : NetDaemon.HassModel.Entities.Entity<PersistentNotificationEntity, NetDaemon.HassModel.Entities.EntityState<PersistentNotificationAttributes>, PersistentNotificationAttributes>
+	{
+		public PersistentNotificationEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 	}
@@ -982,8 +1100,14 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("mode")]
 		public string? Mode { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("step")]
 		public double? Step { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 	}
 
 	public record InputSelectAttributes
@@ -999,6 +1123,27 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("options")]
 		public object? Options { get; init; }
+	}
+
+	public record InputTextAttributes
+	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		public bool? Editable { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("max")]
+		public double? Max { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("min")]
+		public double? Min { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("mode")]
+		public string? Mode { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("pattern")]
+		public object? Pattern { get; init; }
 	}
 
 	public record LightAttributes
@@ -1030,17 +1175,50 @@ namespace HomeAssistantGenerated
 
 	public record MediaPlayerAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		public string? EntityPicture { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_album_name")]
+		public string? MediaAlbumName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_artist")]
+		public string? MediaArtist { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_content_id")]
+		public string? MediaContentId { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_content_type")]
 		public string? MediaContentType { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_duration")]
+		public double? MediaDuration { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position")]
+		public double? MediaPosition { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position_updated_at")]
+		public string? MediaPositionUpdatedAt { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_title")]
+		public string? MediaTitle { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_track")]
+		public double? MediaTrack { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("repeat")]
+		public string? Repeat { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shuffle")]
 		public bool? Shuffle { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source")]
+		public string? Source { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_list")]
 		public object? SourceList { get; init; }
@@ -1050,6 +1228,18 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("volume_level")]
 		public double? VolumeLevel { get; init; }
+	}
+
+	public record PersistentNotificationAttributes
+	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("message")]
+		public string? Message { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("title")]
+		public string? Title { get; init; }
 	}
 
 	public record PersonAttributes
@@ -1075,8 +1265,14 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("longitude")]
 		public double? Longitude { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source")]
 		public string? Source { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("user_id")]
 		public string? UserId { get; init; }
@@ -1108,6 +1304,9 @@ namespace HomeAssistantGenerated
 
 	public record SensorAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
+		public object? Action { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
 
@@ -1128,6 +1327,15 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Available (Opportunistic)")]
 		public string? AvailableOpportunistic { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
+		public double? Battery { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_received")]
+		public double? BytesReceived { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_sent")]
+		public double? BytesSent { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Carrier ID")]
 		public string? CarrierID { get; init; }
@@ -1201,6 +1409,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Current Radio Technology")]
 		public string? CurrentRadioTechnology { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
+		public object? Device { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
 
@@ -1216,6 +1427,12 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance")]
+		public double? Illuminance { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
+		public double? IlluminanceLux { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Inland Water")]
 		public string? InlandWater { get; init; }
 
@@ -1225,6 +1442,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("ISO Country Code")]
 		public string? ISOCountryCode { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
+		public string? LastSeen { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastupdate")]
 		public string? Lastupdate { get; init; }
 
@@ -1233,6 +1453,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastworkout_url")]
 		public string? LastworkoutUrl { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
+		public double? Linkquality { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Locality")]
 		public string? Locality { get; init; }
@@ -1279,6 +1502,18 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("repositories")]
 		public object? Repositories { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_country")]
+		public string? ServerCountry { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_id")]
+		public string? ServerId { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_name")]
+		public string? ServerName { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shares")]
 		public double? Shares { get; init; }
 
@@ -1290,6 +1525,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Sub Thoroughfare")]
 		public string? SubThoroughfare { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("text")]
 		public string? Text { get; init; }
@@ -1347,6 +1585,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("version")]
 		public string? Version { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
+		public double? Voltage { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Zones")]
 		public object? Zones { get; init; }
@@ -1410,6 +1651,12 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_trigger")]
 		public string? NextTrigger { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("tags")]
 		public object? Tags { get; init; }
@@ -5700,6 +5947,24 @@ namespace HomeAssistantGenerated
 			entity.CallService("set_options", new
 			{
 			@options
+			}
+
+			);
+		}
+	}
+
+	public static class InputTextEntityExtensionMethods
+	{
+		public static void SetValue(this InputTextEntity entity, InputTextSetValueParameters data)
+		{
+			entity.CallService("set_value", data);
+		}
+
+		public static void SetValue(this InputTextEntity entity, string @value)
+		{
+			entity.CallService("set_value", new
+			{
+			@value
 			}
 
 			);
