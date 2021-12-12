@@ -50,7 +50,6 @@ public class NotificationService
 
 	public void SendNotification(Notification notification)
 	{
-		_logger.Information("Notifying of pending vacuum run");
 		_services.Notify.MobileAppIphonePhilipp(
 			new NotifyMobileAppIphonePhilippParameters
 			{

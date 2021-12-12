@@ -5,8 +5,6 @@ public enum VacuumState
 	Idle,
 	Clean,
 	GoToPoint,
-
-	GoToBin,
-	GoToBedroom,
+	WaitForAction,
 	ReturnToDock
 }

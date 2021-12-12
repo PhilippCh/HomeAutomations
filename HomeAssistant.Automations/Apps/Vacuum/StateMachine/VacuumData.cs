@@ -1,9 +1,8 @@
-﻿using NetDaemon.HassModel.Entities;
+﻿using HomeAssistant.Automations.Models;
 
 namespace HomeAssistant.Automations.Apps.Vacuum.StateMachine;
 
-public class VacuumData
+public class VacuumData : StateMachineEntityData
 {
-	public Entity Entity { get; set; }
 	public bool CleanBedroom { get; set; }
 }

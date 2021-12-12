@@ -25,20 +25,24 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 		private readonly VacuumService _vacuumService;
 		private readonly NotificationService _notificationService;
 		private readonly IOptionsMonitor<VacuumConfig> _config;
+		private readonly ILogger _logger;
 
 		public VacuumReminder(
 			VacuumService vacuumService,
 			NotificationService notificationService,
-			IOptionsMonitor<VacuumConfig> config)
+			IOptionsMonitor<VacuumConfig> config,
+			ILogger loggerFactory)
 		{
 			_vacuumService = vacuumService;
 			_notificationService = notificationService;
 			_config = config;
 			_config.OnChange(_ => Reset());
+			_logger = loggerFactory.ForContext<VacuumReminder>();
 
 			StartCleaningSchedule(_config.CurrentValue.CleaningSchedule);
 			StartResetSchedule();
 
+			// TODO: Debug
 			_vacuumService.Start();
 		}
 
@@ -75,7 +79,12 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 
 		private void SendReminder()
 		{
-			_notificationService.SendNotification(_config.CurrentValue.Reminder);
+			_logger.Debug("Sending vacuum reminder notification.");
+
+			if (!_config.CurrentValue.Debug)
+			{
+				_notificationService.SendNotification(_config.CurrentValue.Notifications.Reminder);
+			}
 		}
 
 		private void OnNotificationActionFired(string action)
