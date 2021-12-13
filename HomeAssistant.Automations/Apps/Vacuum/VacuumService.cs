@@ -53,7 +53,6 @@ public class VacuumService
 		var e = state switch
 		{
 			"cleaning" => VacuumEvents.Cleaning,
-			"docked" => VacuumEvents.Docked,
 			"idle" => VacuumEvents.Idle,
 			"returning" => VacuumEvents.Returning,
 			_ => VacuumEvents.Undefined

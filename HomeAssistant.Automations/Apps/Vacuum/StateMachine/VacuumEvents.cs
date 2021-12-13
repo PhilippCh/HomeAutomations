@@ -6,11 +6,6 @@ public enum VacuumEvents
 
 	// HA Entity states.
 	Cleaning,
-	Docked,
 	Idle,
-	Returning,
-
-	// Internal states.
-	GoToBin,
-	GoToBedroom,
+	Returning
 }
