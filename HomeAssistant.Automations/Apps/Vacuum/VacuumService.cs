@@ -27,7 +27,7 @@ public class VacuumService
 		_config = config;
 		_logger = loggerFactory.ForContext<VacuumService>();
 
-		_entity = new Entities(context).InputText.VacuumStateTest;
+		_entity = context.Entity(config.CurrentValue.Entity);
 		_entity.StateChanges().Subscribe(OnEntityStateChanged);
 	}
 
@@ -37,6 +37,7 @@ public class VacuumService
 
 	private void Start(bool cleanBedroom)
 	{
+		_stateMachine?.Dispose();
 		_stateMachine = _services.GetRequiredService<VacuumStateMachine>();
 		_cleanBedroom = cleanBedroom;
 	}

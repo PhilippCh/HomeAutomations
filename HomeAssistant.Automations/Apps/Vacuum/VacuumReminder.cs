@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
 using System.Threading;
 using HomeAssistant.Automations.Extensions;
+using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Services;
-using Microsoft.Extensions.Options;
+using JetBrains.Annotations;
 using NetDaemon.Common;
-using NetDaemon.Extensions.Scheduler;
-using NetDaemon.HassModel.Common;
-using Serilog;
 using ObservableExtensions = HomeAssistant.Automations.Extensions.ObservableExtensions;
 
 namespace HomeAssistant.Automations.Apps.Vacuum
 {
 	[NetDaemonApp]
-	public class VacuumReminder
+	[UsedImplicitly]
+	public class VacuumReminder : BaseAutomation<VacuumReminder, VacuumConfig>
 	{
 		private const string ResetCrontab = "0 0 * * *";
 
@@ -24,26 +21,22 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 
 		private readonly VacuumService _vacuumService;
 		private readonly NotificationService _notificationService;
-		private readonly IOptionsMonitor<VacuumConfig> _config;
-		private readonly ILogger _logger;
 
 		public VacuumReminder(
 			VacuumService vacuumService,
 			NotificationService notificationService,
-			IOptionsMonitor<VacuumConfig> config,
-			ILogger loggerFactory)
+			BaseAutomationDependencyAggregate<VacuumReminder, VacuumConfig> aggregate)
+			: base(aggregate)
 		{
 			_vacuumService = vacuumService;
 			_notificationService = notificationService;
-			_config = config;
-			_config.OnChange(_ => Reset());
-			_logger = loggerFactory.ForContext<VacuumReminder>();
+		}
 
-			StartCleaningSchedule(_config.CurrentValue.CleaningSchedule);
+		protected override void Start()
+		{
+			ObserveConfigChange(_ => Reset());
+			StartCleaningSchedule(Config.CleaningSchedule);
 			StartResetSchedule();
-
-			// TODO: Debug
-			_vacuumService.Start();
 		}
 
 		private async void StartCleaningSchedule(string schedule)
@@ -65,25 +58,25 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 			_reminderLoopObserver?.Dispose();
 			_reminderActionObserver?.Dispose();
 
-			StartCleaningSchedule(_config.CurrentValue.CleaningSchedule);
+			StartCleaningSchedule(Config.CleaningSchedule);
 		}
 
 		private void StartReminderLoop()
 		{
 			_reminderLoopObserver?.Dispose();
 			_reminderLoopObserver = ObservableExtensions
-				.Interval(TimeSpan.FromMinutes(_config.CurrentValue.ReminderIntervalMinutes), true)
+				.Interval(TimeSpan.FromMinutes(Config.ReminderIntervalMinutes), true)
 				.Subscribe(_ => SendReminder());
 			_reminderActionObserver = _notificationService.NotificationActionFired.Subscribe(OnNotificationActionFired);
 		}
 
 		private void SendReminder()
 		{
-			_logger.Debug("Sending vacuum reminder notification.");
+			Logger.Debug("Sending vacuum reminder notification.");
 
-			if (!_config.CurrentValue.Debug)
+			if (!Config.Debug)
 			{
-				_notificationService.SendNotification(_config.CurrentValue.Notifications.Reminder);
+				_notificationService.SendNotification(Config.Notifications.Reminder);
 			}
 		}
 

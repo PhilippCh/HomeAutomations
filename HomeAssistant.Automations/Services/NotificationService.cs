@@ -4,42 +4,25 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text.Json.Serialization;
 using HomeAssistant.Automations.Constants;
+using HomeAssistant.Automations.Models;
 using HomeAssistantGenerated;
 using NetDaemon.HassModel.Common;
 using Serilog;
 
 namespace HomeAssistant.Automations.Services;
 
-public class Notification
-{
-	public string Title { get; set; }
-	public string Template { get; set; }
-	public string Tag { get; set; }
-	public IEnumerable<NotificationAction> Actions { get; set; }
-}
-
-public class NotificationAction
-{
-	[JsonPropertyName("action")]
-	public string Action { get; set; }
-
-	[JsonPropertyName("title")]
-	public string Title { get; set; }
-
-	[JsonPropertyName("destructive")]
-	public bool Destructive { get; set; }
-}
-
 public class NotificationService
 {
 	public IObservable<string> NotificationActionFired => _notificationActionFired;
 
-	private readonly HomeAssistantGenerated.Services _services;
+	private readonly IHaContext _context;
 	private readonly ILogger _logger;
+	private readonly HomeAssistantGenerated.Services _services;
 	private readonly Subject<string> _notificationActionFired = new();
 
 	public NotificationService(IHaContext context, ILogger logger)
 	{
+		_context = context;
 		_services = new HomeAssistantGenerated.Services(context);
 		context.Events
 			.Where(e => e.EventType == EventTypes.MobileAppNotificationAction && e.DataElement.HasValue)
@@ -50,12 +33,12 @@ public class NotificationService
 
 	public void SendNotification(Notification notification)
 	{
-		_services.Notify.MobileAppIphonePhilipp(
-			new NotifyMobileAppIphonePhilippParameters
+		_context.CallService(
+			"notify", notification.Service, data: new
 			{
-				Message = notification.Template,
-				Title = notification.Title,
-				Data = new
+				message = notification.Template,
+				title = notification.Title,
+				data = new
 				{
 					tag = notification.Tag,
 					actions = notification.Actions

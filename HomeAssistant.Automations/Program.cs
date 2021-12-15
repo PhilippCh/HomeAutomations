@@ -1,5 +1,4 @@
 ﻿using System;
-using HomeAssistant.Automations.Apps.Vacuum;
 using HomeAssistant.Automations.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,9 +17,8 @@ try
         .ConfigureServices(services =>
         {
             services
-                .AddOptions()
-                .Configure<VacuumConfig>(config.GetSection("HomeAssistant.Automations:Vacuum"))
-                .AddAutomationServices();
+	            .AddOptions()
+                .AddAutomationServices(config);
         })
         .Build()
         .RunAsync();

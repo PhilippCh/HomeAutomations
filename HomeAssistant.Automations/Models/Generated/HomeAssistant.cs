@@ -379,6 +379,8 @@ namespace HomeAssistantGenerated
 
 		///<summary>New devices discovered</summary>
 		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
+		///<summary>Login attempt failed</summary>
+		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
 	}
 
 	public class PersonEntities
@@ -905,6 +907,8 @@ namespace HomeAssistantGenerated
 		public SwitchEntity LoudspeakerPup => new(_haContext, "switch.loudspeaker_pup");
 		///<summary>music</summary>
 		public SwitchEntity Music => new(_haContext, "switch.music");
+		///<summary>netdaemon_kitchenlight</summary>
+		public SwitchEntity NetdaemonKitchenlight => new(_haContext, "switch.netdaemon_kitchenlight");
 		///<summary>netdaemon_moonlightgamelauncher</summary>
 		public SwitchEntity NetdaemonMoonlightgamelauncher => new(_haContext, "switch.netdaemon_moonlightgamelauncher");
 		///<summary>netdaemon_moonlightinputselectupdater</summary>
@@ -1595,6 +1599,15 @@ namespace HomeAssistantGenerated
 
 	public record LightAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("brightness")]
+		public double? Brightness { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_mode")]
+		public string? ColorMode { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_temp")]
+		public double? ColorTemp { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
@@ -1613,53 +1626,17 @@ namespace HomeAssistantGenerated
 
 	public record MediaPlayerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
-		public string? EntityPicture { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_album_name")]
-		public string? MediaAlbumName { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_artist")]
-		public string? MediaArtist { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_content_id")]
-		public string? MediaContentId { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_content_type")]
 		public string? MediaContentType { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_duration")]
-		public double? MediaDuration { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_playlist")]
-		public string? MediaPlaylist { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position")]
-		public double? MediaPosition { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position_updated_at")]
-		public string? MediaPositionUpdatedAt { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_title")]
-		public string? MediaTitle { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_track")]
-		public double? MediaTrack { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("repeat")]
-		public string? Repeat { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shuffle")]
 		public bool? Shuffle { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source")]
-		public string? Source { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_list")]
 		public object? SourceList { get; init; }

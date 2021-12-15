@@ -1,5 +1,4 @@
 ﻿using HomeAssistant.Automations.Models;
-using HomeAssistant.Automations.Services;
 
 namespace HomeAssistant.Automations.Apps.Vacuum
 {
@@ -12,6 +11,7 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 
     public class VacuumConfig : Config
     {
+    public string Entity {get;set;}
 	    public string CleaningSchedule { get; set; }
         public int ReminderIntervalMinutes { get; set; }
         public VacuumNotificationConfig Notifications { get; set; }
