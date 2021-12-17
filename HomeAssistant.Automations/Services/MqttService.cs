@@ -73,13 +73,21 @@ public class MqttService
 		await _client.StartAsync(options);
 	}
 
-	public IObservable<T> GetMessagesForTopic<T>(string topic)
-	{
-		return _messages
+	public IObservable<T?> GetMessagesForTopic<T>(string topic) =>
+		_messages
 			.Where(m => m.Topic == topic)
 			.Select(m => Encoding.UTF8.GetString(m.Payload))
-			.Select(m => JsonSerializer.Deserialize<T>(m))
-			.Where(m => m != null)
-			.Select(m => m!);
-	}
+			.Select(
+				m =>
+				{
+					try
+					{
+						return JsonSerializer.Deserialize<T>(m);
+					}
+					catch (JsonException _)
+					{
+						// Attempt returning a direct cast if message does not appear to be a JSON construct.
+						return (T)Convert.ChangeType(m, typeof(T));
+					}
+				});
 }

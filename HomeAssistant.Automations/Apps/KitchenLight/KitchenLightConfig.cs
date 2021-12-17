@@ -12,7 +12,8 @@ public class MotionSensorConfig
 public class KitchenLightConfig : Config
 {
 	public MotionSensorConfig MotionSensor { get; set; }
+	public int MinIlluminanceLux { get; set; }
 	public string LightSensorTopic { get; set; }
-	public string ManualTriggerSensor { get; set; }
+	public string ManualTriggerSensorTopic { get; set; }
 	public int CycleTimeMinutes { get; set; }
 }

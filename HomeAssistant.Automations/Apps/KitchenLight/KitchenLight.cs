@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Reactive;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using HomeAssistant.Automations.Extensions;
 using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Models.DeviceMessages;
 using HomeAssistant.Automations.Services;
@@ -13,56 +15,103 @@ namespace HomeAssistant.Automations.Apps.KitchenLight;
 [NetDaemonApp]
 public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 {
-	private int _lastReportedIlluminance;
+	private bool ShouldLightTurnOn => _currentIlluminanceLux < Config.MinIlluminanceLux;
+
+	private int _currentIlluminanceLux;
 	private IDisposable? _currentCycleObserver;
 
-	private readonly PingService _pingService;
 	private readonly MqttService _mqttService;
 	private readonly LightEntity _lightEntity;
+	private readonly BinarySensorEntity _motionSensorEntity;
 
-	public KitchenLight(PingService pingService, MqttService mqttService, BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate)
+	public KitchenLight(MqttService mqttService, BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate)
 		: base(aggregate)
 	{
-		_pingService = pingService;
+		var entities = new Entities(Context);
+
 		_mqttService = mqttService;
-		_lightEntity = new Entities(Context).Light.Bfb81fd992b98475f8tc6r;
+		_lightEntity = entities.Light.Bfb81fd992b98475f8tc6r;
+		_motionSensorEntity = entities.BinarySensor.Motionsensorbedroom;
 	}
 
 	protected override void Start()
 	{
-		_mqttService.Connect(GetType().Name, new[] { Config.LightSensorTopic, Config.ManualTriggerSensor });
-		_mqttService.GetMessagesForTopic<LightSensorDeviceMessage>(Config.LightSensorTopic).Subscribe(m => _lastReportedIlluminance = m.IlluminanceLux);
-		_mqttService.GetMessagesForTopic<WirelessSwitchDeviceMessage>(Config.ManualTriggerSensor).Subscribe(OnManualTriggerMessageReceived);
+		_mqttService.Connect(GetType().Name, new[] { Config.LightSensorTopic, Config.ManualTriggerSensorTopic });
+		_mqttService.GetMessagesForTopic<LightSensorDeviceMessage>(Config.LightSensorTopic).Subscribe(SetIlluminanceLux);
+		_mqttService.GetMessagesForTopic<string>(Config.ManualTriggerSensorTopic).Subscribe(OnManualTriggerMessageReceived);
 
-		var pingInterval = Config.MotionSensor.PingIntervalMs;
-
-		Observable
-			.Interval(TimeSpan.FromMilliseconds(pingInterval))
-			.Select(_ => _pingService.Ping(Config.MotionSensor.Host, pingInterval * 0.8f))
-			.Switch()
-			.Where(result => result)
-			.Throttle(TimeSpan.FromSeconds(Config.MotionSensor.ThrottleAfterWakeSeconds))
+		// TODO: Use MQTT listener when new PIR sensor is here.
+		_motionSensorEntity.StateChanges()
+			.Where(s => s.Old!.State != "on" && s.New!.State == "on")
 			.Subscribe(_ => OnMotionDetected());
+	}
+
+	private void SetIlluminanceLux(LightSensorDeviceMessage? m)
+	{
+		_currentIlluminanceLux = m?.IlluminanceLux ?? _currentIlluminanceLux;
+		Logger.Information("Set illuminance to {illuminance} lux.", _currentIlluminanceLux);
 	}
 
 	private void OnMotionDetected()
 	{
-		Console.WriteLine("Motion detected.");
+		if (!ShouldLightTurnOn)
+		{
+			Logger.Information("{illuminance} lux is too bright.", _currentIlluminanceLux);
+
+			return;
+		}
+
+		Logger.Information("Motion detected.");
+		StartLightCycle();
 	}
 
-	private void OnManualTriggerMessageReceived(WirelessSwitchDeviceMessage message)
+	private void OnManualTriggerMessageReceived(string? message)
 	{
-		_lightEntity.Toggle();
-
-		if (_lightEntity.IsOn())
+		Action action = message switch
 		{
-			_currentCycleObserver?.Dispose();
-			_currentCycleObserver = CreateManuallyTriggeredLightCycle().Subscribe();
+			WirelessSwitchActions.Hold => TurnOnPermanent,
+			WirelessSwitchActions.Release => () => {},
+			_ => ToggleWithCycle
+		};
+
+		action();
+	}
+
+	private void TurnOnPermanent()
+	{
+		StopLightCycle();
+		_lightEntity.TurnOn();
+	}
+
+	private void ToggleWithCycle()
+	{
+		if (_lightEntity.IsOff())
+		{
+			StartLightCycle();
+		}
+		else
+		{
+			StopLightCycle();
+			_lightEntity.TurnOff();
 		}
 	}
 
-	private IObservable<Unit> CreateManuallyTriggeredLightCycle() =>
-		Observable.Return(new Unit())
+	private void StartLightCycle()
+	{
+		Logger.Information("Starting new light cycle.");
+
+		_lightEntity.TurnOn();
+		_currentCycleObserver?.Dispose();
+		_currentCycleObserver = Observable.Return(new Unit())
 			.Delay(TimeSpan.FromMinutes(Config.CycleTimeMinutes))
-			.Do(_ => _lightEntity.TurnOff());
+			.Do(
+				_ =>
+				{
+					Logger.Information("Light cycle ended.");
+					_lightEntity.TurnOff();
+				})
+			.Subscribe();
+	}
+
+	private void StopLightCycle() => _currentCycleObserver?.Dispose();
 }

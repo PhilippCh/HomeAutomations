@@ -18,6 +18,7 @@ public static class ServiceCollectionExtensions
 			.AddSingleton<NotificationService>()
 			.AddSingleton<MqttService>()
 			.AddTransient<PingService>()
+			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>))
 
 			.AddMoonlightServices(config)

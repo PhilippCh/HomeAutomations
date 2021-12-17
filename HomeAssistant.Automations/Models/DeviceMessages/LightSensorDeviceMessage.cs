@@ -8,8 +8,8 @@ namespace HomeAssistant.Automations.Models.DeviceMessages;
 public class LightSensorDeviceMessage : ZigbeeDeviceMessage
 {
 	[JsonPropertyName("illuminance")]
-	public int Illuminance { get; set; }
+	public int? Illuminance { get; set; }
 
 	[JsonPropertyName("illuminance_lux")]
-	public int IlluminanceLux { get; set; }
+	public int? IlluminanceLux { get; set; }
 }

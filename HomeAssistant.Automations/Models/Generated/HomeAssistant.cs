@@ -1626,17 +1626,50 @@ namespace HomeAssistantGenerated
 
 	public record MediaPlayerAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		public string? EntityPicture { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_album_name")]
+		public string? MediaAlbumName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_artist")]
+		public string? MediaArtist { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_content_id")]
+		public string? MediaContentId { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_content_type")]
 		public string? MediaContentType { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_duration")]
+		public double? MediaDuration { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position")]
+		public double? MediaPosition { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position_updated_at")]
+		public string? MediaPositionUpdatedAt { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_title")]
+		public string? MediaTitle { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_track")]
+		public double? MediaTrack { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("repeat")]
+		public string? Repeat { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shuffle")]
 		public bool? Shuffle { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source")]
+		public string? Source { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_list")]
 		public object? SourceList { get; init; }
@@ -1723,7 +1756,7 @@ namespace HomeAssistantGenerated
 	public record SensorAttributes
 	{
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
-		public object? Action { get; init; }
+		public string? Action { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
@@ -1879,7 +1912,7 @@ namespace HomeAssistantGenerated
 	public record NumericSensorAttributes
 	{
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
-		public object? Action { get; init; }
+		public string? Action { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }

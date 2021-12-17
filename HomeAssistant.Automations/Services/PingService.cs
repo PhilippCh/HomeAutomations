@@ -1,28 +1,52 @@
 ﻿using System;
 using System.Net.NetworkInformation;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using HomeAssistant.Automations.Extensions;
+using Serilog;
 
 namespace HomeAssistant.Automations.Services;
 
-public class PingService
+public class PingService : BaseService<PingService>
 {
 	private readonly byte[] _buffer;
-	private readonly Ping _sender = new();
 
 	private readonly PingOptions _options = new()
 	{
 		DontFragment = true
 	};
 
-	public PingService()
+	public PingService(BaseServiceDependencyAggregate<PingService> aggregate)
+		: base(aggregate)
 	{
 		_buffer = Encoding.ASCII.GetBytes("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	}
 
-	public IObservable<bool> Ping(string host, double timeoutMs) =>
-		Observable
-			.FromAsync(_ => _sender.SendPingAsync(host, MathExtensions.FloorToInt(timeoutMs), _buffer, _options))
+	public IObservable<Unit> PingInterval(string host, double intervalMs, TimeSpan? afterSuccessThrottle = default)
+	{
+		var ping = Observable
+			.Interval(TimeSpan.FromMilliseconds(intervalMs))
+			.Do(_ => Logger.Debug("Pinging {host}.", host))
+			.Select(_ => Ping(host, intervalMs * 0.8f))
+			.Switch()
+			.Where(result => result)
+			.Select(_ => new Unit());
+
+		if (afterSuccessThrottle != null)
+		{
+			ping = ping.Throttle(afterSuccessThrottle.Value);
+		}
+
+		return ping;
+	}
+
+	public IObservable<bool> Ping(string host, double timeoutMs)
+	{
+		var sender = new Ping();
+
+		return Observable
+			.FromAsync(_ => sender.SendPingAsync(host, MathExtensions.FloorToInt(timeoutMs), _buffer, _options))
 			.Select(result => result.Status == IPStatus.Success);
+	}
 }
