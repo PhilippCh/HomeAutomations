@@ -1599,15 +1599,6 @@ namespace HomeAssistantGenerated
 
 	public record LightAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("brightness")]
-		public double? Brightness { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_mode")]
-		public string? ColorMode { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_temp")]
-		public double? ColorTemp { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
@@ -1756,7 +1747,7 @@ namespace HomeAssistantGenerated
 	public record SensorAttributes
 	{
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
-		public string? Action { get; init; }
+		public object? Action { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
@@ -1912,7 +1903,7 @@ namespace HomeAssistantGenerated
 	public record NumericSensorAttributes
 	{
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
-		public string? Action { get; init; }
+		public object? Action { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }

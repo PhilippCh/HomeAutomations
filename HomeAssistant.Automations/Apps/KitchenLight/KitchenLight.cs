@@ -15,8 +15,9 @@ namespace HomeAssistant.Automations.Apps.KitchenLight;
 [NetDaemonApp]
 public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 {
-	private bool ShouldLightTurnOn => _currentIlluminanceLux < Config.MinIlluminanceLux;
+	private bool ShouldLightTurnOn => _lightEntity.IsOn() || _currentIlluminanceLux < Config.MinIlluminanceLux;
 
+	private bool _isPermanentlyOn;
 	private int _currentIlluminanceLux;
 	private IDisposable? _currentCycleObserver;
 
@@ -54,6 +55,11 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	private void OnMotionDetected()
 	{
+		if (_isPermanentlyOn)
+		{
+			return;
+		}
+
 		if (!ShouldLightTurnOn)
 		{
 			Logger.Information("{illuminance} lux is too bright.", _currentIlluminanceLux);
@@ -80,6 +86,7 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	private void TurnOnPermanent()
 	{
 		StopLightCycle();
+		_isPermanentlyOn = true;
 		_lightEntity.TurnOn();
 	}
 
@@ -92,13 +99,14 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		else
 		{
 			StopLightCycle();
+			_isPermanentlyOn = false;
 			_lightEntity.TurnOff();
 		}
 	}
 
 	private void StartLightCycle()
 	{
-		Logger.Information("Starting new light cycle.");
+		Logger.Information(_currentCycleObserver == null ? "Starting new light cycle." : "Restarting running light cycle.");
 
 		_lightEntity.TurnOn();
 		_currentCycleObserver?.Dispose();

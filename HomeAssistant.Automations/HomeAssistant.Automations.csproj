@@ -11,6 +11,7 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Remove="core" />
     </ItemGroup>
     <ItemGroup>
         <None Include="apps\**\*.yaml" CopyToPublishDirectory="Always" />
@@ -37,7 +38,7 @@
       <Folder Include="Models\Generated" />
     </ItemGroup>
 	
-	<Target Name="Generate HomeAssistant models" BeforeTargets="Build">
+	<Target Name="Generate HomeAssistant models" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="nd-codegen -o .\Models\Generated\HomeAssistant.cs" WorkingDirectory="$(ProjectDir)" />
 	</Target>
 
