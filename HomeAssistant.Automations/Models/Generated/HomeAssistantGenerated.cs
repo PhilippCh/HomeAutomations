@@ -287,6 +287,16 @@ namespace HomeAssistantGenerated
 		public InputBooleanEntity BarcodeScannerConnected => new(_haContext, "input_boolean.barcode_scanner_connected");
 		///<summary>Meditation active?</summary>
 		public InputBooleanEntity MeditationActive => new(_haContext, "input_boolean.meditation_active");
+		///<summary>Bio</summary>
+		public InputBooleanEntity TrashBio => new(_haContext, "input_boolean.trash_bio");
+		///<summary>Glas</summary>
+		public InputBooleanEntity TrashGlass => new(_haContext, "input_boolean.trash_glass");
+		///<summary>Papier</summary>
+		public InputBooleanEntity TrashPaper => new(_haContext, "input_boolean.trash_paper");
+		///<summary>Gelber Sack</summary>
+		public InputBooleanEntity TrashRecycling => new(_haContext, "input_boolean.trash_recycling");
+		///<summary>Restmüll</summary>
+		public InputBooleanEntity TrashWaste => new(_haContext, "input_boolean.trash_waste");
 	}
 
 	public class InputNumberEntities
@@ -379,8 +389,6 @@ namespace HomeAssistantGenerated
 
 		///<summary>New devices discovered</summary>
 		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
-		///<summary>Login attempt failed</summary>
-		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
 	}
 
 	public class PersonEntities
@@ -859,7 +867,7 @@ namespace HomeAssistantGenerated
 		public SwitchEntity E20007146c4dd57098e9d => new(_haContext, "switch.20007146c4dd57098e9d");
 		///<summary>Buddha-Brunnen 2</summary>
 		public SwitchEntity E22763158600194a53716 => new(_haContext, "switch.22763158600194a53716");
-		///<summary>Lightbar </summary>
+		///<summary>Weihnachtsbaum </summary>
 		public SwitchEntity E22763158c44f3380a92c => new(_haContext, "switch.22763158c44f3380a92c");
 		///<summary>Neon-Uhr</summary>
 		public SwitchEntity E62663300c4dd570e60ad => new(_haContext, "switch.62663300c4dd570e60ad");
@@ -901,12 +909,8 @@ namespace HomeAssistantGenerated
 		public SwitchEntity HarmonyHubPlaystation => new(_haContext, "switch.harmony_hub_playstation");
 		///<summary>Harmony Hub Spiel streamen</summary>
 		public SwitchEntity HarmonyHubSpielStreamen => new(_haContext, "switch.harmony_hub_spiel_streamen");
-		///<summary>kino</summary>
-		public SwitchEntity Kino => new(_haContext, "switch.kino");
 		///<summary>Lautsprecher Pup</summary>
 		public SwitchEntity LoudspeakerPup => new(_haContext, "switch.loudspeaker_pup");
-		///<summary>music</summary>
-		public SwitchEntity Music => new(_haContext, "switch.music");
 		///<summary>netdaemon_kitchenlight</summary>
 		public SwitchEntity NetdaemonKitchenlight => new(_haContext, "switch.netdaemon_kitchenlight");
 		///<summary>netdaemon_moonlightgamelauncher</summary>
@@ -917,8 +921,6 @@ namespace HomeAssistantGenerated
 		public SwitchEntity NetdaemonVacuumreminder => new(_haContext, "switch.netdaemon_vacuumreminder");
 		///<summary>pc</summary>
 		public SwitchEntity Pc => new(_haContext, "switch.pc");
-		///<summary>playstation</summary>
-		public SwitchEntity Playstation => new(_haContext, "switch.playstation");
 		///<summary>Schedule #4e40b2</summary>
 		public SwitchEntity Schedule4e40b2 => new(_haContext, "switch.schedule_4e40b2");
 		///<summary>Schedule #5132c8</summary>
@@ -949,8 +951,6 @@ namespace HomeAssistantGenerated
 		public SwitchEntity ToggleChromeMediaPlayback9 => new(_haContext, "switch.toggle_chrome_media_playback_9");
 		///<summary>toggle_kino_playback</summary>
 		public SwitchEntity ToggleKinoPlayback => new(_haContext, "switch.toggle_kino_playback");
-		///<summary>Start/stop meditation session</summary>
-		public SwitchEntity ToggleMeditationSession => new(_haContext, "switch.toggle_meditation_session");
 		///<summary>windows</summary>
 		public SwitchEntity Windows => new(_haContext, "switch.windows");
 		///<summary>windowswol</summary>
@@ -1467,8 +1467,14 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("initial")]
 		public double? Initial { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("step")]
 		public double? Step { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 	}
 
 	public record DeviceTrackerAttributes
@@ -1526,6 +1532,12 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 	}
 
 	public record InputNumberAttributes
@@ -1641,6 +1653,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_duration")]
 		public double? MediaDuration { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_playlist")]
+		public string? MediaPlaylist { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position")]
 		public double? MediaPosition { get; init; }
 
@@ -1738,7 +1753,7 @@ namespace HomeAssistantGenerated
 		public string? FriendlyName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_activity")]
-		public string? LastActivity { get; init; }
+		public object? LastActivity { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
@@ -2157,11 +2172,11 @@ namespace HomeAssistantGenerated
 
 	public record TimerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("duration")]
-		public string? Duration { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
-		public bool? Editable { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 	}
 
 	public record VacuumAttributes

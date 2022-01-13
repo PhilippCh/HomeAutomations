@@ -1,7 +1,9 @@
 ﻿using HomeAssistant.Automations.Models;
+using JetBrains.Annotations;
 
 namespace HomeAssistant.Automations.Apps.Vacuum
 {
+	[UsedImplicitly]
 	public class VacuumNotificationConfig
 	{
 		public Notification Reminder { get; set; }

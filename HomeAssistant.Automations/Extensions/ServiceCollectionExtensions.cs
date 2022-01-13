@@ -1,5 +1,6 @@
 ﻿using HomeAssistant.Automations.Apps.KitchenLight;
 using HomeAssistant.Automations.Apps.Moonlight;
+using HomeAssistant.Automations.Apps.TrashReminder;
 using HomeAssistant.Automations.Apps.Vacuum;
 using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Services;
@@ -12,17 +13,20 @@ public static class ServiceCollectionExtensions
 {
 	public static IServiceCollection AddAutomationServices(this IServiceCollection services, IConfiguration config)
 	{
-		return services
+		services
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
 
 			.AddSingleton<NotificationService>()
 			.AddSingleton<MqttService>()
 			.AddTransient<PingService>()
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
-			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>))
+			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>));
 
-			.AddMoonlightServices(config)
-			.AddVacuumServices(config)
-			.AddKitchenLightServices(config);
+			KitchenLight.AddServices(services, config);
+			MoonlightGameLauncher.AddServices(services, config);
+			TrashReminder.AddServices(services, config);
+			VacuumReminder.AddServices(services, config);
+
+			return services;
 	}
 }

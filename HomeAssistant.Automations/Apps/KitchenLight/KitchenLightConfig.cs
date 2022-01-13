@@ -1,7 +1,9 @@
 ﻿using HomeAssistant.Automations.Models;
+using JetBrains.Annotations;
 
 namespace HomeAssistant.Automations.Apps.KitchenLight;
 
+[UsedImplicitly]
 public class MotionSensorConfig
 {
 	public string Host { get; set; }

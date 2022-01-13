@@ -37,7 +37,7 @@ public abstract class BaseAutomation<T, TConfig> : IInitializable where T : Base
 	{
 		if (!Config.Enabled)
 		{
-			Logger.Information("{class} is disabled.", GetType().Name);
+			Logger.Warning("{class} is disabled.", GetType().Name);
 
 			return;
 		}

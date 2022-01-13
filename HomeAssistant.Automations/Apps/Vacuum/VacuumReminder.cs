@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Threading;
+using HomeAssistant.Automations.Apps.Vacuum.StateMachine;
 using HomeAssistant.Automations.Extensions;
 using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Services;
 using JetBrains.Annotations;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.Common;
 using ObservableExtensions = HomeAssistant.Automations.Extensions.ObservableExtensions;
 
 namespace HomeAssistant.Automations.Apps.Vacuum
 {
 	[NetDaemonApp]
-	[UsedImplicitly]
 	public class VacuumReminder : BaseAutomation<VacuumReminder, VacuumConfig>
 	{
 		private const string ResetCrontab = "0 0 * * *";
@@ -31,6 +33,13 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 			_vacuumService = vacuumService;
 			_notificationService = notificationService;
 		}
+
+		public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
+			services
+				.Configure<VacuumConfig>(config.GetSection("HomeAssistant.Automations:Vacuum"))
+				.AddTransient<VacuumStateMachine>()
+				.AddTransient<VacuumStateProvider>()
+				.AddSingleton<VacuumService>();
 
 		protected override void Start()
 		{

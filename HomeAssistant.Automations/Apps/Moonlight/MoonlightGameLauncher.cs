@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Reactive.Linq;
+using HomeAssistant.Automations.Apps.KitchenLight;
 using HomeAssistant.Automations.Extensions;
 using HomeAssistant.Automations.Models;
 using HomeAssistantGenerated;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.Common;
 using NetDaemon.HassModel.Common;
 
@@ -29,6 +32,10 @@ namespace HomeAssistant.Automations.Apps.Moonlight
 				{ "Desktop Fups", () => _entities.Var.MoonlightAvailableGamesDesktopFabienne }
 			};
 		}
+
+		public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
+			services
+				.Configure<MoonlightConfig>(config.GetSection("HomeAssistant.Automations:Moonlight"));
 
 		protected override void Start()
 		{
