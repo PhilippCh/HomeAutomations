@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.Common;
 using NetDaemon.HassModel.Entities;
+using Notification = HomeAssistant.Automations.Models.Notification;
 
 namespace HomeAssistant.Automations.Apps.KitchenLight;
 
@@ -24,15 +25,17 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	private IDisposable? _currentCycleObserver;
 
 	private readonly MqttService _mqttService;
+	private readonly NotificationService _notificationService;
 	private readonly LightEntity _lightEntity;
 	private readonly BinarySensorEntity _motionSensorEntity;
 
-	public KitchenLight(MqttService mqttService, BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate)
+	public KitchenLight(MqttService mqttService, BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
 	{
 		var entities = new Entities(Context);
 
 		_mqttService = mqttService;
+		_notificationService = notificationService;
 		_lightEntity = entities.Light.Bfb81fd992b98475f8tc6r;
 		_motionSensorEntity = entities.BinarySensor.Motionsensorbedroom;
 	}
@@ -82,11 +85,25 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		Action action = message switch
 		{
 			WirelessSwitchActions.Hold => TurnOnPermanent,
+			WirelessSwitchActions.Triple => Reset,
 			WirelessSwitchActions.Release => () => {},
 			_ => ToggleWithCycle
 		};
 
 		action();
+	}
+
+	private void Reset()
+	{
+		StopLightCycle();
+		_isPermanentlyOn = false;
+		StartLightCycle();
+
+		_notificationService.SendNotification(new Notification
+		{
+			Title = "Küchenlicht",
+			Template = "Timer wurde zurückgesetzt."
+		});
 	}
 
 	private void TurnOnPermanent()
