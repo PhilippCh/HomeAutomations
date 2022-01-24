@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using HomeAssistant.Automations.Extensions;
 using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Models.DeviceMessages;
 using HomeAssistant.Automations.Services;
@@ -46,18 +44,33 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	protected override void Start()
 	{
-		_mqttService.Connect(GetType().Name, new[] { Config.SensorTopic, Config.ManualTriggerSensorTopic });
-		_mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.SensorTopic).Subscribe(OnMotionSensorUpdate);
+		_mqttService.Connect(GetType().Name, new[] { Config.CombinedSensorTopic, Config.ManualTriggerSensorTopic });
 		_mqttService.GetMessagesForTopic<string>(Config.ManualTriggerSensorTopic).Subscribe(OnManualTriggerMessageReceived);
+		_mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.CombinedSensorTopic)
+			.DistinctUntilChanged()
+			.Subscribe(OnMotionSensorUpdate);
 	}
 
 	private void OnMotionSensorUpdate(MotionSensorDeviceMessage? m)
 	{
-		_currentIlluminanceLux = m?.IlluminanceLux ?? _currentIlluminanceLux;
-		Logger.Information("Set illuminance to {illuminance} lux.", _currentIlluminanceLux);
+		UpdateIlluminance(m?.IlluminanceLux);
+
+		if (m?.Occupancy != null && m.Occupancy)
+		{
+			UpdateOccupancy();
+		}
 	}
 
-	private void OnMotionDetected()
+	private void UpdateIlluminance(int? illuminanceLux)
+	{
+		if (illuminanceLux != null && illuminanceLux != _currentIlluminanceLux)
+		{
+			_currentIlluminanceLux = illuminanceLux.Value;
+			Logger.Information("Set illuminance to {illuminance} lux.", _currentIlluminanceLux);
+		}
+	}
+
+	private void UpdateOccupancy()
 	{
 		if (_isPermanentlyOn)
 		{
@@ -94,11 +107,12 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		_isPermanentlyOn = false;
 		StartLightCycle();
 
-		_notificationService.SendNotification(new Notification
-		{
-			Title = "Küchenlicht",
-			Template = "Timer wurde zurückgesetzt."
-		});
+		_notificationService.SendNotification(
+			new Notification
+			{
+				Title = "Küchenlicht",
+				Template = "Timer wurde zurückgesetzt."
+			});
 	}
 
 	private void TurnOnPermanent()
