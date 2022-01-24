@@ -25,7 +25,6 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	private readonly MqttService _mqttService;
 	private readonly NotificationService _notificationService;
 	private readonly LightEntity _lightEntity;
-	private readonly BinarySensorEntity _motionSensorEntity;
 
 	public KitchenLight(MqttService mqttService, BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
@@ -35,7 +34,6 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		_mqttService = mqttService;
 		_notificationService = notificationService;
 		_lightEntity = entities.Light.Bfb81fd992b98475f8tc6r;
-		_motionSensorEntity = entities.BinarySensor.Motionsensorbedroom;
 	}
 
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
