@@ -14,6 +14,7 @@ using Notification = HomeAssistant.Automations.Models.Notification;
 namespace HomeAssistant.Automations.Apps.KitchenLight;
 
 [NetDaemonApp]
+[Focus]
 public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 {
 	private bool ShouldLightTurnOn => _lightEntity.IsOn() || _currentIlluminanceLux < Config.MinIlluminanceLux;

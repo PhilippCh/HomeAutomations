@@ -28,10 +28,10 @@
         <PackageReference Include="HttpTracer" Version="2.1.1" />
         <PackageReference Include="Ical.Net" Version="4.2.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
-        <PackageReference Include="JoySoftware.NetDaemon.App" Version="21.49.3" />
-        <PackageReference Include="JoySoftware.NetDaemon.DaemonRunner" Version="21.49.3" />
-        <PackageReference Include="JoySoftware.NetDaemon.HassModel" Version="21.49.3" />
-        <PackageReference Include="JoySoftware.NetDaemon.Extensions.Scheduling" Version="21.49.3" />
+        <PackageReference Include="JoySoftware.NetDaemon.App" Version="22.1.2" />
+        <PackageReference Include="JoySoftware.NetDaemon.DaemonRunner" Version="22.1.2" />
+        <PackageReference Include="JoySoftware.NetDaemon.HassModel" Version="22.1.2" />
+        <PackageReference Include="JoySoftware.NetDaemon.Extensions.Scheduling" Version="22.1.2" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
         <PackageReference Include="MQTTnet" Version="3.1.1" />
         <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.1.1" />

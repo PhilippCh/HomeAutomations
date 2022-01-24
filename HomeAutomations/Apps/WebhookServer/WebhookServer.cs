@@ -9,7 +9,6 @@ using NetDaemon.Common;
 
 namespace HomeAssistant.Automations.Apps.WebhookServer;
 
-[Focus]
 [NetDaemonApp]
 public class WebhookServer : BaseAutomation<WebhookServer, WebhookServerConfig>
 {

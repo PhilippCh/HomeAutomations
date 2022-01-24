@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
 			MoonlightGameLauncher.AddServices(services, config);
 			TrashReminder.AddServices(services, config);
 			VacuumReminder.AddServices(services, config);
-			WebhookServer.AddServices(services, config);
+			//WebhookServer.AddServices(services, config);
 
 			return services;
 	}
