@@ -46,17 +46,12 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	protected override void Start()
 	{
-		_mqttService.Connect(GetType().Name, new[] { Config.LightSensorTopic, Config.ManualTriggerSensorTopic });
-		_mqttService.GetMessagesForTopic<LightSensorDeviceMessage>(Config.LightSensorTopic).Subscribe(SetIlluminanceLux);
+		_mqttService.Connect(GetType().Name, new[] { Config.SensorTopic, Config.ManualTriggerSensorTopic });
+		_mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.SensorTopic).Subscribe(OnMotionSensorUpdate);
 		_mqttService.GetMessagesForTopic<string>(Config.ManualTriggerSensorTopic).Subscribe(OnManualTriggerMessageReceived);
-
-		// TODO: Use MQTT listener when new PIR sensor is here.
-		_motionSensorEntity.StateChanges()
-			.Where(s => s.Old!.State != "on" && s.New!.State == "on")
-			.Subscribe(_ => OnMotionDetected());
 	}
 
-	private void SetIlluminanceLux(LightSensorDeviceMessage? m)
+	private void OnMotionSensorUpdate(MotionSensorDeviceMessage? m)
 	{
 		_currentIlluminanceLux = m?.IlluminanceLux ?? _currentIlluminanceLux;
 		Logger.Information("Set illuminance to {illuminance} lux.", _currentIlluminanceLux);
