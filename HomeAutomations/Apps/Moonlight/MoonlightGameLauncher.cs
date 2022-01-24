@@ -35,7 +35,7 @@ namespace HomeAssistant.Automations.Apps.Moonlight
 
 		public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 			services
-				.Configure<MoonlightConfig>(config.GetSection("HomeAssistant.Automations:Moonlight"));
+				.Configure<MoonlightConfig>(config.GetSection("HomeAutomations:Moonlight"));
 
 		protected override void Start()
 		{

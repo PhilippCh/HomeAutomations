@@ -1,6 +1,6 @@
-﻿# HomeAssistant.Automations
+﻿# Home Automations
 
-These are the Home Assistant automations for Pupslab.de
+These are the Home Assistant automations for pupslab.de
 
 ## Configuration
 Global config is placed in `appsettings.json`.

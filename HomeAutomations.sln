@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAssistant.Automations", "HomeAssistant.Automations\HomeAssistant.Automations.csproj", "{B109F0E2-6C06-4BAA-A49D-9DF2EB2BE0BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations", "HomeAutomations\HomeAutomations.csproj", "{B109F0E2-6C06-4BAA-A49D-9DF2EB2BE0BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -42,7 +42,7 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
-			.Configure<KitchenLightConfig>(config.GetSection("HomeAssistant.Automations:KitchenLight"));
+			.Configure<KitchenLightConfig>(config.GetSection("HomeAutomations:KitchenLight"));
 
 	protected override void Start()
 	{

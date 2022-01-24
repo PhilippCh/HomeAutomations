@@ -5,6 +5,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>10.0</LangVersion>
         <Nullable>enable</Nullable>
+        <RootNamespace>HomeAssistant.Automations</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +23,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Cronos" Version="0.7.1" />
+        <PackageReference Include="EmbedIO" Version="3.4.3" />
         <PackageReference Include="Google.Apis.Calendar.v3" Version="1.55.0.2554" />
         <PackageReference Include="HttpTracer" Version="2.1.1" />
         <PackageReference Include="Ical.Net" Version="4.2.0" />

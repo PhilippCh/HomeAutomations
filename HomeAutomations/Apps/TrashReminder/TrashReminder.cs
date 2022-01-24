@@ -19,7 +19,6 @@ using ObservableExtensions = HomeAssistant.Automations.Extensions.ObservableExte
 namespace HomeAssistant.Automations.Apps.TrashReminder;
 
 [NetDaemonApp]
-[Focus]
 public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
 	private Calendar _personalCalendar;
@@ -36,7 +35,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
-			.Configure<TrashReminderConfig>(config.GetSection("HomeAssistant.Automations:TrashReminder"));
+			.Configure<TrashReminderConfig>(config.GetSection("HomeAutomations:TrashReminder"));
 
 	protected override async void Start()
 	{

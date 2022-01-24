@@ -49,7 +49,7 @@ public class MqttService
 			.WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
 			.WithClientOptions(
 				new MqttClientOptionsBuilder()
-					.WithClientId($"HomeAssistant.Automations.{scope}")
+					.WithClientId($"HomeAutomations.{scope}")
 					.WithTcpServer(_config.CurrentValue.Host, _config.CurrentValue.Port)
 					.Build())
 			.Build();
