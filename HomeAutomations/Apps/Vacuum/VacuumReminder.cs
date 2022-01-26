@@ -74,7 +74,7 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 		{
 			_reminderLoopObserver?.Dispose();
 			_reminderLoopObserver = ObservableExtensions
-				.Interval(TimeSpan.FromMinutes(Config.ReminderIntervalMinutes), true)
+				.Interval(Config.ReminderInterval, true)
 				.Subscribe(_ => SendReminder());
 			_reminderActionObserver = _notificationService.NotificationActionFired.Subscribe(OnNotificationActionFired);
 		}

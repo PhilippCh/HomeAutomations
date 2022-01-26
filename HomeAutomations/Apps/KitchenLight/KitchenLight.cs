@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using HomeAssistant.Automations.Models;
@@ -17,10 +18,13 @@ namespace HomeAssistant.Automations.Apps.KitchenLight;
 [Focus]
 public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 {
+	public const int DefaultBrightnessPct = 100;
+
 	private bool ShouldLightTurnOn => _lightEntity.IsOn() || _currentIlluminanceLux < Config.MinIlluminanceLux;
 
 	private bool _isPermanentlyOn;
 	private int _currentIlluminanceLux;
+	private int _brightnessPct = DefaultBrightnessPct;
 	private IDisposable? _currentCycleObserver;
 
 	private readonly MqttService _mqttService;
@@ -48,6 +52,8 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		_mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.CombinedSensorTopic)
 			.DistinctUntilChanged()
 			.Subscribe(OnMotionSensorUpdate);
+
+		SetBrightness();
 	}
 
 	private void OnMotionSensorUpdate(MotionSensorDeviceMessage? m)
@@ -84,6 +90,8 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		}
 
 		Logger.Information("Motion detected.");
+
+		SetBrightness();
 		StartLightCycle();
 	}
 
@@ -98,6 +106,14 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		};
 
 		action();
+	}
+
+	private void SetBrightness()
+	{
+		var timeOfDay = DateTime.Now.TimeOfDay;
+		var activeBrightnessConfig = Config.Brightness.FirstOrDefault(b => b.Start <= timeOfDay && timeOfDay <= b.End);
+
+		_brightnessPct = activeBrightnessConfig?.Percentage ?? DefaultBrightnessPct;
 	}
 
 	private void Reset()
@@ -118,7 +134,9 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	{
 		StopLightCycle();
 		_isPermanentlyOn = true;
-		_lightEntity.TurnOn();
+
+		// Always turn on permanent lights with default brightness because it is a manual decision.
+		_lightEntity.TurnOn(brightness: DefaultBrightnessPct);
 	}
 
 	private void ToggleWithCycle()
@@ -139,10 +157,10 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	{
 		Logger.Information(_currentCycleObserver == null ? "Starting new light cycle." : "Restarting running light cycle.");
 
-		_lightEntity.TurnOn();
+		_lightEntity.TurnOn(brightness: _brightnessPct);
 		_currentCycleObserver?.Dispose();
 		_currentCycleObserver = Observable.Return(new Unit())
-			.Delay(TimeSpan.FromMinutes(Config.CycleTimeMinutes))
+			.Delay(Config.CycleTime)
 			.Do(
 				_ =>
 				{

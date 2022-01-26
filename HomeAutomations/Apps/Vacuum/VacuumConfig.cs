@@ -1,4 +1,5 @@
-﻿using HomeAssistant.Automations.Models;
+﻿using System;
+using HomeAssistant.Automations.Models;
 using JetBrains.Annotations;
 
 namespace HomeAssistant.Automations.Apps.Vacuum
@@ -11,11 +12,11 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 		public Notification EmptyBin { get; set; }
 	}
 
-    public class VacuumConfig : Config
-    {
-    public string Entity {get;set;}
-	    public string CleaningSchedule { get; set; }
-        public int ReminderIntervalMinutes { get; set; }
-        public VacuumNotificationConfig Notifications { get; set; }
-    }
+	public class VacuumConfig : Config
+	{
+		public string Entity { get; set; }
+		public string CleaningSchedule { get; set; }
+		public TimeSpan ReminderInterval { get; set; }
+		public VacuumNotificationConfig Notifications { get; set; }
+	}
 }
