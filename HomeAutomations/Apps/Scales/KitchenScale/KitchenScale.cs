@@ -13,7 +13,6 @@ using NetDaemon.Common;
 namespace HomeAssistant.Automations.Apps.Scales.KitchenScale;
 
 [NetDaemonApp]
-[Focus]
 public class KitchenScale : BaseAutomation<KitchenScale, KitchenScaleConfig>
 {
 	private readonly MqttService _mqttService;

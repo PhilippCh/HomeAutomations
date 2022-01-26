@@ -15,7 +15,6 @@ using Notification = HomeAssistant.Automations.Models.Notification;
 namespace HomeAssistant.Automations.Apps.KitchenLight;
 
 [NetDaemonApp]
-[Focus]
 public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 {
 	public const int DefaultBrightnessPct = 100;
