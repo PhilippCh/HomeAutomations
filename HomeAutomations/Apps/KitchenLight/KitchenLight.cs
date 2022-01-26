@@ -111,6 +111,13 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		var timeOfDay = DateTime.Now.TimeOfDay;
 		var activeBrightnessConfig = Config.Brightness.FirstOrDefault(b => b.Start <= timeOfDay && timeOfDay <= b.End);
 
+		if (activeBrightnessConfig != null)
+		{
+			Logger.Information(
+				"Switching to brightness setting from {from} to {to}: {value}% brightness.",
+				activeBrightnessConfig.Start, activeBrightnessConfig.End, activeBrightnessConfig.Percentage);
+		}
+
 		_brightnessPct = activeBrightnessConfig?.Percentage ?? DefaultBrightnessPct;
 	}
 
