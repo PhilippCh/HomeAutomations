@@ -49,9 +49,7 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	{
 		_mqttService.Connect(GetType().Name, new[] { Config.CombinedSensorTopic, Config.ManualTriggerSensorTopic });
 		_mqttService.GetMessagesForTopic<string>(Config.ManualTriggerSensorTopic).Subscribe(OnManualTriggerMessageReceived);
-		_mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.CombinedSensorTopic)
-			.DistinctUntilChanged()
-			.Subscribe(OnMotionSensorUpdate);
+		_mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.CombinedSensorTopic).Subscribe(OnMotionSensorUpdate);
 
 		SetBrightness();
 	}
