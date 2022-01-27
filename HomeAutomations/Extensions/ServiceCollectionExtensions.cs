@@ -17,20 +17,19 @@ public static class ServiceCollectionExtensions
 	{
 		services
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
-
-			.AddSingleton<NotificationService>()
 			.AddSingleton<MqttService>()
+			.AddScoped<NotificationService>()
 			.AddTransient<PingService>()
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>));
 
-			KitchenLight.AddServices(services, config);
-			MoonlightGameLauncher.AddServices(services, config);
-			TrashReminder.AddServices(services, config);
-			VacuumReminder.AddServices(services, config);
-			WebhookServer.AddServices(services, config);
-			KitchenScale.AddServices(services, config);
+		KitchenLight.AddServices(services, config);
+		MoonlightGameLauncher.AddServices(services, config);
+		TrashReminder.AddServices(services, config);
+		VacuumReminder.AddServices(services, config);
+		WebhookServer.AddServices(services, config);
+		KitchenScale.AddServices(services, config);
 
-			return services;
+		return services;
 	}
 }

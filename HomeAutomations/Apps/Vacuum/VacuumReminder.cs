@@ -38,7 +38,7 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 				.Configure<VacuumConfig>(config.GetSection("HomeAutomations:Vacuum"))
 				.AddTransient<VacuumStateMachine>()
 				.AddTransient<VacuumStateProvider>()
-				.AddSingleton<VacuumService>();
+				.AddScoped<VacuumService>();
 
 		protected override void Start()
 		{
