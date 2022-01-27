@@ -4,7 +4,6 @@ using HomeAssistant.Automations.Apps.Vacuum.StateMachine;
 using HomeAssistant.Automations.Extensions;
 using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Services;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.Common;
