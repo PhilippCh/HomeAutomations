@@ -14,8 +14,8 @@ public class WebhookController : WebApiController
 
 	}
 
-	[Route(HttpVerbs.Get, "/")]
-	public async Task Get()
+	[Route(HttpVerbs.Post, "/")]
+	public async Task Post()
 	{
 		var data = await HttpContext.GetRequestBodyAsStringAsync();
 		Console.WriteLine(data);
