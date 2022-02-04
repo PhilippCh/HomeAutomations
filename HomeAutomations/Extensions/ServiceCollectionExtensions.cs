@@ -3,7 +3,6 @@ using HomeAssistant.Automations.Apps.Moonlight;
 using HomeAssistant.Automations.Apps.Scales.KitchenScale;
 using HomeAssistant.Automations.Apps.TrashReminder;
 using HomeAssistant.Automations.Apps.Vacuum;
-using HomeAssistant.Automations.Apps.WebhookServer;
 using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Services;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +26,6 @@ public static class ServiceCollectionExtensions
 		MoonlightGameLauncher.AddServices(services, config);
 		TrashReminder.AddServices(services, config);
 		VacuumReminder.AddServices(services, config);
-		WebhookServer.AddServices(services, config);
 		KitchenScale.AddServices(services, config);
 
 		return services;

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Reactive;
+using System.Net.Http;
 using System.Reactive.Linq;
+using System.Text.Json.Nodes;
+using System.Threading.Tasks;
 using HomeAssistant.Automations.Apps.KitchenLight;
 using HomeAssistant.Automations.Models;
-using HomeAssistant.Automations.Models.DeviceMessages;
-using HomeAssistant.Automations.Services;
 using HomeAssistantGenerated;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,33 +15,34 @@ namespace HomeAssistant.Automations.Apps.Scales.KitchenScale;
 [NetDaemonApp]
 public class KitchenScale : BaseAutomation<KitchenScale, KitchenScaleConfig>
 {
-	private readonly MqttService _mqttService;
+	private readonly OpenFoodFactsService _openFoodFactsService;
 
-	public KitchenScale(
-		MqttService mqttService,
-		BaseAutomationDependencyAggregate<KitchenScale, KitchenScaleConfig> aggregate)
+	public KitchenScale(BaseAutomationDependencyAggregate<KitchenScale, KitchenScaleConfig> aggregate, OpenFoodFactsService openFoodFactsService)
 		: base(aggregate)
 	{
-		_mqttService = mqttService;
+		_openFoodFactsService = openFoodFactsService;
 	}
 
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
+			.AddTransient<OpenFoodFactsService>()
 			.Configure<KitchenLightConfig>(config.GetSection("HomeAutomations:KitchenScale"));
 
 	protected override void Start()
 	{
-		_mqttService.Connect(GetType().Name, new[] { Config.Topic });
-		_mqttService.GetMessagesForTopic<ScaleDeviceMessage>(Config.Topic).Subscribe(OnDeviceMessageReceived);
+		var entities = new Entities(Context);
+		entities.InputText.KitchenScaleSearchTerm.StateChanges()
+			.Throttle(TimeSpan.FromMilliseconds(500))
+			.Subscribe(s => OnSearchTermChange(s.New?.State));
 	}
 
-	private void OnDeviceMessageReceived(ScaleDeviceMessage? message)
+	private void OnSearchTermChange(string? searchTerm)
 	{
-		if (message == null)
+		if (searchTerm == null)
 		{
 			return;
 		}
 
-		Logger.Information("{value} {unit}", message.Value, message.Unit);
+		var products = _openFoodFactsService.GetProductsAsync(searchTerm);
 	}
 }
