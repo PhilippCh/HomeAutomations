@@ -1,26 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using Newtonsoft.Json;
 
 namespace HomeAssistant.Automations.Apps.Scales.KitchenScale;
 
+public class Nutriments
+{
+	public double? EnergyKcal100g => double.Parse(_energyKcal100g ?? "0");
+
+	[JsonProperty("energy-kcal_100g")]
+	private string? _energyKcal100g;
+}
+
 public class FoodProduct
 {
 	[JsonProperty("_id")]
-	public int Id { get; set; }
+	public string? Id { get; init; }
+
+	[JsonProperty("product_name")]
+	public string? NameEN { get; init; }
 
 	[JsonProperty("product_name_de")]
-	public string? Name { get; set; }
+	public string? NameDE { get; init; }
+
+	[JsonProperty("nutriments")]
+	public Nutriments Nutriments { get; init; }
+
+	[JsonProperty("nutriscore_grade")]
+	public string? NutriscoreGrade { get; init; }
+
+	public string? Name => NameDE ?? NameEN;
 }
 
 public class FoodCollection
 {
 	[JsonProperty("products")]
-	public IEnumerable<FoodProduct> Products { get; set; }
+	public IEnumerable<FoodProduct>? Products { get; set; }
 }
 
 public class OpenFoodFactsService
@@ -40,20 +57,6 @@ public class OpenFoodFactsService
 		return JsonConvert.DeserializeObject<FoodCollection>(json);
 	}
 
-	private string GetUrl(IEnumerable<(string Key, string Value)> queryParameters)
-	{
-		var builder = new UriBuilder(BaseUrl) { Port = -1 };
-		var query = HttpUtility.ParseQueryString(builder.Query);
-		query["json"] = "true";
-		query["action"] = "process";
-
-		foreach (var (key, value) in queryParameters)
-		{
-			query[key] = value;
-		}
-
-		builder.Query = query.ToString();
-
-		return builder.ToString();
-	}
+	private string GetUrl(IEnumerable<(string Key, string Value)> queryParameters) =>
+		queryParameters.Aggregate($"{BaseUrl}?json=true&action=process", (current, parameter) => current + $"&{parameter.Key}={parameter.Value}");
 }
