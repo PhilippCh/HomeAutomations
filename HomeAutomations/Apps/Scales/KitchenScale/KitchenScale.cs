@@ -17,13 +17,12 @@ record KitchenScaleAttributes
 }
 
 [NetDaemonApp]
-[Focus]
 public class KitchenScale : BaseAutomation<KitchenScale, KitchenScaleConfig>
 {
-	private Entity<KitchenScaleAttributes> _kitchenScaleSensor;
-	private InputTextEntity _nutriscoreInputText;
-	private InputNumberEntity _caloriesInputNumber;
-	private InputSelectEntity _selectedProductInputSelect;
+	private Entity<KitchenScaleAttributes>? _kitchenScaleSensor;
+	private InputTextEntity? _nutriscoreInputText;
+	private InputNumberEntity? _caloriesInputNumber;
+	private InputSelectEntity? _selectedProductInputSelect;
 	private FoodCollection? _currentProducts;
 	private FoodProduct? _currentProduct;
 
@@ -37,8 +36,7 @@ public class KitchenScale : BaseAutomation<KitchenScale, KitchenScaleConfig>
 
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
-			.AddTransient<OpenFoodFactsService>()
-			.Configure<KitchenScaleConfig>(config.GetSection("HomeAutomations:KitchenScale"));
+			.AddTransient<OpenFoodFactsService>();
 
 	protected override void Start()
 	{

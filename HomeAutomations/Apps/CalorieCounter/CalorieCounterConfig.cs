@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using HomeAssistant.Automations.Apps.KitchenLight;
 using HomeAssistant.Automations.Models;
 
-namespace HomeAssistant.Automations.Apps.KitchenLight;
+namespace HomeAssistant.Automations.Apps.CalorieCounter;
 
-public record BrightnessConfig
-{
-	public TimeSpan Start { get; init; }
-	public TimeSpan End { get; init; }
-	public int Percentage { get; init; }
-}
-
-public record KitchenLightConfig : Config
+public record CalorieCounterConfig : Config
 {
 	public int MinIlluminanceLux { get; init; }
 	public string CombinedSensorTopic { get; init; }

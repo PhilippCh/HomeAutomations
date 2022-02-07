@@ -2,7 +2,6 @@
 
 namespace HomeAssistant.Automations.Apps.Moonlight;
 
-public class MoonlightConfig : Config
+public record MoonlightConfig : Config
 {
-
 }

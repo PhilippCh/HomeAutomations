@@ -5,18 +5,18 @@ using JetBrains.Annotations;
 namespace HomeAssistant.Automations.Apps.Vacuum
 {
 	[UsedImplicitly]
-	public class VacuumNotificationConfig
+	public record VacuumNotificationConfig
 	{
-		public Notification Reminder { get; set; }
-		public Notification CleanBedroom { get; set; }
-		public Notification EmptyBin { get; set; }
+		public Notification Reminder { get; init; }
+		public Notification CleanBedroom { get; init; }
+		public Notification EmptyBin { get; init; }
 	}
 
-	public class VacuumConfig : Config
+	public record VacuumConfig : Config
 	{
-		public string Entity { get; set; }
-		public string CleaningSchedule { get; set; }
-		public TimeSpan ReminderInterval { get; set; }
-		public VacuumNotificationConfig Notifications { get; set; }
+		public string Entity { get; init; }
+		public string CleaningSchedule { get; init; }
+		public TimeSpan ReminderInterval { get; init; }
+		public VacuumNotificationConfig Notifications { get; init; }
 	}
 }

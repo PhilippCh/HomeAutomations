@@ -35,7 +35,6 @@ namespace HomeAssistant.Automations.Apps.Vacuum
 
 		public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 			services
-				.Configure<VacuumConfig>(config.GetSection("HomeAutomations:Vacuum"))
 				.AddTransient<VacuumStateMachine>()
 				.AddTransient<VacuumStateProvider>()
 				.AddScoped<VacuumService>();

@@ -13,6 +13,9 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Remove="core" />
+        <None Update="appsettings.Development.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <None Include="apps\**\*.yaml" CopyToPublishDirectory="Always" />
@@ -31,11 +34,12 @@
         <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
         <PackageReference Include="JoySoftware.NetDaemon.App" Version="22.1.2" />
         <PackageReference Include="JoySoftware.NetDaemon.DaemonRunner" Version="22.1.2" />
+        <PackageReference Include="JoySoftware.NetDaemon.Extensions.Mqtt" Version="22.5.2" />
         <PackageReference Include="JoySoftware.NetDaemon.HassModel" Version="22.1.2" />
         <PackageReference Include="JoySoftware.NetDaemon.Extensions.Scheduling" Version="22.1.2" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
-        <PackageReference Include="MQTTnet" Version="3.1.1" />
-        <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.1.1" />
+        <PackageReference Include="MQTTnet" Version="3.1.2" />
+        <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.1.2" />
         <PackageReference Include="RestSharp" Version="107.0.3" />
         <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
         <PackageReference Include="Staty" Version="2.1.3" />
@@ -45,9 +49,9 @@
       <Folder Include="Apps\Scales" />
     </ItemGroup>
 
-	<!--<Target Name="Generate HomeAssistant models" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+	<Target Name="Generate HomeAssistant models" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="nd-codegen -o .\Models\Generated\HomeAssistant.cs" WorkingDirectory="$(ProjectDir)" />
-	</Target>-->
+	</Target>
 
 
 </Project>

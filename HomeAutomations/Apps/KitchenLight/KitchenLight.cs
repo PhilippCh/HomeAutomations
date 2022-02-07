@@ -6,8 +6,6 @@ using HomeAssistant.Automations.Models;
 using HomeAssistant.Automations.Models.DeviceMessages;
 using HomeAssistant.Automations.Services;
 using HomeAssistantGenerated;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.Common;
 using NetDaemon.HassModel.Entities;
 using Notification = HomeAssistant.Automations.Models.Notification;
@@ -39,10 +37,6 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		_notificationService = notificationService;
 		_lightEntity = entities.Light.Bfb81fd992b98475f8tc6r;
 	}
-
-	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
-		services
-			.Configure<KitchenLightConfig>(config.GetSection("HomeAutomations:KitchenLight"));
 
 	protected override void Start()
 	{

@@ -28,17 +28,14 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 	public TrashReminder(BaseAutomationDependencyAggregate<TrashReminder, TrashReminderConfig> aggregate)
 		: base(aggregate)
 	{
-		_inputBooleans = Config.Sensors
-			.Select(kv => (kv.Key, Value: new InputBooleanEntity(Context, $"input_boolean.{kv.Value}")))
-			.ToDictionary(kv => kv.Key, kv => kv.Value);
 	}
-
-	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
-		services
-			.Configure<TrashReminderConfig>(config.GetSection("HomeAutomations:TrashReminder"));
 
 	protected override async void Start()
 	{
+		_inputBooleans = Config.Sensors
+			.Select(kv => (kv.Key, Value: new InputBooleanEntity(Context, $"input_boolean.{kv.Value}")))
+			.ToDictionary(kv => kv.Key, kv => kv.Value);
+
 		//_personalCalendar = await GetPersonalCalendar();
 		_calendar = await GetTrashCalendar();
 		StartUpdateLoop();

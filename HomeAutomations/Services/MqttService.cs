@@ -19,12 +19,12 @@ using Serilog;
 
 namespace HomeAssistant.Automations.Services;
 
-public class MqttConfig : Config
+public record MqttConfig : Config
 {
-	public string Host { get; set; }
-	public int Port { get; set; } = 1883;
-	public string Username { get; set; }
-	public string Password { get; set; }
+	public string Host { get; init; }
+	public int Port { get; init; } = 1883;
+	public string Username { get; init; }
+	public string Password { get; init; }
 }
 
 public class MqttService
@@ -67,6 +67,8 @@ public class MqttService
 
 				await _client.SubscribeAsync(topicFilters);
 			});
+
+		_client.UseDisconnectedHandler(e => Console.WriteLine(e.Reason));
 
 		_client.UseApplicationMessageReceivedHandler(e => _messages.OnNext(e.ApplicationMessage));
 

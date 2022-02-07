@@ -9,6 +9,8 @@ namespace HomeAssistantGenerated
 
 		BinarySensorEntities BinarySensor { get; }
 
+		ButtonEntities Button { get; }
+
 		CalendarEntities Calendar { get; }
 
 		CameraEntities Camera { get; }
@@ -33,11 +35,11 @@ namespace HomeAssistantGenerated
 
 		MediaPlayerEntities MediaPlayer { get; }
 
-		PersistentNotificationEntities PersistentNotification { get; }
-
 		PersonEntities Person { get; }
 
 		RemoteEntities Remote { get; }
+
+		SelectEntities Select { get; }
 
 		SensorEntities Sensor { get; }
 
@@ -66,6 +68,7 @@ namespace HomeAssistantGenerated
 
 		public AlarmControlPanelEntities AlarmControlPanel => new(_haContext);
 		public BinarySensorEntities BinarySensor => new(_haContext);
+		public ButtonEntities Button => new(_haContext);
 		public CalendarEntities Calendar => new(_haContext);
 		public CameraEntities Camera => new(_haContext);
 		public ClimateEntities Climate => new(_haContext);
@@ -78,9 +81,9 @@ namespace HomeAssistantGenerated
 		public InputTextEntities InputText => new(_haContext);
 		public LightEntities Light => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
-		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
 		public RemoteEntities Remote => new(_haContext);
+		public SelectEntities Select => new(_haContext);
 		public SensorEntities Sensor => new(_haContext);
 		public SunEntities Sun => new(_haContext);
 		public SwitchEntities Switch => new(_haContext);
@@ -121,12 +124,18 @@ namespace HomeAssistantGenerated
 		public BinarySensorEntity BalkonturRechts => new(_haContext, "binary_sensor.balkontur_rechts");
 		///<summary>Balkontür rechts Battery</summary>
 		public BinarySensorEntity BalkonturRechtsBattery => new(_haContext, "binary_sensor.balkontur_rechts_battery");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Focus</summary>
+		public BinarySensorEntity BuyHodlGmeFocus => new(_haContext, "binary_sensor.buy_hodl_gme_focus");
 		///<summary>DesktopFabienne</summary>
 		public BinarySensorEntity Desktopfabienne => new(_haContext, "binary_sensor.desktopfabienne");
 		///<summary>DesktopPhilipp</summary>
 		public BinarySensorEntity Desktopphilipp => new(_haContext, "binary_sensor.desktopphilipp");
 		///<summary>Fantenpad Focus</summary>
 		public BinarySensorEntity FantenpadFocus => new(_haContext, "binary_sensor.fantenpad_focus");
+		///<summary>Fantenrüssel Mop Attached</summary>
+		public BinarySensorEntity FantenrusselMopAttached => new(_haContext, "binary_sensor.fantenrussel_mop_attached");
+		///<summary>Fantenrüssel Water Box Attached</summary>
+		public BinarySensorEntity FantenrusselWaterBoxAttached => new(_haContext, "binary_sensor.fantenrussel_water_box_attached");
 		///<summary>Fenster Arbeitszimmer</summary>
 		public BinarySensorEntity FensterArbeitszimmer => new(_haContext, "binary_sensor.fenster_arbeitszimmer");
 		///<summary>Fenster Arbeitszimmer Battery</summary>
@@ -139,8 +148,6 @@ namespace HomeAssistantGenerated
 		public BinarySensorEntity FensterSchlafzimmer => new(_haContext, "binary_sensor.fenster_schlafzimmer");
 		///<summary>Fenster Schlafzimmer Battery</summary>
 		public BinarySensorEntity FensterSchlafzimmerBattery => new(_haContext, "binary_sensor.fenster_schlafzimmer_battery");
-		///<summary>iphone_philipp Focus</summary>
-		public BinarySensorEntity IphonePhilippFocus => new(_haContext, "binary_sensor.iphone_philipp_focus");
 		///<summary>LaptopFabienne</summary>
 		public BinarySensorEntity Laptopfabienne => new(_haContext, "binary_sensor.laptopfabienne");
 		///<summary>LaptopPhilipp</summary>
@@ -179,6 +186,20 @@ namespace HomeAssistantGenerated
 		public BinarySensorEntity TrashWaste => new(_haContext, "binary_sensor.trash_waste");
 		///<summary>Updater</summary>
 		public BinarySensorEntity Updater => new(_haContext, "binary_sensor.updater");
+	}
+
+	public class ButtonEntities
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public ButtonEntities(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>PupsStation Reboot</summary>
+		public ButtonEntity PupsstationReboot => new(_haContext, "button.pupsstation_reboot");
+		///<summary>PupsStation Shutdown</summary>
+		public ButtonEntity PupsstationShutdown => new(_haContext, "button.pupsstation_shutdown");
 	}
 
 	public class CalendarEntities
@@ -253,15 +274,23 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
+		///<summary>room-assistant - iPhone Philipp Tracker</summary>
+		public DeviceTrackerEntity E4a4fc2deB7f541a0A8a84f5120fe28cdTracker => new(_haContext, "device_tracker.4a4fc2de_b7f5_41a0_a8a8_4f5120fe28cd_tracker");
+		///<summary>room-assistant - iPhone Fabienne Tracker</summary>
+		public DeviceTrackerEntity E8b09c51596e045afAda58de99a04535cTracker => new(_haContext, "device_tracker.8b09c515_96e0_45af_ada5_8de99a04535c_tracker");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀</summary>
+		public DeviceTrackerEntity BuyHodlGme => new(_haContext, "device_tracker.buy_hodl_gme");
 		///<summary>🐘 FantenPhone 🐘</summary>
 		public DeviceTrackerEntity Fabienne => new(_haContext, "device_tracker.fabienne");
 		///<summary>Fantenpad</summary>
 		public DeviceTrackerEntity IpadVonFabienne => new(_haContext, "device_tracker.ipad_von_fabienne");
 		///<summary>philipp</summary>
 		public DeviceTrackerEntity Philipp2b775363D7b348719abc6f36aa202757 => new(_haContext, "device_tracker.philipp_2b775363_d7b3_4871_9abc_6f36aa202757");
+		///<summary>Philipp’s Apple Watch</summary>
+		public DeviceTrackerEntity PhilippsAppleWatch => new(_haContext, "device_tracker.philipps_apple_watch");
 		///<summary>Philipp’s iPhone</summary>
 		public DeviceTrackerEntity PhilippsIphone2 => new(_haContext, "device_tracker.philipps_iphone_2");
-		///<summary>iphone_philipp</summary>
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀</summary>
 		public DeviceTrackerEntity PhilippsIphone3 => new(_haContext, "device_tracker.philipps_iphone_3");
 	}
 
@@ -347,6 +376,8 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
+		///<summary>Calorie counter</summary>
+		public InputTextEntity CalorieCounter => new(_haContext, "input_text.calorie_counter");
 		///<summary>Kitchen scale nutriscore grade</summary>
 		public InputTextEntity KitchenScaleNutriscoreGrade => new(_haContext, "input_text.kitchen_scale_nutriscore_grade");
 		///<summary>Kitchen scale nutriscore url</summary>
@@ -391,18 +422,6 @@ namespace HomeAssistantGenerated
 		public MediaPlayerEntity SpotifyPhilippChristoph => new(_haContext, "media_player.spotify_philipp_christoph");
 	}
 
-	public class PersistentNotificationEntities
-	{
-		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
-		public PersistentNotificationEntities(NetDaemon.HassModel.Common.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>New devices discovered</summary>
-		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
-	}
-
 	public class PersonEntities
 	{
 		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
@@ -427,6 +446,18 @@ namespace HomeAssistantGenerated
 
 		///<summary>Harmony Hub</summary>
 		public RemoteEntity HarmonyHub => new(_haContext, "remote.harmony_hub");
+	}
+
+	public class SelectEntities
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public SelectEntities(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Harmony Hub Activities</summary>
+		public SelectEntity HarmonyHubActivities => new(_haContext, "select.harmony_hub_activities");
 	}
 
 	public class SensorEntities
@@ -459,8 +490,28 @@ namespace HomeAssistantGenerated
 		public SensorEntity E0x00158d0006792498Click => new(_haContext, "sensor.0x00158d0006792498_click");
 		///<summary>0x54ef441000035f82 illuminance</summary>
 		public SensorEntity E0x54ef441000035f82Illuminance => new(_haContext, "sensor.0x54ef441000035f82_illuminance");
+		///<summary>room-assistant - iPhone Philipp Room Presence</summary>
+		public SensorEntity E4a4fc2deB7f541a0A8a84f5120fe28cdRoomPresence => new(_haContext, "sensor.4a4fc2de_b7f5_41a0_a8a8_4f5120fe28cd_room_presence");
+		///<summary>room-assistant - iPhone Fabienne Room Presence</summary>
+		public SensorEntity E8b09c51596e045afAda58de99a04535cRoomPresence => new(_haContext, "sensor.8b09c515_96e0_45af_ada5_8de99a04535c_room_presence");
 		///<summary>Barcode scanner connected</summary>
 		public SensorEntity BarcodeScannerConnected => new(_haContext, "sensor.barcode_scanner_connected");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Activity</summary>
+		public SensorEntity BuyHodlGmeActivity => new(_haContext, "sensor.buy_hodl_gme_activity");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Battery State</summary>
+		public SensorEntity BuyHodlGmeBatteryState2 => new(_haContext, "sensor.buy_hodl_gme_battery_state_2");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 BSSID</summary>
+		public SensorEntity BuyHodlGmeBssid => new(_haContext, "sensor.buy_hodl_gme_bssid");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Connection Type</summary>
+		public SensorEntity BuyHodlGmeConnectionType => new(_haContext, "sensor.buy_hodl_gme_connection_type");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Geocoded Location</summary>
+		public SensorEntity BuyHodlGmeGeocodedLocation => new(_haContext, "sensor.buy_hodl_gme_geocoded_location");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Last Update Trigger</summary>
+		public SensorEntity BuyHodlGmeLastUpdateTrigger => new(_haContext, "sensor.buy_hodl_gme_last_update_trigger");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 SIM 1</summary>
+		public SensorEntity BuyHodlGmeSim1 => new(_haContext, "sensor.buy_hodl_gme_sim_1");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 SSID</summary>
+		public SensorEntity BuyHodlGmeSsid => new(_haContext, "sensor.buy_hodl_gme_ssid");
 		///<summary>cat_food_counter</summary>
 		public SensorEntity CatFoodCounter2 => new(_haContext, "sensor.cat_food_counter_2");
 		///<summary>fabienne_herion_last_update</summary>
@@ -497,26 +548,16 @@ namespace HomeAssistantGenerated
 		public SensorEntity FantenphoneSim2 => new(_haContext, "sensor.fantenphone_sim_2");
 		///<summary>🐘 FantenPhone 🐘 SSID</summary>
 		public SensorEntity FantenphoneSsid => new(_haContext, "sensor.fantenphone_ssid");
+		///<summary>Fantenrüssel Last Clean End</summary>
+		public SensorEntity FantenrusselLastCleanEnd => new(_haContext, "sensor.fantenrussel_last_clean_end");
+		///<summary>Fantenrüssel Last Clean Start</summary>
+		public SensorEntity FantenrusselLastCleanStart => new(_haContext, "sensor.fantenrussel_last_clean_start");
+		///<summary>hallway Cluster Leader</summary>
+		public SensorEntity HallwayClusterLeader => new(_haContext, "sensor.hallway_cluster_leader");
 		///<summary>icloud_photos_downloader_fabienne</summary>
 		public SensorEntity IcloudPhotosDownloaderFabienne => new(_haContext, "sensor.icloud_photos_downloader_fabienne");
 		///<summary>icloud_photos_downloader_philipp</summary>
 		public SensorEntity IcloudPhotosDownloaderPhilipp => new(_haContext, "sensor.icloud_photos_downloader_philipp");
-		///<summary>iphone_philipp Activity</summary>
-		public SensorEntity IphonePhilippActivity => new(_haContext, "sensor.iphone_philipp_activity");
-		///<summary>iphone_philipp Battery State</summary>
-		public SensorEntity IphonePhilippBatteryState => new(_haContext, "sensor.iphone_philipp_battery_state");
-		///<summary>iphone_philipp BSSID</summary>
-		public SensorEntity IphonePhilippBssid => new(_haContext, "sensor.iphone_philipp_bssid");
-		///<summary>iphone_philipp Connection Type</summary>
-		public SensorEntity IphonePhilippConnectionType => new(_haContext, "sensor.iphone_philipp_connection_type");
-		///<summary>iphone_philipp Geocoded Location</summary>
-		public SensorEntity IphonePhilippGeocodedLocation => new(_haContext, "sensor.iphone_philipp_geocoded_location");
-		///<summary>iphone_philipp Last Update Trigger</summary>
-		public SensorEntity IphonePhilippLastUpdateTrigger => new(_haContext, "sensor.iphone_philipp_last_update_trigger");
-		///<summary>iphone_philipp SIM 1</summary>
-		public SensorEntity IphonePhilippSim1 => new(_haContext, "sensor.iphone_philipp_sim_1");
-		///<summary>iphone_philipp SSID</summary>
-		public SensorEntity IphonePhilippSsid => new(_haContext, "sensor.iphone_philipp_ssid");
 		///<summary>Kitchen scale</summary>
 		public SensorEntity KitchenScale => new(_haContext, "sensor.kitchen_scale");
 		///<summary>netdaemon_status</summary>
@@ -607,18 +648,40 @@ namespace HomeAssistantGenerated
 		public NumericSensorEntity E0x54ef441000035f82Linkquality => new(_haContext, "sensor.0x54ef441000035f82_linkquality");
 		///<summary>AMC Entertainment Holdings Inc</summary>
 		public NumericSensorEntity AmcEntertainmentHoldingsInc => new(_haContext, "sensor.amc_entertainment_holdings_inc");
+		///<summary>Apple Watch von Fabienne battery state</summary>
+		public NumericSensorEntity AppleWatchVonFabienneBatteryState => new(_haContext, "sensor.apple_watch_von_fabienne_battery_state");
 		///<summary>BlackBerry Ltd</summary>
 		public NumericSensorEntity BlackberryLtd => new(_haContext, "sensor.blackberry_ltd");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Average Active Pace</summary>
+		public NumericSensorEntity BuyHodlGmeAverageActivePace => new(_haContext, "sensor.buy_hodl_gme_average_active_pace");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Battery Level</summary>
+		public NumericSensorEntity BuyHodlGmeBatteryLevel => new(_haContext, "sensor.buy_hodl_gme_battery_level");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 battery state</summary>
+		public NumericSensorEntity BuyHodlGmeBatteryState => new(_haContext, "sensor.buy_hodl_gme_battery_state");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Distance</summary>
+		public NumericSensorEntity BuyHodlGmeDistance => new(_haContext, "sensor.buy_hodl_gme_distance");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Floors Ascended</summary>
+		public NumericSensorEntity BuyHodlGmeFloorsAscended => new(_haContext, "sensor.buy_hodl_gme_floors_ascended");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Floors Descended</summary>
+		public NumericSensorEntity BuyHodlGmeFloorsDescended => new(_haContext, "sensor.buy_hodl_gme_floors_descended");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Steps</summary>
+		public NumericSensorEntity BuyHodlGmeSteps => new(_haContext, "sensor.buy_hodl_gme_steps");
+		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Storage</summary>
+		public NumericSensorEntity BuyHodlGmeStorage => new(_haContext, "sensor.buy_hodl_gme_storage");
 		///<summary>Core DAX</summary>
 		public NumericSensorEntity CoreDax => new(_haContext, "sensor.core_dax");
 		///<summary>Fantenpad Battery Level</summary>
 		public NumericSensorEntity FantenpadBatteryLevel => new(_haContext, "sensor.fantenpad_battery_level");
+		///<summary>Fantenpad battery state</summary>
+		public NumericSensorEntity FantenpadBatteryState2 => new(_haContext, "sensor.fantenpad_battery_state_2");
 		///<summary>Fantenpad Storage</summary>
 		public NumericSensorEntity FantenpadStorage => new(_haContext, "sensor.fantenpad_storage");
 		///<summary>🐘 FantenPhone 🐘 Average Active Pace</summary>
 		public NumericSensorEntity FantenphoneAverageActivePace => new(_haContext, "sensor.fantenphone_average_active_pace");
 		///<summary>🐘 FantenPhone 🐘 Battery Level</summary>
 		public NumericSensorEntity FantenphoneBatteryLevel => new(_haContext, "sensor.fantenphone_battery_level");
+		///<summary>🐘 FantenPhone 🐘 battery state</summary>
+		public NumericSensorEntity FantenphoneBatteryState2 => new(_haContext, "sensor.fantenphone_battery_state_2");
 		///<summary>🐘 FantenPhone 🐘 Distance</summary>
 		public NumericSensorEntity FantenphoneDistance => new(_haContext, "sensor.fantenphone_distance");
 		///<summary>🐘 FantenPhone 🐘 Floors Ascended</summary>
@@ -629,6 +692,14 @@ namespace HomeAssistantGenerated
 		public NumericSensorEntity FantenphoneSteps => new(_haContext, "sensor.fantenphone_steps");
 		///<summary>🐘 FantenPhone 🐘 Storage</summary>
 		public NumericSensorEntity FantenphoneStorage => new(_haContext, "sensor.fantenphone_storage");
+		///<summary>Fantenrüssel Current Clean Area</summary>
+		public NumericSensorEntity FantenrusselCurrentCleanArea => new(_haContext, "sensor.fantenrussel_current_clean_area");
+		///<summary>Fantenrüssel Current Clean Duration</summary>
+		public NumericSensorEntity FantenrusselCurrentCleanDuration => new(_haContext, "sensor.fantenrussel_current_clean_duration");
+		///<summary>Fantenrüssel Last Clean Area</summary>
+		public NumericSensorEntity FantenrusselLastCleanArea => new(_haContext, "sensor.fantenrussel_last_clean_area");
+		///<summary>Fantenrüssel Last Clean Duration</summary>
+		public NumericSensorEntity FantenrusselLastCleanDuration => new(_haContext, "sensor.fantenrussel_last_clean_duration");
 		///<summary>GameStop Corp</summary>
 		public NumericSensorEntity GamestopCorp => new(_haContext, "sensor.gamestop_corp");
 		///<summary>Glances acpitz 1 Temperature</summary>
@@ -779,20 +850,8 @@ namespace HomeAssistantGenerated
 		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_used_percent");
 		///<summary>hacs</summary>
 		public NumericSensorEntity Hacs => new(_haContext, "sensor.hacs");
-		///<summary>iphone_philipp Average Active Pace</summary>
-		public NumericSensorEntity IphonePhilippAverageActivePace => new(_haContext, "sensor.iphone_philipp_average_active_pace");
-		///<summary>iphone_philipp Battery Level</summary>
-		public NumericSensorEntity IphonePhilippBatteryLevel => new(_haContext, "sensor.iphone_philipp_battery_level");
-		///<summary>iphone_philipp Distance</summary>
-		public NumericSensorEntity IphonePhilippDistance => new(_haContext, "sensor.iphone_philipp_distance");
-		///<summary>iphone_philipp Floors Ascended</summary>
-		public NumericSensorEntity IphonePhilippFloorsAscended => new(_haContext, "sensor.iphone_philipp_floors_ascended");
-		///<summary>iphone_philipp Floors Descended</summary>
-		public NumericSensorEntity IphonePhilippFloorsDescended => new(_haContext, "sensor.iphone_philipp_floors_descended");
-		///<summary>iphone_philipp Steps</summary>
-		public NumericSensorEntity IphonePhilippSteps => new(_haContext, "sensor.iphone_philipp_steps");
-		///<summary>iphone_philipp Storage</summary>
-		public NumericSensorEntity IphonePhilippStorage => new(_haContext, "sensor.iphone_philipp_storage");
+		///<summary>hallway Cluster Size</summary>
+		public NumericSensorEntity HallwayClusterSize => new(_haContext, "sensor.hallway_cluster_size");
 		///<summary>Lufthansa</summary>
 		public NumericSensorEntity Lufthansa => new(_haContext, "sensor.lufthansa");
 		///<summary>METRO AG</summary>
@@ -805,6 +864,8 @@ namespace HomeAssistantGenerated
 		public NumericSensorEntity MyDogecoinsNodered => new(_haContext, "sensor.my_dogecoins_nodered");
 		///<summary>Profit</summary>
 		public NumericSensorEntity MyDogecoinsProfitNodered => new(_haContext, "sensor.my_dogecoins_profit_nodered");
+		///<summary>Philipp’s Apple Watch battery state</summary>
+		public NumericSensorEntity PhilippsAppleWatchBatteryState => new(_haContext, "sensor.philipps_apple_watch_battery_state");
 		///<summary>PupsStation CPU Load Average (15 min)</summary>
 		public NumericSensorEntity PupsstationCpuLoad15Min => new(_haContext, "sensor.pupsstation_cpu_load_15_min");
 		///<summary>PupsStation CPU Load Average (5 min)</summary>
@@ -947,6 +1008,8 @@ namespace HomeAssistantGenerated
 		public SwitchEntity HarmonyHubSpielStreamen => new(_haContext, "switch.harmony_hub_spiel_streamen");
 		///<summary>Lautsprecher Pup</summary>
 		public SwitchEntity LoudspeakerPup => new(_haContext, "switch.loudspeaker_pup");
+		///<summary>netdaemon_caloriecounter</summary>
+		public SwitchEntity NetdaemonCaloriecounter => new(_haContext, "switch.netdaemon_caloriecounter");
 		///<summary>netdaemon_kitchenlight</summary>
 		public SwitchEntity NetdaemonKitchenlight => new(_haContext, "switch.netdaemon_kitchenlight");
 		///<summary>netdaemon_kitchenscale</summary>
@@ -1078,6 +1141,17 @@ namespace HomeAssistantGenerated
 		}
 
 		public BinarySensorEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record ButtonEntity : NetDaemon.HassModel.Entities.Entity<ButtonEntity, NetDaemon.HassModel.Entities.EntityState<ButtonAttributes>, ButtonAttributes>
+	{
+		public ButtonEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public ButtonEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
 		{
 		}
 	}
@@ -1214,17 +1288,6 @@ namespace HomeAssistantGenerated
 		}
 	}
 
-	public record PersistentNotificationEntity : NetDaemon.HassModel.Entities.Entity<PersistentNotificationEntity, NetDaemon.HassModel.Entities.EntityState<PersistentNotificationAttributes>, PersistentNotificationAttributes>
-	{
-		public PersistentNotificationEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
-		{
-		}
-
-		public PersistentNotificationEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
-		{
-		}
-	}
-
 	public record PersonEntity : NetDaemon.HassModel.Entities.Entity<PersonEntity, NetDaemon.HassModel.Entities.EntityState<PersonAttributes>, PersonAttributes>
 	{
 		public PersonEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -1243,6 +1306,17 @@ namespace HomeAssistantGenerated
 		}
 
 		public RemoteEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record SelectEntity : NetDaemon.HassModel.Entities.Entity<SelectEntity, NetDaemon.HassModel.Entities.EntityState<SelectAttributes>, SelectAttributes>
+	{
+		public SelectEntity(NetDaemon.HassModel.Common.IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public SelectEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
 		{
 		}
 	}
@@ -1369,6 +1443,12 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
+		public double? Battery { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
+		public object? Device { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
 
@@ -1377,6 +1457,18 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance")]
+		public double? Illuminance { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
+		public double? IlluminanceLux { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
+		public double? Linkquality { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("malware")]
 		public string? Malware { get; init; }
@@ -1387,8 +1479,14 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("newest_version")]
 		public string? NewestVersion { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("occupancy")]
+		public bool? Occupancy { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("release_notes")]
 		public string? ReleaseNotes { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_avg")]
 		public double? RoundTripTimeAvg { get; init; }
@@ -1405,14 +1503,38 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("securitySetting")]
 		public string? SecuritySetting { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("systemCheck")]
 		public string? SystemCheck { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("temperature")]
+		public double? Temperature { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("update")]
 		public string? Update { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("userInfo")]
 		public string? UserInfo { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
+		public double? Voltage { get; init; }
+	}
+
+	public record ButtonAttributes
+	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		public string? Icon { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 	}
 
 	public record CalendarAttributes
@@ -1519,14 +1641,32 @@ namespace HomeAssistantGenerated
 
 	public record DeviceTrackerAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("account_fetch_interval")]
+		public double? AccountFetchInterval { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("altitude")]
 		public double? Altitude { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
+		public string? Attribution { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
+		public double? Battery { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_level")]
 		public double? BatteryLevel { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_status")]
+		public string? BatteryStatus { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("course")]
 		public double? Course { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_name")]
+		public string? DeviceName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_status")]
+		public string? DeviceStatus { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1534,17 +1674,32 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("gps_accuracy")]
 		public double? GpsAccuracy { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		public string? Icon { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latitude")]
 		public double? Latitude { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("longitude")]
 		public double? Longitude { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("low_power_mode")]
+		public bool? LowPowerMode { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("owner_fullname")]
+		public string? OwnerFullname { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_type")]
 		public string? SourceType { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("speed")]
 		public double? Speed { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("vertical_accuracy")]
 		public double? VerticalAccuracy { get; init; }
@@ -1657,6 +1812,15 @@ namespace HomeAssistantGenerated
 
 	public record LightAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("brightness")]
+		public double? Brightness { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_mode")]
+		public string? ColorMode { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_temp")]
+		public double? ColorTemp { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
@@ -1689,18 +1853,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
-	}
-
-	public record PersistentNotificationAttributes
-	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
-		public string? FriendlyName { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("message")]
-		public string? Message { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("title")]
-		public string? Title { get; init; }
 	}
 
 	public record PersonAttributes
@@ -1748,7 +1900,7 @@ namespace HomeAssistantGenerated
 		public object? ActivityStarting { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("current_activity")]
-		public object? CurrentActivity { get; init; }
+		public string? CurrentActivity { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("devices_list")]
 		public object? DevicesList { get; init; }
@@ -1763,8 +1915,29 @@ namespace HomeAssistantGenerated
 		public double? SupportedFeatures { get; init; }
 	}
 
+	public record SelectAttributes
+	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		public string? Icon { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("options")]
+		public object? Options { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
+	}
+
 	public record SensorAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
+		public object? Action { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
 
@@ -1776,6 +1949,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
+		public double? Battery { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Carrier ID")]
 		public string? CarrierID { get; init; }
@@ -1795,8 +1971,14 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Current Radio Technology")]
 		public string? CurrentRadioTechnology { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
+		public object? Device { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("distance")]
+		public double? Distance { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("firstworkout_title")]
 		public string? FirstworkoutTitle { get; init; }
@@ -1810,6 +1992,12 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance")]
+		public double? Illuminance { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
+		public double? IlluminanceLux { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Inland Water")]
 		public string? InlandWater { get; init; }
 
@@ -1819,14 +2007,23 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("ISO Country Code")]
 		public string? ISOCountryCode { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
+		public string? LastSeen { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastupdate")]
 		public string? Lastupdate { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_updated_at")]
+		public string? LastUpdatedAt { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastworkout_title")]
 		public string? LastworkoutTitle { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastworkout_url")]
 		public string? LastworkoutUrl { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
+		public double? Linkquality { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Locality")]
 		public string? Locality { get; init; }
@@ -1891,12 +2088,21 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("version")]
 		public string? Version { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
+		public double? Voltage { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Zones")]
 		public object? Zones { get; init; }
 	}
 
 	public record NumericSensorAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("account_fetch_interval")]
+		public double? AccountFetchInterval { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
+		public object? Action { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }
 
@@ -1908,6 +2114,12 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Available (Opportunistic)")]
 		public string? AvailableOpportunistic { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
+		public double? Battery { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_status")]
+		public string? BatteryStatus { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_received")]
 		public double? BytesReceived { get; init; }
@@ -1969,8 +2181,17 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeThreeYears")]
 		public object? ChangeThreeYears { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
+		public object? Device { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_name")]
+		public string? DeviceName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_status")]
+		public string? DeviceStatus { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1978,8 +2199,29 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance")]
+		public double? Illuminance { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
+		public double? IlluminanceLux { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("low_power_mode")]
+		public bool? LowPowerMode { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
 		public string? Name { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("occupancy")]
+		public bool? Occupancy { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("owner_fullname")]
+		public string? OwnerFullname { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("profitLoss")]
 		public double? ProfitLoss { get; init; }
@@ -2010,6 +2252,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("temperature")]
+		public double? Temperature { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Total")]
 		public string? Total { get; init; }
@@ -2049,6 +2294,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("unit_of_measurement")]
 		public string? UnitOfMeasurement { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
+		public double? Voltage { get; init; }
 	}
 
 	public record SunAttributes
@@ -2293,6 +2541,8 @@ namespace HomeAssistantGenerated
 
 		HomeassistantServices Homeassistant { get; }
 
+		IcloudServices Icloud { get; }
+
 		InputBooleanServices InputBoolean { get; }
 
 		InputDatetimeServices InputDatetime { get; }
@@ -2385,6 +2635,7 @@ namespace HomeAssistantGenerated
 		public GroupServices Group => new(_haContext);
 		public HarmonyServices Harmony => new(_haContext);
 		public HomeassistantServices Homeassistant => new(_haContext);
+		public IcloudServices Icloud => new(_haContext);
 		public InputBooleanServices InputBoolean => new(_haContext);
 		public InputDatetimeServices InputDatetime => new(_haContext);
 		public InputNumberServices InputNumber => new(_haContext);
@@ -3661,6 +3912,130 @@ namespace HomeAssistantGenerated
 		public string? Longitude { get; init; }
 	}
 
+	public class IcloudServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public IcloudServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Display a message on an Apple device.</summary>
+		public void DisplayMessage(IcloudDisplayMessageParameters data)
+		{
+			_haContext.CallService("icloud", "display_message", null, data);
+		}
+
+		///<summary>Display a message on an Apple device.</summary>
+		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
+		///<param name="deviceName">The name of the Apple device to display the message. eg: stevesiphone</param>
+		///<param name="message">The content of your message. eg: Hey Steve !</param>
+		///<param name="sound">To make a sound when displaying the message.</param>
+		public void DisplayMessage(string @account, string @deviceName, string @message, bool? @sound = null)
+		{
+			_haContext.CallService("icloud", "display_message", null, new IcloudDisplayMessageParameters{Account = @account, DeviceName = @deviceName, Message = @message, Sound = @sound});
+		}
+
+		///<summary>Make an Apple device in lost state.</summary>
+		public void LostDevice(IcloudLostDeviceParameters data)
+		{
+			_haContext.CallService("icloud", "lost_device", null, data);
+		}
+
+		///<summary>Make an Apple device in lost state.</summary>
+		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
+		///<param name="deviceName">The name of the Apple device to set lost. eg: stevesiphone</param>
+		///<param name="number">The phone number to call in lost mode (must contain country code). eg: +33450020100</param>
+		///<param name="message">The message to display in lost mode. eg: Call me</param>
+		public void LostDevice(string @account, string @deviceName, string @number, string @message)
+		{
+			_haContext.CallService("icloud", "lost_device", null, new IcloudLostDeviceParameters{Account = @account, DeviceName = @deviceName, Number = @number, Message = @message});
+		}
+
+		///<summary>Play sound on an Apple device.</summary>
+		public void PlaySound(IcloudPlaySoundParameters data)
+		{
+			_haContext.CallService("icloud", "play_sound", null, data);
+		}
+
+		///<summary>Play sound on an Apple device.</summary>
+		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
+		///<param name="deviceName">The name of the Apple device to play a sound. eg: stevesiphone</param>
+		public void PlaySound(string @account, string @deviceName)
+		{
+			_haContext.CallService("icloud", "play_sound", null, new IcloudPlaySoundParameters{Account = @account, DeviceName = @deviceName});
+		}
+
+		///<summary>Update iCloud devices.</summary>
+		public void Update(IcloudUpdateParameters data)
+		{
+			_haContext.CallService("icloud", "update", null, data);
+		}
+
+		///<summary>Update iCloud devices.</summary>
+		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
+		public void Update(string @account)
+		{
+			_haContext.CallService("icloud", "update", null, new IcloudUpdateParameters{Account = @account});
+		}
+	}
+
+	public record IcloudDisplayMessageParameters
+	{
+		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("account")]
+		public string? Account { get; init; }
+
+		///<summary>The name of the Apple device to display the message. eg: stevesiphone</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
+		public string? DeviceName { get; init; }
+
+		///<summary>The content of your message. eg: Hey Steve !</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		///<summary>To make a sound when displaying the message.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("sound")]
+		public bool? Sound { get; init; }
+	}
+
+	public record IcloudLostDeviceParameters
+	{
+		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("account")]
+		public string? Account { get; init; }
+
+		///<summary>The name of the Apple device to set lost. eg: stevesiphone</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
+		public string? DeviceName { get; init; }
+
+		///<summary>The phone number to call in lost mode (must contain country code). eg: +33450020100</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("number")]
+		public string? Number { get; init; }
+
+		///<summary>The message to display in lost mode. eg: Call me</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		public string? Message { get; init; }
+	}
+
+	public record IcloudPlaySoundParameters
+	{
+		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("account")]
+		public string? Account { get; init; }
+
+		///<summary>The name of the Apple device to play a sound. eg: stevesiphone</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
+		public string? DeviceName { get; init; }
+	}
+
+	public record IcloudUpdateParameters
+	{
+		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("account")]
+		public string? Account { get; init; }
+	}
+
 	public class InputBooleanServices
 	{
 		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
@@ -4856,6 +5231,22 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
+		///<summary>Sends a notification message using the mobile_app_buy_hodl_gme integration.</summary>
+		public void MobileAppBuyHodlGme(NotifyMobileAppBuyHodlGmeParameters data)
+		{
+			_haContext.CallService("notify", "mobile_app_buy_hodl_gme", null, data);
+		}
+
+		///<summary>Sends a notification message using the mobile_app_buy_hodl_gme integration.</summary>
+		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
+		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
+		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
+		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
+		public void MobileAppBuyHodlGme(string @message, string? @title = null, object? @target = null, object? @data = null)
+		{
+			_haContext.CallService("notify", "mobile_app_buy_hodl_gme", null, new NotifyMobileAppBuyHodlGmeParameters{Message = @message, Title = @title, Target = @target, Data = @data});
+		}
+
 		///<summary>Sends a notification message using the mobile_app_fantenpad integration.</summary>
 		public void MobileAppFantenpad(NotifyMobileAppFantenpadParameters data)
 		{
@@ -4886,22 +5277,6 @@ namespace HomeAssistantGenerated
 		public void MobileAppFantenphone(string @message, string? @title = null, object? @target = null, object? @data = null)
 		{
 			_haContext.CallService("notify", "mobile_app_fantenphone", null, new NotifyMobileAppFantenphoneParameters{Message = @message, Title = @title, Target = @target, Data = @data});
-		}
-
-		///<summary>Sends a notification message using the mobile_app_iphone_philipp integration.</summary>
-		public void MobileAppIphonePhilipp(NotifyMobileAppIphonePhilippParameters data)
-		{
-			_haContext.CallService("notify", "mobile_app_iphone_philipp", null, data);
-		}
-
-		///<summary>Sends a notification message using the mobile_app_iphone_philipp integration.</summary>
-		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
-		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
-		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
-		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
-		public void MobileAppIphonePhilipp(string @message, string? @title = null, object? @target = null, object? @data = null)
-		{
-			_haContext.CallService("notify", "mobile_app_iphone_philipp", null, new NotifyMobileAppIphonePhilippParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
 		///<summary>Sends a notification message using the notify service.</summary>
@@ -4935,6 +5310,25 @@ namespace HomeAssistantGenerated
 		}
 	}
 
+	public record NotifyMobileAppBuyHodlGmeParameters
+	{
+		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		public string? Title { get; init; }
+
+		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("target")]
+		public object? Target { get; init; }
+
+		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("data")]
+		public object? Data { get; init; }
+	}
+
 	public record NotifyMobileAppFantenpadParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
@@ -4955,25 +5349,6 @@ namespace HomeAssistantGenerated
 	}
 
 	public record NotifyMobileAppFantenphoneParameters
-	{
-		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
-		public string? Message { get; init; }
-
-		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
-		public string? Title { get; init; }
-
-		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("target")]
-		public object? Target { get; init; }
-
-		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("data")]
-		public object? Data { get; init; }
-	}
-
-	public record NotifyMobileAppIphonePhilippParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("message")]
