@@ -13,6 +13,7 @@ public record BrightnessConfig
 
 public record KitchenLightConfig : Config
 {
+	public string LightEntityId { get; init; }
 	public int MinIlluminanceLux { get; init; }
 	public string CombinedSensorTopic { get; init; }
 	public string ManualTriggerSensorTopic { get; init; }

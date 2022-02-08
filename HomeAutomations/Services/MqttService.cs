@@ -68,7 +68,7 @@ public class MqttService
 				await _client.SubscribeAsync(topicFilters);
 			});
 
-		_client.UseDisconnectedHandler(e => Console.WriteLine(e.Reason));
+		_client.UseDisconnectedHandler(e => _logger.Debug("Disconnected due to: {reason}", e.Reason));
 
 		_client.UseApplicationMessageReceivedHandler(e => _messages.OnNext(e.ApplicationMessage));
 

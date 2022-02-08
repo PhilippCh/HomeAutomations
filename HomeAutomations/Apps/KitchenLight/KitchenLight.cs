@@ -31,11 +31,9 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	public KitchenLight(MqttService mqttService, BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
 	{
-		var entities = new Entities(Context);
-
 		_mqttService = mqttService;
 		_notificationService = notificationService;
-		_lightEntity = entities.Light.Bfb81fd992b98475f8tc6r;
+		_lightEntity = new LightEntity(Context, Config.LightEntityId);
 	}
 
 	protected override void Start()

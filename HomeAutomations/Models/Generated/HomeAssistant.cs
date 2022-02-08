@@ -154,17 +154,17 @@ namespace HomeAssistantGenerated
 		public BinarySensorEntity Laptopphilipp => new(_haContext, "binary_sensor.laptopphilipp");
 		///<summary>sleep_mode</summary>
 		public BinarySensorEntity Nodered34b1e88b368528 => new(_haContext, "binary_sensor.nodered_34b1e88b_368528");
-		///<summary>PupsStation Drive 1 Below Min Remaining Life</summary>
+		///<summary>PupsStation Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationDrive1BelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_drive_1_below_min_remaining_life");
-		///<summary>PupsStation Drive 1 Exceeded Max Bad Sectors</summary>
+		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationDrive1ExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_drive_1_exceeded_max_bad_sectors");
-		///<summary>PupsStation Drive 2 Below Min Remaining Life</summary>
+		///<summary>PupsStation Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationDrive2BelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_drive_2_below_min_remaining_life");
-		///<summary>PupsStation Drive 2 Exceeded Max Bad Sectors</summary>
+		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationDrive2ExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_drive_2_exceeded_max_bad_sectors");
-		///<summary>PupsStation Security status</summary>
+		///<summary>PupsStation Security Status</summary>
 		public BinarySensorEntity PupsstationSecurityStatus => new(_haContext, "binary_sensor.pupsstation_security_status");
-		///<summary>PupsStation Update available</summary>
+		///<summary>PupsStation Update Available</summary>
 		public BinarySensorEntity PupsstationUpdateAvailable => new(_haContext, "binary_sensor.pupsstation_update_available");
 		///<summary>Thermostat Arbeitszimmer Battery</summary>
 		public BinarySensorEntity ThermostatArbeitszimmerBattery => new(_haContext, "binary_sensor.thermostat_arbeitszimmer_battery");
@@ -174,16 +174,6 @@ namespace HomeAssistantGenerated
 		public BinarySensorEntity ThermostatSchlafzimmerBattery => new(_haContext, "binary_sensor.thermostat_schlafzimmer_battery");
 		///<summary>Thermostat Wohnzimmer Battery</summary>
 		public BinarySensorEntity ThermostatWohnzimmerBattery => new(_haContext, "binary_sensor.thermostat_wohnzimmer_battery");
-		///<summary>trash_bio</summary>
-		public BinarySensorEntity TrashBio => new(_haContext, "binary_sensor.trash_bio");
-		///<summary>trash_glass</summary>
-		public BinarySensorEntity TrashGlass => new(_haContext, "binary_sensor.trash_glass");
-		///<summary>trash_paper</summary>
-		public BinarySensorEntity TrashPaper => new(_haContext, "binary_sensor.trash_paper");
-		///<summary>trash_recycling</summary>
-		public BinarySensorEntity TrashRecycling => new(_haContext, "binary_sensor.trash_recycling");
-		///<summary>trash_waste</summary>
-		public BinarySensorEntity TrashWaste => new(_haContext, "binary_sensor.trash_waste");
 		///<summary>Updater</summary>
 		public BinarySensorEntity Updater => new(_haContext, "binary_sensor.updater");
 	}
@@ -396,16 +386,16 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
-		///<summary>Stehlampe</summary>
-		public LightEntity E31322600840d8ebd93a7 => new(_haContext, "light.31322600840d8ebd93a7");
-		///<summary>TV Lightstrip</summary>
-		public LightEntity Bf86d365c4be26b921xfsz => new(_haContext, "light.bf86d365c4be26b921xfsz");
 		///<summary>Küchendecke</summary>
-		public LightEntity Bfb81fd992b98475f8tc6r => new(_haContext, "light.bfb81fd992b98475f8tc6r");
+		public LightEntity Kuchendecke => new(_haContext, "light.kuchendecke");
 		///<summary>Licht Nachttisch Fup</summary>
-		public LightEntity NachttischFup => new(_haContext, "light.nachttisch_fup");
-		///<summary>Licht Nachttisch Pup</summary>
-		public LightEntity NachttischPup => new(_haContext, "light.nachttisch_pup");
+		public LightEntity LichtNachttischFup => new(_haContext, "light.licht_nachttisch_fup");
+		///<summary>Licht Nachttisch Pups</summary>
+		public LightEntity LichtNachttischPups => new(_haContext, "light.licht_nachttisch_pups");
+		///<summary>Stehlampe</summary>
+		public LightEntity Stehlampe => new(_haContext, "light.stehlampe");
+		///<summary>TV Lightstrip</summary>
+		public LightEntity TvLightstrip => new(_haContext, "light.tv_lightstrip");
 	}
 
 	public class MediaPlayerEntities
@@ -496,6 +486,8 @@ namespace HomeAssistantGenerated
 		public SensorEntity E8b09c51596e045afAda58de99a04535cRoomPresence => new(_haContext, "sensor.8b09c515_96e0_45af_ada5_8de99a04535c_room_presence");
 		///<summary>Barcode scanner connected</summary>
 		public SensorEntity BarcodeScannerConnected => new(_haContext, "sensor.barcode_scanner_connected");
+		///<summary>Base calories for philipp</summary>
+		public SensorEntity BaseCaloriesForPhilipp => new(_haContext, "sensor.base_calories_for_philipp");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Activity</summary>
 		public SensorEntity BuyHodlGmeActivity => new(_haContext, "sensor.buy_hodl_gme_activity");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Battery State</summary>
@@ -512,8 +504,6 @@ namespace HomeAssistantGenerated
 		public SensorEntity BuyHodlGmeSim1 => new(_haContext, "sensor.buy_hodl_gme_sim_1");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 SSID</summary>
 		public SensorEntity BuyHodlGmeSsid => new(_haContext, "sensor.buy_hodl_gme_ssid");
-		///<summary>cat_food_counter</summary>
-		public SensorEntity CatFoodCounter2 => new(_haContext, "sensor.cat_food_counter_2");
 		///<summary>fabienne_herion_last_update</summary>
 		public SensorEntity FabienneHerionLastUpdate => new(_haContext, "sensor.fabienne_herion_last_update");
 		///<summary>Fantenpad Activity</summary>
@@ -568,36 +558,20 @@ namespace HomeAssistantGenerated
 		public SensorEntity OpenwindowsCount => new(_haContext, "sensor.openwindows_count");
 		///<summary>p90x_workout</summary>
 		public SensorEntity P90xWorkoutToday => new(_haContext, "sensor.p90x_workout_today");
-		///<summary>PupsStation Drive 1 Status</summary>
+		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationDrive1Status => new(_haContext, "sensor.pupsstation_drive_1_status");
-		///<summary>PupsStation Drive 2 Status</summary>
+		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationDrive2Status => new(_haContext, "sensor.pupsstation_drive_2_status");
-		///<summary>PupsStation Volume 1 Status</summary>
+		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationVolume1Status => new(_haContext, "sensor.pupsstation_volume_1_status");
 		///<summary>Thermostat Arbeitszimmer</summary>
 		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
-		///<summary>Thermostat Arbeitszimmer Temperature</summary>
-		public SensorEntity ThermostatArbeitszimmerTemperature => new(_haContext, "sensor.thermostat_arbeitszimmer_temperature");
-		///<summary>Thermostat Arbeitszimmer Valvetappet</summary>
-		public SensorEntity ThermostatArbeitszimmerValvetappet => new(_haContext, "sensor.thermostat_arbeitszimmer_valvetappet");
 		///<summary>Thermostat Badezimmer</summary>
 		public SensorEntity ThermostatBadezimmer => new(_haContext, "sensor.thermostat_badezimmer");
-		///<summary>Thermostat Badezimmer Temperature</summary>
-		public SensorEntity ThermostatBadezimmerTemperature => new(_haContext, "sensor.thermostat_badezimmer_temperature");
-		///<summary>Thermostat Badezimmer Valvetappet</summary>
-		public SensorEntity ThermostatBadezimmerValvetappet => new(_haContext, "sensor.thermostat_badezimmer_valvetappet");
 		///<summary>Thermostat Schlafzimmer</summary>
 		public SensorEntity ThermostatSchlafzimmer => new(_haContext, "sensor.thermostat_schlafzimmer");
-		///<summary>Thermostat Schlafzimmer Temperature</summary>
-		public SensorEntity ThermostatSchlafzimmerTemperature => new(_haContext, "sensor.thermostat_schlafzimmer_temperature");
-		///<summary>Thermostat Schlafzimmer Valvetappet</summary>
-		public SensorEntity ThermostatSchlafzimmerValvetappet => new(_haContext, "sensor.thermostat_schlafzimmer_valvetappet");
 		///<summary>Thermostat Wohnzimmer</summary>
 		public SensorEntity ThermostatWohnzimmer => new(_haContext, "sensor.thermostat_wohnzimmer");
-		///<summary>Thermostat Wohnzimmer Temperature</summary>
-		public SensorEntity ThermostatWohnzimmerTemperature => new(_haContext, "sensor.thermostat_wohnzimmer_temperature");
-		///<summary>Thermostat Wohnzimmer Valvetappet</summary>
-		public SensorEntity ThermostatWohnzimmerValvetappet => new(_haContext, "sensor.thermostat_wohnzimmer_valvetappet");
 		///<summary>0x00158d0006268613 battery</summary>
 		public NumericSensorEntity E0x00158d0006268613Battery => new(_haContext, "sensor.0x00158d0006268613_battery");
 		///<summary>0x00158d0006268613 linkquality</summary>
@@ -874,9 +848,9 @@ namespace HomeAssistantGenerated
 		public NumericSensorEntity PupsstationCpuLoadTotal => new(_haContext, "sensor.pupsstation_cpu_load_total");
 		///<summary>PupsStation CPU Utilization (User)</summary>
 		public NumericSensorEntity PupsstationCpuLoadUser => new(_haContext, "sensor.pupsstation_cpu_load_user");
-		///<summary>PupsStation Drive 1 Temperature</summary>
+		///<summary>PupsStation Temperature</summary>
 		public NumericSensorEntity PupsstationDrive1Temperature => new(_haContext, "sensor.pupsstation_drive_1_temperature");
-		///<summary>PupsStation Drive 2 Temperature</summary>
+		///<summary>PupsStation Temperature</summary>
 		public NumericSensorEntity PupsstationDrive2Temperature => new(_haContext, "sensor.pupsstation_drive_2_temperature");
 		///<summary>PupsStation Memory Available (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryAvailableReal => new(_haContext, "sensor.pupsstation_memory_available_real");
@@ -888,17 +862,17 @@ namespace HomeAssistantGenerated
 		public NumericSensorEntity PupsstationMemoryTotalSwap => new(_haContext, "sensor.pupsstation_memory_total_swap");
 		///<summary>PupsStation Memory Usage (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryUsageReal => new(_haContext, "sensor.pupsstation_memory_usage_real");
-		///<summary>PupsStation Network Down</summary>
+		///<summary>PupsStation Download Throughput</summary>
 		public NumericSensorEntity PupsstationNetworkDown => new(_haContext, "sensor.pupsstation_network_down");
-		///<summary>PupsStation Network Up</summary>
+		///<summary>PupsStation Upload Throughput</summary>
 		public NumericSensorEntity PupsstationNetworkUp => new(_haContext, "sensor.pupsstation_network_up");
-		///<summary>PupsStation temperature</summary>
+		///<summary>PupsStation Temperature</summary>
 		public NumericSensorEntity PupsstationTemperature => new(_haContext, "sensor.pupsstation_temperature");
-		///<summary>PupsStation Volume 1 Average Disk Temp</summary>
+		///<summary>PupsStation Average Disk Temp</summary>
 		public NumericSensorEntity PupsstationVolume1AverageDiskTemp => new(_haContext, "sensor.pupsstation_volume_1_average_disk_temp");
-		///<summary>PupsStation Volume 1 Used Space</summary>
+		///<summary>PupsStation Used Space</summary>
 		public NumericSensorEntity PupsstationVolume1UsedSpace => new(_haContext, "sensor.pupsstation_volume_1_used_space");
-		///<summary>PupsStation Volume 1 Volume Used</summary>
+		///<summary>PupsStation Volume Used</summary>
 		public NumericSensorEntity PupsstationVolume1VolumeUsed => new(_haContext, "sensor.pupsstation_volume_1_volume_used");
 		///<summary>shaves_count</summary>
 		public NumericSensorEntity ShavesCount => new(_haContext, "sensor.shaves_count");
@@ -938,6 +912,22 @@ namespace HomeAssistantGenerated
 		public NumericSensorEntity StockMetroAgShareprice => new(_haContext, "sensor.stock_metro_ag_shareprice");
 		///<summary>Metro AG Total</summary>
 		public NumericSensorEntity StockMetroAgTotalvalue => new(_haContext, "sensor.stock_metro_ag_totalvalue");
+		///<summary>Thermostat Arbeitszimmer Temperature</summary>
+		public NumericSensorEntity ThermostatArbeitszimmerTemperature => new(_haContext, "sensor.thermostat_arbeitszimmer_temperature");
+		///<summary>Thermostat Arbeitszimmer Valvetappet</summary>
+		public NumericSensorEntity ThermostatArbeitszimmerValvetappet => new(_haContext, "sensor.thermostat_arbeitszimmer_valvetappet");
+		///<summary>Thermostat Badezimmer Temperature</summary>
+		public NumericSensorEntity ThermostatBadezimmerTemperature => new(_haContext, "sensor.thermostat_badezimmer_temperature");
+		///<summary>Thermostat Badezimmer Valvetappet</summary>
+		public NumericSensorEntity ThermostatBadezimmerValvetappet => new(_haContext, "sensor.thermostat_badezimmer_valvetappet");
+		///<summary>Thermostat Schlafzimmer Temperature</summary>
+		public NumericSensorEntity ThermostatSchlafzimmerTemperature => new(_haContext, "sensor.thermostat_schlafzimmer_temperature");
+		///<summary>Thermostat Schlafzimmer Valvetappet</summary>
+		public NumericSensorEntity ThermostatSchlafzimmerValvetappet => new(_haContext, "sensor.thermostat_schlafzimmer_valvetappet");
+		///<summary>Thermostat Wohnzimmer Temperature</summary>
+		public NumericSensorEntity ThermostatWohnzimmerTemperature => new(_haContext, "sensor.thermostat_wohnzimmer_temperature");
+		///<summary>Thermostat Wohnzimmer Valvetappet</summary>
+		public NumericSensorEntity ThermostatWohnzimmerValvetappet => new(_haContext, "sensor.thermostat_wohnzimmer_valvetappet");
 	}
 
 	public class SunEntities
@@ -960,22 +950,8 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
-		///<summary>TWTYH Diorama</summary>
-		public SwitchEntity E20007146c4dd57098e9d => new(_haContext, "switch.20007146c4dd57098e9d");
-		///<summary>Buddha-Brunnen 2</summary>
-		public SwitchEntity E22763158600194a53716 => new(_haContext, "switch.22763158600194a53716");
-		///<summary>Lightbar</summary>
-		public SwitchEntity E22763158c44f3380a92c => new(_haContext, "switch.22763158c44f3380a92c");
-		///<summary>Neon-Uhr</summary>
-		public SwitchEntity E62663300c4dd570e60ad => new(_haContext, "switch.62663300c4dd570e60ad");
-		///<summary>Vertragslicht </summary>
-		public SwitchEntity Bf18f10fc6c9cac58d4c0a => new(_haContext, "switch.bf18f10fc6c9cac58d4c0a");
-		///<summary>Sternen-Lichterkette</summary>
-		public SwitchEntity Bfb8ec2dac052e231ax6tg => new(_haContext, "switch.bfb8ec2dac052e231ax6tg");
-		///<summary>enable_chrome_control_lights</summary>
-		public SwitchEntity EnableChromeControlLights => new(_haContext, "switch.enable_chrome_control_lights");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback => new(_haContext, "switch.enable_chrome_media_playback");
+		///<summary>Buddha-Brunnen 2 Socket 1</summary>
+		public SwitchEntity BuddhaBrunnen2Socket1 => new(_haContext, "switch.buddha_brunnen_2_socket_1");
 		///<summary>enable_chrome_media_playback</summary>
 		public SwitchEntity EnableChromeMediaPlayback10 => new(_haContext, "switch.enable_chrome_media_playback_10");
 		///<summary>enable_chrome_media_playback</summary>
@@ -1006,8 +982,12 @@ namespace HomeAssistantGenerated
 		public SwitchEntity HarmonyHubPlaystation => new(_haContext, "switch.harmony_hub_playstation");
 		///<summary>Harmony Hub Spiel streamen</summary>
 		public SwitchEntity HarmonyHubSpielStreamen => new(_haContext, "switch.harmony_hub_spiel_streamen");
-		///<summary>Lautsprecher Pup</summary>
-		public SwitchEntity LoudspeakerPup => new(_haContext, "switch.loudspeaker_pup");
+		///<summary>Lautsprecher Pup Socket 1</summary>
+		public SwitchEntity LautsprecherPupSocket1 => new(_haContext, "switch.lautsprecher_pup_socket_1");
+		///<summary>Lightbar Socket 1</summary>
+		public SwitchEntity LightbarSocket1 => new(_haContext, "switch.lightbar_socket_1");
+		///<summary>Neon-Uhr Socket 1</summary>
+		public SwitchEntity NeonUhrSocket1 => new(_haContext, "switch.neon_uhr_socket_1");
 		///<summary>netdaemon_caloriecounter</summary>
 		public SwitchEntity NetdaemonCaloriecounter => new(_haContext, "switch.netdaemon_caloriecounter");
 		///<summary>netdaemon_kitchenlight</summary>
@@ -1030,8 +1010,8 @@ namespace HomeAssistantGenerated
 		public SwitchEntity Schedule5132c8 => new(_haContext, "switch.schedule_5132c8");
 		///<summary>Schedule #f18168</summary>
 		public SwitchEntity ScheduleF18168 => new(_haContext, "switch.schedule_f18168");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback => new(_haContext, "switch.toggle_chrome_media_playback");
+		///<summary>Sternen-Lichterkette Socket 1</summary>
+		public SwitchEntity SternenLichterketteSocket1 => new(_haContext, "switch.sternen_lichterkette_socket_1");
 		///<summary>toggle_chrome_media_playback</summary>
 		public SwitchEntity ToggleChromeMediaPlayback10 => new(_haContext, "switch.toggle_chrome_media_playback_10");
 		///<summary>toggle_chrome_media_playback</summary>
@@ -1054,6 +1034,10 @@ namespace HomeAssistantGenerated
 		public SwitchEntity ToggleChromeMediaPlayback9 => new(_haContext, "switch.toggle_chrome_media_playback_9");
 		///<summary>toggle_kino_playback</summary>
 		public SwitchEntity ToggleKinoPlayback => new(_haContext, "switch.toggle_kino_playback");
+		///<summary>TWTYH Diorama Socket 1</summary>
+		public SwitchEntity TwtyhDioramaSocket1 => new(_haContext, "switch.twtyh_diorama_socket_1");
+		///<summary>Vertragslicht  Socket 1</summary>
+		public SwitchEntity VertragslichtSocket1 => new(_haContext, "switch.vertragslicht_socket_1");
 		///<summary>windows</summary>
 		public SwitchEntity Windows => new(_haContext, "switch.windows");
 		///<summary>windowswol</summary>
@@ -1464,8 +1448,14 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
 		public double? IlluminanceLux { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("installed_version")]
+		public string? InstalledVersion { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
 		public string? LastSeen { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latest_available_version")]
+		public string? LatestAvailableVersion { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
 		public double? Linkquality { get; init; }
@@ -1485,9 +1475,6 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("release_notes")]
 		public string? ReleaseNotes { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
-		public bool? Restored { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_avg")]
 		public double? RoundTripTimeAvg { get; init; }
 
@@ -1502,9 +1489,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("securitySetting")]
 		public string? SecuritySetting { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
-		public double? SupportedFeatures { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("systemCheck")]
 		public string? SystemCheck { get; init; }
@@ -1524,17 +1508,14 @@ namespace HomeAssistantGenerated
 
 	public record ButtonAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
+		public string? DeviceClass { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
-		public bool? Restored { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
-		public double? SupportedFeatures { get; init; }
 	}
 
 	public record CalendarAttributes
@@ -1812,15 +1793,6 @@ namespace HomeAssistantGenerated
 
 	public record LightAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("brightness")]
-		public double? Brightness { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_mode")]
-		public string? ColorMode { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_temp")]
-		public double? ColorTemp { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
@@ -1839,11 +1811,17 @@ namespace HomeAssistantGenerated
 
 	public record MediaPlayerAttributes
 	{
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture_local")]
+		public object? EntityPictureLocal { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("is_volume_muted")]
+		public bool? IsVolumeMuted { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
@@ -1853,6 +1831,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("volume_level")]
+		public double? VolumeLevel { get; init; }
 	}
 
 	public record PersonAttributes
@@ -1925,12 +1906,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("options")]
 		public object? Options { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
-		public bool? Restored { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
-		public double? SupportedFeatures { get; init; }
 	}
 
 	public record SensorAttributes
@@ -1958,6 +1933,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Carrier Name")]
 		public string? CarrierName { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("click")]
+		public string? Click { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color")]
 		public string? Color { get; init; }
@@ -2082,9 +2060,6 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Types")]
 		public object? Types { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("valve_tappet_state")]
-		public string? ValveTappetState { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("version")]
 		public string? Version { get; init; }
 
@@ -2181,6 +2156,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeThreeYears")]
 		public object? ChangeThreeYears { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("click")]
+		public string? Click { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
 		public object? Device { get; init; }
 
@@ -2250,6 +2228,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shares")]
 		public double? Shares { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("state_class")]
+		public string? StateClass { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
@@ -2295,6 +2276,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("unit_of_measurement")]
 		public string? UnitOfMeasurement { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("valve_tappet_state")]
+		public string? ValveTappetState { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
 		public double? Voltage { get; init; }
 	}
@@ -2339,6 +2323,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("current_slot")]
 		public double? CurrentSlot { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
+		public string? DeviceClass { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -2388,65 +2375,20 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_level")]
 		public double? BatteryLevel { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("cleaned_area")]
-		public double? CleanedArea { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("cleaning_count")]
-		public double? CleaningCount { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("cleaning_time")]
-		public double? CleaningTime { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("clean_start")]
-		public string? CleanStart { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("clean_stop")]
-		public string? CleanStop { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("do_not_disturb")]
-		public string? DoNotDisturb { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("do_not_disturb_end")]
-		public string? DoNotDisturbEnd { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("do_not_disturb_start")]
-		public string? DoNotDisturbStart { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("fan_speed")]
 		public string? FanSpeed { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("fan_speed_list")]
 		public object? FanSpeedList { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("filter_left")]
-		public double? FilterLeft { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("main_brush_left")]
-		public double? MainBrushLeft { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("mop_attached")]
-		public bool? MopAttached { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("sensor_dirty_left")]
-		public double? SensorDirtyLeft { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("side_brush_left")]
-		public double? SideBrushLeft { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("status")]
 		public string? Status { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("total_cleaned_area")]
-		public double? TotalCleanedArea { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("total_cleaning_time")]
-		public double? TotalCleaningTime { get; init; }
 	}
 
 	public record VarAttributes
@@ -2517,6 +2459,8 @@ namespace HomeAssistantGenerated
 
 		BoschShcServices BoschShc { get; }
 
+		ButtonServices Button { get; }
+
 		CameraServices Camera { get; }
 
 		CastServices Cast { get; }
@@ -2531,6 +2475,10 @@ namespace HomeAssistantGenerated
 
 		DeviceTrackerServices DeviceTracker { get; }
 
+		FanServices Fan { get; }
+
+		FfmpegServices Ffmpeg { get; }
+
 		FrontendServices Frontend { get; }
 
 		GoogleServices Google { get; }
@@ -2541,9 +2489,13 @@ namespace HomeAssistantGenerated
 
 		HomeassistantServices Homeassistant { get; }
 
+		HumidifierServices Humidifier { get; }
+
 		IcloudServices Icloud { get; }
 
 		InputBooleanServices InputBoolean { get; }
+
+		InputButtonServices InputButton { get; }
 
 		InputDatetimeServices InputDatetime { get; }
 
@@ -2555,9 +2507,13 @@ namespace HomeAssistantGenerated
 
 		LightServices Light { get; }
 
+		LocaltuyaServices Localtuya { get; }
+
 		LogbookServices Logbook { get; }
 
 		LoggerServices Logger { get; }
+
+		LovelaceServices Lovelace { get; }
 
 		MediaPlayerServices MediaPlayer { get; }
 
@@ -2568,6 +2524,8 @@ namespace HomeAssistantGenerated
 		NoderedServices Nodered { get; }
 
 		NotifyServices Notify { get; }
+
+		NumberServices Number { get; }
 
 		PersistentNotificationServices PersistentNotification { get; }
 
@@ -2585,6 +2543,10 @@ namespace HomeAssistantGenerated
 
 		ScriptServices Script { get; }
 
+		SelectServices Select { get; }
+
+		SirenServices Siren { get; }
+
 		SpeedtestdotnetServices Speedtestdotnet { get; }
 
 		SwitchServices Switch { get; }
@@ -2596,8 +2558,6 @@ namespace HomeAssistantGenerated
 		TemplateServices Template { get; }
 
 		TimerServices Timer { get; }
-
-		TuyaServices Tuya { get; }
 
 		VacuumServices Vacuum { get; }
 
@@ -2623,6 +2583,7 @@ namespace HomeAssistantGenerated
 		public AlarmControlPanelServices AlarmControlPanel => new(_haContext);
 		public AutomationServices Automation => new(_haContext);
 		public BoschShcServices BoschShc => new(_haContext);
+		public ButtonServices Button => new(_haContext);
 		public CameraServices Camera => new(_haContext);
 		public CastServices Cast => new(_haContext);
 		public ClimateServices Climate => new(_haContext);
@@ -2630,25 +2591,32 @@ namespace HomeAssistantGenerated
 		public CounterServices Counter => new(_haContext);
 		public CoverServices Cover => new(_haContext);
 		public DeviceTrackerServices DeviceTracker => new(_haContext);
+		public FanServices Fan => new(_haContext);
+		public FfmpegServices Ffmpeg => new(_haContext);
 		public FrontendServices Frontend => new(_haContext);
 		public GoogleServices Google => new(_haContext);
 		public GroupServices Group => new(_haContext);
 		public HarmonyServices Harmony => new(_haContext);
 		public HomeassistantServices Homeassistant => new(_haContext);
+		public HumidifierServices Humidifier => new(_haContext);
 		public IcloudServices Icloud => new(_haContext);
 		public InputBooleanServices InputBoolean => new(_haContext);
+		public InputButtonServices InputButton => new(_haContext);
 		public InputDatetimeServices InputDatetime => new(_haContext);
 		public InputNumberServices InputNumber => new(_haContext);
 		public InputSelectServices InputSelect => new(_haContext);
 		public InputTextServices InputText => new(_haContext);
 		public LightServices Light => new(_haContext);
+		public LocaltuyaServices Localtuya => new(_haContext);
 		public LogbookServices Logbook => new(_haContext);
 		public LoggerServices Logger => new(_haContext);
+		public LovelaceServices Lovelace => new(_haContext);
 		public MediaPlayerServices MediaPlayer => new(_haContext);
 		public MqttServices Mqtt => new(_haContext);
 		public NetdaemonServices Netdaemon => new(_haContext);
 		public NoderedServices Nodered => new(_haContext);
 		public NotifyServices Notify => new(_haContext);
+		public NumberServices Number => new(_haContext);
 		public PersistentNotificationServices PersistentNotification => new(_haContext);
 		public PersonServices Person => new(_haContext);
 		public PingServices Ping => new(_haContext);
@@ -2657,13 +2625,14 @@ namespace HomeAssistantGenerated
 		public SceneServices Scene => new(_haContext);
 		public SchedulerServices Scheduler => new(_haContext);
 		public ScriptServices Script => new(_haContext);
+		public SelectServices Select => new(_haContext);
+		public SirenServices Siren => new(_haContext);
 		public SpeedtestdotnetServices Speedtestdotnet => new(_haContext);
 		public SwitchServices Switch => new(_haContext);
 		public SynologyDsmServices SynologyDsm => new(_haContext);
 		public SystemLogServices SystemLog => new(_haContext);
 		public TemplateServices Template => new(_haContext);
 		public TimerServices Timer => new(_haContext);
-		public TuyaServices Tuya => new(_haContext);
 		public VacuumServices Vacuum => new(_haContext);
 		public VarServices Var => new(_haContext);
 		public WakeOnLanServices WakeOnLan => new(_haContext);
@@ -2740,6 +2709,21 @@ namespace HomeAssistantGenerated
 			_haContext.CallService("alarm_control_panel", "alarm_arm_night", target, new AlarmControlPanelAlarmArmNightParameters{Code = @code});
 		}
 
+		///<summary>Send the alarm the command for arm vacation.</summary>
+		///<param name="target">The target for this service call</param>
+		public void AlarmArmVacation(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmArmVacationParameters data)
+		{
+			_haContext.CallService("alarm_control_panel", "alarm_arm_vacation", target, data);
+		}
+
+		///<summary>Send the alarm the command for arm vacation.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">An optional code to arm vacation the alarm control panel with. eg: 1234</param>
+		public void AlarmArmVacation(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		{
+			_haContext.CallService("alarm_control_panel", "alarm_arm_vacation", target, new AlarmControlPanelAlarmArmVacationParameters{Code = @code});
+		}
+
 		///<summary>Send the alarm the command for disarm.</summary>
 		///<param name="target">The target for this service call</param>
 		public void AlarmDisarm(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmDisarmParameters data)
@@ -2795,6 +2779,13 @@ namespace HomeAssistantGenerated
 	public record AlarmControlPanelAlarmArmNightParameters
 	{
 		///<summary>An optional code to arm night the alarm control panel with. eg: 1234</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		public string? Code { get; init; }
+	}
+
+	public record AlarmControlPanelAlarmArmVacationParameters
+	{
+		///<summary>An optional code to arm vacation the alarm control panel with. eg: 1234</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
@@ -2958,6 +2949,22 @@ namespace HomeAssistantGenerated
 		///<summary>Name of the scenario to trigger eg: Scenario Name</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("name")]
 		public string? Name { get; init; }
+	}
+
+	public class ButtonServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public ButtonServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Press the button entity.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Press(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("button", "press", target);
+		}
 	}
 
 	public class CameraServices
@@ -3570,6 +3577,284 @@ namespace HomeAssistantGenerated
 		public long? Battery { get; init; }
 	}
 
+	public class FanServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public FanServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Decrease the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		public void DecreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, FanDecreaseSpeedParameters data)
+		{
+			_haContext.CallService("fan", "decrease_speed", target, data);
+		}
+
+		///<summary>Decrease the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="percentageStep">Decrease speed by a percentage.</param>
+		public void DecreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, long? @percentageStep = null)
+		{
+			_haContext.CallService("fan", "decrease_speed", target, new FanDecreaseSpeedParameters{PercentageStep = @percentageStep});
+		}
+
+		///<summary>Increase the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		public void IncreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, FanIncreaseSpeedParameters data)
+		{
+			_haContext.CallService("fan", "increase_speed", target, data);
+		}
+
+		///<summary>Increase the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="percentageStep">Increase speed by a percentage.</param>
+		public void IncreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, long? @percentageStep = null)
+		{
+			_haContext.CallService("fan", "increase_speed", target, new FanIncreaseSpeedParameters{PercentageStep = @percentageStep});
+		}
+
+		///<summary>Oscillate the fan.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Oscillate(NetDaemon.HassModel.Entities.ServiceTarget target, FanOscillateParameters data)
+		{
+			_haContext.CallService("fan", "oscillate", target, data);
+		}
+
+		///<summary>Oscillate the fan.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="oscillating">Flag to turn on/off oscillation.</param>
+		public void Oscillate(NetDaemon.HassModel.Entities.ServiceTarget target, bool @oscillating)
+		{
+			_haContext.CallService("fan", "oscillate", target, new FanOscillateParameters{Oscillating = @oscillating});
+		}
+
+		///<summary>Set the fan rotation.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetDirection(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetDirectionParameters data)
+		{
+			_haContext.CallService("fan", "set_direction", target, data);
+		}
+
+		///<summary>Set the fan rotation.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="direction">The direction to rotate.</param>
+		public void SetDirection(NetDaemon.HassModel.Entities.ServiceTarget target, string @direction)
+		{
+			_haContext.CallService("fan", "set_direction", target, new FanSetDirectionParameters{Direction = @direction});
+		}
+
+		///<summary>Set fan speed percentage.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetPercentage(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetPercentageParameters data)
+		{
+			_haContext.CallService("fan", "set_percentage", target, data);
+		}
+
+		///<summary>Set fan speed percentage.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="percentage">Percentage speed setting.</param>
+		public void SetPercentage(NetDaemon.HassModel.Entities.ServiceTarget target, long @percentage)
+		{
+			_haContext.CallService("fan", "set_percentage", target, new FanSetPercentageParameters{Percentage = @percentage});
+		}
+
+		///<summary>Set preset mode for a fan device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetPresetMode(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetPresetModeParameters data)
+		{
+			_haContext.CallService("fan", "set_preset_mode", target, data);
+		}
+
+		///<summary>Set preset mode for a fan device.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="presetMode">New value of preset mode. eg: auto</param>
+		public void SetPresetMode(NetDaemon.HassModel.Entities.ServiceTarget target, string @presetMode)
+		{
+			_haContext.CallService("fan", "set_preset_mode", target, new FanSetPresetModeParameters{PresetMode = @presetMode});
+		}
+
+		///<summary>Set fan speed.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetSpeedParameters data)
+		{
+			_haContext.CallService("fan", "set_speed", target, data);
+		}
+
+		///<summary>Set fan speed.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="speed">Speed setting. eg: low</param>
+		public void SetSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, string @speed)
+		{
+			_haContext.CallService("fan", "set_speed", target, new FanSetSpeedParameters{Speed = @speed});
+		}
+
+		///<summary>Toggle the fan on/off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("fan", "toggle", target);
+		}
+
+		///<summary>Turn fan off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("fan", "turn_off", target);
+		}
+
+		///<summary>Turn fan on.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, FanTurnOnParameters data)
+		{
+			_haContext.CallService("fan", "turn_on", target, data);
+		}
+
+		///<summary>Turn fan on.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="speed">Speed setting. eg: high</param>
+		///<param name="percentage">Percentage speed setting.</param>
+		///<param name="presetMode">Preset mode setting. eg: auto</param>
+		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, string? @speed = null, long? @percentage = null, string? @presetMode = null)
+		{
+			_haContext.CallService("fan", "turn_on", target, new FanTurnOnParameters{Speed = @speed, Percentage = @percentage, PresetMode = @presetMode});
+		}
+	}
+
+	public record FanDecreaseSpeedParameters
+	{
+		///<summary>Decrease speed by a percentage.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("percentageStep")]
+		public long? PercentageStep { get; init; }
+	}
+
+	public record FanIncreaseSpeedParameters
+	{
+		///<summary>Increase speed by a percentage.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("percentageStep")]
+		public long? PercentageStep { get; init; }
+	}
+
+	public record FanOscillateParameters
+	{
+		///<summary>Flag to turn on/off oscillation.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("oscillating")]
+		public bool? Oscillating { get; init; }
+	}
+
+	public record FanSetDirectionParameters
+	{
+		///<summary>The direction to rotate.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("direction")]
+		public string? Direction { get; init; }
+	}
+
+	public record FanSetPercentageParameters
+	{
+		///<summary>Percentage speed setting.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("percentage")]
+		public long? Percentage { get; init; }
+	}
+
+	public record FanSetPresetModeParameters
+	{
+		///<summary>New value of preset mode. eg: auto</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("presetMode")]
+		public string? PresetMode { get; init; }
+	}
+
+	public record FanSetSpeedParameters
+	{
+		///<summary>Speed setting. eg: low</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("speed")]
+		public string? Speed { get; init; }
+	}
+
+	public record FanTurnOnParameters
+	{
+		///<summary>Speed setting. eg: high</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("speed")]
+		public string? Speed { get; init; }
+
+		///<summary>Percentage speed setting.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("percentage")]
+		public long? Percentage { get; init; }
+
+		///<summary>Preset mode setting. eg: auto</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("presetMode")]
+		public string? PresetMode { get; init; }
+	}
+
+	public class FfmpegServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public FfmpegServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Send a restart command to a ffmpeg based sensor.</summary>
+		public void Restart(FfmpegRestartParameters data)
+		{
+			_haContext.CallService("ffmpeg", "restart", null, data);
+		}
+
+		///<summary>Send a restart command to a ffmpeg based sensor.</summary>
+		///<param name="entityId">Name of entity that will restart. Platform dependent.</param>
+		public void Restart(string? @entityId = null)
+		{
+			_haContext.CallService("ffmpeg", "restart", null, new FfmpegRestartParameters{EntityId = @entityId});
+		}
+
+		///<summary>Send a start command to a ffmpeg based sensor.</summary>
+		public void Start(FfmpegStartParameters data)
+		{
+			_haContext.CallService("ffmpeg", "start", null, data);
+		}
+
+		///<summary>Send a start command to a ffmpeg based sensor.</summary>
+		///<param name="entityId">Name of entity that will start. Platform dependent.</param>
+		public void Start(string? @entityId = null)
+		{
+			_haContext.CallService("ffmpeg", "start", null, new FfmpegStartParameters{EntityId = @entityId});
+		}
+
+		///<summary>Send a stop command to a ffmpeg based sensor.</summary>
+		public void Stop(FfmpegStopParameters data)
+		{
+			_haContext.CallService("ffmpeg", "stop", null, data);
+		}
+
+		///<summary>Send a stop command to a ffmpeg based sensor.</summary>
+		///<param name="entityId">Name of entity that will stop. Platform dependent.</param>
+		public void Stop(string? @entityId = null)
+		{
+			_haContext.CallService("ffmpeg", "stop", null, new FfmpegStopParameters{EntityId = @entityId});
+		}
+	}
+
+	public record FfmpegRestartParameters
+	{
+		///<summary>Name of entity that will restart. Platform dependent.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		public string? EntityId { get; init; }
+	}
+
+	public record FfmpegStartParameters
+	{
+		///<summary>Name of entity that will start. Platform dependent.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		public string? EntityId { get; init; }
+	}
+
+	public record FfmpegStopParameters
+	{
+		///<summary>Name of entity that will stop. Platform dependent.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		public string? EntityId { get; init; }
+	}
+
 	public class FrontendServices
 	{
 		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
@@ -3845,6 +4130,12 @@ namespace HomeAssistantGenerated
 			_haContext.CallService("homeassistant", "restart", null);
 		}
 
+		///<summary>Save the persistent states (for entities derived from RestoreEntity) immediately. Maintain the normal periodic saving interval.</summary>
+		public void SavePersistentStates()
+		{
+			_haContext.CallService("homeassistant", "save_persistent_states", null);
+		}
+
 		///<summary>Update the Home Assistant location.</summary>
 		public void SetLocation(HomeassistantSetLocationParameters data)
 		{
@@ -3910,6 +4201,80 @@ namespace HomeAssistantGenerated
 		///<summary>Longitude of your location. eg: 117,22743</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("longitude")]
 		public string? Longitude { get; init; }
+	}
+
+	public class HumidifierServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public HumidifierServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Set target humidity of humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetHumidity(NetDaemon.HassModel.Entities.ServiceTarget target, HumidifierSetHumidityParameters data)
+		{
+			_haContext.CallService("humidifier", "set_humidity", target, data);
+		}
+
+		///<summary>Set target humidity of humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="humidity">New target humidity for humidifier device.</param>
+		public void SetHumidity(NetDaemon.HassModel.Entities.ServiceTarget target, long @humidity)
+		{
+			_haContext.CallService("humidifier", "set_humidity", target, new HumidifierSetHumidityParameters{Humidity = @humidity});
+		}
+
+		///<summary>Set mode for humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetMode(NetDaemon.HassModel.Entities.ServiceTarget target, HumidifierSetModeParameters data)
+		{
+			_haContext.CallService("humidifier", "set_mode", target, data);
+		}
+
+		///<summary>Set mode for humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="mode">New mode eg: away</param>
+		public void SetMode(NetDaemon.HassModel.Entities.ServiceTarget target, string @mode)
+		{
+			_haContext.CallService("humidifier", "set_mode", target, new HumidifierSetModeParameters{Mode = @mode});
+		}
+
+		///<summary>Toggles a humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("humidifier", "toggle", target);
+		}
+
+		///<summary>Turn humidifier device off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("humidifier", "turn_off", target);
+		}
+
+		///<summary>Turn humidifier device on.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("humidifier", "turn_on", target);
+		}
+	}
+
+	public record HumidifierSetHumidityParameters
+	{
+		///<summary>New target humidity for humidifier device.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("humidity")]
+		public long? Humidity { get; init; }
+	}
+
+	public record HumidifierSetModeParameters
+	{
+		///<summary>New mode eg: away</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("mode")]
+		public string? Mode { get; init; }
 	}
 
 	public class IcloudServices
@@ -4069,6 +4434,27 @@ namespace HomeAssistantGenerated
 		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
 		{
 			_haContext.CallService("input_boolean", "turn_on", target);
+		}
+	}
+
+	public class InputButtonServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public InputButtonServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Press the input button entity.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Press(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("input_button", "press", target);
+		}
+
+		public void Reload()
+		{
+			_haContext.CallService("input_button", "reload", null);
 		}
 	}
 
@@ -4402,12 +4788,13 @@ namespace HomeAssistantGenerated
 		///<param name="brightnessPct">Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</param>
 		///<param name="brightnessStep">Change brightness by an amount.</param>
 		///<param name="brightnessStepPct">Change brightness by a percentage.</param>
+		///<param name="white">Set the light to white mode and change its brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
 		{
-			_haContext.CallService("light", "turn_on", target, new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, Profile = @profile, Flash = @flash, Effect = @effect});
+			_haContext.CallService("light", "turn_on", target, new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 	}
 
@@ -4531,6 +4918,10 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyName("brightnessStepPct")]
 		public long? BrightnessStepPct { get; init; }
 
+		///<summary>Set the light to white mode and change its brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("white")]
+		public long? White { get; init; }
+
 		///<summary>Name of a light profile to use. eg: relax</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("profile")]
 		public string? Profile { get; init; }
@@ -4542,6 +4933,51 @@ namespace HomeAssistantGenerated
 		///<summary>Light effect.</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("effect")]
 		public string? Effect { get; init; }
+	}
+
+	public class LocaltuyaServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public LocaltuyaServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Reload localtuya and re-process yaml configuration.</summary>
+		public void Reload()
+		{
+			_haContext.CallService("localtuya", "reload", null);
+		}
+
+		///<summary>Change the value of a datapoint (DP)</summary>
+		public void SetDp(LocaltuyaSetDpParameters data)
+		{
+			_haContext.CallService("localtuya", "set_dp", null, data);
+		}
+
+		///<summary>Change the value of a datapoint (DP)</summary>
+		///<param name="deviceId">Device ID of device to change datapoint value for eg: 11100118278aab4de001</param>
+		///<param name="dp">Datapoint index eg: 1</param>
+		///<param name="value">New value to set eg: False</param>
+		public void SetDp(string? @deviceId = null, string? @dp = null, string? @value = null)
+		{
+			_haContext.CallService("localtuya", "set_dp", null, new LocaltuyaSetDpParameters{DeviceId = @deviceId, Dp = @dp, Value = @value});
+		}
+	}
+
+	public record LocaltuyaSetDpParameters
+	{
+		///<summary>Device ID of device to change datapoint value for eg: 11100118278aab4de001</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("deviceId")]
+		public string? DeviceId { get; init; }
+
+		///<summary>Datapoint index eg: 1</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("dp")]
+		public string? Dp { get; init; }
+
+		///<summary>New value to set eg: False</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("value")]
+		public string? Value { get; init; }
 	}
 
 	public class LogbookServices
@@ -4610,19 +5046,9 @@ namespace HomeAssistantGenerated
 		}
 
 		///<summary>Set log level for integrations.</summary>
-		public void SetLevel(LoggerSetLevelParameters data)
+		public void SetLevel()
 		{
-			_haContext.CallService("logger", "set_level", null, data);
-		}
-
-		///<summary>Set log level for integrations.</summary>
-		///<param name="homeassistantcore">Example on how to change the logging level for a Home Assistant Core integrations.</param>
-		///<param name="homeassistantcomponentsmqtt">Example on how to change the logging level for an Integration.</param>
-		///<param name="customComponentsmyIntegration">Example on how to change the logging level for a Custom Integration.</param>
-		///<param name="aiohttp">Example on how to change the logging level for a Python module.</param>
-		public void SetLevel(string? @homeassistantcore = null, string? @homeassistantcomponentsmqtt = null, string? @customComponentsmyIntegration = null, string? @aiohttp = null)
-		{
-			_haContext.CallService("logger", "set_level", null, new LoggerSetLevelParameters{Homeassistantcore = @homeassistantcore, Homeassistantcomponentsmqtt = @homeassistantcomponentsmqtt, CustomComponentsmyIntegration = @customComponentsmyIntegration, Aiohttp = @aiohttp});
+			_haContext.CallService("logger", "set_level", null);
 		}
 	}
 
@@ -4633,23 +5059,19 @@ namespace HomeAssistantGenerated
 		public string? Level { get; init; }
 	}
 
-	public record LoggerSetLevelParameters
+	public class LovelaceServices
 	{
-		///<summary>Example on how to change the logging level for a Home Assistant Core integrations.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("homeassistantcore")]
-		public string? Homeassistantcore { get; init; }
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public LovelaceServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
 
-		///<summary>Example on how to change the logging level for an Integration.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("homeassistantcomponentsmqtt")]
-		public string? Homeassistantcomponentsmqtt { get; init; }
-
-		///<summary>Example on how to change the logging level for a Custom Integration.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("customComponentsmyIntegration")]
-		public string? CustomComponentsmyIntegration { get; init; }
-
-		///<summary>Example on how to change the logging level for a Python module.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("aiohttp")]
-		public string? Aiohttp { get; init; }
+		///<summary>Reload Lovelace resources from YAML configuration</summary>
+		public void ReloadResources()
+		{
+			_haContext.CallService("lovelace", "reload_resources", null);
+		}
 	}
 
 	public class MediaPlayerServices
@@ -5397,6 +5819,37 @@ namespace HomeAssistantGenerated
 		public string? Title { get; init; }
 	}
 
+	public class NumberServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public NumberServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Set the value of a Number entity.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, NumberSetValueParameters data)
+		{
+			_haContext.CallService("number", "set_value", target, data);
+		}
+
+		///<summary>Set the value of a Number entity.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="value">The target value the entity should be set to. eg: 42</param>
+		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, string? @value = null)
+		{
+			_haContext.CallService("number", "set_value", target, new NumberSetValueParameters{Value = @value});
+		}
+	}
+
+	public record NumberSetValueParameters
+	{
+		///<summary>The target value the entity should be set to. eg: 42</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("value")]
+		public string? Value { get; init; }
+	}
+
 	public class PersistentNotificationServices
 	{
 		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
@@ -6042,6 +6495,92 @@ namespace HomeAssistantGenerated
 		}
 	}
 
+	public class SelectServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public SelectServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SelectOption(NetDaemon.HassModel.Entities.ServiceTarget target, SelectSelectOptionParameters data)
+		{
+			_haContext.CallService("select", "select_option", target, data);
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="option">Option to be selected. eg: "Item A"</param>
+		public void SelectOption(NetDaemon.HassModel.Entities.ServiceTarget target, string @option)
+		{
+			_haContext.CallService("select", "select_option", target, new SelectSelectOptionParameters{Option = @option});
+		}
+	}
+
+	public record SelectSelectOptionParameters
+	{
+		///<summary>Option to be selected. eg: "Item A"</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("option")]
+		public string? Option { get; init; }
+	}
+
+	public class SirenServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public SirenServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Toggles a siren.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("siren", "toggle", target);
+		}
+
+		///<summary>Turn siren off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		{
+			_haContext.CallService("siren", "turn_off", target);
+		}
+
+		///<summary>Turn siren on.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, SirenTurnOnParameters data)
+		{
+			_haContext.CallService("siren", "turn_on", target, data);
+		}
+
+		///<summary>Turn siren on.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="tone">The tone to emit when turning the siren on. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration. eg: fire</param>
+		///<param name="volumeLevel">The volume level of the noise to emit when turning the siren on. Must be supported by the integration. eg: 0,5</param>
+		///<param name="duration">The duration in seconds of the noise to emit when turning the siren on. Must be supported by the integration. eg: 15</param>
+		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, string? @tone = null, double? @volumeLevel = null, string? @duration = null)
+		{
+			_haContext.CallService("siren", "turn_on", target, new SirenTurnOnParameters{Tone = @tone, VolumeLevel = @volumeLevel, Duration = @duration});
+		}
+	}
+
+	public record SirenTurnOnParameters
+	{
+		///<summary>The tone to emit when turning the siren on. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration. eg: fire</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("tone")]
+		public string? Tone { get; init; }
+
+		///<summary>The volume level of the noise to emit when turning the siren on. Must be supported by the integration. eg: 0,5</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("volumeLevel")]
+		public double? VolumeLevel { get; init; }
+
+		///<summary>The duration in seconds of the noise to emit when turning the siren on. Must be supported by the integration. eg: 15</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("duration")]
+		public string? Duration { get; init; }
+	}
+
 	public class SpeedtestdotnetServices
 	{
 		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
@@ -6095,26 +6634,26 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
-		///<summary>Reboot the NAS.</summary>
+		///<summary>Reboot the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.</summary>
 		public void Reboot(SynologyDsmRebootParameters data)
 		{
 			_haContext.CallService("synology_dsm", "reboot", null, data);
 		}
 
-		///<summary>Reboot the NAS.</summary>
+		///<summary>Reboot the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.</summary>
 		///<param name="serial">serial of the NAS to reboot; required when multiple NAS are configured. eg: 1NDVC86409</param>
 		public void Reboot(string? @serial = null)
 		{
 			_haContext.CallService("synology_dsm", "reboot", null, new SynologyDsmRebootParameters{Serial = @serial});
 		}
 
-		///<summary>Shutdown the NAS.</summary>
+		///<summary>Shutdown the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.</summary>
 		public void Shutdown(SynologyDsmShutdownParameters data)
 		{
 			_haContext.CallService("synology_dsm", "shutdown", null, data);
 		}
 
-		///<summary>Shutdown the NAS.</summary>
+		///<summary>Shutdown the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.</summary>
 		///<param name="serial">serial of the NAS to shutdown; required when multiple NAS are configured. eg: 1NDVC86409</param>
 		public void Shutdown(string? @serial = null)
 		{
@@ -6251,27 +6790,6 @@ namespace HomeAssistantGenerated
 		///<summary>Duration the timer requires to finish. [optional] eg: 00:01:00 or 60</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("duration")]
 		public string? Duration { get; init; }
-	}
-
-	public class TuyaServices
-	{
-		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
-		public TuyaServices(NetDaemon.HassModel.Common.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Force all Tuya devices to pull data.</summary>
-		public void ForceUpdate()
-		{
-			_haContext.CallService("tuya", "force_update", null);
-		}
-
-		///<summary>Pull device list from Tuya server.</summary>
-		public void PullDevices()
-		{
-			_haContext.CallService("tuya", "pull_devices", null);
-		}
 	}
 
 	public class VacuumServices
@@ -6804,6 +7322,20 @@ namespace HomeAssistantGenerated
 			entity.CallService("alarm_arm_night", new AlarmControlPanelAlarmArmNightParameters{Code = @code});
 		}
 
+		///<summary>Send the alarm the command for arm vacation.</summary>
+		public static void AlarmArmVacation(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmArmVacationParameters data)
+		{
+			entity.CallService("alarm_arm_vacation", data);
+		}
+
+		///<summary>Send the alarm the command for arm vacation.</summary>
+		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		///<param name="code">An optional code to arm vacation the alarm control panel with. eg: 1234</param>
+		public static void AlarmArmVacation(this AlarmControlPanelEntity entity, string? @code = null)
+		{
+			entity.CallService("alarm_arm_vacation", new AlarmControlPanelAlarmArmVacationParameters{Code = @code});
+		}
+
 		///<summary>Send the alarm the command for disarm.</summary>
 		public static void AlarmDisarm(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmDisarmParameters data)
 		{
@@ -6830,6 +7362,15 @@ namespace HomeAssistantGenerated
 		public static void AlarmTrigger(this AlarmControlPanelEntity entity, string? @code = null)
 		{
 			entity.CallService("alarm_trigger", new AlarmControlPanelAlarmTriggerParameters{Code = @code});
+		}
+	}
+
+	public static class ButtonEntityExtensionMethods
+	{
+		///<summary>Press the button entity.</summary>
+		public static void Press(this ButtonEntity entity)
+		{
+			entity.CallService("press");
 		}
 	}
 
@@ -7285,12 +7826,13 @@ namespace HomeAssistantGenerated
 		///<param name="brightnessPct">Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</param>
 		///<param name="brightnessStep">Change brightness by an amount.</param>
 		///<param name="brightnessStepPct">Change brightness by a percentage.</param>
+		///<param name="white">Set the light to white mode and change its brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void TurnOn(this LightEntity entity, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public static void TurnOn(this LightEntity entity, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
 		{
-			entity.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, Profile = @profile, Flash = @flash, Effect = @effect});
+			entity.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 	}
 
@@ -7579,6 +8121,23 @@ namespace HomeAssistantGenerated
 		public static void TurnOn(this RemoteEntity entity, string? @activity = null)
 		{
 			entity.CallService("turn_on", new RemoteTurnOnParameters{Activity = @activity});
+		}
+	}
+
+	public static class SelectEntityExtensionMethods
+	{
+		///<summary>Select an option of an select entity.</summary>
+		public static void SelectOption(this SelectEntity entity, SelectSelectOptionParameters data)
+		{
+			entity.CallService("select_option", data);
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		///<param name="entity">The SelectEntity to call this service for</param>
+		///<param name="option">Option to be selected. eg: "Item A"</param>
+		public static void SelectOption(this SelectEntity entity, string @option)
+		{
+			entity.CallService("select_option", new SelectSelectOptionParameters{Option = @option});
 		}
 	}
 
