@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reactive.Linq;
+using System.Globalization;
 using System.Text.Json;
 using HomeAssistant.Automations.Models;
 using HomeAssistantGenerated;
@@ -10,24 +10,32 @@ using NetDaemon.HassModel.Common;
 namespace HomeAssistant.Automations.Apps.CalorieCounter;
 
 [NetDaemonApp]
+[Focus]
 public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfig>
 {
+	private const string DigestCaloriesEventType = "digest_calories_event";
 	private const string HealthEventType = "health_event";
 
+	private const string BaseCaloriesId = "base";
+	private const string DigestedCaloriesId = "used";
+
 	private readonly IMqttEntityManager _entityManager;
-	private readonly Entities _entities;
 
 	public CalorieCounter(BaseAutomationDependencyAggregate<CalorieCounter, CalorieCounterConfig> aggregate, IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
-		_entities = new Entities(Context);
 		_entityManager = entityManager;
 	}
 
 	protected override void Start()
 	{
 		Context.Events.Filter<HealthEventData>(HealthEventType).Subscribe(e => UpdateBaseCaloriesForUser(e.Data));
+		Context.Events.Filter<DigestCaloriesEventData>(DigestCaloriesEventType).Subscribe(e => DigestCaloriesForUser(e.Data));
 	}
+
+	private static string GetCaloriesSensorId(string? user, string modifier) => $"calories_{modifier}_{user}";
+
+	private static string GetBaseCaloriesAttributes(HealthEventData e) => JsonSerializer.Serialize(new { resting_kcal = e.RestingCalories, active_kcal = e.ActiveCalories });
 
 	private async void UpdateBaseCaloriesForUser(HealthEventData? e)
 	{
@@ -36,14 +44,29 @@ public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfi
 			return;
 		}
 
-		var sensorId = GetBaseCaloriesSensorId(e.User);
+		var sensorId = GetCaloriesSensorId(e.User, BaseCaloriesId);
 		var total = e.RestingCalories + e.ActiveCalories;
 
 		await _entityManager.CreateAsync("sensor", sensorId, "power", $"Base calories for {e.User}");
-		await _entityManager.UpdateAsync("sensor", sensorId, total?.ToString() ?? "unknown", GetCaloriesAttributes(e));
+		await _entityManager.UpdateAsync("sensor", sensorId, total?.ToString(CultureInfo.InvariantCulture) ?? "unknown", GetBaseCaloriesAttributes(e));
 	}
 
-	private string GetBaseCaloriesSensorId(string? user) => $"calories_base_{user}";
+	private async void DigestCaloriesForUser(DigestCaloriesEventData? e)
+	{
+		if (e == null)
+		{
+			return;
+		}
 
-	private string GetCaloriesAttributes(HealthEventData e) => JsonSerializer.Serialize(new { resting_kcal = e.RestingCalories, active_kcal = e.ActiveCalories });
+		var sensorId = GetCaloriesSensorId(e.User, DigestedCaloriesId);
+		var sensor = new SensorEntity(Context, $"sensor.{sensorId}");
+
+		if (!double.TryParse(sensor.State, out var total))
+		{
+			total = 0;
+		}
+
+		await _entityManager.CreateAsync("sensor", sensorId, "power", $"Digested calories for {e.User}");
+		await _entityManager.UpdateAsync("sensor", sensorId, total.ToString(CultureInfo.InvariantCulture));
+	}
 }
