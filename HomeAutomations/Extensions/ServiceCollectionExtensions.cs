@@ -1,5 +1,7 @@
 ﻿using System;
 using HomeAssistant.Automations.Apps.CalorieCounter;
+using HomeAssistant.Automations.Apps.Cast;
+using HomeAssistant.Automations.Apps.CastDashboard;
 using HomeAssistant.Automations.Apps.KitchenLight;
 using HomeAssistant.Automations.Apps.Moonlight;
 using HomeAssistant.Automations.Apps.Scales.KitchenScale;
@@ -32,7 +34,8 @@ public static class ServiceCollectionExtensions
 			(typeof(CalorieCounter), typeof(CalorieCounterConfig)),
 			(typeof(MoonlightGameLauncher), typeof(MoonlightConfig)),
 			(typeof(TrashReminder), typeof(TrashReminderConfig)),
-			(typeof(VacuumReminder), typeof(VacuumConfig))
+			(typeof(VacuumReminder), typeof(VacuumConfig)),
+			(typeof(CastDashboard), typeof(CastDashboardConfig))
 		};
 
 		foreach (var (appType, configType) in appTypes)
