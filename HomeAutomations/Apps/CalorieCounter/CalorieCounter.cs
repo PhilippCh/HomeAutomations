@@ -17,7 +17,7 @@ public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfi
 	private const string HealthEventType = "health_event";
 
 	private const string BaseCaloriesId = "base";
-	private const string DigestedCaloriesId = "used";
+	private const string DigestedCaloriesId = "digested";
 
 	private readonly IMqttEntityManager _entityManager;
 
@@ -33,7 +33,7 @@ public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfi
 		Context.Events.Filter<DigestCaloriesEventData>(DigestCaloriesEventType).Subscribe(e => DigestCaloriesForUser(e.Data));
 	}
 
-	private static string GetCaloriesSensorId(string? user, string modifier) => $"calories_{modifier}_{user}";
+	private static string GetCaloriesSensorId(string? user, string prefix) => $"{prefix}_calories_for_{user}";
 
 	private static string GetBaseCaloriesAttributes(HealthEventData e) => JsonSerializer.Serialize(new { resting_kcal = e.RestingCalories, active_kcal = e.ActiveCalories });
 
@@ -65,6 +65,13 @@ public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfi
 		{
 			total = 0;
 		}
+
+		if (!double.TryParse(e.Calories?.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out var calories))
+		{
+			calories = 0;
+		}
+
+		total += calories;
 
 		await _entityManager.CreateAsync("sensor", sensorId, "power", $"Digested calories for {e.User}");
 		await _entityManager.UpdateAsync("sensor", sensorId, total.ToString(CultureInfo.InvariantCulture));

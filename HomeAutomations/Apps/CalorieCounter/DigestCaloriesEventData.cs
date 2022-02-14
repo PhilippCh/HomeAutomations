@@ -8,5 +8,5 @@ public record DigestCaloriesEventData
 	public string? User { get; init; }
 
 	[JsonPropertyName("kcal")]
-	public double? Calories { get; init; }
+	public string? Calories { get; init; }
 }

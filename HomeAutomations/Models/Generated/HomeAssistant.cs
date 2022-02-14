@@ -408,6 +408,8 @@ namespace HomeAssistantGenerated
 
 		///<summary>master_bedroom_speaker</summary>
 		public MediaPlayerEntity MasterBedroomSpeaker => new(_haContext, "media_player.master_bedroom_speaker");
+		///<summary>Hall Display</summary>
+		public MediaPlayerEntity Nesthub4ae6 => new(_haContext, "media_player.nesthub4ae6");
 		///<summary>Spotify Philipp Christoph</summary>
 		public MediaPlayerEntity SpotifyPhilippChristoph => new(_haContext, "media_player.spotify_philipp_christoph");
 	}
@@ -504,6 +506,8 @@ namespace HomeAssistantGenerated
 		public SensorEntity BuyHodlGmeSim1 => new(_haContext, "sensor.buy_hodl_gme_sim_1");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 SSID</summary>
 		public SensorEntity BuyHodlGmeSsid => new(_haContext, "sensor.buy_hodl_gme_ssid");
+		///<summary>Digested calories for philipp</summary>
+		public SensorEntity DigestedCaloriesForPhilipp => new(_haContext, "sensor.digested_calories_for_philipp");
 		///<summary>fabienne_herion_last_update</summary>
 		public SensorEntity FabienneHerionLastUpdate => new(_haContext, "sensor.fabienne_herion_last_update");
 		///<summary>Fantenpad Activity</summary>
@@ -1475,6 +1479,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("release_notes")]
 		public string? ReleaseNotes { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_avg")]
 		public double? RoundTripTimeAvg { get; init; }
 
@@ -1489,6 +1496,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("securitySetting")]
 		public string? SecuritySetting { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("systemCheck")]
 		public string? SystemCheck { get; init; }
@@ -1823,6 +1833,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("is_volume_muted")]
 		public bool? IsVolumeMuted { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_position_updated_at")]
+		public string? MediaPositionUpdatedAt { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
 
@@ -1913,6 +1926,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
 		public object? Action { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("active_kcal")]
+		public double? ActiveKcal { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
 
@@ -1921,9 +1937,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Areas Of Interest")]
 		public object? AreasOfInterest { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
-		public string? Attribution { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
 		public double? Battery { get; init; }
@@ -2033,6 +2046,12 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Postal Code")]
 		public string? PostalCode { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("quorum_reached")]
+		public bool? QuorumReached { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("resting_kcal")]
+		public double? RestingKcal { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
 
@@ -2095,12 +2114,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_status")]
 		public string? BatteryStatus { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_received")]
-		public double? BytesReceived { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_sent")]
-		public double? BytesSent { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("change")]
 		public double? Change { get; init; }
@@ -2195,6 +2208,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
 		public string? Name { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("nodes")]
+		public object? Nodes { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("occupancy")]
 		public bool? Occupancy { get; init; }
 
@@ -2215,15 +2231,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_country")]
-		public string? ServerCountry { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_id")]
-		public string? ServerId { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_name")]
-		public string? ServerName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shares")]
 		public double? Shares { get; init; }
@@ -2475,6 +2482,8 @@ namespace HomeAssistantGenerated
 
 		DeviceTrackerServices DeviceTracker { get; }
 
+		DuckdnsServices Duckdns { get; }
+
 		FanServices Fan { get; }
 
 		FfmpegServices Ffmpeg { get; }
@@ -2507,8 +2516,6 @@ namespace HomeAssistantGenerated
 
 		LightServices Light { get; }
 
-		LocaltuyaServices Localtuya { get; }
-
 		LogbookServices Logbook { get; }
 
 		LoggerServices Logger { get; }
@@ -2520,8 +2527,6 @@ namespace HomeAssistantGenerated
 		MqttServices Mqtt { get; }
 
 		NetdaemonServices Netdaemon { get; }
-
-		NoderedServices Nodered { get; }
 
 		NotifyServices Notify { get; }
 
@@ -2591,6 +2596,7 @@ namespace HomeAssistantGenerated
 		public CounterServices Counter => new(_haContext);
 		public CoverServices Cover => new(_haContext);
 		public DeviceTrackerServices DeviceTracker => new(_haContext);
+		public DuckdnsServices Duckdns => new(_haContext);
 		public FanServices Fan => new(_haContext);
 		public FfmpegServices Ffmpeg => new(_haContext);
 		public FrontendServices Frontend => new(_haContext);
@@ -2607,14 +2613,12 @@ namespace HomeAssistantGenerated
 		public InputSelectServices InputSelect => new(_haContext);
 		public InputTextServices InputText => new(_haContext);
 		public LightServices Light => new(_haContext);
-		public LocaltuyaServices Localtuya => new(_haContext);
 		public LogbookServices Logbook => new(_haContext);
 		public LoggerServices Logger => new(_haContext);
 		public LovelaceServices Lovelace => new(_haContext);
 		public MediaPlayerServices MediaPlayer => new(_haContext);
 		public MqttServices Mqtt => new(_haContext);
 		public NetdaemonServices Netdaemon => new(_haContext);
-		public NoderedServices Nodered => new(_haContext);
 		public NotifyServices Notify => new(_haContext);
 		public NumberServices Number => new(_haContext);
 		public PersistentNotificationServices PersistentNotification => new(_haContext);
@@ -3575,6 +3579,35 @@ namespace HomeAssistantGenerated
 		///<summary>Battery level of device.</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("battery")]
 		public long? Battery { get; init; }
+	}
+
+	public class DuckdnsServices
+	{
+		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
+		public DuckdnsServices(NetDaemon.HassModel.Common.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Set the TXT record of your DuckDNS subdomain.</summary>
+		public void SetTxt(DuckdnsSetTxtParameters data)
+		{
+			_haContext.CallService("duckdns", "set_txt", null, data);
+		}
+
+		///<summary>Set the TXT record of your DuckDNS subdomain.</summary>
+		///<param name="txt">Payload for the TXT record. eg: This domain name is reserved for use in documentation</param>
+		public void SetTxt(string @txt)
+		{
+			_haContext.CallService("duckdns", "set_txt", null, new DuckdnsSetTxtParameters{Txt = @txt});
+		}
+	}
+
+	public record DuckdnsSetTxtParameters
+	{
+		///<summary>Payload for the TXT record. eg: This domain name is reserved for use in documentation</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("txt")]
+		public string? Txt { get; init; }
 	}
 
 	public class FanServices
@@ -4935,51 +4968,6 @@ namespace HomeAssistantGenerated
 		public string? Effect { get; init; }
 	}
 
-	public class LocaltuyaServices
-	{
-		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
-		public LocaltuyaServices(NetDaemon.HassModel.Common.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Reload localtuya and re-process yaml configuration.</summary>
-		public void Reload()
-		{
-			_haContext.CallService("localtuya", "reload", null);
-		}
-
-		///<summary>Change the value of a datapoint (DP)</summary>
-		public void SetDp(LocaltuyaSetDpParameters data)
-		{
-			_haContext.CallService("localtuya", "set_dp", null, data);
-		}
-
-		///<summary>Change the value of a datapoint (DP)</summary>
-		///<param name="deviceId">Device ID of device to change datapoint value for eg: 11100118278aab4de001</param>
-		///<param name="dp">Datapoint index eg: 1</param>
-		///<param name="value">New value to set eg: False</param>
-		public void SetDp(string? @deviceId = null, string? @dp = null, string? @value = null)
-		{
-			_haContext.CallService("localtuya", "set_dp", null, new LocaltuyaSetDpParameters{DeviceId = @deviceId, Dp = @dp, Value = @value});
-		}
-	}
-
-	public record LocaltuyaSetDpParameters
-	{
-		///<summary>Device ID of device to change datapoint value for eg: 11100118278aab4de001</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("deviceId")]
-		public string? DeviceId { get; init; }
-
-		///<summary>Datapoint index eg: 1</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("dp")]
-		public string? Dp { get; init; }
-
-		///<summary>New value to set eg: False</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("value")]
-		public string? Value { get; init; }
-	}
-
 	public class LogbookServices
 	{
 		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
@@ -5594,55 +5582,6 @@ namespace HomeAssistantGenerated
 		///<summary>The method to call</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("method")]
 		public string? Method { get; init; }
-	}
-
-	public class NoderedServices
-	{
-		private readonly NetDaemon.HassModel.Common.IHaContext _haContext;
-		public NoderedServices(NetDaemon.HassModel.Common.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Trigger a Node-RED Node</summary>
-		public void Trigger(NoderedTriggerParameters data)
-		{
-			_haContext.CallService("nodered", "trigger", null, data);
-		}
-
-		///<summary>Trigger a Node-RED Node</summary>
-		///<param name="entityId">Entity Id of the Node-RED switch eg: switch.nodered_motion</param>
-		///<param name="triggerEntityId">Entity Id to trigger the event node with. Only needed if the node is not triggered by a single entity. eg: sun.sun</param>
-		///<param name="skipCondition">Skip conditions of the node (defaults to false) eg: True</param>
-		///<param name="outputPath">Which output of the node to use (defaults to true, the top output). Only used when skip_condition is set to true. eg: True</param>
-		///<param name="payload">The payload the node will output when triggered. Work only when triggering a entity node not an event node.</param>
-		public void Trigger(string? @entityId = null, string? @triggerEntityId = null, string? @skipCondition = null, string? @outputPath = null, string? @payload = null)
-		{
-			_haContext.CallService("nodered", "trigger", null, new NoderedTriggerParameters{EntityId = @entityId, TriggerEntityId = @triggerEntityId, SkipCondition = @skipCondition, OutputPath = @outputPath, Payload = @payload});
-		}
-	}
-
-	public record NoderedTriggerParameters
-	{
-		///<summary>Entity Id of the Node-RED switch eg: switch.nodered_motion</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
-
-		///<summary>Entity Id to trigger the event node with. Only needed if the node is not triggered by a single entity. eg: sun.sun</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("triggerEntityId")]
-		public string? TriggerEntityId { get; init; }
-
-		///<summary>Skip conditions of the node (defaults to false) eg: True</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("skipCondition")]
-		public string? SkipCondition { get; init; }
-
-		///<summary>Which output of the node to use (defaults to true, the top output). Only used when skip_condition is set to true. eg: True</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("outputPath")]
-		public string? OutputPath { get; init; }
-
-		///<summary>The payload the node will output when triggered. Work only when triggering a entity node not an event node.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("payload")]
-		public string? Payload { get; init; }
 	}
 
 	public class NotifyServices
