@@ -14,7 +14,7 @@ namespace HomeAssistant.Automations.Apps.CastDashboard;
 [Focus]
 public class CastDashboard : BaseAutomation<CastDashboard, CastDashboardConfig>
 {
-	private double _currentMinDistance;
+	private double _currentMinDistance = 99999;
 
 	private readonly CastServices _castService;
 	private readonly IEnumerable<Entity<RoomPresenceSensorAttributes>> _presenceSensors;
