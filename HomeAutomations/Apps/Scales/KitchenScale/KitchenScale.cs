@@ -16,7 +16,6 @@ record KitchenScaleAttributes
 	public string unit { get; init; }
 }
 
-[NetDaemonApp]
 public class KitchenScale : BaseAutomation<KitchenScale, KitchenScaleConfig>
 {
 	private Entity<KitchenScaleAttributes>? _kitchenScaleSensor;

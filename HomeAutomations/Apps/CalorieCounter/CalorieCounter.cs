@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Text.Json;
+using HomeAssistant.Automations.Attributes;
 using HomeAssistant.Automations.Models;
 using HomeAssistantGenerated;
 using NetDaemon.Common;
@@ -9,7 +10,6 @@ using NetDaemon.HassModel.Common;
 
 namespace HomeAssistant.Automations.Apps.CalorieCounter;
 
-[NetDaemonApp]
 [Focus]
 public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfig>
 {

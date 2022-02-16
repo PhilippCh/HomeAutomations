@@ -425,6 +425,8 @@ namespace HomeAssistantGenerated
 			_haContext = haContext;
 		}
 
+		///<summary>New devices discovered</summary>
+		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
 		///<summary>Login attempt failed</summary>
 		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
 	}
@@ -505,8 +507,12 @@ namespace HomeAssistantGenerated
 		public SensorEntity BarcodeScannerConnected => new(_haContext, "sensor.barcode_scanner_connected");
 		///<summary>Base calories for fabienne</summary>
 		public SensorEntity BaseCaloriesForFabienne => new(_haContext, "sensor.base_calories_for_fabienne");
+		///<summary>Base calories for fabienne</summary>
+		public SensorEntity BaseCaloriesForFabienne2 => new(_haContext, "sensor.base_calories_for_fabienne_2");
 		///<summary>Base calories for philipp</summary>
 		public SensorEntity BaseCaloriesForPhilipp => new(_haContext, "sensor.base_calories_for_philipp");
+		///<summary>Base calories for philipp</summary>
+		public SensorEntity BaseCaloriesForPhilipp2 => new(_haContext, "sensor.base_calories_for_philipp_2");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Activity</summary>
 		public SensorEntity BuyHodlGmeActivity => new(_haContext, "sensor.buy_hodl_gme_activity");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Battery State</summary>
@@ -1509,6 +1515,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("release_notes")]
 		public string? ReleaseNotes { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_avg")]
 		public double? RoundTripTimeAvg { get; init; }
 
@@ -1523,6 +1532,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("securitySetting")]
 		public string? SecuritySetting { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("systemCheck")]
 		public string? SystemCheck { get; init; }
@@ -1839,12 +1851,6 @@ namespace HomeAssistantGenerated
 
 	public record MediaPlayerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("app_id")]
-		public string? AppId { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("app_name")]
-		public string? AppName { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture_local")]
 		public object? EntityPictureLocal { get; init; }
 
@@ -1856,9 +1862,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("is_volume_muted")]
 		public bool? IsVolumeMuted { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("media_title")]
-		public string? MediaTitle { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
@@ -1962,6 +1965,9 @@ namespace HomeAssistantGenerated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
 		public object? Action { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("active_kcal")]
+		public double? ActiveKcal { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
 
@@ -1970,9 +1976,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Areas Of Interest")]
 		public object? AreasOfInterest { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
-		public string? Attribution { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
 		public double? Battery { get; init; }
@@ -2003,9 +2006,6 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("distance")]
-		public double? Distance { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("firstworkout_title")]
 		public string? FirstworkoutTitle { get; init; }
@@ -2081,6 +2081,9 @@ namespace HomeAssistantGenerated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Postal Code")]
 		public string? PostalCode { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("resting_kcal")]
+		public double? RestingKcal { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using HomeAssistant.Automations.Attributes;
 using Microsoft.Extensions.Options;
 using NetDaemon.Common;
 using NetDaemon.HassModel.Common;
@@ -20,6 +21,8 @@ public class BaseAutomationDependencyAggregate<T, TConfig> where T : BaseAutomat
 	}
 }
 
+[NetDaemonApp]
+[HomeAutomation]
 public abstract class BaseAutomation<T, TConfig> : IInitializable where T : BaseAutomation<T, TConfig> where TConfig : Config
 {
 	protected TConfig Config => _aggregate.Config.CurrentValue;

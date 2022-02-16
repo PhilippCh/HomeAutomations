@@ -18,7 +18,6 @@ using ObservableExtensions = HomeAssistant.Automations.Extensions.ObservableExte
 
 namespace HomeAssistant.Automations.Apps.TrashReminder;
 
-[NetDaemonApp]
 public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
 	private Calendar _personalCalendar;
