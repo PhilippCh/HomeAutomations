@@ -1,4 +1,4 @@
-﻿# Home Automations
+# Home Automations
 
 These are the Home Assistant automations for pupslab.de
 
