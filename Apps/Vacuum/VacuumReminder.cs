@@ -41,7 +41,6 @@ public class VacuumReminder : BaseAutomation<VacuumReminder, VacuumConfig>
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		ObserveConfigChange(_ => Reset());
 		StartCleaningSchedule(Config.CleaningSchedule);
 		StartResetSchedule();
 	}

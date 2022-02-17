@@ -16,7 +16,7 @@ record KitchenScaleAttributes
 	public string unit { get; init; }
 }
 
-public class KitchenScale : BaseAutomation<KitchenScale, KitchenScaleConfig>
+public class KitchenScale : BaseAutomation<KitchenScale>
 {
 	private Entity<KitchenScaleAttributes>? _kitchenScaleSensor;
 	private InputTextEntity? _nutriscoreInputText;
@@ -27,7 +27,7 @@ public class KitchenScale : BaseAutomation<KitchenScale, KitchenScaleConfig>
 
 	private readonly OpenFoodFactsService _openFoodFactsService;
 
-	public KitchenScale(BaseAutomationDependencyAggregate<KitchenScale, KitchenScaleConfig> aggregate, OpenFoodFactsService openFoodFactsService)
+	public KitchenScale(BaseAutomationDependencyAggregate<KitchenScale> aggregate, OpenFoodFactsService openFoodFactsService)
 		: base(aggregate)
 	{
 		_openFoodFactsService = openFoodFactsService;

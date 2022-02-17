@@ -43,4 +43,9 @@
         <PackageReference Include="Staty" Version="2.1.3" />
         <PackageReference Include="System.Reactive" Version="5.0.0" />
     </ItemGroup>
+        
+    <ItemGroup>
+      <None Remove="Apps\Config\calorie_counter.yaml" />
+      <Content Include="Apps\Config\calorie_counter.yaml" />
+    </ItemGroup>
 </Project>

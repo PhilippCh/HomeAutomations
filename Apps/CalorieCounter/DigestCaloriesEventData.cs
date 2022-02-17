@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace HomeAssistant.Automations.Apps.CalorieCounter;
+namespace HomeAutomations.Apps.CalorieCounter;
 
 public record DigestCaloriesEventData
 {

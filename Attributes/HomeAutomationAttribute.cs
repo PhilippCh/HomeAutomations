@@ -1,8 +1,9 @@
-﻿using System;
+﻿using JetBrains.Annotations;
 
-namespace HomeAssistant.Automations.Attributes;
+namespace HomeAutomations.Attributes;
 
 [AttributeUsage(AttributeTargets.Class)]
+[MeansImplicitUse]
 public class HomeAutomationAttribute : Attribute
 {
 }

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "home_automations_new": {
+    "HomeAutomations": {
       "commandName": "Project",
       "workingDirectory": "$(ProjectDir)",
       "environmentVariables": {

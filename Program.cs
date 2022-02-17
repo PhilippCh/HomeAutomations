@@ -1,8 +1,9 @@
-using System;
 using System.Reflection;
+using HomeAssistant.Automations.Extensions;
+using HomeAutomations.Extensions;
 using Microsoft.Extensions.Hosting;
-using NetDaemon.AppModel;
 using NetDaemon.Extensions.Logging;
+using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.Extensions.Tts;
 using NetDaemon.Runtime;
@@ -15,12 +16,14 @@ try
         .UseNetDaemonAppSettings()
         .UseNetDaemonDefaultLogging()
         .UseNetDaemonRuntime()
+        .UseNetDaemonMqttEntityManagement()
         .UseNetDaemonTextToSpeech()
-        .ConfigureServices((_, services) =>
+        .ConfigureServices((context, services) =>
             services
                 .AddAppsFromAssembly(Assembly.GetExecutingAssembly())
                 .AddNetDaemonStateManager()
                 .AddNetDaemonScheduler()
+                .AddAutomationServices(context.Configuration)
         )
         .Build()
         .RunAsync()

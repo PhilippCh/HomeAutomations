@@ -1,56 +1,61 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Attributes;
-using Microsoft.Extensions.Options;
-using NetDaemon.AppModel;
-using NetDaemon.HassModel;
-using Serilog;
+using HomeAutomations.Attributes;
 
 namespace HomeAutomations.Models;
 
-public class BaseAutomationDependencyAggregate<T, TConfig> where T : BaseAutomation<T, TConfig> where TConfig : Config
+public class BaseAutomationDependencyAggregate<T, TConfig> : BaseAutomationDependencyAggregate<T>
+	where T : BaseAutomation<T, TConfig>
+	where TConfig : Config, new()
+{
+	public IAppConfig<TConfig> Config { get; }
+
+	public BaseAutomationDependencyAggregate(IHaContext context, IAppConfig<TConfig> config, ILogger loggerFactory) : base(context, loggerFactory)
+	{
+		Config = config;
+	}
+}
+
+public class BaseAutomationDependencyAggregate<T> where T : BaseAutomation<T>
 {
 	public IHaContext Context { get; }
-	public IOptionsMonitor<TConfig> Config { get; }
 	public ILogger Logger { get; }
 
-	public BaseAutomationDependencyAggregate(IHaContext context, IOptionsMonitor<TConfig> config, ILogger loggerFactory)
+	public BaseAutomationDependencyAggregate(IHaContext context, ILogger loggerFactory)
 	{
 		Context = context;
-		Config = config;
 		Logger = loggerFactory.ForContext<T>();
+	}
+}
+
+public abstract class BaseAutomation<T, TConfig> : BaseAutomation<T> where T : BaseAutomation<T, TConfig> where TConfig : Config, new()
+{
+	protected TConfig Config => _appConfig.Value;
+
+	private readonly IAppConfig<TConfig> _appConfig;
+
+	protected BaseAutomation(BaseAutomationDependencyAggregate<T, TConfig> aggregate)
+		: base(new BaseAutomationDependencyAggregate<T>(aggregate.Context, aggregate.Logger))
+	{
+		_appConfig = aggregate.Config;
 	}
 }
 
 [NetDaemonApp]
 [HomeAutomation]
-public abstract class BaseAutomation<T, TConfig> : IAsyncInitializable where T : BaseAutomation<T, TConfig> where TConfig : Config
+public abstract class BaseAutomation<T> : IAsyncInitializable where T : BaseAutomation<T>
 {
-	protected TConfig Config => _aggregate.Config.CurrentValue;
-	protected ILogger Logger => _aggregate.Logger;
-	protected IHaContext Context => _aggregate.Context;
+	protected ILogger Logger { get; }
+	protected IHaContext Context { get; }
 
-	private readonly BaseAutomationDependencyAggregate<T, TConfig> _aggregate;
-
-	protected BaseAutomation(BaseAutomationDependencyAggregate<T, TConfig> aggregate)
+	private
+		protected BaseAutomation(BaseAutomationDependencyAggregate<T> aggregate)
 	{
-		_aggregate = aggregate;
+		Context = aggregate.Context;
+		Logger = aggregate.Logger;
 	}
 
-	public async Task InitializeAsync(CancellationToken cancellationToken)
-	{
-		if (!Config.Enabled)
-		{
-			Logger.Warning("{class} is disabled.", GetType().Name);
-
-			return;
-		}
-
-		await StartAsync(cancellationToken);
-	}
+	public async Task InitializeAsync(CancellationToken cancellationToken) => await StartAsync(cancellationToken);
 
 	protected abstract Task StartAsync(CancellationToken cancellationToken);
-
-	protected void ObserveConfigChange(Action<TConfig> action) => _aggregate.Config.OnChange(action);
 }

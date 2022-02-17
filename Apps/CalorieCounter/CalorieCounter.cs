@@ -1,20 +1,16 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Apps.CalorieCounter;
 using HomeAssistantGenerated;
 using HomeAutomations.Models;
-using NetDaemon.AppModel;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.Extensions.MqttEntityManager.Models;
-using NetDaemon.HassModel;
 
 namespace HomeAutomations.Apps.CalorieCounter;
 
 [Focus]
-public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfig>
+public class CalorieCounter : BaseAutomation<CalorieCounter>
 {
 	private const string DigestCaloriesEventType = "digest_calories_event";
 	private const string HealthEventType = "health_event";
@@ -24,7 +20,7 @@ public class CalorieCounter : BaseAutomation<CalorieCounter, CalorieCounterConfi
 
 	private readonly IMqttEntityManager _entityManager;
 
-	public CalorieCounter(BaseAutomationDependencyAggregate<CalorieCounter, CalorieCounterConfig> aggregate, IMqttEntityManager entityManager)
+	public CalorieCounter(BaseAutomationDependencyAggregate<CalorieCounter> aggregate, IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
 		_entityManager = entityManager;
