@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using HomeAssistant.Automations.Models;
+﻿using System.Collections.Generic;
 using HomeAutomations.Models;
 
-namespace HomeAssistant.Automations.Apps.KitchenLight;
+namespace HomeAutomations.Apps.KitchenLight;
 
 public record BrightnessConfig
 {

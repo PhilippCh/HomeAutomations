@@ -1,12 +1,11 @@
-﻿using System;
-using HomeAssistant.Automations.Models;
+﻿using HomeAssistant.Automations.Models;
 using HomeAutomations.Models;
 using JetBrains.Annotations;
 
-namespace HomeAssistant.Automations.Apps.Vacuum
+namespace HomeAutomations.Apps.Vacuum
 {
 	[UsedImplicitly]
-	public record VacuumNotificationConfig
+	public class VacuumNotificationConfig
 	{
 		public Notification Reminder { get; init; }
 		public Notification CleanBedroom { get; init; }

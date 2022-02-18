@@ -1,5 +1,6 @@
 ﻿using HomeAssistant.Automations.Apps.Vacuum.StateMachine.States;
 using HomeAssistant.Automations.Services;
+using HomeAutomations.Apps.Vacuum;
 using HomeAutomations.Services;
 using Microsoft.Extensions.Options;
 using Serilog;

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using HomeAssistant.Automations.Models;
 using HomeAutomations.Models;
 using JetBrains.Annotations;
 
-namespace HomeAssistant.Automations.Apps.TrashReminder;
+namespace HomeAutomations.Apps.TrashReminder;
 
 [UsedImplicitly]
 public record QueryParameterConfig<T>

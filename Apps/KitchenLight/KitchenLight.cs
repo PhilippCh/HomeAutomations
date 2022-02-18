@@ -4,7 +4,6 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Apps.KitchenLight;
 using HomeAssistant.Automations.Models.DeviceMessages;
 using HomeAssistant.Automations.Services;
 using HomeAssistantGenerated;

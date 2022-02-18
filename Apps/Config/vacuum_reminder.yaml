@@ -1,0 +1,33 @@
+---
+HomeAutomations.Apps.Vacuum.VacuumConfig:
+  Entity: vacuum.fantenrussel
+  CleaningSchedule: 00 12 * * 1,3,5
+  ReminderInterval: '01:00:00'
+  Notifications:
+    Reminder:
+      Tag: vacuum
+      Title: Staubsauger
+      Template: Der Robo möchte saugen. Ist alles aufgeräumt?
+      Service: mobile_app_iphone_philipp
+      Actions:
+        - Action: VACUUM_START_WITH_BEDROOM
+          Title: Erst Wohnung, dann Schlafzimmer
+          Destructive: false
+        - Action: VACUUM_START
+          Title: Nur Wohnung
+          Destructive: false
+        - Action: VACUUM_NO_START
+          Title: Heute nicht saugen
+          Destructive: true
+    CleanBedroom:
+      Tag: vacuum
+      Title: Staubsauger
+      Template: Öffne die Schlafzimmertür und starte den Robo erneut.
+      Service: mobile_app_iphone_philipp
+      Actions: [ ]
+    EmptyBin:
+      Tag: vacuum
+      Title: Staubsauger
+      Template: Bitte leere den Robo und schicke ihn zur Station zurück.
+      Service: mobile_app_iphone_philipp
+      Actions: [ ]

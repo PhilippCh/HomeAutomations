@@ -1,0 +1,11 @@
+---
+HomeAutomations.Apps.KitchenLight.KitchenLightConfig:
+  LightEntityId: light.kuchendecke
+  CycleTime: '00:01:30'
+  MinIlluminanceLux: 35
+  CombinedSensorTopic: zigbee2mqtt/0x00158d0007bcae5d
+  ManualTriggerSensorTopic: zigbee2mqtt/0x00158d0006397c0f/action
+  Brightness:
+    - Start: '02:30:00'
+      End: '09:00:00'
+      Percentage: 1

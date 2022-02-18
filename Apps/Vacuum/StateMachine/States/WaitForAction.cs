@@ -1,4 +1,5 @@
 using HomeAssistant.Automations.Services;
+using HomeAutomations.Apps.Vacuum;
 using HomeAutomations.Services;
 using Serilog;
 using Staty;

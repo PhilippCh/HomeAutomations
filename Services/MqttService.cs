@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using HomeAssistant.Automations.Models;
 using HomeAutomations.Models;
 using Microsoft.Extensions.Options;
 using MQTTnet;
-using MQTTnet.Client;
 using MQTTnet.Client.Options;
-using MQTTnet.Client.Subscribing;
 using MQTTnet.Extensions.ManagedClient;
-using MQTTnet.Protocol;
-using Serilog;
 
-namespace HomeAssistant.Automations.Services;
+namespace HomeAutomations.Services;
 
 public record MqttConfig : Config
 {

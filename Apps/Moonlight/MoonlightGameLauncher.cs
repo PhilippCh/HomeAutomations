@@ -3,20 +3,19 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Apps.Moonlight;
 using HomeAssistant.Automations.Extensions;
 using HomeAssistantGenerated;
 using HomeAutomations.Models;
 
 namespace HomeAutomations.Apps.Moonlight;
 
-public class MoonlightGameLauncher : BaseAutomation<MoonlightGameLauncher, MoonlightConfig>
+public class MoonlightGameLauncher : BaseAutomation<MoonlightGameLauncher>
 {
 	private readonly Entities _entities;
 	private readonly HttpClient _client = new();
 	private readonly IReadOnlyDictionary<string, Func<VarEntity?>> _availableGameOptionsFactories;
 
-	public MoonlightGameLauncher(BaseAutomationDependencyAggregate<MoonlightGameLauncher, MoonlightConfig> aggregate)
+	public MoonlightGameLauncher(BaseAutomationDependencyAggregate<MoonlightGameLauncher> aggregate)
 		: base(aggregate)
 	{
 		_entities = new Entities(Context);

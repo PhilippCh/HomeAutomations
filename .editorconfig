@@ -8,6 +8,9 @@ charset = utf-8
 end_of_line = crlf
 max_line_length = 180
 
+[*.{yml,yaml}]
+indent_size = 2
+
 # ReSharper properties
 resharper_align_linq_query = true
 resharper_align_multiline_argument = true

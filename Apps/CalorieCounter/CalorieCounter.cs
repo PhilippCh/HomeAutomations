@@ -9,7 +9,6 @@ using NetDaemon.Extensions.MqttEntityManager.Models;
 
 namespace HomeAutomations.Apps.CalorieCounter;
 
-[Focus]
 public class CalorieCounter : BaseAutomation<CalorieCounter>
 {
 	private const string DigestCaloriesEventType = "digest_calories_event";

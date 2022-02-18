@@ -4,7 +4,6 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Apps.TrashReminder;
 using HomeAssistantGenerated;
 using HomeAutomations.Models;
 using Ical.Net;
