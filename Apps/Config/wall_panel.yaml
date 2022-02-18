@@ -1,0 +1,8 @@
+---
+HomeAutomations.Apps.WallPanel.Config.WallPanelConfig:
+  Panels:
+    - Name: Hallway
+      BaseTopic: wallpanel/hallway
+      PlugEntity:
+      MinCharge: 60
+      MaxCharge: 80

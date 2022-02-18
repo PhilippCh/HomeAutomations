@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reactive;
-using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAssistant.Automations.Models.DeviceMessages;
-using HomeAssistant.Automations.Services;
 using HomeAssistantGenerated;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
@@ -40,9 +37,8 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		_mqttService.Connect(GetType().Name, new[] { Config.CombinedSensorTopic, Config.ManualTriggerSensorTopic });
-		_mqttService.GetMessagesForTopic<string>(Config.ManualTriggerSensorTopic).Subscribe(OnManualTriggerMessageReceived);
-		_mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.CombinedSensorTopic).Subscribe(OnMotionSensorUpdate);
+		(await _mqttService.GetMessagesForTopic<string>(Config.ManualTriggerSensorTopic)).Subscribe(OnManualTriggerMessageReceived);
+		(await _mqttService.GetMessagesForTopic<MotionSensorDeviceMessage>(Config.CombinedSensorTopic)).Subscribe(OnMotionSensorUpdate);
 
 		SetBrightness();
 	}

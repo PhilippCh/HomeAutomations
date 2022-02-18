@@ -57,7 +57,7 @@ public class CalorieCounter : BaseAutomation<CalorieCounter>
 		}
 
 		var sensorId = GetCaloriesSensorId(e.User, DigestedCaloriesId);
-		var sensor = new SensorEntity(Context, $"sensor.{sensorId}");
+		var sensor = new SensorEntity(Context, sensorId);
 
 		if (!double.TryParse(sensor.State, out var total))
 		{

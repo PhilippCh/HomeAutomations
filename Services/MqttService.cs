@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Subjects;
+﻿using System.Reactive.Subjects;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using HomeAutomations.Models;
 using Microsoft.Extensions.Options;
 using MQTTnet;
@@ -13,10 +12,10 @@ namespace HomeAutomations.Services;
 
 public record MqttConfig : Config
 {
-	public string Host { get; init; }
+	public string Host { get; init; } = "localhost";
 	public int Port { get; init; } = 1883;
-	public string Username { get; init; }
-	public string Password { get; init; }
+	public string Username { get; init; } = "";
+	public string Password { get; init; } = "";
 }
 
 public class MqttService
@@ -31,44 +30,15 @@ public class MqttService
 		_config = config;
 		_logger = loggerFactory.ForContext<MqttService>();
 		_client = new MqttFactory().CreateManagedMqttClient();
+
+		Connect();
 	}
 
-	public async void Connect(string scope, IEnumerable<string> topics)
+	public async Task<IObservable<T?>> GetMessagesForTopic<T>(string topic)
 	{
-		_logger.Debug("Connecting to mqtt broker {broker}.", _config.CurrentValue.Host);
+		await SubscribeToTopic(topic);
 
-		var options = new ManagedMqttClientOptionsBuilder()
-			.WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
-			.WithClientOptions(
-				new MqttClientOptionsBuilder()
-					.WithClientId($"HomeAutomations.{scope}")
-					.WithTcpServer(_config.CurrentValue.Host, _config.CurrentValue.Port)
-					.Build())
-			.Build();
-
-		_client.UseConnectedHandler(
-			async _ =>
-			{
-				_logger.Information("Connected to MQTT server.");
-
-				var topicFilters = topics.Select(
-					t => new MqttTopicFilterBuilder()
-						.WithTopic(t)
-						.Build()
-				);
-
-				await _client.SubscribeAsync(topicFilters);
-			});
-
-		_client.UseDisconnectedHandler(e => _logger.Debug("Disconnected due to: {reason}", e.Reason));
-
-		_client.UseApplicationMessageReceivedHandler(e => _messages.OnNext(e.ApplicationMessage));
-
-		await _client.StartAsync(options);
-	}
-
-	public IObservable<T?> GetMessagesForTopic<T>(string topic) =>
-		_messages
+		return _messages
 			.Where(m => m.Topic == topic)
 			.Select(m => Encoding.UTF8.GetString(m.Payload))
 			.Select(
@@ -78,10 +48,40 @@ public class MqttService
 					{
 						return JsonSerializer.Deserialize<T>(m);
 					}
-					catch (JsonException _)
+					catch (JsonException)
 					{
 						// Attempt returning a direct cast if message does not appear to be a JSON construct.
 						return (T)Convert.ChangeType(m, typeof(T));
 					}
 				});
+	}
+
+	private async Task SubscribeToTopic(string topic)
+	{
+		var filter = new MqttTopicFilterBuilder()
+			.WithTopic(topic)
+			.Build();
+
+		await _client.SubscribeAsync(filter);
+	}
+
+	private async void Connect()
+	{
+		_logger.Debug("Connecting to mqtt broker {broker}.", _config.CurrentValue.Host);
+
+		var options = new ManagedMqttClientOptionsBuilder()
+			.WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
+			.WithClientOptions(
+				new MqttClientOptionsBuilder()
+					.WithClientId($"HomeAutomations")
+					.WithTcpServer(_config.CurrentValue.Host, _config.CurrentValue.Port)
+					.Build())
+			.Build();
+
+		_client.UseConnectedHandler(_ => _logger.Information("Connected to MQTT server."));
+		_client.UseApplicationMessageReceivedHandler(e => _messages.OnNext(e.ApplicationMessage));
+		_client.UseDisconnectedHandler(e => _logger.Debug("Disconnected due to: {reason}", e.Reason));
+
+		await _client.StartAsync(options);
+	}
 }

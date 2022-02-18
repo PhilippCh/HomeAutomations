@@ -12,6 +12,8 @@ using NetDaemon.Runtime;
 
 try
 {
+	var assembly = Assembly.GetExecutingAssembly();
+
     await Host.CreateDefaultBuilder(args)
         .UseNetDaemonAppSettings()
         .UseNetDaemonDefaultLogging()
@@ -20,10 +22,10 @@ try
         .UseNetDaemonTextToSpeech()
         .ConfigureServices((context, services) =>
             services
-                .AddAppsFromAssembly(Assembly.GetExecutingAssembly())
+                .AddAppsFromAssembly(assembly)
                 .AddNetDaemonStateManager()
                 .AddNetDaemonScheduler()
-                .AddAutomationServices(context.Configuration)
+                .AddAutomationServices(assembly, context.Configuration)
         )
         .Build()
         .RunAsync()
