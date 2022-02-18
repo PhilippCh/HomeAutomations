@@ -1,5 +1,5 @@
 ---
-HomeAutomations.Apps.WallPanel.Config.WallPanelConfig:
+HomeAutomations.Apps.WallPanel.WallPanelMonitorConfig:
   Panels:
     - Name: Hallway
       BaseTopic: wallpanel/hallway

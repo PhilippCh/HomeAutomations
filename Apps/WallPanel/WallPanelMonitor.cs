@@ -15,12 +15,12 @@ public class WallPanelMonitor : BaseAutomation<WallPanelMonitor, WallPanelMonito
 
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
-			.AddScoped<WallPanelFactory>()
+			.AddScoped<WallPanel.WallPanelFactory>()
 			.AddScoped<WallPanel>();
 
-	public WallPanelMonitor(WallPanelFactory wallPanelFactory, BaseAutomationDependencyAggregate<WallPanelMonitor, WallPanelMonitorConfig> aggregate) : base(aggregate)
+	public WallPanelMonitor(WallPanel.WallPanelFactory wallPanelFactory, BaseAutomationDependencyAggregate<WallPanelMonitor, WallPanelMonitorConfig> aggregate) : base(aggregate)
 	{
-		_panels = Config.Panels.Select(wallPanelFactory.Create);
+		_panels = Config?.Panels?.Select(wallPanelFactory.Create) ?? Enumerable.Empty<WallPanel>();
 	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
