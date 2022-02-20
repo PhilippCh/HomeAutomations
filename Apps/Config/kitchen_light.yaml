@@ -2,7 +2,7 @@
 HomeAutomations.Apps.KitchenLight.KitchenLightConfig:
   LightEntityId: light.kuchendecke
   CycleTime: '00:01:30'
-  MinIlluminanceLux: 35
+  MinIlluminanceLux: 65
   CombinedSensorTopic: zigbee2mqtt/0x00158d0007bcae5d
   ManualTriggerSensorTopic: zigbee2mqtt/0x00158d0006397c0f/action
   Brightness:
