@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Apps.Scales.KitchenScale;
 using HomeAutomations.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomations.Apps.WallPanel;
 
+[Focus]
 public class WallPanelMonitor : BaseAutomation<WallPanelMonitor, WallPanelMonitorConfig>
 {
 	private readonly IEnumerable<WallPanel> _panels;

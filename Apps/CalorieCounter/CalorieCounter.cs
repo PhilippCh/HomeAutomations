@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAssistantGenerated;
+using HomeAutomations.Constants;
 using HomeAutomations.Models;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.Extensions.MqttEntityManager.Models;
@@ -46,7 +47,8 @@ public class CalorieCounter : BaseAutomation<CalorieCounter>
 		var total = e.RestingCalories + e.ActiveCalories;
 
 		await _entityManager.CreateAsync(sensorId, new EntityCreationOptions("power", sensorId, $"Base calories for {e.User}"));
-		await _entityManager.UpdateAsync(sensorId, total?.ToString(CultureInfo.InvariantCulture) ?? "unknown", GetBaseCaloriesAttributes(e));
+		await _entityManager.SetStateAsync(sensorId, total?.ToString(CultureInfo.InvariantCulture) ?? EntityStates.Unknown);
+		await _entityManager.SetAttributesAsync(sensorId, GetBaseCaloriesAttributes(e));
 	}
 
 	private async void DigestCaloriesForUser(DigestCaloriesEventData? e)
@@ -72,6 +74,6 @@ public class CalorieCounter : BaseAutomation<CalorieCounter>
 		total += calories;
 
 		await _entityManager.CreateAsync(sensorId, new EntityCreationOptions("power", sensorId, $"Digested calories for {e.User}"));
-		await _entityManager.UpdateAsync(sensorId, total.ToString(CultureInfo.InvariantCulture));
+		await _entityManager.SetStateAsync(sensorId, total.ToString(CultureInfo.InvariantCulture));
 	}
 }
