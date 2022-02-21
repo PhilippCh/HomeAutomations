@@ -4,8 +4,8 @@ using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAssistant.Automations.Extensions;
-using HomeAssistantGenerated;
 using HomeAutomations.Models;
+using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.Moonlight;
 

@@ -73,7 +73,6 @@ public class MqttService
 			.WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
 			.WithClientOptions(
 				new MqttClientOptionsBuilder()
-					.WithClientId($"HomeAutomations")
 					.WithTcpServer(_config.CurrentValue.Host, _config.CurrentValue.Port)
 					.Build())
 			.Build();

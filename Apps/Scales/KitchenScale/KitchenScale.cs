@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAssistant.Automations.Apps.Scales.KitchenScale;
-using HomeAssistantGenerated;
 using HomeAutomations.Models;
+using HomeAutomations.Models.Generated;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.HassModel.Entities;

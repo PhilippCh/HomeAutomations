@@ -2,11 +2,10 @@
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistantGenerated;
 using HomeAutomations.Constants;
 using HomeAutomations.Models;
+using HomeAutomations.Models.Generated;
 using NetDaemon.Extensions.MqttEntityManager;
-using NetDaemon.Extensions.MqttEntityManager.Models;
 
 namespace HomeAutomations.Apps.CalorieCounter;
 

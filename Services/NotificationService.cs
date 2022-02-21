@@ -1,10 +1,6 @@
-﻿using System;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
+﻿using System.Reactive.Subjects;
 using HomeAssistant.Automations.Constants;
 using HomeAssistant.Automations.Models;
-using NetDaemon.HassModel;
-using Serilog;
 
 namespace HomeAutomations.Services;
 
@@ -14,13 +10,13 @@ public class NotificationService
 
 	private readonly IHaContext _context;
 	private readonly ILogger _logger;
-	private readonly HomeAssistantGenerated.Services _services;
+	private readonly Models.Generated.Services _services;
 	private readonly Subject<string> _notificationActionFired = new();
 
 	public NotificationService(IHaContext context, ILogger logger)
 	{
 		_context = context;
-		_services = new HomeAssistantGenerated.Services(context);
+		_services = new Models.Generated.Services(context);
 		context.Events
 			.Where(e => e.EventType == EventTypes.MobileAppNotificationAction && e.DataElement.HasValue)
 			.Select(e => e.DataElement!.Value.GetProperty("action").GetString()!)
