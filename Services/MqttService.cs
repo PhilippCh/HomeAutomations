@@ -1,7 +1,10 @@
-﻿using System.Reactive.Subjects;
+﻿using System.IO;
+using System.Linq;
+using System.Reactive.Subjects;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using Microsoft.Extensions.Options;
 using MQTTnet;
@@ -34,8 +37,10 @@ public class MqttService
 		Connect();
 	}
 
-	public async Task<IObservable<T?>> GetMessagesForTopic<T>(string topic)
+	public async Task<IObservable<T?>> GetMessagesForTopic<T>(params string?[] topicParts)
 	{
+		var topic = topicParts.ToPath();
+
 		await SubscribeToTopic(topic);
 
 		return _messages

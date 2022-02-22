@@ -1,8 +1,9 @@
 ---
 HomeAutomations.Apps.WallPanel.WallPanelMonitorConfig:
+  OffRange:
+    Min: 60
+    Max: 80
   Panels:
     - Name: Hallway
       BaseTopic: wallpanel/hallway
-      PlugEntity:
-      MinCharge: 60
-      MaxCharge: 80
+      Switch: switch.sternen_lichterkette_socket_1
