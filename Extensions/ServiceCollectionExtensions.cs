@@ -2,6 +2,7 @@
 using System.Reflection;
 using HomeAssistant.Automations.Services;
 using HomeAutomations.Apps.Scales.KitchenScale;
+using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 using HomeAutomations.Apps.Vacuum;
 using HomeAutomations.Attributes;
 using HomeAutomations.Models;
@@ -24,6 +25,10 @@ public static class ServiceCollectionExtensions
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<>))
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>))
 			.AddAutomationDependencies(assembly, config);
+
+		// DEBUG
+		var service = new FddbService();
+		service.GetProductsAsync("Apfel");
 
 		return services;
 	}
