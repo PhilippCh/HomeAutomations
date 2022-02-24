@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomations.Apps.WallPanel;
 
-[Focus]
 public class WallPanelMonitor : BaseAutomation<WallPanelMonitor, WallPanelMonitorConfig>
 {
 	private readonly IEnumerable<WallPanel> _panels;

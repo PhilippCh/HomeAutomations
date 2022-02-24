@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HomeAutomations.Models;
+using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.KitchenLight;
 
@@ -12,7 +13,7 @@ public record BrightnessConfig
 
 public record KitchenLightConfig : Config
 {
-	public string LightEntityId { get; init; }
+	public LightEntity LightEntity { get; init; }
 	public int MinIlluminanceLux { get; init; }
 	public string CombinedSensorTopic { get; init; }
 	public string ManualTriggerSensorTopic { get; init; }
