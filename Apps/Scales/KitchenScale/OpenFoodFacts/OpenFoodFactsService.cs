@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace HomeAssistant.Automations.Apps.Scales.KitchenScale;
+namespace HomeAutomations.Apps.Scales.KitchenScale.OpenFoodFacts;
 
 public class Nutriments
 {
@@ -40,11 +40,22 @@ public class FoodCollection
 	public IEnumerable<FoodProduct>? Products { get; set; }
 }
 
-public class OpenFoodFactsService
+public class OpenFoodFactsService : INutritionInfoService
 {
 	private const string BaseUrl = "https://de.openfoodfacts.org/cgi/search.pl";
 
-	public async Task<FoodCollection?> GetProductsAsync(string searchTerms)
+	public async Task<IEnumerable<NutritionInfo>> GetNutritionInfoAsync(string searchTerm)
+	{
+		return (await GetProductsAsync(searchTerm)).Products.Select(p => new NutritionInfo
+		{
+			Id = p.Id,
+			Name = p.Name,
+			Calories = p.Nutriments.EnergyKcal100g,
+			NutriscoreGrade = p.NutriscoreGrade
+		});
+	}
+
+	private async Task<FoodCollection?> GetProductsAsync(string searchTerms)
 	{
 		var url = GetUrl(
 			new[]

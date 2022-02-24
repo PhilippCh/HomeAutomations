@@ -2,20 +2,27 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NScrape;
 using NScrape.Forms;
 
 namespace HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 
-public class FddbService
+public class FddbService : INutritionInfoService
 {
 	private const string BaseUrl = "https://fddb.mobi";
 
-	public async void GetProductsAsync(string searchTerm)
+	public async Task<IEnumerable<NutritionInfo>> GetNutritionInfoAsync(string searchTerm)
 	{
 		var results = GetSearchResults(searchTerm);
-		var nutrition = results.Select(GetNutritionInfo);
+		var nutritionInfoTasks = results.Select(GetNutritionInfo).ToList();
+
+		await Task.WhenAll(nutritionInfoTasks);
+
+		var nutritionInfo = nutritionInfoTasks.Select(t => t.Result);
+
+		return nutritionInfo;
 	}
 
 	private IEnumerable<FddbSearchResult> GetSearchResults(string searchTerm)
@@ -44,6 +51,6 @@ public class FddbService
 
 		var scraper = new FddbProductScraper(html);
 
-		return scraper.GetNutritionInfo();
+		return scraper.GetNutritionInfo(product.Name);
 	}
 }

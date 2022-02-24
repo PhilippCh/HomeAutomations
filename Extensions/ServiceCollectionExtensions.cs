@@ -26,10 +26,6 @@ public static class ServiceCollectionExtensions
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>))
 			.AddAutomationDependencies(assembly, config);
 
-		// DEBUG
-		var service = new FddbService();
-		service.GetProductsAsync("Apfel");
-
 		return services;
 	}
 

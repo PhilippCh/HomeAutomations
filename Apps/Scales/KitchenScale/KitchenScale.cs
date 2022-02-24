@@ -1,7 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Apps.Scales.KitchenScale;
+using HomeAutomations.Apps.Scales.KitchenScale.OpenFoodFacts;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using Microsoft.Extensions.Configuration;
@@ -16,26 +17,27 @@ record KitchenScaleAttributes
 	public string unit { get; init; }
 }
 
+[Focus]
 public class KitchenScale : BaseAutomation<KitchenScale>
 {
 	private Entity<KitchenScaleAttributes>? _kitchenScaleSensor;
 	private InputTextEntity? _nutriscoreInputText;
 	private InputNumberEntity? _caloriesInputNumber;
 	private InputSelectEntity? _selectedProductInputSelect;
-	private FoodCollection? _currentProducts;
-	private FoodProduct? _currentProduct;
+	private IEnumerable<NutritionInfo>? _currentProducts;
+	private NutritionInfo? _currentProduct;
 
-	private readonly OpenFoodFactsService _openFoodFactsService;
+	private readonly INutritionInfoService _nutritionInfoService;
 
-	public KitchenScale(BaseAutomationDependencyAggregate<KitchenScale> aggregate, OpenFoodFactsService openFoodFactsService)
+	public KitchenScale(BaseAutomationDependencyAggregate<KitchenScale> aggregate, INutritionInfoService nutritionInfoService)
 		: base(aggregate)
 	{
-		_openFoodFactsService = openFoodFactsService;
+		_nutritionInfoService = nutritionInfoService;
 	}
 
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
-			.AddTransient<OpenFoodFactsService>();
+			.AddTransient<INutritionInfoService, Fddb.FddbService>();
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
@@ -61,9 +63,9 @@ public class KitchenScale : BaseAutomation<KitchenScale>
 			return;
 		}
 
-		_currentProducts = await _openFoodFactsService.GetProductsAsync(searchTerm);
+		_currentProducts = await _nutritionInfoService.GetNutritionInfoAsync(searchTerm);
 
-		var displayNames = (_currentProducts?.Products?.Select(p => $"{p.Name} (#{p.Id})") ?? Enumerable.Empty<string>()).ToList();
+		var displayNames = (_currentProducts?.Select(p => $"{p.Name} (#{p.Id})") ?? Enumerable.Empty<string>()).ToList();
 		displayNames.Insert(0, displayNames.Count != 0 ? "Bitte auswählen ..." : "Keine Sucheregebnisse.");
 
 		_selectedProductInputSelect.SetOptions(displayNames);
@@ -71,7 +73,7 @@ public class KitchenScale : BaseAutomation<KitchenScale>
 
 	private void OnSelectedProductChange(string? selectedProduct)
 	{
-		var parts = _selectedProductInputSelect.State?.Split("(#") ?? Array.Empty<string>();
+		var parts = selectedProduct?.Split("(#") ?? Array.Empty<string>();
 
 		if (parts.Length < 2)
 		{
@@ -79,7 +81,7 @@ public class KitchenScale : BaseAutomation<KitchenScale>
 		}
 
 		var productId = parts[1].Remove(parts[1].Length - 1);
-		_currentProduct = _currentProducts?.Products?.FirstOrDefault(p => p.Id == productId);
+		_currentProduct = _currentProducts?.FirstOrDefault(p => p.Id == productId);
 		_nutriscoreInputText.SetValue(_currentProduct?.NutriscoreGrade ?? "Not available");
 	}
 
@@ -90,7 +92,7 @@ public class KitchenScale : BaseAutomation<KitchenScale>
 			return;
 		}
 
-		var calories = _currentProduct.Nutriments.EnergyKcal100g * (weight / 100);
+		var calories = _currentProduct.Calories * (weight / 100);
 		_caloriesInputNumber.SetValue(calories ?? 0);
 	}
 
