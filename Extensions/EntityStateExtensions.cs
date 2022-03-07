@@ -1,9 +1,17 @@
 ﻿using NetDaemon.HassModel.Entities;
 
-namespace HomeAssistant.Automations.Extensions
+namespace HomeAutomations.Extensions
 {
     public static class EntityStateExtensions
     {
-        public static bool? AsBoolean(this EntityState entityState) => entityState.State != null && bool.Parse(entityState.State);
+        public static bool? AsBoolean(this EntityState? entityState)
+        {
+	        if (bool.TryParse(entityState?.State, out var result))
+	        {
+		        return result;
+	        }
+
+	        return entityState?.State == "on";
+        }
     }
 }

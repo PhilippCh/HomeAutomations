@@ -1,0 +1,7 @@
+---
+HomeAutomations.Apps.ComputerSpeakers.ComputerSpeakersConfig:
+  Speakers:
+    - Switch: switch.lautsprecher_pup_socket_1
+      ComputerStateSensors:
+        - binary_sensor.laptopphilipp
+        - binary_sensor.desktopphilipp
