@@ -10,7 +10,6 @@ namespace HomeAutomations.Apps.ComputerSpeakers;
 [Focus]
 public class ComputerSpeakers : BaseAutomation<ComputerSpeakers, ComputerSpeakersConfig>
 {
-
 	public ComputerSpeakers(MqttService mqttService, BaseAutomationDependencyAggregate<ComputerSpeakers, ComputerSpeakersConfig> aggregate)
 		: base(aggregate)
 	{
@@ -20,7 +19,7 @@ public class ComputerSpeakers : BaseAutomation<ComputerSpeakers, ComputerSpeaker
 	{
 		foreach (var speakerConfig in Config.Speakers)
 		{
-			speakerConfig.ComputerStateSensors.Select(e => e.StateChanges().Select(s => s.New.AsBoolean()).StartWith(false))
+			speakerConfig.ComputerStateSensors.Select(e => e.StateChanges().Select(s => s.New.AsBoolean()).StartWith(e.EntityState.AsBoolean()))
 				.CombineLatest()
 				.Select(r => r.Any(s => s ?? false))
 				.Subscribe(s => speakerConfig.Switch.SetState(s));
