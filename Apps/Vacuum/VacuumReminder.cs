@@ -4,6 +4,7 @@ using HomeAssistant.Automations.Apps.Vacuum;
 using HomeAssistant.Automations.Apps.Vacuum.StateMachine;
 using HomeAssistant.Automations.Extensions;
 using HomeAutomations.Apps.Vacuum.StateMachine;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using Microsoft.Extensions.Configuration;

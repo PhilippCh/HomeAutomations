@@ -17,7 +17,6 @@ record KitchenScaleAttributes
 	public string unit { get; init; }
 }
 
-[Focus]
 public class KitchenScale : BaseAutomation<KitchenScale>
 {
 	private Entity<KitchenScaleAttributes>? _kitchenScaleSensor;

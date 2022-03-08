@@ -1,10 +1,8 @@
-﻿using System;
-using System.Reactive.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Cronos;
 
-namespace HomeAssistant.Automations.Extensions
+namespace HomeAutomations.Extensions
 {
     public static class CronjobExtensions
     {
@@ -19,12 +17,12 @@ namespace HomeAssistant.Automations.Extensions
                 await Task.CompletedTask;
             }, runOnStartup, cancellationToken);
         }
-        
+
         public static async Task ScheduleJob(string cronSchedule, Func<Task> action, bool runOnStartup = false, CancellationToken cancellationToken = default)
         {
             var expression = CronExpression.Parse(cronSchedule);
             var next = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local);
-            
+
             if (next == null)
             {
                 await Task.CompletedTask;
@@ -34,7 +32,7 @@ namespace HomeAssistant.Automations.Extensions
             {
                 await action();
             }
-            
+
             while (!cancellationToken.IsCancellationRequested)
             {
                 while (next!.Value - DateTimeOffset.Now > MinTimeSpan && !cancellationToken.IsCancellationRequested)
@@ -46,7 +44,7 @@ namespace HomeAssistant.Automations.Extensions
                 {
                     await action();
                 }
-                
+
                 next = expression.GetNextOccurrence(DateTimeOffset.Now + MinTimeSpan, TimeZoneInfo.Local);
             }
         }

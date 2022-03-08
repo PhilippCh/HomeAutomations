@@ -1,15 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace HomeAssistant.Automations.Models;
+namespace HomeAutomations.Models;
 
-public class Notification
+public record Notification
 {
-	public string Service { get; set; } = "notify";
-	public string Title { get; set; }
-	public string Template { get; set; }
-	public string Tag { get; set; }
-	public IEnumerable<NotificationAction> Actions { get; set; }
+	public string? Service { get; init; } = "notify";
+	public string? Title { get; init; }
+	public string? Template { get; init; }
+	public string? Tag { get; init; }
+	public IEnumerable<NotificationAction>? Actions { get; init; }
+
+	public Notification() {}
+
+	public Notification(Notification template, object[]? templateArgs = null)
+	{
+		Service = template.Service;
+		Title = template.Title;
+		Template = template.Template;
+		Tag = template.Tag;
+		Actions = JsonSerializer.Deserialize<IEnumerable<NotificationAction>>(JsonSerializer.Serialize(template.Actions));
+
+		if (templateArgs != null)
+		{
+			Template = string.Format(Template ?? string.Empty, templateArgs);
+		}
+	}
 }
 
 public class NotificationAction

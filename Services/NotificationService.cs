@@ -1,11 +1,13 @@
 ﻿using System.Reactive.Subjects;
 using HomeAssistant.Automations.Constants;
 using HomeAssistant.Automations.Models;
+using HomeAutomations.Models;
 
 namespace HomeAutomations.Services;
 
 public class NotificationService
 {
+	[Obsolete("Remove and use context.Events directly for different event types.")]
 	public IObservable<string> NotificationActionFired => _notificationActionFired;
 
 	private readonly IHaContext _context;

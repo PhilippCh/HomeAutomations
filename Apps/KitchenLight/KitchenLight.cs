@@ -8,7 +8,7 @@ using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 using NetDaemon.HassModel.Entities;
-using Notification = HomeAssistant.Automations.Models.Notification;
+using Notification = HomeAutomations.Models.Notification;
 
 namespace HomeAutomations.Apps.KitchenLight;
 

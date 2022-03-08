@@ -1,0 +1,12 @@
+﻿---
+HomeAutomations.Apps.KratomCounter.KratomCounterConfig:
+  CounterTopic: zigbee2mqtt/0x00158d000678ed45
+  Counter: input_number.kratom_intake_daily
+  ResetCrontab: 0 0 * * *
+  EventName: kratom_event
+  Notification:
+    Tag: kratom
+    Title: Kratom-Übersicht
+    Template: "Dein heutiger Verbrauch: {0} Tl"
+    Service: mobile_app_iphone_philipp
+    Actions: [ ]

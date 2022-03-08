@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace HomeAssistant.Automations.Models.DeviceMessages;
+namespace HomeAutomations.Models.DeviceMessages;
 
 public abstract class ZigbeeDeviceMessage
 {

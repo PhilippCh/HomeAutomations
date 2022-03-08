@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using HomeAutomations.Models.DeviceMessages;
 
 namespace HomeAssistant.Automations.Models.DeviceMessages;
 
