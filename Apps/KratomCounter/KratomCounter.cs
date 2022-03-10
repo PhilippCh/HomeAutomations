@@ -41,6 +41,7 @@ public class KratomCounter : BaseAutomation<KratomCounter, KratomCounterConfig>
 
 	private void ResetCounter()
 	{
+		Logger.Information("Resetting daily kratom counter.");
 		Config.Counter.SetValue(0);
 	}
 
