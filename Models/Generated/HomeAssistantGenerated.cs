@@ -132,6 +132,8 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity Desktopphilipp => new(_haContext, "binary_sensor.desktopphilipp");
 		///<summary>Fantenpad Focus</summary>
 		public BinarySensorEntity FantenpadFocus => new(_haContext, "binary_sensor.fantenpad_focus");
+		///<summary>🐘 FantenPhone 🐘 Focus</summary>
+		public BinarySensorEntity FantenphoneFocus => new(_haContext, "binary_sensor.fantenphone_focus");
 		///<summary>Fantenrüssel Mop Attached</summary>
 		public BinarySensorEntity FantenrusselMopAttached => new(_haContext, "binary_sensor.fantenrussel_mop_attached");
 		///<summary>Fantenrüssel Water Box Attached</summary>
@@ -210,14 +212,48 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Abfallleerungen</summary>
 		public CalendarEntity Abfallleerungen => new(_haContext, "calendar.abfallleerungen");
+		///<summary> Aktien 💰</summary>
+		public CalendarEntity Aktien => new(_haContext, "calendar.aktien");
+		///<summary>Aufgaben</summary>
+		public CalendarEntity Aufgaben => new(_haContext, "calendar.aufgaben");
 		///<summary>Birthdays</summary>
 		public CalendarEntity Birthdays => new(_haContext, "calendar.birthdays");
 		///<summary>christoph680@gmx.de</summary>
 		public CalendarEntity Christoph680GmxDe => new(_haContext, "calendar.christoph680_gmx_de");
+		///<summary> Essen holen 🍱</summary>
+		public CalendarEntity EssenHolen => new(_haContext, "calendar.essen_holen");
 		///<summary>Family</summary>
 		public CalendarEntity Family => new(_haContext, "calendar.family");
 		///<summary>Feiertage in Deutschland</summary>
 		public CalendarEntity FeiertageInDeutschland => new(_haContext, "calendar.feiertage_in_deutschland");
+		///<summary>Game ideas</summary>
+		public CalendarEntity GameIdeas => new(_haContext, "calendar.game_ideas");
+		///<summary>Geschenke 🎁</summary>
+		public CalendarEntity Geschenke => new(_haContext, "calendar.geschenke");
+		///<summary>Haushaltstag</summary>
+		public CalendarEntity Haushaltstag => new(_haContext, "calendar.haushaltstag");
+		///<summary>Homelab</summary>
+		public CalendarEntity Homelab => new(_haContext, "calendar.homelab");
+		///<summary>National Park Chocolate</summary>
+		public CalendarEntity NationalParkChocolate => new(_haContext, "calendar.national_park_chocolate");
+		///<summary> Rundreise Neuseeland 🇳🇿</summary>
+		public CalendarEntity RundreiseNeuseeland => new(_haContext, "calendar.rundreise_neuseeland");
+		///<summary>Secret Santa</summary>
+		public CalendarEntity SecretSanta => new(_haContext, "calendar.secret_santa");
+		///<summary> The Millionaire’s Bucket List 💸</summary>
+		public CalendarEntity TheMillionairesBucketList => new(_haContext, "calendar.the_millionaires_bucket_list");
+		///<summary>Unser Haus 🏠</summary>
+		public CalendarEntity UnserHaus => new(_haContext, "calendar.unser_haus");
+		///<summary> Urlaub Ibiza 🇪🇸</summary>
+		public CalendarEntity UrlaubIbiza => new(_haContext, "calendar.urlaub_ibiza");
+		///<summary> Urlaub Paris 🇫🇷</summary>
+		public CalendarEntity UrlaubParis => new(_haContext, "calendar.urlaub_paris");
+		///<summary> Urlaub Schottland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</summary>
+		public CalendarEntity UrlaubSchottland => new(_haContext, "calendar.urlaub_schottland");
+		///<summary>Weihnachtsgeschenke</summary>
+		public CalendarEntity Weihnachtsgeschenke => new(_haContext, "calendar.weihnachtsgeschenke");
+		///<summary>Weihnachtswünsche</summary>
+		public CalendarEntity Weihnachtswunsche => new(_haContext, "calendar.weihnachtswunsche");
 	}
 
 	public class CameraEntities
@@ -276,20 +312,18 @@ namespace HomeAutomations.Models.Generated
 		public DeviceTrackerEntity E4a4fc2deB7f541a0A8a84f5120fe28cdTracker => new(_haContext, "device_tracker.4a4fc2de_b7f5_41a0_a8a8_4f5120fe28cd_tracker");
 		///<summary>room-assistant - iPhone Fabienne Tracker</summary>
 		public DeviceTrackerEntity E8b09c51596e045afAda58de99a04535cTracker => new(_haContext, "device_tracker.8b09c515_96e0_45af_ada5_8de99a04535c_tracker");
-		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀</summary>
-		public DeviceTrackerEntity BuyHodlGme => new(_haContext, "device_tracker.buy_hodl_gme");
 		///<summary>🐘 FantenPhone 🐘</summary>
 		public DeviceTrackerEntity Fabienne => new(_haContext, "device_tracker.fabienne");
 		///<summary>Fantenpad</summary>
 		public DeviceTrackerEntity IpadVonFabienne => new(_haContext, "device_tracker.ipad_von_fabienne");
+		///<summary>Philipp</summary>
+		public DeviceTrackerEntity IphonePhilipp => new(_haContext, "device_tracker.iphone_philipp");
+		///<summary>iPhone Philipp</summary>
+		public DeviceTrackerEntity IphonePhilipp3 => new(_haContext, "device_tracker.iphone_philipp_3");
 		///<summary>philipp</summary>
 		public DeviceTrackerEntity Philipp2b775363D7b348719abc6f36aa202757 => new(_haContext, "device_tracker.philipp_2b775363_d7b3_4871_9abc_6f36aa202757");
-		///<summary>Philipp’s Apple Watch</summary>
-		public DeviceTrackerEntity PhilippsAppleWatch => new(_haContext, "device_tracker.philipps_apple_watch");
 		///<summary>Philipp’s iPhone</summary>
 		public DeviceTrackerEntity PhilippsIphone2 => new(_haContext, "device_tracker.philipps_iphone_2");
-		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀</summary>
-		public DeviceTrackerEntity PhilippsIphone3 => new(_haContext, "device_tracker.philipps_iphone_3");
 	}
 
 	public class GroupEntities
@@ -314,16 +348,20 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Barcode scanner connected?</summary>
 		public InputBooleanEntity BarcodeScannerConnected => new(_haContext, "input_boolean.barcode_scanner_connected");
-		///<summary>dev_netdaemon_home_automations_apps_wall_panel_wall_panel_monitor</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsWallPanelWallPanelMonitor => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_wall_panel_wall_panel_monitor");
 		///<summary>Meditation active?</summary>
 		public InputBooleanEntity MeditationActive => new(_haContext, "input_boolean.meditation_active");
 		///<summary>netdaemon_home_automations_apps_calorie_counter_calorie_counter</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsCalorieCounterCalorieCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_calorie_counter_calorie_counter");
+		///<summary>netdaemon_home_automations_apps_computer_speakers_computer_speakers</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsComputerSpeakersComputerSpeakers => new(_haContext, "input_boolean.netdaemon_home_automations_apps_computer_speakers_computer_speakers");
 		///<summary>netdaemon_home_automations_apps_kitchen_light_kitchen_light</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsKitchenLightKitchenLight => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kitchen_light_kitchen_light");
+		///<summary>netdaemon_home_automations_apps_kratom_counter_kratom_counter</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsKratomCounterKratomCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kratom_counter_kratom_counter");
 		///<summary>netdaemon_home_automations_apps_moonlight_moonlight_game_launcher</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsMoonlightMoonlightGameLauncher => new(_haContext, "input_boolean.netdaemon_home_automations_apps_moonlight_moonlight_game_launcher");
+		///<summary>netdaemon_home_automations_apps_nighttime_switch_nighttime_switch</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsNighttimeSwitchNighttimeSwitch => new(_haContext, "input_boolean.netdaemon_home_automations_apps_nighttime_switch_nighttime_switch");
 		///<summary>netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsScalesKitchenScaleKitchenScale => new(_haContext, "input_boolean.netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale");
 		///<summary>netdaemon_home_automations_apps_trash_reminder_trash_reminder</summary>
@@ -356,12 +394,16 @@ namespace HomeAutomations.Models.Generated
 		public InputNumberEntity KitchenScaleCalories => new(_haContext, "input_number.kitchen_scale_calories");
 		///<summary>Daily kratom intake</summary>
 		public InputNumberEntity KratomIntakeDaily => new(_haContext, "input_number.kratom_intake_daily");
+		///<summary>Maximum daily kratom intake</summary>
+		public InputNumberEntity MaxKratomIntakeDaily => new(_haContext, "input_number.max_kratom_intake_daily");
 		///<summary>Rasuren bis zum Klingenwechsel</summary>
 		public InputNumberEntity MaxShavesBeforeChange => new(_haContext, "input_number.max_shaves_before_change");
 		///<summary>Meditation timer (minutes)</summary>
 		public InputNumberEntity MeditationTimerMinutes => new(_haContext, "input_number.meditation_timer_minutes");
 		///<summary>Bewegungsmelder Aktivierungsdauer (Sekunden)</summary>
 		public InputNumberEntity MotionSensorIdleSecs => new(_haContext, "input_number.motion_sensor_idle_secs");
+		///<summary>Night</summary>
+		public InputNumberEntity Nighttime => new(_haContext, "input_number.nighttime");
 	}
 
 	public class InputSelectEntities
@@ -510,8 +552,6 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity E4a4fc2deB7f541a0A8a84f5120fe28cdRoomPresence => new(_haContext, "sensor.4a4fc2de_b7f5_41a0_a8a8_4f5120fe28cd_room_presence");
 		///<summary>room-assistant - iPhone Fabienne Room Presence</summary>
 		public SensorEntity E8b09c51596e045afAda58de99a04535cRoomPresence => new(_haContext, "sensor.8b09c515_96e0_45af_ada5_8de99a04535c_room_presence");
-		///<summary>Barcode scanner connected</summary>
-		public SensorEntity BarcodeScannerConnected => new(_haContext, "sensor.barcode_scanner_connected");
 		///<summary>Base calories for fabienne</summary>
 		public SensorEntity BaseCaloriesForFabienne => new(_haContext, "sensor.base_calories_for_fabienne");
 		///<summary>Base calories for philipp</summary>
@@ -576,6 +616,41 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity IcloudPhotosDownloaderFabienne => new(_haContext, "sensor.icloud_photos_downloader_fabienne");
 		///<summary>icloud_photos_downloader_philipp</summary>
 		public SensorEntity IcloudPhotosDownloaderPhilipp => new(_haContext, "sensor.icloud_photos_downloader_philipp");
+		public SensorEntity Icloud3EventLog => new(_haContext, "sensor.icloud3_event_log");
+		///<summary>Philipp</summary>
+		public SensorEntity IphonePhilippBadge => new(_haContext, "sensor.iphone_philipp_badge");
+		///<summary>iPhone-Philipp Direction</summary>
+		public SensorEntity IphonePhilippDirOfTravel => new(_haContext, "sensor.iphone_philipp_dir_of_travel");
+		///<summary>iPhone-Philipp GPS Accuracy</summary>
+		public SensorEntity IphonePhilippGpsAccuracy => new(_haContext, "sensor.iphone_philipp_gps_accuracy");
+		///<summary>iPhone-Philipp Info</summary>
+		public SensorEntity IphonePhilippInfo => new(_haContext, "sensor.iphone_philipp_info");
+		///<summary>iPhone-Philipp Interval</summary>
+		public SensorEntity IphonePhilippInterval => new(_haContext, "sensor.iphone_philipp_interval");
+		///<summary>iPhone-Philipp Last Located</summary>
+		public SensorEntity IphonePhilippLastLocated => new(_haContext, "sensor.iphone_philipp_last_located");
+		///<summary>iPhone-Philipp Last Update</summary>
+		public SensorEntity IphonePhilippLastUpdate => new(_haContext, "sensor.iphone_philipp_last_update");
+		///<summary>iPhone-Philipp Last Zone</summary>
+		public SensorEntity IphonePhilippLastZone => new(_haContext, "sensor.iphone_philipp_last_zone");
+		///<summary>iPhone-Philipp  Last Zone Fname</summary>
+		public SensorEntity IphonePhilippLastZoneFname => new(_haContext, "sensor.iphone_philipp_last_zone_fname");
+		///<summary>iPhone-Philipp Next Update</summary>
+		public SensorEntity IphonePhilippNextUpdate => new(_haContext, "sensor.iphone_philipp_next_update");
+		///<summary>iPhone-Philipp Poll Count</summary>
+		public SensorEntity IphonePhilippPollCount => new(_haContext, "sensor.iphone_philipp_poll_count");
+		///<summary>iPhone-Philipp Trigger</summary>
+		public SensorEntity IphonePhilippTrigger => new(_haContext, "sensor.iphone_philipp_trigger");
+		///<summary>iPhone-Philipp Zone</summary>
+		public SensorEntity IphonePhilippZone => new(_haContext, "sensor.iphone_philipp_zone");
+		///<summary>iPhone-Philipp  Zone Fname</summary>
+		public SensorEntity IphonePhilippZoneFname => new(_haContext, "sensor.iphone_philipp_zone_fname");
+		///<summary>iPhone-Philipp  Zone Name</summary>
+		public SensorEntity IphonePhilippZoneName => new(_haContext, "sensor.iphone_philipp_zone_name");
+		///<summary>iPhone-Philipp Zone Timestamp</summary>
+		public SensorEntity IphonePhilippZoneTimestamp => new(_haContext, "sensor.iphone_philipp_zone_timestamp");
+		///<summary>iPhone-Philipp  Zone Title</summary>
+		public SensorEntity IphonePhilippZoneTitle => new(_haContext, "sensor.iphone_philipp_zone_title");
 		///<summary>Kitchen scale</summary>
 		public SensorEntity KitchenScale => new(_haContext, "sensor.kitchen_scale");
 		///<summary>netdaemon_status</summary>
@@ -592,6 +667,8 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity PupsstationDrive2Status => new(_haContext, "sensor.pupsstation_drive_2_status");
 		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationVolume1Status => new(_haContext, "sensor.pupsstation_volume_1_status");
+		///<summary>Ist heute Haushaltstag?</summary>
+		public SensorEntity ShowHouseholdDayTodo => new(_haContext, "sensor.show_household_day_todo");
 		///<summary>Thermostat Arbeitszimmer</summary>
 		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
 		///<summary>Thermostat Badezimmer</summary>
@@ -650,16 +727,12 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity E0x54ef441000035f82Linkquality => new(_haContext, "sensor.0x54ef441000035f82_linkquality");
 		///<summary>AMC Entertainment Holdings Inc</summary>
 		public NumericSensorEntity AmcEntertainmentHoldingsInc => new(_haContext, "sensor.amc_entertainment_holdings_inc");
-		///<summary>Apple Watch von Fabienne battery state</summary>
-		public NumericSensorEntity AppleWatchVonFabienneBatteryState => new(_haContext, "sensor.apple_watch_von_fabienne_battery_state");
 		///<summary>BlackBerry Ltd</summary>
 		public NumericSensorEntity BlackberryLtd => new(_haContext, "sensor.blackberry_ltd");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Average Active Pace</summary>
 		public NumericSensorEntity BuyHodlGmeAverageActivePace => new(_haContext, "sensor.buy_hodl_gme_average_active_pace");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Battery Level</summary>
 		public NumericSensorEntity BuyHodlGmeBatteryLevel => new(_haContext, "sensor.buy_hodl_gme_battery_level");
-		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 battery state</summary>
-		public NumericSensorEntity BuyHodlGmeBatteryState => new(_haContext, "sensor.buy_hodl_gme_battery_state");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Distance</summary>
 		public NumericSensorEntity BuyHodlGmeDistance => new(_haContext, "sensor.buy_hodl_gme_distance");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Floors Ascended</summary>
@@ -674,16 +747,12 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity CoreDax => new(_haContext, "sensor.core_dax");
 		///<summary>Fantenpad Battery Level</summary>
 		public NumericSensorEntity FantenpadBatteryLevel => new(_haContext, "sensor.fantenpad_battery_level");
-		///<summary>Fantenpad battery state</summary>
-		public NumericSensorEntity FantenpadBatteryState2 => new(_haContext, "sensor.fantenpad_battery_state_2");
 		///<summary>Fantenpad Storage</summary>
 		public NumericSensorEntity FantenpadStorage => new(_haContext, "sensor.fantenpad_storage");
 		///<summary>🐘 FantenPhone 🐘 Average Active Pace</summary>
 		public NumericSensorEntity FantenphoneAverageActivePace => new(_haContext, "sensor.fantenphone_average_active_pace");
 		///<summary>🐘 FantenPhone 🐘 Battery Level</summary>
 		public NumericSensorEntity FantenphoneBatteryLevel => new(_haContext, "sensor.fantenphone_battery_level");
-		///<summary>🐘 FantenPhone 🐘 battery state</summary>
-		public NumericSensorEntity FantenphoneBatteryState2 => new(_haContext, "sensor.fantenphone_battery_state_2");
 		///<summary>🐘 FantenPhone 🐘 Distance</summary>
 		public NumericSensorEntity FantenphoneDistance => new(_haContext, "sensor.fantenphone_distance");
 		///<summary>🐘 FantenPhone 🐘 Floors Ascended</summary>
@@ -736,18 +805,6 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity GlancesRamUsed => new(_haContext, "sensor.glances_ram_used");
 		///<summary>Glances  RAM used percent</summary>
 		public NumericSensorEntity GlancesRamUsedPercent => new(_haContext, "sensor.glances_ram_used_percent");
-		///<summary>Glances /run/containerd/runc/k8s.io/597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd/runc.FECEfF free</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIo597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffdRuncFeceffFree => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd_runc_feceff_free");
-		///<summary>Glances /run/containerd/runc/k8s.io/597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd/runc.FECEfF used</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIo597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffdRuncFeceffUsed => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd_runc_feceff_used");
-		///<summary>Glances /run/containerd/runc/k8s.io/597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd/runc.FECEfF used percent</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIo597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffdRuncFeceffUsedPercent => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_597ab5f9106dd9b17e218178c69425b4ac1041e03757dbecf6821d6f19afbffd_runc_feceff_used_percent");
-		///<summary>Glances /run/containerd/runc/k8s.io/86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c/runc.gmcHaE free</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIo86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97cRuncGmchaeFree => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c_runc_gmchae_free");
-		///<summary>Glances /run/containerd/runc/k8s.io/86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c/runc.gmcHaE used</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIo86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97cRuncGmchaeUsed => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c_runc_gmchae_used");
-		///<summary>Glances /run/containerd/runc/k8s.io/86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c/runc.gmcHaE used percent</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIo86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97cRuncGmchaeUsedPercent => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_86d0b71ba34961234e5051f779dce240648a24096b67f9be7f2d020f03a6b97c_runc_gmchae_used_percent");
 		///<summary>Glances  Running</summary>
 		public NumericSensorEntity GlancesRunning => new(_haContext, "sensor.glances_running");
 		///<summary>Glances  Sleeping</summary>
@@ -772,78 +829,12 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity GlancesVarLibKubeletPods007aa4c82a8b49c8A65eB6ed355f1b5aVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_007aa4c8_2a8b_49c8_a65e_b6ed355f1b5a_volume_subpaths_config_mariadb_1_used");
 		///<summary>Glances /var/lib/kubelet/pods/007aa4c8-2a8b-49c8-a65e-b6ed355f1b5a/volume-subpaths/config/mariadb/1 used percent</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods007aa4c82a8b49c8A65eB6ed355f1b5aVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_007aa4c8_2a8b_49c8_a65e_b6ed355f1b5a_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/04b77e41-a738-4e78-bd65-160022a13dba/volume-subpaths/mosquitto-config/mosquitto/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods04b77e41A7384e78Bd65160022a13dbaVolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_04b77e41_a738_4e78_bd65_160022a13dba_volume_subpaths_mosquitto_config_mosquitto_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/04b77e41-a738-4e78-bd65-160022a13dba/volume-subpaths/mosquitto-config/mosquitto/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods04b77e41A7384e78Bd65160022a13dbaVolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_04b77e41_a738_4e78_bd65_160022a13dba_volume_subpaths_mosquitto_config_mosquitto_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/04b77e41-a738-4e78-bd65-160022a13dba/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods04b77e41A7384e78Bd65160022a13dbaVolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_04b77e41_a738_4e78_bd65_160022a13dba_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
 		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 free</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_free");
 		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 used</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_used");
 		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/2e2aa072-12a2-4277-b113-868eb10fbf2c/volume-subpaths/config/wg-access-server/2 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods2e2aa07212a24277B113868eb10fbf2cVolumeSubpathsConfigWgAccessServer2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2e2aa072_12a2_4277_b113_868eb10fbf2c_volume_subpaths_config_wg_access_server_2_free");
-		///<summary>Glances /var/lib/kubelet/pods/2e2aa072-12a2-4277-b113-868eb10fbf2c/volume-subpaths/config/wg-access-server/2 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods2e2aa07212a24277B113868eb10fbf2cVolumeSubpathsConfigWgAccessServer2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2e2aa072_12a2_4277_b113_868eb10fbf2c_volume_subpaths_config_wg_access_server_2_used");
-		///<summary>Glances /var/lib/kubelet/pods/2e2aa072-12a2-4277-b113-868eb10fbf2c/volume-subpaths/config/wg-access-server/2 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods2e2aa07212a24277B113868eb10fbf2cVolumeSubpathsConfigWgAccessServer2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2e2aa072_12a2_4277_b113_868eb10fbf2c_volume_subpaths_config_wg_access_server_2_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/342f66bf-9ab4-4881-baf5-f6e0e59eb645/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods342f66bf9ab44881Baf5F6e0e59eb645VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_342f66bf_9ab4_4881_baf5_f6e0e59eb645_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/342f66bf-9ab4-4881-baf5-f6e0e59eb645/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods342f66bf9ab44881Baf5F6e0e59eb645VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_342f66bf_9ab4_4881_baf5_f6e0e59eb645_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/342f66bf-9ab4-4881-baf5-f6e0e59eb645/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods342f66bf9ab44881Baf5F6e0e59eb645VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_342f66bf_9ab4_4881_baf5_f6e0e59eb645_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/398e4258-495a-4a4f-82bd-9fec6d33d680/volume-subpaths/config/wg-access-server/2 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods398e4258495a4a4f82bd9fec6d33d680VolumeSubpathsConfigWgAccessServer2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_398e4258_495a_4a4f_82bd_9fec6d33d680_volume_subpaths_config_wg_access_server_2_free");
-		///<summary>Glances /var/lib/kubelet/pods/398e4258-495a-4a4f-82bd-9fec6d33d680/volume-subpaths/config/wg-access-server/2 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods398e4258495a4a4f82bd9fec6d33d680VolumeSubpathsConfigWgAccessServer2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_398e4258_495a_4a4f_82bd_9fec6d33d680_volume_subpaths_config_wg_access_server_2_used");
-		///<summary>Glances /var/lib/kubelet/pods/398e4258-495a-4a4f-82bd-9fec6d33d680/volume-subpaths/config/wg-access-server/2 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods398e4258495a4a4f82bd9fec6d33d680VolumeSubpathsConfigWgAccessServer2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_398e4258_495a_4a4f_82bd_9fec6d33d680_volume_subpaths_config_wg_access_server_2_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/62ec3bb3-ea40-4faf-b4b2-35f55ed48f7e/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods62ec3bb3Ea404fafB4b235f55ed48f7eVolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_62ec3bb3_ea40_4faf_b4b2_35f55ed48f7e_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/62ec3bb3-ea40-4faf-b4b2-35f55ed48f7e/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods62ec3bb3Ea404fafB4b235f55ed48f7eVolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_62ec3bb3_ea40_4faf_b4b2_35f55ed48f7e_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/62ec3bb3-ea40-4faf-b4b2-35f55ed48f7e/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods62ec3bb3Ea404fafB4b235f55ed48f7eVolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_62ec3bb3_ea40_4faf_b4b2_35f55ed48f7e_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/b15d5229-96da-4d86-942c-7f6b686797ce/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsB15d522996da4d86942c7f6b686797ceVolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_b15d5229_96da_4d86_942c_7f6b686797ce_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/b15d5229-96da-4d86-942c-7f6b686797ce/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsB15d522996da4d86942c7f6b686797ceVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_b15d5229_96da_4d86_942c_7f6b686797ce_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/b15d5229-96da-4d86-942c-7f6b686797ce/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsB15d522996da4d86942c7f6b686797ceVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_b15d5229_96da_4d86_942c_7f6b686797ce_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/be367489-0ac4-4bd9-8691-24a58dafa130/volume-subpaths/config/nginx/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsBe3674890ac44bd9869124a58dafa130VolumeSubpathsConfigNginx0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_be367489_0ac4_4bd9_8691_24a58dafa130_volume_subpaths_config_nginx_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/be367489-0ac4-4bd9-8691-24a58dafa130/volume-subpaths/config/nginx/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsBe3674890ac44bd9869124a58dafa130VolumeSubpathsConfigNginx0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_be367489_0ac4_4bd9_8691_24a58dafa130_volume_subpaths_config_nginx_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/be367489-0ac4-4bd9-8691-24a58dafa130/volume-subpaths/config/nginx/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsBe3674890ac44bd9869124a58dafa130VolumeSubpathsConfigNginx0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_be367489_0ac4_4bd9_8691_24a58dafa130_volume_subpaths_config_nginx_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/c17d0aa0-0f24-47ac-983b-1df58ce3a448/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsC17d0aa00f2447ac983b1df58ce3a448VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c17d0aa0_0f24_47ac_983b_1df58ce3a448_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/c17d0aa0-0f24-47ac-983b-1df58ce3a448/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsC17d0aa00f2447ac983b1df58ce3a448VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c17d0aa0_0f24_47ac_983b_1df58ce3a448_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/c17d0aa0-0f24-47ac-983b-1df58ce3a448/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsC17d0aa00f2447ac983b1df58ce3a448VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c17d0aa0_0f24_47ac_983b_1df58ce3a448_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/c64bb4ee-7171-4163-927c-029b3b6de914/volume-subpaths/mosquitto-config/mosquitto/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsC64bb4ee71714163927c029b3b6de914VolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c64bb4ee_7171_4163_927c_029b3b6de914_volume_subpaths_mosquitto_config_mosquitto_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/c64bb4ee-7171-4163-927c-029b3b6de914/volume-subpaths/mosquitto-config/mosquitto/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsC64bb4ee71714163927c029b3b6de914VolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c64bb4ee_7171_4163_927c_029b3b6de914_volume_subpaths_mosquitto_config_mosquitto_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/c64bb4ee-7171-4163-927c-029b3b6de914/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsC64bb4ee71714163927c029b3b6de914VolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_c64bb4ee_7171_4163_927c_029b3b6de914_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/d4c4af8e-817b-4674-936c-502d2b34ceaa/volume-subpaths/mosquitto-config/mosquitto/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsD4c4af8e817b4674936c502d2b34ceaaVolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_d4c4af8e_817b_4674_936c_502d2b34ceaa_volume_subpaths_mosquitto_config_mosquitto_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/d4c4af8e-817b-4674-936c-502d2b34ceaa/volume-subpaths/mosquitto-config/mosquitto/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsD4c4af8e817b4674936c502d2b34ceaaVolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_d4c4af8e_817b_4674_936c_502d2b34ceaa_volume_subpaths_mosquitto_config_mosquitto_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/d4c4af8e-817b-4674-936c-502d2b34ceaa/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsD4c4af8e817b4674936c502d2b34ceaaVolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_d4c4af8e_817b_4674_936c_502d2b34ceaa_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/e176eb38-327d-4505-b9aa-284bbc1c13e8/volume-subpaths/config/wg-access-server/2 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsE176eb38327d4505B9aa284bbc1c13e8VolumeSubpathsConfigWgAccessServer2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_e176eb38_327d_4505_b9aa_284bbc1c13e8_volume_subpaths_config_wg_access_server_2_free");
-		///<summary>Glances /var/lib/kubelet/pods/e176eb38-327d-4505-b9aa-284bbc1c13e8/volume-subpaths/config/wg-access-server/2 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsE176eb38327d4505B9aa284bbc1c13e8VolumeSubpathsConfigWgAccessServer2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_e176eb38_327d_4505_b9aa_284bbc1c13e8_volume_subpaths_config_wg_access_server_2_used");
-		///<summary>Glances /var/lib/kubelet/pods/e176eb38-327d-4505-b9aa-284bbc1c13e8/volume-subpaths/config/wg-access-server/2 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsE176eb38327d4505B9aa284bbc1c13e8VolumeSubpathsConfigWgAccessServer2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_e176eb38_327d_4505_b9aa_284bbc1c13e8_volume_subpaths_config_wg_access_server_2_used_percent");
 		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 free</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_free");
 		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 used</summary>
@@ -854,6 +845,20 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity Hacs => new(_haContext, "sensor.hacs");
 		///<summary>hallway Cluster Size</summary>
 		public NumericSensorEntity HallwayClusterSize => new(_haContext, "sensor.hallway_cluster_size");
+		///<summary>iPhone-Philipp Battery</summary>
+		public NumericSensorEntity IphonePhilippBattery => new(_haContext, "sensor.iphone_philipp_battery");
+		///<summary>iPhone-Philipp Calc Dist</summary>
+		public NumericSensorEntity IphonePhilippCalcDistance => new(_haContext, "sensor.iphone_philipp_calc_distance");
+		///<summary>iPhone-Philipp Travel Dist</summary>
+		public NumericSensorEntity IphonePhilippTravelDistance => new(_haContext, "sensor.iphone_philipp_travel_distance");
+		///<summary>iPhone-Philipp Travel Time</summary>
+		public NumericSensorEntity IphonePhilippTravelTime => new(_haContext, "sensor.iphone_philipp_travel_time");
+		///<summary>iPhone-Philipp Travel Time</summary>
+		public NumericSensorEntity IphonePhilippTravelTimeMin => new(_haContext, "sensor.iphone_philipp_travel_time_min");
+		///<summary>iPhone-Philipp Waze Dist</summary>
+		public NumericSensorEntity IphonePhilippWazeDistance => new(_haContext, "sensor.iphone_philipp_waze_distance");
+		///<summary>iPhone-Philipp Zone Distance</summary>
+		public NumericSensorEntity IphonePhilippZoneDistance => new(_haContext, "sensor.iphone_philipp_zone_distance");
 		///<summary>Lufthansa</summary>
 		public NumericSensorEntity Lufthansa => new(_haContext, "sensor.lufthansa");
 		///<summary>METRO AG</summary>
@@ -866,8 +871,6 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity MyDogecoinsNodered => new(_haContext, "sensor.my_dogecoins_nodered");
 		///<summary>Profit</summary>
 		public NumericSensorEntity MyDogecoinsProfitNodered => new(_haContext, "sensor.my_dogecoins_profit_nodered");
-		///<summary>Philipp’s Apple Watch battery state</summary>
-		public NumericSensorEntity PhilippsAppleWatchBatteryState => new(_haContext, "sensor.philipps_apple_watch_battery_state");
 		///<summary>PupsStation CPU Load Average (15 min)</summary>
 		public NumericSensorEntity PupsstationCpuLoad15Min => new(_haContext, "sensor.pupsstation_cpu_load_15_min");
 		///<summary>PupsStation CPU Load Average (5 min)</summary>
@@ -1038,13 +1041,7 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntity NetdaemonVacuumreminder => new(_haContext, "switch.netdaemon_vacuumreminder");
 		///<summary>netdaemon_webhookserver</summary>
 		public SwitchEntity NetdaemonWebhookserver => new(_haContext, "switch.netdaemon_webhookserver");
-		///<summary>Schedule #4e40b2</summary>
-		public SwitchEntity Schedule4e40b2 => new(_haContext, "switch.schedule_4e40b2");
-		///<summary>Schedule #5132c8</summary>
-		public SwitchEntity Schedule5132c8 => new(_haContext, "switch.schedule_5132c8");
-		///<summary>Schedule #f18168</summary>
-		public SwitchEntity ScheduleF18168 => new(_haContext, "switch.schedule_f18168");
-		///<summary>Sternen-Lichterkette Socket 1</summary>
+		///<summary>Tablet Hallway Socket 1</summary>
 		public SwitchEntity SternenLichterketteSocket1 => new(_haContext, "switch.sternen_lichterkette_socket_1");
 		///<summary>toggle_chrome_media_playback</summary>
 		public SwitchEntity ToggleChromeMediaPlayback10 => new(_haContext, "switch.toggle_chrome_media_playback_10");
@@ -1113,8 +1110,8 @@ namespace HomeAutomations.Models.Generated
 		public VarEntity MoonlightAvailableGamesDesktopFabienne => new(_haContext, "var.moonlight_available_games_desktop_fabienne");
 		///<summary>Verfügbare Spiele auf Desktop Philipp</summary>
 		public VarEntity MoonlightAvailableGamesDesktopPhilipp => new(_haContext, "var.moonlight_available_games_desktop_philipp");
-		///<summary>Spiel läuft</summary>
-		public VarEntity MoonlightIsRunning => new(_haContext, "var.moonlight_is_running");
+		///<summary>Moonlight running PID</summary>
+		public VarEntity MoonlightPid => new(_haContext, "var.moonlight_pid");
 	}
 
 	public class WeatherEntities
@@ -1139,6 +1136,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Zuhause</summary>
 		public ZoneEntity Home => new(_haContext, "zone.home");
+		///<summary>iphone_philipp_stationary</summary>
+		public ZoneEntity IphonePhilippStationary => new(_haContext, "zone.iphone_philipp_stationary");
 	}
 
 	public record AlarmControlPanelEntity : NetDaemon.HassModel.Entities.Entity<AlarmControlPanelEntity, NetDaemon.HassModel.Entities.EntityState<AlarmControlPanelAttributes>, AlarmControlPanelAttributes>
@@ -1461,12 +1460,6 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
-		public double? Battery { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
-		public object? Device { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
 
@@ -1476,23 +1469,11 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance")]
-		public double? Illuminance { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
-		public double? IlluminanceLux { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("installed_version")]
 		public string? InstalledVersion { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
-		public string? LastSeen { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latest_available_version")]
 		public string? LatestAvailableVersion { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
-		public double? Linkquality { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("malware")]
 		public string? Malware { get; init; }
@@ -1500,14 +1481,8 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("network")]
 		public string? Network { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("newest_version")]
-		public string? NewestVersion { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("occupancy")]
-		public bool? Occupancy { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("release_notes")]
-		public string? ReleaseNotes { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		public bool? Restored { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_avg")]
 		public double? RoundTripTimeAvg { get; init; }
@@ -1524,20 +1499,17 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("securitySetting")]
 		public string? SecuritySetting { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		public double? SupportedFeatures { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("systemCheck")]
 		public string? SystemCheck { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("temperature")]
-		public double? Temperature { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("update")]
 		public string? Update { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("userInfo")]
 		public string? UserInfo { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
-		public double? Voltage { get; init; }
 	}
 
 	public record ButtonAttributes
@@ -1656,14 +1628,11 @@ namespace HomeAutomations.Models.Generated
 
 	public record DeviceTrackerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("account_fetch_interval")]
-		public double? AccountFetchInterval { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("altitude")]
 		public double? Altitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
-		public string? Attribution { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("authenticated")]
+		public string? Authenticated { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
 		public double? Battery { get; init; }
@@ -1674,11 +1643,17 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_status")]
 		public string? BatteryStatus { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_name")]
-		public string? DeviceName { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("calc_distance")]
+		public double? CalcDistance { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_status")]
 		public string? DeviceStatus { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("dir_of_travel")]
+		public string? DirOfTravel { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		public string? EntityPicture { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1686,8 +1661,23 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("gps_accuracy")]
 		public double? GpsAccuracy { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
-		public string? Icon { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icloud3_version")]
+		public string? Icloud3Version { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("info")]
+		public string? Info { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("interval")]
+		public string? Interval { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_located")]
+		public string? LastLocated { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_update")]
+		public string? LastUpdate { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_zone")]
+		public string? LastZone { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latitude")]
 		public double? Latitude { get; init; }
@@ -1698,8 +1688,14 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("low_power_mode")]
 		public bool? LowPowerMode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("owner_fullname")]
-		public string? OwnerFullname { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
+		public string? Name { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_update")]
+		public string? NextUpdate { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("poll_count")]
+		public string? PollCount { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
@@ -1707,11 +1703,44 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_type")]
 		public string? SourceType { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("speed")]
+		public double? Speed { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("timestamp")]
+		public string? Timestamp { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("tracking")]
+		public string? Tracking { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("travel_distance")]
+		public double? TravelDistance { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("travel_time")]
+		public double? TravelTime { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("travel_time_min")]
+		public double? TravelTimeMin { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("trigger")]
+		public string? Trigger { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("vertical_accuracy")]
 		public double? VerticalAccuracy { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("waze_distance")]
+		public double? WazeDistance { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("zone")]
+		public string? Zone { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("zone_distance")]
+		public double? ZoneDistance { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("zone_timestamp")]
+		public string? ZoneTimestamp { get; init; }
 	}
 
 	public record GroupAttributes
@@ -1821,17 +1850,8 @@ namespace HomeAutomations.Models.Generated
 
 	public record LightAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("brightness")]
-		public double? Brightness { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color_mode")]
-		public string? ColorMode { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("hs_color")]
-		public object? HsColor { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("max_mireds")]
 		public double? MaxMireds { get; init; }
@@ -1839,32 +1859,20 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("min_mireds")]
 		public double? MinMireds { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("rgb_color")]
-		public object? RgbColor { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_color_modes")]
 		public object? SupportedColorModes { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("xy_color")]
-		public object? XyColor { get; init; }
 	}
 
 	public record MediaPlayerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture_local")]
-		public object? EntityPictureLocal { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("is_volume_muted")]
-		public bool? IsVolumeMuted { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
@@ -1874,9 +1882,6 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("volume_level")]
-		public double? VolumeLevel { get; init; }
 	}
 
 	public record PersonAttributes
@@ -1953,9 +1958,6 @@ namespace HomeAutomations.Models.Generated
 
 	public record SensorAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
-		public object? Action { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
 
@@ -1967,9 +1969,6 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
-		public double? Battery { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Carrier ID")]
 		public string? CarrierID { get; init; }
@@ -1989,14 +1988,14 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Current Radio Technology")]
 		public string? CurrentRadioTechnology { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
-		public object? Device { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("distance")]
-		public double? Distance { get; init; }
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		public string? EntityPicture { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("filtername")]
+		public string? Filtername { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("firstworkout_title")]
 		public string? FirstworkoutTitle { get; init; }
@@ -2010,12 +2009,6 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance")]
-		public double? Illuminance { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
-		public double? IlluminanceLux { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Inland Water")]
 		public string? InlandWater { get; init; }
 
@@ -2025,14 +2018,8 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("ISO Country Code")]
 		public string? ISOCountryCode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
-		public string? LastSeen { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastupdate")]
 		public string? Lastupdate { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_updated_at")]
-		public string? LastUpdatedAt { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastworkout_title")]
 		public string? LastworkoutTitle { get; init; }
@@ -2040,14 +2027,17 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastworkout_url")]
 		public string? LastworkoutUrl { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
-		public double? Linkquality { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Locality")]
 		public string? Locality { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Location")]
 		public object? Location { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("log_level_debug")]
+		public string? LogLevelDebug { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("logs")]
+		public string? Logs { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Low Power Mode")]
 		public bool? LowPowerMode { get; init; }
@@ -2060,6 +2050,9 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Name")]
 		public string? Name { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("names")]
+		public object? Names { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("number_of_loaded_apps")]
 		public double? NumberOfLoadedApps { get; init; }
@@ -2100,11 +2093,11 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Types")]
 		public object? Types { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("update_time")]
+		public string? UpdateTime { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("version")]
 		public string? Version { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
-		public double? Voltage { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Zones")]
 		public object? Zones { get; init; }
@@ -2112,12 +2105,6 @@ namespace HomeAutomations.Models.Generated
 
 	public record NumericSensorAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("account_fetch_interval")]
-		public double? AccountFetchInterval { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("action")]
-		public object? Action { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
 		public string? Attribution { get; init; }
 
@@ -2129,12 +2116,6 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Available (Opportunistic)")]
 		public string? AvailableOpportunistic { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
-		public double? Battery { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_status")]
-		public string? BatteryStatus { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("change")]
 		public double? Change { get; init; }
@@ -2190,17 +2171,8 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeThreeYears")]
 		public object? ChangeThreeYears { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device")]
-		public object? Device { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_name")]
-		public string? DeviceName { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_status")]
-		public string? DeviceStatus { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -2208,29 +2180,8 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance")]
-		public double? Illuminance { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("illuminance_lux")]
-		public double? IlluminanceLux { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_seen")]
-		public string? LastSeen { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("linkquality")]
-		public double? Linkquality { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("low_power_mode")]
-		public bool? LowPowerMode { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
 		public string? Name { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("occupancy")]
-		public bool? Occupancy { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("owner_fullname")]
-		public string? OwnerFullname { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("profitLoss")]
 		public double? ProfitLoss { get; init; }
@@ -2240,9 +2191,6 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("purchasePrice")]
 		public double? PurchasePrice { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("repositories")]
-		public object? Repositories { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
@@ -2255,9 +2203,6 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("temperature")]
-		public double? Temperature { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Total")]
 		public string? Total { get; init; }
@@ -2300,9 +2245,6 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("valve_tappet_state")]
 		public string? ValveTappetState { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("voltage")]
-		public double? Voltage { get; init; }
 	}
 
 	public record SunAttributes
@@ -2340,12 +2282,6 @@ namespace HomeAutomations.Models.Generated
 
 	public record SwitchAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("actions")]
-		public object? Actions { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("current_slot")]
-		public double? CurrentSlot { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
 		public string? DeviceClass { get; init; }
 
@@ -2358,26 +2294,11 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("integration")]
 		public string? Integration { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_slot")]
-		public double? NextSlot { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_trigger")]
-		public string? NextTrigger { get; init; }
-
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("tags")]
-		public object? Tags { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("times")]
-		public object? Times { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("weekdays")]
-		public object? Weekdays { get; init; }
 	}
 
 	public record TimerAttributes
@@ -2466,6 +2387,9 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("longitude")]
 		public double? Longitude { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
+		public string? Name { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("passive")]
 		public bool? Passive { get; init; }
 
@@ -2497,8 +2421,6 @@ namespace HomeAutomations.Models.Generated
 
 		DeviceTrackerServices DeviceTracker { get; }
 
-		DuckdnsServices Duckdns { get; }
-
 		FanServices Fan { get; }
 
 		FfmpegServices Ffmpeg { get; }
@@ -2514,8 +2436,6 @@ namespace HomeAutomations.Models.Generated
 		HomeassistantServices Homeassistant { get; }
 
 		HumidifierServices Humidifier { get; }
-
-		IcloudServices Icloud { get; }
 
 		InputBooleanServices InputBoolean { get; }
 
@@ -2539,6 +2459,8 @@ namespace HomeAutomations.Models.Generated
 
 		MediaPlayerServices MediaPlayer { get; }
 
+		MicrosoftTodoServices MicrosoftTodo { get; }
+
 		MqttServices Mqtt { get; }
 
 		NetdaemonServices Netdaemon { get; }
@@ -2559,8 +2481,6 @@ namespace HomeAutomations.Models.Generated
 
 		SceneServices Scene { get; }
 
-		SchedulerServices Scheduler { get; }
-
 		ScriptServices Script { get; }
 
 		SelectServices Select { get; }
@@ -2568,6 +2488,8 @@ namespace HomeAutomations.Models.Generated
 		SirenServices Siren { get; }
 
 		SpeedtestdotnetServices Speedtestdotnet { get; }
+
+		SpotcastServices Spotcast { get; }
 
 		SwitchServices Switch { get; }
 
@@ -2611,7 +2533,6 @@ namespace HomeAutomations.Models.Generated
 		public CounterServices Counter => new(_haContext);
 		public CoverServices Cover => new(_haContext);
 		public DeviceTrackerServices DeviceTracker => new(_haContext);
-		public DuckdnsServices Duckdns => new(_haContext);
 		public FanServices Fan => new(_haContext);
 		public FfmpegServices Ffmpeg => new(_haContext);
 		public FrontendServices Frontend => new(_haContext);
@@ -2620,7 +2541,6 @@ namespace HomeAutomations.Models.Generated
 		public HarmonyServices Harmony => new(_haContext);
 		public HomeassistantServices Homeassistant => new(_haContext);
 		public HumidifierServices Humidifier => new(_haContext);
-		public IcloudServices Icloud => new(_haContext);
 		public InputBooleanServices InputBoolean => new(_haContext);
 		public InputButtonServices InputButton => new(_haContext);
 		public InputDatetimeServices InputDatetime => new(_haContext);
@@ -2632,6 +2552,7 @@ namespace HomeAutomations.Models.Generated
 		public LoggerServices Logger => new(_haContext);
 		public LovelaceServices Lovelace => new(_haContext);
 		public MediaPlayerServices MediaPlayer => new(_haContext);
+		public MicrosoftTodoServices MicrosoftTodo => new(_haContext);
 		public MqttServices Mqtt => new(_haContext);
 		public NetdaemonServices Netdaemon => new(_haContext);
 		public NotifyServices Notify => new(_haContext);
@@ -2642,11 +2563,11 @@ namespace HomeAutomations.Models.Generated
 		public RecorderServices Recorder => new(_haContext);
 		public RemoteServices Remote => new(_haContext);
 		public SceneServices Scene => new(_haContext);
-		public SchedulerServices Scheduler => new(_haContext);
 		public ScriptServices Script => new(_haContext);
 		public SelectServices Select => new(_haContext);
 		public SirenServices Siren => new(_haContext);
 		public SpeedtestdotnetServices Speedtestdotnet => new(_haContext);
+		public SpotcastServices Spotcast => new(_haContext);
 		public SwitchServices Switch => new(_haContext);
 		public SynologyDsmServices SynologyDsm => new(_haContext);
 		public SystemLogServices SystemLog => new(_haContext);
@@ -3545,6 +3466,26 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		public void Icloud3FindIphoneAlert()
+		{
+			_haContext.CallService("device_tracker", "icloud3_find_iphone_alert", null);
+		}
+
+		public void Icloud3Restart()
+		{
+			_haContext.CallService("device_tracker", "icloud3_restart", null);
+		}
+
+		public void Icloud3SetInterval()
+		{
+			_haContext.CallService("device_tracker", "icloud3_set_interval", null);
+		}
+
+		public void Icloud3Update()
+		{
+			_haContext.CallService("device_tracker", "icloud3_update", null);
+		}
+
 		///<summary>Control tracked device.</summary>
 		public void See(DeviceTrackerSeeParameters data)
 		{
@@ -3594,35 +3535,6 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Battery level of device.</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("battery")]
 		public long? Battery { get; init; }
-	}
-
-	public class DuckdnsServices
-	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public DuckdnsServices(NetDaemon.HassModel.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Set the TXT record of your DuckDNS subdomain.</summary>
-		public void SetTxt(DuckdnsSetTxtParameters data)
-		{
-			_haContext.CallService("duckdns", "set_txt", null, data);
-		}
-
-		///<summary>Set the TXT record of your DuckDNS subdomain.</summary>
-		///<param name="txt">Payload for the TXT record. eg: This domain name is reserved for use in documentation</param>
-		public void SetTxt(string @txt)
-		{
-			_haContext.CallService("duckdns", "set_txt", null, new DuckdnsSetTxtParameters{Txt = @txt});
-		}
-	}
-
-	public record DuckdnsSetTxtParameters
-	{
-		///<summary>Payload for the TXT record. eg: This domain name is reserved for use in documentation</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("txt")]
-		public string? Txt { get; init; }
 	}
 
 	public class FanServices
@@ -4325,130 +4237,6 @@ namespace HomeAutomations.Models.Generated
 		public string? Mode { get; init; }
 	}
 
-	public class IcloudServices
-	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public IcloudServices(NetDaemon.HassModel.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Display a message on an Apple device.</summary>
-		public void DisplayMessage(IcloudDisplayMessageParameters data)
-		{
-			_haContext.CallService("icloud", "display_message", null, data);
-		}
-
-		///<summary>Display a message on an Apple device.</summary>
-		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
-		///<param name="deviceName">The name of the Apple device to display the message. eg: stevesiphone</param>
-		///<param name="message">The content of your message. eg: Hey Steve !</param>
-		///<param name="sound">To make a sound when displaying the message.</param>
-		public void DisplayMessage(string @account, string @deviceName, string @message, bool? @sound = null)
-		{
-			_haContext.CallService("icloud", "display_message", null, new IcloudDisplayMessageParameters{Account = @account, DeviceName = @deviceName, Message = @message, Sound = @sound});
-		}
-
-		///<summary>Make an Apple device in lost state.</summary>
-		public void LostDevice(IcloudLostDeviceParameters data)
-		{
-			_haContext.CallService("icloud", "lost_device", null, data);
-		}
-
-		///<summary>Make an Apple device in lost state.</summary>
-		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
-		///<param name="deviceName">The name of the Apple device to set lost. eg: stevesiphone</param>
-		///<param name="number">The phone number to call in lost mode (must contain country code). eg: +33450020100</param>
-		///<param name="message">The message to display in lost mode. eg: Call me</param>
-		public void LostDevice(string @account, string @deviceName, string @number, string @message)
-		{
-			_haContext.CallService("icloud", "lost_device", null, new IcloudLostDeviceParameters{Account = @account, DeviceName = @deviceName, Number = @number, Message = @message});
-		}
-
-		///<summary>Play sound on an Apple device.</summary>
-		public void PlaySound(IcloudPlaySoundParameters data)
-		{
-			_haContext.CallService("icloud", "play_sound", null, data);
-		}
-
-		///<summary>Play sound on an Apple device.</summary>
-		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
-		///<param name="deviceName">The name of the Apple device to play a sound. eg: stevesiphone</param>
-		public void PlaySound(string @account, string @deviceName)
-		{
-			_haContext.CallService("icloud", "play_sound", null, new IcloudPlaySoundParameters{Account = @account, DeviceName = @deviceName});
-		}
-
-		///<summary>Update iCloud devices.</summary>
-		public void Update(IcloudUpdateParameters data)
-		{
-			_haContext.CallService("icloud", "update", null, data);
-		}
-
-		///<summary>Update iCloud devices.</summary>
-		///<param name="account">Your iCloud account username (email) or account name. eg: steve@apple.com</param>
-		public void Update(string @account)
-		{
-			_haContext.CallService("icloud", "update", null, new IcloudUpdateParameters{Account = @account});
-		}
-	}
-
-	public record IcloudDisplayMessageParameters
-	{
-		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("account")]
-		public string? Account { get; init; }
-
-		///<summary>The name of the Apple device to display the message. eg: stevesiphone</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
-		public string? DeviceName { get; init; }
-
-		///<summary>The content of your message. eg: Hey Steve !</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
-		public string? Message { get; init; }
-
-		///<summary>To make a sound when displaying the message.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("sound")]
-		public bool? Sound { get; init; }
-	}
-
-	public record IcloudLostDeviceParameters
-	{
-		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("account")]
-		public string? Account { get; init; }
-
-		///<summary>The name of the Apple device to set lost. eg: stevesiphone</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
-		public string? DeviceName { get; init; }
-
-		///<summary>The phone number to call in lost mode (must contain country code). eg: +33450020100</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("number")]
-		public string? Number { get; init; }
-
-		///<summary>The message to display in lost mode. eg: Call me</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
-		public string? Message { get; init; }
-	}
-
-	public record IcloudPlaySoundParameters
-	{
-		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("account")]
-		public string? Account { get; init; }
-
-		///<summary>The name of the Apple device to play a sound. eg: stevesiphone</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
-		public string? DeviceName { get; init; }
-	}
-
-	public record IcloudUpdateParameters
-	{
-		///<summary>Your iCloud account username (email) or account name. eg: steve@apple.com</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("account")]
-		public string? Account { get; init; }
-	}
-
 	public class InputBooleanServices
 	{
 		private readonly NetDaemon.HassModel.IHaContext _haContext;
@@ -5101,7 +4889,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
 		///<param name="target">The target for this service call</param>
-		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2", "media_player.multiroom_player3"]</param>
+		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
 		public void Join(NetDaemon.HassModel.Entities.ServiceTarget target, object? @groupMembers = null)
 		{
 			_haContext.CallService("media_player", "join", target, new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
@@ -5315,7 +5103,7 @@ namespace HomeAutomations.Models.Generated
 
 	public record MediaPlayerJoinParameters
 	{
-		///<summary>The players which will be synced with the target player. eg: ["media_player.multiroom_player2", "media_player.multiroom_player3"]</summary>
+		///<summary>The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("groupMembers")]
 		public object? GroupMembers { get; init; }
 	}
@@ -5378,6 +5166,35 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Volume level to set as float.</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("volumeLevel")]
 		public double? VolumeLevel { get; init; }
+	}
+
+	public class MicrosoftTodoServices
+	{
+		private readonly NetDaemon.HassModel.IHaContext _haContext;
+		public MicrosoftTodoServices(NetDaemon.HassModel.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Create a new task.</summary>
+		public void NewTask(MicrosoftTodoNewTaskParameters data)
+		{
+			_haContext.CallService("microsoft_todo", "new_task", null, data);
+		}
+
+		///<summary>Create a new task.</summary>
+		///<param name="subject">The subject of the task. eg: Pick up the mail.</param>
+		public void NewTask(string? @subject = null)
+		{
+			_haContext.CallService("microsoft_todo", "new_task", null, new MicrosoftTodoNewTaskParameters{Subject = @subject});
+		}
+	}
+
+	public record MicrosoftTodoNewTaskParameters
+	{
+		///<summary>The subject of the task. eg: Pick up the mail.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("subject")]
+		public string? Subject { get; init; }
 	}
 
 	public class MqttServices
@@ -5479,10 +5296,11 @@ namespace HomeAutomations.Models.Generated
 		///<param name="state">The state of the entity eg: Lorem ipsum</param>
 		///<param name="icon">The icon for the entity eg: mdi:rocket-launch-outline</param>
 		///<param name="unit">The unit of measurement for the entity</param>
+		///<param name="options">List of options for a select entity</param>
 		///<param name="attributes">The attributes of the entity</param>
-		public void EntityCreate(string? @entityId = null, string? @state = null, string? @icon = null, string? @unit = null, string? @attributes = null)
+		public void EntityCreate(string? @entityId = null, string? @state = null, string? @icon = null, string? @unit = null, string? @options = null, string? @attributes = null)
 		{
-			_haContext.CallService("netdaemon", "entity_create", null, new NetdaemonEntityCreateParameters{EntityId = @entityId, State = @state, Icon = @icon, Unit = @unit, Attributes = @attributes});
+			_haContext.CallService("netdaemon", "entity_create", null, new NetdaemonEntityCreateParameters{EntityId = @entityId, State = @state, Icon = @icon, Unit = @unit, Options = @options, Attributes = @attributes});
 		}
 
 		///<summary>Remove an entity</summary>
@@ -5509,10 +5327,11 @@ namespace HomeAutomations.Models.Generated
 		///<param name="state">The state of the entity eg: Lorem ipsum</param>
 		///<param name="icon">The icon for the entity eg: mdi:rocket-launch-outline</param>
 		///<param name="unit">The unit of measurement for the entity</param>
+		///<param name="options">List of options for a select entity</param>
 		///<param name="attributes">The attributes of the entity</param>
-		public void EntityUpdate(string? @entityId = null, string? @state = null, string? @icon = null, string? @unit = null, string? @attributes = null)
+		public void EntityUpdate(string? @entityId = null, string? @state = null, string? @icon = null, string? @unit = null, string? @options = null, string? @attributes = null)
 		{
-			_haContext.CallService("netdaemon", "entity_update", null, new NetdaemonEntityUpdateParameters{EntityId = @entityId, State = @state, Icon = @icon, Unit = @unit, Attributes = @attributes});
+			_haContext.CallService("netdaemon", "entity_update", null, new NetdaemonEntityUpdateParameters{EntityId = @entityId, State = @state, Icon = @icon, Unit = @unit, Options = @options, Attributes = @attributes});
 		}
 
 		///<summary>Register a new service for netdaemon, used by the daemon and not to be used by users</summary>
@@ -5522,11 +5341,12 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		///<summary>Register a new service for netdaemon, used by the daemon and not to be used by users</summary>
+		///<param name="service">The name of the service to register</param>
 		///<param name="class">The class that implements the service call</param>
 		///<param name="method">The method to call</param>
-		public void RegisterService(string? @class = null, string? @method = null)
+		public void RegisterService(string? @service = null, string? @class = null, string? @method = null)
 		{
-			_haContext.CallService("netdaemon", "register_service", null, new NetdaemonRegisterServiceParameters{Class = @class, Method = @method});
+			_haContext.CallService("netdaemon", "register_service", null, new NetdaemonRegisterServiceParameters{Service = @service, Class = @class, Method = @method});
 		}
 
 		public void ReloadApps()
@@ -5552,6 +5372,10 @@ namespace HomeAutomations.Models.Generated
 		///<summary>The unit of measurement for the entity</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("unit")]
 		public string? Unit { get; init; }
+
+		///<summary>List of options for a select entity</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("options")]
+		public string? Options { get; init; }
 
 		///<summary>The attributes of the entity</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("attributes")]
@@ -5583,6 +5407,10 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyName("unit")]
 		public string? Unit { get; init; }
 
+		///<summary>List of options for a select entity</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("options")]
+		public string? Options { get; init; }
+
 		///<summary>The attributes of the entity</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("attributes")]
 		public string? Attributes { get; init; }
@@ -5590,6 +5418,10 @@ namespace HomeAutomations.Models.Generated
 
 	public record NetdaemonRegisterServiceParameters
 	{
+		///<summary>The name of the service to register</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("service")]
+		public string? Service { get; init; }
+
 		///<summary>The class that implements the service call</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("class")]
 		public string? Class { get; init; }
@@ -5605,22 +5437,6 @@ namespace HomeAutomations.Models.Generated
 		public NotifyServices(NetDaemon.HassModel.IHaContext haContext)
 		{
 			_haContext = haContext;
-		}
-
-		///<summary>Sends a notification message using the mobile_app_buy_hodl_gme integration.</summary>
-		public void MobileAppBuyHodlGme(NotifyMobileAppBuyHodlGmeParameters data)
-		{
-			_haContext.CallService("notify", "mobile_app_buy_hodl_gme", null, data);
-		}
-
-		///<summary>Sends a notification message using the mobile_app_buy_hodl_gme integration.</summary>
-		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
-		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
-		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
-		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
-		public void MobileAppBuyHodlGme(string @message, string? @title = null, object? @target = null, object? @data = null)
-		{
-			_haContext.CallService("notify", "mobile_app_buy_hodl_gme", null, new NotifyMobileAppBuyHodlGmeParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
 		///<summary>Sends a notification message using the mobile_app_fantenpad integration.</summary>
@@ -5655,6 +5471,22 @@ namespace HomeAutomations.Models.Generated
 			_haContext.CallService("notify", "mobile_app_fantenphone", null, new NotifyMobileAppFantenphoneParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
+		///<summary>Sends a notification message using the mobile_app_iphone_philipp integration.</summary>
+		public void MobileAppIphonePhilipp(NotifyMobileAppIphonePhilippParameters data)
+		{
+			_haContext.CallService("notify", "mobile_app_iphone_philipp", null, data);
+		}
+
+		///<summary>Sends a notification message using the mobile_app_iphone_philipp integration.</summary>
+		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
+		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
+		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
+		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
+		public void MobileAppIphonePhilipp(string @message, string? @title = null, object? @target = null, object? @data = null)
+		{
+			_haContext.CallService("notify", "mobile_app_iphone_philipp", null, new NotifyMobileAppIphonePhilippParameters{Message = @message, Title = @title, Target = @target, Data = @data});
+		}
+
 		///<summary>Sends a notification message using the notify service.</summary>
 		public void Notify(NotifyNotifyParameters data)
 		{
@@ -5686,25 +5518,6 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public record NotifyMobileAppBuyHodlGmeParameters
-	{
-		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
-		public string? Message { get; init; }
-
-		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
-		public string? Title { get; init; }
-
-		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("target")]
-		public object? Target { get; init; }
-
-		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("data")]
-		public object? Data { get; init; }
-	}
-
 	public record NotifyMobileAppFantenpadParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
@@ -5725,6 +5538,25 @@ namespace HomeAutomations.Models.Generated
 	}
 
 	public record NotifyMobileAppFantenphoneParameters
+	{
+		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		public string? Title { get; init; }
+
+		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("target")]
+		public object? Target { get; init; }
+
+		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("data")]
+		public object? Data { get; init; }
+	}
+
+	public record NotifyMobileAppIphonePhilippParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("message")]
@@ -5958,7 +5790,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Start purge task to remove specific entities from your database.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="domains">List the domains that need to be removed from the recorder database. eg: sun</param>
-		///<param name="entityGlobs">List the regular expressions to select entities for removal from the recorder database. eg: domain*.object_id*</param>
+		///<param name="entityGlobs">List the glob patterns to select entities for removal from the recorder database. eg: domain*.object_id*</param>
 		public void PurgeEntities(NetDaemon.HassModel.Entities.ServiceTarget target, object? @domains = null, object? @entityGlobs = null)
 		{
 			_haContext.CallService("recorder", "purge_entities", target, new RecorderPurgeEntitiesParameters{Domains = @domains, EntityGlobs = @entityGlobs});
@@ -5986,7 +5818,7 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyName("domains")]
 		public object? Domains { get; init; }
 
-		///<summary>List the regular expressions to select entities for removal from the recorder database. eg: domain*.object_id*</summary>
+		///<summary>List the glob patterns to select entities for removal from the recorder database. eg: domain*.object_id*</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("entityGlobs")]
 		public object? EntityGlobs { get; init; }
 	}
@@ -6048,7 +5880,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="numRepeats">The number of times you want to repeat the command(s).</param>
 		///<param name="delaySecs">The time you want to wait in between repeated commands.</param>
 		///<param name="holdSecs">The time you want to have it held before the release is send.</param>
-		public void SendCommand(NetDaemon.HassModel.Entities.ServiceTarget target, string @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
+		public void SendCommand(NetDaemon.HassModel.Entities.ServiceTarget target, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
 		{
 			_haContext.CallService("remote", "send_command", target, new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
 		}
@@ -6125,7 +5957,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>A single command or a list of commands to send. eg: Play</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("command")]
-		public string? Command { get; init; }
+		public object? Command { get; init; }
 
 		///<summary>The number of times you want to repeat the command(s).</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("numRepeats")]
@@ -6162,7 +5994,7 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		///<summary>Activate a scene with configuration.</summary>
-		///<param name="entities">The entities and the state that they need to be. eg: {"light.kitchen": "on", "light.ceiling": {"state": "on", "brightness": 80}}</param>
+		///<param name="entities">The entities and the state that they need to be. eg: {"light.kitchen":"on","light.ceiling":{"state":"on","brightness":80}}</param>
 		///<param name="transition">Transition duration it takes to bring devices to the state defined in the scene.</param>
 		public void Apply(object @entities, long? @transition = null)
 		{
@@ -6177,8 +6009,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Creates a new scene.</summary>
 		///<param name="sceneId">The entity_id of the new scene. eg: all_lights</param>
-		///<param name="entities">The entities to control with the scene. eg: {"light.tv_back_light": "on", "light.ceiling": {"state": "on", "brightness": 200}}</param>
-		///<param name="snapshotEntities">The entities of which a snapshot is to be taken eg: ["light.ceiling", "light.kitchen"]</param>
+		///<param name="entities">The entities to control with the scene. eg: {"light.tv_back_light":"on","light.ceiling":{"state":"on","brightness":200}}</param>
+		///<param name="snapshotEntities">The entities of which a snapshot is to be taken eg: ["light.ceiling","light.kitchen"]</param>
 		public void Create(string @sceneId, object? @entities = null, object? @snapshotEntities = null)
 		{
 			_haContext.CallService("scene", "create", null, new SceneCreateParameters{SceneId = @sceneId, Entities = @entities, SnapshotEntities = @snapshotEntities});
@@ -6208,7 +6040,7 @@ namespace HomeAutomations.Models.Generated
 
 	public record SceneApplyParameters
 	{
-		///<summary>The entities and the state that they need to be. eg: {"light.kitchen": "on", "light.ceiling": {"state": "on", "brightness": 80}}</summary>
+		///<summary>The entities and the state that they need to be. eg: {"light.kitchen":"on","light.ceiling":{"state":"on","brightness":80}}</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("entities")]
 		public object? Entities { get; init; }
 
@@ -6223,11 +6055,11 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyName("sceneId")]
 		public string? SceneId { get; init; }
 
-		///<summary>The entities to control with the scene. eg: {"light.tv_back_light": "on", "light.ceiling": {"state": "on", "brightness": 200}}</summary>
+		///<summary>The entities to control with the scene. eg: {"light.tv_back_light":"on","light.ceiling":{"state":"on","brightness":200}}</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("entities")]
 		public object? Entities { get; init; }
 
-		///<summary>The entities of which a snapshot is to be taken eg: ["light.ceiling", "light.kitchen"]</summary>
+		///<summary>The entities of which a snapshot is to be taken eg: ["light.ceiling","light.kitchen"]</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("snapshotEntities")]
 		public object? SnapshotEntities { get; init; }
 	}
@@ -6237,180 +6069,6 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Transition duration it takes to bring devices to the state defined in the scene.</summary>
 		[System.Text.Json.Serialization.JsonPropertyName("transition")]
 		public long? Transition { get; init; }
-	}
-
-	public class SchedulerServices
-	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SchedulerServices(NetDaemon.HassModel.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Create a new schedule entity</summary>
-		public void Add(SchedulerAddParameters data)
-		{
-			_haContext.CallService("scheduler", "add", null, data);
-		}
-
-		///<summary>Create a new schedule entity</summary>
-		///<param name="weekdays">Days of the week for which the schedule should be repeated eg: ["daily"]</param>
-		///<param name="startDate">Date from which schedule should be executed eg: ["2021-01-01"]</param>
-		///<param name="endDate">Date until which schedule should be executed eg: ["2021-12-31"]</param>
-		///<param name="timeslots">list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots) eg: [{start: "12:00", stop: "13:00", actions: [{service: "light.turn_on", entity_id: "light.my_lamp", service_data: {brightness: 200}}]}]</param>
-		///<param name="repeatType">Control what happens after the schedule is triggered eg: "repeat"</param>
-		///<param name="name">Friendly name for the schedule eg: My schedule</param>
-		public void Add(object @timeslots, string @repeatType, object? @weekdays = null, object? @startDate = null, object? @endDate = null, string? @name = null)
-		{
-			_haContext.CallService("scheduler", "add", null, new SchedulerAddParameters{Weekdays = @weekdays, StartDate = @startDate, EndDate = @endDate, Timeslots = @timeslots, RepeatType = @repeatType, Name = @name});
-		}
-
-		///<summary>Duplicate a schedule entity</summary>
-		public void Copy(SchedulerCopyParameters data)
-		{
-			_haContext.CallService("scheduler", "copy", null, data);
-		}
-
-		///<summary>Duplicate a schedule entity</summary>
-		///<param name="entityId">Identifier of the scheduler entity. eg: switch.schedule_abcdef</param>
-		///<param name="name">Friendly name for the copied schedule eg: My schedule</param>
-		public void Copy(string @entityId, string? @name = null)
-		{
-			_haContext.CallService("scheduler", "copy", null, new SchedulerCopyParameters{EntityId = @entityId, Name = @name});
-		}
-
-		///<summary>Edit a schedule entity</summary>
-		public void Edit(SchedulerEditParameters data)
-		{
-			_haContext.CallService("scheduler", "edit", null, data);
-		}
-
-		///<summary>Edit a schedule entity</summary>
-		///<param name="entityId">Identifier of the scheduler entity. eg: switch.schedule_abcdef</param>
-		///<param name="weekdays">Days of the week for which the schedule should be repeated eg: ["daily"]</param>
-		///<param name="startDate">Date from which schedule should be executed eg: ["2021-01-01"]</param>
-		///<param name="endDate">Date until which schedule should be executed eg: ["2021-12-31"]</param>
-		///<param name="timeslots">list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots) eg: [{start: "12:00", stop: "13:00", actions: [{service: "light.turn_on", entity_id: "light.my_lamp", service_data: {brightness: 200}}]}]</param>
-		///<param name="repeatType">Control what happens after the schedule is triggered eg: "repeat"</param>
-		///<param name="name">Friendly name for the schedule eg: My schedule</param>
-		public void Edit(string @entityId, object @timeslots, string @repeatType, object? @weekdays = null, object? @startDate = null, object? @endDate = null, string? @name = null)
-		{
-			_haContext.CallService("scheduler", "edit", null, new SchedulerEditParameters{EntityId = @entityId, Weekdays = @weekdays, StartDate = @startDate, EndDate = @endDate, Timeslots = @timeslots, RepeatType = @repeatType, Name = @name});
-		}
-
-		///<summary>Remove a schedule entity</summary>
-		public void Remove(SchedulerRemoveParameters data)
-		{
-			_haContext.CallService("scheduler", "remove", null, data);
-		}
-
-		///<summary>Remove a schedule entity</summary>
-		///<param name="entityId">Identifier of the scheduler entity. eg: switch.schedule_abcdef</param>
-		public void Remove(string @entityId)
-		{
-			_haContext.CallService("scheduler", "remove", null, new SchedulerRemoveParameters{EntityId = @entityId});
-		}
-
-		///<summary>Execute the action of a schedule, optionally at a given time.</summary>
-		public void RunAction(SchedulerRunActionParameters data)
-		{
-			_haContext.CallService("scheduler", "run_action", null, data);
-		}
-
-		///<summary>Execute the action of a schedule, optionally at a given time.</summary>
-		///<param name="entityId">Identifier of the scheduler entity. eg: switch.schedule_abcdef</param>
-		///<param name="time">Time for which to evaluate the action (only useful for schedules with multiple timeslot) eg: "12:00"</param>
-		public void RunAction(string @entityId, DateTime? @time = null)
-		{
-			_haContext.CallService("scheduler", "run_action", null, new SchedulerRunActionParameters{EntityId = @entityId, Time = @time});
-		}
-	}
-
-	public record SchedulerAddParameters
-	{
-		///<summary>Days of the week for which the schedule should be repeated eg: ["daily"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("weekdays")]
-		public object? Weekdays { get; init; }
-
-		///<summary>Date from which schedule should be executed eg: ["2021-01-01"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("startDate")]
-		public object? StartDate { get; init; }
-
-		///<summary>Date until which schedule should be executed eg: ["2021-12-31"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("endDate")]
-		public object? EndDate { get; init; }
-
-		///<summary>list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots) eg: [{start: "12:00", stop: "13:00", actions: [{service: "light.turn_on", entity_id: "light.my_lamp", service_data: {brightness: 200}}]}]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("timeslots")]
-		public object? Timeslots { get; init; }
-
-		///<summary>Control what happens after the schedule is triggered eg: "repeat"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("repeatType")]
-		public string? RepeatType { get; init; }
-
-		///<summary>Friendly name for the schedule eg: My schedule</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("name")]
-		public string? Name { get; init; }
-	}
-
-	public record SchedulerCopyParameters
-	{
-		///<summary>Identifier of the scheduler entity. eg: switch.schedule_abcdef</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
-
-		///<summary>Friendly name for the copied schedule eg: My schedule</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("name")]
-		public string? Name { get; init; }
-	}
-
-	public record SchedulerEditParameters
-	{
-		///<summary>Identifier of the scheduler entity. eg: switch.schedule_abcdef</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
-
-		///<summary>Days of the week for which the schedule should be repeated eg: ["daily"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("weekdays")]
-		public object? Weekdays { get; init; }
-
-		///<summary>Date from which schedule should be executed eg: ["2021-01-01"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("startDate")]
-		public object? StartDate { get; init; }
-
-		///<summary>Date until which schedule should be executed eg: ["2021-12-31"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("endDate")]
-		public object? EndDate { get; init; }
-
-		///<summary>list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots) eg: [{start: "12:00", stop: "13:00", actions: [{service: "light.turn_on", entity_id: "light.my_lamp", service_data: {brightness: 200}}]}]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("timeslots")]
-		public object? Timeslots { get; init; }
-
-		///<summary>Control what happens after the schedule is triggered eg: "repeat"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("repeatType")]
-		public string? RepeatType { get; init; }
-
-		///<summary>Friendly name for the schedule eg: My schedule</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("name")]
-		public string? Name { get; init; }
-	}
-
-	public record SchedulerRemoveParameters
-	{
-		///<summary>Identifier of the scheduler entity. eg: switch.schedule_abcdef</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
-	}
-
-	public record SchedulerRunActionParameters
-	{
-		///<summary>Identifier of the scheduler entity. eg: switch.schedule_abcdef</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
-
-		///<summary>Time for which to evaluate the action (only useful for schedules with multiple timeslot) eg: "12:00"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("time")]
-		public DateTime? Time { get; init; }
 	}
 
 	public class ScriptServices
@@ -6548,6 +6206,110 @@ namespace HomeAutomations.Models.Generated
 		{
 			_haContext.CallService("speedtestdotnet", "speedtest", null);
 		}
+	}
+
+	public class SpotcastServices
+	{
+		private readonly NetDaemon.HassModel.IHaContext _haContext;
+		public SpotcastServices(NetDaemon.HassModel.IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Starts spotify playback on chromecast devices</summary>
+		public void Start(SpotcastStartParameters data)
+		{
+			_haContext.CallService("spotcast", "start", null, data);
+		}
+
+		///<summary>Starts spotify playback on chromecast devices</summary>
+		///<param name="deviceName">The friendly name of the chromecast or spotify connect device. First checks spotify device list for name (not used together with entity_id and spotify_device_id). eg: Livingroom</param>
+		///<param name="spotifyDeviceId">Advanced users only. The spotify device id (not used together with entity_id or device_name). eg: 4363634563457346xcyvydgf3qwa</param>
+		///<param name="entityId">The entity_id of the chromecast mediaplayer. Friendly name MUST match the spotify connect device name (not used together with device_name and spotify_device_id). eg: media_player.vardagsrum</param>
+		///<param name="uri">Supported Spotify URI as string. None or empty uri will transfer the current/last playback (see parameter force_playback). eg: spotify:playlist:37i9dQZF1DX3yvAYDslnv8</param>
+		///<param name="category">A category to fetch playlist from. See https://developer.spotify.com/console/get-browse-categories/ for a list of categories</param>
+		///<param name="country">Country code to use with category. See https://spotipy.readthedocs.io/en/2.19.0/#spotipy.client.Spotify.country_codes for list of available codes</param>
+		///<param name="limit">Limit of playlist to fetch in a given category. Default 20</param>
+		///<param name="search">A Search request to the spotify API. Will play the most relevant search result.</param>
+		///<param name="account">Optionally starts Spotify using an alternative account specified in config. eg: my_wifes</param>
+		///<param name="forcePlayback">In case of transfering playback: If true starts playing the user's last playback even if nothing is currently playing. eg: True</param>
+		///<param name="randomSong">Starts the playback at a random position in the playlist or album. eg: True</param>
+		///<param name="repeat">Set repeat mode for playback. eg: track</param>
+		///<param name="shuffle">Set shuffle mode for playback. eg: True</param>
+		///<param name="offset">Set offset mode for playback. 0 is the first song. eg: 1</param>
+		///<param name="startVolume">Set the volume for playback in percentage. eg: 50</param>
+		///<param name="ignoreFullyPlayed">Set to ignore or not already played episodes in a podcast playlist eg: True</param>
+		public void Start(string? @deviceName = null, string? @spotifyDeviceId = null, string? @entityId = null, string? @uri = null, string? @category = null, string? @country = null, long? @limit = null, string? @search = null, string? @account = null, bool? @forcePlayback = null, bool? @randomSong = null, string? @repeat = null, bool? @shuffle = null, long? @offset = null, long? @startVolume = null, bool? @ignoreFullyPlayed = null)
+		{
+			_haContext.CallService("spotcast", "start", null, new SpotcastStartParameters{DeviceName = @deviceName, SpotifyDeviceId = @spotifyDeviceId, EntityId = @entityId, Uri = @uri, Category = @category, Country = @country, Limit = @limit, Search = @search, Account = @account, ForcePlayback = @forcePlayback, RandomSong = @randomSong, Repeat = @repeat, Shuffle = @shuffle, Offset = @offset, StartVolume = @startVolume, IgnoreFullyPlayed = @ignoreFullyPlayed});
+		}
+	}
+
+	public record SpotcastStartParameters
+	{
+		///<summary>The friendly name of the chromecast or spotify connect device. First checks spotify device list for name (not used together with entity_id and spotify_device_id). eg: Livingroom</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
+		public string? DeviceName { get; init; }
+
+		///<summary>Advanced users only. The spotify device id (not used together with entity_id or device_name). eg: 4363634563457346xcyvydgf3qwa</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("spotifyDeviceId")]
+		public string? SpotifyDeviceId { get; init; }
+
+		///<summary>The entity_id of the chromecast mediaplayer. Friendly name MUST match the spotify connect device name (not used together with device_name and spotify_device_id). eg: media_player.vardagsrum</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		public string? EntityId { get; init; }
+
+		///<summary>Supported Spotify URI as string. None or empty uri will transfer the current/last playback (see parameter force_playback). eg: spotify:playlist:37i9dQZF1DX3yvAYDslnv8</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("uri")]
+		public string? Uri { get; init; }
+
+		///<summary>A category to fetch playlist from. See https://developer.spotify.com/console/get-browse-categories/ for a list of categories</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("category")]
+		public string? Category { get; init; }
+
+		///<summary>Country code to use with category. See https://spotipy.readthedocs.io/en/2.19.0/#spotipy.client.Spotify.country_codes for list of available codes</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("country")]
+		public string? Country { get; init; }
+
+		///<summary>Limit of playlist to fetch in a given category. Default 20</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("limit")]
+		public long? Limit { get; init; }
+
+		///<summary>A Search request to the spotify API. Will play the most relevant search result.</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("search")]
+		public string? Search { get; init; }
+
+		///<summary>Optionally starts Spotify using an alternative account specified in config. eg: my_wifes</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("account")]
+		public string? Account { get; init; }
+
+		///<summary>In case of transfering playback: If true starts playing the user's last playback even if nothing is currently playing. eg: True</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("forcePlayback")]
+		public bool? ForcePlayback { get; init; }
+
+		///<summary>Starts the playback at a random position in the playlist or album. eg: True</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("randomSong")]
+		public bool? RandomSong { get; init; }
+
+		///<summary>Set repeat mode for playback. eg: track</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("repeat")]
+		public string? Repeat { get; init; }
+
+		///<summary>Set shuffle mode for playback. eg: True</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("shuffle")]
+		public bool? Shuffle { get; init; }
+
+		///<summary>Set offset mode for playback. 0 is the first song. eg: 1</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("offset")]
+		public long? Offset { get; init; }
+
+		///<summary>Set the volume for playback in percentage. eg: 50</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("startVolume")]
+		public long? StartVolume { get; init; }
+
+		///<summary>Set to ignore or not already played episodes in a podcast playlist eg: True</summary>
+		[System.Text.Json.Serialization.JsonPropertyName("ignoreFullyPlayed")]
+		public bool? IgnoreFullyPlayed { get; init; }
 	}
 
 	public class SwitchServices
@@ -7806,7 +7568,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
 		///<param name="entity">The MediaPlayerEntity to call this service for</param>
-		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2", "media_player.multiroom_player3"]</param>
+		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
 		public static void Join(this MediaPlayerEntity entity, object? @groupMembers = null)
 		{
 			entity.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
@@ -8046,7 +7808,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="numRepeats">The number of times you want to repeat the command(s).</param>
 		///<param name="delaySecs">The time you want to wait in between repeated commands.</param>
 		///<param name="holdSecs">The time you want to have it held before the release is send.</param>
-		public static void SendCommand(this RemoteEntity entity, string @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
+		public static void SendCommand(this RemoteEntity entity, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
 		{
 			entity.CallService("send_command", new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
 		}

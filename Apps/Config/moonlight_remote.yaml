@@ -1,0 +1,15 @@
+---
+HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
+  ApiBaseUrl: https://moonlight-remote-api.pupslab.de/api/GameStream
+  PidVar: var.moonlight_pid
+  Hosts:
+    - Name: Desktop Philipp
+      Games:
+        - Id: SH9
+          DisplayName: "Sherlock Holmes: Chapter One"
+    - Name: Desktop Fabienne
+      Games:
+        - Id: "Overcooked All You Can Eat"
+          DisplayName: "Overcooked: All You Can Eat"
+        - Id: "The Witcher 3: Wild Hunt"
+          DisplayName: " The Witcher 3: Wild Hunt"
