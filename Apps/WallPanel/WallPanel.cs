@@ -3,6 +3,7 @@ using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NetDaemon.HassModel.Entities;
 using ILogger = Serilog.ILogger;
 
 namespace HomeAutomations.Apps.WallPanel;
@@ -46,12 +47,12 @@ public class WallPanel
 			return;
 		}
 
-		if (MonitorConfig?.OffRange.IsSmallerThan(message.Value) ?? false)
+		if ((MonitorConfig?.OffRange.IsSmallerThan(message.Value) ?? false) && (Config?.Switch.IsOff() ?? false))
 		{
 			StartCharging();
 		}
 
-		if (MonitorConfig?.OffRange.IsLargerThan(message.Value) ?? false)
+		if ((MonitorConfig?.OffRange.IsLargerThan(message.Value) ?? false) && (Config?.Switch.IsOn() ?? false))
 		{
 			StopCharging();
 		}

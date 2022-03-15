@@ -10,7 +10,6 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MoonlightRemote;
 
-[Focus]
 public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteConfig>
 {
 	private readonly Entities _entities;
