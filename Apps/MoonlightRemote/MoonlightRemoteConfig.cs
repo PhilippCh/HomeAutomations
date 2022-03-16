@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 
@@ -12,16 +13,22 @@ public record GameInfo
 
 public record MoonlightHost
 {
-	public string Name { get; init; }
+	public string DisplayName { get; init; }
+	public string Host { get; init; }
+	public string MacAddress { get; init; }
 	public IEnumerable<GameInfo> Games { get; init; }
+
+	public GameInfo? GetGameByDisplayName(string? displayName) => Games.FirstOrDefault(g => g.DisplayName == displayName);
 }
 
 public record MoonlightRemoteConfig : Config
 {
-	public VarEntity Pid { get; init; }
+	public InputNumberEntity Pid { get; init; }
+	public InputTextEntity CurrentHost { get; init; }
+	public InputBooleanEntity ShutdownHost { get; init; }
+	public InputBooleanEntity ShutdownHarmony { get; init; }
+	public string ApiBaseUrl { get; init; }
 	public InputSelectEntity SelectedHost { get; init; }
 	public InputSelectEntity SelectedGame { get; init; }
-	public string ApiBaseUrl { get; init; }
 	public IEnumerable<MoonlightHost> Hosts { get; init; }
-	public Notification ShutdownNotification { get; init; }
 }

@@ -35,7 +35,7 @@ public static class ServiceCollectionExtensions
 
 		foreach (var app in apps)
 		{
-			var addServicesMethod = app.GetMethod(nameof(VacuumReminder.AddServices));
+			var addServicesMethod = app.GetMethod("AddServices");
 			addServicesMethod?.Invoke(null, new object?[] { services, config });
 		}
 

@@ -1,5 +1,4 @@
 using System.Reflection;
-using HomeAssistant.Automations.Extensions;
 using HomeAutomations.Extensions;
 using Microsoft.Extensions.Hosting;
 using NetDaemon.Extensions.Logging;

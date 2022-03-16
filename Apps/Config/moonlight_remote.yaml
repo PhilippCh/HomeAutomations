@@ -1,15 +1,27 @@
 ---
 HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
-  ApiBaseUrl: https://moonlight-remote-api.pupslab.de/api/GameStream
-  Pid: var.moonlight_pid
+  ApiBaseUrl: https://moonlight-remote-api.pupslab.de
+  Pid: input_number.moonlight_pid
+  CurrentHost: input_text.moonlight_current_host
   SelectedHost: input_select.moonlight_selected_host
   SelectedGame: input_select.moonlight_selected_game
+  ShutdownHost: input_boolean.moonlight_shutdown_host
+  ShutdownHarmony: input_boolean.moonlight_shutdown_harmony
+  Features:
+    Host: true
+    Harmony: false
+    Moonlight: true
+    Bluetooth: true
   Hosts:
-    - Name: Desktop Philipp
+    - DisplayName: Desktop Philipp
+      Host: 192.168.188.41
+      MacAddress: 40:B0:76:DD:34:61
       Games:
         - Id: SH9
           DisplayName: "Sherlock Holmes: Chapter One"
-    - Name: Desktop Fabienne
+    - DisplayName: Desktop Fabienne
+      Host: 192.168.188.34
+      MacAddress: AC:9E:17:EC:5F:83
       Games:
         - Id: "Overcooked All You Can Eat"
           DisplayName: "Overcooked: All You Can Eat"

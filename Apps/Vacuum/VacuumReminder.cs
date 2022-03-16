@@ -7,6 +7,7 @@ using HomeAutomations.Apps.Vacuum.StateMachine;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
+using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ObservableExtensions = HomeAssistant.Automations.Extensions.ObservableExtensions;
@@ -34,6 +35,7 @@ public class VacuumReminder : BaseAutomation<VacuumReminder, VacuumConfig>
 		_notificationService = notificationService;
 	}
 
+	[UsedImplicitly]
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
 			.AddTransient<VacuumStateMachine>()

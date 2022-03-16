@@ -1,24 +1,27 @@
 ﻿using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
+using NetDaemon.HassModel.Entities;
 using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MoonlightRemote;
 
+[Focus]
 public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteConfig>
 {
 	private const string ShutdownAction = "MOONLIGHT_SHUTDOWN";
 
-	private readonly HttpClient _client = new();
+	private string? _currentlyStreamingHost;
+
+	private readonly IMoonlightRemoteApiClient _apiClient;
 
 	public MoonlightRemote(BaseAutomationDependencyAggregate<MoonlightRemote, MoonlightRemoteConfig> aggregate)
 		: base(aggregate)
 	{
+		_apiClient = new MoonlightRemoteApiClient(Config.ApiBaseUrl, new HttpClient());
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
@@ -39,20 +42,15 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 
 	private async void UpdateStatus()
 	{
-		var response = await _client.GetAsync($"{Config.ApiBaseUrl}/status");
-		var responseContent = await response.Content.ReadAsStringAsync();
-		var status = JsonSerializer.Deserialize<MoonlightStatusResponse>(responseContent);
-
-		Config.Pid.CallService("set", new { value = status?.Pid ?? -1 });
+		var status = await _apiClient.StatusAsync();
+		Config.Pid.SetValue(status?.Pid ?? -1);
+		Config.CurrentHost.SetValue(!string.IsNullOrWhiteSpace(status?.Host) ? status!.Host : "None");
 	}
 
-	private void UpdateAvailableGames(string? host)
+	private void UpdateAvailableGames(string? hostDisplayName)
 	{
-		var availableGames = (Config.Hosts
-			                      .FirstOrDefault(h => h.Name == host)
-			                      ?.Games
-			                      .Select(g => g.DisplayName) ??
-		                      new[] { "Keine Auswahl" }).ToList();
+		var host = GetHostByDisplayName(hostDisplayName);
+		var availableGames = (host?.Games.Select(g => g.DisplayName) ?? new[] { "Keine Auswahl" }).ToList();
 
 		availableGames.Insert(0, "Bitte wählen ...");
 
@@ -66,8 +64,8 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 
 	private async void StartStream(MoonlightServiceData e)
 	{
-		var host = Config.Hosts.FirstOrDefault(h => h.Name == Config.SelectedHost.State);
-		var game = host?.Games.FirstOrDefault(g => g.DisplayName == Config.SelectedGame.State);
+		var host = GetHostByDisplayName(Config.SelectedHost.State);
+		var game = host?.GetGameByDisplayName(Config.SelectedGame.State);
 
 		if (host == null || game == null)
 		{
@@ -76,11 +74,48 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 			return;
 		}
 
-		var response = await _client.PostAsJsonAsync($"{Config.ApiBaseUrl}/start", new { Host = host.Name, Game = game.Id });
+		var request = new StartStreamRequest
+		{
+			Host = new StreamRequestHost { Host = host.Host, MacAddress = host.MacAddress },
+			Game = game.Id,
+			Features = new StreamRequestFeatures
+			{
+				Host = true,
+				Moonlight = true,
+				Harmony = true,
+				Bluetooth = true
+			}
+		};
+		var response = await _apiClient.StartAsync(request);
 	}
 
 	private async void StopStream()
 	{
-		var result = await _client.PostAsync($"{Config.ApiBaseUrl}/stop", null);
+		var hostAddress = Config.CurrentHost.State ?? Config.SelectedHost.State;
+		var host = GetHost(hostAddress) ?? GetHostByDisplayName(Config.SelectedHost.State);
+
+		if (host == null)
+		{
+			Logger.Warning("Could not find host {host} in list.", hostAddress);
+
+			return;
+		}
+
+		var request = new StopStreamRequest
+		{
+			Host = new StreamRequestHost { Host = host.Host, MacAddress = host.MacAddress },
+			Features = new StreamRequestFeatures
+			{
+				Harmony = Config.ShutdownHarmony.IsOn(),
+				Host = Config.ShutdownHost.IsOn(),
+				Bluetooth = true,
+				Moonlight = true
+			}
+		};
+		var response = await _apiClient.StopAsync(request);
 	}
+
+	private MoonlightHost? GetHost(string? host) => Config.Hosts.FirstOrDefault(h => h.Host == host);
+
+	private MoonlightHost? GetHostByDisplayName(string? displayName) => Config.Hosts.FirstOrDefault(h => h.DisplayName == displayName);
 }
