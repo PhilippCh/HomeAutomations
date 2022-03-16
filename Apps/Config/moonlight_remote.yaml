@@ -1,7 +1,9 @@
 ---
 HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
   ApiBaseUrl: https://moonlight-remote-api.pupslab.de/api/GameStream
-  PidVar: var.moonlight_pid
+  Pid: var.moonlight_pid
+  SelectedHost: input_select.moonlight_selected_host
+  SelectedGame: input_select.moonlight_selected_game
   Hosts:
     - Name: Desktop Philipp
       Games:
@@ -13,3 +15,14 @@ HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
           DisplayName: "Overcooked: All You Can Eat"
         - Id: "The Witcher 3: Wild Hunt"
           DisplayName: " The Witcher 3: Wild Hunt"
+  ShutdownNotification:
+    Tag: moonlight
+    Title: Moonlight Stream
+    Template: Stream beendet. Möchtest du den Host herunterfahren?
+    Service: mobile_app_iphone_philipp
+    Actions:
+      - Action: MOONLIGHT_SHUTDOWN
+        Title: Herunterfahren
+        Destructive: false
+      - Action: MOONLIGHT_NO_SHUTDOWN
+        Title: Nicht herunterfahren

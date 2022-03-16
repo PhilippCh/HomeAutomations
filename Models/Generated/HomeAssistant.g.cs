@@ -242,6 +242,8 @@ namespace HomeAutomations.Models.Generated
 		public CalendarEntity SecretSanta => new(_haContext, "calendar.secret_santa");
 		///<summary> The Millionaire’s Bucket List 💸</summary>
 		public CalendarEntity TheMillionairesBucketList => new(_haContext, "calendar.the_millionaires_bucket_list");
+		///<summary>The Shadows On Your Soul</summary>
+		public CalendarEntity TheShadowsOnYourSoul => new(_haContext, "calendar.the_shadows_on_your_soul");
 		///<summary>Unser Haus 🏠</summary>
 		public CalendarEntity UnserHaus => new(_haContext, "calendar.unser_haus");
 		///<summary> Urlaub Ibiza 🇪🇸</summary>
@@ -348,8 +350,18 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Barcode scanner connected?</summary>
 		public InputBooleanEntity BarcodeScannerConnected => new(_haContext, "input_boolean.barcode_scanner_connected");
+		///<summary>dev_netdaemon_home_automations_apps_moonlight_remote_moonlight_remote</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsMoonlightRemoteMoonlightRemote => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_moonlight_remote_moonlight_remote");
+		///<summary>dev_netdaemon_home_automations_apps_nighttime_switch_nighttime_switch</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsNighttimeSwitchNighttimeSwitch => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_nighttime_switch_nighttime_switch");
+		///<summary>dev_netdaemon_home_automations_apps_wall_panel_wall_panel_monitor</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsWallPanelWallPanelMonitor => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_wall_panel_wall_panel_monitor");
 		///<summary>Meditation active?</summary>
 		public InputBooleanEntity MeditationActive => new(_haContext, "input_boolean.meditation_active");
+		///<summary>Shut down harmony activity after moonlight stream ends?</summary>
+		public InputBooleanEntity MoonlightShutdownHarmony => new(_haContext, "input_boolean.moonlight_shutdown_harmony");
+		///<summary>Shut down host after moonlight stream ends?</summary>
+		public InputBooleanEntity MoonlightShutdownHost => new(_haContext, "input_boolean.moonlight_shutdown_host");
 		///<summary>netdaemon_home_automations_apps_calorie_counter_calorie_counter</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsCalorieCounterCalorieCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_calorie_counter_calorie_counter");
 		///<summary>netdaemon_home_automations_apps_computer_speakers_computer_speakers</summary>
@@ -358,8 +370,8 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsKitchenLightKitchenLight => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kitchen_light_kitchen_light");
 		///<summary>netdaemon_home_automations_apps_kratom_counter_kratom_counter</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsKratomCounterKratomCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kratom_counter_kratom_counter");
-		///<summary>netdaemon_home_automations_apps_moonlight_moonlight_game_launcher</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsMoonlightMoonlightGameLauncher => new(_haContext, "input_boolean.netdaemon_home_automations_apps_moonlight_moonlight_game_launcher");
+		///<summary>netdaemon_home_automations_apps_moonlight_remote_moonlight_remote</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsMoonlightRemoteMoonlightRemote => new(_haContext, "input_boolean.netdaemon_home_automations_apps_moonlight_remote_moonlight_remote");
 		///<summary>netdaemon_home_automations_apps_nighttime_switch_nighttime_switch</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsNighttimeSwitchNighttimeSwitch => new(_haContext, "input_boolean.netdaemon_home_automations_apps_nighttime_switch_nighttime_switch");
 		///<summary>netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale</summary>
@@ -1106,10 +1118,6 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Verfügbare Spiele auf Desktop Fabienne</summary>
-		public VarEntity MoonlightAvailableGamesDesktopFabienne => new(_haContext, "var.moonlight_available_games_desktop_fabienne");
-		///<summary>Verfügbare Spiele auf Desktop Philipp</summary>
-		public VarEntity MoonlightAvailableGamesDesktopPhilipp => new(_haContext, "var.moonlight_available_games_desktop_philipp");
 		///<summary>Moonlight running PID</summary>
 		public VarEntity MoonlightPid => new(_haContext, "var.moonlight_pid");
 	}
@@ -1529,6 +1537,9 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("all_day")]
 		public bool? AllDay { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("all_tasks")]
+		public object? AllTasks { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("description")]
 		public string? Description { get; init; }
 
@@ -1546,6 +1557,9 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("offset_reached")]
 		public bool? OffsetReached { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("overdue_tasks")]
+		public object? OverdueTasks { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("start_time")]
 		public string? StartTime { get; init; }
@@ -1702,9 +1716,6 @@ namespace HomeAutomations.Models.Generated
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_type")]
 		public string? SourceType { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("speed")]
-		public double? Speed { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
 		public double? SupportedFeatures { get; init; }
@@ -2117,6 +2128,12 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Available (Opportunistic)")]
 		public string? AvailableOpportunistic { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_received")]
+		public double? BytesReceived { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_sent")]
+		public double? BytesSent { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("change")]
 		public double? Change { get; init; }
 
@@ -2192,8 +2209,20 @@ namespace HomeAutomations.Models.Generated
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("purchasePrice")]
 		public double? PurchasePrice { get; init; }
 
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("repositories")]
+		public object? Repositories { get; init; }
+
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
 		public bool? Restored { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_country")]
+		public string? ServerCountry { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_id")]
+		public string? ServerId { get; init; }
+
+		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_name")]
+		public string? ServerName { get; init; }
 
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shares")]
 		public double? Shares { get; init; }
@@ -2338,9 +2367,6 @@ namespace HomeAutomations.Models.Generated
 	{
 		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
-		public string? Icon { get; init; }
 	}
 
 	public record WeatherAttributes
@@ -5332,6 +5358,16 @@ namespace HomeAutomations.Models.Generated
 		public void EntityUpdate(string? @entityId = null, string? @state = null, string? @icon = null, string? @unit = null, string? @options = null, string? @attributes = null)
 		{
 			_haContext.CallService("netdaemon", "entity_update", null, new NetdaemonEntityUpdateParameters{EntityId = @entityId, State = @state, Icon = @icon, Unit = @unit, Options = @options, Attributes = @attributes});
+		}
+
+		public void MoonlightStart()
+		{
+			_haContext.CallService("netdaemon", "moonlight_start", null);
+		}
+
+		public void MoonlightStop()
+		{
+			_haContext.CallService("netdaemon", "moonlight_stop", null);
 		}
 
 		///<summary>Register a new service for netdaemon, used by the daemon and not to be used by users</summary>

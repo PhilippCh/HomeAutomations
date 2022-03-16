@@ -6,11 +6,11 @@
         <LangVersion>10.0</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <None Update="$(MSBuildProjectDir)appsettings.Development.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>        
+        </None>
         <None Update="$(MSBuildProjectDir)appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
@@ -38,7 +38,7 @@
     <Target Name="AfterPublishMessage" AfterTargets="Publish">
         <Message Text="Publish done! Copy all content in directory: $(PublishDir) to the `/config/netdaemon3' folder for add-on or your custom folder to deplpoy" Importance="high" />
     </Target>
-        
+
     <ItemGroup>
         <PackageReference Include="CoordinateSharp" Version="2.12.1.1" />
         <PackageReference Include="Cronos" Version="0.7.1" />
@@ -59,9 +59,23 @@
         <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
         <PackageReference Include="Staty" Version="2.1.3" />
         <PackageReference Include="System.Reactive" Version="5.0.0" />
+		<PackageReference Include="NSwag.AspNetCore" Version="13.15.10" />
+		<PackageReference Include="NSwag.MSBuild" Version="13.15.10">
+			<PrivateAssets>All</PrivateAssets>
+		</PackageReference>
     </ItemGroup>
-	
-	<!--<Target Name="Generate HomeAssistant models" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">
-		<Exec Command="nd-codegen -ns HomeAutomations.Models.Generated -o .\Models\Generated\HomeAssistantGenerated.cs" WorkingDirectory="$(ProjectDir)" />
+
+	<!--<Target Name="Generate HomeAssistant models" BeforeTargets="AfterBuild" Condition="'$(Configuration)' == 'Debug'">
+		<Exec Command="nd-codegen -ns HomeAutomations.Models.Generated -o .\Models\Generated\HomeAssistant.g.cs" WorkingDirectory="$(ProjectDir)" />
 	</Target>-->
+
+	<Target Name="NSwag" BeforeTargets="AfterBuild">
+		<Exec ConsoleToMSBuild="true" ContinueOnError="true" Command="$(NSwagExe_Core31) run nswag.json">
+			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
+			<Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />
+		</Exec>
+
+		<Message Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' == '0'" Importance="low" />
+		<Error Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' != '0'" />
+	</Target>
 </Project>

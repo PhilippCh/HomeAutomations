@@ -1,6 +1,4 @@
 ﻿using System.Reactive.Subjects;
-using HomeAssistant.Automations.Constants;
-using HomeAssistant.Automations.Models;
 using HomeAutomations.Models;
 
 namespace HomeAutomations.Services;
@@ -20,7 +18,7 @@ public class NotificationService
 		_context = context;
 		_services = new Models.Generated.Services(context);
 		context.Events
-			.Where(e => e.EventType == EventTypes.MobileAppNotificationAction && e.DataElement.HasValue)
+			.Where(e => e.EventType == MobileAppNotificationData.EventType && e.DataElement.HasValue)
 			.Select(e => e.DataElement!.Value.GetProperty("action").GetString()!)
 			.Subscribe(OnNotificationActionFired);
 		_logger = logger.ForContext<NotificationService>();

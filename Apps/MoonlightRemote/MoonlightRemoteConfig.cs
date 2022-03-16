@@ -18,7 +18,10 @@ public record MoonlightHost
 
 public record MoonlightRemoteConfig : Config
 {
-	public VarEntity PidVar { get; init; }
+	public VarEntity Pid { get; init; }
+	public InputSelectEntity SelectedHost { get; init; }
+	public InputSelectEntity SelectedGame { get; init; }
 	public string ApiBaseUrl { get; init; }
 	public IEnumerable<MoonlightHost> Hosts { get; init; }
+	public Notification ShutdownNotification { get; init; }
 }

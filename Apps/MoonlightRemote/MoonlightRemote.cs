@@ -12,25 +12,29 @@ namespace HomeAutomations.Apps.MoonlightRemote;
 
 public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteConfig>
 {
-	private readonly Entities _entities;
+	private const string ShutdownAction = "MOONLIGHT_SHUTDOWN";
+
 	private readonly HttpClient _client = new();
 
 	public MoonlightRemote(BaseAutomationDependencyAggregate<MoonlightRemote, MoonlightRemoteConfig> aggregate)
 		: base(aggregate)
 	{
-		_entities = new Entities(Context);
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_start", StartStream);
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_stop", _ => StopStream());
-
-		_entities.InputSelect.MoonlightSelectedHost.StateChanges()
+		Context.Events.Filter<MobileAppNotificationData>(MobileAppNotificationData.EventType)
+			.Where(e => e.Data?.Action == ShutdownAction)
+			.Subscribe(_ => StopStream());
+		Config.SelectedHost.StateChanges()
 			.Subscribe(s => UpdateAvailableGames(s.New?.State));
 
 		Observable.Interval(TimeSpan.FromSeconds(20))
 			.Subscribe(_ => UpdateStatus());
+
+		await Task.CompletedTask;
 	}
 
 	private async void UpdateStatus()
@@ -39,7 +43,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		var responseContent = await response.Content.ReadAsStringAsync();
 		var status = JsonSerializer.Deserialize<MoonlightStatusResponse>(responseContent);
 
-		Config.PidVar.CallService("set", new { value = status?.Pid ?? -1 });
+		Config.Pid.CallService("set", new { value = status?.Pid ?? -1 });
 	}
 
 	private void UpdateAvailableGames(string? host)
@@ -52,35 +56,31 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 
 		availableGames.Insert(0, "Bitte wählen ...");
 
-		_entities.InputSelect.MoonlightSelectedGame.SetOptions(
+		Config.SelectedGame.SetOptions(
 			new InputSelectSetOptionsParameters
 			{
 				Options = availableGames
 			});
-		_entities.InputSelect.MoonlightSelectedGame.SelectOption(availableGames.FirstOrDefault() ?? string.Empty);
+		Config.SelectedGame.SelectOption(availableGames.FirstOrDefault() ?? string.Empty);
 	}
 
 	private async void StartStream(MoonlightServiceData e)
 	{
-		var host = Config.Hosts.FirstOrDefault(h => h.Name == _entities.InputSelect.MoonlightSelectedHost.State);
-		var game = host?.Games.FirstOrDefault(g => g.DisplayName == _entities.InputSelect.MoonlightSelectedGame.State);
+		var host = Config.Hosts.FirstOrDefault(h => h.Name == Config.SelectedHost.State);
+		var game = host?.Games.FirstOrDefault(g => g.DisplayName == Config.SelectedGame.State);
 
 		if (host == null || game == null)
 		{
-			Logger.Warning(
-				"Could not find host {host} or game {game}",
-				_entities.InputSelect.MoonlightSelectedHost.State,
-				_entities.InputSelect.MoonlightSelectedGame.State);
+			Logger.Warning("Could not find host {host} or game {game}", Config.SelectedGame.State, Config.SelectedGame.State);
 
 			return;
 		}
 
-		var request = new { Host = host.Name, Game = game.Id };
-		var response = await _client.PostAsJsonAsync($"{Config.ApiBaseUrl}/start", request);
+		var response = await _client.PostAsJsonAsync($"{Config.ApiBaseUrl}/start", new { Host = host.Name, Game = game.Id });
 	}
 
 	private async void StopStream()
 	{
-		var response = await _client.PostAsync($"{Config.ApiBaseUrl}/stop", null);
+		var result = await _client.PostAsync($"{Config.ApiBaseUrl}/stop", null);
 	}
 }
