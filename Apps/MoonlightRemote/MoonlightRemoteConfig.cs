@@ -27,7 +27,7 @@ public record MoonlightRemoteConfig : Config
 	public InputTextEntity CurrentHost { get; init; }
 	public InputBooleanEntity ShutdownHost { get; init; }
 	public InputBooleanEntity ShutdownHarmony { get; init; }
-	public string ApiBaseUrl { get; init; }
+	public StagedConfig<string> ApiBaseUrl { get; init; }
 	public InputSelectEntity SelectedHost { get; init; }
 	public InputSelectEntity SelectedGame { get; init; }
 	public IEnumerable<MoonlightHost> Hosts { get; init; }

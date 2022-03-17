@@ -1,6 +1,9 @@
 ---
 HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
-  ApiBaseUrl: https://moonlight-remote-api.pupslab.de
+  ApiBaseUrl:
+    Values:
+      Development: https://moonlight-remote-api.pupslab.de
+      Production: http://moonlight-remote-api:8080
   Pid: input_number.moonlight_pid
   CurrentHost: input_text.moonlight_current_host
   SelectedHost: input_select.moonlight_selected_host

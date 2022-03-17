@@ -14,14 +14,14 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 {
 	private const string ShutdownAction = "MOONLIGHT_SHUTDOWN";
 
-	private string? _currentlyStreamingHost;
-
 	private readonly IMoonlightRemoteApiClient _apiClient;
 
 	public MoonlightRemote(BaseAutomationDependencyAggregate<MoonlightRemote, MoonlightRemoteConfig> aggregate)
 		: base(aggregate)
 	{
-		_apiClient = new MoonlightRemoteApiClient(Config.ApiBaseUrl, new HttpClient());
+		var baseUrl = Config.ApiBaseUrl.CurrentValue;
+		Logger.Information("Connecting to {baseUrl}.", baseUrl);
+		_apiClient = new MoonlightRemoteApiClient(baseUrl, new HttpClient());
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
