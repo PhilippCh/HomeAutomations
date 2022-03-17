@@ -42,9 +42,16 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 
 	private async void UpdateStatus()
 	{
-		var status = await _apiClient.StatusAsync();
-		Config.Pid.SetValue(status?.Pid ?? -1);
-		Config.CurrentHost.SetValue(!string.IsNullOrWhiteSpace(status?.Host) ? status!.Host : "None");
+		try
+		{
+			var status = await _apiClient.StatusAsync();
+			Config.Pid.SetValue(status?.Pid ?? -1);
+			Config.CurrentHost.SetValue(!string.IsNullOrWhiteSpace(status?.Host) ? status!.Host : "None");
+		}
+		catch (TaskCanceledException ex)
+		{
+			Logger.Warning("Could not update status due to: {reason}", ex.Message);
+		}
 	}
 
 	private void UpdateAvailableGames(string? hostDisplayName)
