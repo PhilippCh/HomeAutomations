@@ -22,6 +22,8 @@ HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
       Games:
         - Id: SH9
           DisplayName: "Sherlock Holmes: Chapter One"
+        - Id: "LEGO The LEGO Movie 2_DX11"
+          DisplayName: "The LEGO Movie 2"
     - DisplayName: Desktop Fabienne
       Host: 192.168.188.34
       MacAddress: AC:9E:17:EC:5F:83
@@ -29,7 +31,11 @@ HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
         - Id: "Overcooked All You Can Eat"
           DisplayName: "Overcooked: All You Can Eat"
         - Id: "The Witcher 3: Wild Hunt"
-          DisplayName: " The Witcher 3: Wild Hunt"
+          DisplayName: "The Witcher 3: Wild Hunt"
+        - Id: "harry2"
+          DisplayName: "LEGO Harry Potter 5-7"
+        - Id: "LEGOLOTR"
+          DisplayName: "LEGO Herr der Ringe"
   ShutdownNotification:
     Tag: moonlight
     Title: Moonlight Stream
