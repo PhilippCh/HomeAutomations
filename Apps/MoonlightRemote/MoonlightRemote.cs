@@ -28,6 +28,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 	{
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_start", StartStream);
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_stop", _ => StopStream());
+		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_reset_bluetooth", _ => ResetBluetooth());
 		Context.Events.Filter<MobileAppNotificationData>(MobileAppNotificationData.EventType)
 			.Where(e => e.Data?.Action == ShutdownAction)
 			.Subscribe(_ => StopStream());
@@ -120,6 +121,11 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 			}
 		};
 		var response = await _apiClient.StopAsync(request);
+	}
+
+	private async void ResetBluetooth()
+	{
+		await _apiClient.ResetBluetoothAsync();
 	}
 
 	private MoonlightHost? GetHost(string? host) => Config.Hosts.FirstOrDefault(h => h.Host == host);
