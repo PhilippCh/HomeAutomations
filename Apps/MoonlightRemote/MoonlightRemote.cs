@@ -15,13 +15,16 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 	private const string ShutdownAction = "MOONLIGHT_SHUTDOWN";
 
 	private readonly IMoonlightRemoteApiClient _apiClient;
+	private readonly BrowserModServices _browserModServices;
 
 	public MoonlightRemote(BaseAutomationDependencyAggregate<MoonlightRemote, MoonlightRemoteConfig> aggregate)
 		: base(aggregate)
 	{
 		var baseUrl = Config.ApiBaseUrl.CurrentValue;
 		Logger.Information("Connecting to {baseUrl}.", baseUrl);
+
 		_apiClient = new MoonlightRemoteApiClient(baseUrl, new HttpClient());
+		_browserModServices = Services.BrowserMod;
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
@@ -94,7 +97,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 				Bluetooth = true
 			}
 		};
-		var response = await _apiClient.StartAsync(request);
+		await ExecuteWithResultToast(_apiClient.StartAsync(request));
 	}
 
 	private async void StopStream()
@@ -120,15 +123,22 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 				Moonlight = true
 			}
 		};
-		var response = await _apiClient.StopAsync(request);
+
+		await ExecuteWithResultToast(_apiClient.StopAsync(request));
 	}
 
 	private async void ResetBluetooth()
 	{
-		var result = await _apiClient.ResetBluetoothAsync();
+		await ExecuteWithResultToast(_apiClient.ResetBluetoothAsync());
 	}
 
 	private MoonlightHost? GetHost(string? host) => Config.Hosts.FirstOrDefault(h => h.Host == host);
 
 	private MoonlightHost? GetHostByDisplayName(string? displayName) => Config.Hosts.FirstOrDefault(h => h.DisplayName == displayName);
+
+	private async Task ExecuteWithResultToast(Task<TaskExecutionResult> task)
+	{
+		var response = await task;
+		_browserModServices.Toast(response.Message);
+	}
 }

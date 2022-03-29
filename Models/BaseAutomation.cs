@@ -47,11 +47,13 @@ public abstract class BaseAutomation<T> : IAsyncInitializable where T : BaseAuto
 {
 	protected ILogger Logger { get; }
 	protected IHaContext Context { get; }
+	protected Generated.Services Services { get; }
 
 	private
 		protected BaseAutomation(BaseAutomationDependencyAggregate<T> aggregate)
 	{
 		Context = aggregate.Context;
+		Services = new Generated.Services(aggregate.Context);
 		Logger = aggregate.Logger;
 	}
 
