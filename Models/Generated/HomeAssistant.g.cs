@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using NetDaemon.HassModel;
+using NetDaemon.HassModel.Entities;
+using System.Text.Json.Serialization;
 
 namespace HomeAutomations.Models.Generated
 {
@@ -35,6 +38,8 @@ namespace HomeAutomations.Models.Generated
 
 		MediaPlayerEntities MediaPlayer { get; }
 
+		PersistentNotificationEntities PersistentNotification { get; }
+
 		PersonEntities Person { get; }
 
 		RemoteEntities Remote { get; }
@@ -51,8 +56,6 @@ namespace HomeAutomations.Models.Generated
 
 		VacuumEntities Vacuum { get; }
 
-		VarEntities Var { get; }
-
 		WeatherEntities Weather { get; }
 
 		ZoneEntities Zone { get; }
@@ -60,8 +63,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class Entities : IEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public Entities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public Entities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -81,6 +84,7 @@ namespace HomeAutomations.Models.Generated
 		public InputTextEntities InputText => new(_haContext);
 		public LightEntities Light => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
+		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
 		public RemoteEntities Remote => new(_haContext);
 		public SelectEntities Select => new(_haContext);
@@ -89,15 +93,14 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntities Switch => new(_haContext);
 		public TimerEntities Timer => new(_haContext);
 		public VacuumEntities Vacuum => new(_haContext);
-		public VarEntities Var => new(_haContext);
 		public WeatherEntities Weather => new(_haContext);
 		public ZoneEntities Zone => new(_haContext);
 	}
 
 	public class AlarmControlPanelEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public AlarmControlPanelEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public AlarmControlPanelEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -108,8 +111,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class BinarySensorEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public BinarySensorEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public BinarySensorEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -190,8 +193,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class ButtonEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public ButtonEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public ButtonEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -204,8 +207,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class CalendarEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CalendarEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CalendarEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -260,8 +263,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class CameraEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CameraEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CameraEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -274,8 +277,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class ClimateEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public ClimateEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public ClimateEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -292,8 +295,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class CounterEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CounterEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CounterEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -304,8 +307,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class DeviceTrackerEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public DeviceTrackerEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public DeviceTrackerEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -330,8 +333,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class GroupEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public GroupEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public GroupEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -342,8 +345,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class InputBooleanEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputBooleanEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputBooleanEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -354,8 +357,6 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsMoonlightRemoteMoonlightRemote => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_moonlight_remote_moonlight_remote");
 		///<summary>dev_netdaemon_home_automations_apps_nighttime_switch_nighttime_switch</summary>
 		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsNighttimeSwitchNighttimeSwitch => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_nighttime_switch_nighttime_switch");
-		///<summary>dev_netdaemon_home_automations_apps_wall_panel_wall_panel_monitor</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsWallPanelWallPanelMonitor => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_wall_panel_wall_panel_monitor");
 		///<summary>Meditation active?</summary>
 		public InputBooleanEntity MeditationActive => new(_haContext, "input_boolean.meditation_active");
 		///<summary>Shut down harmony activity after moonlight stream ends?</summary>
@@ -396,8 +397,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class InputNumberEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputNumberEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputNumberEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -412,6 +413,8 @@ namespace HomeAutomations.Models.Generated
 		public InputNumberEntity MaxShavesBeforeChange => new(_haContext, "input_number.max_shaves_before_change");
 		///<summary>Meditation timer (minutes)</summary>
 		public InputNumberEntity MeditationTimerMinutes => new(_haContext, "input_number.meditation_timer_minutes");
+		///<summary>Moonlight running PID</summary>
+		public InputNumberEntity MoonlightPid => new(_haContext, "input_number.moonlight_pid");
 		///<summary>Bewegungsmelder Aktivierungsdauer (Sekunden)</summary>
 		public InputNumberEntity MotionSensorIdleSecs => new(_haContext, "input_number.motion_sensor_idle_secs");
 		///<summary>Night</summary>
@@ -420,8 +423,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class InputSelectEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputSelectEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputSelectEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -438,8 +441,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class InputTextEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputTextEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputTextEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -452,18 +455,23 @@ namespace HomeAutomations.Models.Generated
 		public InputTextEntity KitchenScaleNutriscoreUrl => new(_haContext, "input_text.kitchen_scale_nutriscore_url");
 		///<summary>Kitchen scale search term</summary>
 		public InputTextEntity KitchenScaleSearchTerm => new(_haContext, "input_text.kitchen_scale_search_term");
+		///<summary>Moonlight current host</summary>
+		public InputTextEntity MoonlightCurrentHost => new(_haContext, "input_text.moonlight_current_host");
 		///<summary>Vacuum State Test</summary>
 		public InputTextEntity VacuumStateTest => new(_haContext, "input_text.vacuum_state_test");
 	}
 
 	public class LightEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public LightEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public LightEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
+		public LightEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "light.browser_mod_8ff90475_f73ebe95");
+		public LightEntity BrowserModCe5a5526823fbc7c => new(_haContext, "light.browser_mod_ce5a5526_823fbc7c");
+		public LightEntity BrowserModFb34009b72400981 => new(_haContext, "light.browser_mod_fb34009b_72400981");
 		///<summary>Küchendecke</summary>
 		public LightEntity Kuchendecke => new(_haContext, "light.kuchendecke");
 		///<summary>Licht Nachttisch Fup</summary>
@@ -478,12 +486,15 @@ namespace HomeAutomations.Models.Generated
 
 	public class MediaPlayerEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public MediaPlayerEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public MediaPlayerEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
+		public MediaPlayerEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "media_player.browser_mod_8ff90475_f73ebe95");
+		public MediaPlayerEntity BrowserModCe5a5526823fbc7c => new(_haContext, "media_player.browser_mod_ce5a5526_823fbc7c");
+		public MediaPlayerEntity BrowserModFb34009b72400981 => new(_haContext, "media_player.browser_mod_fb34009b_72400981");
 		///<summary>master_bedroom_speaker</summary>
 		public MediaPlayerEntity MasterBedroomSpeaker => new(_haContext, "media_player.master_bedroom_speaker");
 		///<summary>Hall Display</summary>
@@ -492,10 +503,22 @@ namespace HomeAutomations.Models.Generated
 		public MediaPlayerEntity SpotifyPhilippChristoph => new(_haContext, "media_player.spotify_philipp_christoph");
 	}
 
+	public class PersistentNotificationEntities
+	{
+		private readonly IHaContext _haContext;
+		public PersistentNotificationEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>New devices discovered</summary>
+		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
+	}
+
 	public class PersonEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public PersonEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public PersonEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -508,8 +531,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class RemoteEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public RemoteEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public RemoteEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -520,8 +543,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class SelectEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SelectEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SelectEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -532,8 +555,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class SensorEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SensorEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SensorEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -568,6 +591,9 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BaseCaloriesForFabienne => new(_haContext, "sensor.base_calories_for_fabienne");
 		///<summary>Base calories for philipp</summary>
 		public SensorEntity BaseCaloriesForPhilipp => new(_haContext, "sensor.base_calories_for_philipp");
+		public SensorEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "sensor.browser_mod_8ff90475_f73ebe95");
+		public SensorEntity BrowserModCe5a5526823fbc7c => new(_haContext, "sensor.browser_mod_ce5a5526_823fbc7c");
+		public SensorEntity BrowserModFb34009b72400981 => new(_haContext, "sensor.browser_mod_fb34009b_72400981");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Activity</summary>
 		public SensorEntity BuyHodlGmeActivity => new(_haContext, "sensor.buy_hodl_gme_activity");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Battery State</summary>
@@ -979,8 +1005,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class SunEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SunEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SunEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -991,8 +1017,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class SwitchEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SwitchEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SwitchEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -1089,8 +1115,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class TimerEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public TimerEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public TimerEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -1100,8 +1126,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class VacuumEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public VacuumEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public VacuumEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -1110,22 +1136,10 @@ namespace HomeAutomations.Models.Generated
 		public VacuumEntity Fantenrussel => new(_haContext, "vacuum.fantenrussel");
 	}
 
-	public class VarEntities
-	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public VarEntities(NetDaemon.HassModel.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Moonlight running PID</summary>
-		public VarEntity MoonlightPid => new(_haContext, "var.moonlight_pid");
-	}
-
 	public class WeatherEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public WeatherEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public WeatherEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -1136,8 +1150,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class ZoneEntities
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public ZoneEntities(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public ZoneEntities(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -1148,1278 +1162,1359 @@ namespace HomeAutomations.Models.Generated
 		public ZoneEntity IphonePhilippStationary => new(_haContext, "zone.iphone_philipp_stationary");
 	}
 
-	public record AlarmControlPanelEntity : NetDaemon.HassModel.Entities.Entity<AlarmControlPanelEntity, NetDaemon.HassModel.Entities.EntityState<AlarmControlPanelAttributes>, AlarmControlPanelAttributes>
+	public record AlarmControlPanelEntity : Entity<AlarmControlPanelEntity, EntityState<AlarmControlPanelAttributes>, AlarmControlPanelAttributes>
 	{
-		public AlarmControlPanelEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public AlarmControlPanelEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public AlarmControlPanelEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public AlarmControlPanelEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record BinarySensorEntity : NetDaemon.HassModel.Entities.Entity<BinarySensorEntity, NetDaemon.HassModel.Entities.EntityState<BinarySensorAttributes>, BinarySensorAttributes>
+	public record BinarySensorEntity : Entity<BinarySensorEntity, EntityState<BinarySensorAttributes>, BinarySensorAttributes>
 	{
-		public BinarySensorEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public BinarySensorEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public BinarySensorEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public BinarySensorEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record ButtonEntity : NetDaemon.HassModel.Entities.Entity<ButtonEntity, NetDaemon.HassModel.Entities.EntityState<ButtonAttributes>, ButtonAttributes>
+	public record ButtonEntity : Entity<ButtonEntity, EntityState<ButtonAttributes>, ButtonAttributes>
 	{
-		public ButtonEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public ButtonEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public ButtonEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public ButtonEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record CalendarEntity : NetDaemon.HassModel.Entities.Entity<CalendarEntity, NetDaemon.HassModel.Entities.EntityState<CalendarAttributes>, CalendarAttributes>
+	public record CalendarEntity : Entity<CalendarEntity, EntityState<CalendarAttributes>, CalendarAttributes>
 	{
-		public CalendarEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public CalendarEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public CalendarEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public CalendarEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record CameraEntity : NetDaemon.HassModel.Entities.Entity<CameraEntity, NetDaemon.HassModel.Entities.EntityState<CameraAttributes>, CameraAttributes>
+	public record CameraEntity : Entity<CameraEntity, EntityState<CameraAttributes>, CameraAttributes>
 	{
-		public CameraEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public CameraEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public CameraEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public CameraEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record ClimateEntity : NetDaemon.HassModel.Entities.Entity<ClimateEntity, NetDaemon.HassModel.Entities.EntityState<ClimateAttributes>, ClimateAttributes>
+	public record ClimateEntity : Entity<ClimateEntity, EntityState<ClimateAttributes>, ClimateAttributes>
 	{
-		public ClimateEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public ClimateEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public ClimateEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public ClimateEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record CounterEntity : NetDaemon.HassModel.Entities.Entity<CounterEntity, NetDaemon.HassModel.Entities.EntityState<CounterAttributes>, CounterAttributes>
+	public record CounterEntity : Entity<CounterEntity, EntityState<CounterAttributes>, CounterAttributes>
 	{
-		public CounterEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public CounterEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public CounterEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public CounterEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record DeviceTrackerEntity : NetDaemon.HassModel.Entities.Entity<DeviceTrackerEntity, NetDaemon.HassModel.Entities.EntityState<DeviceTrackerAttributes>, DeviceTrackerAttributes>
+	public record DeviceTrackerEntity : Entity<DeviceTrackerEntity, EntityState<DeviceTrackerAttributes>, DeviceTrackerAttributes>
 	{
-		public DeviceTrackerEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public DeviceTrackerEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public DeviceTrackerEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public DeviceTrackerEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record GroupEntity : NetDaemon.HassModel.Entities.Entity<GroupEntity, NetDaemon.HassModel.Entities.EntityState<GroupAttributes>, GroupAttributes>
+	public record GroupEntity : Entity<GroupEntity, EntityState<GroupAttributes>, GroupAttributes>
 	{
-		public GroupEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public GroupEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public GroupEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public GroupEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record InputBooleanEntity : NetDaemon.HassModel.Entities.Entity<InputBooleanEntity, NetDaemon.HassModel.Entities.EntityState<InputBooleanAttributes>, InputBooleanAttributes>
+	public record InputBooleanEntity : Entity<InputBooleanEntity, EntityState<InputBooleanAttributes>, InputBooleanAttributes>
 	{
-		public InputBooleanEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public InputBooleanEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public InputBooleanEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public InputBooleanEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record InputNumberEntity : NetDaemon.HassModel.Entities.NumericEntity<InputNumberEntity, NetDaemon.HassModel.Entities.NumericEntityState<InputNumberAttributes>, InputNumberAttributes>
+	public record InputNumberEntity : NumericEntity<InputNumberEntity, NumericEntityState<InputNumberAttributes>, InputNumberAttributes>
 	{
-		public InputNumberEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public InputNumberEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public InputNumberEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public InputNumberEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record InputSelectEntity : NetDaemon.HassModel.Entities.Entity<InputSelectEntity, NetDaemon.HassModel.Entities.EntityState<InputSelectAttributes>, InputSelectAttributes>
+	public record InputSelectEntity : Entity<InputSelectEntity, EntityState<InputSelectAttributes>, InputSelectAttributes>
 	{
-		public InputSelectEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public InputSelectEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public InputSelectEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public InputSelectEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record InputTextEntity : NetDaemon.HassModel.Entities.Entity<InputTextEntity, NetDaemon.HassModel.Entities.EntityState<InputTextAttributes>, InputTextAttributes>
+	public record InputTextEntity : Entity<InputTextEntity, EntityState<InputTextAttributes>, InputTextAttributes>
 	{
-		public InputTextEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public InputTextEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public InputTextEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public InputTextEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record LightEntity : NetDaemon.HassModel.Entities.Entity<LightEntity, NetDaemon.HassModel.Entities.EntityState<LightAttributes>, LightAttributes>
+	public record LightEntity : Entity<LightEntity, EntityState<LightAttributes>, LightAttributes>
 	{
-		public LightEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public LightEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public LightEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public LightEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record MediaPlayerEntity : NetDaemon.HassModel.Entities.Entity<MediaPlayerEntity, NetDaemon.HassModel.Entities.EntityState<MediaPlayerAttributes>, MediaPlayerAttributes>
+	public record MediaPlayerEntity : Entity<MediaPlayerEntity, EntityState<MediaPlayerAttributes>, MediaPlayerAttributes>
 	{
-		public MediaPlayerEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public MediaPlayerEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public MediaPlayerEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public MediaPlayerEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record PersonEntity : NetDaemon.HassModel.Entities.Entity<PersonEntity, NetDaemon.HassModel.Entities.EntityState<PersonAttributes>, PersonAttributes>
+	public record PersistentNotificationEntity : Entity<PersistentNotificationEntity, EntityState<PersistentNotificationAttributes>, PersistentNotificationAttributes>
 	{
-		public PersonEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public PersistentNotificationEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public PersonEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public PersistentNotificationEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record RemoteEntity : NetDaemon.HassModel.Entities.Entity<RemoteEntity, NetDaemon.HassModel.Entities.EntityState<RemoteAttributes>, RemoteAttributes>
+	public record PersonEntity : Entity<PersonEntity, EntityState<PersonAttributes>, PersonAttributes>
 	{
-		public RemoteEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public PersonEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public RemoteEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public PersonEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record SelectEntity : NetDaemon.HassModel.Entities.Entity<SelectEntity, NetDaemon.HassModel.Entities.EntityState<SelectAttributes>, SelectAttributes>
+	public record RemoteEntity : Entity<RemoteEntity, EntityState<RemoteAttributes>, RemoteAttributes>
 	{
-		public SelectEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public RemoteEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public SelectEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public RemoteEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record SensorEntity : NetDaemon.HassModel.Entities.Entity<SensorEntity, NetDaemon.HassModel.Entities.EntityState<SensorAttributes>, SensorAttributes>
+	public record SelectEntity : Entity<SelectEntity, EntityState<SelectAttributes>, SelectAttributes>
 	{
-		public SensorEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public SelectEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public SensorEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public SelectEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record NumericSensorEntity : NetDaemon.HassModel.Entities.NumericEntity<NumericSensorEntity, NetDaemon.HassModel.Entities.NumericEntityState<NumericSensorAttributes>, NumericSensorAttributes>
+	public record SensorEntity : Entity<SensorEntity, EntityState<SensorAttributes>, SensorAttributes>
 	{
-		public NumericSensorEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public SensorEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public NumericSensorEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public SensorEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record SunEntity : NetDaemon.HassModel.Entities.Entity<SunEntity, NetDaemon.HassModel.Entities.EntityState<SunAttributes>, SunAttributes>
+	public record NumericSensorEntity : NumericEntity<NumericSensorEntity, NumericEntityState<NumericSensorAttributes>, NumericSensorAttributes>
 	{
-		public SunEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public NumericSensorEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public SunEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public NumericSensorEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record SwitchEntity : NetDaemon.HassModel.Entities.Entity<SwitchEntity, NetDaemon.HassModel.Entities.EntityState<SwitchAttributes>, SwitchAttributes>
+	public record SunEntity : Entity<SunEntity, EntityState<SunAttributes>, SunAttributes>
 	{
-		public SwitchEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public SunEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public SwitchEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public SunEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record TimerEntity : NetDaemon.HassModel.Entities.Entity<TimerEntity, NetDaemon.HassModel.Entities.EntityState<TimerAttributes>, TimerAttributes>
+	public record SwitchEntity : Entity<SwitchEntity, EntityState<SwitchAttributes>, SwitchAttributes>
 	{
-		public TimerEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public SwitchEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public TimerEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public SwitchEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record VacuumEntity : NetDaemon.HassModel.Entities.Entity<VacuumEntity, NetDaemon.HassModel.Entities.EntityState<VacuumAttributes>, VacuumAttributes>
+	public record TimerEntity : Entity<TimerEntity, EntityState<TimerAttributes>, TimerAttributes>
 	{
-		public VacuumEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public TimerEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public VacuumEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public TimerEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record VarEntity : NetDaemon.HassModel.Entities.Entity<VarEntity, NetDaemon.HassModel.Entities.EntityState<VarAttributes>, VarAttributes>
+	public record VacuumEntity : Entity<VacuumEntity, EntityState<VacuumAttributes>, VacuumAttributes>
 	{
-		public VarEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public VacuumEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public VarEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public VacuumEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record WeatherEntity : NetDaemon.HassModel.Entities.Entity<WeatherEntity, NetDaemon.HassModel.Entities.EntityState<WeatherAttributes>, WeatherAttributes>
+	public record WeatherEntity : Entity<WeatherEntity, EntityState<WeatherAttributes>, WeatherAttributes>
 	{
-		public WeatherEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public WeatherEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public WeatherEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public WeatherEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
-	public record ZoneEntity : NetDaemon.HassModel.Entities.Entity<ZoneEntity, NetDaemon.HassModel.Entities.EntityState<ZoneAttributes>, ZoneAttributes>
+	public record ZoneEntity : Entity<ZoneEntity, EntityState<ZoneAttributes>, ZoneAttributes>
 	{
-		public ZoneEntity(NetDaemon.HassModel.IHaContext haContext, string entityId) : base(haContext, entityId)
+		public ZoneEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
 		{
 		}
 
-		public ZoneEntity(NetDaemon.HassModel.Entities.Entity entity) : base(entity)
+		public ZoneEntity(Entity entity) : base(entity)
 		{
 		}
 	}
 
 	public record AlarmControlPanelAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changed_by")]
+		[JsonPropertyName("changed_by")]
 		public object? ChangedBy { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("code_arm_required")]
+		[JsonPropertyName("code_arm_required")]
 		public bool? CodeArmRequired { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("code_format")]
+		[JsonPropertyName("code_format")]
 		public object? CodeFormat { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record BinarySensorAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
+		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
+		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("installed_version")]
+		[JsonPropertyName("installed_version")]
 		public string? InstalledVersion { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latest_available_version")]
+		[JsonPropertyName("latest_available_version")]
 		public string? LatestAvailableVersion { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("malware")]
+		[JsonPropertyName("malware")]
 		public string? Malware { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("network")]
+		[JsonPropertyName("network")]
 		public string? Network { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_avg")]
+		[JsonPropertyName("round_trip_time_avg")]
 		public double? RoundTripTimeAvg { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_max")]
+		[JsonPropertyName("round_trip_time_max")]
 		public double? RoundTripTimeMax { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_mdev")]
+		[JsonPropertyName("round_trip_time_mdev")]
 		public string? RoundTripTimeMdev { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("round_trip_time_min")]
+		[JsonPropertyName("round_trip_time_min")]
 		public double? RoundTripTimeMin { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("securitySetting")]
+		[JsonPropertyName("securitySetting")]
 		public string? SecuritySetting { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("systemCheck")]
+		[JsonPropertyName("systemCheck")]
 		public string? SystemCheck { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("update")]
+		[JsonPropertyName("update")]
 		public string? Update { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("userInfo")]
+		[JsonPropertyName("userInfo")]
 		public string? UserInfo { get; init; }
 	}
 
 	public record ButtonAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
+		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 	}
 
 	public record CalendarAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("all_day")]
+		[JsonPropertyName("all_day")]
 		public bool? AllDay { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("all_tasks")]
+		[JsonPropertyName("all_tasks")]
 		public object? AllTasks { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("description")]
+		[JsonPropertyName("description")]
 		public string? Description { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("end_time")]
+		[JsonPropertyName("end_time")]
 		public string? EndTime { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("location")]
+		[JsonPropertyName("location")]
 		public string? Location { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("offset_reached")]
+		[JsonPropertyName("offset_reached")]
 		public bool? OffsetReached { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("overdue_tasks")]
+		[JsonPropertyName("overdue_tasks")]
 		public object? OverdueTasks { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("start_time")]
+		[JsonPropertyName("start_time")]
 		public string? StartTime { get; init; }
 	}
 
 	public record CameraAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("access_token")]
+		[JsonPropertyName("access_token")]
 		public string? AccessToken { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("calibration_points")]
+		[JsonPropertyName("calibration_points")]
 		public object? CalibrationPoints { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("model")]
+		[JsonPropertyName("model")]
 		public string? Model { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("used_api")]
+		[JsonPropertyName("used_api")]
 		public string? UsedApi { get; init; }
 	}
 
 	public record ClimateAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("current_temperature")]
+		[JsonPropertyName("current_temperature")]
 		public double? CurrentTemperature { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("hvac_modes")]
+		[JsonPropertyName("hvac_modes")]
 		public object? HvacModes { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("max_temp")]
+		[JsonPropertyName("max_temp")]
 		public double? MaxTemp { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("min_temp")]
+		[JsonPropertyName("min_temp")]
 		public double? MinTemp { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("preset_mode")]
+		[JsonPropertyName("preset_mode")]
 		public string? PresetMode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("preset_modes")]
+		[JsonPropertyName("preset_modes")]
 		public object? PresetModes { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("target_temp_step")]
+		[JsonPropertyName("target_temp_step")]
 		public double? TargetTempStep { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("temperature")]
+		[JsonPropertyName("temperature")]
 		public double? Temperature { get; init; }
 	}
 
 	public record CounterAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		[JsonPropertyName("editable")]
 		public bool? Editable { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("initial")]
+		[JsonPropertyName("initial")]
 		public double? Initial { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("step")]
+		[JsonPropertyName("step")]
 		public double? Step { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record DeviceTrackerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("altitude")]
+		[JsonPropertyName("altitude")]
 		public double? Altitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("authenticated")]
+		[JsonPropertyName("authenticated")]
 		public string? Authenticated { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery")]
+		[JsonPropertyName("battery")]
 		public double? Battery { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_level")]
+		[JsonPropertyName("battery_level")]
 		public double? BatteryLevel { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_status")]
+		[JsonPropertyName("battery_status")]
 		public string? BatteryStatus { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("calc_distance")]
+		[JsonPropertyName("calc_distance")]
 		public double? CalcDistance { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_status")]
+		[JsonPropertyName("device_status")]
 		public string? DeviceStatus { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("dir_of_travel")]
+		[JsonPropertyName("dir_of_travel")]
 		public string? DirOfTravel { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("gps_accuracy")]
+		[JsonPropertyName("gps_accuracy")]
 		public double? GpsAccuracy { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icloud3_version")]
+		[JsonPropertyName("icloud3_version")]
 		public string? Icloud3Version { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("info")]
+		[JsonPropertyName("info")]
 		public string? Info { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("interval")]
+		[JsonPropertyName("interval")]
 		public string? Interval { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_located")]
+		[JsonPropertyName("last_located")]
 		public string? LastLocated { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_update")]
+		[JsonPropertyName("last_update")]
 		public string? LastUpdate { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_zone")]
+		[JsonPropertyName("last_zone")]
 		public string? LastZone { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latitude")]
+		[JsonPropertyName("latitude")]
 		public double? Latitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("longitude")]
+		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("low_power_mode")]
+		[JsonPropertyName("low_power_mode")]
 		public bool? LowPowerMode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
+		[JsonPropertyName("name")]
 		public string? Name { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_update")]
+		[JsonPropertyName("next_update")]
 		public string? NextUpdate { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("poll_count")]
+		[JsonPropertyName("poll_count")]
 		public string? PollCount { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_type")]
+		[JsonPropertyName("source_type")]
 		public string? SourceType { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("timestamp")]
+		[JsonPropertyName("timestamp")]
 		public string? Timestamp { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("tracking")]
+		[JsonPropertyName("tracking")]
 		public string? Tracking { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("travel_distance")]
+		[JsonPropertyName("travel_distance")]
 		public double? TravelDistance { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("travel_time")]
+		[JsonPropertyName("travel_time")]
 		public double? TravelTime { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("travel_time_min")]
+		[JsonPropertyName("travel_time_min")]
 		public double? TravelTimeMin { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("trigger")]
+		[JsonPropertyName("trigger")]
 		public string? Trigger { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("vertical_accuracy")]
+		[JsonPropertyName("vertical_accuracy")]
 		public double? VerticalAccuracy { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("waze_distance")]
+		[JsonPropertyName("waze_distance")]
 		public double? WazeDistance { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("zone")]
+		[JsonPropertyName("zone")]
 		public string? Zone { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("zone_distance")]
+		[JsonPropertyName("zone_distance")]
 		public double? ZoneDistance { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("zone_timestamp")]
+		[JsonPropertyName("zone_timestamp")]
 		public string? ZoneTimestamp { get; init; }
 	}
 
 	public record GroupAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_id")]
+		[JsonPropertyName("entity_id")]
 		public object? EntityId { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("order")]
+		[JsonPropertyName("order")]
 		public double? Order { get; init; }
 	}
 
 	public record InputBooleanAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		[JsonPropertyName("editable")]
 		public bool? Editable { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record InputNumberAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		[JsonPropertyName("editable")]
 		public bool? Editable { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("initial")]
-		public object? Initial { get; init; }
+		[JsonPropertyName("initial")]
+		public double? Initial { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("max")]
+		[JsonPropertyName("max")]
 		public double? Max { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("min")]
+		[JsonPropertyName("min")]
 		public double? Min { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("mode")]
+		[JsonPropertyName("mode")]
 		public string? Mode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("step")]
+		[JsonPropertyName("step")]
 		public double? Step { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record InputSelectAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		[JsonPropertyName("editable")]
 		public bool? Editable { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("options")]
+		[JsonPropertyName("options")]
 		public object? Options { get; init; }
 	}
 
 	public record InputTextAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		[JsonPropertyName("editable")]
 		public bool? Editable { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("max")]
+		[JsonPropertyName("max")]
 		public double? Max { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("min")]
+		[JsonPropertyName("min")]
 		public double? Min { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("mode")]
+		[JsonPropertyName("mode")]
 		public string? Mode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("pattern")]
+		[JsonPropertyName("pattern")]
 		public object? Pattern { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record LightAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("color_mode")]
+		public string? ColorMode { get; init; }
+
+		[JsonPropertyName("deviceID")]
+		public string? DeviceID { get; init; }
+
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("max_mireds")]
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("max_mireds")]
 		public double? MaxMireds { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("min_mireds")]
+		[JsonPropertyName("min_mireds")]
 		public double? MinMireds { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_color_modes")]
+		[JsonPropertyName("supported_color_modes")]
 		public object? SupportedColorModes { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("type")]
+		public string? Type { get; init; }
 	}
 
 	public record MediaPlayerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("deviceID")]
+		public string? DeviceID { get; init; }
+
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("is_volume_muted")]
+		public bool? IsVolumeMuted { get; init; }
+
+		[JsonPropertyName("media_content_id")]
+		public string? MediaContentId { get; init; }
+
+		[JsonPropertyName("media_content_type")]
+		public string? MediaContentType { get; init; }
+
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source_list")]
+		[JsonPropertyName("source_list")]
 		public object? SourceList { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("type")]
+		public string? Type { get; init; }
+
+		[JsonPropertyName("volume_level")]
+		public double? VolumeLevel { get; init; }
+	}
+
+	public record PersistentNotificationAttributes
+	{
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
 	}
 
 	public record PersonAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		[JsonPropertyName("editable")]
 		public bool? Editable { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("gps_accuracy")]
+		[JsonPropertyName("gps_accuracy")]
 		public double? GpsAccuracy { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("id")]
+		[JsonPropertyName("id")]
 		public string? Id { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latitude")]
+		[JsonPropertyName("latitude")]
 		public double? Latitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("longitude")]
+		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("source")]
+		[JsonPropertyName("source")]
 		public string? Source { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("user_id")]
+		[JsonPropertyName("user_id")]
 		public string? UserId { get; init; }
 	}
 
 	public record RemoteAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("activity_list")]
+		[JsonPropertyName("activity_list")]
 		public object? ActivityList { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("activity_starting")]
+		[JsonPropertyName("activity_starting")]
 		public object? ActivityStarting { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("current_activity")]
+		[JsonPropertyName("current_activity")]
 		public string? CurrentActivity { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("devices_list")]
+		[JsonPropertyName("devices_list")]
 		public object? DevicesList { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("last_activity")]
+		[JsonPropertyName("last_activity")]
 		public string? LastActivity { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record SelectAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("options")]
+		[JsonPropertyName("options")]
 		public object? Options { get; init; }
 	}
 
 	public record SensorAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Administrative Area")]
+		[JsonPropertyName("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Allows VoIP")]
+		[JsonPropertyName("Allows VoIP")]
 		public bool? AllowsVoIP { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Areas Of Interest")]
+		[JsonPropertyName("Areas Of Interest")]
 		public object? AreasOfInterest { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
+		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Carrier ID")]
+		[JsonPropertyName("battery_level")]
+		public double? BatteryLevel { get; init; }
+
+		[JsonPropertyName("Carrier ID")]
 		public string? CarrierID { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Carrier Name")]
+		[JsonPropertyName("Carrier Name")]
 		public string? CarrierName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("color")]
+		[JsonPropertyName("charging")]
+		public bool? Charging { get; init; }
+
+		[JsonPropertyName("color")]
 		public string? Color { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Confidence")]
+		[JsonPropertyName("Confidence")]
 		public string? Confidence { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Country")]
+		[JsonPropertyName("config")]
+		public object? Config { get; init; }
+
+		[JsonPropertyName("Country")]
 		public string? Country { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Current Radio Technology")]
+		[JsonPropertyName("Current Radio Technology")]
 		public string? CurrentRadioTechnology { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
+		[JsonPropertyName("currentUser")]
+		public string? CurrentUser { get; init; }
+
+		[JsonPropertyName("darkMode")]
+		public bool? DarkMode { get; init; }
+
+		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("entity_picture")]
+		[JsonPropertyName("deviceID")]
+		public string? DeviceID { get; init; }
+
+		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("filtername")]
+		[JsonPropertyName("filtername")]
 		public string? Filtername { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("firstworkout_title")]
+		[JsonPropertyName("firstworkout_title")]
 		public string? FirstworkoutTitle { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("firstworkout_url")]
+		[JsonPropertyName("firstworkout_url")]
 		public string? FirstworkoutUrl { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("fullyKiosk")]
+		public bool? FullyKiosk { get; init; }
+
+		[JsonPropertyName("height")]
+		public double? Height { get; init; }
+
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Inland Water")]
+		[JsonPropertyName("Inland Water")]
 		public string? InlandWater { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("integration")]
+		[JsonPropertyName("integration")]
 		public string? Integration { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("ISO Country Code")]
+		[JsonPropertyName("ISO Country Code")]
 		public string? ISOCountryCode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastupdate")]
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("lastupdate")]
 		public string? Lastupdate { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastworkout_title")]
+		[JsonPropertyName("lastworkout_title")]
 		public string? LastworkoutTitle { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("lastworkout_url")]
+		[JsonPropertyName("lastworkout_url")]
 		public string? LastworkoutUrl { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Locality")]
+		[JsonPropertyName("Locality")]
 		public string? Locality { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Location")]
+		[JsonPropertyName("Location")]
 		public object? Location { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("log_level_debug")]
+		[JsonPropertyName("log_level_debug")]
 		public string? LogLevelDebug { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("logs")]
+		[JsonPropertyName("logs")]
 		public string? Logs { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Low Power Mode")]
+		[JsonPropertyName("Low Power Mode")]
 		public bool? LowPowerMode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Mobile Country Code")]
+		[JsonPropertyName("Mobile Country Code")]
 		public string? MobileCountryCode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Mobile Network Code")]
+		[JsonPropertyName("Mobile Network Code")]
 		public string? MobileNetworkCode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Name")]
+		[JsonPropertyName("Name")]
 		public string? Name { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("names")]
+		[JsonPropertyName("names")]
 		public object? Names { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("number_of_loaded_apps")]
+		[JsonPropertyName("number_of_loaded_apps")]
 		public double? NumberOfLoadedApps { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("number_of_running_apps")]
+		[JsonPropertyName("number_of_running_apps")]
 		public double? NumberOfRunningApps { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Ocean")]
+		[JsonPropertyName("Ocean")]
 		public string? Ocean { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Postal Code")]
+		[JsonPropertyName("path")]
+		public string? Path { get; init; }
+
+		[JsonPropertyName("Postal Code")]
 		public string? PostalCode { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Sub Administrative Area")]
+		[JsonPropertyName("Sub Administrative Area")]
 		public string? SubAdministrativeArea { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Sub Locality")]
+		[JsonPropertyName("Sub Locality")]
 		public string? SubLocality { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Sub Thoroughfare")]
+		[JsonPropertyName("Sub Thoroughfare")]
 		public string? SubThoroughfare { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("text")]
+		[JsonPropertyName("text")]
 		public string? Text { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Thoroughfare")]
+		[JsonPropertyName("Thoroughfare")]
 		public string? Thoroughfare { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Time Zone")]
+		[JsonPropertyName("Time Zone")]
 		public string? TimeZone { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Types")]
+		[JsonPropertyName("type")]
+		public string? Type { get; init; }
+
+		[JsonPropertyName("Types")]
 		public object? Types { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("update_time")]
+		[JsonPropertyName("update_time")]
 		public string? UpdateTime { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("version")]
+		[JsonPropertyName("userAgent")]
+		public string? UserAgent { get; init; }
+
+		[JsonPropertyName("userData")]
+		public object? UserData { get; init; }
+
+		[JsonPropertyName("version")]
 		public string? Version { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Zones")]
+		[JsonPropertyName("visibility")]
+		public string? Visibility { get; init; }
+
+		[JsonPropertyName("width")]
+		public double? Width { get; init; }
+
+		[JsonPropertyName("Zones")]
 		public object? Zones { get; init; }
 	}
 
 	public record NumericSensorAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
+		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Available")]
+		[JsonPropertyName("Available")]
 		public string? Available { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Available (Important)")]
+		[JsonPropertyName("Available (Important)")]
 		public string? AvailableImportant { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Available (Opportunistic)")]
+		[JsonPropertyName("Available (Opportunistic)")]
 		public string? AvailableOpportunistic { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_received")]
+		[JsonPropertyName("bytes_received")]
 		public double? BytesReceived { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("bytes_sent")]
+		[JsonPropertyName("bytes_sent")]
 		public double? BytesSent { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("change")]
+		[JsonPropertyName("change")]
 		public double? Change { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeCurrentYear")]
+		[JsonPropertyName("changeCurrentYear")]
 		public double? ChangeCurrentYear { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeFiveYears")]
+		[JsonPropertyName("changeFiveYears")]
 		public object? ChangeFiveYears { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeOneMonth")]
+		[JsonPropertyName("changeOneMonth")]
 		public double? ChangeOneMonth { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeOneWeek")]
+		[JsonPropertyName("changeOneWeek")]
 		public double? ChangeOneWeek { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeOneYear")]
+		[JsonPropertyName("changeOneYear")]
 		public double? ChangeOneYear { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercent")]
+		[JsonPropertyName("changePercent")]
 		public double? ChangePercent { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentCurrentYear")]
+		[JsonPropertyName("changePercentCurrentYear")]
 		public double? ChangePercentCurrentYear { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentFiveYears")]
+		[JsonPropertyName("changePercentFiveYears")]
 		public object? ChangePercentFiveYears { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentOneMonth")]
+		[JsonPropertyName("changePercentOneMonth")]
 		public double? ChangePercentOneMonth { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentOneWeek")]
+		[JsonPropertyName("changePercentOneWeek")]
 		public double? ChangePercentOneWeek { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentOneYear")]
+		[JsonPropertyName("changePercentOneYear")]
 		public double? ChangePercentOneYear { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentSixMonths")]
+		[JsonPropertyName("changePercentSixMonths")]
 		public double? ChangePercentSixMonths { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentThreeMonths")]
+		[JsonPropertyName("changePercentThreeMonths")]
 		public double? ChangePercentThreeMonths { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changePercentThreeYears")]
+		[JsonPropertyName("changePercentThreeYears")]
 		public object? ChangePercentThreeYears { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeSixMonths")]
+		[JsonPropertyName("changeSixMonths")]
 		public double? ChangeSixMonths { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeThreeMonths")]
+		[JsonPropertyName("changeThreeMonths")]
 		public double? ChangeThreeMonths { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("changeThreeYears")]
+		[JsonPropertyName("changeThreeYears")]
 		public object? ChangeThreeYears { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
+		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
+		[JsonPropertyName("name")]
 		public string? Name { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("profitLoss")]
+		[JsonPropertyName("profitLoss")]
 		public double? ProfitLoss { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("profitLossPercentage")]
+		[JsonPropertyName("profitLossPercentage")]
 		public double? ProfitLossPercentage { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("purchasePrice")]
+		[JsonPropertyName("purchasePrice")]
 		public double? PurchasePrice { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("repositories")]
+		[JsonPropertyName("repositories")]
 		public object? Repositories { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_country")]
+		[JsonPropertyName("server_country")]
 		public string? ServerCountry { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_id")]
+		[JsonPropertyName("server_id")]
 		public string? ServerId { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("server_name")]
+		[JsonPropertyName("server_name")]
 		public string? ServerName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("shares")]
+		[JsonPropertyName("shares")]
 		public double? Shares { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("state_class")]
+		[JsonPropertyName("state_class")]
 		public string? StateClass { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("Total")]
+		[JsonPropertyName("Total")]
 		public string? Total { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChange")]
+		[JsonPropertyName("totalChange")]
 		public double? TotalChange { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeCurrentYear")]
+		[JsonPropertyName("totalChangeCurrentYear")]
 		public double? TotalChangeCurrentYear { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeFiveYears")]
+		[JsonPropertyName("totalChangeFiveYears")]
 		public object? TotalChangeFiveYears { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeOneMonth")]
+		[JsonPropertyName("totalChangeOneMonth")]
 		public double? TotalChangeOneMonth { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeOneWeek")]
+		[JsonPropertyName("totalChangeOneWeek")]
 		public double? TotalChangeOneWeek { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeOneYear")]
+		[JsonPropertyName("totalChangeOneYear")]
 		public double? TotalChangeOneYear { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeSixMonths")]
+		[JsonPropertyName("totalChangeSixMonths")]
 		public double? TotalChangeSixMonths { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeThreeMonths")]
+		[JsonPropertyName("totalChangeThreeMonths")]
 		public double? TotalChangeThreeMonths { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalChangeThreeYears")]
+		[JsonPropertyName("totalChangeThreeYears")]
 		public object? TotalChangeThreeYears { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalProfitLoss")]
+		[JsonPropertyName("totalProfitLoss")]
 		public double? TotalProfitLoss { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("totalValue")]
+		[JsonPropertyName("totalValue")]
 		public double? TotalValue { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("unit_of_measurement")]
+		[JsonPropertyName("unit_of_measurement")]
 		public string? UnitOfMeasurement { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("valve_tappet_state")]
+		[JsonPropertyName("valve_tappet_state")]
 		public string? ValveTappetState { get; init; }
 	}
 
 	public record SunAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("azimuth")]
+		[JsonPropertyName("azimuth")]
 		public double? Azimuth { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("elevation")]
+		[JsonPropertyName("elevation")]
 		public double? Elevation { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_dawn")]
+		[JsonPropertyName("next_dawn")]
 		public string? NextDawn { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_dusk")]
+		[JsonPropertyName("next_dusk")]
 		public string? NextDusk { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_midnight")]
+		[JsonPropertyName("next_midnight")]
 		public string? NextMidnight { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_noon")]
+		[JsonPropertyName("next_noon")]
 		public string? NextNoon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_rising")]
+		[JsonPropertyName("next_rising")]
 		public string? NextRising { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("next_setting")]
+		[JsonPropertyName("next_setting")]
 		public string? NextSetting { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("rising")]
+		[JsonPropertyName("rising")]
 		public bool? Rising { get; init; }
 	}
 
 	public record SwitchAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("device_class")]
+		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("integration")]
+		[JsonPropertyName("integration")]
 		public string? Integration { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record TimerAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("restored")]
+		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 	}
 
 	public record VacuumAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_icon")]
+		[JsonPropertyName("battery_icon")]
 		public string? BatteryIcon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("battery_level")]
+		[JsonPropertyName("battery_level")]
 		public double? BatteryLevel { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("fan_speed")]
+		[JsonPropertyName("fan_speed")]
 		public string? FanSpeed { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("fan_speed_list")]
+		[JsonPropertyName("fan_speed_list")]
 		public object? FanSpeedList { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("status")]
+		[JsonPropertyName("status")]
 		public string? Status { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("supported_features")]
+		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
-	}
-
-	public record VarAttributes
-	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
-		public string? FriendlyName { get; init; }
 	}
 
 	public record WeatherAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("attribution")]
+		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("forecast")]
+		[JsonPropertyName("forecast")]
 		public object? Forecast { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("humidity")]
+		[JsonPropertyName("humidity")]
 		public double? Humidity { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("pressure")]
+		[JsonPropertyName("pressure")]
 		public double? Pressure { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("temperature")]
+		[JsonPropertyName("temperature")]
 		public double? Temperature { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("wind_bearing")]
+		[JsonPropertyName("wind_bearing")]
 		public double? WindBearing { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("wind_speed")]
+		[JsonPropertyName("wind_speed")]
 		public double? WindSpeed { get; init; }
 	}
 
 	public record ZoneAttributes
 	{
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("editable")]
+		[JsonPropertyName("editable")]
 		public bool? Editable { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("friendly_name")]
+		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("latitude")]
+		[JsonPropertyName("latitude")]
 		public double? Latitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("longitude")]
+		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("name")]
+		[JsonPropertyName("name")]
 		public string? Name { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("passive")]
+		[JsonPropertyName("passive")]
 		public bool? Passive { get; init; }
 
-		[System.Text.Json.Serialization.JsonPropertyNameAttribute("radius")]
+		[JsonPropertyName("radius")]
 		public double? Radius { get; init; }
 	}
 
@@ -2430,6 +2525,8 @@ namespace HomeAutomations.Models.Generated
 		AutomationServices Automation { get; }
 
 		BoschShcServices BoschShc { get; }
+
+		BrowserModServices BrowserMod { get; }
 
 		ButtonServices Button { get; }
 
@@ -2529,8 +2626,6 @@ namespace HomeAutomations.Models.Generated
 
 		VacuumServices Vacuum { get; }
 
-		VarServices Var { get; }
-
 		WakeOnLanServices WakeOnLan { get; }
 
 		XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor { get; }
@@ -2542,8 +2637,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class Services : IServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public Services(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public Services(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -2551,6 +2646,7 @@ namespace HomeAutomations.Models.Generated
 		public AlarmControlPanelServices AlarmControlPanel => new(_haContext);
 		public AutomationServices Automation => new(_haContext);
 		public BoschShcServices BoschShc => new(_haContext);
+		public BrowserModServices BrowserMod => new(_haContext);
 		public ButtonServices Button => new(_haContext);
 		public CameraServices Camera => new(_haContext);
 		public CastServices Cast => new(_haContext);
@@ -2600,7 +2696,6 @@ namespace HomeAutomations.Models.Generated
 		public TemplateServices Template => new(_haContext);
 		public TimerServices Timer => new(_haContext);
 		public VacuumServices Vacuum => new(_haContext);
-		public VarServices Var => new(_haContext);
 		public WakeOnLanServices WakeOnLan => new(_haContext);
 		public XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor => new(_haContext);
 		public XiaomiMiioServices XiaomiMiio => new(_haContext);
@@ -2609,15 +2704,15 @@ namespace HomeAutomations.Models.Generated
 
 	public class AlarmControlPanelServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public AlarmControlPanelServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public AlarmControlPanelServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Send the alarm the command for arm away.</summary>
 		///<param name="target">The target for this service call</param>
-		public void AlarmArmAway(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmArmAwayParameters data)
+		public void AlarmArmAway(ServiceTarget target, AlarmControlPanelAlarmArmAwayParameters data)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_away", target, data);
 		}
@@ -2625,14 +2720,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the alarm the command for arm away.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="code">An optional code to arm away the alarm control panel with. eg: 1234</param>
-		public void AlarmArmAway(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		public void AlarmArmAway(ServiceTarget target, string? @code = null)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_away", target, new AlarmControlPanelAlarmArmAwayParameters{Code = @code});
 		}
 
 		///<summary>Send arm custom bypass command.</summary>
 		///<param name="target">The target for this service call</param>
-		public void AlarmArmCustomBypass(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmArmCustomBypassParameters data)
+		public void AlarmArmCustomBypass(ServiceTarget target, AlarmControlPanelAlarmArmCustomBypassParameters data)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_custom_bypass", target, data);
 		}
@@ -2640,14 +2735,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send arm custom bypass command.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="code">An optional code to arm custom bypass the alarm control panel with. eg: 1234</param>
-		public void AlarmArmCustomBypass(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		public void AlarmArmCustomBypass(ServiceTarget target, string? @code = null)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_custom_bypass", target, new AlarmControlPanelAlarmArmCustomBypassParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for arm home.</summary>
 		///<param name="target">The target for this service call</param>
-		public void AlarmArmHome(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmArmHomeParameters data)
+		public void AlarmArmHome(ServiceTarget target, AlarmControlPanelAlarmArmHomeParameters data)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_home", target, data);
 		}
@@ -2655,14 +2750,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the alarm the command for arm home.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="code">An optional code to arm home the alarm control panel with. eg: 1234</param>
-		public void AlarmArmHome(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		public void AlarmArmHome(ServiceTarget target, string? @code = null)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_home", target, new AlarmControlPanelAlarmArmHomeParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for arm night.</summary>
 		///<param name="target">The target for this service call</param>
-		public void AlarmArmNight(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmArmNightParameters data)
+		public void AlarmArmNight(ServiceTarget target, AlarmControlPanelAlarmArmNightParameters data)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_night", target, data);
 		}
@@ -2670,14 +2765,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the alarm the command for arm night.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="code">An optional code to arm night the alarm control panel with. eg: 1234</param>
-		public void AlarmArmNight(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		public void AlarmArmNight(ServiceTarget target, string? @code = null)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_night", target, new AlarmControlPanelAlarmArmNightParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for arm vacation.</summary>
 		///<param name="target">The target for this service call</param>
-		public void AlarmArmVacation(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmArmVacationParameters data)
+		public void AlarmArmVacation(ServiceTarget target, AlarmControlPanelAlarmArmVacationParameters data)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_vacation", target, data);
 		}
@@ -2685,14 +2780,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the alarm the command for arm vacation.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="code">An optional code to arm vacation the alarm control panel with. eg: 1234</param>
-		public void AlarmArmVacation(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		public void AlarmArmVacation(ServiceTarget target, string? @code = null)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_arm_vacation", target, new AlarmControlPanelAlarmArmVacationParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for disarm.</summary>
 		///<param name="target">The target for this service call</param>
-		public void AlarmDisarm(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmDisarmParameters data)
+		public void AlarmDisarm(ServiceTarget target, AlarmControlPanelAlarmDisarmParameters data)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_disarm", target, data);
 		}
@@ -2700,14 +2795,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the alarm the command for disarm.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="code">An optional code to disarm the alarm control panel with. eg: 1234</param>
-		public void AlarmDisarm(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		public void AlarmDisarm(ServiceTarget target, string? @code = null)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_disarm", target, new AlarmControlPanelAlarmDisarmParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for trigger.</summary>
 		///<param name="target">The target for this service call</param>
-		public void AlarmTrigger(NetDaemon.HassModel.Entities.ServiceTarget target, AlarmControlPanelAlarmTriggerParameters data)
+		public void AlarmTrigger(ServiceTarget target, AlarmControlPanelAlarmTriggerParameters data)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_trigger", target, data);
 		}
@@ -2715,7 +2810,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the alarm the command for trigger.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="code">An optional code to trigger the alarm control panel with. eg: 1234</param>
-		public void AlarmTrigger(NetDaemon.HassModel.Entities.ServiceTarget target, string? @code = null)
+		public void AlarmTrigger(ServiceTarget target, string? @code = null)
 		{
 			_haContext.CallService("alarm_control_panel", "alarm_trigger", target, new AlarmControlPanelAlarmTriggerParameters{Code = @code});
 		}
@@ -2724,56 +2819,56 @@ namespace HomeAutomations.Models.Generated
 	public record AlarmControlPanelAlarmArmAwayParameters
 	{
 		///<summary>An optional code to arm away the alarm control panel with. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		[JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
 
 	public record AlarmControlPanelAlarmArmCustomBypassParameters
 	{
 		///<summary>An optional code to arm custom bypass the alarm control panel with. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		[JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
 
 	public record AlarmControlPanelAlarmArmHomeParameters
 	{
 		///<summary>An optional code to arm home the alarm control panel with. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		[JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
 
 	public record AlarmControlPanelAlarmArmNightParameters
 	{
 		///<summary>An optional code to arm night the alarm control panel with. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		[JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
 
 	public record AlarmControlPanelAlarmArmVacationParameters
 	{
 		///<summary>An optional code to arm vacation the alarm control panel with. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		[JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
 
 	public record AlarmControlPanelAlarmDisarmParameters
 	{
 		///<summary>An optional code to disarm the alarm control panel with. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		[JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
 
 	public record AlarmControlPanelAlarmTriggerParameters
 	{
 		///<summary>An optional code to trigger the alarm control panel with. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("code")]
+		[JsonPropertyName("code")]
 		public string? Code { get; init; }
 	}
 
 	public class AutomationServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public AutomationServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public AutomationServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -2786,14 +2881,14 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Toggle (enable / disable) an automation.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("automation", "toggle", target);
 		}
 
 		///<summary>Trigger the actions of an automation.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Trigger(NetDaemon.HassModel.Entities.ServiceTarget target, AutomationTriggerParameters data)
+		public void Trigger(ServiceTarget target, AutomationTriggerParameters data)
 		{
 			_haContext.CallService("automation", "trigger", target, data);
 		}
@@ -2801,14 +2896,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Trigger the actions of an automation.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="skipCondition">Whether or not the conditions will be skipped.</param>
-		public void Trigger(NetDaemon.HassModel.Entities.ServiceTarget target, bool? @skipCondition = null)
+		public void Trigger(ServiceTarget target, bool? @skipCondition = null)
 		{
 			_haContext.CallService("automation", "trigger", target, new AutomationTriggerParameters{SkipCondition = @skipCondition});
 		}
 
 		///<summary>Disable an automation.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target, AutomationTurnOffParameters data)
+		public void TurnOff(ServiceTarget target, AutomationTurnOffParameters data)
 		{
 			_haContext.CallService("automation", "turn_off", target, data);
 		}
@@ -2816,14 +2911,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Disable an automation.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="stopActions">Stop currently running actions.</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target, bool? @stopActions = null)
+		public void TurnOff(ServiceTarget target, bool? @stopActions = null)
 		{
 			_haContext.CallService("automation", "turn_off", target, new AutomationTurnOffParameters{StopActions = @stopActions});
 		}
 
 		///<summary>Enable an automation.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("automation", "turn_on", target);
 		}
@@ -2832,21 +2927,21 @@ namespace HomeAutomations.Models.Generated
 	public record AutomationTriggerParameters
 	{
 		///<summary>Whether or not the conditions will be skipped.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("skipCondition")]
+		[JsonPropertyName("skip_condition")]
 		public bool? SkipCondition { get; init; }
 	}
 
 	public record AutomationTurnOffParameters
 	{
 		///<summary>Stop currently running actions.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("stopActions")]
+		[JsonPropertyName("stop_actions")]
 		public bool? StopActions { get; init; }
 	}
 
 	public class BoschShcServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public BoschShcServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public BoschShcServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -2860,7 +2955,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Triggers a custom alarm state on a smoke detector.</summary>
 		///<param name="entityId">Name of the smoke detector entity to set eg: binary_sensor.smokedetector_living_room</param>
 		///<param name="command">Command string to send to the smoke detector. eg: CUSTOM_COMMAND</param>
-		public void SmokedetectorAlarmstate(string? @entityId = null, string? @command = null)
+		public void SmokedetectorAlarmstate(object? @entityId = null, object? @command = null)
 		{
 			_haContext.CallService("bosch_shc", "smokedetector_alarmstate", null, new BoschShcSmokedetectorAlarmstateParameters{EntityId = @entityId, Command = @command});
 		}
@@ -2873,7 +2968,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Calls test routine of a smoke detector.</summary>
 		///<param name="entityId">Name of the smoke detector entity to set eg: binary_sensor.smokedetector_living_room</param>
-		public void SmokedetectorCheck(string? @entityId = null)
+		public void SmokedetectorCheck(object? @entityId = null)
 		{
 			_haContext.CallService("bosch_shc", "smokedetector_check", null, new BoschShcSmokedetectorCheckParameters{EntityId = @entityId});
 		}
@@ -2886,7 +2981,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Triggers a scenario on Bosch SHC.</summary>
 		///<param name="name">Name of the scenario to trigger eg: Scenario Name</param>
-		public void TriggerScenario(string? @name = null)
+		public void TriggerScenario(object? @name = null)
 		{
 			_haContext.CallService("bosch_shc", "trigger_scenario", null, new BoschShcTriggerScenarioParameters{Name = @name});
 		}
@@ -2895,39 +2990,408 @@ namespace HomeAutomations.Models.Generated
 	public record BoschShcSmokedetectorAlarmstateParameters
 	{
 		///<summary>Name of the smoke detector entity to set eg: binary_sensor.smokedetector_living_room</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
+		[JsonPropertyName("entity_id")]
+		public object? EntityId { get; init; }
 
 		///<summary>Command string to send to the smoke detector. eg: CUSTOM_COMMAND</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("command")]
-		public string? Command { get; init; }
+		[JsonPropertyName("command")]
+		public object? Command { get; init; }
 	}
 
 	public record BoschShcSmokedetectorCheckParameters
 	{
 		///<summary>Name of the smoke detector entity to set eg: binary_sensor.smokedetector_living_room</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
+		[JsonPropertyName("entity_id")]
+		public object? EntityId { get; init; }
 	}
 
 	public record BoschShcTriggerScenarioParameters
 	{
 		///<summary>Name of the scenario to trigger eg: Scenario Name</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("name")]
-		public string? Name { get; init; }
+		[JsonPropertyName("name")]
+		public object? Name { get; init; }
+	}
+
+	public class BrowserModServices
+	{
+		private readonly IHaContext _haContext;
+		public BrowserModServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Cover screen in black until the mouse is moved or a key is pressed.</summary>
+		public void Blackout(BrowserModBlackoutParameters data)
+		{
+			_haContext.CallService("browser_mod", "blackout", null, data);
+		}
+
+		///<summary>Cover screen in black until the mouse is moved or a key is pressed.</summary>
+		///<param name="time">(optional) The blackout will turn on automatically after the specified number of seconds. It works kind of like a screensaver and will keep turning on until blackout is called again with time: -1. eg: 20</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void Blackout(object? @time = null, object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "blackout", null, new BrowserModBlackoutParameters{Time = @time, DeviceID = @deviceID});
+		}
+
+		public void CallService()
+		{
+			_haContext.CallService("browser_mod", "call_service", null);
+		}
+
+		public void CleanDevices()
+		{
+			_haContext.CallService("browser_mod", "clean_devices", null);
+		}
+
+		///<summary>Close all popups on all browsers.</summary>
+		public void ClosePopup(BrowserModClosePopupParameters data)
+		{
+			_haContext.CallService("browser_mod", "close_popup", null, data);
+		}
+
+		///<summary>Close all popups on all browsers.</summary>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void ClosePopup(object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "close_popup", null, new BrowserModClosePopupParameters{DeviceID = @deviceID});
+		}
+
+		///<summary>Send a command to a browser.</summary>
+		public void Command(BrowserModCommandParameters data)
+		{
+			_haContext.CallService("browser_mod", "command", null, data);
+		}
+
+		///<summary>Send a command to a browser.</summary>
+		///<param name="command">Command to send eg: navigate</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void Command(object? @command = null, object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "command", null, new BrowserModCommandParameters{Command = @command, DeviceID = @deviceID});
+		}
+
+		///<summary>Send several commands to a browser</summary>
+		public void Commands(BrowserModCommandsParameters data)
+		{
+			_haContext.CallService("browser_mod", "commands", null, data);
+		}
+
+		///<summary>Send several commands to a browser</summary>
+		///<param name="commands">List of commands to send</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void Commands(object? @commands = null, object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "commands", null, new BrowserModCommandsParameters{Commands = @commands, DeviceID = @deviceID});
+		}
+
+		///<summary>On all browsers, show a popup, and a javascript alert with the current device ID.</summary>
+		public void Debug(BrowserModDebugParameters data)
+		{
+			_haContext.CallService("browser_mod", "debug", null, data);
+		}
+
+		///<summary>On all browsers, show a popup, and a javascript alert with the current device ID.</summary>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void Debug(object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "debug", null, new BrowserModDebugParameters{DeviceID = @deviceID});
+		}
+
+		///<summary>Do nothing for a while</summary>
+		public void Delay(BrowserModDelayParameters data)
+		{
+			_haContext.CallService("browser_mod", "delay", null, data);
+		}
+
+		///<summary>Do nothing for a while</summary>
+		///<param name="seconds">Number of seconds to delay eg: 5</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void Delay(object? @seconds = null, object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "delay", null, new BrowserModDelayParameters{Seconds = @seconds, DeviceID = @deviceID});
+		}
+
+		///<summary>Refresh the lovelace configuration.</summary>
+		public void LovelaceReload(BrowserModLovelaceReloadParameters data)
+		{
+			_haContext.CallService("browser_mod", "lovelace_reload", null, data);
+		}
+
+		///<summary>Refresh the lovelace configuration.</summary>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void LovelaceReload(object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "lovelace_reload", null, new BrowserModLovelaceReloadParameters{DeviceID = @deviceID});
+		}
+
+		///<summary>Open the more info dialog of an entity on a browser.</summary>
+		public void MoreInfo(BrowserModMoreInfoParameters data)
+		{
+			_haContext.CallService("browser_mod", "more_info", null, data);
+		}
+
+		///<summary>Open the more info dialog of an entity on a browser.</summary>
+		///<param name="entityId">Entity to show more info for eg: camera.front_door</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		///<param name="large">(optional) Set to true to make wider eg: true</param>
+		public void MoreInfo(object? @entityId = null, object? @deviceID = null, object? @large = null)
+		{
+			_haContext.CallService("browser_mod", "more_info", null, new BrowserModMoreInfoParameters{EntityId = @entityId, DeviceID = @deviceID, Large = @large});
+		}
+
+		///<summary>Navigate to a path on a browser.</summary>
+		public void Navigate(BrowserModNavigateParameters data)
+		{
+			_haContext.CallService("browser_mod", "navigate", null, data);
+		}
+
+		///<summary>Navigate to a path on a browser.</summary>
+		///<param name="navigationPath">Path to navigate to eg: /lovelace/1</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void Navigate(object? @navigationPath = null, object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "navigate", null, new BrowserModNavigateParameters{NavigationPath = @navigationPath, DeviceID = @deviceID});
+		}
+
+		///<summary>Remove a blackout from a browser.</summary>
+		public void NoBlackout(BrowserModNoBlackoutParameters data)
+		{
+			_haContext.CallService("browser_mod", "no_blackout", null, data);
+		}
+
+		///<summary>Remove a blackout from a browser.</summary>
+		///<param name="brightness">(optional) On a Fully Kiosk Browser Plus set the screen brightness from 0 - 255.</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void NoBlackout(object? @brightness = null, object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "no_blackout", null, new BrowserModNoBlackoutParameters{Brightness = @brightness, DeviceID = @deviceID});
+		}
+
+		///<summary>Pop up a card on a browser.</summary>
+		public void Popup(BrowserModPopupParameters data)
+		{
+			_haContext.CallService("browser_mod", "popup", null, data);
+		}
+
+		///<summary>Pop up a card on a browser.</summary>
+		///<param name="title">Name to show in popup bar eg: Popup example</param>
+		///<param name="card">YAML config for card to show</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		///<param name="large">(optional) Set to true to make wider eg: true</param>
+		///<param name="hideHeader">(optional) Hide header title and close button eg: true</param>
+		///<param name="autoClose">(optional) Close popup when mouse is moved or key is pressed. Also hides header eg: true</param>
+		///<param name="time">(optional) When mouse isn't moved or keys aren't pressed for this amount of seconds, reopen. Only usable with auto_close. See blackout eg: 20</param>
+		public void Popup(object? @title = null, object? @card = null, object? @deviceID = null, object? @large = null, object? @hideHeader = null, object? @autoClose = null, object? @time = null)
+		{
+			_haContext.CallService("browser_mod", "popup", null, new BrowserModPopupParameters{Title = @title, Card = @card, DeviceID = @deviceID, Large = @large, HideHeader = @hideHeader, AutoClose = @autoClose, Time = @time});
+		}
+
+		///<summary>On all browsers, change the theme.</summary>
+		public void SetTheme(BrowserModSetThemeParameters data)
+		{
+			_haContext.CallService("browser_mod", "set_theme", null, data);
+		}
+
+		///<summary>On all browsers, change the theme.</summary>
+		///<param name="theme">Theme to change to eg: {theme: "clear_light"}</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		public void SetTheme(object? @theme = null, object? @deviceID = null)
+		{
+			_haContext.CallService("browser_mod", "set_theme", null, new BrowserModSetThemeParameters{Theme = @theme, DeviceID = @deviceID});
+		}
+
+		///<summary>Show a toast message in the bottom left on all browsers.</summary>
+		public void Toast(BrowserModToastParameters data)
+		{
+			_haContext.CallService("browser_mod", "toast", null, data);
+		}
+
+		///<summary>Show a toast message in the bottom left on all browsers.</summary>
+		///<param name="message">Message to show eg: Short message</param>
+		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
+		///<param name="duration">(optional) Time in milliseconds to show message for. Set to 0 for persistent display. eg: 10000</param>
+		public void Toast(object? @message = null, object? @deviceID = null, object? @duration = null)
+		{
+			_haContext.CallService("browser_mod", "toast", null, new BrowserModToastParameters{Message = @message, DeviceID = @deviceID, Duration = @duration});
+		}
+
+		public void WindowReload()
+		{
+			_haContext.CallService("browser_mod", "window_reload", null);
+		}
+	}
+
+	public record BrowserModBlackoutParameters
+	{
+		///<summary>(optional) The blackout will turn on automatically after the specified number of seconds. It works kind of like a screensaver and will keep turning on until blackout is called again with time: -1. eg: 20</summary>
+		[JsonPropertyName("time")]
+		public object? Time { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModClosePopupParameters
+	{
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModCommandParameters
+	{
+		///<summary>Command to send eg: navigate</summary>
+		[JsonPropertyName("command")]
+		public object? Command { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModCommandsParameters
+	{
+		///<summary>List of commands to send</summary>
+		[JsonPropertyName("commands")]
+		public object? Commands { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModDebugParameters
+	{
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModDelayParameters
+	{
+		///<summary>Number of seconds to delay eg: 5</summary>
+		[JsonPropertyName("seconds")]
+		public object? Seconds { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModLovelaceReloadParameters
+	{
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModMoreInfoParameters
+	{
+		///<summary>Entity to show more info for eg: camera.front_door</summary>
+		[JsonPropertyName("entity_id")]
+		public object? EntityId { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+
+		///<summary>(optional) Set to true to make wider eg: true</summary>
+		[JsonPropertyName("large")]
+		public object? Large { get; init; }
+	}
+
+	public record BrowserModNavigateParameters
+	{
+		///<summary>Path to navigate to eg: /lovelace/1</summary>
+		[JsonPropertyName("navigation_path")]
+		public object? NavigationPath { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModNoBlackoutParameters
+	{
+		///<summary>(optional) On a Fully Kiosk Browser Plus set the screen brightness from 0 - 255.</summary>
+		[JsonPropertyName("brightness")]
+		public object? Brightness { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModPopupParameters
+	{
+		///<summary>Name to show in popup bar eg: Popup example</summary>
+		[JsonPropertyName("title")]
+		public object? Title { get; init; }
+
+		///<summary>YAML config for card to show</summary>
+		[JsonPropertyName("card")]
+		public object? Card { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+
+		///<summary>(optional) Set to true to make wider eg: true</summary>
+		[JsonPropertyName("large")]
+		public object? Large { get; init; }
+
+		///<summary>(optional) Hide header title and close button eg: true</summary>
+		[JsonPropertyName("hide_header")]
+		public object? HideHeader { get; init; }
+
+		///<summary>(optional) Close popup when mouse is moved or key is pressed. Also hides header eg: true</summary>
+		[JsonPropertyName("auto_close")]
+		public object? AutoClose { get; init; }
+
+		///<summary>(optional) When mouse isn't moved or keys aren't pressed for this amount of seconds, reopen. Only usable with auto_close. See blackout eg: 20</summary>
+		[JsonPropertyName("time")]
+		public object? Time { get; init; }
+	}
+
+	public record BrowserModSetThemeParameters
+	{
+		///<summary>Theme to change to eg: {theme: "clear_light"}</summary>
+		[JsonPropertyName("theme")]
+		public object? Theme { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+	}
+
+	public record BrowserModToastParameters
+	{
+		///<summary>Message to show eg: Short message</summary>
+		[JsonPropertyName("message")]
+		public object? Message { get; init; }
+
+		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
+		[JsonPropertyName("deviceID")]
+		public object? DeviceID { get; init; }
+
+		///<summary>(optional) Time in milliseconds to show message for. Set to 0 for persistent display. eg: 10000</summary>
+		[JsonPropertyName("duration")]
+		public object? Duration { get; init; }
 	}
 
 	public class ButtonServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public ButtonServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public ButtonServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Press the button entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Press(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Press(ServiceTarget target)
 		{
 			_haContext.CallService("button", "press", target);
 		}
@@ -2935,29 +3399,29 @@ namespace HomeAutomations.Models.Generated
 
 	public class CameraServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CameraServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CameraServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Disable the motion detection in a camera.</summary>
 		///<param name="target">The target for this service call</param>
-		public void DisableMotionDetection(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void DisableMotionDetection(ServiceTarget target)
 		{
 			_haContext.CallService("camera", "disable_motion_detection", target);
 		}
 
 		///<summary>Enable the motion detection in a camera.</summary>
 		///<param name="target">The target for this service call</param>
-		public void EnableMotionDetection(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void EnableMotionDetection(ServiceTarget target)
 		{
 			_haContext.CallService("camera", "enable_motion_detection", target);
 		}
 
 		///<summary>Play camera stream on supported media player.</summary>
 		///<param name="target">The target for this service call</param>
-		public void PlayStream(NetDaemon.HassModel.Entities.ServiceTarget target, CameraPlayStreamParameters data)
+		public void PlayStream(ServiceTarget target, CameraPlayStreamParameters data)
 		{
 			_haContext.CallService("camera", "play_stream", target, data);
 		}
@@ -2966,14 +3430,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="mediaPlayer">Name(s) of media player to stream to.</param>
 		///<param name="format">Stream format supported by media player.</param>
-		public void PlayStream(NetDaemon.HassModel.Entities.ServiceTarget target, string @mediaPlayer, string? @format = null)
+		public void PlayStream(ServiceTarget target, string @mediaPlayer, string? @format = null)
 		{
 			_haContext.CallService("camera", "play_stream", target, new CameraPlayStreamParameters{MediaPlayer = @mediaPlayer, Format = @format});
 		}
 
 		///<summary>Record live camera feed.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Record(NetDaemon.HassModel.Entities.ServiceTarget target, CameraRecordParameters data)
+		public void Record(ServiceTarget target, CameraRecordParameters data)
 		{
 			_haContext.CallService("camera", "record", target, data);
 		}
@@ -2983,14 +3447,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="filename">Template of a Filename. Variable is entity_id. Must be mp4. eg: /tmp/snapshot_{{ entity_id.name }}.mp4</param>
 		///<param name="duration">Target recording length.</param>
 		///<param name="lookback">Target lookback period to include in addition to duration. Only available if there is currently an active HLS stream.</param>
-		public void Record(NetDaemon.HassModel.Entities.ServiceTarget target, string @filename, long? @duration = null, long? @lookback = null)
+		public void Record(ServiceTarget target, string @filename, long? @duration = null, long? @lookback = null)
 		{
 			_haContext.CallService("camera", "record", target, new CameraRecordParameters{Filename = @filename, Duration = @duration, Lookback = @lookback});
 		}
 
 		///<summary>Take a snapshot from a camera.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Snapshot(NetDaemon.HassModel.Entities.ServiceTarget target, CameraSnapshotParameters data)
+		public void Snapshot(ServiceTarget target, CameraSnapshotParameters data)
 		{
 			_haContext.CallService("camera", "snapshot", target, data);
 		}
@@ -2998,21 +3462,21 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Take a snapshot from a camera.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="filename">Template of a Filename. Variable is entity_id. eg: /tmp/snapshot_{{ entity_id.name }}.jpg</param>
-		public void Snapshot(NetDaemon.HassModel.Entities.ServiceTarget target, string @filename)
+		public void Snapshot(ServiceTarget target, string @filename)
 		{
 			_haContext.CallService("camera", "snapshot", target, new CameraSnapshotParameters{Filename = @filename});
 		}
 
 		///<summary>Turn off camera.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("camera", "turn_off", target);
 		}
 
 		///<summary>Turn on camera.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("camera", "turn_on", target);
 		}
@@ -3021,40 +3485,40 @@ namespace HomeAutomations.Models.Generated
 	public record CameraPlayStreamParameters
 	{
 		///<summary>Name(s) of media player to stream to.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("mediaPlayer")]
+		[JsonPropertyName("media_player")]
 		public string? MediaPlayer { get; init; }
 
 		///<summary>Stream format supported by media player.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("format")]
+		[JsonPropertyName("format")]
 		public string? Format { get; init; }
 	}
 
 	public record CameraRecordParameters
 	{
 		///<summary>Template of a Filename. Variable is entity_id. Must be mp4. eg: /tmp/snapshot_{{ entity_id.name }}.mp4</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("filename")]
+		[JsonPropertyName("filename")]
 		public string? Filename { get; init; }
 
 		///<summary>Target recording length.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("duration")]
+		[JsonPropertyName("duration")]
 		public long? Duration { get; init; }
 
 		///<summary>Target lookback period to include in addition to duration. Only available if there is currently an active HLS stream.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("lookback")]
+		[JsonPropertyName("lookback")]
 		public long? Lookback { get; init; }
 	}
 
 	public record CameraSnapshotParameters
 	{
 		///<summary>Template of a Filename. Variable is entity_id. eg: /tmp/snapshot_{{ entity_id.name }}.jpg</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("filename")]
+		[JsonPropertyName("filename")]
 		public string? Filename { get; init; }
 	}
 
 	public class CastServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CastServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CastServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -3078,29 +3542,29 @@ namespace HomeAutomations.Models.Generated
 	public record CastShowLovelaceViewParameters
 	{
 		///<summary>Media Player entity to show the Lovelace view on.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		[JsonPropertyName("entity_id")]
 		public string? EntityId { get; init; }
 
 		///<summary>The URL path of the Lovelace dashboard to show. eg: lovelace-cast</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("dashboardPath")]
+		[JsonPropertyName("dashboard_path")]
 		public string? DashboardPath { get; init; }
 
 		///<summary>The path of the Lovelace view to show. eg: downstairs</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("viewPath")]
+		[JsonPropertyName("view_path")]
 		public string? ViewPath { get; init; }
 	}
 
 	public class ClimateServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public ClimateServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public ClimateServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Turn auxiliary heater on/off for climate device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetAuxHeat(NetDaemon.HassModel.Entities.ServiceTarget target, ClimateSetAuxHeatParameters data)
+		public void SetAuxHeat(ServiceTarget target, ClimateSetAuxHeatParameters data)
 		{
 			_haContext.CallService("climate", "set_aux_heat", target, data);
 		}
@@ -3108,14 +3572,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Turn auxiliary heater on/off for climate device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="auxHeat">New value of auxiliary heater.</param>
-		public void SetAuxHeat(NetDaemon.HassModel.Entities.ServiceTarget target, bool @auxHeat)
+		public void SetAuxHeat(ServiceTarget target, bool @auxHeat)
 		{
 			_haContext.CallService("climate", "set_aux_heat", target, new ClimateSetAuxHeatParameters{AuxHeat = @auxHeat});
 		}
 
 		///<summary>Set fan operation for climate device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetFanMode(NetDaemon.HassModel.Entities.ServiceTarget target, ClimateSetFanModeParameters data)
+		public void SetFanMode(ServiceTarget target, ClimateSetFanModeParameters data)
 		{
 			_haContext.CallService("climate", "set_fan_mode", target, data);
 		}
@@ -3123,14 +3587,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set fan operation for climate device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="fanMode">New value of fan mode. eg: low</param>
-		public void SetFanMode(NetDaemon.HassModel.Entities.ServiceTarget target, string @fanMode)
+		public void SetFanMode(ServiceTarget target, string @fanMode)
 		{
 			_haContext.CallService("climate", "set_fan_mode", target, new ClimateSetFanModeParameters{FanMode = @fanMode});
 		}
 
 		///<summary>Set target humidity of climate device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetHumidity(NetDaemon.HassModel.Entities.ServiceTarget target, ClimateSetHumidityParameters data)
+		public void SetHumidity(ServiceTarget target, ClimateSetHumidityParameters data)
 		{
 			_haContext.CallService("climate", "set_humidity", target, data);
 		}
@@ -3138,14 +3602,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set target humidity of climate device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="humidity">New target humidity for climate device.</param>
-		public void SetHumidity(NetDaemon.HassModel.Entities.ServiceTarget target, long @humidity)
+		public void SetHumidity(ServiceTarget target, long @humidity)
 		{
 			_haContext.CallService("climate", "set_humidity", target, new ClimateSetHumidityParameters{Humidity = @humidity});
 		}
 
 		///<summary>Set HVAC operation mode for climate device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetHvacMode(NetDaemon.HassModel.Entities.ServiceTarget target, ClimateSetHvacModeParameters data)
+		public void SetHvacMode(ServiceTarget target, ClimateSetHvacModeParameters data)
 		{
 			_haContext.CallService("climate", "set_hvac_mode", target, data);
 		}
@@ -3153,14 +3617,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set HVAC operation mode for climate device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="hvacMode">New value of operation mode.</param>
-		public void SetHvacMode(NetDaemon.HassModel.Entities.ServiceTarget target, string? @hvacMode = null)
+		public void SetHvacMode(ServiceTarget target, string? @hvacMode = null)
 		{
 			_haContext.CallService("climate", "set_hvac_mode", target, new ClimateSetHvacModeParameters{HvacMode = @hvacMode});
 		}
 
 		///<summary>Set preset mode for climate device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetPresetMode(NetDaemon.HassModel.Entities.ServiceTarget target, ClimateSetPresetModeParameters data)
+		public void SetPresetMode(ServiceTarget target, ClimateSetPresetModeParameters data)
 		{
 			_haContext.CallService("climate", "set_preset_mode", target, data);
 		}
@@ -3168,14 +3632,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set preset mode for climate device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="presetMode">New value of preset mode. eg: away</param>
-		public void SetPresetMode(NetDaemon.HassModel.Entities.ServiceTarget target, string @presetMode)
+		public void SetPresetMode(ServiceTarget target, string @presetMode)
 		{
 			_haContext.CallService("climate", "set_preset_mode", target, new ClimateSetPresetModeParameters{PresetMode = @presetMode});
 		}
 
 		///<summary>Set swing operation for climate device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetSwingMode(NetDaemon.HassModel.Entities.ServiceTarget target, ClimateSetSwingModeParameters data)
+		public void SetSwingMode(ServiceTarget target, ClimateSetSwingModeParameters data)
 		{
 			_haContext.CallService("climate", "set_swing_mode", target, data);
 		}
@@ -3183,14 +3647,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set swing operation for climate device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="swingMode">New value of swing mode. eg: horizontal</param>
-		public void SetSwingMode(NetDaemon.HassModel.Entities.ServiceTarget target, string @swingMode)
+		public void SetSwingMode(ServiceTarget target, string @swingMode)
 		{
 			_haContext.CallService("climate", "set_swing_mode", target, new ClimateSetSwingModeParameters{SwingMode = @swingMode});
 		}
 
 		///<summary>Set target temperature of climate device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetTemperature(NetDaemon.HassModel.Entities.ServiceTarget target, ClimateSetTemperatureParameters data)
+		public void SetTemperature(ServiceTarget target, ClimateSetTemperatureParameters data)
 		{
 			_haContext.CallService("climate", "set_temperature", target, data);
 		}
@@ -3201,21 +3665,21 @@ namespace HomeAutomations.Models.Generated
 		///<param name="targetTempHigh">New target high temperature for HVAC.</param>
 		///<param name="targetTempLow">New target low temperature for HVAC.</param>
 		///<param name="hvacMode">HVAC operation mode to set temperature to.</param>
-		public void SetTemperature(NetDaemon.HassModel.Entities.ServiceTarget target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
+		public void SetTemperature(ServiceTarget target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
 		{
 			_haContext.CallService("climate", "set_temperature", target, new ClimateSetTemperatureParameters{Temperature = @temperature, TargetTempHigh = @targetTempHigh, TargetTempLow = @targetTempLow, HvacMode = @hvacMode});
 		}
 
 		///<summary>Turn climate device off.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("climate", "turn_off", target);
 		}
 
 		///<summary>Turn climate device on.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("climate", "turn_on", target);
 		}
@@ -3224,68 +3688,68 @@ namespace HomeAutomations.Models.Generated
 	public record ClimateSetAuxHeatParameters
 	{
 		///<summary>New value of auxiliary heater.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("auxHeat")]
+		[JsonPropertyName("aux_heat")]
 		public bool? AuxHeat { get; init; }
 	}
 
 	public record ClimateSetFanModeParameters
 	{
 		///<summary>New value of fan mode. eg: low</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("fanMode")]
+		[JsonPropertyName("fan_mode")]
 		public string? FanMode { get; init; }
 	}
 
 	public record ClimateSetHumidityParameters
 	{
 		///<summary>New target humidity for climate device.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("humidity")]
+		[JsonPropertyName("humidity")]
 		public long? Humidity { get; init; }
 	}
 
 	public record ClimateSetHvacModeParameters
 	{
 		///<summary>New value of operation mode.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("hvacMode")]
+		[JsonPropertyName("hvac_mode")]
 		public string? HvacMode { get; init; }
 	}
 
 	public record ClimateSetPresetModeParameters
 	{
 		///<summary>New value of preset mode. eg: away</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("presetMode")]
+		[JsonPropertyName("preset_mode")]
 		public string? PresetMode { get; init; }
 	}
 
 	public record ClimateSetSwingModeParameters
 	{
 		///<summary>New value of swing mode. eg: horizontal</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("swingMode")]
+		[JsonPropertyName("swing_mode")]
 		public string? SwingMode { get; init; }
 	}
 
 	public record ClimateSetTemperatureParameters
 	{
 		///<summary>New target temperature for HVAC.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("temperature")]
+		[JsonPropertyName("temperature")]
 		public double? Temperature { get; init; }
 
 		///<summary>New target high temperature for HVAC.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("targetTempHigh")]
+		[JsonPropertyName("target_temp_high")]
 		public double? TargetTempHigh { get; init; }
 
 		///<summary>New target low temperature for HVAC.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("targetTempLow")]
+		[JsonPropertyName("target_temp_low")]
 		public double? TargetTempLow { get; init; }
 
 		///<summary>HVAC operation mode to set temperature to.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("hvacMode")]
+		[JsonPropertyName("hvac_mode")]
 		public string? HvacMode { get; init; }
 	}
 
 	public class CloudServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CloudServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CloudServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -3305,15 +3769,15 @@ namespace HomeAutomations.Models.Generated
 
 	public class CounterServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CounterServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CounterServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Change counter parameters.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Configure(NetDaemon.HassModel.Entities.ServiceTarget target, CounterConfigureParameters data)
+		public void Configure(ServiceTarget target, CounterConfigureParameters data)
 		{
 			_haContext.CallService("counter", "configure", target, data);
 		}
@@ -3325,28 +3789,28 @@ namespace HomeAutomations.Models.Generated
 		///<param name="step">New value for step.</param>
 		///<param name="initial">New value for initial.</param>
 		///<param name="value">New state value.</param>
-		public void Configure(NetDaemon.HassModel.Entities.ServiceTarget target, long? @minimum = null, long? @maximum = null, long? @step = null, long? @initial = null, long? @value = null)
+		public void Configure(ServiceTarget target, long? @minimum = null, long? @maximum = null, long? @step = null, long? @initial = null, long? @value = null)
 		{
 			_haContext.CallService("counter", "configure", target, new CounterConfigureParameters{Minimum = @minimum, Maximum = @maximum, Step = @step, Initial = @initial, Value = @value});
 		}
 
 		///<summary>Decrement a counter.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Decrement(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Decrement(ServiceTarget target)
 		{
 			_haContext.CallService("counter", "decrement", target);
 		}
 
 		///<summary>Increment a counter.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Increment(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Increment(ServiceTarget target)
 		{
 			_haContext.CallService("counter", "increment", target);
 		}
 
 		///<summary>Reset a counter.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Reset(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Reset(ServiceTarget target)
 		{
 			_haContext.CallService("counter", "reset", target);
 		}
@@ -3355,65 +3819,65 @@ namespace HomeAutomations.Models.Generated
 	public record CounterConfigureParameters
 	{
 		///<summary>New minimum value for the counter or None to remove minimum.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("minimum")]
+		[JsonPropertyName("minimum")]
 		public long? Minimum { get; init; }
 
 		///<summary>New maximum value for the counter or None to remove maximum.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("maximum")]
+		[JsonPropertyName("maximum")]
 		public long? Maximum { get; init; }
 
 		///<summary>New value for step.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("step")]
+		[JsonPropertyName("step")]
 		public long? Step { get; init; }
 
 		///<summary>New value for initial.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("initial")]
+		[JsonPropertyName("initial")]
 		public long? Initial { get; init; }
 
 		///<summary>New state value.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("value")]
+		[JsonPropertyName("value")]
 		public long? Value { get; init; }
 	}
 
 	public class CoverServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public CoverServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public CoverServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Close all or specified cover.</summary>
 		///<param name="target">The target for this service call</param>
-		public void CloseCover(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void CloseCover(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "close_cover", target);
 		}
 
 		///<summary>Close all or specified cover tilt.</summary>
 		///<param name="target">The target for this service call</param>
-		public void CloseCoverTilt(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void CloseCoverTilt(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "close_cover_tilt", target);
 		}
 
 		///<summary>Open all or specified cover.</summary>
 		///<param name="target">The target for this service call</param>
-		public void OpenCover(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void OpenCover(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "open_cover", target);
 		}
 
 		///<summary>Open all or specified cover tilt.</summary>
 		///<param name="target">The target for this service call</param>
-		public void OpenCoverTilt(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void OpenCoverTilt(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "open_cover_tilt", target);
 		}
 
 		///<summary>Move to specific position all or specified cover.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetCoverPosition(NetDaemon.HassModel.Entities.ServiceTarget target, CoverSetCoverPositionParameters data)
+		public void SetCoverPosition(ServiceTarget target, CoverSetCoverPositionParameters data)
 		{
 			_haContext.CallService("cover", "set_cover_position", target, data);
 		}
@@ -3421,14 +3885,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Move to specific position all or specified cover.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="position">Position of the cover</param>
-		public void SetCoverPosition(NetDaemon.HassModel.Entities.ServiceTarget target, long @position)
+		public void SetCoverPosition(ServiceTarget target, long @position)
 		{
 			_haContext.CallService("cover", "set_cover_position", target, new CoverSetCoverPositionParameters{Position = @position});
 		}
 
 		///<summary>Move to specific position all or specified cover tilt.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetCoverTiltPosition(NetDaemon.HassModel.Entities.ServiceTarget target, CoverSetCoverTiltPositionParameters data)
+		public void SetCoverTiltPosition(ServiceTarget target, CoverSetCoverTiltPositionParameters data)
 		{
 			_haContext.CallService("cover", "set_cover_tilt_position", target, data);
 		}
@@ -3436,35 +3900,35 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Move to specific position all or specified cover tilt.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="tiltPosition">Tilt position of the cover.</param>
-		public void SetCoverTiltPosition(NetDaemon.HassModel.Entities.ServiceTarget target, long @tiltPosition)
+		public void SetCoverTiltPosition(ServiceTarget target, long @tiltPosition)
 		{
 			_haContext.CallService("cover", "set_cover_tilt_position", target, new CoverSetCoverTiltPositionParameters{TiltPosition = @tiltPosition});
 		}
 
 		///<summary>Stop all or specified cover.</summary>
 		///<param name="target">The target for this service call</param>
-		public void StopCover(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void StopCover(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "stop_cover", target);
 		}
 
 		///<summary>Stop all or specified cover.</summary>
 		///<param name="target">The target for this service call</param>
-		public void StopCoverTilt(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void StopCoverTilt(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "stop_cover_tilt", target);
 		}
 
 		///<summary>Toggle a cover open/closed.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "toggle", target);
 		}
 
 		///<summary>Toggle a cover tilt open/closed.</summary>
 		///<param name="target">The target for this service call</param>
-		public void ToggleCoverTilt(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void ToggleCoverTilt(ServiceTarget target)
 		{
 			_haContext.CallService("cover", "toggle_cover_tilt", target);
 		}
@@ -3473,21 +3937,21 @@ namespace HomeAutomations.Models.Generated
 	public record CoverSetCoverPositionParameters
 	{
 		///<summary>Position of the cover</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("position")]
+		[JsonPropertyName("position")]
 		public long? Position { get; init; }
 	}
 
 	public record CoverSetCoverTiltPositionParameters
 	{
 		///<summary>Tilt position of the cover.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("tiltPosition")]
+		[JsonPropertyName("tilt_position")]
 		public long? TiltPosition { get; init; }
 	}
 
 	public class DeviceTrackerServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public DeviceTrackerServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public DeviceTrackerServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -3535,45 +3999,45 @@ namespace HomeAutomations.Models.Generated
 	public record DeviceTrackerSeeParameters
 	{
 		///<summary>MAC address of device eg: FF:FF:FF:FF:FF:FF</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("mac")]
+		[JsonPropertyName("mac")]
 		public string? Mac { get; init; }
 
 		///<summary>Id of device (find id in known_devices.yaml). eg: phonedave</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("devId")]
+		[JsonPropertyName("dev_id")]
 		public string? DevId { get; init; }
 
 		///<summary>Hostname of device eg: Dave</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("hostName")]
+		[JsonPropertyName("host_name")]
 		public string? HostName { get; init; }
 
 		///<summary>Name of location where device is located (not_home is away). eg: home</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("locationName")]
+		[JsonPropertyName("location_name")]
 		public string? LocationName { get; init; }
 
 		///<summary>GPS coordinates where device is located (latitude, longitude). eg: [51.509802, -0.086692]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("gps")]
+		[JsonPropertyName("gps")]
 		public object? Gps { get; init; }
 
 		///<summary>Accuracy of GPS coordinates.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("gpsAccuracy")]
+		[JsonPropertyName("gps_accuracy")]
 		public long? GpsAccuracy { get; init; }
 
 		///<summary>Battery level of device.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("battery")]
+		[JsonPropertyName("battery")]
 		public long? Battery { get; init; }
 	}
 
 	public class FanServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public FanServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public FanServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Decrease the speed of the fan by one speed or a percentage_step.</summary>
 		///<param name="target">The target for this service call</param>
-		public void DecreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, FanDecreaseSpeedParameters data)
+		public void DecreaseSpeed(ServiceTarget target, FanDecreaseSpeedParameters data)
 		{
 			_haContext.CallService("fan", "decrease_speed", target, data);
 		}
@@ -3581,14 +4045,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Decrease the speed of the fan by one speed or a percentage_step.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="percentageStep">Decrease speed by a percentage.</param>
-		public void DecreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, long? @percentageStep = null)
+		public void DecreaseSpeed(ServiceTarget target, long? @percentageStep = null)
 		{
 			_haContext.CallService("fan", "decrease_speed", target, new FanDecreaseSpeedParameters{PercentageStep = @percentageStep});
 		}
 
 		///<summary>Increase the speed of the fan by one speed or a percentage_step.</summary>
 		///<param name="target">The target for this service call</param>
-		public void IncreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, FanIncreaseSpeedParameters data)
+		public void IncreaseSpeed(ServiceTarget target, FanIncreaseSpeedParameters data)
 		{
 			_haContext.CallService("fan", "increase_speed", target, data);
 		}
@@ -3596,14 +4060,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Increase the speed of the fan by one speed or a percentage_step.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="percentageStep">Increase speed by a percentage.</param>
-		public void IncreaseSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, long? @percentageStep = null)
+		public void IncreaseSpeed(ServiceTarget target, long? @percentageStep = null)
 		{
 			_haContext.CallService("fan", "increase_speed", target, new FanIncreaseSpeedParameters{PercentageStep = @percentageStep});
 		}
 
 		///<summary>Oscillate the fan.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Oscillate(NetDaemon.HassModel.Entities.ServiceTarget target, FanOscillateParameters data)
+		public void Oscillate(ServiceTarget target, FanOscillateParameters data)
 		{
 			_haContext.CallService("fan", "oscillate", target, data);
 		}
@@ -3611,14 +4075,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Oscillate the fan.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="oscillating">Flag to turn on/off oscillation.</param>
-		public void Oscillate(NetDaemon.HassModel.Entities.ServiceTarget target, bool @oscillating)
+		public void Oscillate(ServiceTarget target, bool @oscillating)
 		{
 			_haContext.CallService("fan", "oscillate", target, new FanOscillateParameters{Oscillating = @oscillating});
 		}
 
 		///<summary>Set the fan rotation.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetDirection(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetDirectionParameters data)
+		public void SetDirection(ServiceTarget target, FanSetDirectionParameters data)
 		{
 			_haContext.CallService("fan", "set_direction", target, data);
 		}
@@ -3626,14 +4090,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set the fan rotation.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="direction">The direction to rotate.</param>
-		public void SetDirection(NetDaemon.HassModel.Entities.ServiceTarget target, string @direction)
+		public void SetDirection(ServiceTarget target, string @direction)
 		{
 			_haContext.CallService("fan", "set_direction", target, new FanSetDirectionParameters{Direction = @direction});
 		}
 
 		///<summary>Set fan speed percentage.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetPercentage(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetPercentageParameters data)
+		public void SetPercentage(ServiceTarget target, FanSetPercentageParameters data)
 		{
 			_haContext.CallService("fan", "set_percentage", target, data);
 		}
@@ -3641,14 +4105,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set fan speed percentage.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="percentage">Percentage speed setting.</param>
-		public void SetPercentage(NetDaemon.HassModel.Entities.ServiceTarget target, long @percentage)
+		public void SetPercentage(ServiceTarget target, long @percentage)
 		{
 			_haContext.CallService("fan", "set_percentage", target, new FanSetPercentageParameters{Percentage = @percentage});
 		}
 
 		///<summary>Set preset mode for a fan device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetPresetMode(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetPresetModeParameters data)
+		public void SetPresetMode(ServiceTarget target, FanSetPresetModeParameters data)
 		{
 			_haContext.CallService("fan", "set_preset_mode", target, data);
 		}
@@ -3656,14 +4120,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set preset mode for a fan device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="presetMode">New value of preset mode. eg: auto</param>
-		public void SetPresetMode(NetDaemon.HassModel.Entities.ServiceTarget target, string @presetMode)
+		public void SetPresetMode(ServiceTarget target, string @presetMode)
 		{
 			_haContext.CallService("fan", "set_preset_mode", target, new FanSetPresetModeParameters{PresetMode = @presetMode});
 		}
 
 		///<summary>Set fan speed.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, FanSetSpeedParameters data)
+		public void SetSpeed(ServiceTarget target, FanSetSpeedParameters data)
 		{
 			_haContext.CallService("fan", "set_speed", target, data);
 		}
@@ -3671,28 +4135,28 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set fan speed.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="speed">Speed setting. eg: low</param>
-		public void SetSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, string @speed)
+		public void SetSpeed(ServiceTarget target, string @speed)
 		{
 			_haContext.CallService("fan", "set_speed", target, new FanSetSpeedParameters{Speed = @speed});
 		}
 
 		///<summary>Toggle the fan on/off.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("fan", "toggle", target);
 		}
 
 		///<summary>Turn fan off.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("fan", "turn_off", target);
 		}
 
 		///<summary>Turn fan on.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, FanTurnOnParameters data)
+		public void TurnOn(ServiceTarget target, FanTurnOnParameters data)
 		{
 			_haContext.CallService("fan", "turn_on", target, data);
 		}
@@ -3702,7 +4166,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="speed">Speed setting. eg: high</param>
 		///<param name="percentage">Percentage speed setting.</param>
 		///<param name="presetMode">Preset mode setting. eg: auto</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, string? @speed = null, long? @percentage = null, string? @presetMode = null)
+		public void TurnOn(ServiceTarget target, string? @speed = null, long? @percentage = null, string? @presetMode = null)
 		{
 			_haContext.CallService("fan", "turn_on", target, new FanTurnOnParameters{Speed = @speed, Percentage = @percentage, PresetMode = @presetMode});
 		}
@@ -3711,71 +4175,71 @@ namespace HomeAutomations.Models.Generated
 	public record FanDecreaseSpeedParameters
 	{
 		///<summary>Decrease speed by a percentage.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("percentageStep")]
+		[JsonPropertyName("percentage_step")]
 		public long? PercentageStep { get; init; }
 	}
 
 	public record FanIncreaseSpeedParameters
 	{
 		///<summary>Increase speed by a percentage.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("percentageStep")]
+		[JsonPropertyName("percentage_step")]
 		public long? PercentageStep { get; init; }
 	}
 
 	public record FanOscillateParameters
 	{
 		///<summary>Flag to turn on/off oscillation.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("oscillating")]
+		[JsonPropertyName("oscillating")]
 		public bool? Oscillating { get; init; }
 	}
 
 	public record FanSetDirectionParameters
 	{
 		///<summary>The direction to rotate.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("direction")]
+		[JsonPropertyName("direction")]
 		public string? Direction { get; init; }
 	}
 
 	public record FanSetPercentageParameters
 	{
 		///<summary>Percentage speed setting.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("percentage")]
+		[JsonPropertyName("percentage")]
 		public long? Percentage { get; init; }
 	}
 
 	public record FanSetPresetModeParameters
 	{
 		///<summary>New value of preset mode. eg: auto</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("presetMode")]
+		[JsonPropertyName("preset_mode")]
 		public string? PresetMode { get; init; }
 	}
 
 	public record FanSetSpeedParameters
 	{
 		///<summary>Speed setting. eg: low</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("speed")]
+		[JsonPropertyName("speed")]
 		public string? Speed { get; init; }
 	}
 
 	public record FanTurnOnParameters
 	{
 		///<summary>Speed setting. eg: high</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("speed")]
+		[JsonPropertyName("speed")]
 		public string? Speed { get; init; }
 
 		///<summary>Percentage speed setting.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("percentage")]
+		[JsonPropertyName("percentage")]
 		public long? Percentage { get; init; }
 
 		///<summary>Preset mode setting. eg: auto</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("presetMode")]
+		[JsonPropertyName("preset_mode")]
 		public string? PresetMode { get; init; }
 	}
 
 	public class FfmpegServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public FfmpegServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public FfmpegServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -3823,28 +4287,28 @@ namespace HomeAutomations.Models.Generated
 	public record FfmpegRestartParameters
 	{
 		///<summary>Name of entity that will restart. Platform dependent.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		[JsonPropertyName("entity_id")]
 		public string? EntityId { get; init; }
 	}
 
 	public record FfmpegStartParameters
 	{
 		///<summary>Name of entity that will start. Platform dependent.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		[JsonPropertyName("entity_id")]
 		public string? EntityId { get; init; }
 	}
 
 	public record FfmpegStopParameters
 	{
 		///<summary>Name of entity that will stop. Platform dependent.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		[JsonPropertyName("entity_id")]
 		public string? EntityId { get; init; }
 	}
 
 	public class FrontendServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public FrontendServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public FrontendServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -3873,18 +4337,18 @@ namespace HomeAutomations.Models.Generated
 	public record FrontendSetThemeParameters
 	{
 		///<summary>Name of a predefined theme, 'default' or 'none'. eg: default</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("name")]
+		[JsonPropertyName("name")]
 		public string? Name { get; init; }
 
 		///<summary>The mode the theme is for.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("mode")]
+		[JsonPropertyName("mode")]
 		public string? Mode { get; init; }
 	}
 
 	public class GoogleServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public GoogleServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public GoogleServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -3925,42 +4389,42 @@ namespace HomeAutomations.Models.Generated
 	public record GoogleAddEventParameters
 	{
 		///<summary>The id of the calendar you want. eg: Your email</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("calendarId")]
+		[JsonPropertyName("calendar_id")]
 		public string? CalendarId { get; init; }
 
 		///<summary>Acts as the title of the event. eg: Bowling</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("summary")]
+		[JsonPropertyName("summary")]
 		public string? Summary { get; init; }
 
 		///<summary>The description of the event. Optional. eg: Birthday bowling</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("description")]
+		[JsonPropertyName("description")]
 		public string? Description { get; init; }
 
 		///<summary>The date and time the event should start. eg: 2019-03-22 20:00:00</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("startDateTime")]
+		[JsonPropertyName("start_date_time")]
 		public string? StartDateTime { get; init; }
 
 		///<summary>The date and time the event should end. eg: 2019-03-22 22:00:00</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("endDateTime")]
+		[JsonPropertyName("end_date_time")]
 		public string? EndDateTime { get; init; }
 
 		///<summary>The date the whole day event should start. eg: 2019-03-10</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("startDate")]
+		[JsonPropertyName("start_date")]
 		public string? StartDate { get; init; }
 
 		///<summary>The date the whole day event should end. eg: 2019-03-11</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("endDate")]
+		[JsonPropertyName("end_date")]
 		public string? EndDate { get; init; }
 
 		///<summary>Days or weeks that you want to create the event in. eg: "days": 2 or "weeks": 2</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("in")]
+		[JsonPropertyName("in")]
 		public object? In { get; init; }
 	}
 
 	public class GroupServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public GroupServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public GroupServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4006,48 +4470,48 @@ namespace HomeAutomations.Models.Generated
 	public record GroupRemoveParameters
 	{
 		///<summary>Group id and part of entity id. eg: test_group</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("objectId")]
+		[JsonPropertyName("object_id")]
 		public object? ObjectId { get; init; }
 	}
 
 	public record GroupSetParameters
 	{
 		///<summary>Group id and part of entity id. eg: test_group</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("objectId")]
+		[JsonPropertyName("object_id")]
 		public string? ObjectId { get; init; }
 
 		///<summary>Name of group eg: My test group</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("name")]
+		[JsonPropertyName("name")]
 		public string? Name { get; init; }
 
 		///<summary>Name of icon for the group. eg: mdi:camera</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("icon")]
+		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
 		///<summary>List of all members in the group. Not compatible with 'delta'. eg: domain.entity_id1, domain.entity_id2</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entities")]
+		[JsonPropertyName("entities")]
 		public object? Entities { get; init; }
 
 		///<summary>List of members that will change on group listening. eg: domain.entity_id1, domain.entity_id2</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("addEntities")]
+		[JsonPropertyName("add_entities")]
 		public object? AddEntities { get; init; }
 
 		///<summary>Enable this option if the group should only turn on when all entities are on.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("all")]
+		[JsonPropertyName("all")]
 		public bool? All { get; init; }
 	}
 
 	public class HarmonyServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public HarmonyServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public HarmonyServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Sends change channel command to the Harmony HUB</summary>
 		///<param name="target">The target for this service call</param>
-		public void ChangeChannel(NetDaemon.HassModel.Entities.ServiceTarget target, HarmonyChangeChannelParameters data)
+		public void ChangeChannel(ServiceTarget target, HarmonyChangeChannelParameters data)
 		{
 			_haContext.CallService("harmony", "change_channel", target, data);
 		}
@@ -4055,14 +4519,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Sends change channel command to the Harmony HUB</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="channel">Channel number to change to</param>
-		public void ChangeChannel(NetDaemon.HassModel.Entities.ServiceTarget target, long @channel)
+		public void ChangeChannel(ServiceTarget target, long @channel)
 		{
 			_haContext.CallService("harmony", "change_channel", target, new HarmonyChangeChannelParameters{Channel = @channel});
 		}
 
 		///<summary>Syncs the remote's configuration.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Sync(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Sync(ServiceTarget target)
 		{
 			_haContext.CallService("harmony", "sync", target);
 		}
@@ -4071,14 +4535,14 @@ namespace HomeAutomations.Models.Generated
 	public record HarmonyChangeChannelParameters
 	{
 		///<summary>Channel number to change to</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("channel")]
+		[JsonPropertyName("channel")]
 		public long? Channel { get; init; }
 	}
 
 	public class HomeassistantServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public HomeassistantServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public HomeassistantServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4091,7 +4555,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Reload a config entry that matches a target.</summary>
 		///<param name="target">The target for this service call</param>
-		public void ReloadConfigEntry(NetDaemon.HassModel.Entities.ServiceTarget target, HomeassistantReloadConfigEntryParameters data)
+		public void ReloadConfigEntry(ServiceTarget target, HomeassistantReloadConfigEntryParameters data)
 		{
 			_haContext.CallService("homeassistant", "reload_config_entry", target, data);
 		}
@@ -4099,7 +4563,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Reload a config entry that matches a target.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="entryId">A configuration entry id eg: 8955375327824e14ba89e4b29cc3ec9a</param>
-		public void ReloadConfigEntry(NetDaemon.HassModel.Entities.ServiceTarget target, string? @entryId = null)
+		public void ReloadConfigEntry(ServiceTarget target, string? @entryId = null)
 		{
 			_haContext.CallService("homeassistant", "reload_config_entry", target, new HomeassistantReloadConfigEntryParameters{EntryId = @entryId});
 		}
@@ -4144,28 +4608,28 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Generic service to toggle devices on/off under any domain</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("homeassistant", "toggle", target);
 		}
 
 		///<summary>Generic service to turn devices off under any domain.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("homeassistant", "turn_off", target);
 		}
 
 		///<summary>Generic service to turn devices on under any domain.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("homeassistant", "turn_on", target);
 		}
 
 		///<summary>Force one or more entities to update its data</summary>
 		///<param name="target">The target for this service call</param>
-		public void UpdateEntity(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void UpdateEntity(ServiceTarget target)
 		{
 			_haContext.CallService("homeassistant", "update_entity", target);
 		}
@@ -4174,32 +4638,32 @@ namespace HomeAutomations.Models.Generated
 	public record HomeassistantReloadConfigEntryParameters
 	{
 		///<summary>A configuration entry id eg: 8955375327824e14ba89e4b29cc3ec9a</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entryId")]
+		[JsonPropertyName("entry_id")]
 		public string? EntryId { get; init; }
 	}
 
 	public record HomeassistantSetLocationParameters
 	{
 		///<summary>Latitude of your location. eg: 32,87336</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("latitude")]
+		[JsonPropertyName("latitude")]
 		public string? Latitude { get; init; }
 
 		///<summary>Longitude of your location. eg: 117,22743</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("longitude")]
+		[JsonPropertyName("longitude")]
 		public string? Longitude { get; init; }
 	}
 
 	public class HumidifierServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public HumidifierServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public HumidifierServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Set target humidity of humidifier device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetHumidity(NetDaemon.HassModel.Entities.ServiceTarget target, HumidifierSetHumidityParameters data)
+		public void SetHumidity(ServiceTarget target, HumidifierSetHumidityParameters data)
 		{
 			_haContext.CallService("humidifier", "set_humidity", target, data);
 		}
@@ -4207,14 +4671,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set target humidity of humidifier device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="humidity">New target humidity for humidifier device.</param>
-		public void SetHumidity(NetDaemon.HassModel.Entities.ServiceTarget target, long @humidity)
+		public void SetHumidity(ServiceTarget target, long @humidity)
 		{
 			_haContext.CallService("humidifier", "set_humidity", target, new HumidifierSetHumidityParameters{Humidity = @humidity});
 		}
 
 		///<summary>Set mode for humidifier device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetMode(NetDaemon.HassModel.Entities.ServiceTarget target, HumidifierSetModeParameters data)
+		public void SetMode(ServiceTarget target, HumidifierSetModeParameters data)
 		{
 			_haContext.CallService("humidifier", "set_mode", target, data);
 		}
@@ -4222,28 +4686,28 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set mode for humidifier device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="mode">New mode eg: away</param>
-		public void SetMode(NetDaemon.HassModel.Entities.ServiceTarget target, string @mode)
+		public void SetMode(ServiceTarget target, string @mode)
 		{
 			_haContext.CallService("humidifier", "set_mode", target, new HumidifierSetModeParameters{Mode = @mode});
 		}
 
 		///<summary>Toggles a humidifier device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("humidifier", "toggle", target);
 		}
 
 		///<summary>Turn humidifier device off.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("humidifier", "turn_off", target);
 		}
 
 		///<summary>Turn humidifier device on.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("humidifier", "turn_on", target);
 		}
@@ -4252,21 +4716,21 @@ namespace HomeAutomations.Models.Generated
 	public record HumidifierSetHumidityParameters
 	{
 		///<summary>New target humidity for humidifier device.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("humidity")]
+		[JsonPropertyName("humidity")]
 		public long? Humidity { get; init; }
 	}
 
 	public record HumidifierSetModeParameters
 	{
 		///<summary>New mode eg: away</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("mode")]
+		[JsonPropertyName("mode")]
 		public string? Mode { get; init; }
 	}
 
 	public class InputBooleanServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputBooleanServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputBooleanServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4279,21 +4743,21 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Toggle an input boolean</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("input_boolean", "toggle", target);
 		}
 
 		///<summary>Turn off an input boolean</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("input_boolean", "turn_off", target);
 		}
 
 		///<summary>Turn on an input boolean</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("input_boolean", "turn_on", target);
 		}
@@ -4301,15 +4765,15 @@ namespace HomeAutomations.Models.Generated
 
 	public class InputButtonServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputButtonServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputButtonServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Press the input button entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Press(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Press(ServiceTarget target)
 		{
 			_haContext.CallService("input_button", "press", target);
 		}
@@ -4322,8 +4786,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class InputDatetimeServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputDatetimeServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputDatetimeServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4336,7 +4800,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>This can be used to dynamically set the date and/or time.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetDatetime(NetDaemon.HassModel.Entities.ServiceTarget target, InputDatetimeSetDatetimeParameters data)
+		public void SetDatetime(ServiceTarget target, InputDatetimeSetDatetimeParameters data)
 		{
 			_haContext.CallService("input_datetime", "set_datetime", target, data);
 		}
@@ -4347,7 +4811,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="time">The target time the entity should be set to. eg: "05:04:20"</param>
 		///<param name="datetime">The target date & time the entity should be set to. eg: "2019-04-20 05:04:20"</param>
 		///<param name="timestamp">The target date & time the entity should be set to as expressed by a UNIX timestamp.</param>
-		public void SetDatetime(NetDaemon.HassModel.Entities.ServiceTarget target, string? @date = null, DateTime? @time = null, string? @datetime = null, long? @timestamp = null)
+		public void SetDatetime(ServiceTarget target, string? @date = null, DateTime? @time = null, string? @datetime = null, long? @timestamp = null)
 		{
 			_haContext.CallService("input_datetime", "set_datetime", target, new InputDatetimeSetDatetimeParameters{Date = @date, Time = @time, Datetime = @datetime, Timestamp = @timestamp});
 		}
@@ -4356,40 +4820,40 @@ namespace HomeAutomations.Models.Generated
 	public record InputDatetimeSetDatetimeParameters
 	{
 		///<summary>The target date the entity should be set to. eg: "2019-04-20"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("date")]
+		[JsonPropertyName("date")]
 		public string? Date { get; init; }
 
 		///<summary>The target time the entity should be set to. eg: "05:04:20"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("time")]
+		[JsonPropertyName("time")]
 		public DateTime? Time { get; init; }
 
 		///<summary>The target date & time the entity should be set to. eg: "2019-04-20 05:04:20"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("datetime")]
+		[JsonPropertyName("datetime")]
 		public string? Datetime { get; init; }
 
 		///<summary>The target date & time the entity should be set to as expressed by a UNIX timestamp.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("timestamp")]
+		[JsonPropertyName("timestamp")]
 		public long? Timestamp { get; init; }
 	}
 
 	public class InputNumberServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputNumberServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputNumberServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Decrement the value of an input number entity by its stepping.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Decrement(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Decrement(ServiceTarget target)
 		{
 			_haContext.CallService("input_number", "decrement", target);
 		}
 
 		///<summary>Increment the value of an input number entity by its stepping.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Increment(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Increment(ServiceTarget target)
 		{
 			_haContext.CallService("input_number", "increment", target);
 		}
@@ -4402,7 +4866,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Set the value of an input number entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, InputNumberSetValueParameters data)
+		public void SetValue(ServiceTarget target, InputNumberSetValueParameters data)
 		{
 			_haContext.CallService("input_number", "set_value", target, data);
 		}
@@ -4410,7 +4874,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set the value of an input number entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="value">The target value the entity should be set to.</param>
-		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, double @value)
+		public void SetValue(ServiceTarget target, double @value)
 		{
 			_haContext.CallService("input_number", "set_value", target, new InputNumberSetValueParameters{Value = @value});
 		}
@@ -4419,14 +4883,14 @@ namespace HomeAutomations.Models.Generated
 	public record InputNumberSetValueParameters
 	{
 		///<summary>The target value the entity should be set to.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("value")]
+		[JsonPropertyName("value")]
 		public double? Value { get; init; }
 	}
 
 	public class InputSelectServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputSelectServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputSelectServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4439,21 +4903,21 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Select the first option of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectFirst(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void SelectFirst(ServiceTarget target)
 		{
 			_haContext.CallService("input_select", "select_first", target);
 		}
 
 		///<summary>Select the last option of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectLast(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void SelectLast(ServiceTarget target)
 		{
 			_haContext.CallService("input_select", "select_last", target);
 		}
 
 		///<summary>Select the next options of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectNext(NetDaemon.HassModel.Entities.ServiceTarget target, InputSelectSelectNextParameters data)
+		public void SelectNext(ServiceTarget target, InputSelectSelectNextParameters data)
 		{
 			_haContext.CallService("input_select", "select_next", target, data);
 		}
@@ -4461,14 +4925,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Select the next options of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="cycle">If the option should cycle from the last to the first.</param>
-		public void SelectNext(NetDaemon.HassModel.Entities.ServiceTarget target, bool? @cycle = null)
+		public void SelectNext(ServiceTarget target, bool? @cycle = null)
 		{
 			_haContext.CallService("input_select", "select_next", target, new InputSelectSelectNextParameters{Cycle = @cycle});
 		}
 
 		///<summary>Select an option of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectOption(NetDaemon.HassModel.Entities.ServiceTarget target, InputSelectSelectOptionParameters data)
+		public void SelectOption(ServiceTarget target, InputSelectSelectOptionParameters data)
 		{
 			_haContext.CallService("input_select", "select_option", target, data);
 		}
@@ -4476,14 +4940,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Select an option of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="option">Option to be selected. eg: "Item A"</param>
-		public void SelectOption(NetDaemon.HassModel.Entities.ServiceTarget target, string @option)
+		public void SelectOption(ServiceTarget target, string @option)
 		{
 			_haContext.CallService("input_select", "select_option", target, new InputSelectSelectOptionParameters{Option = @option});
 		}
 
 		///<summary>Select the previous options of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectPrevious(NetDaemon.HassModel.Entities.ServiceTarget target, InputSelectSelectPreviousParameters data)
+		public void SelectPrevious(ServiceTarget target, InputSelectSelectPreviousParameters data)
 		{
 			_haContext.CallService("input_select", "select_previous", target, data);
 		}
@@ -4491,14 +4955,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Select the previous options of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="cycle">If the option should cycle from the first to the last.</param>
-		public void SelectPrevious(NetDaemon.HassModel.Entities.ServiceTarget target, bool? @cycle = null)
+		public void SelectPrevious(ServiceTarget target, bool? @cycle = null)
 		{
 			_haContext.CallService("input_select", "select_previous", target, new InputSelectSelectPreviousParameters{Cycle = @cycle});
 		}
 
 		///<summary>Set the options of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetOptions(NetDaemon.HassModel.Entities.ServiceTarget target, InputSelectSetOptionsParameters data)
+		public void SetOptions(ServiceTarget target, InputSelectSetOptionsParameters data)
 		{
 			_haContext.CallService("input_select", "set_options", target, data);
 		}
@@ -4506,7 +4970,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set the options of an input select entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="options">Options for the input select entity. eg: ["Item A", "Item B", "Item C"]</param>
-		public void SetOptions(NetDaemon.HassModel.Entities.ServiceTarget target, object @options)
+		public void SetOptions(ServiceTarget target, object @options)
 		{
 			_haContext.CallService("input_select", "set_options", target, new InputSelectSetOptionsParameters{Options = @options});
 		}
@@ -4515,35 +4979,35 @@ namespace HomeAutomations.Models.Generated
 	public record InputSelectSelectNextParameters
 	{
 		///<summary>If the option should cycle from the last to the first.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("cycle")]
+		[JsonPropertyName("cycle")]
 		public bool? Cycle { get; init; }
 	}
 
 	public record InputSelectSelectOptionParameters
 	{
 		///<summary>Option to be selected. eg: "Item A"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("option")]
+		[JsonPropertyName("option")]
 		public string? Option { get; init; }
 	}
 
 	public record InputSelectSelectPreviousParameters
 	{
 		///<summary>If the option should cycle from the first to the last.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("cycle")]
+		[JsonPropertyName("cycle")]
 		public bool? Cycle { get; init; }
 	}
 
 	public record InputSelectSetOptionsParameters
 	{
 		///<summary>Options for the input select entity. eg: ["Item A", "Item B", "Item C"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("options")]
+		[JsonPropertyName("options")]
 		public object? Options { get; init; }
 	}
 
 	public class InputTextServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public InputTextServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public InputTextServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4556,7 +5020,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Set the value of an input text entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, InputTextSetValueParameters data)
+		public void SetValue(ServiceTarget target, InputTextSetValueParameters data)
 		{
 			_haContext.CallService("input_text", "set_value", target, data);
 		}
@@ -4564,7 +5028,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set the value of an input text entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="value">The target value the entity should be set to. eg: This is an example text</param>
-		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, string @value)
+		public void SetValue(ServiceTarget target, string @value)
 		{
 			_haContext.CallService("input_text", "set_value", target, new InputTextSetValueParameters{Value = @value});
 		}
@@ -4573,21 +5037,21 @@ namespace HomeAutomations.Models.Generated
 	public record InputTextSetValueParameters
 	{
 		///<summary>The target value the entity should be set to. eg: This is an example text</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("value")]
+		[JsonPropertyName("value")]
 		public string? Value { get; init; }
 	}
 
 	public class LightServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public LightServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public LightServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Toggles one or more lights, from on to off, or, off to on, based on their current state. </summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target, LightToggleParameters data)
+		public void Toggle(ServiceTarget target, LightToggleParameters data)
 		{
 			_haContext.CallService("light", "toggle", target, data);
 		}
@@ -4607,14 +5071,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public void Toggle(ServiceTarget target, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
 		{
 			_haContext.CallService("light", "toggle", target, new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 
 		///<summary>Turns off one or more lights.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target, LightTurnOffParameters data)
+		public void TurnOff(ServiceTarget target, LightTurnOffParameters data)
 		{
 			_haContext.CallService("light", "turn_off", target, data);
 		}
@@ -4623,14 +5087,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
 		///<param name="flash">If the light should flash.</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target, long? @transition = null, string? @flash = null)
+		public void TurnOff(ServiceTarget target, long? @transition = null, string? @flash = null)
 		{
 			_haContext.CallService("light", "turn_off", target, new LightTurnOffParameters{Transition = @transition, Flash = @flash});
 		}
 
 		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, LightTurnOnParameters data)
+		public void TurnOn(ServiceTarget target, LightTurnOnParameters data)
 		{
 			_haContext.CallService("light", "turn_on", target, data);
 		}
@@ -4654,7 +5118,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public void TurnOn(ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
 		{
 			_haContext.CallService("light", "turn_on", target, new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
@@ -4663,144 +5127,144 @@ namespace HomeAutomations.Models.Generated
 	public record LightToggleParameters
 	{
 		///<summary>Duration it takes to get to next state.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("transition")]
+		[JsonPropertyName("transition")]
 		public long? Transition { get; init; }
 
 		///<summary>Color for the light in RGB-format. eg: [255, 100, 100]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("rgbColor")]
+		[JsonPropertyName("rgb_color")]
 		public object? RgbColor { get; init; }
 
 		///<summary>A human readable color name.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("colorName")]
+		[JsonPropertyName("color_name")]
 		public string? ColorName { get; init; }
 
 		///<summary>Color for the light in hue/sat format. Hue is 0-360 and Sat is 0-100. eg: [300, 70]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("hsColor")]
+		[JsonPropertyName("hs_color")]
 		public object? HsColor { get; init; }
 
 		///<summary>Color for the light in XY-format. eg: [0.52, 0.43]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("xyColor")]
+		[JsonPropertyName("xy_color")]
 		public object? XyColor { get; init; }
 
 		///<summary>Color temperature for the light in mireds.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("colorTemp")]
+		[JsonPropertyName("color_temp")]
 		public long? ColorTemp { get; init; }
 
 		///<summary>Color temperature for the light in Kelvin.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("kelvin")]
+		[JsonPropertyName("kelvin")]
 		public long? Kelvin { get; init; }
 
 		///<summary>Number indicating level of white.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("whiteValue")]
+		[JsonPropertyName("white_value")]
 		public long? WhiteValue { get; init; }
 
 		///<summary>Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("brightness")]
+		[JsonPropertyName("brightness")]
 		public long? Brightness { get; init; }
 
 		///<summary>Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("brightnessPct")]
+		[JsonPropertyName("brightness_pct")]
 		public long? BrightnessPct { get; init; }
 
 		///<summary>Name of a light profile to use. eg: relax</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("profile")]
+		[JsonPropertyName("profile")]
 		public string? Profile { get; init; }
 
 		///<summary>If the light should flash.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("flash")]
+		[JsonPropertyName("flash")]
 		public string? Flash { get; init; }
 
 		///<summary>Light effect.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("effect")]
+		[JsonPropertyName("effect")]
 		public string? Effect { get; init; }
 	}
 
 	public record LightTurnOffParameters
 	{
 		///<summary>Duration it takes to get to next state.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("transition")]
+		[JsonPropertyName("transition")]
 		public long? Transition { get; init; }
 
 		///<summary>If the light should flash.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("flash")]
+		[JsonPropertyName("flash")]
 		public string? Flash { get; init; }
 	}
 
 	public record LightTurnOnParameters
 	{
 		///<summary>Duration it takes to get to next state.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("transition")]
+		[JsonPropertyName("transition")]
 		public long? Transition { get; init; }
 
 		///<summary>A list containing three integers between 0 and 255 representing the RGB (red, green, blue) color for the light. eg: [255, 100, 100]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("rgbColor")]
+		[JsonPropertyName("rgb_color")]
 		public object? RgbColor { get; init; }
 
 		///<summary>A list containing four integers between 0 and 255 representing the RGBW (red, green, blue, white) color for the light. eg: [255, 100, 100, 50]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("rgbwColor")]
+		[JsonPropertyName("rgbw_color")]
 		public object? RgbwColor { get; init; }
 
 		///<summary>A list containing five integers between 0 and 255 representing the RGBWW (red, green, blue, cold white, warm white) color for the light. eg: [255, 100, 100, 50, 70]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("rgbwwColor")]
+		[JsonPropertyName("rgbww_color")]
 		public object? RgbwwColor { get; init; }
 
 		///<summary>A human readable color name.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("colorName")]
+		[JsonPropertyName("color_name")]
 		public string? ColorName { get; init; }
 
 		///<summary>Color for the light in hue/sat format. Hue is 0-360 and Sat is 0-100. eg: [300, 70]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("hsColor")]
+		[JsonPropertyName("hs_color")]
 		public object? HsColor { get; init; }
 
 		///<summary>Color for the light in XY-format. eg: [0.52, 0.43]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("xyColor")]
+		[JsonPropertyName("xy_color")]
 		public object? XyColor { get; init; }
 
 		///<summary>Color temperature for the light in mireds.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("colorTemp")]
+		[JsonPropertyName("color_temp")]
 		public long? ColorTemp { get; init; }
 
 		///<summary>Color temperature for the light in Kelvin.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("kelvin")]
+		[JsonPropertyName("kelvin")]
 		public long? Kelvin { get; init; }
 
 		///<summary>Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("brightness")]
+		[JsonPropertyName("brightness")]
 		public long? Brightness { get; init; }
 
 		///<summary>Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("brightnessPct")]
+		[JsonPropertyName("brightness_pct")]
 		public long? BrightnessPct { get; init; }
 
 		///<summary>Change brightness by an amount.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("brightnessStep")]
+		[JsonPropertyName("brightness_step")]
 		public long? BrightnessStep { get; init; }
 
 		///<summary>Change brightness by a percentage.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("brightnessStepPct")]
+		[JsonPropertyName("brightness_step_pct")]
 		public long? BrightnessStepPct { get; init; }
 
 		///<summary>Set the light to white mode and change its brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("white")]
+		[JsonPropertyName("white")]
 		public long? White { get; init; }
 
 		///<summary>Name of a light profile to use. eg: relax</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("profile")]
+		[JsonPropertyName("profile")]
 		public string? Profile { get; init; }
 
 		///<summary>If the light should flash.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("flash")]
+		[JsonPropertyName("flash")]
 		public string? Flash { get; init; }
 
 		///<summary>Light effect.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("effect")]
+		[JsonPropertyName("effect")]
 		public string? Effect { get; init; }
 	}
 
 	public class LogbookServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public LogbookServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public LogbookServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4825,26 +5289,26 @@ namespace HomeAutomations.Models.Generated
 	public record LogbookLogParameters
 	{
 		///<summary>Custom name for an entity, can be referenced with entity_id. eg: Kitchen</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("name")]
+		[JsonPropertyName("name")]
 		public string? Name { get; init; }
 
 		///<summary>Message of the custom logbook entry. eg: is being used</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Entity to reference in custom logbook entry.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		[JsonPropertyName("entity_id")]
 		public string? EntityId { get; init; }
 
 		///<summary>Icon of domain to display in custom logbook entry. eg: light</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("domain")]
+		[JsonPropertyName("domain")]
 		public string? Domain { get; init; }
 	}
 
 	public class LoggerServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public LoggerServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public LoggerServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4872,14 +5336,14 @@ namespace HomeAutomations.Models.Generated
 	public record LoggerSetDefaultLevelParameters
 	{
 		///<summary>Default severity level for all integrations.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("level")]
+		[JsonPropertyName("level")]
 		public string? Level { get; init; }
 	}
 
 	public class LovelaceServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public LovelaceServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public LovelaceServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -4893,22 +5357,22 @@ namespace HomeAutomations.Models.Generated
 
 	public class MediaPlayerServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public MediaPlayerServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public MediaPlayerServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Send the media player the command to clear players playlist.</summary>
 		///<param name="target">The target for this service call</param>
-		public void ClearPlaylist(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void ClearPlaylist(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "clear_playlist", target);
 		}
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Join(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerJoinParameters data)
+		public void Join(ServiceTarget target, MediaPlayerJoinParameters data)
 		{
 			_haContext.CallService("media_player", "join", target, data);
 		}
@@ -4916,49 +5380,49 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
-		public void Join(NetDaemon.HassModel.Entities.ServiceTarget target, object? @groupMembers = null)
+		public void Join(ServiceTarget target, object? @groupMembers = null)
 		{
 			_haContext.CallService("media_player", "join", target, new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
 		}
 
 		///<summary>Send the media player the command for next track.</summary>
 		///<param name="target">The target for this service call</param>
-		public void MediaNextTrack(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void MediaNextTrack(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "media_next_track", target);
 		}
 
 		///<summary>Send the media player the command for pause.</summary>
 		///<param name="target">The target for this service call</param>
-		public void MediaPause(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void MediaPause(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "media_pause", target);
 		}
 
 		///<summary>Send the media player the command for play.</summary>
 		///<param name="target">The target for this service call</param>
-		public void MediaPlay(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void MediaPlay(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "media_play", target);
 		}
 
 		///<summary>Toggle media player play/pause state.</summary>
 		///<param name="target">The target for this service call</param>
-		public void MediaPlayPause(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void MediaPlayPause(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "media_play_pause", target);
 		}
 
 		///<summary>Send the media player the command for previous track.</summary>
 		///<param name="target">The target for this service call</param>
-		public void MediaPreviousTrack(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void MediaPreviousTrack(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "media_previous_track", target);
 		}
 
 		///<summary>Send the media player the command to seek in current playing media.</summary>
 		///<param name="target">The target for this service call</param>
-		public void MediaSeek(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerMediaSeekParameters data)
+		public void MediaSeek(ServiceTarget target, MediaPlayerMediaSeekParameters data)
 		{
 			_haContext.CallService("media_player", "media_seek", target, data);
 		}
@@ -4966,21 +5430,21 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the media player the command to seek in current playing media.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="seekPosition">Position to seek to. The format is platform dependent.</param>
-		public void MediaSeek(NetDaemon.HassModel.Entities.ServiceTarget target, double @seekPosition)
+		public void MediaSeek(ServiceTarget target, double @seekPosition)
 		{
 			_haContext.CallService("media_player", "media_seek", target, new MediaPlayerMediaSeekParameters{SeekPosition = @seekPosition});
 		}
 
 		///<summary>Send the media player the stop command.</summary>
 		///<param name="target">The target for this service call</param>
-		public void MediaStop(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void MediaStop(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "media_stop", target);
 		}
 
 		///<summary>Send the media player the command for playing media.</summary>
 		///<param name="target">The target for this service call</param>
-		public void PlayMedia(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerPlayMediaParameters data)
+		public void PlayMedia(ServiceTarget target, MediaPlayerPlayMediaParameters data)
 		{
 			_haContext.CallService("media_player", "play_media", target, data);
 		}
@@ -4989,14 +5453,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
 		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
-		public void PlayMedia(NetDaemon.HassModel.Entities.ServiceTarget target, string @mediaContentId, string @mediaContentType)
+		public void PlayMedia(ServiceTarget target, string @mediaContentId, string @mediaContentType)
 		{
 			_haContext.CallService("media_player", "play_media", target, new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType});
 		}
 
 		///<summary>Set repeat mode</summary>
 		///<param name="target">The target for this service call</param>
-		public void RepeatSet(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerRepeatSetParameters data)
+		public void RepeatSet(ServiceTarget target, MediaPlayerRepeatSetParameters data)
 		{
 			_haContext.CallService("media_player", "repeat_set", target, data);
 		}
@@ -5004,14 +5468,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set repeat mode</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="repeat">Repeat mode to set.</param>
-		public void RepeatSet(NetDaemon.HassModel.Entities.ServiceTarget target, string @repeat)
+		public void RepeatSet(ServiceTarget target, string @repeat)
 		{
 			_haContext.CallService("media_player", "repeat_set", target, new MediaPlayerRepeatSetParameters{Repeat = @repeat});
 		}
 
 		///<summary>Send the media player the command to change sound mode.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectSoundMode(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerSelectSoundModeParameters data)
+		public void SelectSoundMode(ServiceTarget target, MediaPlayerSelectSoundModeParameters data)
 		{
 			_haContext.CallService("media_player", "select_sound_mode", target, data);
 		}
@@ -5019,14 +5483,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the media player the command to change sound mode.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="soundMode">Name of the sound mode to switch to. eg: Music</param>
-		public void SelectSoundMode(NetDaemon.HassModel.Entities.ServiceTarget target, string? @soundMode = null)
+		public void SelectSoundMode(ServiceTarget target, string? @soundMode = null)
 		{
 			_haContext.CallService("media_player", "select_sound_mode", target, new MediaPlayerSelectSoundModeParameters{SoundMode = @soundMode});
 		}
 
 		///<summary>Send the media player the command to change input source.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectSource(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerSelectSourceParameters data)
+		public void SelectSource(ServiceTarget target, MediaPlayerSelectSourceParameters data)
 		{
 			_haContext.CallService("media_player", "select_source", target, data);
 		}
@@ -5034,14 +5498,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Send the media player the command to change input source.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="source">Name of the source to switch to. Platform dependent. eg: video1</param>
-		public void SelectSource(NetDaemon.HassModel.Entities.ServiceTarget target, string @source)
+		public void SelectSource(ServiceTarget target, string @source)
 		{
 			_haContext.CallService("media_player", "select_source", target, new MediaPlayerSelectSourceParameters{Source = @source});
 		}
 
 		///<summary>Set shuffling state.</summary>
 		///<param name="target">The target for this service call</param>
-		public void ShuffleSet(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerShuffleSetParameters data)
+		public void ShuffleSet(ServiceTarget target, MediaPlayerShuffleSetParameters data)
 		{
 			_haContext.CallService("media_player", "shuffle_set", target, data);
 		}
@@ -5049,49 +5513,49 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set shuffling state.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="shuffle">True/false for enabling/disabling shuffle.</param>
-		public void ShuffleSet(NetDaemon.HassModel.Entities.ServiceTarget target, bool @shuffle)
+		public void ShuffleSet(ServiceTarget target, bool @shuffle)
 		{
 			_haContext.CallService("media_player", "shuffle_set", target, new MediaPlayerShuffleSetParameters{Shuffle = @shuffle});
 		}
 
 		///<summary>Toggles a media player power state.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "toggle", target);
 		}
 
 		///<summary>Turn a media player power off.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "turn_off", target);
 		}
 
 		///<summary>Turn a media player power on.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "turn_on", target);
 		}
 
 		///<summary>Unjoin the player from a group. Only works on platforms with support for player groups.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Unjoin(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Unjoin(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "unjoin", target);
 		}
 
 		///<summary>Turn a media player volume down.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VolumeDown(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void VolumeDown(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "volume_down", target);
 		}
 
 		///<summary>Mute a media player's volume.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VolumeMute(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerVolumeMuteParameters data)
+		public void VolumeMute(ServiceTarget target, MediaPlayerVolumeMuteParameters data)
 		{
 			_haContext.CallService("media_player", "volume_mute", target, data);
 		}
@@ -5099,14 +5563,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Mute a media player's volume.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="isVolumeMuted">True/false for mute/unmute.</param>
-		public void VolumeMute(NetDaemon.HassModel.Entities.ServiceTarget target, bool @isVolumeMuted)
+		public void VolumeMute(ServiceTarget target, bool @isVolumeMuted)
 		{
 			_haContext.CallService("media_player", "volume_mute", target, new MediaPlayerVolumeMuteParameters{IsVolumeMuted = @isVolumeMuted});
 		}
 
 		///<summary>Set a media player's volume level.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VolumeSet(NetDaemon.HassModel.Entities.ServiceTarget target, MediaPlayerVolumeSetParameters data)
+		public void VolumeSet(ServiceTarget target, MediaPlayerVolumeSetParameters data)
 		{
 			_haContext.CallService("media_player", "volume_set", target, data);
 		}
@@ -5114,14 +5578,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set a media player's volume level.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="volumeLevel">Volume level to set as float.</param>
-		public void VolumeSet(NetDaemon.HassModel.Entities.ServiceTarget target, double @volumeLevel)
+		public void VolumeSet(ServiceTarget target, double @volumeLevel)
 		{
 			_haContext.CallService("media_player", "volume_set", target, new MediaPlayerVolumeSetParameters{VolumeLevel = @volumeLevel});
 		}
 
 		///<summary>Turn a media player volume up.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VolumeUp(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void VolumeUp(ServiceTarget target)
 		{
 			_haContext.CallService("media_player", "volume_up", target);
 		}
@@ -5130,74 +5594,74 @@ namespace HomeAutomations.Models.Generated
 	public record MediaPlayerJoinParameters
 	{
 		///<summary>The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("groupMembers")]
+		[JsonPropertyName("group_members")]
 		public object? GroupMembers { get; init; }
 	}
 
 	public record MediaPlayerMediaSeekParameters
 	{
 		///<summary>Position to seek to. The format is platform dependent.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("seekPosition")]
+		[JsonPropertyName("seek_position")]
 		public double? SeekPosition { get; init; }
 	}
 
 	public record MediaPlayerPlayMediaParameters
 	{
 		///<summary>The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("mediaContentId")]
+		[JsonPropertyName("media_content_id")]
 		public string? MediaContentId { get; init; }
 
 		///<summary>The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("mediaContentType")]
+		[JsonPropertyName("media_content_type")]
 		public string? MediaContentType { get; init; }
 	}
 
 	public record MediaPlayerRepeatSetParameters
 	{
 		///<summary>Repeat mode to set.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("repeat")]
+		[JsonPropertyName("repeat")]
 		public string? Repeat { get; init; }
 	}
 
 	public record MediaPlayerSelectSoundModeParameters
 	{
 		///<summary>Name of the sound mode to switch to. eg: Music</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("soundMode")]
+		[JsonPropertyName("sound_mode")]
 		public string? SoundMode { get; init; }
 	}
 
 	public record MediaPlayerSelectSourceParameters
 	{
 		///<summary>Name of the source to switch to. Platform dependent. eg: video1</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("source")]
+		[JsonPropertyName("source")]
 		public string? Source { get; init; }
 	}
 
 	public record MediaPlayerShuffleSetParameters
 	{
 		///<summary>True/false for enabling/disabling shuffle.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("shuffle")]
+		[JsonPropertyName("shuffle")]
 		public bool? Shuffle { get; init; }
 	}
 
 	public record MediaPlayerVolumeMuteParameters
 	{
 		///<summary>True/false for mute/unmute.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("isVolumeMuted")]
+		[JsonPropertyName("is_volume_muted")]
 		public bool? IsVolumeMuted { get; init; }
 	}
 
 	public record MediaPlayerVolumeSetParameters
 	{
 		///<summary>Volume level to set as float.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("volumeLevel")]
+		[JsonPropertyName("volume_level")]
 		public double? VolumeLevel { get; init; }
 	}
 
 	public class MicrosoftTodoServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public MicrosoftTodoServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public MicrosoftTodoServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5210,7 +5674,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Create a new task.</summary>
 		///<param name="subject">The subject of the task. eg: Pick up the mail.</param>
-		public void NewTask(string? @subject = null)
+		public void NewTask(object? @subject = null)
 		{
 			_haContext.CallService("microsoft_todo", "new_task", null, new MicrosoftTodoNewTaskParameters{Subject = @subject});
 		}
@@ -5219,14 +5683,14 @@ namespace HomeAutomations.Models.Generated
 	public record MicrosoftTodoNewTaskParameters
 	{
 		///<summary>The subject of the task. eg: Pick up the mail.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("subject")]
-		public string? Subject { get; init; }
+		[JsonPropertyName("subject")]
+		public object? Subject { get; init; }
 	}
 
 	public class MqttServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public MqttServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public MqttServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5272,41 +5736,41 @@ namespace HomeAutomations.Models.Generated
 	public record MqttDumpParameters
 	{
 		///<summary>topic to listen to eg: OpenZWave/#</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("topic")]
+		[JsonPropertyName("topic")]
 		public string? Topic { get; init; }
 
 		///<summary>how long we should listen for messages in seconds</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("duration")]
+		[JsonPropertyName("duration")]
 		public long? Duration { get; init; }
 	}
 
 	public record MqttPublishParameters
 	{
 		///<summary>Topic to publish payload. eg: /homeassistant/hello</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("topic")]
+		[JsonPropertyName("topic")]
 		public string? Topic { get; init; }
 
 		///<summary>Payload to publish. eg: This is great</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("payload")]
+		[JsonPropertyName("payload")]
 		public string? Payload { get; init; }
 
 		///<summary>Template to render as payload value. Ignored if payload given. eg: {{ states('sensor.temperature') }}</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("payloadTemplate")]
+		[JsonPropertyName("payload_template")]
 		public object? PayloadTemplate { get; init; }
 
 		///<summary>Quality of Service to use.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("qos")]
+		[JsonPropertyName("qos")]
 		public string? Qos { get; init; }
 
 		///<summary>If message should have the retain flag set.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("retain")]
+		[JsonPropertyName("retain")]
 		public bool? Retain { get; init; }
 	}
 
 	public class NetdaemonServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public NetdaemonServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public NetdaemonServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5324,7 +5788,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="unit">The unit of measurement for the entity</param>
 		///<param name="options">List of options for a select entity</param>
 		///<param name="attributes">The attributes of the entity</param>
-		public void EntityCreate(string? @entityId = null, string? @state = null, string? @icon = null, string? @unit = null, string? @options = null, string? @attributes = null)
+		public void EntityCreate(object? @entityId = null, object? @state = null, object? @icon = null, object? @unit = null, object? @options = null, object? @attributes = null)
 		{
 			_haContext.CallService("netdaemon", "entity_create", null, new NetdaemonEntityCreateParameters{EntityId = @entityId, State = @state, Icon = @icon, Unit = @unit, Options = @options, Attributes = @attributes});
 		}
@@ -5337,7 +5801,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Remove an entity</summary>
 		///<param name="entityId">The entity ID of the entity eg: sensor.awesome</param>
-		public void EntityRemove(string? @entityId = null)
+		public void EntityRemove(object? @entityId = null)
 		{
 			_haContext.CallService("netdaemon", "entity_remove", null, new NetdaemonEntityRemoveParameters{EntityId = @entityId});
 		}
@@ -5355,9 +5819,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="unit">The unit of measurement for the entity</param>
 		///<param name="options">List of options for a select entity</param>
 		///<param name="attributes">The attributes of the entity</param>
-		public void EntityUpdate(string? @entityId = null, string? @state = null, string? @icon = null, string? @unit = null, string? @options = null, string? @attributes = null)
+		public void EntityUpdate(object? @entityId = null, object? @state = null, object? @icon = null, object? @unit = null, object? @options = null, object? @attributes = null)
 		{
 			_haContext.CallService("netdaemon", "entity_update", null, new NetdaemonEntityUpdateParameters{EntityId = @entityId, State = @state, Icon = @icon, Unit = @unit, Options = @options, Attributes = @attributes});
+		}
+
+		public void MoonlightResetBluetooth()
+		{
+			_haContext.CallService("netdaemon", "moonlight_reset_bluetooth", null);
 		}
 
 		public void MoonlightStart()
@@ -5380,7 +5849,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="service">The name of the service to register</param>
 		///<param name="class">The class that implements the service call</param>
 		///<param name="method">The method to call</param>
-		public void RegisterService(string? @service = null, string? @class = null, string? @method = null)
+		public void RegisterService(object? @service = null, object? @class = null, object? @method = null)
 		{
 			_haContext.CallService("netdaemon", "register_service", null, new NetdaemonRegisterServiceParameters{Service = @service, Class = @class, Method = @method});
 		}
@@ -5394,83 +5863,83 @@ namespace HomeAutomations.Models.Generated
 	public record NetdaemonEntityCreateParameters
 	{
 		///<summary>The entity ID of the entity eg: sensor.awesome</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
+		[JsonPropertyName("entity_id")]
+		public object? EntityId { get; init; }
 
 		///<summary>The state of the entity eg: Lorem ipsum</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("state")]
-		public string? State { get; init; }
+		[JsonPropertyName("state")]
+		public object? State { get; init; }
 
 		///<summary>The icon for the entity eg: mdi:rocket-launch-outline</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("icon")]
-		public string? Icon { get; init; }
+		[JsonPropertyName("icon")]
+		public object? Icon { get; init; }
 
 		///<summary>The unit of measurement for the entity</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("unit")]
-		public string? Unit { get; init; }
+		[JsonPropertyName("unit")]
+		public object? Unit { get; init; }
 
 		///<summary>List of options for a select entity</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("options")]
-		public string? Options { get; init; }
+		[JsonPropertyName("options")]
+		public object? Options { get; init; }
 
 		///<summary>The attributes of the entity</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("attributes")]
-		public string? Attributes { get; init; }
+		[JsonPropertyName("attributes")]
+		public object? Attributes { get; init; }
 	}
 
 	public record NetdaemonEntityRemoveParameters
 	{
 		///<summary>The entity ID of the entity eg: sensor.awesome</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
+		[JsonPropertyName("entity_id")]
+		public object? EntityId { get; init; }
 	}
 
 	public record NetdaemonEntityUpdateParameters
 	{
 		///<summary>The entity ID of the entity eg: sensor.awesome</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
+		[JsonPropertyName("entity_id")]
+		public object? EntityId { get; init; }
 
 		///<summary>The state of the entity eg: Lorem ipsum</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("state")]
-		public string? State { get; init; }
+		[JsonPropertyName("state")]
+		public object? State { get; init; }
 
 		///<summary>The icon for the entity eg: mdi:rocket-launch-outline</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("icon")]
-		public string? Icon { get; init; }
+		[JsonPropertyName("icon")]
+		public object? Icon { get; init; }
 
 		///<summary>The unit of measurement for the entity</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("unit")]
-		public string? Unit { get; init; }
+		[JsonPropertyName("unit")]
+		public object? Unit { get; init; }
 
 		///<summary>List of options for a select entity</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("options")]
-		public string? Options { get; init; }
+		[JsonPropertyName("options")]
+		public object? Options { get; init; }
 
 		///<summary>The attributes of the entity</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("attributes")]
-		public string? Attributes { get; init; }
+		[JsonPropertyName("attributes")]
+		public object? Attributes { get; init; }
 	}
 
 	public record NetdaemonRegisterServiceParameters
 	{
 		///<summary>The name of the service to register</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("service")]
-		public string? Service { get; init; }
+		[JsonPropertyName("service")]
+		public object? Service { get; init; }
 
 		///<summary>The class that implements the service call</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("class")]
-		public string? Class { get; init; }
+		[JsonPropertyName("class")]
+		public object? Class { get; init; }
 
 		///<summary>The method to call</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("method")]
-		public string? Method { get; init; }
+		[JsonPropertyName("method")]
+		public object? Method { get; init; }
 	}
 
 	public class NotifyServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public NotifyServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public NotifyServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5557,101 +6026,101 @@ namespace HomeAutomations.Models.Generated
 	public record NotifyMobileAppFantenpadParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		[JsonPropertyName("title")]
 		public string? Title { get; init; }
 
 		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("target")]
+		[JsonPropertyName("target")]
 		public object? Target { get; init; }
 
 		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("data")]
+		[JsonPropertyName("data")]
 		public object? Data { get; init; }
 	}
 
 	public record NotifyMobileAppFantenphoneParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		[JsonPropertyName("title")]
 		public string? Title { get; init; }
 
 		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("target")]
+		[JsonPropertyName("target")]
 		public object? Target { get; init; }
 
 		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("data")]
+		[JsonPropertyName("data")]
 		public object? Data { get; init; }
 	}
 
 	public record NotifyMobileAppIphonePhilippParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		[JsonPropertyName("title")]
 		public string? Title { get; init; }
 
 		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("target")]
+		[JsonPropertyName("target")]
 		public object? Target { get; init; }
 
 		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("data")]
+		[JsonPropertyName("data")]
 		public object? Data { get; init; }
 	}
 
 	public record NotifyNotifyParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		[JsonPropertyName("title")]
 		public string? Title { get; init; }
 
 		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("target")]
+		[JsonPropertyName("target")]
 		public object? Target { get; init; }
 
 		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("data")]
+		[JsonPropertyName("data")]
 		public object? Data { get; init; }
 	}
 
 	public record NotifyPersistentNotificationParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		[JsonPropertyName("title")]
 		public string? Title { get; init; }
 	}
 
 	public class NumberServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public NumberServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public NumberServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Set the value of a Number entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, NumberSetValueParameters data)
+		public void SetValue(ServiceTarget target, NumberSetValueParameters data)
 		{
 			_haContext.CallService("number", "set_value", target, data);
 		}
@@ -5659,7 +6128,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set the value of a Number entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="value">The target value the entity should be set to. eg: 42</param>
-		public void SetValue(NetDaemon.HassModel.Entities.ServiceTarget target, string? @value = null)
+		public void SetValue(ServiceTarget target, string? @value = null)
 		{
 			_haContext.CallService("number", "set_value", target, new NumberSetValueParameters{Value = @value});
 		}
@@ -5668,14 +6137,14 @@ namespace HomeAutomations.Models.Generated
 	public record NumberSetValueParameters
 	{
 		///<summary>The target value the entity should be set to. eg: 42</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("value")]
+		[JsonPropertyName("value")]
 		public string? Value { get; init; }
 	}
 
 	public class PersistentNotificationServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public PersistentNotificationServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public PersistentNotificationServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5725,36 +6194,36 @@ namespace HomeAutomations.Models.Generated
 	public record PersistentNotificationCreateParameters
 	{
 		///<summary>Message body of the notification. [Templates accepted] eg: Please check your configuration.yaml.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Optional title for your notification. [Templates accepted] eg: Test notification</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("title")]
+		[JsonPropertyName("title")]
 		public string? Title { get; init; }
 
 		///<summary>Target ID of the notification, will replace a notification with the same ID. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("notificationId")]
+		[JsonPropertyName("notification_id")]
 		public string? NotificationId { get; init; }
 	}
 
 	public record PersistentNotificationDismissParameters
 	{
 		///<summary>Target ID of the notification, which should be removed. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("notificationId")]
+		[JsonPropertyName("notification_id")]
 		public string? NotificationId { get; init; }
 	}
 
 	public record PersistentNotificationMarkReadParameters
 	{
 		///<summary>Target ID of the notification, which should be mark read. eg: 1234</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("notificationId")]
+		[JsonPropertyName("notification_id")]
 		public string? NotificationId { get; init; }
 	}
 
 	public class PersonServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public PersonServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public PersonServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5768,8 +6237,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class PingServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public PingServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public PingServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5783,8 +6252,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class RecorderServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public RecorderServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public RecorderServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -5818,7 +6287,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Start purge task to remove specific entities from your database.</summary>
 		///<param name="target">The target for this service call</param>
-		public void PurgeEntities(NetDaemon.HassModel.Entities.ServiceTarget target, RecorderPurgeEntitiesParameters data)
+		public void PurgeEntities(ServiceTarget target, RecorderPurgeEntitiesParameters data)
 		{
 			_haContext.CallService("recorder", "purge_entities", target, data);
 		}
@@ -5827,7 +6296,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="domains">List the domains that need to be removed from the recorder database. eg: sun</param>
 		///<param name="entityGlobs">List the glob patterns to select entities for removal from the recorder database. eg: domain*.object_id*</param>
-		public void PurgeEntities(NetDaemon.HassModel.Entities.ServiceTarget target, object? @domains = null, object? @entityGlobs = null)
+		public void PurgeEntities(ServiceTarget target, object? @domains = null, object? @entityGlobs = null)
 		{
 			_haContext.CallService("recorder", "purge_entities", target, new RecorderPurgeEntitiesParameters{Domains = @domains, EntityGlobs = @entityGlobs});
 		}
@@ -5836,40 +6305,40 @@ namespace HomeAutomations.Models.Generated
 	public record RecorderPurgeParameters
 	{
 		///<summary>Number of history days to keep in database after purge.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("keepDays")]
+		[JsonPropertyName("keep_days")]
 		public long? KeepDays { get; init; }
 
 		///<summary>Attempt to save disk space by rewriting the entire database file.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("repack")]
+		[JsonPropertyName("repack")]
 		public bool? Repack { get; init; }
 
 		///<summary>Apply entity_id and event_type filter in addition to time based purge.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("applyFilter")]
+		[JsonPropertyName("apply_filter")]
 		public bool? ApplyFilter { get; init; }
 	}
 
 	public record RecorderPurgeEntitiesParameters
 	{
 		///<summary>List the domains that need to be removed from the recorder database. eg: sun</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("domains")]
+		[JsonPropertyName("domains")]
 		public object? Domains { get; init; }
 
 		///<summary>List the glob patterns to select entities for removal from the recorder database. eg: domain*.object_id*</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityGlobs")]
+		[JsonPropertyName("entity_globs")]
 		public object? EntityGlobs { get; init; }
 	}
 
 	public class RemoteServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public RemoteServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public RemoteServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Deletes a command or a list of commands from the database.</summary>
 		///<param name="target">The target for this service call</param>
-		public void DeleteCommand(NetDaemon.HassModel.Entities.ServiceTarget target, RemoteDeleteCommandParameters data)
+		public void DeleteCommand(ServiceTarget target, RemoteDeleteCommandParameters data)
 		{
 			_haContext.CallService("remote", "delete_command", target, data);
 		}
@@ -5878,14 +6347,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="device">Name of the device from which commands will be deleted. eg: television</param>
 		///<param name="command">A single command or a list of commands to delete. eg: Mute</param>
-		public void DeleteCommand(NetDaemon.HassModel.Entities.ServiceTarget target, object @command, string? @device = null)
+		public void DeleteCommand(ServiceTarget target, object @command, string? @device = null)
 		{
 			_haContext.CallService("remote", "delete_command", target, new RemoteDeleteCommandParameters{Device = @device, Command = @command});
 		}
 
 		///<summary>Learns a command or a list of commands from a device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void LearnCommand(NetDaemon.HassModel.Entities.ServiceTarget target, RemoteLearnCommandParameters data)
+		public void LearnCommand(ServiceTarget target, RemoteLearnCommandParameters data)
 		{
 			_haContext.CallService("remote", "learn_command", target, data);
 		}
@@ -5897,14 +6366,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="commandType">The type of command to be learned.</param>
 		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
 		///<param name="timeout">Timeout for the command to be learned.</param>
-		public void LearnCommand(NetDaemon.HassModel.Entities.ServiceTarget target, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
+		public void LearnCommand(ServiceTarget target, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
 		{
 			_haContext.CallService("remote", "learn_command", target, new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
 		}
 
 		///<summary>Sends a command or a list of commands to a device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SendCommand(NetDaemon.HassModel.Entities.ServiceTarget target, RemoteSendCommandParameters data)
+		public void SendCommand(ServiceTarget target, RemoteSendCommandParameters data)
 		{
 			_haContext.CallService("remote", "send_command", target, data);
 		}
@@ -5916,28 +6385,28 @@ namespace HomeAutomations.Models.Generated
 		///<param name="numRepeats">The number of times you want to repeat the command(s).</param>
 		///<param name="delaySecs">The time you want to wait in between repeated commands.</param>
 		///<param name="holdSecs">The time you want to have it held before the release is send.</param>
-		public void SendCommand(NetDaemon.HassModel.Entities.ServiceTarget target, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
+		public void SendCommand(ServiceTarget target, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
 		{
 			_haContext.CallService("remote", "send_command", target, new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
 		}
 
 		///<summary>Toggles a device.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("remote", "toggle", target);
 		}
 
 		///<summary>Sends the Power Off Command.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("remote", "turn_off", target);
 		}
 
 		///<summary>Sends the Power On Command.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, RemoteTurnOnParameters data)
+		public void TurnOn(ServiceTarget target, RemoteTurnOnParameters data)
 		{
 			_haContext.CallService("remote", "turn_on", target, data);
 		}
@@ -5945,7 +6414,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Sends the Power On Command.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="activity">Activity ID or Activity Name to start. eg: BedroomTV</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, string? @activity = null)
+		public void TurnOn(ServiceTarget target, string? @activity = null)
 		{
 			_haContext.CallService("remote", "turn_on", target, new RemoteTurnOnParameters{Activity = @activity});
 		}
@@ -5954,71 +6423,71 @@ namespace HomeAutomations.Models.Generated
 	public record RemoteDeleteCommandParameters
 	{
 		///<summary>Name of the device from which commands will be deleted. eg: television</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("device")]
+		[JsonPropertyName("device")]
 		public string? Device { get; init; }
 
 		///<summary>A single command or a list of commands to delete. eg: Mute</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("command")]
+		[JsonPropertyName("command")]
 		public object? Command { get; init; }
 	}
 
 	public record RemoteLearnCommandParameters
 	{
 		///<summary>Device ID to learn command from. eg: television</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("device")]
+		[JsonPropertyName("device")]
 		public string? Device { get; init; }
 
 		///<summary>A single command or a list of commands to learn. eg: Turn on</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("command")]
+		[JsonPropertyName("command")]
 		public object? Command { get; init; }
 
 		///<summary>The type of command to be learned.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("commandType")]
+		[JsonPropertyName("command_type")]
 		public string? CommandType { get; init; }
 
 		///<summary>If code must be stored as alternative (useful for discrete remotes).</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("alternative")]
+		[JsonPropertyName("alternative")]
 		public bool? Alternative { get; init; }
 
 		///<summary>Timeout for the command to be learned.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("timeout")]
+		[JsonPropertyName("timeout")]
 		public long? Timeout { get; init; }
 	}
 
 	public record RemoteSendCommandParameters
 	{
 		///<summary>Device ID to send command to. eg: 32756745</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("device")]
+		[JsonPropertyName("device")]
 		public string? Device { get; init; }
 
 		///<summary>A single command or a list of commands to send. eg: Play</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("command")]
+		[JsonPropertyName("command")]
 		public object? Command { get; init; }
 
 		///<summary>The number of times you want to repeat the command(s).</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("numRepeats")]
+		[JsonPropertyName("num_repeats")]
 		public long? NumRepeats { get; init; }
 
 		///<summary>The time you want to wait in between repeated commands.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("delaySecs")]
+		[JsonPropertyName("delay_secs")]
 		public double? DelaySecs { get; init; }
 
 		///<summary>The time you want to have it held before the release is send.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("holdSecs")]
+		[JsonPropertyName("hold_secs")]
 		public double? HoldSecs { get; init; }
 	}
 
 	public record RemoteTurnOnParameters
 	{
 		///<summary>Activity ID or Activity Name to start. eg: BedroomTV</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("activity")]
+		[JsonPropertyName("activity")]
 		public string? Activity { get; init; }
 	}
 
 	public class SceneServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SceneServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SceneServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6060,7 +6529,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Activate a scene.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, SceneTurnOnParameters data)
+		public void TurnOn(ServiceTarget target, SceneTurnOnParameters data)
 		{
 			_haContext.CallService("scene", "turn_on", target, data);
 		}
@@ -6068,7 +6537,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Activate a scene.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="transition">Transition duration it takes to bring devices to the state defined in the scene.</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, long? @transition = null)
+		public void TurnOn(ServiceTarget target, long? @transition = null)
 		{
 			_haContext.CallService("scene", "turn_on", target, new SceneTurnOnParameters{Transition = @transition});
 		}
@@ -6077,40 +6546,40 @@ namespace HomeAutomations.Models.Generated
 	public record SceneApplyParameters
 	{
 		///<summary>The entities and the state that they need to be. eg: {"light.kitchen":"on","light.ceiling":{"state":"on","brightness":80}}</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entities")]
+		[JsonPropertyName("entities")]
 		public object? Entities { get; init; }
 
 		///<summary>Transition duration it takes to bring devices to the state defined in the scene.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("transition")]
+		[JsonPropertyName("transition")]
 		public long? Transition { get; init; }
 	}
 
 	public record SceneCreateParameters
 	{
 		///<summary>The entity_id of the new scene. eg: all_lights</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("sceneId")]
+		[JsonPropertyName("scene_id")]
 		public string? SceneId { get; init; }
 
 		///<summary>The entities to control with the scene. eg: {"light.tv_back_light":"on","light.ceiling":{"state":"on","brightness":200}}</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entities")]
+		[JsonPropertyName("entities")]
 		public object? Entities { get; init; }
 
 		///<summary>The entities of which a snapshot is to be taken eg: ["light.ceiling","light.kitchen"]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("snapshotEntities")]
+		[JsonPropertyName("snapshot_entities")]
 		public object? SnapshotEntities { get; init; }
 	}
 
 	public record SceneTurnOnParameters
 	{
 		///<summary>Transition duration it takes to bring devices to the state defined in the scene.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("transition")]
+		[JsonPropertyName("transition")]
 		public long? Transition { get; init; }
 	}
 
 	public class ScriptServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public ScriptServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public ScriptServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6123,21 +6592,21 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Toggle script</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("script", "toggle", target);
 		}
 
 		///<summary>Turn off script</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("script", "turn_off", target);
 		}
 
 		///<summary>Turn on script</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("script", "turn_on", target);
 		}
@@ -6145,15 +6614,15 @@ namespace HomeAutomations.Models.Generated
 
 	public class SelectServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SelectServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SelectServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Select an option of an select entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SelectOption(NetDaemon.HassModel.Entities.ServiceTarget target, SelectSelectOptionParameters data)
+		public void SelectOption(ServiceTarget target, SelectSelectOptionParameters data)
 		{
 			_haContext.CallService("select", "select_option", target, data);
 		}
@@ -6161,7 +6630,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Select an option of an select entity.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="option">Option to be selected. eg: "Item A"</param>
-		public void SelectOption(NetDaemon.HassModel.Entities.ServiceTarget target, string @option)
+		public void SelectOption(ServiceTarget target, string @option)
 		{
 			_haContext.CallService("select", "select_option", target, new SelectSelectOptionParameters{Option = @option});
 		}
@@ -6170,35 +6639,35 @@ namespace HomeAutomations.Models.Generated
 	public record SelectSelectOptionParameters
 	{
 		///<summary>Option to be selected. eg: "Item A"</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("option")]
+		[JsonPropertyName("option")]
 		public string? Option { get; init; }
 	}
 
 	public class SirenServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SirenServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SirenServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Toggles a siren.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("siren", "toggle", target);
 		}
 
 		///<summary>Turn siren off.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("siren", "turn_off", target);
 		}
 
 		///<summary>Turn siren on.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, SirenTurnOnParameters data)
+		public void TurnOn(ServiceTarget target, SirenTurnOnParameters data)
 		{
 			_haContext.CallService("siren", "turn_on", target, data);
 		}
@@ -6208,7 +6677,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="tone">The tone to emit when turning the siren on. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration. eg: fire</param>
 		///<param name="volumeLevel">The volume level of the noise to emit when turning the siren on. Must be supported by the integration. eg: 0,5</param>
 		///<param name="duration">The duration in seconds of the noise to emit when turning the siren on. Must be supported by the integration. eg: 15</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target, string? @tone = null, double? @volumeLevel = null, string? @duration = null)
+		public void TurnOn(ServiceTarget target, string? @tone = null, double? @volumeLevel = null, string? @duration = null)
 		{
 			_haContext.CallService("siren", "turn_on", target, new SirenTurnOnParameters{Tone = @tone, VolumeLevel = @volumeLevel, Duration = @duration});
 		}
@@ -6217,22 +6686,22 @@ namespace HomeAutomations.Models.Generated
 	public record SirenTurnOnParameters
 	{
 		///<summary>The tone to emit when turning the siren on. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration. eg: fire</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("tone")]
+		[JsonPropertyName("tone")]
 		public string? Tone { get; init; }
 
 		///<summary>The volume level of the noise to emit when turning the siren on. Must be supported by the integration. eg: 0,5</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("volumeLevel")]
+		[JsonPropertyName("volume_level")]
 		public double? VolumeLevel { get; init; }
 
 		///<summary>The duration in seconds of the noise to emit when turning the siren on. Must be supported by the integration. eg: 15</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("duration")]
+		[JsonPropertyName("duration")]
 		public string? Duration { get; init; }
 	}
 
 	public class SpeedtestdotnetServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SpeedtestdotnetServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SpeedtestdotnetServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6246,8 +6715,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class SpotcastServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SpotcastServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SpotcastServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6284,95 +6753,95 @@ namespace HomeAutomations.Models.Generated
 	public record SpotcastStartParameters
 	{
 		///<summary>The friendly name of the chromecast or spotify connect device. First checks spotify device list for name (not used together with entity_id and spotify_device_id). eg: Livingroom</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("deviceName")]
+		[JsonPropertyName("device_name")]
 		public string? DeviceName { get; init; }
 
 		///<summary>Advanced users only. The spotify device id (not used together with entity_id or device_name). eg: 4363634563457346xcyvydgf3qwa</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("spotifyDeviceId")]
+		[JsonPropertyName("spotify_device_id")]
 		public string? SpotifyDeviceId { get; init; }
 
 		///<summary>The entity_id of the chromecast mediaplayer. Friendly name MUST match the spotify connect device name (not used together with device_name and spotify_device_id). eg: media_player.vardagsrum</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
+		[JsonPropertyName("entity_id")]
 		public string? EntityId { get; init; }
 
 		///<summary>Supported Spotify URI as string. None or empty uri will transfer the current/last playback (see parameter force_playback). eg: spotify:playlist:37i9dQZF1DX3yvAYDslnv8</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("uri")]
+		[JsonPropertyName("uri")]
 		public string? Uri { get; init; }
 
 		///<summary>A category to fetch playlist from. See https://developer.spotify.com/console/get-browse-categories/ for a list of categories</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("category")]
+		[JsonPropertyName("category")]
 		public string? Category { get; init; }
 
 		///<summary>Country code to use with category. See https://spotipy.readthedocs.io/en/2.19.0/#spotipy.client.Spotify.country_codes for list of available codes</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("country")]
+		[JsonPropertyName("country")]
 		public string? Country { get; init; }
 
 		///<summary>Limit of playlist to fetch in a given category. Default 20</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("limit")]
+		[JsonPropertyName("limit")]
 		public long? Limit { get; init; }
 
 		///<summary>A Search request to the spotify API. Will play the most relevant search result.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("search")]
+		[JsonPropertyName("search")]
 		public string? Search { get; init; }
 
 		///<summary>Optionally starts Spotify using an alternative account specified in config. eg: my_wifes</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("account")]
+		[JsonPropertyName("account")]
 		public string? Account { get; init; }
 
 		///<summary>In case of transfering playback: If true starts playing the user's last playback even if nothing is currently playing. eg: True</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("forcePlayback")]
+		[JsonPropertyName("force_playback")]
 		public bool? ForcePlayback { get; init; }
 
 		///<summary>Starts the playback at a random position in the playlist or album. eg: True</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("randomSong")]
+		[JsonPropertyName("random_song")]
 		public bool? RandomSong { get; init; }
 
 		///<summary>Set repeat mode for playback. eg: track</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("repeat")]
+		[JsonPropertyName("repeat")]
 		public string? Repeat { get; init; }
 
 		///<summary>Set shuffle mode for playback. eg: True</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("shuffle")]
+		[JsonPropertyName("shuffle")]
 		public bool? Shuffle { get; init; }
 
 		///<summary>Set offset mode for playback. 0 is the first song. eg: 1</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("offset")]
+		[JsonPropertyName("offset")]
 		public long? Offset { get; init; }
 
 		///<summary>Set the volume for playback in percentage. eg: 50</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("startVolume")]
+		[JsonPropertyName("start_volume")]
 		public long? StartVolume { get; init; }
 
 		///<summary>Set to ignore or not already played episodes in a podcast playlist eg: True</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("ignoreFullyPlayed")]
+		[JsonPropertyName("ignore_fully_played")]
 		public bool? IgnoreFullyPlayed { get; init; }
 	}
 
 	public class SwitchServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SwitchServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SwitchServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Toggles a switch state</summary>
 		///<param name="target">The target for this service call</param>
-		public void Toggle(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Toggle(ServiceTarget target)
 		{
 			_haContext.CallService("switch", "toggle", target);
 		}
 
 		///<summary>Turn a switch off</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("switch", "turn_off", target);
 		}
 
 		///<summary>Turn a switch on</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("switch", "turn_on", target);
 		}
@@ -6380,8 +6849,8 @@ namespace HomeAutomations.Models.Generated
 
 	public class SynologyDsmServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SynologyDsmServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SynologyDsmServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6416,21 +6885,21 @@ namespace HomeAutomations.Models.Generated
 	public record SynologyDsmRebootParameters
 	{
 		///<summary>serial of the NAS to reboot; required when multiple NAS are configured. eg: 1NDVC86409</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("serial")]
+		[JsonPropertyName("serial")]
 		public string? Serial { get; init; }
 	}
 
 	public record SynologyDsmShutdownParameters
 	{
 		///<summary>serial of the NAS to shutdown; required when multiple NAS are configured. eg: 1NDVC86409</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("serial")]
+		[JsonPropertyName("serial")]
 		public string? Serial { get; init; }
 	}
 
 	public class SystemLogServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public SystemLogServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public SystemLogServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6460,22 +6929,22 @@ namespace HomeAutomations.Models.Generated
 	public record SystemLogWriteParameters
 	{
 		///<summary>Message to log. eg: Something went wrong</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("message")]
+		[JsonPropertyName("message")]
 		public string? Message { get; init; }
 
 		///<summary>Log level.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("level")]
+		[JsonPropertyName("level")]
 		public string? Level { get; init; }
 
 		///<summary>Logger name under which to log the message. Defaults to 'system_log.external'. eg: mycomponent.myplatform</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("logger")]
+		[JsonPropertyName("logger")]
 		public string? Logger { get; init; }
 	}
 
 	public class TemplateServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public TemplateServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public TemplateServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6489,29 +6958,29 @@ namespace HomeAutomations.Models.Generated
 
 	public class TimerServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public TimerServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public TimerServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Cancel a timer.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Cancel(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Cancel(ServiceTarget target)
 		{
 			_haContext.CallService("timer", "cancel", target);
 		}
 
 		///<summary>Finish a timer.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Finish(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Finish(ServiceTarget target)
 		{
 			_haContext.CallService("timer", "finish", target);
 		}
 
 		///<summary>Pause a timer.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Pause(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Pause(ServiceTarget target)
 		{
 			_haContext.CallService("timer", "pause", target);
 		}
@@ -6523,7 +6992,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Start a timer</summary>
 		///<param name="target">The target for this service call</param>
-		public void Start(NetDaemon.HassModel.Entities.ServiceTarget target, TimerStartParameters data)
+		public void Start(ServiceTarget target, TimerStartParameters data)
 		{
 			_haContext.CallService("timer", "start", target, data);
 		}
@@ -6531,7 +7000,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Start a timer</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="duration">Duration the timer requires to finish. [optional] eg: 00:01:00 or 60</param>
-		public void Start(NetDaemon.HassModel.Entities.ServiceTarget target, string? @duration = null)
+		public void Start(ServiceTarget target, string? @duration = null)
 		{
 			_haContext.CallService("timer", "start", target, new TimerStartParameters{Duration = @duration});
 		}
@@ -6540,49 +7009,49 @@ namespace HomeAutomations.Models.Generated
 	public record TimerStartParameters
 	{
 		///<summary>Duration the timer requires to finish. [optional] eg: 00:01:00 or 60</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("duration")]
+		[JsonPropertyName("duration")]
 		public string? Duration { get; init; }
 	}
 
 	public class VacuumServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public VacuumServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public VacuumServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Tell the vacuum cleaner to do a spot clean-up.</summary>
 		///<param name="target">The target for this service call</param>
-		public void CleanSpot(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void CleanSpot(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "clean_spot", target);
 		}
 
 		///<summary>Locate the vacuum cleaner robot.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Locate(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Locate(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "locate", target);
 		}
 
 		///<summary>Pause the cleaning task.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Pause(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Pause(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "pause", target);
 		}
 
 		///<summary>Tell the vacuum cleaner to return to its dock.</summary>
 		///<param name="target">The target for this service call</param>
-		public void ReturnToBase(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void ReturnToBase(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "return_to_base", target);
 		}
 
 		///<summary>Send a raw command to the vacuum cleaner.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SendCommand(NetDaemon.HassModel.Entities.ServiceTarget target, VacuumSendCommandParameters data)
+		public void SendCommand(ServiceTarget target, VacuumSendCommandParameters data)
 		{
 			_haContext.CallService("vacuum", "send_command", target, data);
 		}
@@ -6591,14 +7060,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="command">Command to execute. eg: set_dnd_timer</param>
 		///<param name="params">Parameters for the command. eg: { "key": "value" }</param>
-		public void SendCommand(NetDaemon.HassModel.Entities.ServiceTarget target, string @command, object? @params = null)
+		public void SendCommand(ServiceTarget target, string @command, object? @params = null)
 		{
 			_haContext.CallService("vacuum", "send_command", target, new VacuumSendCommandParameters{Command = @command, Params = @params});
 		}
 
 		///<summary>Set the fan speed of the vacuum cleaner.</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetFanSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, VacuumSetFanSpeedParameters data)
+		public void SetFanSpeed(ServiceTarget target, VacuumSetFanSpeedParameters data)
 		{
 			_haContext.CallService("vacuum", "set_fan_speed", target, data);
 		}
@@ -6606,28 +7075,28 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set the fan speed of the vacuum cleaner.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="fanSpeed">Platform dependent vacuum cleaner fan speed, with speed steps, like 'medium' or by percentage, between 0 and 100. eg: low</param>
-		public void SetFanSpeed(NetDaemon.HassModel.Entities.ServiceTarget target, string @fanSpeed)
+		public void SetFanSpeed(ServiceTarget target, string @fanSpeed)
 		{
 			_haContext.CallService("vacuum", "set_fan_speed", target, new VacuumSetFanSpeedParameters{FanSpeed = @fanSpeed});
 		}
 
 		///<summary>Start or resume the cleaning task.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Start(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Start(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "start", target);
 		}
 
 		///<summary>Start, pause, or resume the cleaning task.</summary>
 		///<param name="target">The target for this service call</param>
-		public void StartPause(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void StartPause(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "start_pause", target);
 		}
 
 		///<summary>Stop the current cleaning task.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Stop(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void Stop(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "stop", target);
 		}
@@ -6639,14 +7108,14 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Stop the current cleaning task and return to home.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOff(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOff(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "turn_off", target);
 		}
 
 		///<summary>Start a new cleaning task.</summary>
 		///<param name="target">The target for this service call</param>
-		public void TurnOn(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void TurnOn(ServiceTarget target)
 		{
 			_haContext.CallService("vacuum", "turn_on", target);
 		}
@@ -6655,139 +7124,25 @@ namespace HomeAutomations.Models.Generated
 	public record VacuumSendCommandParameters
 	{
 		///<summary>Command to execute. eg: set_dnd_timer</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("command")]
+		[JsonPropertyName("command")]
 		public string? Command { get; init; }
 
 		///<summary>Parameters for the command. eg: { "key": "value" }</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("params")]
+		[JsonPropertyName("params")]
 		public object? Params { get; init; }
 	}
 
 	public record VacuumSetFanSpeedParameters
 	{
 		///<summary>Platform dependent vacuum cleaner fan speed, with speed steps, like 'medium' or by percentage, between 0 and 100. eg: low</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("fanSpeed")]
+		[JsonPropertyName("fan_speed")]
 		public string? FanSpeed { get; init; }
-	}
-
-	public class VarServices
-	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public VarServices(NetDaemon.HassModel.IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Set attributes of a variable entity.</summary>
-		public void Set(VarSetParameters data)
-		{
-			_haContext.CallService("var", "set", null, data);
-		}
-
-		///<summary>Set attributes of a variable entity.</summary>
-		///<param name="entityId">Entity id of the variable whose value will be set. eg: var.x</param>
-		///<param name="value">The new value for the variable entity. eg: 13</param>
-		///<param name="valueTemplate">The new value template for the variable entity. eg: {{ input_boolean.foo }}</param>
-		///<param name="trackedEntityId">The new list of entities for the variable entity to track. eg: input_boolean.bar</param>
-		///<param name="trackedEventType">The new list of event types for the variable entity to track. eg: sunset</param>
-		///<param name="query">An SQL QUERY string, should return 1 result at most. eg: SELECT COUNT(*) AS todays_diaper_count FROM events WHERE event_type = 'diaper_event' AND time_fired BETWEEN DATETIME('now', 'start of day') and DATETIME('now');</param>
-		///<param name="column">The SQL COLUMN to select from the result of the SQL QUERY. eg: todays_diaper_count</param>
-		///<param name="restore">The new restore value for the variable entity. eg: False</param>
-		///<param name="forceUpdate">The new force_update value for the variable entity. eg: True</param>
-		///<param name="unitOfMeasurement">The new unit of measurement for the variable entity. eg: ounces</param>
-		///<param name="icon">The new icon for the variable entity. eg: mdi:baby-bottle-outline</param>
-		///<param name="iconTemplate">The new icon template for the variable entity.</param>
-		///<param name="entityPicture">The new picture for the variable entity. eg: local/pic.png</param>
-		///<param name="entityPictureTemplate">The new picture template for the variable entity.</param>
-		public void Set(string? @entityId = null, string? @value = null, string? @valueTemplate = null, string? @trackedEntityId = null, string? @trackedEventType = null, string? @query = null, string? @column = null, string? @restore = null, string? @forceUpdate = null, string? @unitOfMeasurement = null, string? @icon = null, string? @iconTemplate = null, string? @entityPicture = null, string? @entityPictureTemplate = null)
-		{
-			_haContext.CallService("var", "set", null, new VarSetParameters{EntityId = @entityId, Value = @value, ValueTemplate = @valueTemplate, TrackedEntityId = @trackedEntityId, TrackedEventType = @trackedEventType, Query = @query, Column = @column, Restore = @restore, ForceUpdate = @forceUpdate, UnitOfMeasurement = @unitOfMeasurement, Icon = @icon, IconTemplate = @iconTemplate, EntityPicture = @entityPicture, EntityPictureTemplate = @entityPictureTemplate});
-		}
-
-		///<summary>Force a variable to update its state and atttributes.</summary>
-		public void Update(VarUpdateParameters data)
-		{
-			_haContext.CallService("var", "update", null, data);
-		}
-
-		///<summary>Force a variable to update its state and atttributes.</summary>
-		///<param name="entityId">Entity id of the variable that will be updated. eg: var.x</param>
-		public void Update(string? @entityId = null)
-		{
-			_haContext.CallService("var", "update", null, new VarUpdateParameters{EntityId = @entityId});
-		}
-	}
-
-	public record VarSetParameters
-	{
-		///<summary>Entity id of the variable whose value will be set. eg: var.x</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
-
-		///<summary>The new value for the variable entity. eg: 13</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("value")]
-		public string? Value { get; init; }
-
-		///<summary>The new value template for the variable entity. eg: {{ input_boolean.foo }}</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("valueTemplate")]
-		public string? ValueTemplate { get; init; }
-
-		///<summary>The new list of entities for the variable entity to track. eg: input_boolean.bar</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("trackedEntityId")]
-		public string? TrackedEntityId { get; init; }
-
-		///<summary>The new list of event types for the variable entity to track. eg: sunset</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("trackedEventType")]
-		public string? TrackedEventType { get; init; }
-
-		///<summary>An SQL QUERY string, should return 1 result at most. eg: SELECT COUNT(*) AS todays_diaper_count FROM events WHERE event_type = 'diaper_event' AND time_fired BETWEEN DATETIME('now', 'start of day') and DATETIME('now');</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("query")]
-		public string? Query { get; init; }
-
-		///<summary>The SQL COLUMN to select from the result of the SQL QUERY. eg: todays_diaper_count</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("column")]
-		public string? Column { get; init; }
-
-		///<summary>The new restore value for the variable entity. eg: False</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("restore")]
-		public string? Restore { get; init; }
-
-		///<summary>The new force_update value for the variable entity. eg: True</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("forceUpdate")]
-		public string? ForceUpdate { get; init; }
-
-		///<summary>The new unit of measurement for the variable entity. eg: ounces</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("unitOfMeasurement")]
-		public string? UnitOfMeasurement { get; init; }
-
-		///<summary>The new icon for the variable entity. eg: mdi:baby-bottle-outline</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("icon")]
-		public string? Icon { get; init; }
-
-		///<summary>The new icon template for the variable entity.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("iconTemplate")]
-		public string? IconTemplate { get; init; }
-
-		///<summary>The new picture for the variable entity. eg: local/pic.png</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityPicture")]
-		public string? EntityPicture { get; init; }
-
-		///<summary>The new picture template for the variable entity.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityPictureTemplate")]
-		public string? EntityPictureTemplate { get; init; }
-	}
-
-	public record VarUpdateParameters
-	{
-		///<summary>Entity id of the variable that will be updated. eg: var.x</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("entityId")]
-		public string? EntityId { get; init; }
 	}
 
 	public class WakeOnLanServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public WakeOnLanServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public WakeOnLanServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6811,22 +7166,22 @@ namespace HomeAutomations.Models.Generated
 	public record WakeOnLanSendMagicPacketParameters
 	{
 		///<summary>MAC address of the device to wake up. eg: aa:bb:cc:dd:ee:ff</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("mac")]
+		[JsonPropertyName("mac")]
 		public string? Mac { get; init; }
 
 		///<summary>Broadcast IP where to send the magic packet. eg: 192.168.255.255</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("broadcastAddress")]
+		[JsonPropertyName("broadcast_address")]
 		public string? BroadcastAddress { get; init; }
 
 		///<summary>Port where to send the magic packet.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("broadcastPort")]
+		[JsonPropertyName("broadcast_port")]
 		public long? BroadcastPort { get; init; }
 	}
 
 	public class XiaomiCloudMapExtractorServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public XiaomiCloudMapExtractorServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public XiaomiCloudMapExtractorServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -6840,15 +7195,15 @@ namespace HomeAutomations.Models.Generated
 
 	public class XiaomiMiioServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public XiaomiMiioServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public XiaomiMiioServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
 		///<summary>Start cleaning of the specified segment(s).</summary>
 		///<param name="target">The target for this service call</param>
-		public void VacuumCleanSegment(NetDaemon.HassModel.Entities.ServiceTarget target, XiaomiMiioVacuumCleanSegmentParameters data)
+		public void VacuumCleanSegment(ServiceTarget target, XiaomiMiioVacuumCleanSegmentParameters data)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_clean_segment", target, data);
 		}
@@ -6856,14 +7211,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Start cleaning of the specified segment(s).</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="segments">Segments. eg: [1,2]</param>
-		public void VacuumCleanSegment(NetDaemon.HassModel.Entities.ServiceTarget target, object? @segments = null)
+		public void VacuumCleanSegment(ServiceTarget target, object? @segments = null)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_clean_segment", target, new XiaomiMiioVacuumCleanSegmentParameters{Segments = @segments});
 		}
 
 		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VacuumCleanZone(NetDaemon.HassModel.Entities.ServiceTarget target, XiaomiMiioVacuumCleanZoneParameters data)
+		public void VacuumCleanZone(ServiceTarget target, XiaomiMiioVacuumCleanZoneParameters data)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_clean_zone", target, data);
 		}
@@ -6872,14 +7227,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="zone">Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</param>
 		///<param name="repeats">Number of cleaning repeats for each zone.</param>
-		public void VacuumCleanZone(NetDaemon.HassModel.Entities.ServiceTarget target, object? @zone = null, long? @repeats = null)
+		public void VacuumCleanZone(ServiceTarget target, object? @zone = null, long? @repeats = null)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_clean_zone", target, new XiaomiMiioVacuumCleanZoneParameters{Zone = @zone, Repeats = @repeats});
 		}
 
 		///<summary>Go to the specified coordinates.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VacuumGoto(NetDaemon.HassModel.Entities.ServiceTarget target, XiaomiMiioVacuumGotoParameters data)
+		public void VacuumGoto(ServiceTarget target, XiaomiMiioVacuumGotoParameters data)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_goto", target, data);
 		}
@@ -6888,14 +7243,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="xCoord">x-coordinate. eg: 27500</param>
 		///<param name="yCoord">y-coordinate. eg: 32000</param>
-		public void VacuumGoto(NetDaemon.HassModel.Entities.ServiceTarget target, string? @xCoord = null, string? @yCoord = null)
+		public void VacuumGoto(ServiceTarget target, string? @xCoord = null, string? @yCoord = null)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_goto", target, new XiaomiMiioVacuumGotoParameters{XCoord = @xCoord, YCoord = @yCoord});
 		}
 
 		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlMove(NetDaemon.HassModel.Entities.ServiceTarget target, XiaomiMiioVacuumRemoteControlMoveParameters data)
+		public void VacuumRemoteControlMove(ServiceTarget target, XiaomiMiioVacuumRemoteControlMoveParameters data)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move", target, data);
 		}
@@ -6905,14 +7260,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="velocity">Speed.</param>
 		///<param name="rotation">Rotation, between -179 degrees and 179 degrees.</param>
 		///<param name="duration">Duration of the movement.</param>
-		public void VacuumRemoteControlMove(NetDaemon.HassModel.Entities.ServiceTarget target, double? @velocity = null, long? @rotation = null, long? @duration = null)
+		public void VacuumRemoteControlMove(ServiceTarget target, double? @velocity = null, long? @rotation = null, long? @duration = null)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move", target, new XiaomiMiioVacuumRemoteControlMoveParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
 		}
 
 		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlMoveStep(NetDaemon.HassModel.Entities.ServiceTarget target, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
+		public void VacuumRemoteControlMoveStep(ServiceTarget target, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move_step", target, data);
 		}
@@ -6922,21 +7277,21 @@ namespace HomeAutomations.Models.Generated
 		///<param name="velocity">Speed.</param>
 		///<param name="rotation">Rotation.</param>
 		///<param name="duration">Duration of the movement.</param>
-		public void VacuumRemoteControlMoveStep(NetDaemon.HassModel.Entities.ServiceTarget target, double? @velocity = null, long? @rotation = null, long? @duration = null)
+		public void VacuumRemoteControlMoveStep(ServiceTarget target, double? @velocity = null, long? @rotation = null, long? @duration = null)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move_step", target, new XiaomiMiioVacuumRemoteControlMoveStepParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
 		}
 
 		///<summary>Start remote control of the vacuum cleaner. You can then move it with `remote_control_move`, when done call `remote_control_stop`.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlStart(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void VacuumRemoteControlStart(ServiceTarget target)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_start", target);
 		}
 
 		///<summary>Stop remote control mode of the vacuum cleaner.</summary>
 		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlStop(NetDaemon.HassModel.Entities.ServiceTarget target)
+		public void VacuumRemoteControlStop(ServiceTarget target)
 		{
 			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_stop", target);
 		}
@@ -6945,66 +7300,66 @@ namespace HomeAutomations.Models.Generated
 	public record XiaomiMiioVacuumCleanSegmentParameters
 	{
 		///<summary>Segments. eg: [1,2]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("segments")]
+		[JsonPropertyName("segments")]
 		public object? Segments { get; init; }
 	}
 
 	public record XiaomiMiioVacuumCleanZoneParameters
 	{
 		///<summary>Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("zone")]
+		[JsonPropertyName("zone")]
 		public object? Zone { get; init; }
 
 		///<summary>Number of cleaning repeats for each zone.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("repeats")]
+		[JsonPropertyName("repeats")]
 		public long? Repeats { get; init; }
 	}
 
 	public record XiaomiMiioVacuumGotoParameters
 	{
 		///<summary>x-coordinate. eg: 27500</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("xCoord")]
+		[JsonPropertyName("x_coord")]
 		public string? XCoord { get; init; }
 
 		///<summary>y-coordinate. eg: 32000</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("yCoord")]
+		[JsonPropertyName("y_coord")]
 		public string? YCoord { get; init; }
 	}
 
 	public record XiaomiMiioVacuumRemoteControlMoveParameters
 	{
 		///<summary>Speed.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("velocity")]
+		[JsonPropertyName("velocity")]
 		public double? Velocity { get; init; }
 
 		///<summary>Rotation, between -179 degrees and 179 degrees.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("rotation")]
+		[JsonPropertyName("rotation")]
 		public long? Rotation { get; init; }
 
 		///<summary>Duration of the movement.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("duration")]
+		[JsonPropertyName("duration")]
 		public long? Duration { get; init; }
 	}
 
 	public record XiaomiMiioVacuumRemoteControlMoveStepParameters
 	{
 		///<summary>Speed.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("velocity")]
+		[JsonPropertyName("velocity")]
 		public double? Velocity { get; init; }
 
 		///<summary>Rotation.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("rotation")]
+		[JsonPropertyName("rotation")]
 		public long? Rotation { get; init; }
 
 		///<summary>Duration of the movement.</summary>
-		[System.Text.Json.Serialization.JsonPropertyName("duration")]
+		[JsonPropertyName("duration")]
 		public long? Duration { get; init; }
 	}
 
 	public class ZoneServices
 	{
-		private readonly NetDaemon.HassModel.IHaContext _haContext;
-		public ZoneServices(NetDaemon.HassModel.IHaContext haContext)
+		private readonly IHaContext _haContext;
+		public ZoneServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
@@ -7019,511 +7374,985 @@ namespace HomeAutomations.Models.Generated
 	public static class AlarmControlPanelEntityExtensionMethods
 	{
 		///<summary>Send the alarm the command for arm away.</summary>
-		public static void AlarmArmAway(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmArmAwayParameters data)
+		public static void AlarmArmAway(this AlarmControlPanelEntity target, AlarmControlPanelAlarmArmAwayParameters data)
 		{
-			entity.CallService("alarm_arm_away", data);
+			target.CallService("alarm_arm_away", data);
 		}
 
 		///<summary>Send the alarm the command for arm away.</summary>
-		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		public static void AlarmArmAway(this IEnumerable<AlarmControlPanelEntity> target, AlarmControlPanelAlarmArmAwayParameters data)
+		{
+			target.CallService("alarm_arm_away", data);
+		}
+
+		///<summary>Send the alarm the command for arm away.</summary>
+		///<param name="target">The AlarmControlPanelEntity to call this service for</param>
 		///<param name="code">An optional code to arm away the alarm control panel with. eg: 1234</param>
-		public static void AlarmArmAway(this AlarmControlPanelEntity entity, string? @code = null)
+		public static void AlarmArmAway(this AlarmControlPanelEntity target, string? @code = null)
 		{
-			entity.CallService("alarm_arm_away", new AlarmControlPanelAlarmArmAwayParameters{Code = @code});
+			target.CallService("alarm_arm_away", new AlarmControlPanelAlarmArmAwayParameters{Code = @code});
+		}
+
+		///<summary>Send the alarm the command for arm away.</summary>
+		///<param name="target">The IEnumerable<AlarmControlPanelEntity> to call this service for</param>
+		///<param name="code">An optional code to arm away the alarm control panel with. eg: 1234</param>
+		public static void AlarmArmAway(this IEnumerable<AlarmControlPanelEntity> target, string? @code = null)
+		{
+			target.CallService("alarm_arm_away", new AlarmControlPanelAlarmArmAwayParameters{Code = @code});
 		}
 
 		///<summary>Send arm custom bypass command.</summary>
-		public static void AlarmArmCustomBypass(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmArmCustomBypassParameters data)
+		public static void AlarmArmCustomBypass(this AlarmControlPanelEntity target, AlarmControlPanelAlarmArmCustomBypassParameters data)
 		{
-			entity.CallService("alarm_arm_custom_bypass", data);
+			target.CallService("alarm_arm_custom_bypass", data);
 		}
 
 		///<summary>Send arm custom bypass command.</summary>
-		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		public static void AlarmArmCustomBypass(this IEnumerable<AlarmControlPanelEntity> target, AlarmControlPanelAlarmArmCustomBypassParameters data)
+		{
+			target.CallService("alarm_arm_custom_bypass", data);
+		}
+
+		///<summary>Send arm custom bypass command.</summary>
+		///<param name="target">The AlarmControlPanelEntity to call this service for</param>
 		///<param name="code">An optional code to arm custom bypass the alarm control panel with. eg: 1234</param>
-		public static void AlarmArmCustomBypass(this AlarmControlPanelEntity entity, string? @code = null)
+		public static void AlarmArmCustomBypass(this AlarmControlPanelEntity target, string? @code = null)
 		{
-			entity.CallService("alarm_arm_custom_bypass", new AlarmControlPanelAlarmArmCustomBypassParameters{Code = @code});
+			target.CallService("alarm_arm_custom_bypass", new AlarmControlPanelAlarmArmCustomBypassParameters{Code = @code});
+		}
+
+		///<summary>Send arm custom bypass command.</summary>
+		///<param name="target">The IEnumerable<AlarmControlPanelEntity> to call this service for</param>
+		///<param name="code">An optional code to arm custom bypass the alarm control panel with. eg: 1234</param>
+		public static void AlarmArmCustomBypass(this IEnumerable<AlarmControlPanelEntity> target, string? @code = null)
+		{
+			target.CallService("alarm_arm_custom_bypass", new AlarmControlPanelAlarmArmCustomBypassParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for arm home.</summary>
-		public static void AlarmArmHome(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmArmHomeParameters data)
+		public static void AlarmArmHome(this AlarmControlPanelEntity target, AlarmControlPanelAlarmArmHomeParameters data)
 		{
-			entity.CallService("alarm_arm_home", data);
+			target.CallService("alarm_arm_home", data);
 		}
 
 		///<summary>Send the alarm the command for arm home.</summary>
-		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		public static void AlarmArmHome(this IEnumerable<AlarmControlPanelEntity> target, AlarmControlPanelAlarmArmHomeParameters data)
+		{
+			target.CallService("alarm_arm_home", data);
+		}
+
+		///<summary>Send the alarm the command for arm home.</summary>
+		///<param name="target">The AlarmControlPanelEntity to call this service for</param>
 		///<param name="code">An optional code to arm home the alarm control panel with. eg: 1234</param>
-		public static void AlarmArmHome(this AlarmControlPanelEntity entity, string? @code = null)
+		public static void AlarmArmHome(this AlarmControlPanelEntity target, string? @code = null)
 		{
-			entity.CallService("alarm_arm_home", new AlarmControlPanelAlarmArmHomeParameters{Code = @code});
+			target.CallService("alarm_arm_home", new AlarmControlPanelAlarmArmHomeParameters{Code = @code});
+		}
+
+		///<summary>Send the alarm the command for arm home.</summary>
+		///<param name="target">The IEnumerable<AlarmControlPanelEntity> to call this service for</param>
+		///<param name="code">An optional code to arm home the alarm control panel with. eg: 1234</param>
+		public static void AlarmArmHome(this IEnumerable<AlarmControlPanelEntity> target, string? @code = null)
+		{
+			target.CallService("alarm_arm_home", new AlarmControlPanelAlarmArmHomeParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for arm night.</summary>
-		public static void AlarmArmNight(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmArmNightParameters data)
+		public static void AlarmArmNight(this AlarmControlPanelEntity target, AlarmControlPanelAlarmArmNightParameters data)
 		{
-			entity.CallService("alarm_arm_night", data);
+			target.CallService("alarm_arm_night", data);
 		}
 
 		///<summary>Send the alarm the command for arm night.</summary>
-		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		public static void AlarmArmNight(this IEnumerable<AlarmControlPanelEntity> target, AlarmControlPanelAlarmArmNightParameters data)
+		{
+			target.CallService("alarm_arm_night", data);
+		}
+
+		///<summary>Send the alarm the command for arm night.</summary>
+		///<param name="target">The AlarmControlPanelEntity to call this service for</param>
 		///<param name="code">An optional code to arm night the alarm control panel with. eg: 1234</param>
-		public static void AlarmArmNight(this AlarmControlPanelEntity entity, string? @code = null)
+		public static void AlarmArmNight(this AlarmControlPanelEntity target, string? @code = null)
 		{
-			entity.CallService("alarm_arm_night", new AlarmControlPanelAlarmArmNightParameters{Code = @code});
+			target.CallService("alarm_arm_night", new AlarmControlPanelAlarmArmNightParameters{Code = @code});
+		}
+
+		///<summary>Send the alarm the command for arm night.</summary>
+		///<param name="target">The IEnumerable<AlarmControlPanelEntity> to call this service for</param>
+		///<param name="code">An optional code to arm night the alarm control panel with. eg: 1234</param>
+		public static void AlarmArmNight(this IEnumerable<AlarmControlPanelEntity> target, string? @code = null)
+		{
+			target.CallService("alarm_arm_night", new AlarmControlPanelAlarmArmNightParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for arm vacation.</summary>
-		public static void AlarmArmVacation(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmArmVacationParameters data)
+		public static void AlarmArmVacation(this AlarmControlPanelEntity target, AlarmControlPanelAlarmArmVacationParameters data)
 		{
-			entity.CallService("alarm_arm_vacation", data);
+			target.CallService("alarm_arm_vacation", data);
 		}
 
 		///<summary>Send the alarm the command for arm vacation.</summary>
-		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		public static void AlarmArmVacation(this IEnumerable<AlarmControlPanelEntity> target, AlarmControlPanelAlarmArmVacationParameters data)
+		{
+			target.CallService("alarm_arm_vacation", data);
+		}
+
+		///<summary>Send the alarm the command for arm vacation.</summary>
+		///<param name="target">The AlarmControlPanelEntity to call this service for</param>
 		///<param name="code">An optional code to arm vacation the alarm control panel with. eg: 1234</param>
-		public static void AlarmArmVacation(this AlarmControlPanelEntity entity, string? @code = null)
+		public static void AlarmArmVacation(this AlarmControlPanelEntity target, string? @code = null)
 		{
-			entity.CallService("alarm_arm_vacation", new AlarmControlPanelAlarmArmVacationParameters{Code = @code});
+			target.CallService("alarm_arm_vacation", new AlarmControlPanelAlarmArmVacationParameters{Code = @code});
+		}
+
+		///<summary>Send the alarm the command for arm vacation.</summary>
+		///<param name="target">The IEnumerable<AlarmControlPanelEntity> to call this service for</param>
+		///<param name="code">An optional code to arm vacation the alarm control panel with. eg: 1234</param>
+		public static void AlarmArmVacation(this IEnumerable<AlarmControlPanelEntity> target, string? @code = null)
+		{
+			target.CallService("alarm_arm_vacation", new AlarmControlPanelAlarmArmVacationParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for disarm.</summary>
-		public static void AlarmDisarm(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmDisarmParameters data)
+		public static void AlarmDisarm(this AlarmControlPanelEntity target, AlarmControlPanelAlarmDisarmParameters data)
 		{
-			entity.CallService("alarm_disarm", data);
+			target.CallService("alarm_disarm", data);
 		}
 
 		///<summary>Send the alarm the command for disarm.</summary>
-		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		public static void AlarmDisarm(this IEnumerable<AlarmControlPanelEntity> target, AlarmControlPanelAlarmDisarmParameters data)
+		{
+			target.CallService("alarm_disarm", data);
+		}
+
+		///<summary>Send the alarm the command for disarm.</summary>
+		///<param name="target">The AlarmControlPanelEntity to call this service for</param>
 		///<param name="code">An optional code to disarm the alarm control panel with. eg: 1234</param>
-		public static void AlarmDisarm(this AlarmControlPanelEntity entity, string? @code = null)
+		public static void AlarmDisarm(this AlarmControlPanelEntity target, string? @code = null)
 		{
-			entity.CallService("alarm_disarm", new AlarmControlPanelAlarmDisarmParameters{Code = @code});
+			target.CallService("alarm_disarm", new AlarmControlPanelAlarmDisarmParameters{Code = @code});
+		}
+
+		///<summary>Send the alarm the command for disarm.</summary>
+		///<param name="target">The IEnumerable<AlarmControlPanelEntity> to call this service for</param>
+		///<param name="code">An optional code to disarm the alarm control panel with. eg: 1234</param>
+		public static void AlarmDisarm(this IEnumerable<AlarmControlPanelEntity> target, string? @code = null)
+		{
+			target.CallService("alarm_disarm", new AlarmControlPanelAlarmDisarmParameters{Code = @code});
 		}
 
 		///<summary>Send the alarm the command for trigger.</summary>
-		public static void AlarmTrigger(this AlarmControlPanelEntity entity, AlarmControlPanelAlarmTriggerParameters data)
+		public static void AlarmTrigger(this AlarmControlPanelEntity target, AlarmControlPanelAlarmTriggerParameters data)
 		{
-			entity.CallService("alarm_trigger", data);
+			target.CallService("alarm_trigger", data);
 		}
 
 		///<summary>Send the alarm the command for trigger.</summary>
-		///<param name="entity">The AlarmControlPanelEntity to call this service for</param>
+		public static void AlarmTrigger(this IEnumerable<AlarmControlPanelEntity> target, AlarmControlPanelAlarmTriggerParameters data)
+		{
+			target.CallService("alarm_trigger", data);
+		}
+
+		///<summary>Send the alarm the command for trigger.</summary>
+		///<param name="target">The AlarmControlPanelEntity to call this service for</param>
 		///<param name="code">An optional code to trigger the alarm control panel with. eg: 1234</param>
-		public static void AlarmTrigger(this AlarmControlPanelEntity entity, string? @code = null)
+		public static void AlarmTrigger(this AlarmControlPanelEntity target, string? @code = null)
 		{
-			entity.CallService("alarm_trigger", new AlarmControlPanelAlarmTriggerParameters{Code = @code});
+			target.CallService("alarm_trigger", new AlarmControlPanelAlarmTriggerParameters{Code = @code});
+		}
+
+		///<summary>Send the alarm the command for trigger.</summary>
+		///<param name="target">The IEnumerable<AlarmControlPanelEntity> to call this service for</param>
+		///<param name="code">An optional code to trigger the alarm control panel with. eg: 1234</param>
+		public static void AlarmTrigger(this IEnumerable<AlarmControlPanelEntity> target, string? @code = null)
+		{
+			target.CallService("alarm_trigger", new AlarmControlPanelAlarmTriggerParameters{Code = @code});
 		}
 	}
 
 	public static class ButtonEntityExtensionMethods
 	{
 		///<summary>Press the button entity.</summary>
-		public static void Press(this ButtonEntity entity)
+		public static void Press(this ButtonEntity target)
 		{
-			entity.CallService("press");
+			target.CallService("press");
+		}
+
+		///<summary>Press the button entity.</summary>
+		public static void Press(this IEnumerable<ButtonEntity> target)
+		{
+			target.CallService("press");
 		}
 	}
 
 	public static class CameraEntityExtensionMethods
 	{
 		///<summary>Disable the motion detection in a camera.</summary>
-		public static void DisableMotionDetection(this CameraEntity entity)
+		public static void DisableMotionDetection(this CameraEntity target)
 		{
-			entity.CallService("disable_motion_detection");
+			target.CallService("disable_motion_detection");
+		}
+
+		///<summary>Disable the motion detection in a camera.</summary>
+		public static void DisableMotionDetection(this IEnumerable<CameraEntity> target)
+		{
+			target.CallService("disable_motion_detection");
 		}
 
 		///<summary>Enable the motion detection in a camera.</summary>
-		public static void EnableMotionDetection(this CameraEntity entity)
+		public static void EnableMotionDetection(this CameraEntity target)
 		{
-			entity.CallService("enable_motion_detection");
+			target.CallService("enable_motion_detection");
+		}
+
+		///<summary>Enable the motion detection in a camera.</summary>
+		public static void EnableMotionDetection(this IEnumerable<CameraEntity> target)
+		{
+			target.CallService("enable_motion_detection");
 		}
 
 		///<summary>Play camera stream on supported media player.</summary>
-		public static void PlayStream(this CameraEntity entity, CameraPlayStreamParameters data)
+		public static void PlayStream(this CameraEntity target, CameraPlayStreamParameters data)
 		{
-			entity.CallService("play_stream", data);
+			target.CallService("play_stream", data);
 		}
 
 		///<summary>Play camera stream on supported media player.</summary>
-		///<param name="entity">The CameraEntity to call this service for</param>
+		public static void PlayStream(this IEnumerable<CameraEntity> target, CameraPlayStreamParameters data)
+		{
+			target.CallService("play_stream", data);
+		}
+
+		///<summary>Play camera stream on supported media player.</summary>
+		///<param name="target">The CameraEntity to call this service for</param>
 		///<param name="mediaPlayer">Name(s) of media player to stream to.</param>
 		///<param name="format">Stream format supported by media player.</param>
-		public static void PlayStream(this CameraEntity entity, string @mediaPlayer, string? @format = null)
+		public static void PlayStream(this CameraEntity target, string @mediaPlayer, string? @format = null)
 		{
-			entity.CallService("play_stream", new CameraPlayStreamParameters{MediaPlayer = @mediaPlayer, Format = @format});
+			target.CallService("play_stream", new CameraPlayStreamParameters{MediaPlayer = @mediaPlayer, Format = @format});
+		}
+
+		///<summary>Play camera stream on supported media player.</summary>
+		///<param name="target">The IEnumerable<CameraEntity> to call this service for</param>
+		///<param name="mediaPlayer">Name(s) of media player to stream to.</param>
+		///<param name="format">Stream format supported by media player.</param>
+		public static void PlayStream(this IEnumerable<CameraEntity> target, string @mediaPlayer, string? @format = null)
+		{
+			target.CallService("play_stream", new CameraPlayStreamParameters{MediaPlayer = @mediaPlayer, Format = @format});
 		}
 
 		///<summary>Record live camera feed.</summary>
-		public static void Record(this CameraEntity entity, CameraRecordParameters data)
+		public static void Record(this CameraEntity target, CameraRecordParameters data)
 		{
-			entity.CallService("record", data);
+			target.CallService("record", data);
 		}
 
 		///<summary>Record live camera feed.</summary>
-		///<param name="entity">The CameraEntity to call this service for</param>
+		public static void Record(this IEnumerable<CameraEntity> target, CameraRecordParameters data)
+		{
+			target.CallService("record", data);
+		}
+
+		///<summary>Record live camera feed.</summary>
+		///<param name="target">The CameraEntity to call this service for</param>
 		///<param name="filename">Template of a Filename. Variable is entity_id. Must be mp4. eg: /tmp/snapshot_{{ entity_id.name }}.mp4</param>
 		///<param name="duration">Target recording length.</param>
 		///<param name="lookback">Target lookback period to include in addition to duration. Only available if there is currently an active HLS stream.</param>
-		public static void Record(this CameraEntity entity, string @filename, long? @duration = null, long? @lookback = null)
+		public static void Record(this CameraEntity target, string @filename, long? @duration = null, long? @lookback = null)
 		{
-			entity.CallService("record", new CameraRecordParameters{Filename = @filename, Duration = @duration, Lookback = @lookback});
+			target.CallService("record", new CameraRecordParameters{Filename = @filename, Duration = @duration, Lookback = @lookback});
+		}
+
+		///<summary>Record live camera feed.</summary>
+		///<param name="target">The IEnumerable<CameraEntity> to call this service for</param>
+		///<param name="filename">Template of a Filename. Variable is entity_id. Must be mp4. eg: /tmp/snapshot_{{ entity_id.name }}.mp4</param>
+		///<param name="duration">Target recording length.</param>
+		///<param name="lookback">Target lookback period to include in addition to duration. Only available if there is currently an active HLS stream.</param>
+		public static void Record(this IEnumerable<CameraEntity> target, string @filename, long? @duration = null, long? @lookback = null)
+		{
+			target.CallService("record", new CameraRecordParameters{Filename = @filename, Duration = @duration, Lookback = @lookback});
 		}
 
 		///<summary>Take a snapshot from a camera.</summary>
-		public static void Snapshot(this CameraEntity entity, CameraSnapshotParameters data)
+		public static void Snapshot(this CameraEntity target, CameraSnapshotParameters data)
 		{
-			entity.CallService("snapshot", data);
+			target.CallService("snapshot", data);
 		}
 
 		///<summary>Take a snapshot from a camera.</summary>
-		///<param name="entity">The CameraEntity to call this service for</param>
+		public static void Snapshot(this IEnumerable<CameraEntity> target, CameraSnapshotParameters data)
+		{
+			target.CallService("snapshot", data);
+		}
+
+		///<summary>Take a snapshot from a camera.</summary>
+		///<param name="target">The CameraEntity to call this service for</param>
 		///<param name="filename">Template of a Filename. Variable is entity_id. eg: /tmp/snapshot_{{ entity_id.name }}.jpg</param>
-		public static void Snapshot(this CameraEntity entity, string @filename)
+		public static void Snapshot(this CameraEntity target, string @filename)
 		{
-			entity.CallService("snapshot", new CameraSnapshotParameters{Filename = @filename});
+			target.CallService("snapshot", new CameraSnapshotParameters{Filename = @filename});
+		}
+
+		///<summary>Take a snapshot from a camera.</summary>
+		///<param name="target">The IEnumerable<CameraEntity> to call this service for</param>
+		///<param name="filename">Template of a Filename. Variable is entity_id. eg: /tmp/snapshot_{{ entity_id.name }}.jpg</param>
+		public static void Snapshot(this IEnumerable<CameraEntity> target, string @filename)
+		{
+			target.CallService("snapshot", new CameraSnapshotParameters{Filename = @filename});
 		}
 
 		///<summary>Turn off camera.</summary>
-		public static void TurnOff(this CameraEntity entity)
+		public static void TurnOff(this CameraEntity target)
 		{
-			entity.CallService("turn_off");
+			target.CallService("turn_off");
+		}
+
+		///<summary>Turn off camera.</summary>
+		public static void TurnOff(this IEnumerable<CameraEntity> target)
+		{
+			target.CallService("turn_off");
 		}
 
 		///<summary>Turn on camera.</summary>
-		public static void TurnOn(this CameraEntity entity)
+		public static void TurnOn(this CameraEntity target)
 		{
-			entity.CallService("turn_on");
+			target.CallService("turn_on");
+		}
+
+		///<summary>Turn on camera.</summary>
+		public static void TurnOn(this IEnumerable<CameraEntity> target)
+		{
+			target.CallService("turn_on");
 		}
 	}
 
 	public static class ClimateEntityExtensionMethods
 	{
 		///<summary>Turn auxiliary heater on/off for climate device.</summary>
-		public static void SetAuxHeat(this ClimateEntity entity, ClimateSetAuxHeatParameters data)
+		public static void SetAuxHeat(this ClimateEntity target, ClimateSetAuxHeatParameters data)
 		{
-			entity.CallService("set_aux_heat", data);
+			target.CallService("set_aux_heat", data);
 		}
 
 		///<summary>Turn auxiliary heater on/off for climate device.</summary>
-		///<param name="entity">The ClimateEntity to call this service for</param>
+		public static void SetAuxHeat(this IEnumerable<ClimateEntity> target, ClimateSetAuxHeatParameters data)
+		{
+			target.CallService("set_aux_heat", data);
+		}
+
+		///<summary>Turn auxiliary heater on/off for climate device.</summary>
+		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="auxHeat">New value of auxiliary heater.</param>
-		public static void SetAuxHeat(this ClimateEntity entity, bool @auxHeat)
+		public static void SetAuxHeat(this ClimateEntity target, bool @auxHeat)
 		{
-			entity.CallService("set_aux_heat", new ClimateSetAuxHeatParameters{AuxHeat = @auxHeat});
+			target.CallService("set_aux_heat", new ClimateSetAuxHeatParameters{AuxHeat = @auxHeat});
+		}
+
+		///<summary>Turn auxiliary heater on/off for climate device.</summary>
+		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
+		///<param name="auxHeat">New value of auxiliary heater.</param>
+		public static void SetAuxHeat(this IEnumerable<ClimateEntity> target, bool @auxHeat)
+		{
+			target.CallService("set_aux_heat", new ClimateSetAuxHeatParameters{AuxHeat = @auxHeat});
 		}
 
 		///<summary>Set fan operation for climate device.</summary>
-		public static void SetFanMode(this ClimateEntity entity, ClimateSetFanModeParameters data)
+		public static void SetFanMode(this ClimateEntity target, ClimateSetFanModeParameters data)
 		{
-			entity.CallService("set_fan_mode", data);
+			target.CallService("set_fan_mode", data);
 		}
 
 		///<summary>Set fan operation for climate device.</summary>
-		///<param name="entity">The ClimateEntity to call this service for</param>
+		public static void SetFanMode(this IEnumerable<ClimateEntity> target, ClimateSetFanModeParameters data)
+		{
+			target.CallService("set_fan_mode", data);
+		}
+
+		///<summary>Set fan operation for climate device.</summary>
+		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="fanMode">New value of fan mode. eg: low</param>
-		public static void SetFanMode(this ClimateEntity entity, string @fanMode)
+		public static void SetFanMode(this ClimateEntity target, string @fanMode)
 		{
-			entity.CallService("set_fan_mode", new ClimateSetFanModeParameters{FanMode = @fanMode});
+			target.CallService("set_fan_mode", new ClimateSetFanModeParameters{FanMode = @fanMode});
+		}
+
+		///<summary>Set fan operation for climate device.</summary>
+		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
+		///<param name="fanMode">New value of fan mode. eg: low</param>
+		public static void SetFanMode(this IEnumerable<ClimateEntity> target, string @fanMode)
+		{
+			target.CallService("set_fan_mode", new ClimateSetFanModeParameters{FanMode = @fanMode});
 		}
 
 		///<summary>Set target humidity of climate device.</summary>
-		public static void SetHumidity(this ClimateEntity entity, ClimateSetHumidityParameters data)
+		public static void SetHumidity(this ClimateEntity target, ClimateSetHumidityParameters data)
 		{
-			entity.CallService("set_humidity", data);
+			target.CallService("set_humidity", data);
 		}
 
 		///<summary>Set target humidity of climate device.</summary>
-		///<param name="entity">The ClimateEntity to call this service for</param>
+		public static void SetHumidity(this IEnumerable<ClimateEntity> target, ClimateSetHumidityParameters data)
+		{
+			target.CallService("set_humidity", data);
+		}
+
+		///<summary>Set target humidity of climate device.</summary>
+		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="humidity">New target humidity for climate device.</param>
-		public static void SetHumidity(this ClimateEntity entity, long @humidity)
+		public static void SetHumidity(this ClimateEntity target, long @humidity)
 		{
-			entity.CallService("set_humidity", new ClimateSetHumidityParameters{Humidity = @humidity});
+			target.CallService("set_humidity", new ClimateSetHumidityParameters{Humidity = @humidity});
+		}
+
+		///<summary>Set target humidity of climate device.</summary>
+		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
+		///<param name="humidity">New target humidity for climate device.</param>
+		public static void SetHumidity(this IEnumerable<ClimateEntity> target, long @humidity)
+		{
+			target.CallService("set_humidity", new ClimateSetHumidityParameters{Humidity = @humidity});
 		}
 
 		///<summary>Set HVAC operation mode for climate device.</summary>
-		public static void SetHvacMode(this ClimateEntity entity, ClimateSetHvacModeParameters data)
+		public static void SetHvacMode(this ClimateEntity target, ClimateSetHvacModeParameters data)
 		{
-			entity.CallService("set_hvac_mode", data);
+			target.CallService("set_hvac_mode", data);
 		}
 
 		///<summary>Set HVAC operation mode for climate device.</summary>
-		///<param name="entity">The ClimateEntity to call this service for</param>
+		public static void SetHvacMode(this IEnumerable<ClimateEntity> target, ClimateSetHvacModeParameters data)
+		{
+			target.CallService("set_hvac_mode", data);
+		}
+
+		///<summary>Set HVAC operation mode for climate device.</summary>
+		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="hvacMode">New value of operation mode.</param>
-		public static void SetHvacMode(this ClimateEntity entity, string? @hvacMode = null)
+		public static void SetHvacMode(this ClimateEntity target, string? @hvacMode = null)
 		{
-			entity.CallService("set_hvac_mode", new ClimateSetHvacModeParameters{HvacMode = @hvacMode});
+			target.CallService("set_hvac_mode", new ClimateSetHvacModeParameters{HvacMode = @hvacMode});
+		}
+
+		///<summary>Set HVAC operation mode for climate device.</summary>
+		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
+		///<param name="hvacMode">New value of operation mode.</param>
+		public static void SetHvacMode(this IEnumerable<ClimateEntity> target, string? @hvacMode = null)
+		{
+			target.CallService("set_hvac_mode", new ClimateSetHvacModeParameters{HvacMode = @hvacMode});
 		}
 
 		///<summary>Set preset mode for climate device.</summary>
-		public static void SetPresetMode(this ClimateEntity entity, ClimateSetPresetModeParameters data)
+		public static void SetPresetMode(this ClimateEntity target, ClimateSetPresetModeParameters data)
 		{
-			entity.CallService("set_preset_mode", data);
+			target.CallService("set_preset_mode", data);
 		}
 
 		///<summary>Set preset mode for climate device.</summary>
-		///<param name="entity">The ClimateEntity to call this service for</param>
+		public static void SetPresetMode(this IEnumerable<ClimateEntity> target, ClimateSetPresetModeParameters data)
+		{
+			target.CallService("set_preset_mode", data);
+		}
+
+		///<summary>Set preset mode for climate device.</summary>
+		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="presetMode">New value of preset mode. eg: away</param>
-		public static void SetPresetMode(this ClimateEntity entity, string @presetMode)
+		public static void SetPresetMode(this ClimateEntity target, string @presetMode)
 		{
-			entity.CallService("set_preset_mode", new ClimateSetPresetModeParameters{PresetMode = @presetMode});
+			target.CallService("set_preset_mode", new ClimateSetPresetModeParameters{PresetMode = @presetMode});
+		}
+
+		///<summary>Set preset mode for climate device.</summary>
+		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
+		///<param name="presetMode">New value of preset mode. eg: away</param>
+		public static void SetPresetMode(this IEnumerable<ClimateEntity> target, string @presetMode)
+		{
+			target.CallService("set_preset_mode", new ClimateSetPresetModeParameters{PresetMode = @presetMode});
 		}
 
 		///<summary>Set swing operation for climate device.</summary>
-		public static void SetSwingMode(this ClimateEntity entity, ClimateSetSwingModeParameters data)
+		public static void SetSwingMode(this ClimateEntity target, ClimateSetSwingModeParameters data)
 		{
-			entity.CallService("set_swing_mode", data);
+			target.CallService("set_swing_mode", data);
 		}
 
 		///<summary>Set swing operation for climate device.</summary>
-		///<param name="entity">The ClimateEntity to call this service for</param>
+		public static void SetSwingMode(this IEnumerable<ClimateEntity> target, ClimateSetSwingModeParameters data)
+		{
+			target.CallService("set_swing_mode", data);
+		}
+
+		///<summary>Set swing operation for climate device.</summary>
+		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="swingMode">New value of swing mode. eg: horizontal</param>
-		public static void SetSwingMode(this ClimateEntity entity, string @swingMode)
+		public static void SetSwingMode(this ClimateEntity target, string @swingMode)
 		{
-			entity.CallService("set_swing_mode", new ClimateSetSwingModeParameters{SwingMode = @swingMode});
+			target.CallService("set_swing_mode", new ClimateSetSwingModeParameters{SwingMode = @swingMode});
+		}
+
+		///<summary>Set swing operation for climate device.</summary>
+		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
+		///<param name="swingMode">New value of swing mode. eg: horizontal</param>
+		public static void SetSwingMode(this IEnumerable<ClimateEntity> target, string @swingMode)
+		{
+			target.CallService("set_swing_mode", new ClimateSetSwingModeParameters{SwingMode = @swingMode});
 		}
 
 		///<summary>Set target temperature of climate device.</summary>
-		public static void SetTemperature(this ClimateEntity entity, ClimateSetTemperatureParameters data)
+		public static void SetTemperature(this ClimateEntity target, ClimateSetTemperatureParameters data)
 		{
-			entity.CallService("set_temperature", data);
+			target.CallService("set_temperature", data);
 		}
 
 		///<summary>Set target temperature of climate device.</summary>
-		///<param name="entity">The ClimateEntity to call this service for</param>
+		public static void SetTemperature(this IEnumerable<ClimateEntity> target, ClimateSetTemperatureParameters data)
+		{
+			target.CallService("set_temperature", data);
+		}
+
+		///<summary>Set target temperature of climate device.</summary>
+		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="temperature">New target temperature for HVAC.</param>
 		///<param name="targetTempHigh">New target high temperature for HVAC.</param>
 		///<param name="targetTempLow">New target low temperature for HVAC.</param>
 		///<param name="hvacMode">HVAC operation mode to set temperature to.</param>
-		public static void SetTemperature(this ClimateEntity entity, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
+		public static void SetTemperature(this ClimateEntity target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
 		{
-			entity.CallService("set_temperature", new ClimateSetTemperatureParameters{Temperature = @temperature, TargetTempHigh = @targetTempHigh, TargetTempLow = @targetTempLow, HvacMode = @hvacMode});
+			target.CallService("set_temperature", new ClimateSetTemperatureParameters{Temperature = @temperature, TargetTempHigh = @targetTempHigh, TargetTempLow = @targetTempLow, HvacMode = @hvacMode});
+		}
+
+		///<summary>Set target temperature of climate device.</summary>
+		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
+		///<param name="temperature">New target temperature for HVAC.</param>
+		///<param name="targetTempHigh">New target high temperature for HVAC.</param>
+		///<param name="targetTempLow">New target low temperature for HVAC.</param>
+		///<param name="hvacMode">HVAC operation mode to set temperature to.</param>
+		public static void SetTemperature(this IEnumerable<ClimateEntity> target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
+		{
+			target.CallService("set_temperature", new ClimateSetTemperatureParameters{Temperature = @temperature, TargetTempHigh = @targetTempHigh, TargetTempLow = @targetTempLow, HvacMode = @hvacMode});
 		}
 
 		///<summary>Turn climate device off.</summary>
-		public static void TurnOff(this ClimateEntity entity)
+		public static void TurnOff(this ClimateEntity target)
 		{
-			entity.CallService("turn_off");
+			target.CallService("turn_off");
+		}
+
+		///<summary>Turn climate device off.</summary>
+		public static void TurnOff(this IEnumerable<ClimateEntity> target)
+		{
+			target.CallService("turn_off");
 		}
 
 		///<summary>Turn climate device on.</summary>
-		public static void TurnOn(this ClimateEntity entity)
+		public static void TurnOn(this ClimateEntity target)
 		{
-			entity.CallService("turn_on");
+			target.CallService("turn_on");
+		}
+
+		///<summary>Turn climate device on.</summary>
+		public static void TurnOn(this IEnumerable<ClimateEntity> target)
+		{
+			target.CallService("turn_on");
 		}
 	}
 
 	public static class CounterEntityExtensionMethods
 	{
 		///<summary>Change counter parameters.</summary>
-		public static void Configure(this CounterEntity entity, CounterConfigureParameters data)
+		public static void Configure(this CounterEntity target, CounterConfigureParameters data)
 		{
-			entity.CallService("configure", data);
+			target.CallService("configure", data);
 		}
 
 		///<summary>Change counter parameters.</summary>
-		///<param name="entity">The CounterEntity to call this service for</param>
+		public static void Configure(this IEnumerable<CounterEntity> target, CounterConfigureParameters data)
+		{
+			target.CallService("configure", data);
+		}
+
+		///<summary>Change counter parameters.</summary>
+		///<param name="target">The CounterEntity to call this service for</param>
 		///<param name="minimum">New minimum value for the counter or None to remove minimum.</param>
 		///<param name="maximum">New maximum value for the counter or None to remove maximum.</param>
 		///<param name="step">New value for step.</param>
 		///<param name="initial">New value for initial.</param>
 		///<param name="value">New state value.</param>
-		public static void Configure(this CounterEntity entity, long? @minimum = null, long? @maximum = null, long? @step = null, long? @initial = null, long? @value = null)
+		public static void Configure(this CounterEntity target, long? @minimum = null, long? @maximum = null, long? @step = null, long? @initial = null, long? @value = null)
 		{
-			entity.CallService("configure", new CounterConfigureParameters{Minimum = @minimum, Maximum = @maximum, Step = @step, Initial = @initial, Value = @value});
+			target.CallService("configure", new CounterConfigureParameters{Minimum = @minimum, Maximum = @maximum, Step = @step, Initial = @initial, Value = @value});
+		}
+
+		///<summary>Change counter parameters.</summary>
+		///<param name="target">The IEnumerable<CounterEntity> to call this service for</param>
+		///<param name="minimum">New minimum value for the counter or None to remove minimum.</param>
+		///<param name="maximum">New maximum value for the counter or None to remove maximum.</param>
+		///<param name="step">New value for step.</param>
+		///<param name="initial">New value for initial.</param>
+		///<param name="value">New state value.</param>
+		public static void Configure(this IEnumerable<CounterEntity> target, long? @minimum = null, long? @maximum = null, long? @step = null, long? @initial = null, long? @value = null)
+		{
+			target.CallService("configure", new CounterConfigureParameters{Minimum = @minimum, Maximum = @maximum, Step = @step, Initial = @initial, Value = @value});
 		}
 
 		///<summary>Decrement a counter.</summary>
-		public static void Decrement(this CounterEntity entity)
+		public static void Decrement(this CounterEntity target)
 		{
-			entity.CallService("decrement");
+			target.CallService("decrement");
+		}
+
+		///<summary>Decrement a counter.</summary>
+		public static void Decrement(this IEnumerable<CounterEntity> target)
+		{
+			target.CallService("decrement");
 		}
 
 		///<summary>Increment a counter.</summary>
-		public static void Increment(this CounterEntity entity)
+		public static void Increment(this CounterEntity target)
 		{
-			entity.CallService("increment");
+			target.CallService("increment");
+		}
+
+		///<summary>Increment a counter.</summary>
+		public static void Increment(this IEnumerable<CounterEntity> target)
+		{
+			target.CallService("increment");
 		}
 
 		///<summary>Reset a counter.</summary>
-		public static void Reset(this CounterEntity entity)
+		public static void Reset(this CounterEntity target)
 		{
-			entity.CallService("reset");
+			target.CallService("reset");
+		}
+
+		///<summary>Reset a counter.</summary>
+		public static void Reset(this IEnumerable<CounterEntity> target)
+		{
+			target.CallService("reset");
 		}
 	}
 
 	public static class HarmonyEntityExtensionMethods
 	{
 		///<summary>Sends change channel command to the Harmony HUB</summary>
-		public static void ChangeChannel(this RemoteEntity entity, HarmonyChangeChannelParameters data)
+		public static void ChangeChannel(this RemoteEntity target, HarmonyChangeChannelParameters data)
 		{
-			entity.CallService("change_channel", data);
+			target.CallService("change_channel", data);
 		}
 
 		///<summary>Sends change channel command to the Harmony HUB</summary>
-		///<param name="entity">The RemoteEntity to call this service for</param>
-		///<param name="channel">Channel number to change to</param>
-		public static void ChangeChannel(this RemoteEntity entity, long @channel)
+		public static void ChangeChannel(this IEnumerable<RemoteEntity> target, HarmonyChangeChannelParameters data)
 		{
-			entity.CallService("change_channel", new HarmonyChangeChannelParameters{Channel = @channel});
+			target.CallService("change_channel", data);
+		}
+
+		///<summary>Sends change channel command to the Harmony HUB</summary>
+		///<param name="target">The RemoteEntity to call this service for</param>
+		///<param name="channel">Channel number to change to</param>
+		public static void ChangeChannel(this RemoteEntity target, long @channel)
+		{
+			target.CallService("change_channel", new HarmonyChangeChannelParameters{Channel = @channel});
+		}
+
+		///<summary>Sends change channel command to the Harmony HUB</summary>
+		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
+		///<param name="channel">Channel number to change to</param>
+		public static void ChangeChannel(this IEnumerable<RemoteEntity> target, long @channel)
+		{
+			target.CallService("change_channel", new HarmonyChangeChannelParameters{Channel = @channel});
 		}
 
 		///<summary>Syncs the remote's configuration.</summary>
-		public static void Sync(this RemoteEntity entity)
+		public static void Sync(this RemoteEntity target)
 		{
-			entity.CallService("sync");
+			target.CallService("sync");
+		}
+
+		///<summary>Syncs the remote's configuration.</summary>
+		public static void Sync(this IEnumerable<RemoteEntity> target)
+		{
+			target.CallService("sync");
 		}
 	}
 
 	public static class InputBooleanEntityExtensionMethods
 	{
 		///<summary>Toggle an input boolean</summary>
-		public static void Toggle(this InputBooleanEntity entity)
+		public static void Toggle(this InputBooleanEntity target)
 		{
-			entity.CallService("toggle");
+			target.CallService("toggle");
+		}
+
+		///<summary>Toggle an input boolean</summary>
+		public static void Toggle(this IEnumerable<InputBooleanEntity> target)
+		{
+			target.CallService("toggle");
 		}
 
 		///<summary>Turn off an input boolean</summary>
-		public static void TurnOff(this InputBooleanEntity entity)
+		public static void TurnOff(this InputBooleanEntity target)
 		{
-			entity.CallService("turn_off");
+			target.CallService("turn_off");
+		}
+
+		///<summary>Turn off an input boolean</summary>
+		public static void TurnOff(this IEnumerable<InputBooleanEntity> target)
+		{
+			target.CallService("turn_off");
 		}
 
 		///<summary>Turn on an input boolean</summary>
-		public static void TurnOn(this InputBooleanEntity entity)
+		public static void TurnOn(this InputBooleanEntity target)
 		{
-			entity.CallService("turn_on");
+			target.CallService("turn_on");
+		}
+
+		///<summary>Turn on an input boolean</summary>
+		public static void TurnOn(this IEnumerable<InputBooleanEntity> target)
+		{
+			target.CallService("turn_on");
 		}
 	}
 
 	public static class InputNumberEntityExtensionMethods
 	{
 		///<summary>Decrement the value of an input number entity by its stepping.</summary>
-		public static void Decrement(this InputNumberEntity entity)
+		public static void Decrement(this InputNumberEntity target)
 		{
-			entity.CallService("decrement");
+			target.CallService("decrement");
+		}
+
+		///<summary>Decrement the value of an input number entity by its stepping.</summary>
+		public static void Decrement(this IEnumerable<InputNumberEntity> target)
+		{
+			target.CallService("decrement");
 		}
 
 		///<summary>Increment the value of an input number entity by its stepping.</summary>
-		public static void Increment(this InputNumberEntity entity)
+		public static void Increment(this InputNumberEntity target)
 		{
-			entity.CallService("increment");
+			target.CallService("increment");
+		}
+
+		///<summary>Increment the value of an input number entity by its stepping.</summary>
+		public static void Increment(this IEnumerable<InputNumberEntity> target)
+		{
+			target.CallService("increment");
 		}
 
 		///<summary>Set the value of an input number entity.</summary>
-		public static void SetValue(this InputNumberEntity entity, InputNumberSetValueParameters data)
+		public static void SetValue(this InputNumberEntity target, InputNumberSetValueParameters data)
 		{
-			entity.CallService("set_value", data);
+			target.CallService("set_value", data);
 		}
 
 		///<summary>Set the value of an input number entity.</summary>
-		///<param name="entity">The InputNumberEntity to call this service for</param>
+		public static void SetValue(this IEnumerable<InputNumberEntity> target, InputNumberSetValueParameters data)
+		{
+			target.CallService("set_value", data);
+		}
+
+		///<summary>Set the value of an input number entity.</summary>
+		///<param name="target">The InputNumberEntity to call this service for</param>
 		///<param name="value">The target value the entity should be set to.</param>
-		public static void SetValue(this InputNumberEntity entity, double @value)
+		public static void SetValue(this InputNumberEntity target, double @value)
 		{
-			entity.CallService("set_value", new InputNumberSetValueParameters{Value = @value});
+			target.CallService("set_value", new InputNumberSetValueParameters{Value = @value});
+		}
+
+		///<summary>Set the value of an input number entity.</summary>
+		///<param name="target">The IEnumerable<InputNumberEntity> to call this service for</param>
+		///<param name="value">The target value the entity should be set to.</param>
+		public static void SetValue(this IEnumerable<InputNumberEntity> target, double @value)
+		{
+			target.CallService("set_value", new InputNumberSetValueParameters{Value = @value});
 		}
 	}
 
 	public static class InputSelectEntityExtensionMethods
 	{
 		///<summary>Select the first option of an input select entity.</summary>
-		public static void SelectFirst(this InputSelectEntity entity)
+		public static void SelectFirst(this InputSelectEntity target)
 		{
-			entity.CallService("select_first");
+			target.CallService("select_first");
+		}
+
+		///<summary>Select the first option of an input select entity.</summary>
+		public static void SelectFirst(this IEnumerable<InputSelectEntity> target)
+		{
+			target.CallService("select_first");
 		}
 
 		///<summary>Select the last option of an input select entity.</summary>
-		public static void SelectLast(this InputSelectEntity entity)
+		public static void SelectLast(this InputSelectEntity target)
 		{
-			entity.CallService("select_last");
+			target.CallService("select_last");
+		}
+
+		///<summary>Select the last option of an input select entity.</summary>
+		public static void SelectLast(this IEnumerable<InputSelectEntity> target)
+		{
+			target.CallService("select_last");
 		}
 
 		///<summary>Select the next options of an input select entity.</summary>
-		public static void SelectNext(this InputSelectEntity entity, InputSelectSelectNextParameters data)
+		public static void SelectNext(this InputSelectEntity target, InputSelectSelectNextParameters data)
 		{
-			entity.CallService("select_next", data);
+			target.CallService("select_next", data);
 		}
 
 		///<summary>Select the next options of an input select entity.</summary>
-		///<param name="entity">The InputSelectEntity to call this service for</param>
+		public static void SelectNext(this IEnumerable<InputSelectEntity> target, InputSelectSelectNextParameters data)
+		{
+			target.CallService("select_next", data);
+		}
+
+		///<summary>Select the next options of an input select entity.</summary>
+		///<param name="target">The InputSelectEntity to call this service for</param>
 		///<param name="cycle">If the option should cycle from the last to the first.</param>
-		public static void SelectNext(this InputSelectEntity entity, bool? @cycle = null)
+		public static void SelectNext(this InputSelectEntity target, bool? @cycle = null)
 		{
-			entity.CallService("select_next", new InputSelectSelectNextParameters{Cycle = @cycle});
+			target.CallService("select_next", new InputSelectSelectNextParameters{Cycle = @cycle});
+		}
+
+		///<summary>Select the next options of an input select entity.</summary>
+		///<param name="target">The IEnumerable<InputSelectEntity> to call this service for</param>
+		///<param name="cycle">If the option should cycle from the last to the first.</param>
+		public static void SelectNext(this IEnumerable<InputSelectEntity> target, bool? @cycle = null)
+		{
+			target.CallService("select_next", new InputSelectSelectNextParameters{Cycle = @cycle});
 		}
 
 		///<summary>Select an option of an input select entity.</summary>
-		public static void SelectOption(this InputSelectEntity entity, InputSelectSelectOptionParameters data)
+		public static void SelectOption(this InputSelectEntity target, InputSelectSelectOptionParameters data)
 		{
-			entity.CallService("select_option", data);
+			target.CallService("select_option", data);
 		}
 
 		///<summary>Select an option of an input select entity.</summary>
-		///<param name="entity">The InputSelectEntity to call this service for</param>
+		public static void SelectOption(this IEnumerable<InputSelectEntity> target, InputSelectSelectOptionParameters data)
+		{
+			target.CallService("select_option", data);
+		}
+
+		///<summary>Select an option of an input select entity.</summary>
+		///<param name="target">The InputSelectEntity to call this service for</param>
 		///<param name="option">Option to be selected. eg: "Item A"</param>
-		public static void SelectOption(this InputSelectEntity entity, string @option)
+		public static void SelectOption(this InputSelectEntity target, string @option)
 		{
-			entity.CallService("select_option", new InputSelectSelectOptionParameters{Option = @option});
+			target.CallService("select_option", new InputSelectSelectOptionParameters{Option = @option});
+		}
+
+		///<summary>Select an option of an input select entity.</summary>
+		///<param name="target">The IEnumerable<InputSelectEntity> to call this service for</param>
+		///<param name="option">Option to be selected. eg: "Item A"</param>
+		public static void SelectOption(this IEnumerable<InputSelectEntity> target, string @option)
+		{
+			target.CallService("select_option", new InputSelectSelectOptionParameters{Option = @option});
 		}
 
 		///<summary>Select the previous options of an input select entity.</summary>
-		public static void SelectPrevious(this InputSelectEntity entity, InputSelectSelectPreviousParameters data)
+		public static void SelectPrevious(this InputSelectEntity target, InputSelectSelectPreviousParameters data)
 		{
-			entity.CallService("select_previous", data);
+			target.CallService("select_previous", data);
 		}
 
 		///<summary>Select the previous options of an input select entity.</summary>
-		///<param name="entity">The InputSelectEntity to call this service for</param>
+		public static void SelectPrevious(this IEnumerable<InputSelectEntity> target, InputSelectSelectPreviousParameters data)
+		{
+			target.CallService("select_previous", data);
+		}
+
+		///<summary>Select the previous options of an input select entity.</summary>
+		///<param name="target">The InputSelectEntity to call this service for</param>
 		///<param name="cycle">If the option should cycle from the first to the last.</param>
-		public static void SelectPrevious(this InputSelectEntity entity, bool? @cycle = null)
+		public static void SelectPrevious(this InputSelectEntity target, bool? @cycle = null)
 		{
-			entity.CallService("select_previous", new InputSelectSelectPreviousParameters{Cycle = @cycle});
+			target.CallService("select_previous", new InputSelectSelectPreviousParameters{Cycle = @cycle});
+		}
+
+		///<summary>Select the previous options of an input select entity.</summary>
+		///<param name="target">The IEnumerable<InputSelectEntity> to call this service for</param>
+		///<param name="cycle">If the option should cycle from the first to the last.</param>
+		public static void SelectPrevious(this IEnumerable<InputSelectEntity> target, bool? @cycle = null)
+		{
+			target.CallService("select_previous", new InputSelectSelectPreviousParameters{Cycle = @cycle});
 		}
 
 		///<summary>Set the options of an input select entity.</summary>
-		public static void SetOptions(this InputSelectEntity entity, InputSelectSetOptionsParameters data)
+		public static void SetOptions(this InputSelectEntity target, InputSelectSetOptionsParameters data)
 		{
-			entity.CallService("set_options", data);
+			target.CallService("set_options", data);
 		}
 
 		///<summary>Set the options of an input select entity.</summary>
-		///<param name="entity">The InputSelectEntity to call this service for</param>
+		public static void SetOptions(this IEnumerable<InputSelectEntity> target, InputSelectSetOptionsParameters data)
+		{
+			target.CallService("set_options", data);
+		}
+
+		///<summary>Set the options of an input select entity.</summary>
+		///<param name="target">The InputSelectEntity to call this service for</param>
 		///<param name="options">Options for the input select entity. eg: ["Item A", "Item B", "Item C"]</param>
-		public static void SetOptions(this InputSelectEntity entity, object @options)
+		public static void SetOptions(this InputSelectEntity target, object @options)
 		{
-			entity.CallService("set_options", new InputSelectSetOptionsParameters{Options = @options});
+			target.CallService("set_options", new InputSelectSetOptionsParameters{Options = @options});
+		}
+
+		///<summary>Set the options of an input select entity.</summary>
+		///<param name="target">The IEnumerable<InputSelectEntity> to call this service for</param>
+		///<param name="options">Options for the input select entity. eg: ["Item A", "Item B", "Item C"]</param>
+		public static void SetOptions(this IEnumerable<InputSelectEntity> target, object @options)
+		{
+			target.CallService("set_options", new InputSelectSetOptionsParameters{Options = @options});
 		}
 	}
 
 	public static class InputTextEntityExtensionMethods
 	{
 		///<summary>Set the value of an input text entity.</summary>
-		public static void SetValue(this InputTextEntity entity, InputTextSetValueParameters data)
+		public static void SetValue(this InputTextEntity target, InputTextSetValueParameters data)
 		{
-			entity.CallService("set_value", data);
+			target.CallService("set_value", data);
 		}
 
 		///<summary>Set the value of an input text entity.</summary>
-		///<param name="entity">The InputTextEntity to call this service for</param>
-		///<param name="value">The target value the entity should be set to. eg: This is an example text</param>
-		public static void SetValue(this InputTextEntity entity, string @value)
+		public static void SetValue(this IEnumerable<InputTextEntity> target, InputTextSetValueParameters data)
 		{
-			entity.CallService("set_value", new InputTextSetValueParameters{Value = @value});
+			target.CallService("set_value", data);
+		}
+
+		///<summary>Set the value of an input text entity.</summary>
+		///<param name="target">The InputTextEntity to call this service for</param>
+		///<param name="value">The target value the entity should be set to. eg: This is an example text</param>
+		public static void SetValue(this InputTextEntity target, string @value)
+		{
+			target.CallService("set_value", new InputTextSetValueParameters{Value = @value});
+		}
+
+		///<summary>Set the value of an input text entity.</summary>
+		///<param name="target">The IEnumerable<InputTextEntity> to call this service for</param>
+		///<param name="value">The target value the entity should be set to. eg: This is an example text</param>
+		public static void SetValue(this IEnumerable<InputTextEntity> target, string @value)
+		{
+			target.CallService("set_value", new InputTextSetValueParameters{Value = @value});
 		}
 	}
 
 	public static class LightEntityExtensionMethods
 	{
 		///<summary>Toggles one or more lights, from on to off, or, off to on, based on their current state. </summary>
-		public static void Toggle(this LightEntity entity, LightToggleParameters data)
+		public static void Toggle(this LightEntity target, LightToggleParameters data)
 		{
-			entity.CallService("toggle", data);
+			target.CallService("toggle", data);
 		}
 
 		///<summary>Toggles one or more lights, from on to off, or, off to on, based on their current state. </summary>
-		///<param name="entity">The LightEntity to call this service for</param>
+		public static void Toggle(this IEnumerable<LightEntity> target, LightToggleParameters data)
+		{
+			target.CallService("toggle", data);
+		}
+
+		///<summary>Toggles one or more lights, from on to off, or, off to on, based on their current state. </summary>
+		///<param name="target">The LightEntity to call this service for</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
 		///<param name="rgbColor">Color for the light in RGB-format. eg: [255, 100, 100]</param>
 		///<param name="colorName">A human readable color name.</param>
@@ -7537,34 +8366,75 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void Toggle(this LightEntity entity, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public static void Toggle(this LightEntity target, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
 		{
-			entity.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
+			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
+		}
+
+		///<summary>Toggles one or more lights, from on to off, or, off to on, based on their current state. </summary>
+		///<param name="target">The IEnumerable<LightEntity> to call this service for</param>
+		///<param name="transition">Duration it takes to get to next state.</param>
+		///<param name="rgbColor">Color for the light in RGB-format. eg: [255, 100, 100]</param>
+		///<param name="colorName">A human readable color name.</param>
+		///<param name="hsColor">Color for the light in hue/sat format. Hue is 0-360 and Sat is 0-100. eg: [300, 70]</param>
+		///<param name="xyColor">Color for the light in XY-format. eg: [0.52, 0.43]</param>
+		///<param name="colorTemp">Color temperature for the light in mireds.</param>
+		///<param name="kelvin">Color temperature for the light in Kelvin.</param>
+		///<param name="whiteValue">Number indicating level of white.</param>
+		///<param name="brightness">Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
+		///<param name="brightnessPct">Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</param>
+		///<param name="profile">Name of a light profile to use. eg: relax</param>
+		///<param name="flash">If the light should flash.</param>
+		///<param name="effect">Light effect.</param>
+		public static void Toggle(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		{
+			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 
 		///<summary>Turns off one or more lights.</summary>
-		public static void TurnOff(this LightEntity entity, LightTurnOffParameters data)
+		public static void TurnOff(this LightEntity target, LightTurnOffParameters data)
 		{
-			entity.CallService("turn_off", data);
+			target.CallService("turn_off", data);
 		}
 
 		///<summary>Turns off one or more lights.</summary>
-		///<param name="entity">The LightEntity to call this service for</param>
+		public static void TurnOff(this IEnumerable<LightEntity> target, LightTurnOffParameters data)
+		{
+			target.CallService("turn_off", data);
+		}
+
+		///<summary>Turns off one or more lights.</summary>
+		///<param name="target">The LightEntity to call this service for</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
 		///<param name="flash">If the light should flash.</param>
-		public static void TurnOff(this LightEntity entity, long? @transition = null, string? @flash = null)
+		public static void TurnOff(this LightEntity target, long? @transition = null, string? @flash = null)
 		{
-			entity.CallService("turn_off", new LightTurnOffParameters{Transition = @transition, Flash = @flash});
+			target.CallService("turn_off", new LightTurnOffParameters{Transition = @transition, Flash = @flash});
+		}
+
+		///<summary>Turns off one or more lights.</summary>
+		///<param name="target">The IEnumerable<LightEntity> to call this service for</param>
+		///<param name="transition">Duration it takes to get to next state.</param>
+		///<param name="flash">If the light should flash.</param>
+		public static void TurnOff(this IEnumerable<LightEntity> target, long? @transition = null, string? @flash = null)
+		{
+			target.CallService("turn_off", new LightTurnOffParameters{Transition = @transition, Flash = @flash});
 		}
 
 		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
-		public static void TurnOn(this LightEntity entity, LightTurnOnParameters data)
+		public static void TurnOn(this LightEntity target, LightTurnOnParameters data)
 		{
-			entity.CallService("turn_on", data);
+			target.CallService("turn_on", data);
 		}
 
 		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
-		///<param name="entity">The LightEntity to call this service for</param>
+		public static void TurnOn(this IEnumerable<LightEntity> target, LightTurnOnParameters data)
+		{
+			target.CallService("turn_on", data);
+		}
+
+		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
+		///<param name="target">The LightEntity to call this service for</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
 		///<param name="rgbColor">A list containing three integers between 0 and 255 representing the RGB (red, green, blue) color for the light. eg: [255, 100, 100]</param>
 		///<param name="rgbwColor">A list containing four integers between 0 and 255 representing the RGBW (red, green, blue, white) color for the light. eg: [255, 100, 100, 50]</param>
@@ -7582,547 +8452,1088 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void TurnOn(this LightEntity entity, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public static void TurnOn(this LightEntity target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
 		{
-			entity.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
+			target.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
+		}
+
+		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
+		///<param name="target">The IEnumerable<LightEntity> to call this service for</param>
+		///<param name="transition">Duration it takes to get to next state.</param>
+		///<param name="rgbColor">A list containing three integers between 0 and 255 representing the RGB (red, green, blue) color for the light. eg: [255, 100, 100]</param>
+		///<param name="rgbwColor">A list containing four integers between 0 and 255 representing the RGBW (red, green, blue, white) color for the light. eg: [255, 100, 100, 50]</param>
+		///<param name="rgbwwColor">A list containing five integers between 0 and 255 representing the RGBWW (red, green, blue, cold white, warm white) color for the light. eg: [255, 100, 100, 50, 70]</param>
+		///<param name="colorName">A human readable color name.</param>
+		///<param name="hsColor">Color for the light in hue/sat format. Hue is 0-360 and Sat is 0-100. eg: [300, 70]</param>
+		///<param name="xyColor">Color for the light in XY-format. eg: [0.52, 0.43]</param>
+		///<param name="colorTemp">Color temperature for the light in mireds.</param>
+		///<param name="kelvin">Color temperature for the light in Kelvin.</param>
+		///<param name="brightness">Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
+		///<param name="brightnessPct">Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</param>
+		///<param name="brightnessStep">Change brightness by an amount.</param>
+		///<param name="brightnessStepPct">Change brightness by a percentage.</param>
+		///<param name="white">Set the light to white mode and change its brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
+		///<param name="profile">Name of a light profile to use. eg: relax</param>
+		///<param name="flash">If the light should flash.</param>
+		///<param name="effect">Light effect.</param>
+		public static void TurnOn(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		{
+			target.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 	}
 
 	public static class MediaPlayerEntityExtensionMethods
 	{
 		///<summary>Send the media player the command to clear players playlist.</summary>
-		public static void ClearPlaylist(this MediaPlayerEntity entity)
+		public static void ClearPlaylist(this MediaPlayerEntity target)
 		{
-			entity.CallService("clear_playlist");
+			target.CallService("clear_playlist");
+		}
+
+		///<summary>Send the media player the command to clear players playlist.</summary>
+		public static void ClearPlaylist(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("clear_playlist");
 		}
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
-		public static void Join(this MediaPlayerEntity entity, MediaPlayerJoinParameters data)
+		public static void Join(this MediaPlayerEntity target, MediaPlayerJoinParameters data)
 		{
-			entity.CallService("join", data);
+			target.CallService("join", data);
 		}
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void Join(this IEnumerable<MediaPlayerEntity> target, MediaPlayerJoinParameters data)
+		{
+			target.CallService("join", data);
+		}
+
+		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
-		public static void Join(this MediaPlayerEntity entity, object? @groupMembers = null)
+		public static void Join(this MediaPlayerEntity target, object? @groupMembers = null)
 		{
-			entity.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
+			target.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
+		}
+
+		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
+		public static void Join(this IEnumerable<MediaPlayerEntity> target, object? @groupMembers = null)
+		{
+			target.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
 		}
 
 		///<summary>Send the media player the command for next track.</summary>
-		public static void MediaNextTrack(this MediaPlayerEntity entity)
+		public static void MediaNextTrack(this MediaPlayerEntity target)
 		{
-			entity.CallService("media_next_track");
+			target.CallService("media_next_track");
+		}
+
+		///<summary>Send the media player the command for next track.</summary>
+		public static void MediaNextTrack(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("media_next_track");
 		}
 
 		///<summary>Send the media player the command for pause.</summary>
-		public static void MediaPause(this MediaPlayerEntity entity)
+		public static void MediaPause(this MediaPlayerEntity target)
 		{
-			entity.CallService("media_pause");
+			target.CallService("media_pause");
+		}
+
+		///<summary>Send the media player the command for pause.</summary>
+		public static void MediaPause(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("media_pause");
 		}
 
 		///<summary>Send the media player the command for play.</summary>
-		public static void MediaPlay(this MediaPlayerEntity entity)
+		public static void MediaPlay(this MediaPlayerEntity target)
 		{
-			entity.CallService("media_play");
+			target.CallService("media_play");
+		}
+
+		///<summary>Send the media player the command for play.</summary>
+		public static void MediaPlay(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("media_play");
 		}
 
 		///<summary>Toggle media player play/pause state.</summary>
-		public static void MediaPlayPause(this MediaPlayerEntity entity)
+		public static void MediaPlayPause(this MediaPlayerEntity target)
 		{
-			entity.CallService("media_play_pause");
+			target.CallService("media_play_pause");
+		}
+
+		///<summary>Toggle media player play/pause state.</summary>
+		public static void MediaPlayPause(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("media_play_pause");
 		}
 
 		///<summary>Send the media player the command for previous track.</summary>
-		public static void MediaPreviousTrack(this MediaPlayerEntity entity)
+		public static void MediaPreviousTrack(this MediaPlayerEntity target)
 		{
-			entity.CallService("media_previous_track");
+			target.CallService("media_previous_track");
+		}
+
+		///<summary>Send the media player the command for previous track.</summary>
+		public static void MediaPreviousTrack(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("media_previous_track");
 		}
 
 		///<summary>Send the media player the command to seek in current playing media.</summary>
-		public static void MediaSeek(this MediaPlayerEntity entity, MediaPlayerMediaSeekParameters data)
+		public static void MediaSeek(this MediaPlayerEntity target, MediaPlayerMediaSeekParameters data)
 		{
-			entity.CallService("media_seek", data);
+			target.CallService("media_seek", data);
 		}
 
 		///<summary>Send the media player the command to seek in current playing media.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void MediaSeek(this IEnumerable<MediaPlayerEntity> target, MediaPlayerMediaSeekParameters data)
+		{
+			target.CallService("media_seek", data);
+		}
+
+		///<summary>Send the media player the command to seek in current playing media.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="seekPosition">Position to seek to. The format is platform dependent.</param>
-		public static void MediaSeek(this MediaPlayerEntity entity, double @seekPosition)
+		public static void MediaSeek(this MediaPlayerEntity target, double @seekPosition)
 		{
-			entity.CallService("media_seek", new MediaPlayerMediaSeekParameters{SeekPosition = @seekPosition});
+			target.CallService("media_seek", new MediaPlayerMediaSeekParameters{SeekPosition = @seekPosition});
+		}
+
+		///<summary>Send the media player the command to seek in current playing media.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="seekPosition">Position to seek to. The format is platform dependent.</param>
+		public static void MediaSeek(this IEnumerable<MediaPlayerEntity> target, double @seekPosition)
+		{
+			target.CallService("media_seek", new MediaPlayerMediaSeekParameters{SeekPosition = @seekPosition});
 		}
 
 		///<summary>Send the media player the stop command.</summary>
-		public static void MediaStop(this MediaPlayerEntity entity)
+		public static void MediaStop(this MediaPlayerEntity target)
 		{
-			entity.CallService("media_stop");
+			target.CallService("media_stop");
+		}
+
+		///<summary>Send the media player the stop command.</summary>
+		public static void MediaStop(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("media_stop");
 		}
 
 		///<summary>Send the media player the command for playing media.</summary>
-		public static void PlayMedia(this MediaPlayerEntity entity, MediaPlayerPlayMediaParameters data)
+		public static void PlayMedia(this MediaPlayerEntity target, MediaPlayerPlayMediaParameters data)
 		{
-			entity.CallService("play_media", data);
+			target.CallService("play_media", data);
 		}
 
 		///<summary>Send the media player the command for playing media.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void PlayMedia(this IEnumerable<MediaPlayerEntity> target, MediaPlayerPlayMediaParameters data)
+		{
+			target.CallService("play_media", data);
+		}
+
+		///<summary>Send the media player the command for playing media.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
 		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
-		public static void PlayMedia(this MediaPlayerEntity entity, string @mediaContentId, string @mediaContentType)
+		public static void PlayMedia(this MediaPlayerEntity target, string @mediaContentId, string @mediaContentType)
 		{
-			entity.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType});
+			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType});
+		}
+
+		///<summary>Send the media player the command for playing media.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
+		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
+		public static void PlayMedia(this IEnumerable<MediaPlayerEntity> target, string @mediaContentId, string @mediaContentType)
+		{
+			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType});
 		}
 
 		///<summary>Set repeat mode</summary>
-		public static void RepeatSet(this MediaPlayerEntity entity, MediaPlayerRepeatSetParameters data)
+		public static void RepeatSet(this MediaPlayerEntity target, MediaPlayerRepeatSetParameters data)
 		{
-			entity.CallService("repeat_set", data);
+			target.CallService("repeat_set", data);
 		}
 
 		///<summary>Set repeat mode</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void RepeatSet(this IEnumerable<MediaPlayerEntity> target, MediaPlayerRepeatSetParameters data)
+		{
+			target.CallService("repeat_set", data);
+		}
+
+		///<summary>Set repeat mode</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="repeat">Repeat mode to set.</param>
-		public static void RepeatSet(this MediaPlayerEntity entity, string @repeat)
+		public static void RepeatSet(this MediaPlayerEntity target, string @repeat)
 		{
-			entity.CallService("repeat_set", new MediaPlayerRepeatSetParameters{Repeat = @repeat});
+			target.CallService("repeat_set", new MediaPlayerRepeatSetParameters{Repeat = @repeat});
+		}
+
+		///<summary>Set repeat mode</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="repeat">Repeat mode to set.</param>
+		public static void RepeatSet(this IEnumerable<MediaPlayerEntity> target, string @repeat)
+		{
+			target.CallService("repeat_set", new MediaPlayerRepeatSetParameters{Repeat = @repeat});
 		}
 
 		///<summary>Send the media player the command to change sound mode.</summary>
-		public static void SelectSoundMode(this MediaPlayerEntity entity, MediaPlayerSelectSoundModeParameters data)
+		public static void SelectSoundMode(this MediaPlayerEntity target, MediaPlayerSelectSoundModeParameters data)
 		{
-			entity.CallService("select_sound_mode", data);
+			target.CallService("select_sound_mode", data);
 		}
 
 		///<summary>Send the media player the command to change sound mode.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void SelectSoundMode(this IEnumerable<MediaPlayerEntity> target, MediaPlayerSelectSoundModeParameters data)
+		{
+			target.CallService("select_sound_mode", data);
+		}
+
+		///<summary>Send the media player the command to change sound mode.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="soundMode">Name of the sound mode to switch to. eg: Music</param>
-		public static void SelectSoundMode(this MediaPlayerEntity entity, string? @soundMode = null)
+		public static void SelectSoundMode(this MediaPlayerEntity target, string? @soundMode = null)
 		{
-			entity.CallService("select_sound_mode", new MediaPlayerSelectSoundModeParameters{SoundMode = @soundMode});
+			target.CallService("select_sound_mode", new MediaPlayerSelectSoundModeParameters{SoundMode = @soundMode});
+		}
+
+		///<summary>Send the media player the command to change sound mode.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="soundMode">Name of the sound mode to switch to. eg: Music</param>
+		public static void SelectSoundMode(this IEnumerable<MediaPlayerEntity> target, string? @soundMode = null)
+		{
+			target.CallService("select_sound_mode", new MediaPlayerSelectSoundModeParameters{SoundMode = @soundMode});
 		}
 
 		///<summary>Send the media player the command to change input source.</summary>
-		public static void SelectSource(this MediaPlayerEntity entity, MediaPlayerSelectSourceParameters data)
+		public static void SelectSource(this MediaPlayerEntity target, MediaPlayerSelectSourceParameters data)
 		{
-			entity.CallService("select_source", data);
+			target.CallService("select_source", data);
 		}
 
 		///<summary>Send the media player the command to change input source.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void SelectSource(this IEnumerable<MediaPlayerEntity> target, MediaPlayerSelectSourceParameters data)
+		{
+			target.CallService("select_source", data);
+		}
+
+		///<summary>Send the media player the command to change input source.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="source">Name of the source to switch to. Platform dependent. eg: video1</param>
-		public static void SelectSource(this MediaPlayerEntity entity, string @source)
+		public static void SelectSource(this MediaPlayerEntity target, string @source)
 		{
-			entity.CallService("select_source", new MediaPlayerSelectSourceParameters{Source = @source});
+			target.CallService("select_source", new MediaPlayerSelectSourceParameters{Source = @source});
+		}
+
+		///<summary>Send the media player the command to change input source.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="source">Name of the source to switch to. Platform dependent. eg: video1</param>
+		public static void SelectSource(this IEnumerable<MediaPlayerEntity> target, string @source)
+		{
+			target.CallService("select_source", new MediaPlayerSelectSourceParameters{Source = @source});
 		}
 
 		///<summary>Set shuffling state.</summary>
-		public static void ShuffleSet(this MediaPlayerEntity entity, MediaPlayerShuffleSetParameters data)
+		public static void ShuffleSet(this MediaPlayerEntity target, MediaPlayerShuffleSetParameters data)
 		{
-			entity.CallService("shuffle_set", data);
+			target.CallService("shuffle_set", data);
 		}
 
 		///<summary>Set shuffling state.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void ShuffleSet(this IEnumerable<MediaPlayerEntity> target, MediaPlayerShuffleSetParameters data)
+		{
+			target.CallService("shuffle_set", data);
+		}
+
+		///<summary>Set shuffling state.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="shuffle">True/false for enabling/disabling shuffle.</param>
-		public static void ShuffleSet(this MediaPlayerEntity entity, bool @shuffle)
+		public static void ShuffleSet(this MediaPlayerEntity target, bool @shuffle)
 		{
-			entity.CallService("shuffle_set", new MediaPlayerShuffleSetParameters{Shuffle = @shuffle});
+			target.CallService("shuffle_set", new MediaPlayerShuffleSetParameters{Shuffle = @shuffle});
+		}
+
+		///<summary>Set shuffling state.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="shuffle">True/false for enabling/disabling shuffle.</param>
+		public static void ShuffleSet(this IEnumerable<MediaPlayerEntity> target, bool @shuffle)
+		{
+			target.CallService("shuffle_set", new MediaPlayerShuffleSetParameters{Shuffle = @shuffle});
 		}
 
 		///<summary>Toggles a media player power state.</summary>
-		public static void Toggle(this MediaPlayerEntity entity)
+		public static void Toggle(this MediaPlayerEntity target)
 		{
-			entity.CallService("toggle");
+			target.CallService("toggle");
+		}
+
+		///<summary>Toggles a media player power state.</summary>
+		public static void Toggle(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("toggle");
 		}
 
 		///<summary>Turn a media player power off.</summary>
-		public static void TurnOff(this MediaPlayerEntity entity)
+		public static void TurnOff(this MediaPlayerEntity target)
 		{
-			entity.CallService("turn_off");
+			target.CallService("turn_off");
+		}
+
+		///<summary>Turn a media player power off.</summary>
+		public static void TurnOff(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("turn_off");
 		}
 
 		///<summary>Turn a media player power on.</summary>
-		public static void TurnOn(this MediaPlayerEntity entity)
+		public static void TurnOn(this MediaPlayerEntity target)
 		{
-			entity.CallService("turn_on");
+			target.CallService("turn_on");
+		}
+
+		///<summary>Turn a media player power on.</summary>
+		public static void TurnOn(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("turn_on");
 		}
 
 		///<summary>Unjoin the player from a group. Only works on platforms with support for player groups.</summary>
-		public static void Unjoin(this MediaPlayerEntity entity)
+		public static void Unjoin(this MediaPlayerEntity target)
 		{
-			entity.CallService("unjoin");
+			target.CallService("unjoin");
+		}
+
+		///<summary>Unjoin the player from a group. Only works on platforms with support for player groups.</summary>
+		public static void Unjoin(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("unjoin");
 		}
 
 		///<summary>Turn a media player volume down.</summary>
-		public static void VolumeDown(this MediaPlayerEntity entity)
+		public static void VolumeDown(this MediaPlayerEntity target)
 		{
-			entity.CallService("volume_down");
+			target.CallService("volume_down");
+		}
+
+		///<summary>Turn a media player volume down.</summary>
+		public static void VolumeDown(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("volume_down");
 		}
 
 		///<summary>Mute a media player's volume.</summary>
-		public static void VolumeMute(this MediaPlayerEntity entity, MediaPlayerVolumeMuteParameters data)
+		public static void VolumeMute(this MediaPlayerEntity target, MediaPlayerVolumeMuteParameters data)
 		{
-			entity.CallService("volume_mute", data);
+			target.CallService("volume_mute", data);
 		}
 
 		///<summary>Mute a media player's volume.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void VolumeMute(this IEnumerable<MediaPlayerEntity> target, MediaPlayerVolumeMuteParameters data)
+		{
+			target.CallService("volume_mute", data);
+		}
+
+		///<summary>Mute a media player's volume.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="isVolumeMuted">True/false for mute/unmute.</param>
-		public static void VolumeMute(this MediaPlayerEntity entity, bool @isVolumeMuted)
+		public static void VolumeMute(this MediaPlayerEntity target, bool @isVolumeMuted)
 		{
-			entity.CallService("volume_mute", new MediaPlayerVolumeMuteParameters{IsVolumeMuted = @isVolumeMuted});
+			target.CallService("volume_mute", new MediaPlayerVolumeMuteParameters{IsVolumeMuted = @isVolumeMuted});
+		}
+
+		///<summary>Mute a media player's volume.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="isVolumeMuted">True/false for mute/unmute.</param>
+		public static void VolumeMute(this IEnumerable<MediaPlayerEntity> target, bool @isVolumeMuted)
+		{
+			target.CallService("volume_mute", new MediaPlayerVolumeMuteParameters{IsVolumeMuted = @isVolumeMuted});
 		}
 
 		///<summary>Set a media player's volume level.</summary>
-		public static void VolumeSet(this MediaPlayerEntity entity, MediaPlayerVolumeSetParameters data)
+		public static void VolumeSet(this MediaPlayerEntity target, MediaPlayerVolumeSetParameters data)
 		{
-			entity.CallService("volume_set", data);
+			target.CallService("volume_set", data);
 		}
 
 		///<summary>Set a media player's volume level.</summary>
-		///<param name="entity">The MediaPlayerEntity to call this service for</param>
+		public static void VolumeSet(this IEnumerable<MediaPlayerEntity> target, MediaPlayerVolumeSetParameters data)
+		{
+			target.CallService("volume_set", data);
+		}
+
+		///<summary>Set a media player's volume level.</summary>
+		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="volumeLevel">Volume level to set as float.</param>
-		public static void VolumeSet(this MediaPlayerEntity entity, double @volumeLevel)
+		public static void VolumeSet(this MediaPlayerEntity target, double @volumeLevel)
 		{
-			entity.CallService("volume_set", new MediaPlayerVolumeSetParameters{VolumeLevel = @volumeLevel});
+			target.CallService("volume_set", new MediaPlayerVolumeSetParameters{VolumeLevel = @volumeLevel});
+		}
+
+		///<summary>Set a media player's volume level.</summary>
+		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
+		///<param name="volumeLevel">Volume level to set as float.</param>
+		public static void VolumeSet(this IEnumerable<MediaPlayerEntity> target, double @volumeLevel)
+		{
+			target.CallService("volume_set", new MediaPlayerVolumeSetParameters{VolumeLevel = @volumeLevel});
 		}
 
 		///<summary>Turn a media player volume up.</summary>
-		public static void VolumeUp(this MediaPlayerEntity entity)
+		public static void VolumeUp(this MediaPlayerEntity target)
 		{
-			entity.CallService("volume_up");
+			target.CallService("volume_up");
+		}
+
+		///<summary>Turn a media player volume up.</summary>
+		public static void VolumeUp(this IEnumerable<MediaPlayerEntity> target)
+		{
+			target.CallService("volume_up");
 		}
 	}
 
 	public static class RemoteEntityExtensionMethods
 	{
 		///<summary>Deletes a command or a list of commands from the database.</summary>
-		public static void DeleteCommand(this RemoteEntity entity, RemoteDeleteCommandParameters data)
+		public static void DeleteCommand(this RemoteEntity target, RemoteDeleteCommandParameters data)
 		{
-			entity.CallService("delete_command", data);
+			target.CallService("delete_command", data);
 		}
 
 		///<summary>Deletes a command or a list of commands from the database.</summary>
-		///<param name="entity">The RemoteEntity to call this service for</param>
+		public static void DeleteCommand(this IEnumerable<RemoteEntity> target, RemoteDeleteCommandParameters data)
+		{
+			target.CallService("delete_command", data);
+		}
+
+		///<summary>Deletes a command or a list of commands from the database.</summary>
+		///<param name="target">The RemoteEntity to call this service for</param>
 		///<param name="device">Name of the device from which commands will be deleted. eg: television</param>
 		///<param name="command">A single command or a list of commands to delete. eg: Mute</param>
-		public static void DeleteCommand(this RemoteEntity entity, object @command, string? @device = null)
+		public static void DeleteCommand(this RemoteEntity target, object @command, string? @device = null)
 		{
-			entity.CallService("delete_command", new RemoteDeleteCommandParameters{Device = @device, Command = @command});
+			target.CallService("delete_command", new RemoteDeleteCommandParameters{Device = @device, Command = @command});
+		}
+
+		///<summary>Deletes a command or a list of commands from the database.</summary>
+		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
+		///<param name="device">Name of the device from which commands will be deleted. eg: television</param>
+		///<param name="command">A single command or a list of commands to delete. eg: Mute</param>
+		public static void DeleteCommand(this IEnumerable<RemoteEntity> target, object @command, string? @device = null)
+		{
+			target.CallService("delete_command", new RemoteDeleteCommandParameters{Device = @device, Command = @command});
 		}
 
 		///<summary>Learns a command or a list of commands from a device.</summary>
-		public static void LearnCommand(this RemoteEntity entity, RemoteLearnCommandParameters data)
+		public static void LearnCommand(this RemoteEntity target, RemoteLearnCommandParameters data)
 		{
-			entity.CallService("learn_command", data);
+			target.CallService("learn_command", data);
 		}
 
 		///<summary>Learns a command or a list of commands from a device.</summary>
-		///<param name="entity">The RemoteEntity to call this service for</param>
+		public static void LearnCommand(this IEnumerable<RemoteEntity> target, RemoteLearnCommandParameters data)
+		{
+			target.CallService("learn_command", data);
+		}
+
+		///<summary>Learns a command or a list of commands from a device.</summary>
+		///<param name="target">The RemoteEntity to call this service for</param>
 		///<param name="device">Device ID to learn command from. eg: television</param>
 		///<param name="command">A single command or a list of commands to learn. eg: Turn on</param>
 		///<param name="commandType">The type of command to be learned.</param>
 		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
 		///<param name="timeout">Timeout for the command to be learned.</param>
-		public static void LearnCommand(this RemoteEntity entity, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
+		public static void LearnCommand(this RemoteEntity target, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
 		{
-			entity.CallService("learn_command", new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
+			target.CallService("learn_command", new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
+		}
+
+		///<summary>Learns a command or a list of commands from a device.</summary>
+		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
+		///<param name="device">Device ID to learn command from. eg: television</param>
+		///<param name="command">A single command or a list of commands to learn. eg: Turn on</param>
+		///<param name="commandType">The type of command to be learned.</param>
+		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
+		///<param name="timeout">Timeout for the command to be learned.</param>
+		public static void LearnCommand(this IEnumerable<RemoteEntity> target, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
+		{
+			target.CallService("learn_command", new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
 		}
 
 		///<summary>Sends a command or a list of commands to a device.</summary>
-		public static void SendCommand(this RemoteEntity entity, RemoteSendCommandParameters data)
+		public static void SendCommand(this RemoteEntity target, RemoteSendCommandParameters data)
 		{
-			entity.CallService("send_command", data);
+			target.CallService("send_command", data);
 		}
 
 		///<summary>Sends a command or a list of commands to a device.</summary>
-		///<param name="entity">The RemoteEntity to call this service for</param>
+		public static void SendCommand(this IEnumerable<RemoteEntity> target, RemoteSendCommandParameters data)
+		{
+			target.CallService("send_command", data);
+		}
+
+		///<summary>Sends a command or a list of commands to a device.</summary>
+		///<param name="target">The RemoteEntity to call this service for</param>
 		///<param name="device">Device ID to send command to. eg: 32756745</param>
 		///<param name="command">A single command or a list of commands to send. eg: Play</param>
 		///<param name="numRepeats">The number of times you want to repeat the command(s).</param>
 		///<param name="delaySecs">The time you want to wait in between repeated commands.</param>
 		///<param name="holdSecs">The time you want to have it held before the release is send.</param>
-		public static void SendCommand(this RemoteEntity entity, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
+		public static void SendCommand(this RemoteEntity target, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
 		{
-			entity.CallService("send_command", new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
+			target.CallService("send_command", new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
+		}
+
+		///<summary>Sends a command or a list of commands to a device.</summary>
+		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
+		///<param name="device">Device ID to send command to. eg: 32756745</param>
+		///<param name="command">A single command or a list of commands to send. eg: Play</param>
+		///<param name="numRepeats">The number of times you want to repeat the command(s).</param>
+		///<param name="delaySecs">The time you want to wait in between repeated commands.</param>
+		///<param name="holdSecs">The time you want to have it held before the release is send.</param>
+		public static void SendCommand(this IEnumerable<RemoteEntity> target, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
+		{
+			target.CallService("send_command", new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
 		}
 
 		///<summary>Toggles a device.</summary>
-		public static void Toggle(this RemoteEntity entity)
+		public static void Toggle(this RemoteEntity target)
 		{
-			entity.CallService("toggle");
+			target.CallService("toggle");
+		}
+
+		///<summary>Toggles a device.</summary>
+		public static void Toggle(this IEnumerable<RemoteEntity> target)
+		{
+			target.CallService("toggle");
 		}
 
 		///<summary>Sends the Power Off Command.</summary>
-		public static void TurnOff(this RemoteEntity entity)
+		public static void TurnOff(this RemoteEntity target)
 		{
-			entity.CallService("turn_off");
+			target.CallService("turn_off");
+		}
+
+		///<summary>Sends the Power Off Command.</summary>
+		public static void TurnOff(this IEnumerable<RemoteEntity> target)
+		{
+			target.CallService("turn_off");
 		}
 
 		///<summary>Sends the Power On Command.</summary>
-		public static void TurnOn(this RemoteEntity entity, RemoteTurnOnParameters data)
+		public static void TurnOn(this RemoteEntity target, RemoteTurnOnParameters data)
 		{
-			entity.CallService("turn_on", data);
+			target.CallService("turn_on", data);
 		}
 
 		///<summary>Sends the Power On Command.</summary>
-		///<param name="entity">The RemoteEntity to call this service for</param>
+		public static void TurnOn(this IEnumerable<RemoteEntity> target, RemoteTurnOnParameters data)
+		{
+			target.CallService("turn_on", data);
+		}
+
+		///<summary>Sends the Power On Command.</summary>
+		///<param name="target">The RemoteEntity to call this service for</param>
 		///<param name="activity">Activity ID or Activity Name to start. eg: BedroomTV</param>
-		public static void TurnOn(this RemoteEntity entity, string? @activity = null)
+		public static void TurnOn(this RemoteEntity target, string? @activity = null)
 		{
-			entity.CallService("turn_on", new RemoteTurnOnParameters{Activity = @activity});
+			target.CallService("turn_on", new RemoteTurnOnParameters{Activity = @activity});
+		}
+
+		///<summary>Sends the Power On Command.</summary>
+		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
+		///<param name="activity">Activity ID or Activity Name to start. eg: BedroomTV</param>
+		public static void TurnOn(this IEnumerable<RemoteEntity> target, string? @activity = null)
+		{
+			target.CallService("turn_on", new RemoteTurnOnParameters{Activity = @activity});
 		}
 	}
 
 	public static class SelectEntityExtensionMethods
 	{
 		///<summary>Select an option of an select entity.</summary>
-		public static void SelectOption(this SelectEntity entity, SelectSelectOptionParameters data)
+		public static void SelectOption(this SelectEntity target, SelectSelectOptionParameters data)
 		{
-			entity.CallService("select_option", data);
+			target.CallService("select_option", data);
 		}
 
 		///<summary>Select an option of an select entity.</summary>
-		///<param name="entity">The SelectEntity to call this service for</param>
-		///<param name="option">Option to be selected. eg: "Item A"</param>
-		public static void SelectOption(this SelectEntity entity, string @option)
+		public static void SelectOption(this IEnumerable<SelectEntity> target, SelectSelectOptionParameters data)
 		{
-			entity.CallService("select_option", new SelectSelectOptionParameters{Option = @option});
+			target.CallService("select_option", data);
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		///<param name="target">The SelectEntity to call this service for</param>
+		///<param name="option">Option to be selected. eg: "Item A"</param>
+		public static void SelectOption(this SelectEntity target, string @option)
+		{
+			target.CallService("select_option", new SelectSelectOptionParameters{Option = @option});
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		///<param name="target">The IEnumerable<SelectEntity> to call this service for</param>
+		///<param name="option">Option to be selected. eg: "Item A"</param>
+		public static void SelectOption(this IEnumerable<SelectEntity> target, string @option)
+		{
+			target.CallService("select_option", new SelectSelectOptionParameters{Option = @option});
 		}
 	}
 
 	public static class SwitchEntityExtensionMethods
 	{
 		///<summary>Toggles a switch state</summary>
-		public static void Toggle(this SwitchEntity entity)
+		public static void Toggle(this SwitchEntity target)
 		{
-			entity.CallService("toggle");
+			target.CallService("toggle");
+		}
+
+		///<summary>Toggles a switch state</summary>
+		public static void Toggle(this IEnumerable<SwitchEntity> target)
+		{
+			target.CallService("toggle");
 		}
 
 		///<summary>Turn a switch off</summary>
-		public static void TurnOff(this SwitchEntity entity)
+		public static void TurnOff(this SwitchEntity target)
 		{
-			entity.CallService("turn_off");
+			target.CallService("turn_off");
+		}
+
+		///<summary>Turn a switch off</summary>
+		public static void TurnOff(this IEnumerable<SwitchEntity> target)
+		{
+			target.CallService("turn_off");
 		}
 
 		///<summary>Turn a switch on</summary>
-		public static void TurnOn(this SwitchEntity entity)
+		public static void TurnOn(this SwitchEntity target)
 		{
-			entity.CallService("turn_on");
+			target.CallService("turn_on");
+		}
+
+		///<summary>Turn a switch on</summary>
+		public static void TurnOn(this IEnumerable<SwitchEntity> target)
+		{
+			target.CallService("turn_on");
 		}
 	}
 
 	public static class TimerEntityExtensionMethods
 	{
 		///<summary>Cancel a timer.</summary>
-		public static void Cancel(this TimerEntity entity)
+		public static void Cancel(this TimerEntity target)
 		{
-			entity.CallService("cancel");
+			target.CallService("cancel");
+		}
+
+		///<summary>Cancel a timer.</summary>
+		public static void Cancel(this IEnumerable<TimerEntity> target)
+		{
+			target.CallService("cancel");
 		}
 
 		///<summary>Finish a timer.</summary>
-		public static void Finish(this TimerEntity entity)
+		public static void Finish(this TimerEntity target)
 		{
-			entity.CallService("finish");
+			target.CallService("finish");
+		}
+
+		///<summary>Finish a timer.</summary>
+		public static void Finish(this IEnumerable<TimerEntity> target)
+		{
+			target.CallService("finish");
 		}
 
 		///<summary>Pause a timer.</summary>
-		public static void Pause(this TimerEntity entity)
+		public static void Pause(this TimerEntity target)
 		{
-			entity.CallService("pause");
+			target.CallService("pause");
+		}
+
+		///<summary>Pause a timer.</summary>
+		public static void Pause(this IEnumerable<TimerEntity> target)
+		{
+			target.CallService("pause");
 		}
 
 		///<summary>Start a timer</summary>
-		public static void Start(this TimerEntity entity, TimerStartParameters data)
+		public static void Start(this TimerEntity target, TimerStartParameters data)
 		{
-			entity.CallService("start", data);
+			target.CallService("start", data);
 		}
 
 		///<summary>Start a timer</summary>
-		///<param name="entity">The TimerEntity to call this service for</param>
+		public static void Start(this IEnumerable<TimerEntity> target, TimerStartParameters data)
+		{
+			target.CallService("start", data);
+		}
+
+		///<summary>Start a timer</summary>
+		///<param name="target">The TimerEntity to call this service for</param>
 		///<param name="duration">Duration the timer requires to finish. [optional] eg: 00:01:00 or 60</param>
-		public static void Start(this TimerEntity entity, string? @duration = null)
+		public static void Start(this TimerEntity target, string? @duration = null)
 		{
-			entity.CallService("start", new TimerStartParameters{Duration = @duration});
+			target.CallService("start", new TimerStartParameters{Duration = @duration});
+		}
+
+		///<summary>Start a timer</summary>
+		///<param name="target">The IEnumerable<TimerEntity> to call this service for</param>
+		///<param name="duration">Duration the timer requires to finish. [optional] eg: 00:01:00 or 60</param>
+		public static void Start(this IEnumerable<TimerEntity> target, string? @duration = null)
+		{
+			target.CallService("start", new TimerStartParameters{Duration = @duration});
 		}
 	}
 
 	public static class VacuumEntityExtensionMethods
 	{
 		///<summary>Tell the vacuum cleaner to do a spot clean-up.</summary>
-		public static void CleanSpot(this VacuumEntity entity)
+		public static void CleanSpot(this VacuumEntity target)
 		{
-			entity.CallService("clean_spot");
+			target.CallService("clean_spot");
+		}
+
+		///<summary>Tell the vacuum cleaner to do a spot clean-up.</summary>
+		public static void CleanSpot(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("clean_spot");
 		}
 
 		///<summary>Locate the vacuum cleaner robot.</summary>
-		public static void Locate(this VacuumEntity entity)
+		public static void Locate(this VacuumEntity target)
 		{
-			entity.CallService("locate");
+			target.CallService("locate");
+		}
+
+		///<summary>Locate the vacuum cleaner robot.</summary>
+		public static void Locate(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("locate");
 		}
 
 		///<summary>Pause the cleaning task.</summary>
-		public static void Pause(this VacuumEntity entity)
+		public static void Pause(this VacuumEntity target)
 		{
-			entity.CallService("pause");
+			target.CallService("pause");
+		}
+
+		///<summary>Pause the cleaning task.</summary>
+		public static void Pause(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("pause");
 		}
 
 		///<summary>Tell the vacuum cleaner to return to its dock.</summary>
-		public static void ReturnToBase(this VacuumEntity entity)
+		public static void ReturnToBase(this VacuumEntity target)
 		{
-			entity.CallService("return_to_base");
+			target.CallService("return_to_base");
+		}
+
+		///<summary>Tell the vacuum cleaner to return to its dock.</summary>
+		public static void ReturnToBase(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("return_to_base");
 		}
 
 		///<summary>Send a raw command to the vacuum cleaner.</summary>
-		public static void SendCommand(this VacuumEntity entity, VacuumSendCommandParameters data)
+		public static void SendCommand(this VacuumEntity target, VacuumSendCommandParameters data)
 		{
-			entity.CallService("send_command", data);
+			target.CallService("send_command", data);
 		}
 
 		///<summary>Send a raw command to the vacuum cleaner.</summary>
-		///<param name="entity">The VacuumEntity to call this service for</param>
+		public static void SendCommand(this IEnumerable<VacuumEntity> target, VacuumSendCommandParameters data)
+		{
+			target.CallService("send_command", data);
+		}
+
+		///<summary>Send a raw command to the vacuum cleaner.</summary>
+		///<param name="target">The VacuumEntity to call this service for</param>
 		///<param name="command">Command to execute. eg: set_dnd_timer</param>
 		///<param name="params">Parameters for the command. eg: { "key": "value" }</param>
-		public static void SendCommand(this VacuumEntity entity, string @command, object? @params = null)
+		public static void SendCommand(this VacuumEntity target, string @command, object? @params = null)
 		{
-			entity.CallService("send_command", new VacuumSendCommandParameters{Command = @command, Params = @params});
+			target.CallService("send_command", new VacuumSendCommandParameters{Command = @command, Params = @params});
+		}
+
+		///<summary>Send a raw command to the vacuum cleaner.</summary>
+		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
+		///<param name="command">Command to execute. eg: set_dnd_timer</param>
+		///<param name="params">Parameters for the command. eg: { "key": "value" }</param>
+		public static void SendCommand(this IEnumerable<VacuumEntity> target, string @command, object? @params = null)
+		{
+			target.CallService("send_command", new VacuumSendCommandParameters{Command = @command, Params = @params});
 		}
 
 		///<summary>Set the fan speed of the vacuum cleaner.</summary>
-		public static void SetFanSpeed(this VacuumEntity entity, VacuumSetFanSpeedParameters data)
+		public static void SetFanSpeed(this VacuumEntity target, VacuumSetFanSpeedParameters data)
 		{
-			entity.CallService("set_fan_speed", data);
+			target.CallService("set_fan_speed", data);
 		}
 
 		///<summary>Set the fan speed of the vacuum cleaner.</summary>
-		///<param name="entity">The VacuumEntity to call this service for</param>
+		public static void SetFanSpeed(this IEnumerable<VacuumEntity> target, VacuumSetFanSpeedParameters data)
+		{
+			target.CallService("set_fan_speed", data);
+		}
+
+		///<summary>Set the fan speed of the vacuum cleaner.</summary>
+		///<param name="target">The VacuumEntity to call this service for</param>
 		///<param name="fanSpeed">Platform dependent vacuum cleaner fan speed, with speed steps, like 'medium' or by percentage, between 0 and 100. eg: low</param>
-		public static void SetFanSpeed(this VacuumEntity entity, string @fanSpeed)
+		public static void SetFanSpeed(this VacuumEntity target, string @fanSpeed)
 		{
-			entity.CallService("set_fan_speed", new VacuumSetFanSpeedParameters{FanSpeed = @fanSpeed});
+			target.CallService("set_fan_speed", new VacuumSetFanSpeedParameters{FanSpeed = @fanSpeed});
+		}
+
+		///<summary>Set the fan speed of the vacuum cleaner.</summary>
+		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
+		///<param name="fanSpeed">Platform dependent vacuum cleaner fan speed, with speed steps, like 'medium' or by percentage, between 0 and 100. eg: low</param>
+		public static void SetFanSpeed(this IEnumerable<VacuumEntity> target, string @fanSpeed)
+		{
+			target.CallService("set_fan_speed", new VacuumSetFanSpeedParameters{FanSpeed = @fanSpeed});
 		}
 
 		///<summary>Start or resume the cleaning task.</summary>
-		public static void Start(this VacuumEntity entity)
+		public static void Start(this VacuumEntity target)
 		{
-			entity.CallService("start");
+			target.CallService("start");
+		}
+
+		///<summary>Start or resume the cleaning task.</summary>
+		public static void Start(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("start");
 		}
 
 		///<summary>Start, pause, or resume the cleaning task.</summary>
-		public static void StartPause(this VacuumEntity entity)
+		public static void StartPause(this VacuumEntity target)
 		{
-			entity.CallService("start_pause");
+			target.CallService("start_pause");
+		}
+
+		///<summary>Start, pause, or resume the cleaning task.</summary>
+		public static void StartPause(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("start_pause");
 		}
 
 		///<summary>Stop the current cleaning task.</summary>
-		public static void Stop(this VacuumEntity entity)
+		public static void Stop(this VacuumEntity target)
 		{
-			entity.CallService("stop");
+			target.CallService("stop");
+		}
+
+		///<summary>Stop the current cleaning task.</summary>
+		public static void Stop(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("stop");
 		}
 
 		///<summary>Stop the current cleaning task and return to home.</summary>
-		public static void TurnOff(this VacuumEntity entity)
+		public static void TurnOff(this VacuumEntity target)
 		{
-			entity.CallService("turn_off");
+			target.CallService("turn_off");
+		}
+
+		///<summary>Stop the current cleaning task and return to home.</summary>
+		public static void TurnOff(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("turn_off");
 		}
 
 		///<summary>Start a new cleaning task.</summary>
-		public static void TurnOn(this VacuumEntity entity)
+		public static void TurnOn(this VacuumEntity target)
 		{
-			entity.CallService("turn_on");
+			target.CallService("turn_on");
+		}
+
+		///<summary>Start a new cleaning task.</summary>
+		public static void TurnOn(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("turn_on");
 		}
 	}
 
 	public static class XiaomiMiioEntityExtensionMethods
 	{
 		///<summary>Start cleaning of the specified segment(s).</summary>
-		public static void VacuumCleanSegment(this VacuumEntity entity, XiaomiMiioVacuumCleanSegmentParameters data)
+		public static void VacuumCleanSegment(this VacuumEntity target, XiaomiMiioVacuumCleanSegmentParameters data)
 		{
-			entity.CallService("vacuum_clean_segment", data);
+			target.CallService("vacuum_clean_segment", data);
 		}
 
 		///<summary>Start cleaning of the specified segment(s).</summary>
-		///<param name="entity">The VacuumEntity to call this service for</param>
+		public static void VacuumCleanSegment(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumCleanSegmentParameters data)
+		{
+			target.CallService("vacuum_clean_segment", data);
+		}
+
+		///<summary>Start cleaning of the specified segment(s).</summary>
+		///<param name="target">The VacuumEntity to call this service for</param>
 		///<param name="segments">Segments. eg: [1,2]</param>
-		public static void VacuumCleanSegment(this VacuumEntity entity, object? @segments = null)
+		public static void VacuumCleanSegment(this VacuumEntity target, object? @segments = null)
 		{
-			entity.CallService("vacuum_clean_segment", new XiaomiMiioVacuumCleanSegmentParameters{Segments = @segments});
+			target.CallService("vacuum_clean_segment", new XiaomiMiioVacuumCleanSegmentParameters{Segments = @segments});
+		}
+
+		///<summary>Start cleaning of the specified segment(s).</summary>
+		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
+		///<param name="segments">Segments. eg: [1,2]</param>
+		public static void VacuumCleanSegment(this IEnumerable<VacuumEntity> target, object? @segments = null)
+		{
+			target.CallService("vacuum_clean_segment", new XiaomiMiioVacuumCleanSegmentParameters{Segments = @segments});
 		}
 
 		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		public static void VacuumCleanZone(this VacuumEntity entity, XiaomiMiioVacuumCleanZoneParameters data)
+		public static void VacuumCleanZone(this VacuumEntity target, XiaomiMiioVacuumCleanZoneParameters data)
 		{
-			entity.CallService("vacuum_clean_zone", data);
+			target.CallService("vacuum_clean_zone", data);
 		}
 
 		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		///<param name="entity">The VacuumEntity to call this service for</param>
+		public static void VacuumCleanZone(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumCleanZoneParameters data)
+		{
+			target.CallService("vacuum_clean_zone", data);
+		}
+
+		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
+		///<param name="target">The VacuumEntity to call this service for</param>
 		///<param name="zone">Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</param>
 		///<param name="repeats">Number of cleaning repeats for each zone.</param>
-		public static void VacuumCleanZone(this VacuumEntity entity, object? @zone = null, long? @repeats = null)
+		public static void VacuumCleanZone(this VacuumEntity target, object? @zone = null, long? @repeats = null)
 		{
-			entity.CallService("vacuum_clean_zone", new XiaomiMiioVacuumCleanZoneParameters{Zone = @zone, Repeats = @repeats});
+			target.CallService("vacuum_clean_zone", new XiaomiMiioVacuumCleanZoneParameters{Zone = @zone, Repeats = @repeats});
+		}
+
+		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
+		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
+		///<param name="zone">Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</param>
+		///<param name="repeats">Number of cleaning repeats for each zone.</param>
+		public static void VacuumCleanZone(this IEnumerable<VacuumEntity> target, object? @zone = null, long? @repeats = null)
+		{
+			target.CallService("vacuum_clean_zone", new XiaomiMiioVacuumCleanZoneParameters{Zone = @zone, Repeats = @repeats});
 		}
 
 		///<summary>Go to the specified coordinates.</summary>
-		public static void VacuumGoto(this VacuumEntity entity, XiaomiMiioVacuumGotoParameters data)
+		public static void VacuumGoto(this VacuumEntity target, XiaomiMiioVacuumGotoParameters data)
 		{
-			entity.CallService("vacuum_goto", data);
+			target.CallService("vacuum_goto", data);
 		}
 
 		///<summary>Go to the specified coordinates.</summary>
-		///<param name="entity">The VacuumEntity to call this service for</param>
+		public static void VacuumGoto(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumGotoParameters data)
+		{
+			target.CallService("vacuum_goto", data);
+		}
+
+		///<summary>Go to the specified coordinates.</summary>
+		///<param name="target">The VacuumEntity to call this service for</param>
 		///<param name="xCoord">x-coordinate. eg: 27500</param>
 		///<param name="yCoord">y-coordinate. eg: 32000</param>
-		public static void VacuumGoto(this VacuumEntity entity, string? @xCoord = null, string? @yCoord = null)
+		public static void VacuumGoto(this VacuumEntity target, string? @xCoord = null, string? @yCoord = null)
 		{
-			entity.CallService("vacuum_goto", new XiaomiMiioVacuumGotoParameters{XCoord = @xCoord, YCoord = @yCoord});
+			target.CallService("vacuum_goto", new XiaomiMiioVacuumGotoParameters{XCoord = @xCoord, YCoord = @yCoord});
+		}
+
+		///<summary>Go to the specified coordinates.</summary>
+		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
+		///<param name="xCoord">x-coordinate. eg: 27500</param>
+		///<param name="yCoord">y-coordinate. eg: 32000</param>
+		public static void VacuumGoto(this IEnumerable<VacuumEntity> target, string? @xCoord = null, string? @yCoord = null)
+		{
+			target.CallService("vacuum_goto", new XiaomiMiioVacuumGotoParameters{XCoord = @xCoord, YCoord = @yCoord});
 		}
 
 		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		public static void VacuumRemoteControlMove(this VacuumEntity entity, XiaomiMiioVacuumRemoteControlMoveParameters data)
+		public static void VacuumRemoteControlMove(this VacuumEntity target, XiaomiMiioVacuumRemoteControlMoveParameters data)
 		{
-			entity.CallService("vacuum_remote_control_move", data);
+			target.CallService("vacuum_remote_control_move", data);
 		}
 
 		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		///<param name="entity">The VacuumEntity to call this service for</param>
+		public static void VacuumRemoteControlMove(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumRemoteControlMoveParameters data)
+		{
+			target.CallService("vacuum_remote_control_move", data);
+		}
+
+		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
+		///<param name="target">The VacuumEntity to call this service for</param>
 		///<param name="velocity">Speed.</param>
 		///<param name="rotation">Rotation, between -179 degrees and 179 degrees.</param>
 		///<param name="duration">Duration of the movement.</param>
-		public static void VacuumRemoteControlMove(this VacuumEntity entity, double? @velocity = null, long? @rotation = null, long? @duration = null)
+		public static void VacuumRemoteControlMove(this VacuumEntity target, double? @velocity = null, long? @rotation = null, long? @duration = null)
 		{
-			entity.CallService("vacuum_remote_control_move", new XiaomiMiioVacuumRemoteControlMoveParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
+			target.CallService("vacuum_remote_control_move", new XiaomiMiioVacuumRemoteControlMoveParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
+		}
+
+		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
+		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
+		///<param name="velocity">Speed.</param>
+		///<param name="rotation">Rotation, between -179 degrees and 179 degrees.</param>
+		///<param name="duration">Duration of the movement.</param>
+		public static void VacuumRemoteControlMove(this IEnumerable<VacuumEntity> target, double? @velocity = null, long? @rotation = null, long? @duration = null)
+		{
+			target.CallService("vacuum_remote_control_move", new XiaomiMiioVacuumRemoteControlMoveParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
 		}
 
 		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		public static void VacuumRemoteControlMoveStep(this VacuumEntity entity, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
+		public static void VacuumRemoteControlMoveStep(this VacuumEntity target, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
 		{
-			entity.CallService("vacuum_remote_control_move_step", data);
+			target.CallService("vacuum_remote_control_move_step", data);
 		}
 
 		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		///<param name="entity">The VacuumEntity to call this service for</param>
+		public static void VacuumRemoteControlMoveStep(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
+		{
+			target.CallService("vacuum_remote_control_move_step", data);
+		}
+
+		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
+		///<param name="target">The VacuumEntity to call this service for</param>
 		///<param name="velocity">Speed.</param>
 		///<param name="rotation">Rotation.</param>
 		///<param name="duration">Duration of the movement.</param>
-		public static void VacuumRemoteControlMoveStep(this VacuumEntity entity, double? @velocity = null, long? @rotation = null, long? @duration = null)
+		public static void VacuumRemoteControlMoveStep(this VacuumEntity target, double? @velocity = null, long? @rotation = null, long? @duration = null)
 		{
-			entity.CallService("vacuum_remote_control_move_step", new XiaomiMiioVacuumRemoteControlMoveStepParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
+			target.CallService("vacuum_remote_control_move_step", new XiaomiMiioVacuumRemoteControlMoveStepParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
+		}
+
+		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
+		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
+		///<param name="velocity">Speed.</param>
+		///<param name="rotation">Rotation.</param>
+		///<param name="duration">Duration of the movement.</param>
+		public static void VacuumRemoteControlMoveStep(this IEnumerable<VacuumEntity> target, double? @velocity = null, long? @rotation = null, long? @duration = null)
+		{
+			target.CallService("vacuum_remote_control_move_step", new XiaomiMiioVacuumRemoteControlMoveStepParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
 		}
 
 		///<summary>Start remote control of the vacuum cleaner. You can then move it with `remote_control_move`, when done call `remote_control_stop`.</summary>
-		public static void VacuumRemoteControlStart(this VacuumEntity entity)
+		public static void VacuumRemoteControlStart(this VacuumEntity target)
 		{
-			entity.CallService("vacuum_remote_control_start");
+			target.CallService("vacuum_remote_control_start");
+		}
+
+		///<summary>Start remote control of the vacuum cleaner. You can then move it with `remote_control_move`, when done call `remote_control_stop`.</summary>
+		public static void VacuumRemoteControlStart(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("vacuum_remote_control_start");
 		}
 
 		///<summary>Stop remote control mode of the vacuum cleaner.</summary>
-		public static void VacuumRemoteControlStop(this VacuumEntity entity)
+		public static void VacuumRemoteControlStop(this VacuumEntity target)
 		{
-			entity.CallService("vacuum_remote_control_stop");
+			target.CallService("vacuum_remote_control_stop");
+		}
+
+		///<summary>Stop remote control mode of the vacuum cleaner.</summary>
+		public static void VacuumRemoteControlStop(this IEnumerable<VacuumEntity> target)
+		{
+			target.CallService("vacuum_remote_control_stop");
 		}
 	}
 }

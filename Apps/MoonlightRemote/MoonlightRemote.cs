@@ -125,7 +125,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 
 	private async void ResetBluetooth()
 	{
-		await _apiClient.ResetBluetoothAsync();
+		var result = await _apiClient.ResetBluetoothAsync();
 	}
 
 	private MoonlightHost? GetHost(string? host) => Config.Hosts.FirstOrDefault(h => h.Host == host);
