@@ -6,9 +6,8 @@ HomeAutomations.Apps.Vacuum.VacuumConfig:
   ResetCrontab: 0 0 * * *
   Reminder:
     Tag: vacuum
-    Title: Staubsauger
+    Title: Fantenrüssel
     Template: Der Robo möchte saugen. Ist alles aufgeräumt?
-    Service: notify
     Actions:
       - Action: VACUUM_START
         Title: Saugen starten
