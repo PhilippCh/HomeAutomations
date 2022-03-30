@@ -8,7 +8,7 @@ HomeAutomations.Apps.Vacuum.VacuumConfig:
     Tag: vacuum
     Title: Staubsauger
     Template: Der Robo möchte saugen. Ist alles aufgeräumt?
-    Service: mobile_app_iphone_philipp
+    Service: notify
     Actions:
       - Action: VACUUM_START
         Title: Saugen starten
