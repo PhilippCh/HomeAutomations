@@ -1,22 +1,13 @@
-﻿using HomeAssistant.Automations.Models;
-using HomeAutomations.Models;
-using JetBrains.Annotations;
+﻿using HomeAutomations.Models;
+using HomeAutomations.Models.Generated;
 
-namespace HomeAutomations.Apps.Vacuum
+namespace HomeAutomations.Apps.Vacuum;
+
+public record VacuumConfig : Config
 {
-	[UsedImplicitly]
-	public class VacuumNotificationConfig
-	{
-		public Notification Reminder { get; init; }
-		public Notification CleanBedroom { get; init; }
-		public Notification EmptyBin { get; init; }
-	}
-
-	public record VacuumConfig : Config
-	{
-		public string Entity { get; init; }
-		public string CleaningSchedule { get; init; }
-		public TimeSpan ReminderInterval { get; init; }
-		public VacuumNotificationConfig Notifications { get; init; }
-	}
+	public VacuumEntity Vacuum { get; init; }
+	public string ReminderCrontab { get; init; }
+	public string ResetCrontab { get; init; }
+	public TimeSpan ReminderActiveInterval { get; init; }
+	public Notification Reminder { get; init; }
 }

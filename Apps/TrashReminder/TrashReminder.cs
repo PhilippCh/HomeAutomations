@@ -10,7 +10,7 @@ using Ical.Net;
 using Ical.Net.CalendarComponents;
 using Ical.Net.DataTypes;
 using RestSharp;
-using ObservableExtensions = HomeAssistant.Automations.Extensions.ObservableExtensions;
+using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.TrashReminder;
 

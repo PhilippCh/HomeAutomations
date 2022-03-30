@@ -1,12 +1,22 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Concurrency;
-using System.Reactive.Linq;
 using System.Threading;
+using HomeAutomations.Models;
 
-namespace HomeAssistant.Automations.Extensions
+namespace HomeAutomations.Extensions
 {
 	public static class ObservableExtensions
 	{
+		public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions)
+		{
+			return events
+				.Where(e => e.EventType == MobileAppNotificationData.EventType && e.DataElement.HasValue)
+				.Select(e => e.DataElement!.Value.GetProperty("action").GetString())
+				.Where(allowedActions.Contains)
+				.Select(a => a ?? string.Empty);
+		}
+
 		public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
 		{
 			var observable = Observable.Interval(interval);
