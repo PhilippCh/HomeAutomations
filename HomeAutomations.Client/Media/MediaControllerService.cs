@@ -21,7 +21,7 @@ public class MediaControllerService
 		_nowPlayingMediaSessionManager = nowPlayingMediaSessionManager;
 	}
 
-	public async Task TogglePlayback(IEnumerable<MediaPlayerPredicate> allowedPlayers)
+	public void TogglePlayback(IEnumerable<MediaPlayerPredicate> allowedPlayers)
 	{
 		var sessions = _nowPlayingMediaSessionManager.GetSessions()
 			.Select(s => (Session: s, MediaInfo: s.ActivateMediaPlaybackDataSource().GetMediaObjectInfo()))
@@ -33,5 +33,17 @@ public class MediaControllerService
 		{
 			session.ActivateMediaPlaybackDataSource().SendMediaPlaybackCommand(MediaPlaybackCommands.PlayPauseToggle);
 		}
+	}
+
+	public MediaStatus GetStatus()
+	{
+		var sessions = _nowPlayingMediaSessionManager.GetSessions();
+
+		return new MediaStatus
+		{
+			State = sessions.Any(s => s.ActivateMediaPlaybackDataSource().GetMediaPlaybackInfo().PlaybackState == MediaPlaybackState.Playing)
+				? MediaPlaybackState.Playing
+				: MediaPlaybackState.Unknown
+		};
 	}
 }

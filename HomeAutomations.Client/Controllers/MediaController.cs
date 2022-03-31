@@ -19,10 +19,17 @@ public class MediaController : ControllerBase
     [HttpPost]
     [Route("togglePlayback")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult> TogglePlayback([FromBody] IEnumerable<MediaPlayerPredicate> allowedPlayers)
+    public IActionResult TogglePlayback([FromBody] IEnumerable<MediaPlayerPredicate> allowedPlayers)
     {
-        await _mediaControllerService.TogglePlayback(allowedPlayers);
+        _mediaControllerService.TogglePlayback(allowedPlayers);
         return Ok();
+    }
+
+    [HttpGet]
+    [Route("status")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<MediaStatus> GetStatus()
+    {
+	    return Ok(_mediaControllerService.GetStatus());
     }
 }
