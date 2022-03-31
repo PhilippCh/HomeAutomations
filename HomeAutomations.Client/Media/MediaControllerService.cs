@@ -7,7 +7,9 @@ public record MediaPlayerPredicate
 	public string ExecutableName { get; init; }
 	public IEnumerable<string>? AllowedTitles { get; init; }
 
-	public bool Matches(string executableName, string title) => executableName.Contains(ExecutableName) && (AllowedTitles == null || AllowedTitles.Any(title.Contains));
+	public bool Matches(string executableName, string title) =>
+		executableName.Contains(ExecutableName, StringComparison.InvariantCultureIgnoreCase) &&
+		(AllowedTitles == null || AllowedTitles.Any(t => title.Contains(t, StringComparison.InvariantCultureIgnoreCase)));
 }
 
 public class MediaControllerService
