@@ -1,5 +1,6 @@
 ﻿using HomeAutomations.Client.Commands;
 using HomeAutomations.Client.Media;
+using HomeAutomations.Client.TrayIcon;
 using HomeAutomations.Client.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +17,8 @@ public class Startup
             options.InputFormatters.Insert(0, new RawJsonBodyInputFormatter());
         });
 
+        var trayIconService = new TrayIconService();
+
         services
             .AddOptions()
             .AddSwaggerGen()
@@ -23,6 +26,8 @@ public class Startup
             // Services
             .AddSingleton<CommandParser>()
             .AddSingleton<MediaControllerService>()
+            .AddSingleton<NowPlayingMediaSessionManager>()
+            .AddSingleton(trayIconService)
 
             .AddControllers()
             .AddControllersAsServices();

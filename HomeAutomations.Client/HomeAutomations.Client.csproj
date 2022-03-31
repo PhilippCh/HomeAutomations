@@ -1,21 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
-        <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+		<OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
         <Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
+      <PackageReference Include="NPSMLib" Version="0.9.14" />
       <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\MoonlightRemoteApi.Common\MoonlightRemoteApi.Common.csproj" />
-    </ItemGroup>
+	<ItemGroup>
+		<Content Include="deploy\install-client.ps1">
+			<Link>tools\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appIcon.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 
 </Project>

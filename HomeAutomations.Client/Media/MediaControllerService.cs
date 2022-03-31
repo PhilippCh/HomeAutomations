@@ -1,33 +1,35 @@
-﻿using Windows.Media.Control;
+﻿using NPSMLib;
 
 namespace HomeAutomations.Client.Media;
 
 public record MediaPlayerPredicate
 {
-    public string ExecutableName { get; init; }
-    public IEnumerable<string>? AllowedTitles { get; init; }
+	public string ExecutableName { get; init; }
+	public IEnumerable<string>? AllowedTitles { get; init; }
 
-    public bool Matches(string executableName, string title) =>
-        executableName.Contains(ExecutableName) && (AllowedTitles == null || AllowedTitles.Any(title.Contains));
+	public bool Matches(string executableName, string title) => executableName.Contains(ExecutableName) && (AllowedTitles == null || AllowedTitles.Any(title.Contains));
 }
 
 public class MediaControllerService
 {
-    public async Task TogglePlayback(IEnumerable<MediaPlayerPredicate> allowedPlayers)
-    {
-        var sessionManager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
-        var session = sessionManager.GetCurrentSession();
-        var mediaProperties = await session.TryGetMediaPropertiesAsync();
-        var sessions = sessionManager.GetSessions();
-        var mediaProperties2 = sessions.Select(async s => await s.TryGetMediaPropertiesAsync())
-            .Select(t => t.Result)
-            .ToList();
+	private readonly NowPlayingMediaSessionManager _nowPlayingMediaSessionManager;
 
-        if (!allowedPlayers.Any(p => p.Matches(session.SourceAppUserModelId, mediaProperties.Title)))
-        {
-            return;
-        }
+	public MediaControllerService(NowPlayingMediaSessionManager nowPlayingMediaSessionManager)
+	{
+		_nowPlayingMediaSessionManager = nowPlayingMediaSessionManager;
+	}
 
-        await session.TryTogglePlayPauseAsync();
-    }
+	public async Task TogglePlayback(IEnumerable<MediaPlayerPredicate> allowedPlayers)
+	{
+		var sessions = _nowPlayingMediaSessionManager.GetSessions()
+			.Select(s => (Session: s, MediaInfo: s.ActivateMediaPlaybackDataSource().GetMediaObjectInfo()))
+			.Where(st => !string.IsNullOrWhiteSpace(st.Session.SourceAppId))
+			.Where(x => allowedPlayers.Any(p => p.Matches(x.Session.SourceAppId, x.MediaInfo.Title)))
+			.Select(x => x.Session);
+
+		foreach (var session in sessions)
+		{
+			session.ActivateMediaPlaybackDataSource().SendMediaPlaybackCommand(MediaPlaybackCommands.PlayPauseToggle);
+		}
+	}
 }

@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "MoonlightRemoteApi.Client": {
+    "HomeAutomations.Client": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
