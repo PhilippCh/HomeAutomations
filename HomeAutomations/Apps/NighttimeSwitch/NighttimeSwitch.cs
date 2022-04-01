@@ -10,7 +10,6 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.NighttimeSwitch;
 
-[Focus]
 public class NighttimeSwitch : BaseAutomation<NighttimeSwitch, NighttimeSwitchConfig>
 {
 	public NighttimeSwitch(BaseAutomationDependencyAggregate<NighttimeSwitch, NighttimeSwitchConfig> aggregate)
