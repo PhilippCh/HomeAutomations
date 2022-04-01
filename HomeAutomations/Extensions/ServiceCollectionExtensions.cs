@@ -5,6 +5,8 @@ using HomeAutomations.Apps.Scales.KitchenScale;
 using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 using HomeAutomations.Apps.Vacuum;
 using HomeAutomations.Attributes;
+using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Common.Services;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +20,9 @@ public static class ServiceCollectionExtensions
 	{
 		services
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
+			.Configure<HarmonyHubConfig>(config.GetSection("HarmonyHub"))
 			.AddSingleton<MqttService>()
+			.AddSingleton<HarmonyHubService>()
 			.AddScoped<NotificationService>()
 			.AddTransient<PingService>()
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))

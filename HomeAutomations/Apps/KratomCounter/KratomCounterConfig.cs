@@ -1,4 +1,5 @@
 ﻿using HomeAssistant.Automations.Models;
+using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 

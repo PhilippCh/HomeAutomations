@@ -9,7 +9,7 @@ namespace HomeAutomations.Apps.ComputerSpeakers;
 
 public class ComputerSpeakers : BaseAutomation<ComputerSpeakers, ComputerSpeakersConfig>
 {
-	public ComputerSpeakers(MqttService mqttService, BaseAutomationDependencyAggregate<ComputerSpeakers, ComputerSpeakersConfig> aggregate)
+	public ComputerSpeakers(BaseAutomationDependencyAggregate<ComputerSpeakers, ComputerSpeakersConfig> aggregate)
 		: base(aggregate)
 	{
 	}

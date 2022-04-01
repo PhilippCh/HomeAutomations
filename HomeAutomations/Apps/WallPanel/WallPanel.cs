@@ -1,4 +1,5 @@
 ﻿using HomeAutomations.Apps.WallPanel.Messages;
+using HomeAutomations.Common.Services;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 using Microsoft.Extensions.DependencyInjection;

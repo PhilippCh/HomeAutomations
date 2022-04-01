@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace HomeAutomations.Models;
+namespace HomeAutomations.Common.Models.Config;
 
 public record StagedConfig<T>
 {

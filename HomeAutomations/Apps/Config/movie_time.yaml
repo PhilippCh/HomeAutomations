@@ -1,0 +1,4 @@
+---
+HomeAutomations.Apps.MovieTime.MovieTimeConfig:
+  SupportedActivities:
+    - Kino

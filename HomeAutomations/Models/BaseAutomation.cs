@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Attributes;
+using HomeAutomations.Common.Models.Config;
 
 namespace HomeAutomations.Models;
 

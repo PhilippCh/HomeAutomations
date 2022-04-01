@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
+using HomeAutomations.Models.Generated.MoonlightRemoteApi;
 using NetDaemon.HassModel.Entities;
 using NetDaemon.HassModel.Integration;
 

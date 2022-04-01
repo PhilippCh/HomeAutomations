@@ -3,6 +3,7 @@ using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAssistant.Automations.Models.DeviceMessages;
+using HomeAutomations.Common.Services;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;

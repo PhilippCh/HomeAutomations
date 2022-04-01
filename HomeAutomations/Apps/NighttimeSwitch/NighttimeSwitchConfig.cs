@@ -1,4 +1,5 @@
-﻿using HomeAutomations.Models;
+﻿using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.NighttimeSwitch;

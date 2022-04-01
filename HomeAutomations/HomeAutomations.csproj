@@ -38,6 +38,10 @@
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </None>
+        <None Update="Apps\Config\movie_time.yaml">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -65,8 +69,22 @@
 		</PackageReference>
     </ItemGroup>
 
-	<Target Name="NSwag" BeforeTargets="Build">
-		<Exec ConsoleToMSBuild="true" ContinueOnError="true" Command="$(NSwagExe_Net60) run nswag.json">
+    <ItemGroup>
+      <ProjectReference Include="..\HomeAutomations.Common\HomeAutomations.Common.csproj" />
+    </ItemGroup>
+
+	<Target Name="NSwag moonlight-remote-api" BeforeTargets="Build">
+		<Exec ConsoleToMSBuild="true" ContinueOnError="true" Command="$(NSwagExe_Net60) run Nswag/moonlight-remote-api.json">
+			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
+			<Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />
+		</Exec>
+
+		<Message Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' == '0'" Importance="low" />
+		<Error Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' != '0'" />
+	</Target>
+
+	<Target Name="NSwag home-automations-client" BeforeTargets="Build">
+		<Exec ConsoleToMSBuild="true" ContinueOnError="true" Command="$(NSwagExe_Net60) run Nswag/home-automations-client.json">
 			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
 			<Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />
 		</Exec>

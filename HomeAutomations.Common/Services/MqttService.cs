@@ -1,25 +1,16 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using HomeAutomations.Extensions;
-using HomeAutomations.Models;
+using HomeAutomations.Common.Extensions;
+using HomeAutomations.Common.Models.Config;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client.Options;
 using MQTTnet.Extensions.ManagedClient;
+using Serilog;
 
-namespace HomeAutomations.Services;
-
-public record MqttConfig : Config
-{
-	public string Host { get; init; } = "localhost";
-	public int Port { get; init; } = 1883;
-	public string Username { get; init; } = "";
-	public string Password { get; init; } = "";
-}
+namespace HomeAutomations.Common.Services;
 
 public class MqttService
 {

@@ -22,6 +22,7 @@ public class Startup
         services
             .AddOptions()
             .AddSwaggerGen()
+            .AddOpenApiDocument()
 
             // Services
             .AddSingleton<CommandParser>()
@@ -36,9 +37,10 @@ public class Startup
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         app.UseDeveloperExceptionPage();
-        app.UseSwagger();
-        app.UseSwaggerUI(
-            c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Moonlight Remote Client REST API"));
+        app.UseOpenApi();
+        app.UseSwaggerUi3();
+        //app.UseSwaggerUI(
+//            c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Moonlight Remote Client REST API"));
 
         app.UseRouting();
         app.UseEndpoints(endpoints => endpoints.MapControllers());

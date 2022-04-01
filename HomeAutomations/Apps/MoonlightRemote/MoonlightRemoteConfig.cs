@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 

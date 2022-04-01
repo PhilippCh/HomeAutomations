@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using CoordinateSharp;
+using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
@@ -12,7 +13,7 @@ namespace HomeAutomations.Apps.NighttimeSwitch;
 [Focus]
 public class NighttimeSwitch : BaseAutomation<NighttimeSwitch, NighttimeSwitchConfig>
 {
-	public NighttimeSwitch(MqttService mqttService, BaseAutomationDependencyAggregate<NighttimeSwitch, NighttimeSwitchConfig> aggregate)
+	public NighttimeSwitch(BaseAutomationDependencyAggregate<NighttimeSwitch, NighttimeSwitchConfig> aggregate)
 		: base(aggregate)
 	{
 	}
