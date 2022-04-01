@@ -47,7 +47,17 @@ public class HarmonyHubService
 		return new TaskExecutionResult(true, $"Stopped activity {name}.");
 	}
 
-	private async Task<bool> IsActivityRunning(string name)
+	public async Task<string?> GetCurrentActivity()
+	{
+		using var client = CreateClient();
+		var currentActivityId = await client.GetCurrentActivityIdAsync();
+		var activity = (await client.GetConfigAsync()).Activity
+			.FirstOrDefault(a => a.Id == currentActivityId.ToString());
+
+		return activity?.Label;
+	}
+
+	public async Task<bool> IsActivityRunning(string name)
 	{
 		using var client = CreateClient();
 		var currentActivityId = await client.GetCurrentActivityIdAsync();

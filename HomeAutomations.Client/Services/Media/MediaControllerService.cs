@@ -1,4 +1,6 @@
-﻿using NPSMLib;
+﻿using HomeAutomations.Common.Models;
+using NPSMLib;
+using MediaPlaybackState = NPSMLib.MediaPlaybackState;
 
 namespace HomeAutomations.Client.Media;
 
@@ -35,15 +37,15 @@ public class MediaControllerService
 		}
 	}
 
-	public MediaStatus GetStatus()
+	public MediaStatusMessage GetStatus()
 	{
 		var sessions = _nowPlayingMediaSessionManager.GetSessions();
 
-		return new MediaStatus
+		return new MediaStatusMessage
 		{
 			State = sessions.Any(s => s.ActivateMediaPlaybackDataSource().GetMediaPlaybackInfo().PlaybackState == MediaPlaybackState.Playing)
-				? MediaPlaybackState.Playing
-				: MediaPlaybackState.Unknown
+				? Common.Models.MediaPlaybackState.Playing
+				: Common.Models.MediaPlaybackState.NotPlaying
 		};
 	}
 }

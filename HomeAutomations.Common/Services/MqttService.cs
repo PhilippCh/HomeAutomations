@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client.Options;
@@ -16,13 +17,13 @@ public class MqttService
 {
 	private readonly IOptionsMonitor<MqttConfig> _config;
 	private readonly IManagedMqttClient _client;
-	private readonly ILogger _logger;
+	private readonly ILogger<MqttService> _logger;
 	private readonly Subject<MqttApplicationMessage> _messages = new();
 
-	public MqttService(IOptionsMonitor<MqttConfig> config, ILogger loggerFactory)
+	public MqttService(IOptionsMonitor<MqttConfig> config, ILogger<MqttService> logger)
 	{
 		_config = config;
-		_logger = loggerFactory.ForContext<MqttService>();
+		_logger = logger;
 		_client = new MqttFactory().CreateManagedMqttClient();
 
 		Connect();
@@ -52,6 +53,17 @@ public class MqttService
 				});
 	}
 
+	public async Task PublishMessage<T>(T payload, CancellationToken cancellationToken, params string?[] topicParts)
+	{
+		var serializedPayload = JsonSerializer.Serialize(payload);
+		var message = new MqttApplicationMessageBuilder()
+			.WithTopic(topicParts.ToPath())
+			.WithPayload(serializedPayload)
+			.Build();
+
+		await _client.PublishAsync(message, cancellationToken);
+	}
+
 	private async Task SubscribeToTopic(string topic)
 	{
 		var filter = new MqttTopicFilterBuilder()
@@ -63,7 +75,7 @@ public class MqttService
 
 	private async void Connect()
 	{
-		_logger.Debug("Connecting to mqtt broker {broker}.", _config.CurrentValue.Host);
+		_logger.LogDebug("Connecting to mqtt broker {broker}.", _config.CurrentValue.Host);
 
 		var options = new ManagedMqttClientOptionsBuilder()
 			.WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
@@ -73,9 +85,9 @@ public class MqttService
 					.Build())
 			.Build();
 
-		_client.UseConnectedHandler(_ => _logger.Information("Connected to MQTT server."));
+		_client.UseConnectedHandler(_ => _logger.LogInformation("Connected to MQTT server."));
 		_client.UseApplicationMessageReceivedHandler(e => _messages.OnNext(e.ApplicationMessage));
-		_client.UseDisconnectedHandler(e => _logger.Debug("Disconnected due to: {reason}", e.Reason));
+		_client.UseDisconnectedHandler(e => _logger.LogDebug("Disconnected due to: {reason}", e.Reason));
 
 		await _client.StartAsync(options);
 	}

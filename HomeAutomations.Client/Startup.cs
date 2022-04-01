@@ -1,14 +1,25 @@
 ﻿using HomeAutomations.Client.Commands;
 using HomeAutomations.Client.Media;
+using HomeAutomations.Client.Services.Media;
 using HomeAutomations.Client.TrayIcon;
 using HomeAutomations.Client.Util;
+using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Common.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomations.Client;
 
 public class Startup
 {
+	private readonly IConfiguration _config;
+
+	public Startup(IConfiguration config)
+	{
+		_config = config;
+	}
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddMvc(options =>
@@ -24,11 +35,19 @@ public class Startup
             .AddSwaggerGen()
             .AddOpenApiDocument()
 
+            // Config
+            .Configure<MqttConfig>(_config.GetSection("MQTT"))
+            .Configure<MediaStatusConfig>(_config.GetSection("MediaStatus"))
+
             // Services
             .AddSingleton<CommandParser>()
             .AddSingleton<MediaControllerService>()
             .AddSingleton<NowPlayingMediaSessionManager>()
+            .AddSingleton<MqttService>()
             .AddSingleton(trayIconService)
+
+            // Background services
+            .AddHostedService<MediaStatusBackgroundService>()
 
             .AddControllers()
             .AddControllersAsServices();

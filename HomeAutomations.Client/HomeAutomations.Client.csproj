@@ -31,4 +31,12 @@
 	  </None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\HomeAutomations.Common\HomeAutomations.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services" />
+	</ItemGroup>
+
 </Project>

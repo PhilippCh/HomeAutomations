@@ -1,0 +1,13 @@
+﻿namespace HomeAutomations.Common.Models;
+
+public enum MediaPlaybackState
+{
+	NotPlaying,
+	Playing
+}
+
+public record MediaStatusMessage
+{
+	public string DeviceId { get; init; }
+	public MediaPlaybackState State { get; init; }
+}

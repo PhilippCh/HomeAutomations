@@ -1,4 +1,7 @@
 ---
 HomeAutomations.Apps.MovieTime.MovieTimeConfig:
+  StatusTopic: homeautomations-client/media/status
+  Lights:
+    - light.stehlampe
   SupportedActivities:
     - Kino
