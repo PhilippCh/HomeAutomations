@@ -11,7 +11,7 @@ public static class ObservableExtensions
 	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions)
 	{
 		return events
-			.Where(e => e.EventType == MobileAppNotificationData.EventType && e.DataElement.HasValue)
+			.Where(e => e.EventType == MobileAppNotificationData.Id && e.DataElement.HasValue)
 			.Select(e => e.DataElement!.Value.GetProperty("action").GetString())
 			.Where(allowedActions.Contains)
 			.Select(a => a ?? string.Empty);

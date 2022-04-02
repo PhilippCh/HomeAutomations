@@ -1,18 +1,19 @@
 ﻿using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Models;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
+using HomeAutomations.Models.Generated.HomeAutomation;
+using HomeAutomations.Common.Extensions;
 
 namespace HomeAutomations.Apps.MovieTime;
 
 public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 {
-	private const string RokuCommandEventType = "roku_command";
-
-	private MediaPlaybackState? _previousPlaybackState;
+	private MediaStatusMessage? _activeStatusMessage;
 
 	private readonly MqttService _mqttService;
 	private readonly HarmonyHubService _harmonyHubService;
@@ -27,7 +28,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		(await _mqttService.GetMessagesForTopic<MediaStatusMessage>(Config.StatusTopic)).Subscribe(OnStatusMessageReceived);
-		Context.Events.Filter<>()
+		Context.Events.Filter<RokuCommandEventData>(RokuCommandEventData.Id).Subscribe(e => OnRokuCommandReceived(e.Data));
 	}
 
 	private async void OnStatusMessageReceived(MediaStatusMessage? e)
@@ -43,32 +44,56 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		{
 			MediaPlaybackState.NotPlaying => OnPause,
 			MediaPlaybackState.Playing => OnResume,
-			_ => () => {}
+			_ => () => Logger.Warning("No action defined for media state {key}.", e?.State)
 		};
 
 		action();
-		_previousPlaybackState = e?.State;
+		_activeStatusMessage = e;
+	}
+
+	private void OnRokuCommandReceived(RokuCommandEventData? e)
+	{
+		Action action = e?.Key switch
+		{
+			"Play" => TogglePlayback,
+			"Search" => ToggleLight,
+			_ => () => Logger.Warning("No action defined for key {key}.", e?.Key)
+		};
+
+		action();
+	}
+
+	private async void TogglePlayback()
+	{
+		if (_activeStatusMessage == null || _activeStatusMessage.BaseUrl == null)
+		{
+			Logger.Warning("No active device to send remote command to.");
+
+			return;
+		}
+
+		var client = new MediaHomeAutomationsClient(_activeStatusMessage.BaseUrl, new HttpClient());
+		await client.TogglePlaybackAsync(Config.SupportedPlayers);
+	}
+
+	private void ToggleLight()
+	{
+		Config.Lights.ForEach(l => l.Toggle());
 	}
 
 	private void OnPause()
 	{
-		if (_previousPlaybackState != MediaPlaybackState.NotPlaying)
+		if (_activeStatusMessage?.State != MediaPlaybackState.NotPlaying)
 		{
-			foreach (var light in Config.Lights)
-			{
-				light.TurnOn();
-			}
+			Config.Lights.ForEach(l => l.TurnOn());
 		}
 	}
 
 	private void OnResume()
 	{
-		if (_previousPlaybackState != MediaPlaybackState.Playing)
+		if (_activeStatusMessage?.State != MediaPlaybackState.Playing)
 		{
-			foreach (var light in Config.Lights)
-			{
-				light.TurnOff();
-			}
+			Config.Lights.ForEach(l => l.TurnOff());
 		}
 	}
 }

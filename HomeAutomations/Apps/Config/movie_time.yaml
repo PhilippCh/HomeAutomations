@@ -1,7 +1,10 @@
 ---
 HomeAutomations.Apps.MovieTime.MovieTimeConfig:
   StatusTopic: homeautomations-client/media/status
-  Lights:
-    - light.stehlampe
   SupportedActivities:
     - Kino
+  SupportedPlayers:
+    - ExecutableName: chrome
+    - ExecutableName: VLC
+  Lights:
+    - light.stehlampe

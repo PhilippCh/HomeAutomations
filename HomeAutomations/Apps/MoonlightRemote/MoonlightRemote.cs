@@ -32,7 +32,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_start", StartStream);
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_stop", _ => StopStream());
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_reset_bluetooth", _ => ResetBluetooth());
-		Context.Events.Filter<MobileAppNotificationData>(MobileAppNotificationData.EventType)
+		Context.Events.Filter<MobileAppNotificationData>(MobileAppNotificationData.Id)
 			.Where(e => e.Data?.Action == ShutdownAction)
 			.Subscribe(_ => StopStream());
 		Config.SelectedHost.StateChanges()

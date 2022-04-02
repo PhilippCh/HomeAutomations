@@ -18,7 +18,7 @@ public class NotificationService
 		_context = context;
 		_services = new Models.Generated.Services(context);
 		context.Events
-			.Where(e => e.EventType == MobileAppNotificationData.EventType && e.DataElement.HasValue)
+			.Where(e => e.EventType == MobileAppNotificationData.Id && e.DataElement.HasValue)
 			.Select(e => e.DataElement!.Value.GetProperty("action").GetString()!)
 			.Subscribe(OnNotificationActionFired);
 		_logger = logger.ForContext<NotificationService>();

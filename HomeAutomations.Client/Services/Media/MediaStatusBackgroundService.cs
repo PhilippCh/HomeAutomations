@@ -11,6 +11,7 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 {
 	private readonly MediaControllerService _mediaControllerService;
 	private readonly MqttService _mqttService;
+	private readonly HostService _hostService;
 	private IDisposable? _observer;
 
 	private readonly MediaStatusConfig _config;
@@ -20,10 +21,12 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 		IOptionsMonitor<MediaStatusConfig> config,
 		MediaControllerService mediaControllerService,
 		MqttService mqttService,
+		HostService hostService,
 		ILogger<MediaStatusBackgroundService> logger)
 	{
 		_mediaControllerService = mediaControllerService;
 		_mqttService = mqttService;
+		_hostService = hostService;
 		_config = config.CurrentValue;
 		_logger = logger;
 	}
@@ -42,7 +45,7 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 			.AddMachineName()
 			.AddMacAddress()
 			.ToString();
-		var status = _mediaControllerService.GetStatus() with { DeviceId = deviceId };
+		var status = _mediaControllerService.GetStatus() with { DeviceId = deviceId, BaseUrl = $"http://{_hostService.GetLocalIpAddress()}:{Constants.Port}"};
 
 		await _mqttService.PublishMessage(status, CancellationToken.None, _config.BaseTopic);
 	}

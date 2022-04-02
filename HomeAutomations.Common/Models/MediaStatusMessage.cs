@@ -9,5 +9,6 @@ public enum MediaPlaybackState
 public record MediaStatusMessage
 {
 	public string DeviceId { get; init; }
+	public string? BaseUrl { get; init; }
 	public MediaPlaybackState State { get; init; }
 }

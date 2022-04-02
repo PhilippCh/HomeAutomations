@@ -4,6 +4,8 @@ namespace HomeAutomations.Apps.CalorieCounter;
 
 public record HealthEventData
 {
+	public const string Id = "health_event";
+
 	[JsonPropertyName("user")]
 	public string? User { get; init; }
 

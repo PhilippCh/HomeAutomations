@@ -11,9 +11,6 @@ namespace HomeAutomations.Apps.CalorieCounter;
 
 public class CalorieCounter : BaseAutomation<CalorieCounter>
 {
-	private const string DigestCaloriesEventType = "digest_calories_event";
-	private const string HealthEventType = "health_event";
-
 	private const string BaseCaloriesId = "base";
 	private const string DigestedCaloriesId = "digested";
 
@@ -25,10 +22,12 @@ public class CalorieCounter : BaseAutomation<CalorieCounter>
 		_entityManager = entityManager;
 	}
 
-	protected override async Task StartAsync(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		Context.Events.Filter<HealthEventData>(HealthEventType).Subscribe(e => UpdateBaseCaloriesForUser(e.Data));
-		Context.Events.Filter<DigestCaloriesEventData>(DigestCaloriesEventType).Subscribe(e => DigestCaloriesForUser(e.Data));
+		Context.Events.Filter<HealthEventData>(HealthEventData.Id).Subscribe(e => UpdateBaseCaloriesForUser(e.Data));
+		Context.Events.Filter<DigestCaloriesEventData>(DigestCaloriesEventData.Id).Subscribe(e => DigestCaloriesForUser(e.Data));
+
+		return Task.CompletedTask;
 	}
 
 	private static string GetCaloriesSensorId(string? user, string prefix) => $"sensor.{prefix}_calories_for_{user}";

@@ -1,5 +1,6 @@
 ﻿using HomeAutomations.Client.Commands;
 using HomeAutomations.Client.Media;
+using HomeAutomations.Client.Services;
 using HomeAutomations.Client.Services.Media;
 using HomeAutomations.Client.TrayIcon;
 using HomeAutomations.Client.Util;
@@ -40,6 +41,7 @@ public class Startup
             .Configure<MediaStatusConfig>(_config.GetSection("MediaStatus"))
 
             // Services
+            .AddTransient<HostService>()
             .AddSingleton<CommandParser>()
             .AddSingleton<MediaControllerService>()
             .AddSingleton<NowPlayingMediaSessionManager>()
