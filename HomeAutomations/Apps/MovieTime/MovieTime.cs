@@ -10,6 +10,8 @@ namespace HomeAutomations.Apps.MovieTime;
 
 public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 {
+	private const string RokuCommandEventType = "roku_command";
+
 	private MediaPlaybackState? _previousPlaybackState;
 
 	private readonly MqttService _mqttService;
@@ -25,6 +27,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		(await _mqttService.GetMessagesForTopic<MediaStatusMessage>(Config.StatusTopic)).Subscribe(OnStatusMessageReceived);
+		Context.Events.Filter<>()
 	}
 
 	private async void OnStatusMessageReceived(MediaStatusMessage? e)
