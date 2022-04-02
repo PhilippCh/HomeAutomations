@@ -9,6 +9,7 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Vacuum;
 
+[Focus]
 public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 {
 	private CancellationTokenSource? _cleaningScheduleCancellationToken;
@@ -40,7 +41,7 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		_cleaningScheduleCancellationToken = new CancellationTokenSource();
 		await CronjobExtensions.ScheduleJob(
 			Config.ReminderCrontab, StartReminderLoop,
-			cancellationToken: _cleaningScheduleCancellationToken.Token, runOnStartup: true);
+			cancellationToken: _cleaningScheduleCancellationToken.Token);
 	}
 
 	private async void StartResetCron()
