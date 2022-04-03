@@ -24,6 +24,8 @@ HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
           DisplayName: "Sherlock Holmes: Chapter One"
         - Id: "LEGO The LEGO Movie 2_DX11"
           DisplayName: "The LEGO Movie 2"
+        - Id: "UnrealEngine"
+          DisplayName: "HYPERCHARGE - Unboxed"
     - DisplayName: Desktop Fabienne
       Host: 192.168.188.34
       MacAddress: AC:9E:17:EC:5F:83
