@@ -35,7 +35,8 @@ public class NotificationService
 				{
 					tag = notification.Tag,
 					actions = notification.Actions,
-					image = notification.Image
+					image = notification.Image,
+					sticky = notification.Sticky
 				}
 			});
 	}

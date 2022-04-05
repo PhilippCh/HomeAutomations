@@ -11,6 +11,7 @@ public record Notification
 	public string? Template { get; init; }
 	public string? Tag { get; init; }
 	public string? Image { get; init; }
+	public bool? Sticky { get; init; }
 	public IEnumerable<NotificationAction>? Actions { get; init; }
 
 	public Notification() {}
