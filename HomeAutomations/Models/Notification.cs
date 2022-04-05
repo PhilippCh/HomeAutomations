@@ -10,6 +10,7 @@ public record Notification
 	public string? Title { get; init; }
 	public string? Template { get; init; }
 	public string? Tag { get; init; }
+	public string? Image { get; init; }
 	public IEnumerable<NotificationAction>? Actions { get; init; }
 
 	public Notification() {}

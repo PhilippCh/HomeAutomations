@@ -11,7 +11,6 @@ using HomeAutomations.Common.Extensions;
 
 namespace HomeAutomations.Apps.MovieTime;
 
-[Focus]
 public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 {
 	private MediaStatusMessage? _activeStatusMessage;

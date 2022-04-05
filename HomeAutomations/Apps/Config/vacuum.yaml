@@ -1,17 +1,26 @@
 ---
 HomeAutomations.Apps.Vacuum.VacuumConfig:
   Vacuum: vacuum.fantenrussel
+  Map:
+    Entity: camera.fantenrussel_map
+    ImageName: fantenrussel_cleaned_area.jpg
   ReminderActiveInterval: '01:00:00'
   ReminderCrontab: 00 11 * * 1,3,5
   ResetCrontab: 00 19 * * *
-  Reminder:
-    Tag: vacuum
-    Title: Fantenrüssel
-    Template: Der Robo möchte saugen. Ist alles aufgeräumt?
-    Actions:
-      - Action: VACUUM_START
-        Title: Saugen starten
-        Destructive: false
-      - Action: VACUUM_NO_START
-        Title: Heute nicht
-        Destructive: true
+  Notifications:
+    Reminder:
+      Tag: vacuum
+      Title: Fantenrüssel
+      Template: Ich möchte saugen. Ist alles aufgeräumt?
+      Actions:
+        - Action: VACUUM_START
+          Title: Saugen starten
+          Destructive: false
+        - Action: VACUUM_NO_START
+          Title: Heute nicht
+          Destructive: true
+    CleanedArea:
+      Tag: vacuum
+      Title: Fantenrüssel
+      Template: Habe fertig, hier habe ich gesaugt.
+      Image: https://ha.pupslab.de/local/fantenrussel_cleaned_area.jpg

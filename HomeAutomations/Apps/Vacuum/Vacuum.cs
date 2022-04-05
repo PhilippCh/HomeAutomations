@@ -71,7 +71,7 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 
 		if (!Config.Debug)
 		{
-			_notificationService.SendNotification(Config.Reminder);
+			_notificationService.SendNotification(Config.Notifications.Reminder);
 		}
 	}
 
@@ -93,7 +93,10 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		{
 			{
 				Old: VacuumState.Cleaning, New: VacuumState.Returning
-			} => SendToBin,
+			} => () => {
+				SenCleanedAreaNotification();
+				SendToBin();
+			},
 			{
 				Old: VacuumState.Idle, New: VacuumState.Returning
 			} => Config.Vacuum.ReturnToBase,
@@ -101,6 +104,12 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		};
 
 		action();
+	}
+
+	private void SenCleanedAreaNotification()
+	{
+		Config.Map.Entity.Snapshot($"/config/www/{Config.Map.ImageName}");
+		_notificationService.SendNotification(Config.Notifications.CleanedArea);
 	}
 
 	private void SendToBin()
