@@ -1,4 +1,5 @@
 ﻿using HomeAutomations.Client.Services.Media;
+using HomeAutomations.Client.Services.Media.VideoLan;
 using HomeAutomations.Common.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,12 @@ namespace HomeAutomations.Client.Controllers;
 public class MediaController : ControllerBase
 {
     private readonly MediaControllerService _mediaControllerService;
+    private readonly VlcRemoteApiService _vlcRemoteApiService;
 
-    public MediaController(MediaControllerService mediaControllerService)
+    public MediaController(MediaControllerService mediaControllerService, VlcRemoteApiService vlcRemoteApiService)
     {
-        _mediaControllerService = mediaControllerService;
+	    _mediaControllerService = mediaControllerService;
+	    _vlcRemoteApiService = vlcRemoteApiService;
     }
 
     [HttpPost]
@@ -22,7 +25,7 @@ public class MediaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult StartStream(string url)
     {
-        _mediaControllerService.StartStream(url);
+        _vlcRemoteApiService.StartStream(url);
         return Ok();
     }
 

@@ -34,11 +34,6 @@ public class MediaControllerService
 		_config = config.CurrentValue;
 	}
 
-	public void StartStream(string url)
-	{
-		Process.Start(@"""C:\Program Files (x86)\VideoLAN\VLC\vlc.exe""", @$"""{url}""");
-	}
-
 	public async void TogglePlayback()
 	{
 		var sessions = await GetSessions();

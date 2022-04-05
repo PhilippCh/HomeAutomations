@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Xml.Linq;
 using HomeAutomations.Common.Models;
@@ -41,6 +42,11 @@ public class VlcRemoteApiService : IMediaSessionManager
 		{
 			new MediaSession("vlc", "", state, TogglePlayback)
 		};
+	}
+
+	public void StartStream(string url)
+	{
+		Process.Start(_config.ExecutablePath, @$"""{url}""");
 	}
 
 	private string GetApiUrl(string method) => Path.Combine(_config.BaseUrl, "requests", method).Replace("\\", "/");

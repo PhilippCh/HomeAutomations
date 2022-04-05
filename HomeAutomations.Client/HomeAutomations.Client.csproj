@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
     <PropertyGroup>
-		<!--<OutputType>WinExe</OutputType>-->
+		<OutputType>WinExe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
         <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
         <Nullable>enable</Nullable>
