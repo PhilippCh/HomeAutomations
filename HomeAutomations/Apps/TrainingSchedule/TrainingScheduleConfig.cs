@@ -19,5 +19,6 @@ public record TrainingScheduleConfig : Config
 {
 	public string UpdateCrontab { get; init; }
 	public string EntityId { get; init; }
+	public string MediaStatusTopic { get; init; }
 	public IEnumerable<ScheduleConfig> Schedules { get; init; }
 }

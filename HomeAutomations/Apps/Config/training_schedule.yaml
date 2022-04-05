@@ -1,6 +1,7 @@
 ---
 HomeAutomations.Apps.TrainingSchedule.TrainingScheduleConfig:
   EntityId: sensor.current_training_schedule
+  MediaStatusTopic: homeautomations-client/media/status
   UpdateCrontab: 0 0 * * *
   Schedules:
     - Week: 0

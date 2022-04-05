@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
-using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Apps.MoonlightRemote;
 using HomeAutomations.Common.Extensions;
+using HomeAutomations.Common.Models;
+using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
+using HomeAutomations.Models.Generated.HomeAutomation;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Integration;
 
@@ -18,20 +20,24 @@ namespace HomeAutomations.Apps.TrainingSchedule;
 [Focus]
 public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingScheduleConfig>
 {
-	private readonly IMqttEntityManager _entityManager;
+	private MediaStatusMessage _activeStatusMessage;
 
-	public TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule, TrainingScheduleConfig> aggregate, IMqttEntityManager entityManager)
+	private readonly IMqttEntityManager _entityManager;
+	private readonly MqttService _mqttService;
+
+	public TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule, TrainingScheduleConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)
 		: base(aggregate)
 	{
 		_entityManager = entityManager;
+		_mqttService = mqttService;
 	}
 
-	protected override Task StartAsync(CancellationToken cancellationToken)
+	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		Context.RegisterServiceCallBack<TrainingServiceData>("training_start", StartTraining);
-		StartScheduleUpdateLoop();
+		(await _mqttService.GetMessagesForTopic<MediaStatusMessage>(Config.MediaStatusTopic)).Subscribe(e => _activeStatusMessage = e);
 
-		return Task.CompletedTask;
+		StartScheduleUpdateLoop();
 	}
 
 	private async void StartScheduleUpdateLoop()
@@ -71,9 +77,10 @@ public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingSchedul
 		return attributes;
 	}
 
-	private void StartTraining(TrainingServiceData e)
+	private async void StartTraining(TrainingServiceData e)
 	{
-		//var client =
+		var client = new MediaHomeAutomationsClient(_activeStatusMessage.BaseUrl, new HttpClient());
+		await client.StartStreamAsync(e.Url);
 	}
 }
 #pragma warning restore CS8619
