@@ -89,27 +89,29 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 
 	private void OnVacuumStateUpdated(StateChange stateChange)
 	{
-		Action action = stateChange switch
+		Func<Task> action = stateChange switch
 		{
 			{
 				Old: VacuumState.Cleaning, New: VacuumState.Returning
-			} => () => {
-				SenCleanedAreaNotification();
+			} => async () => {
+				await SenCleanedAreaNotification();
 				SendToBin();
 			},
 			{
 				Old: VacuumState.Idle, New: VacuumState.Returning
-			} => Config.Vacuum.ReturnToBase,
-			_ => () => {}
+			} => ReturnToBase,
+			_ => () => Task.CompletedTask
 		};
 
 		action();
 	}
 
-	private void SenCleanedAreaNotification()
+	private async Task SenCleanedAreaNotification()
 	{
 		Config.Map.Entity.Snapshot($"/config/www/{Config.Map.ImageName}");
 		_notificationService.SendNotification(Config.Notifications.CleanedArea);
+
+		await Task.Delay(TimeSpan.FromSeconds(5));
 	}
 
 	private void SendToBin()
@@ -118,5 +120,12 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 
 		Logger.Debug("Go to point [{x}, {y}]", point.X, point.Y);
 		Config.Vacuum.SendCommand("app_goto_target", new[] { point.X, point.Y });
+	}
+
+	private Task ReturnToBase()
+	{
+		Config.Vacuum.ReturnToBase();
+
+		return Task.CompletedTask;
 	}
 }
