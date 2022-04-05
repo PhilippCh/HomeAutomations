@@ -18,11 +18,20 @@ public class MediaController : ControllerBase
     }
 
     [HttpPost]
+    [Route("startStream")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public IActionResult StartStream(string url)
+    {
+        _mediaControllerService.StartStream(url);
+        return Ok();
+    }
+
+    [HttpPost]
     [Route("togglePlayback")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult TogglePlayback()
     {
-        _mediaControllerService.TogglePlayback();
-        return Ok();
+	    _mediaControllerService.TogglePlayback();
+	    return Ok();
     }
 }

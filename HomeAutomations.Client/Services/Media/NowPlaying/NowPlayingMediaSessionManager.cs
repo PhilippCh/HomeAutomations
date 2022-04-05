@@ -17,16 +17,38 @@ public class NowPlayingMediaSessionManager : IMediaSessionManager
 
 	private MediaSession GetPlaybackState(NowPlayingSession sourceSession)
 	{
-		var mediaInfo = sourceSession.ActivateMediaPlaybackDataSource().GetMediaObjectInfo();
-		var state = sourceSession.ActivateMediaPlaybackDataSource().GetMediaPlaybackInfo().PlaybackState switch
-		{
-			NPSMLib.MediaPlaybackState.Playing => MediaPlaybackState.Playing,
-			_ => MediaPlaybackState.NotPlaying
-		};
+		string title;
+		MediaPlaybackState state;
 
-		return new MediaSession(
-			sourceSession.SourceAppId, mediaInfo.Title, state,
-			() => sourceSession.ActivateMediaPlaybackDataSource().SendMediaPlaybackCommand(MediaPlaybackCommands.PlayPauseToggle));
+		try
+		{
+			var mediaInfo = sourceSession.ActivateMediaPlaybackDataSource().GetMediaObjectInfo();
+			title = mediaInfo.Title;
+			state = sourceSession.ActivateMediaPlaybackDataSource().GetMediaPlaybackInfo().PlaybackState switch
+			{
+				NPSMLib.MediaPlaybackState.Playing => MediaPlaybackState.Playing,
+				_ => MediaPlaybackState.NotPlaying
+			};
+		}
+		catch (NotSupportedException)
+		{
+			title = "Session was killed.";
+			state = MediaPlaybackState.NotPlaying;
+		}
+
+		return new MediaSession(sourceSession.SourceAppId, title, state, () => TogglePlayback(sourceSession));
+	}
+
+	private void TogglePlayback(NowPlayingSession sourceSession)
+	{
+		try
+		{
+			sourceSession.ActivateMediaPlaybackDataSource().SendMediaPlaybackCommand(MediaPlaybackCommands.PlayPauseToggle);
+		}
+		catch (NotSupportedException)
+		{
+			// Do nothing.
+		}
 	}
 
 	private void NpsmService_Started(object sender, EventArgs e)

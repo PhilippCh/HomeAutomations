@@ -1,4 +1,5 @@
-﻿using DeviceId;
+﻿using System.Diagnostics;
+using DeviceId;
 using HomeAutomations.Client.Services.Media.NowPlaying;
 using HomeAutomations.Client.Services.Media.VideoLan;
 using HomeAutomations.Common.Models;
@@ -31,6 +32,11 @@ public class MediaControllerService
 		_hostService = hostService;
 		_sessionManagers = new IMediaSessionManager[] { nowPlayingMediaSessionManager, vlcRemoteApiService };
 		_config = config.CurrentValue;
+	}
+
+	public void StartStream(string url)
+	{
+		Process.Start(@"""C:\Program Files (x86)\VideoLAN\VLC\vlc.exe""", @$"""{url}""");
 	}
 
 	public async void TogglePlayback()

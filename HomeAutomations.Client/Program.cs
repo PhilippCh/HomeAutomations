@@ -1,3 +1,5 @@
+using System.Reactive.Linq;
+using AutoUpdaterDotNET;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Events;
@@ -18,6 +20,7 @@ public static class Program
 		try
 		{
 			Log.Information("Starting web host");
+			CreateAutoUpdater();
 			CreateWebHostBuilder(args).Build().Run();
 
 			return 0;
@@ -34,10 +37,6 @@ public static class Program
 		}
 	}
 
-	/// <summary>
-	/// This program is designed to run as a standalone windows service.
-	/// For further information, see: https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/windows-service
-	/// </summary>
 	private static IHostBuilder CreateWebHostBuilder(string[] args)
 	{
 		return Host.CreateDefaultBuilder(args)
@@ -54,5 +53,18 @@ public static class Program
 					webBuilder.UseUrls($"http://*:{Constants.Port}");
 				})
 			.UseSerilog();
+	}
+
+	private static void CreateAutoUpdater()
+	{
+		Observable.Interval(TimeSpan.FromMinutes(5))
+			.Subscribe(_ => CheckForUpdates());
+	}
+
+	private static void CheckForUpdates()
+	{
+		//AutoUpdater.Mandatory = true;
+		//AutoUpdater.UpdateMode = Mode.ForcedDownload;
+		//AutoUpdater.Start("https://philippchristoph.de/updates/HomeAutomations.Client.xml");
 	}
 }

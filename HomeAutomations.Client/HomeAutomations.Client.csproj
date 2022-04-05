@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
     <PropertyGroup>
-		<OutputType>WinExe</OutputType>
+		<!--<OutputType>WinExe</OutputType>-->
         <TargetFramework>net6.0-windows</TargetFramework>
         <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
         <Nullable>enable</Nullable>
@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Autoupdater.NET.Official" Version="1.7.0" />
       <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
       <PackageReference Include="NPSMLib" Version="0.9.14" />

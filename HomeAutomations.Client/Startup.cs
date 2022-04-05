@@ -15,6 +15,8 @@ namespace HomeAutomations.Client;
 
 public class Startup
 {
+	private const string DocumentName = "HomeAutomations.Client REST API";
+
 	private readonly IConfiguration _config;
 
 	public Startup(IConfiguration config)
@@ -35,7 +37,7 @@ public class Startup
         services
             .AddOptions()
             .AddSwaggerGen()
-            .AddOpenApiDocument()
+            .AddOpenApiDocument(s => s.PostProcess = d => d.Info.Title = DocumentName)
 
             // Config
             .Configure<MqttConfig>(_config.GetSection("MQTT"))
@@ -60,9 +62,9 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        app.UseDeveloperExceptionPage();
-        app.UseOpenApi();
-        app.UseSwaggerUi3(c => c.DocumentTitle = "HomeAutomations.Client REST API");
+	    app.UseDeveloperExceptionPage();
+        app.UseOpenApi(c => c.DocumentName = DocumentName);
+        app.UseSwaggerUi3(c => c.DocumentTitle = DocumentName);
 
         app.UseRouting();
         app.UseEndpoints(endpoints => endpoints.MapControllers());
