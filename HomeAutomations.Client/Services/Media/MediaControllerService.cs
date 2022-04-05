@@ -1,8 +1,10 @@
-﻿using HomeAutomations.Common.Models;
-using NPSMLib;
-using MediaPlaybackState = NPSMLib.MediaPlaybackState;
+﻿using DeviceId;
+using HomeAutomations.Client.Services.Media.NowPlaying;
+using HomeAutomations.Client.Services.Media.VideoLan;
+using HomeAutomations.Common.Models;
+using Microsoft.Extensions.Options;
 
-namespace HomeAutomations.Client.Media;
+namespace HomeAutomations.Client.Services.Media;
 
 public record MediaPlayerPredicate
 {
@@ -16,36 +18,50 @@ public record MediaPlayerPredicate
 
 public class MediaControllerService
 {
-	private readonly NowPlayingMediaSessionManager _nowPlayingMediaSessionManager;
+	private readonly MediaStatusConfig _config;
+	private readonly HostService _hostService;
+	private readonly IEnumerable<IMediaSessionManager> _sessionManagers;
 
-	public MediaControllerService(NowPlayingMediaSessionManager nowPlayingMediaSessionManager)
+	public MediaControllerService(
+		NowPlayingMediaSessionManager nowPlayingMediaSessionManager,
+		VlcRemoteApiService vlcRemoteApiService,
+		HostService hostService,
+		IOptionsMonitor<MediaStatusConfig> config)
 	{
-		_nowPlayingMediaSessionManager = nowPlayingMediaSessionManager;
+		_hostService = hostService;
+		_sessionManagers = new IMediaSessionManager[] { nowPlayingMediaSessionManager, vlcRemoteApiService };
+		_config = config.CurrentValue;
 	}
 
-	public void TogglePlayback(IEnumerable<MediaPlayerPredicate> allowedPlayers)
+	public async void TogglePlayback()
 	{
-		var sessions = _nowPlayingMediaSessionManager.GetSessions()
-			.Select(s => (Session: s, MediaInfo: s.ActivateMediaPlaybackDataSource().GetMediaObjectInfo()))
-			.Where(st => !string.IsNullOrWhiteSpace(st.Session.SourceAppId))
-			.Where(x => allowedPlayers.Any(p => p.Matches(x.Session.SourceAppId, x.MediaInfo.Title)))
-			.Select(x => x.Session);
+		var sessions = await GetSessions();
 
 		foreach (var session in sessions)
 		{
-			session.ActivateMediaPlaybackDataSource().SendMediaPlaybackCommand(MediaPlaybackCommands.PlayPauseToggle);
+			session.TogglePlayback();
 		}
 	}
 
-	public MediaStatusMessage GetStatus()
+	public async Task<MediaStatusMessage> GetStatus()
 	{
-		var sessions = _nowPlayingMediaSessionManager.GetSessions();
+		var sessions = await GetSessions();
+		var deviceId = new DeviceIdBuilder()
+			.AddMachineName()
+			.AddMacAddress()
+			.ToString();
 
 		return new MediaStatusMessage
 		{
-			State = sessions.Any(s => s.ActivateMediaPlaybackDataSource().GetMediaPlaybackInfo().PlaybackState == MediaPlaybackState.Playing)
-				? Common.Models.MediaPlaybackState.Playing
-				: Common.Models.MediaPlaybackState.NotPlaying
+			DeviceId = deviceId,
+			BaseUrl = $"http://{_hostService.GetLocalIpAddress()}:{Constants.Port}",
+			State = sessions.Any(s => s.State == MediaPlaybackState.Playing) ? MediaPlaybackState.Playing : MediaPlaybackState.NotPlaying
 		};
 	}
+
+	private async Task<IEnumerable<MediaSession>> GetSessions() =>
+		(await Task.WhenAll(_sessionManagers.Select(sm => sm.GetSessions())))
+		.SelectMany(r => r)
+		.Where(st => !string.IsNullOrWhiteSpace(st.AppId))
+		.Where(x => _config.SupportedPlayers.Any(p => p.Matches(x.AppId, x.Title)));
 }

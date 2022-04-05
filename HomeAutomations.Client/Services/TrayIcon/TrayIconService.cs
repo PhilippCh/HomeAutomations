@@ -1,4 +1,4 @@
-﻿namespace HomeAutomations.Client.TrayIcon;
+﻿namespace HomeAutomations.Client.Services.TrayIcon;
 
 public class TrayIconService
 {

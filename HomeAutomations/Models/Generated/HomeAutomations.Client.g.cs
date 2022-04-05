@@ -248,11 +248,11 @@ namespace HomeAutomations.Models.Generated.HomeAutomation
     public partial interface IMediaHomeAutomationsClient
     {
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task TogglePlaybackAsync(System.Collections.Generic.IEnumerable<MediaPlayerPredicate> allowedPlayers);
+        System.Threading.Tasks.Task TogglePlaybackAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task TogglePlaybackAsync(System.Collections.Generic.IEnumerable<MediaPlayerPredicate> allowedPlayers, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task TogglePlaybackAsync(System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -292,18 +292,15 @@ namespace HomeAutomations.Models.Generated.HomeAutomation
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task TogglePlaybackAsync(System.Collections.Generic.IEnumerable<MediaPlayerPredicate> allowedPlayers)
+        public virtual System.Threading.Tasks.Task TogglePlaybackAsync()
         {
-            return TogglePlaybackAsync(allowedPlayers, System.Threading.CancellationToken.None);
+            return TogglePlaybackAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task TogglePlaybackAsync(System.Collections.Generic.IEnumerable<MediaPlayerPredicate> allowedPlayers, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task TogglePlaybackAsync(System.Threading.CancellationToken cancellationToken)
         {
-            if (allowedPlayers == null)
-                throw new System.ArgumentNullException("allowedPlayers");
-
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Media/togglePlayback");
 
@@ -313,9 +310,7 @@ namespace HomeAutomations.Models.Generated.HomeAutomation
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(allowedPlayers, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -492,17 +487,6 @@ namespace HomeAutomations.Models.Generated.HomeAutomation
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class MediaPlayerPredicate
-    {
-        [Newtonsoft.Json.JsonProperty("executableName", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ExecutableName { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("allowedTitles", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<string> AllowedTitles { get; set; }
 
     }
 

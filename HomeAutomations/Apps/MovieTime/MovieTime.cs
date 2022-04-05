@@ -11,6 +11,7 @@ using HomeAutomations.Common.Extensions;
 
 namespace HomeAutomations.Apps.MovieTime;
 
+[Focus]
 public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 {
 	private MediaStatusMessage? _activeStatusMessage;
@@ -73,7 +74,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		}
 
 		var client = new MediaHomeAutomationsClient(_activeStatusMessage.BaseUrl, new HttpClient());
-		await client.TogglePlaybackAsync(Config.SupportedPlayers);
+		await client.TogglePlaybackAsync();
 	}
 
 	private void ToggleLight()

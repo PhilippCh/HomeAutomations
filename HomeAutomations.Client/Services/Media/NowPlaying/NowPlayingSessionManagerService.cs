@@ -1,4 +1,4 @@
-﻿namespace HomeAutomations.Client.Media;
+﻿namespace HomeAutomations.Client.Services.Media.NowPlaying;
 
 public static class NowPlayingSessionManagerService
 {

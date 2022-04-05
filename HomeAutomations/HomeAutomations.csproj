@@ -82,14 +82,4 @@
 		<Message Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' == '0'" Importance="low" />
 		<Error Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' != '0'" />
 	</Target>
-
-	<!--<Target Name="NSwag home-automations-client" BeforeTargets="Build">
-		<Exec ConsoleToMSBuild="true" ContinueOnError="true" Command="$(NSwagExe_Net60) run Nswag/home-automations-client.json">
-			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
-			<Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />
-		</Exec>
-
-		<Message Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' == '0'" Importance="low" />
-		<Error Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' != '0'" />
-	</Target>-->
 </Project>

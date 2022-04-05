@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace HomeAutomations.Client.Media;
+namespace HomeAutomations.Client.Services.Media.NowPlaying;
 
 public class Wnf
 {

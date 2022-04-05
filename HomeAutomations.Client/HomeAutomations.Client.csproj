@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
-
     <PropertyGroup>
 		<OutputType>WinExe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
@@ -34,5 +33,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\HomeAutomations.Common\HomeAutomations.Common.csproj" />
 	</ItemGroup>
+
+	<Target Name="NSwag moonlight-remote-api" BeforeTargets="Build">
+		<Message Text="text to output $(OutputType)" />
+	</Target>
 
 </Project>

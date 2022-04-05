@@ -1,9 +1,8 @@
 ﻿using System.Reactive.Linq;
 using DeviceId;
-using HomeAutomations.Client.Media;
+using HomeAutomations.Common.Models;
 using HomeAutomations.Common.Services;
 using Microsoft.Extensions.Options;
-using ILogger = Serilog.ILogger;
 
 namespace HomeAutomations.Client.Services.Media;
 
@@ -11,7 +10,6 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 {
 	private readonly MediaControllerService _mediaControllerService;
 	private readonly MqttService _mqttService;
-	private readonly HostService _hostService;
 	private IDisposable? _observer;
 
 	private readonly MediaStatusConfig _config;
@@ -21,12 +19,10 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 		IOptionsMonitor<MediaStatusConfig> config,
 		MediaControllerService mediaControllerService,
 		MqttService mqttService,
-		HostService hostService,
 		ILogger<MediaStatusBackgroundService> logger)
 	{
 		_mediaControllerService = mediaControllerService;
 		_mqttService = mqttService;
-		_hostService = hostService;
 		_config = config.CurrentValue;
 		_logger = logger;
 	}
@@ -41,13 +37,7 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 
 	private async void UpdateMediaStatus()
 	{
-		var deviceId = new DeviceIdBuilder()
-			.AddMachineName()
-			.AddMacAddress()
-			.ToString();
-		var status = _mediaControllerService.GetStatus() with { DeviceId = deviceId, BaseUrl = $"http://{_hostService.GetLocalIpAddress()}:{Constants.Port}"};
-
-		await _mqttService.PublishMessage(status, CancellationToken.None, _config.BaseTopic);
+		await _mqttService.PublishMessage(await _mediaControllerService.GetStatus(), CancellationToken.None, _config.BaseTopic);
 	}
 
 	public Task StopAsync(CancellationToken stoppingToken)

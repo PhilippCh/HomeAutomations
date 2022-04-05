@@ -1,4 +1,4 @@
-﻿using HomeAutomations.Client.Media;
+﻿using HomeAutomations.Client.Services.Media;
 using HomeAutomations.Common.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +20,9 @@ public class MediaController : ControllerBase
     [HttpPost]
     [Route("togglePlayback")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult TogglePlayback([FromBody] IEnumerable<MediaPlayerPredicate> allowedPlayers)
+    public IActionResult TogglePlayback()
     {
-        _mediaControllerService.TogglePlayback(allowedPlayers);
+        _mediaControllerService.TogglePlayback();
         return Ok();
     }
 }

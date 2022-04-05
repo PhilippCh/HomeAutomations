@@ -9,6 +9,5 @@ public record MovieTimeConfig : Config
 {
 	public string StatusTopic { get; init; }
 	public IEnumerable<string> SupportedActivities { get; init; }
-	public IEnumerable<MediaPlayerPredicate> SupportedPlayers { get; init; }
 	public IEnumerable<LightEntity> Lights { get; init; }
 }

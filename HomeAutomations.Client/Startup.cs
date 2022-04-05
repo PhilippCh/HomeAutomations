@@ -1,8 +1,9 @@
 ﻿using HomeAutomations.Client.Commands;
-using HomeAutomations.Client.Media;
 using HomeAutomations.Client.Services;
 using HomeAutomations.Client.Services.Media;
-using HomeAutomations.Client.TrayIcon;
+using HomeAutomations.Client.Services.Media.NowPlaying;
+using HomeAutomations.Client.Services.Media.VideoLan;
+using HomeAutomations.Client.Services.TrayIcon;
 using HomeAutomations.Client.Util;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
@@ -39,12 +40,14 @@ public class Startup
             // Config
             .Configure<MqttConfig>(_config.GetSection("MQTT"))
             .Configure<MediaStatusConfig>(_config.GetSection("MediaStatus"))
+            .Configure<VlcConfig>(_config.GetSection("VLC"))
 
             // Services
             .AddTransient<HostService>()
             .AddSingleton<CommandParser>()
             .AddSingleton<MediaControllerService>()
             .AddSingleton<NowPlayingMediaSessionManager>()
+            .AddSingleton<VlcRemoteApiService>()
             .AddSingleton<MqttService>()
             .AddSingleton(trayIconService)
 
@@ -59,9 +62,7 @@ public class Startup
     {
         app.UseDeveloperExceptionPage();
         app.UseOpenApi();
-        app.UseSwaggerUi3();
-        //app.UseSwaggerUI(
-//            c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Moonlight Remote Client REST API"));
+        app.UseSwaggerUi3(c => c.DocumentTitle = "HomeAutomations.Client REST API");
 
         app.UseRouting();
         app.UseEndpoints(endpoints => endpoints.MapControllers());
