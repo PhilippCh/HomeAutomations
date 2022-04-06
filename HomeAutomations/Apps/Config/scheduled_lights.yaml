@@ -1,0 +1,15 @@
+---
+HomeAutomations.Apps.ScheduledLights.ScheduledLightsConfig:
+  Schedules:
+    - Name: Fountain
+      Schedule:
+        Start:
+          Time: 09:00:00
+        End:
+          Time: 23:59:59
+    - Name: Living room lights
+      Schedule:
+        Start:
+          Special: Sunset
+        End:
+          Time: 23:59:59

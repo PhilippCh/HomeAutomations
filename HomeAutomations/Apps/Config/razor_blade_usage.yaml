@@ -1,0 +1,4 @@
+---
+HomeAutomations.Apps.RazorBladeUsage.RazorBladeUsageConfig:
+  Sensor: sensor.razor_blade_usage
+  CounterTopic: zigbee2mqtt/0x00158d0006269246
