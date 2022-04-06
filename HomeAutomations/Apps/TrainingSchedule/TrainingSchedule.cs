@@ -17,10 +17,9 @@ namespace HomeAutomations.Apps.TrainingSchedule;
 
 #pragma warning disable CS8619
 
-[Focus]
 public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingScheduleConfig>
 {
-	private MediaStatusMessage _activeStatusMessage;
+	private MediaStatusMessage? _activeStatusMessage;
 
 	private readonly IMqttEntityManager _entityManager;
 	private readonly MqttService _mqttService;
@@ -79,6 +78,11 @@ public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingSchedul
 
 	private async void StartTraining(TrainingServiceData e)
 	{
+		if (_activeStatusMessage == null)
+		{
+			return;
+		}
+
 		var client = new MediaHomeAutomationsClient(_activeStatusMessage.BaseUrl, new HttpClient());
 		await client.StartStreamAsync(e.Url);
 	}

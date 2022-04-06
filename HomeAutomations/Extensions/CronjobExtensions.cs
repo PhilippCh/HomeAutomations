@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Cronos;
 
@@ -11,16 +12,19 @@ public static class CronjobExtensions
 
 	public static async Task ScheduleJob(string cronSchedule, Action action, bool runOnStartup = false, CancellationToken cancellationToken = default)
 	{
-		await ScheduleJob(cronSchedule, async () =>
-		{
-			action();
-			await Task.CompletedTask;
-		}, runOnStartup, cancellationToken);
+		await ScheduleJob(
+			cronSchedule, async () =>
+			{
+				action();
+				await Task.CompletedTask;
+			}, runOnStartup, cancellationToken);
 	}
 
 	public static async Task ScheduleJob(string cronSchedule, Func<Task> action, bool runOnStartup = false, CancellationToken cancellationToken = default)
 	{
 		var expression = CronExpression.Parse(cronSchedule);
+		var today = DateTime.Today.ToUniversalTime();
+		var occurencesToday = expression.GetOccurrences(today, today.AddDays(1));
 		var next = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local);
 
 		if (next == null)
@@ -28,9 +32,16 @@ public static class CronjobExtensions
 			await Task.CompletedTask;
 		}
 
-		if (runOnStartup && !cancellationToken.IsCancellationRequested)
+		if (!cancellationToken.IsCancellationRequested)
 		{
-			await action();
+			switch (runOnStartup)
+			{
+				case false when occurencesToday.Any(d => DateTime.Now >= d): // Run on startup.
+				case true: // Run if we should've already ran today (to accommodate restarts during the day).
+					await action();
+
+					break;
+			}
 		}
 
 		while (!cancellationToken.IsCancellationRequested)
