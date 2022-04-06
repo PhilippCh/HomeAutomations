@@ -24,7 +24,7 @@ public static class CronjobExtensions
 	{
 		var expression = CronExpression.Parse(cronSchedule);
 		var today = DateTime.Today.ToUniversalTime();
-		var occurencesToday = expression.GetOccurrences(today, today.AddDays(1));
+		var occurrencesToday = expression.GetOccurrences(today, today.AddDays(1));
 		var next = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local);
 
 		if (next == null)
@@ -36,7 +36,7 @@ public static class CronjobExtensions
 		{
 			switch (runOnStartup)
 			{
-				case false when occurencesToday.Any(d => DateTime.Now >= d): // Run on startup.
+				case false when occurrencesToday.Any(d => DateTime.Now >= d): // Run on startup.
 				case true: // Run if we should've already ran today (to accommodate restarts during the day).
 					await action();
 
@@ -48,7 +48,14 @@ public static class CronjobExtensions
 		{
 			while (next!.Value - DateTimeOffset.Now > MinTimeSpan && !cancellationToken.IsCancellationRequested)
 			{
-				await Task.Delay(WaitDelay, cancellationToken);
+				try
+				{
+					await Task.Delay(WaitDelay, cancellationToken);
+				}
+				catch (TaskCanceledException)
+				{
+					break;
+				}
 			}
 
 			if (!cancellationToken.IsCancellationRequested)
