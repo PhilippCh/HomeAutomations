@@ -92,6 +92,12 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		Func<Task> action = stateChange switch
 		{
 			{
+				New: VacuumState.Cleaning
+			} => () => {
+				Reset();
+				return Task.CompletedTask;
+			},
+			{
 				Old: VacuumState.Cleaning, New: VacuumState.Returning
 			} => async () => {
 				await SenCleanedAreaNotification();
