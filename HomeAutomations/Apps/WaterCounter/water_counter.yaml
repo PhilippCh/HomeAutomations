@@ -1,0 +1,3 @@
+﻿---
+HomeAutomations.Apps.WaterCounter.WaterCounterConfig:
+  ResetCrontab: 0 0 * * *

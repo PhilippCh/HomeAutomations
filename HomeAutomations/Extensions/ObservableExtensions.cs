@@ -8,14 +8,22 @@ namespace HomeAutomations.Extensions;
 
 public static class ObservableExtensions
 {
-	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions)
-	{
-		return events
+	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events) =>
+		events
 			.Where(e => e.EventType == MobileAppNotificationData.Id && e.DataElement.HasValue)
 			.Select(e => e.DataElement!.Value.GetProperty("action").GetString())
-			.Where(allowedActions.Contains)
-			.Select(a => a ?? string.Empty);
-	}
+			.Where(a => a != null)
+			.Select(a => a!);
+
+	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
+		events
+			.GetMobileNotificationActions()
+			.Where(allowedActions.Contains);
+
+	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, Func<string, bool> actionPredicate) =>
+		events
+			.GetMobileNotificationActions()
+			.Where(actionPredicate);
 
 	public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
 	{

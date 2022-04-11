@@ -5,3 +5,4 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
     - Kino
   Lights:
     - light.stehlampe
+  DimBrightnessPct: 10

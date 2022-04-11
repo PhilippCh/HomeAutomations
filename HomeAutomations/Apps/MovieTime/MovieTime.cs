@@ -57,6 +57,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		{
 			"Play" => TogglePlayback,
 			"Search" => ToggleLight,
+			"Rewind" => DimLight,
 			_ => () => Logger.Warning("No action defined for key {key}.", e?.Key)
 		};
 
@@ -79,6 +80,11 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 	private void ToggleLight()
 	{
 		Config.Lights.ForEach(l => l.Toggle());
+	}
+
+	private void DimLight()
+	{
+		Config.Lights.ForEach(l => l.TurnOn(brightnessPct: Config.DimBrightnessPct));
 	}
 
 	private void OnPause()

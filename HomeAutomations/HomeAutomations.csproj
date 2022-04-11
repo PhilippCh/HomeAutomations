@@ -14,46 +14,6 @@
         <None Update="$(MSBuildProjectDir)appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="$(MSBuildProjectDir)**\*.yaml">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\wall_panel.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\computer_speakers.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\nighttime_switch.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\moonlight_remote.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\vacuum.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\movie_time.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\training_schedule.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\scheduled_lights.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
-        <None Update="Apps\Config\razor_blade_usage.yaml">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -93,5 +53,12 @@
 
 		<Message Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' == '0'" Importance="low" />
 		<Error Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' != '0'" />
+	</Target>
+
+	<Target Name="Copy app configs" BeforeTargets="Build">
+		<ItemGroup>
+			<ANTLR Include="Apps\**\*.yaml" />
+		</ItemGroup>
+		<Copy SourceFiles="@(ANTLR)" DestinationFolder="$(TargetDir)\Apps\Config" />
 	</Target>
 </Project>
