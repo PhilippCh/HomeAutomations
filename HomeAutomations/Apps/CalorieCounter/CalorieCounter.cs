@@ -44,7 +44,7 @@ public class CalorieCounter : BaseAutomation<CalorieCounter>
 		var sensorId = GetCaloriesSensorId(e.User, BaseCaloriesId);
 		var total = e.RestingCalories + e.ActiveCalories;
 
-		await _entityManager.CreateAsync(sensorId, new EntityCreationOptions("power", sensorId, $"Base calories for {e.User}"));
+		await _entityManager.CreateAsync(sensorId, new EntityCreationOptions(null, sensorId, $"Base calories for {e.User}"));
 		await _entityManager.SetStateAsync(sensorId, total?.ToString(CultureInfo.InvariantCulture) ?? EntityStates.Unknown);
 		await _entityManager.SetAttributesAsync(sensorId, GetBaseCaloriesAttributes(e));
 	}
@@ -71,7 +71,7 @@ public class CalorieCounter : BaseAutomation<CalorieCounter>
 
 		total += calories;
 
-		await _entityManager.CreateAsync(sensorId, new EntityCreationOptions("power", sensorId, $"Digested calories for {e.User}"));
+		await _entityManager.CreateAsync(sensorId, new EntityCreationOptions(null, sensorId, $"Digested calories for {e.User}"));
 		await _entityManager.SetStateAsync(sensorId, total.ToString(CultureInfo.InvariantCulture));
 	}
 }

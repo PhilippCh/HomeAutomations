@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
-using HomeAutomations.Models.DeviceMessages;
+using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.WaterCounter;
 
+[Focus]
 public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 {
 	private const string WaterNotificationActionPrefix = "WATER_";
@@ -33,7 +35,7 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		StartResetSchedule();
-		CreateEntities();
+		await CreateEntities();
 		Context.Events.GetMobileNotificationActions(a => a.StartsWith(WaterNotificationActionPrefix))
 			.Select(a => a[a.IndexOf(WaterNotificationActionPrefix, StringComparison.InvariantCulture)..])
 			.Select(int.Parse)
@@ -42,11 +44,16 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 		//(await _mqttService.GetMessagesForTopic<ButtonDeviceMessage>(Config.CounterTopic)).Subscribe(OnButtonPressed);
 	}
 
-	private async void CreateEntities()
+	private async Task CreateEntities()
 	{
-		/*var users = Context.await _entityManager.CreateAsync(Config.EntityId, new EntityCreationOptions("power", Config.EntityId, $"Current training schedule"));
-		await _entityManager.SetStateAsync(Config.EntityId, "See entity attributes.");
-		await _entityManager.SetAttributesAsync(Config.EntityId, GetEntityAttributes(schedule));*/
+		var persons = Context.GetAllEntities("person");
+
+		foreach (var person in persons)
+		{
+			var name = person.GetName();
+			var entityId = $"{Config.EntityPrefix}{name}";
+			await _entityManager.CreateAsync(entityId, new EntityCreationOptions(null, entityId, $"Daily water intake for {name}"));
+		}
 	}
 
 	private async void StartResetSchedule()

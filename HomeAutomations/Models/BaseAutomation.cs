@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Models;
 
@@ -11,7 +12,8 @@ public class BaseAutomationDependencyAggregate<T, TConfig> : BaseAutomationDepen
 {
 	public IAppConfig<TConfig> Config { get; }
 
-	public BaseAutomationDependencyAggregate(IHaContext context, IAppConfig<TConfig> config, ILogger loggerFactory) : base(context, loggerFactory)
+	public BaseAutomationDependencyAggregate(IHaContext context, IAppConfig<TConfig> config, ILogger loggerFactory)
+		: base(context, loggerFactory)
 	{
 		Config = config;
 	}
@@ -21,6 +23,7 @@ public class BaseAutomationDependencyAggregate<T> where T : BaseAutomation<T>
 {
 	public IHaContext Context { get; }
 	public ILogger Logger { get; }
+	public Entities Entities => new(Context);
 
 	public BaseAutomationDependencyAggregate(IHaContext context, ILogger loggerFactory)
 	{
@@ -31,14 +34,15 @@ public class BaseAutomationDependencyAggregate<T> where T : BaseAutomation<T>
 
 public abstract class BaseAutomation<T, TConfig> : BaseAutomation<T> where T : BaseAutomation<T, TConfig> where TConfig : Config, new()
 {
-	protected TConfig Config => _appConfig.Value;
+	protected TConfig Config => _aggregate.Config.Value;
+	protected Entities Entities => _aggregate.Entities;
 
-	private readonly IAppConfig<TConfig> _appConfig;
+	private readonly BaseAutomationDependencyAggregate<T, TConfig> _aggregate;
 
 	protected BaseAutomation(BaseAutomationDependencyAggregate<T, TConfig> aggregate)
 		: base(new BaseAutomationDependencyAggregate<T>(aggregate.Context, aggregate.Logger))
 	{
-		_appConfig = aggregate.Config;
+		_aggregate = aggregate;
 	}
 }
 

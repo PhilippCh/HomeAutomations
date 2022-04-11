@@ -57,7 +57,7 @@ public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingSchedul
 		}
 
 		var schedule = schedules.First();
-		await _entityManager.CreateAsync(Config.EntityId, new EntityCreationOptions("power", Config.EntityId, $"Current training schedule"));
+		await _entityManager.CreateAsync(Config.EntityId, new EntityCreationOptions(null, Config.EntityId, $"Current training schedule"));
 		await _entityManager.SetStateAsync(Config.EntityId, "See entity attributes.");
 		await _entityManager.SetAttributesAsync(Config.EntityId, GetEntityAttributes(schedule));
 	}

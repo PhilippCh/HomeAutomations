@@ -6,5 +6,6 @@ namespace HomeAutomations.Apps.WaterCounter;
 
 public record WaterCounterConfig : Config
 {
+	public string EntityPrefix { get; init; }
 	public string ResetCrontab { get; init; }
 }

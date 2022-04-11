@@ -22,7 +22,7 @@ public class RazorBladeUsage : BaseAutomation<RazorBladeUsage, RazorBladeUsageCo
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		(await _mqttService.GetMessagesForTopic<ButtonDeviceMessage>(Config.CounterTopic)).Subscribe(OnButtonPressed);
-		await _entityManager.CreateAsync(Config.Sensor.EntityId, new EntityCreationOptions("power", Config.Sensor.EntityId, $"Razor blade usage"));
+		await _entityManager.CreateAsync(Config.Sensor.EntityId, new EntityCreationOptions(null, Config.Sensor.EntityId, $"Razor blade usage"));
 	}
 
 	private async void OnButtonPressed(ButtonDeviceMessage? e)
