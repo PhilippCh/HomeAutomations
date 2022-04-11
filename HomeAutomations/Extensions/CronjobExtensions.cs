@@ -23,8 +23,8 @@ public static class CronjobExtensions
 	public static async Task ScheduleJob(string cronSchedule, Func<Task> action, bool runOnStartup = false, CancellationToken cancellationToken = default)
 	{
 		var expression = CronExpression.Parse(cronSchedule);
-		var today = DateTime.Today.ToUniversalTime();
-		var occurrencesToday = expression.GetOccurrences(today, today.AddDays(1));
+		var today = DateTime.Today;
+		var occurrencesToday = expression.GetOccurrences(today, today.AddDays(1), TimeZoneInfo.Local);
 		var next = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local);
 
 		if (next == null)
@@ -32,16 +32,9 @@ public static class CronjobExtensions
 			await Task.CompletedTask;
 		}
 
-		if (!cancellationToken.IsCancellationRequested)
+		if (!cancellationToken.IsCancellationRequested && runOnStartup)
 		{
-			switch (runOnStartup)
-			{
-				case false when occurrencesToday.Any(d => DateTime.Now >= d): // Run on startup.
-				case true: // Run if we should've already ran today (to accommodate restarts during the day).
-					await action();
-
-					break;
-			}
+			await action();
 		}
 
 		while (!cancellationToken.IsCancellationRequested)
