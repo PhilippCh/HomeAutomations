@@ -48,10 +48,16 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 		await CronjobExtensions.ScheduleJob(Config.ResetCrontab, ResetCounter, cancellationToken: CancellationToken.None);
 	}
 
-	private void ResetCounter()
+	private async void ResetCounter()
 	{
 		Logger.Information("Resetting daily water counters.");
-		//Config.Counter.SetValue(0);
+		var persons = Context.GetAllEntities("person");
+
+		foreach (var person in persons)
+		{
+			var name = person.GetName();
+			await _entityManager.SetStateAsync(GetEntityId(name), 0.ToString());
+		}
 	}
 
 	private void OnSetTarget(HaEvent e)
