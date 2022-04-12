@@ -4,9 +4,7 @@ HomeAutomations.Apps.Vacuum.VacuumConfig:
   Map:
     Entity: camera.fantenrussel_map
     ImageName: fantenrussel_cleaned_area.jpg
-  ReminderActiveInterval: '01:00:00'
   ReminderCrontab: 00 11 * * 1,3,5
-  ResetCrontab: 00 19 * * *
   Notifications:
     Reminder:
       Tag: vacuum

@@ -22,7 +22,5 @@ public record VacuumConfig : Config
 	public VacuumEntity Vacuum { get; init; }
 	public VacuumMapConfig Map { get; init; }
 	public string ReminderCrontab { get; init; }
-	public string ResetCrontab { get; init; }
-	public TimeSpan ReminderActiveInterval { get; init; }
 	public VacuumNotificationConfig Notifications { get; init; }
 }

@@ -30,7 +30,6 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		Config.Vacuum.StateChanges().Subscribe(s => OnVacuumStateUpdated(new StateChange { Old = s.Old?.State, New = s.New?.State }));
 
 		StartReminderCron();
-		StartResetCron();
 
 		return Task.CompletedTask;
 	}
@@ -38,14 +37,7 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 	private async void StartReminderCron()
 	{
 		_cleaningScheduleCancellationToken = new CancellationTokenSource();
-		await CronjobExtensions.ScheduleJob(
-			Config.ReminderCrontab, StartReminderLoop,
-			cancellationToken: _cleaningScheduleCancellationToken.Token);
-	}
-
-	private async void StartResetCron()
-	{
-		await CronjobExtensions.ScheduleJob(Config.ResetCrontab, Reset, cancellationToken: CancellationToken.None);
+		await CronjobExtensions.ScheduleJob(Config.ReminderCrontab, SendReminder, cancellationToken: _cleaningScheduleCancellationToken.Token);
 	}
 
 	private void Reset()
@@ -54,14 +46,6 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		_reminderLoopObserver?.Dispose();
 
 		StartReminderCron();
-	}
-
-	private void StartReminderLoop()
-	{
-		_reminderLoopObserver?.Dispose();
-		_reminderLoopObserver = ObservableExtensions
-			.Interval(Config.ReminderActiveInterval, true)
-			.Subscribe(_ => SendReminder());
 	}
 
 	private void SendReminder()
@@ -92,13 +76,16 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		{
 			{
 				New: VacuumState.Cleaning
-			} => () => {
+			} => () =>
+			{
 				Reset();
+
 				return Task.CompletedTask;
 			},
 			{
 				Old: VacuumState.Cleaning, New: VacuumState.Returning
-			} => async () => {
+			} => async () =>
+			{
 				await SenCleanedAreaNotification();
 				SendToBin();
 			},
