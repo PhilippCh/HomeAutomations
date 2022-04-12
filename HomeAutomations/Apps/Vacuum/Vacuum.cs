@@ -5,7 +5,6 @@ using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
-using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Vacuum;
 
@@ -58,13 +57,13 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		}
 	}
 
-	private void OnNotificationActionFired(string action)
+	private void OnNotificationActionFired(HaEvent e)
 	{
-		Action callback = action switch
+		Action callback = e.Action switch
 		{
 			VacuumNotificationActions.Start => () => Config.Vacuum.Start(),
 			VacuumNotificationActions.NoStart => Reset,
-			_ => () => Logger.Warning("Fired unknown notification action {action}.", action)
+			_ => () => Logger.Warning("Fired unknown notification action {action}.", e.Action)
 		};
 
 		callback();

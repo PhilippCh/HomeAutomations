@@ -1,28 +1,42 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
+using System.Text.Json;
 using System.Threading;
 using HomeAutomations.Models;
 
 namespace HomeAutomations.Extensions;
 
+public record HaEvent(Event e)
+{
+	public string? Action => e.DataElement?.GetProperty("action").GetString();
+
+	public T? GetData<T>(string key)
+	{
+		if (!(e.DataElement?.TryGetProperty(key, out var property) ?? false))
+		{
+			return default;
+		}
+
+		return property.Deserialize<T>();
+	}
+}
+
 public static class ObservableExtensions
 {
-	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events) =>
+	public static IObservable<HaEvent> GetDataEvents(this IObservable<Event> events, string eventId) =>
 		events
-			.Where(e => e.EventType == MobileAppNotificationData.Id && e.DataElement.HasValue)
-			.Select(e => e.DataElement!.Value.GetProperty("action").GetString())
-			.Where(a => a != null)
-			.Select(a => a!);
+			.Where(e => e.EventType == eventId && e.DataElement.HasValue)
+			.Select(e => new HaEvent(e));
 
-	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
+	public static IObservable<HaEvent> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
 		events
-			.GetMobileNotificationActions()
-			.Where(allowedActions.Contains);
+			.GetDataEvents(MobileAppNotificationData.Id)
+			.Where(n => allowedActions.Contains(n.Action));
 
-	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, Func<string, bool> actionPredicate) =>
+	public static IObservable<HaEvent> GetMobileNotificationActions(this IObservable<Event> events, Func<HaEvent, bool> actionPredicate) =>
 		events
-			.GetMobileNotificationActions()
+			.GetDataEvents(MobileAppNotificationData.Id)
 			.Where(actionPredicate);
 
 	public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
