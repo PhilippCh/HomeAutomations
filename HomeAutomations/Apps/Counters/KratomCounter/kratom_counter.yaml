@@ -3,6 +3,9 @@ HomeAutomations.Apps.Counters.KratomCounter.KratomCounterConfig:
   Name: Kratom
   EntityPrefix: sensor.kratom_intake_
   EntityDescriptionPrefix: Daily kratom intake
+  Button:
+    Topic: zigbee2mqtt/0x00158d000678ed45
+    AssociatedUser: philipp
   ResetCrontab: 0 0 * * *
   Events:
     AddEventId: kratom_add_event

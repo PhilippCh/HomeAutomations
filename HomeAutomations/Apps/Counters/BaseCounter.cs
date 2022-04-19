@@ -1,7 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
+using HomeAutomations.Models.DeviceMessages;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Entities;
 
@@ -12,11 +14,13 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 	where TConfig : CounterConfig, new()
 {
 	private readonly IMqttEntityManager _entityManager;
+	private readonly MqttService _mqttService;
 
-	public BaseCounter(BaseAutomationDependencyAggregate<T, TConfig> aggregate, IMqttEntityManager entityManager)
+	public BaseCounter(BaseAutomationDependencyAggregate<T, TConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)
 		: base(aggregate)
 	{
 		_entityManager = entityManager;
+		_mqttService = mqttService;
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
@@ -26,6 +30,11 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 		Context.Events.GetDataEvents(Config.Events.AddEventId).Subscribe(OnAdd);
 		Context.Events.GetDataEvents(Config.Events.SetTargetEventId).Subscribe(OnSetTarget);
+
+		if (Config.Button != null)
+		{
+			(await _mqttService.GetMessagesForTopic<ButtonDeviceMessage>(Config.Button.Topic)).Subscribe(OnButtonPressed);
+		}
 	}
 
 	private async Task CreateEntities()
@@ -57,6 +66,29 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		}
 	}
 
+	private async void OnButtonPressed(ButtonDeviceMessage? message)
+	{
+		if (Config.Button == null)
+		{
+			Logger.Warning("Button config was null, this should never happen in {name}", nameof(OnButtonPressed));
+			return;
+		}
+
+		var action = message?.Action ?? ButtonAction.Undefined;
+
+		// For every non-special action, increase counter by X.
+		if (action != ButtonAction.Undefined && action < ButtonDeviceMessage.SpecialActionBegin)
+		{
+			await OnAdd((int) action, Config.Button.AssociatedUser);
+		}
+
+		// Decrease count by 1.
+		if (action == ButtonAction.Hold)
+		{
+			await OnAdd(-1, Config.Button.AssociatedUser);
+		}
+	}
+
 	private void OnSetTarget(HaEvent e)
 	{
 		var targetAmount = e.GetData<int?>(Config.Events.AmountProperty);
@@ -70,11 +102,16 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		_entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.Value.ToString());
 	}
 
-	private void OnAdd(HaEvent e)
+	private async void OnAdd(HaEvent e)
 	{
 		var increment = e.GetData<int?>(Config.Events.AmountProperty);
 		var user = e.GetData<string>(Config.Events.UserProperty);
 
+		await OnAdd(increment, user);
+	}
+
+	private async Task OnAdd(int? increment, string? user)
+	{
 		if (increment == null || user == null)
 		{
 			return;
@@ -85,7 +122,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			currentAmount = 0;
 		}
 
-		_entityManager.SetStateAsync(GetEntityId(user), (currentAmount + increment.Value).ToString());
+		await _entityManager.SetStateAsync(GetEntityId(user), (currentAmount + increment.Value).ToString());
 	}
 
 	private string GetEntityId(string person) => $"{Config.EntityPrefix}{person}";

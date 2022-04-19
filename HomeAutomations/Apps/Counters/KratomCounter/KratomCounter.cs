@@ -1,4 +1,5 @@
 ﻿using HomeAutomations.Apps.Counters.WaterCounter;
+using HomeAutomations.Common.Services;
 using HomeAutomations.Models;
 using NetDaemon.Extensions.MqttEntityManager;
 
@@ -8,8 +9,8 @@ public record KratomCounterConfig : CounterConfig;
 
 public class KratomCounter : BaseCounter<KratomCounter, KratomCounterConfig>
 {
-	public KratomCounter(BaseAutomationDependencyAggregate<KratomCounter, KratomCounterConfig> aggregate, IMqttEntityManager entityManager)
-		: base(aggregate, entityManager)
+	public KratomCounter(BaseAutomationDependencyAggregate<KratomCounter, KratomCounterConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)
+		: base(aggregate, entityManager, mqttService)
 	{
 	}
 }
