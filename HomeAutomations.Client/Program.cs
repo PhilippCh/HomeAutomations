@@ -40,12 +40,9 @@ public static class Program
 	private static IHostBuilder CreateWebHostBuilder(string[] args)
 	{
 		return Host.CreateDefaultBuilder(args)
-			.UseWindowsService()
 			.ConfigureAppConfiguration(
 				(hostingContext, config) =>
-					config.AddJsonFile(
-						$"/appsettings/appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
-						true))
+					config.AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true))
 			.ConfigureWebHostDefaults(
 				webBuilder =>
 				{

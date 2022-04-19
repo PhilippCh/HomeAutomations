@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations.Client", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations.Common", "HomeAutomations.Common\HomeAutomations.Common.csproj", "{59AE20EA-A4F4-4413-B4AA-A43D22CEF7E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations.Client.Watchdog", "HomeAutomations.Client.Watchdog\HomeAutomations.Client.Watchdog.csproj", "{F9CE2459-86D9-40DD-8F69-C17FC5871966}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{59AE20EA-A4F4-4413-B4AA-A43D22CEF7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59AE20EA-A4F4-4413-B4AA-A43D22CEF7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59AE20EA-A4F4-4413-B4AA-A43D22CEF7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9CE2459-86D9-40DD-8F69-C17FC5871966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9CE2459-86D9-40DD-8F69-C17FC5871966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9CE2459-86D9-40DD-8F69-C17FC5871966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9CE2459-86D9-40DD-8F69-C17FC5871966}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
