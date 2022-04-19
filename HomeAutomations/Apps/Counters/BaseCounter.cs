@@ -5,18 +5,15 @@ using HomeAutomations.Models;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Entities;
 
-namespace HomeAutomations.Apps.WaterCounter;
+namespace HomeAutomations.Apps.Counters;
 
-public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
+public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
+	where T : BaseAutomation<T, TConfig>
+	where TConfig : CounterConfig, new()
 {
-	private const string AddWaterEventId = "water_add_event";
-	private const string SetTargetEventId = "water_set_target_event";
-	private const string UserProperty = "user";
-	private const string AmountProperty = "amount";
-
 	private readonly IMqttEntityManager _entityManager;
 
-	public WaterCounter(BaseAutomationDependencyAggregate<WaterCounter, WaterCounterConfig> aggregate, IMqttEntityManager entityManager)
+	public BaseCounter(BaseAutomationDependencyAggregate<T, TConfig> aggregate, IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
 		_entityManager = entityManager;
@@ -27,8 +24,8 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 		StartResetSchedule();
 		await CreateEntities();
 
-		Context.Events.GetDataEvents(AddWaterEventId).Subscribe(OnAddWater);
-		Context.Events.GetDataEvents(SetTargetEventId).Subscribe(OnSetTarget);
+		Context.Events.GetDataEvents(Config.Events.AddEventId).Subscribe(OnAdd);
+		Context.Events.GetDataEvents(Config.Events.SetTargetEventId).Subscribe(OnSetTarget);
 	}
 
 	private async Task CreateEntities()
@@ -38,8 +35,8 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 		foreach (var person in persons)
 		{
 			var name = person.GetName();
-			await _entityManager.CreateAsync(GetEntityId(name), $"Daily water intake for {name}");
-			await _entityManager.CreateAsync(GetTargetEntityId(name), $"Daily water intake target for {name}");
+			await _entityManager.CreateAsync(GetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "for", name));
+			await _entityManager.CreateAsync(GetTargetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "target for", name));
 		}
 	}
 
@@ -50,7 +47,7 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 
 	private async void ResetCounter()
 	{
-		Logger.Information("Resetting daily water counters.");
+		Logger.Information("Resetting daily {name} counters.", Config.Name);
 		var persons = Context.GetAllEntities("person");
 
 		foreach (var person in persons)
@@ -62,8 +59,8 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 
 	private void OnSetTarget(HaEvent e)
 	{
-		var targetAmount = e.GetData<int?>(AmountProperty);
-		var user = e.GetData<string>(UserProperty);
+		var targetAmount = e.GetData<int?>(Config.Events.AmountProperty);
+		var user = e.GetData<string>(Config.Events.UserProperty);
 
 		if (targetAmount == null || user == null)
 		{
@@ -73,10 +70,10 @@ public class WaterCounter : BaseAutomation<WaterCounter, WaterCounterConfig>
 		_entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.Value.ToString());
 	}
 
-	private void OnAddWater(HaEvent e)
+	private void OnAdd(HaEvent e)
 	{
-		var increment = e.GetData<int?>(AmountProperty);
-		var user = e.GetData<string>(UserProperty);
+		var increment = e.GetData<int?>(Config.Events.AmountProperty);
+		var user = e.GetData<string>(Config.Events.UserProperty);
 
 		if (increment == null || user == null)
 		{

@@ -54,6 +54,8 @@ namespace HomeAutomations.Models.Generated
 
 		TimerEntities Timer { get; }
 
+		UpdateEntities Update { get; }
+
 		VacuumEntities Vacuum { get; }
 
 		WeatherEntities Weather { get; }
@@ -92,6 +94,7 @@ namespace HomeAutomations.Models.Generated
 		public SunEntities Sun => new(_haContext);
 		public SwitchEntities Switch => new(_haContext);
 		public TimerEntities Timer => new(_haContext);
+		public UpdateEntities Update => new(_haContext);
 		public VacuumEntities Vacuum => new(_haContext);
 		public WeatherEntities Weather => new(_haContext);
 		public ZoneEntities Zone => new(_haContext);
@@ -117,8 +120,6 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>0x00158d0007bcae5d occupancy</summary>
-		public BinarySensorEntity E0x00158d0007bcae5dOccupancy => new(_haContext, "binary_sensor.0x00158d0007bcae5d_occupancy");
 		///<summary>Balkontür links</summary>
 		public BinarySensorEntity BalkonturLinks => new(_haContext, "binary_sensor.balkontur_links");
 		///<summary>Balkontür links Battery</summary>
@@ -157,6 +158,8 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity Laptopfabienne => new(_haContext, "binary_sensor.laptopfabienne");
 		///<summary>LaptopPhilipp</summary>
 		public BinarySensorEntity Laptopphilipp => new(_haContext, "binary_sensor.laptopphilipp");
+		///<summary>motion_detector_kitchen occupancy</summary>
+		public BinarySensorEntity MotionDetectorKitchenOccupancy => new(_haContext, "binary_sensor.motion_detector_kitchen_occupancy");
 		///<summary>sleep_mode</summary>
 		public BinarySensorEntity Nodered34b1e88b368528 => new(_haContext, "binary_sensor.nodered_34b1e88b_368528");
 		///<summary>PupsStation Below Min Remaining Life</summary>
@@ -313,10 +316,6 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>room-assistant - iPhone Philipp Tracker</summary>
-		public DeviceTrackerEntity E4a4fc2deB7f541a0A8a84f5120fe28cdTracker => new(_haContext, "device_tracker.4a4fc2de_b7f5_41a0_a8a8_4f5120fe28cd_tracker");
-		///<summary>room-assistant - iPhone Fabienne Tracker</summary>
-		public DeviceTrackerEntity E8b09c51596e045afAda58de99a04535cTracker => new(_haContext, "device_tracker.8b09c515_96e0_45af_ada5_8de99a04535c_tracker");
 		///<summary>🐘 FantenPhone 🐘</summary>
 		public DeviceTrackerEntity Fabienne => new(_haContext, "device_tracker.fabienne");
 		///<summary>Fantenpad</summary>
@@ -353,10 +352,6 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Barcode scanner connected?</summary>
 		public InputBooleanEntity BarcodeScannerConnected => new(_haContext, "input_boolean.barcode_scanner_connected");
-		///<summary>dev_netdaemon_home_automations_apps_moonlight_remote_moonlight_remote</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsMoonlightRemoteMoonlightRemote => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_moonlight_remote_moonlight_remote");
-		///<summary>dev_netdaemon_home_automations_apps_nighttime_switch_nighttime_switch</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsNighttimeSwitchNighttimeSwitch => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_nighttime_switch_nighttime_switch");
 		///<summary>Meditation active?</summary>
 		public InputBooleanEntity MeditationActive => new(_haContext, "input_boolean.meditation_active");
 		///<summary>Shut down harmony activity after moonlight stream ends?</summary>
@@ -373,16 +368,24 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsKratomCounterKratomCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kratom_counter_kratom_counter");
 		///<summary>netdaemon_home_automations_apps_moonlight_remote_moonlight_remote</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsMoonlightRemoteMoonlightRemote => new(_haContext, "input_boolean.netdaemon_home_automations_apps_moonlight_remote_moonlight_remote");
+		///<summary>netdaemon_home_automations_apps_movie_time_movie_time</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsMovieTimeMovieTime => new(_haContext, "input_boolean.netdaemon_home_automations_apps_movie_time_movie_time");
 		///<summary>netdaemon_home_automations_apps_nighttime_switch_nighttime_switch</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsNighttimeSwitchNighttimeSwitch => new(_haContext, "input_boolean.netdaemon_home_automations_apps_nighttime_switch_nighttime_switch");
+		///<summary>netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsRazorBladeUsageRazorBladeUsage => new(_haContext, "input_boolean.netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage");
 		///<summary>netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsScalesKitchenScaleKitchenScale => new(_haContext, "input_boolean.netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale");
+		///<summary>netdaemon_home_automations_apps_training_schedule_training_schedule</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsTrainingScheduleTrainingSchedule => new(_haContext, "input_boolean.netdaemon_home_automations_apps_training_schedule_training_schedule");
 		///<summary>netdaemon_home_automations_apps_trash_reminder_trash_reminder</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsTrashReminderTrashReminder => new(_haContext, "input_boolean.netdaemon_home_automations_apps_trash_reminder_trash_reminder");
-		///<summary>netdaemon_home_automations_apps_vacuum_vacuum_reminder</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsVacuumVacuumReminder => new(_haContext, "input_boolean.netdaemon_home_automations_apps_vacuum_vacuum_reminder");
+		///<summary>netdaemon_home_automations_apps_vacuum_vacuum</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsVacuumVacuum => new(_haContext, "input_boolean.netdaemon_home_automations_apps_vacuum_vacuum");
 		///<summary>netdaemon_home_automations_apps_wall_panel_wall_panel_monitor</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsWallPanelWallPanelMonitor => new(_haContext, "input_boolean.netdaemon_home_automations_apps_wall_panel_wall_panel_monitor");
+		///<summary>netdaemon_home_automations_apps_water_counter_water_counter</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsWaterCounterWaterCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_water_counter_water_counter");
 		///<summary>Bio</summary>
 		public InputBooleanEntity TrashBio => new(_haContext, "input_boolean.trash_bio");
 		///<summary>Glas</summary>
@@ -469,6 +472,9 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		public LightEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "light.browser_mod_18a35fcc_9cc51676");
+		public LightEntity BrowserMod7605937aF7c5c1de => new(_haContext, "light.browser_mod_7605937a_f7c5c1de");
+		public LightEntity BrowserMod83461556F7d0adba => new(_haContext, "light.browser_mod_83461556_f7d0adba");
 		public LightEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "light.browser_mod_8ff90475_f73ebe95");
 		public LightEntity BrowserModCe5a5526823fbc7c => new(_haContext, "light.browser_mod_ce5a5526_823fbc7c");
 		public LightEntity BrowserModFb34009b72400981 => new(_haContext, "light.browser_mod_fb34009b_72400981");
@@ -492,6 +498,9 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		public MediaPlayerEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "media_player.browser_mod_18a35fcc_9cc51676");
+		public MediaPlayerEntity BrowserMod7605937aF7c5c1de => new(_haContext, "media_player.browser_mod_7605937a_f7c5c1de");
+		public MediaPlayerEntity BrowserMod83461556F7d0adba => new(_haContext, "media_player.browser_mod_83461556_f7d0adba");
 		public MediaPlayerEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "media_player.browser_mod_8ff90475_f73ebe95");
 		public MediaPlayerEntity BrowserModCe5a5526823fbc7c => new(_haContext, "media_player.browser_mod_ce5a5526_823fbc7c");
 		public MediaPlayerEntity BrowserModFb34009b72400981 => new(_haContext, "media_player.browser_mod_fb34009b_72400981");
@@ -511,8 +520,8 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>New devices discovered</summary>
-		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
+		///<summary>Login attempt failed</summary>
+		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
 	}
 
 	public class PersonEntities
@@ -523,10 +532,10 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>Fabienne</summary>
+		public PersonEntity Fabienne => new(_haContext, "person.fabienne");
 		///<summary>Philipp</summary>
 		public PersonEntity Philipp => new(_haContext, "person.philipp");
-		///<summary>Philipp</summary>
-		public PersonEntity Philipp2 => new(_haContext, "person.philipp_2");
 	}
 
 	public class RemoteEntities
@@ -565,32 +574,17 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity E0x00158d0006268613Action => new(_haContext, "sensor.0x00158d0006268613_action");
 		///<summary>0x00158d0006268613 click</summary>
 		public SensorEntity E0x00158d0006268613Click => new(_haContext, "sensor.0x00158d0006268613_click");
-		///<summary>0x00158d0006269246 action</summary>
-		public SensorEntity E0x00158d0006269246Action => new(_haContext, "sensor.0x00158d0006269246_action");
-		///<summary>0x00158d0006269246 click</summary>
-		public SensorEntity E0x00158d0006269246Click => new(_haContext, "sensor.0x00158d0006269246_click");
-		///<summary>0x00158d0006397c0f action</summary>
-		public SensorEntity E0x00158d0006397c0fAction => new(_haContext, "sensor.0x00158d0006397c0f_action");
-		///<summary>0x00158d0006397c0f click</summary>
-		public SensorEntity E0x00158d0006397c0fClick => new(_haContext, "sensor.0x00158d0006397c0f_click");
-		///<summary>0x00158d000678ed45 action</summary>
-		public SensorEntity E0x00158d000678ed45Action => new(_haContext, "sensor.0x00158d000678ed45_action");
-		///<summary>0x00158d000678ed45 click</summary>
-		public SensorEntity E0x00158d000678ed45Click => new(_haContext, "sensor.0x00158d000678ed45_click");
 		///<summary>0x00158d0006792498 action</summary>
 		public SensorEntity E0x00158d0006792498Action => new(_haContext, "sensor.0x00158d0006792498_action");
 		///<summary>0x00158d0006792498 click</summary>
 		public SensorEntity E0x00158d0006792498Click => new(_haContext, "sensor.0x00158d0006792498_click");
-		///<summary>0x54ef441000035f82 illuminance</summary>
-		public SensorEntity E0x54ef441000035f82Illuminance => new(_haContext, "sensor.0x54ef441000035f82_illuminance");
-		///<summary>room-assistant - iPhone Philipp Room Presence</summary>
-		public SensorEntity E4a4fc2deB7f541a0A8a84f5120fe28cdRoomPresence => new(_haContext, "sensor.4a4fc2de_b7f5_41a0_a8a8_4f5120fe28cd_room_presence");
-		///<summary>room-assistant - iPhone Fabienne Room Presence</summary>
-		public SensorEntity E8b09c51596e045afAda58de99a04535cRoomPresence => new(_haContext, "sensor.8b09c515_96e0_45af_ada5_8de99a04535c_room_presence");
 		///<summary>Base calories for fabienne</summary>
 		public SensorEntity BaseCaloriesForFabienne => new(_haContext, "sensor.base_calories_for_fabienne");
 		///<summary>Base calories for philipp</summary>
 		public SensorEntity BaseCaloriesForPhilipp => new(_haContext, "sensor.base_calories_for_philipp");
+		public SensorEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "sensor.browser_mod_18a35fcc_9cc51676");
+		public SensorEntity BrowserMod7605937aF7c5c1de => new(_haContext, "sensor.browser_mod_7605937a_f7c5c1de");
+		public SensorEntity BrowserMod83461556F7d0adba => new(_haContext, "sensor.browser_mod_83461556_f7d0adba");
 		public SensorEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "sensor.browser_mod_8ff90475_f73ebe95");
 		public SensorEntity BrowserModCe5a5526823fbc7c => new(_haContext, "sensor.browser_mod_ce5a5526_823fbc7c");
 		public SensorEntity BrowserModFb34009b72400981 => new(_haContext, "sensor.browser_mod_fb34009b_72400981");
@@ -610,6 +604,8 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BuyHodlGmeSim1 => new(_haContext, "sensor.buy_hodl_gme_sim_1");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 SSID</summary>
 		public SensorEntity BuyHodlGmeSsid => new(_haContext, "sensor.buy_hodl_gme_ssid");
+		///<summary>Current training schedule</summary>
+		public SensorEntity CurrentTrainingSchedule => new(_haContext, "sensor.current_training_schedule");
 		///<summary>fabienne_herion_last_update</summary>
 		public SensorEntity FabienneHerionLastUpdate => new(_haContext, "sensor.fabienne_herion_last_update");
 		///<summary>Fantenpad Activity</summary>
@@ -705,8 +701,22 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity PupsstationDrive2Status => new(_haContext, "sensor.pupsstation_drive_2_status");
 		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationVolume1Status => new(_haContext, "sensor.pupsstation_volume_1_status");
+		///<summary>Razor blade usage</summary>
+		public SensorEntity RazorBladeUsage => new(_haContext, "sensor.razor_blade_usage");
 		///<summary>Ist heute Haushaltstag?</summary>
 		public SensorEntity ShowHouseholdDayTodo => new(_haContext, "sensor.show_household_day_todo");
+		///<summary>switch_kitchen_light action</summary>
+		public SensorEntity SwitchKitchenLightAction => new(_haContext, "sensor.switch_kitchen_light_action");
+		///<summary>switch_kitchen_light click</summary>
+		public SensorEntity SwitchKitchenLightClick => new(_haContext, "sensor.switch_kitchen_light_click");
+		///<summary>switch_kratom_counter action</summary>
+		public SensorEntity SwitchKratomCounterAction => new(_haContext, "sensor.switch_kratom_counter_action");
+		///<summary>switch_kratom_counter click</summary>
+		public SensorEntity SwitchKratomCounterClick => new(_haContext, "sensor.switch_kratom_counter_click");
+		///<summary>switch_razor_blade_usage action</summary>
+		public SensorEntity SwitchRazorBladeUsageAction => new(_haContext, "sensor.switch_razor_blade_usage_action");
+		///<summary>switch_razor_blade_usage click</summary>
+		public SensorEntity SwitchRazorBladeUsageClick => new(_haContext, "sensor.switch_razor_blade_usage_click");
 		///<summary>Thermostat Arbeitszimmer</summary>
 		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
 		///<summary>Thermostat Badezimmer</summary>
@@ -715,54 +725,26 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity ThermostatSchlafzimmer => new(_haContext, "sensor.thermostat_schlafzimmer");
 		///<summary>Thermostat Wohnzimmer</summary>
 		public SensorEntity ThermostatWohnzimmer => new(_haContext, "sensor.thermostat_wohnzimmer");
+		///<summary>Daily water intake for fabienne</summary>
+		public SensorEntity WaterIntakeFabienne => new(_haContext, "sensor.water_intake_fabienne");
+		///<summary>Daily water intake target for fabienne</summary>
+		public SensorEntity WaterIntakeFabienneTarget => new(_haContext, "sensor.water_intake_fabienne_target");
+		///<summary>Daily water intake for philipp</summary>
+		public SensorEntity WaterIntakePhilipp => new(_haContext, "sensor.water_intake_philipp");
+		///<summary>Daily water intake target for philipp</summary>
+		public SensorEntity WaterIntakePhilippTarget => new(_haContext, "sensor.water_intake_philipp_target");
 		///<summary>0x00158d0006268613 battery</summary>
 		public NumericSensorEntity E0x00158d0006268613Battery => new(_haContext, "sensor.0x00158d0006268613_battery");
 		///<summary>0x00158d0006268613 linkquality</summary>
 		public NumericSensorEntity E0x00158d0006268613Linkquality => new(_haContext, "sensor.0x00158d0006268613_linkquality");
 		///<summary>0x00158d0006268613 voltage</summary>
 		public NumericSensorEntity E0x00158d0006268613Voltage => new(_haContext, "sensor.0x00158d0006268613_voltage");
-		///<summary>0x00158d0006269246 battery</summary>
-		public NumericSensorEntity E0x00158d0006269246Battery => new(_haContext, "sensor.0x00158d0006269246_battery");
-		///<summary>0x00158d0006269246 linkquality</summary>
-		public NumericSensorEntity E0x00158d0006269246Linkquality => new(_haContext, "sensor.0x00158d0006269246_linkquality");
-		///<summary>0x00158d0006269246 voltage</summary>
-		public NumericSensorEntity E0x00158d0006269246Voltage => new(_haContext, "sensor.0x00158d0006269246_voltage");
-		///<summary>0x00158d0006397c0f battery</summary>
-		public NumericSensorEntity E0x00158d0006397c0fBattery => new(_haContext, "sensor.0x00158d0006397c0f_battery");
-		///<summary>0x00158d0006397c0f linkquality</summary>
-		public NumericSensorEntity E0x00158d0006397c0fLinkquality => new(_haContext, "sensor.0x00158d0006397c0f_linkquality");
-		///<summary>0x00158d0006397c0f voltage</summary>
-		public NumericSensorEntity E0x00158d0006397c0fVoltage => new(_haContext, "sensor.0x00158d0006397c0f_voltage");
-		///<summary>0x00158d000678ed45 battery</summary>
-		public NumericSensorEntity E0x00158d000678ed45Battery => new(_haContext, "sensor.0x00158d000678ed45_battery");
-		///<summary>0x00158d000678ed45 linkquality</summary>
-		public NumericSensorEntity E0x00158d000678ed45Linkquality => new(_haContext, "sensor.0x00158d000678ed45_linkquality");
-		///<summary>0x00158d000678ed45 voltage</summary>
-		public NumericSensorEntity E0x00158d000678ed45Voltage => new(_haContext, "sensor.0x00158d000678ed45_voltage");
 		///<summary>0x00158d0006792498 battery</summary>
 		public NumericSensorEntity E0x00158d0006792498Battery => new(_haContext, "sensor.0x00158d0006792498_battery");
 		///<summary>0x00158d0006792498 linkquality</summary>
 		public NumericSensorEntity E0x00158d0006792498Linkquality => new(_haContext, "sensor.0x00158d0006792498_linkquality");
 		///<summary>0x00158d0006792498 voltage</summary>
 		public NumericSensorEntity E0x00158d0006792498Voltage => new(_haContext, "sensor.0x00158d0006792498_voltage");
-		///<summary>0x00158d0007bcae5d battery</summary>
-		public NumericSensorEntity E0x00158d0007bcae5dBattery => new(_haContext, "sensor.0x00158d0007bcae5d_battery");
-		///<summary>0x00158d0007bcae5d illuminance</summary>
-		public NumericSensorEntity E0x00158d0007bcae5dIlluminance => new(_haContext, "sensor.0x00158d0007bcae5d_illuminance");
-		///<summary>0x00158d0007bcae5d illuminance lux</summary>
-		public NumericSensorEntity E0x00158d0007bcae5dIlluminanceLux => new(_haContext, "sensor.0x00158d0007bcae5d_illuminance_lux");
-		///<summary>0x00158d0007bcae5d linkquality</summary>
-		public NumericSensorEntity E0x00158d0007bcae5dLinkquality => new(_haContext, "sensor.0x00158d0007bcae5d_linkquality");
-		///<summary>0x00158d0007bcae5d temperature</summary>
-		public NumericSensorEntity E0x00158d0007bcae5dTemperature => new(_haContext, "sensor.0x00158d0007bcae5d_temperature");
-		///<summary>0x00158d0007bcae5d voltage</summary>
-		public NumericSensorEntity E0x00158d0007bcae5dVoltage => new(_haContext, "sensor.0x00158d0007bcae5d_voltage");
-		///<summary>0x54ef441000035f82 battery</summary>
-		public NumericSensorEntity E0x54ef441000035f82Battery => new(_haContext, "sensor.0x54ef441000035f82_battery");
-		///<summary>0x54ef441000035f82 illuminance lux</summary>
-		public NumericSensorEntity E0x54ef441000035f82IlluminanceLux => new(_haContext, "sensor.0x54ef441000035f82_illuminance_lux");
-		///<summary>0x54ef441000035f82 linkquality</summary>
-		public NumericSensorEntity E0x54ef441000035f82Linkquality => new(_haContext, "sensor.0x54ef441000035f82_linkquality");
 		///<summary>AMC Entertainment Holdings Inc</summary>
 		public NumericSensorEntity AmcEntertainmentHoldingsInc => new(_haContext, "sensor.amc_entertainment_holdings_inc");
 		///<summary>BlackBerry Ltd</summary>
@@ -901,6 +883,18 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity Lufthansa => new(_haContext, "sensor.lufthansa");
 		///<summary>METRO AG</summary>
 		public NumericSensorEntity MetroAg => new(_haContext, "sensor.metro_ag");
+		///<summary>motion_detector_kitchen battery</summary>
+		public NumericSensorEntity MotionDetectorKitchenBattery => new(_haContext, "sensor.motion_detector_kitchen_battery");
+		///<summary>motion_detector_kitchen illuminance</summary>
+		public NumericSensorEntity MotionDetectorKitchenIlluminance => new(_haContext, "sensor.motion_detector_kitchen_illuminance");
+		///<summary>motion_detector_kitchen illuminance lux</summary>
+		public NumericSensorEntity MotionDetectorKitchenIlluminanceLux => new(_haContext, "sensor.motion_detector_kitchen_illuminance_lux");
+		///<summary>motion_detector_kitchen linkquality</summary>
+		public NumericSensorEntity MotionDetectorKitchenLinkquality => new(_haContext, "sensor.motion_detector_kitchen_linkquality");
+		///<summary>motion_detector_kitchen temperature</summary>
+		public NumericSensorEntity MotionDetectorKitchenTemperature => new(_haContext, "sensor.motion_detector_kitchen_temperature");
+		///<summary>motion_detector_kitchen voltage</summary>
+		public NumericSensorEntity MotionDetectorKitchenVoltage => new(_haContext, "sensor.motion_detector_kitchen_voltage");
 		///<summary>Total</summary>
 		public NumericSensorEntity MyBitcoins2 => new(_haContext, "sensor.my_bitcoins_2");
 		///<summary>Profit</summary>
@@ -981,6 +975,24 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity StockMetroAgShareprice => new(_haContext, "sensor.stock_metro_ag_shareprice");
 		///<summary>Metro AG Total</summary>
 		public NumericSensorEntity StockMetroAgTotalvalue => new(_haContext, "sensor.stock_metro_ag_totalvalue");
+		///<summary>switch_kitchen_light battery</summary>
+		public NumericSensorEntity SwitchKitchenLightBattery => new(_haContext, "sensor.switch_kitchen_light_battery");
+		///<summary>switch_kitchen_light linkquality</summary>
+		public NumericSensorEntity SwitchKitchenLightLinkquality => new(_haContext, "sensor.switch_kitchen_light_linkquality");
+		///<summary>switch_kitchen_light voltage</summary>
+		public NumericSensorEntity SwitchKitchenLightVoltage => new(_haContext, "sensor.switch_kitchen_light_voltage");
+		///<summary>switch_kratom_counter battery</summary>
+		public NumericSensorEntity SwitchKratomCounterBattery => new(_haContext, "sensor.switch_kratom_counter_battery");
+		///<summary>switch_kratom_counter linkquality</summary>
+		public NumericSensorEntity SwitchKratomCounterLinkquality => new(_haContext, "sensor.switch_kratom_counter_linkquality");
+		///<summary>switch_kratom_counter voltage</summary>
+		public NumericSensorEntity SwitchKratomCounterVoltage => new(_haContext, "sensor.switch_kratom_counter_voltage");
+		///<summary>switch_razor_blade_usage battery</summary>
+		public NumericSensorEntity SwitchRazorBladeUsageBattery => new(_haContext, "sensor.switch_razor_blade_usage_battery");
+		///<summary>switch_razor_blade_usage linkquality</summary>
+		public NumericSensorEntity SwitchRazorBladeUsageLinkquality => new(_haContext, "sensor.switch_razor_blade_usage_linkquality");
+		///<summary>switch_razor_blade_usage voltage</summary>
+		public NumericSensorEntity SwitchRazorBladeUsageVoltage => new(_haContext, "sensor.switch_razor_blade_usage_voltage");
 		///<summary>Thermostat Arbeitszimmer Temperature</summary>
 		public NumericSensorEntity ThermostatArbeitszimmerTemperature => new(_haContext, "sensor.thermostat_arbeitszimmer_temperature");
 		///<summary>Thermostat Arbeitszimmer Valvetappet</summary>
@@ -1122,6 +1134,18 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		public TimerEntity Meditation => new(_haContext, "timer.meditation");
+	}
+
+	public class UpdateEntities
+	{
+		private readonly IHaContext _haContext;
+		public UpdateEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>PupsStation DSM Update</summary>
+		public UpdateEntity PupsstationDsmUpdate => new(_haContext, "update.pupsstation_dsm_update");
 	}
 
 	public class VacuumEntities
@@ -1426,6 +1450,17 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public record UpdateEntity : Entity<UpdateEntity, EntityState<UpdateAttributes>, UpdateAttributes>
+	{
+		public UpdateEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public UpdateEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
 	public record VacuumEntity : Entity<VacuumEntity, EntityState<VacuumAttributes>, VacuumAttributes>
 	{
 		public VacuumEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -1482,6 +1517,12 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
+		[JsonPropertyName("battery")]
+		public double? Battery { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
 		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
@@ -1491,17 +1532,32 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
+		[JsonPropertyName("illuminance")]
+		public double? Illuminance { get; init; }
+
+		[JsonPropertyName("illuminance_lux")]
+		public double? IlluminanceLux { get; init; }
+
 		[JsonPropertyName("installed_version")]
 		public string? InstalledVersion { get; init; }
 
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
 		[JsonPropertyName("latest_available_version")]
 		public string? LatestAvailableVersion { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
 
 		[JsonPropertyName("malware")]
 		public string? Malware { get; init; }
 
 		[JsonPropertyName("network")]
 		public string? Network { get; init; }
+
+		[JsonPropertyName("occupancy")]
+		public bool? Occupancy { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
@@ -1527,11 +1583,17 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("systemCheck")]
 		public string? SystemCheck { get; init; }
 
+		[JsonPropertyName("temperature")]
+		public double? Temperature { get; init; }
+
 		[JsonPropertyName("update")]
 		public string? Update { get; init; }
 
 		[JsonPropertyName("userInfo")]
 		public string? UserInfo { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
 	}
 
 	public record ButtonAttributes
@@ -1878,14 +1940,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("color_mode")]
 		public string? ColorMode { get; init; }
 
-		[JsonPropertyName("deviceID")]
-		public string? DeviceID { get; init; }
-
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("last_seen")]
-		public string? LastSeen { get; init; }
 
 		[JsonPropertyName("max_mireds")]
 		public double? MaxMireds { get; init; }
@@ -1893,20 +1949,20 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("min_mireds")]
 		public double? MinMireds { get; init; }
 
+		[JsonPropertyName("restored")]
+		public bool? Restored { get; init; }
+
 		[JsonPropertyName("supported_color_modes")]
 		public object? SupportedColorModes { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[JsonPropertyName("type")]
-		public string? Type { get; init; }
 	}
 
 	public record MediaPlayerAttributes
 	{
-		[JsonPropertyName("deviceID")]
-		public string? DeviceID { get; init; }
+		[JsonPropertyName("entity_picture")]
+		public string? EntityPicture { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1917,23 +1973,50 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("is_volume_muted")]
 		public bool? IsVolumeMuted { get; init; }
 
+		[JsonPropertyName("media_album_name")]
+		public string? MediaAlbumName { get; init; }
+
+		[JsonPropertyName("media_artist")]
+		public string? MediaArtist { get; init; }
+
 		[JsonPropertyName("media_content_id")]
 		public string? MediaContentId { get; init; }
 
 		[JsonPropertyName("media_content_type")]
 		public string? MediaContentType { get; init; }
 
+		[JsonPropertyName("media_duration")]
+		public double? MediaDuration { get; init; }
+
+		[JsonPropertyName("media_position")]
+		public double? MediaPosition { get; init; }
+
+		[JsonPropertyName("media_position_updated_at")]
+		public string? MediaPositionUpdatedAt { get; init; }
+
+		[JsonPropertyName("media_title")]
+		public string? MediaTitle { get; init; }
+
+		[JsonPropertyName("media_track")]
+		public double? MediaTrack { get; init; }
+
+		[JsonPropertyName("repeat")]
+		public string? Repeat { get; init; }
+
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
+
+		[JsonPropertyName("shuffle")]
+		public bool? Shuffle { get; init; }
+
+		[JsonPropertyName("source")]
+		public string? Source { get; init; }
 
 		[JsonPropertyName("source_list")]
 		public object? SourceList { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[JsonPropertyName("type")]
-		public string? Type { get; init; }
 
 		[JsonPropertyName("volume_level")]
 		public double? VolumeLevel { get; init; }
@@ -1974,14 +2057,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
 
-		[JsonPropertyName("restored")]
-		public bool? Restored { get; init; }
-
 		[JsonPropertyName("source")]
 		public string? Source { get; init; }
-
-		[JsonPropertyName("supported_features")]
-		public double? SupportedFeatures { get; init; }
 
 		[JsonPropertyName("user_id")]
 		public string? UserId { get; init; }
@@ -2025,6 +2102,9 @@ namespace HomeAutomations.Models.Generated
 
 	public record SensorAttributes
 	{
+		[JsonPropertyName("action")]
+		public object? Action { get; init; }
+
 		[JsonPropertyName("Administrative Area")]
 		public string? AdministrativeArea { get; init; }
 
@@ -2037,8 +2117,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
-		[JsonPropertyName("battery_level")]
-		public double? BatteryLevel { get; init; }
+		[JsonPropertyName("battery")]
+		public double? Battery { get; init; }
 
 		[JsonPropertyName("Carrier ID")]
 		public string? CarrierID { get; init; }
@@ -2046,17 +2126,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Carrier Name")]
 		public string? CarrierName { get; init; }
 
-		[JsonPropertyName("charging")]
-		public bool? Charging { get; init; }
-
 		[JsonPropertyName("color")]
 		public string? Color { get; init; }
 
 		[JsonPropertyName("Confidence")]
 		public string? Confidence { get; init; }
-
-		[JsonPropertyName("config")]
-		public object? Config { get; init; }
 
 		[JsonPropertyName("Country")]
 		public string? Country { get; init; }
@@ -2064,17 +2138,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Current Radio Technology")]
 		public string? CurrentRadioTechnology { get; init; }
 
-		[JsonPropertyName("currentUser")]
-		public string? CurrentUser { get; init; }
-
-		[JsonPropertyName("darkMode")]
-		public bool? DarkMode { get; init; }
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
 
 		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
-
-		[JsonPropertyName("deviceID")]
-		public string? DeviceID { get; init; }
 
 		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
@@ -2090,12 +2158,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("fullyKiosk")]
-		public bool? FullyKiosk { get; init; }
-
-		[JsonPropertyName("height")]
-		public double? Height { get; init; }
 
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
@@ -2120,6 +2182,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("lastworkout_url")]
 		public string? LastworkoutUrl { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
 
 		[JsonPropertyName("Locality")]
 		public string? Locality { get; init; }
@@ -2157,9 +2222,6 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Ocean")]
 		public string? Ocean { get; init; }
 
-		[JsonPropertyName("path")]
-		public string? Path { get; init; }
-
 		[JsonPropertyName("Postal Code")]
 		public string? PostalCode { get; init; }
 
@@ -2187,29 +2249,29 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Time Zone")]
 		public string? TimeZone { get; init; }
 
-		[JsonPropertyName("type")]
-		public string? Type { get; init; }
-
 		[JsonPropertyName("Types")]
 		public object? Types { get; init; }
 
 		[JsonPropertyName("update_time")]
 		public string? UpdateTime { get; init; }
 
-		[JsonPropertyName("userAgent")]
-		public string? UserAgent { get; init; }
-
-		[JsonPropertyName("userData")]
-		public object? UserData { get; init; }
-
 		[JsonPropertyName("version")]
 		public string? Version { get; init; }
 
-		[JsonPropertyName("visibility")]
-		public string? Visibility { get; init; }
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
 
-		[JsonPropertyName("width")]
-		public double? Width { get; init; }
+		[JsonPropertyName("workout0_title")]
+		public string? Workout0Title { get; init; }
+
+		[JsonPropertyName("workout0_url")]
+		public string? Workout0Url { get; init; }
+
+		[JsonPropertyName("workout1_title")]
+		public string? Workout1Title { get; init; }
+
+		[JsonPropertyName("workout1_url")]
+		public string? Workout1Url { get; init; }
 
 		[JsonPropertyName("Zones")]
 		public object? Zones { get; init; }
@@ -2217,6 +2279,9 @@ namespace HomeAutomations.Models.Generated
 
 	public record NumericSensorAttributes
 	{
+		[JsonPropertyName("action")]
+		public object? Action { get; init; }
+
 		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
@@ -2228,6 +2293,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("Available (Opportunistic)")]
 		public string? AvailableOpportunistic { get; init; }
+
+		[JsonPropertyName("battery")]
+		public double? Battery { get; init; }
 
 		[JsonPropertyName("bytes_received")]
 		public double? BytesReceived { get; init; }
@@ -2289,6 +2357,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("changeThreeYears")]
 		public object? ChangeThreeYears { get; init; }
 
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
 		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
@@ -2298,8 +2369,23 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
+		[JsonPropertyName("illuminance")]
+		public double? Illuminance { get; init; }
+
+		[JsonPropertyName("illuminance_lux")]
+		public double? IlluminanceLux { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
 		[JsonPropertyName("name")]
 		public string? Name { get; init; }
+
+		[JsonPropertyName("occupancy")]
+		public bool? Occupancy { get; init; }
 
 		[JsonPropertyName("profitLoss")]
 		public double? ProfitLoss { get; init; }
@@ -2333,6 +2419,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("temperature")]
+		public double? Temperature { get; init; }
 
 		[JsonPropertyName("Total")]
 		public string? Total { get; init; }
@@ -2375,6 +2464,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("valve_tappet_state")]
 		public string? ValveTappetState { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
 	}
 
 	public record SunAttributes
@@ -2438,6 +2530,45 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+	}
+
+	public record UpdateAttributes
+	{
+		[JsonPropertyName("attribution")]
+		public string? Attribution { get; init; }
+
+		[JsonPropertyName("auto_update")]
+		public bool? AutoUpdate { get; init; }
+
+		[JsonPropertyName("entity_picture")]
+		public string? EntityPicture { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("in_progress")]
+		public bool? InProgress { get; init; }
+
+		[JsonPropertyName("installed_version")]
+		public string? InstalledVersion { get; init; }
+
+		[JsonPropertyName("latest_version")]
+		public string? LatestVersion { get; init; }
+
+		[JsonPropertyName("release_summary")]
+		public object? ReleaseSummary { get; init; }
+
+		[JsonPropertyName("release_url")]
+		public string? ReleaseUrl { get; init; }
+
+		[JsonPropertyName("skipped_version")]
+		public object? SkippedVersion { get; init; }
+
+		[JsonPropertyName("supported_features")]
+		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
 	}
 
 	public record VacuumAttributes
@@ -2538,6 +2669,8 @@ namespace HomeAutomations.Models.Generated
 
 		CloudServices Cloud { get; }
 
+		ConfiguratorServices Configurator { get; }
+
 		CounterServices Counter { get; }
 
 		CoverServices Cover { get; }
@@ -2624,6 +2757,8 @@ namespace HomeAutomations.Models.Generated
 
 		TimerServices Timer { get; }
 
+		UpdateServices Update { get; }
+
 		VacuumServices Vacuum { get; }
 
 		WakeOnLanServices WakeOnLan { get; }
@@ -2652,6 +2787,7 @@ namespace HomeAutomations.Models.Generated
 		public CastServices Cast => new(_haContext);
 		public ClimateServices Climate => new(_haContext);
 		public CloudServices Cloud => new(_haContext);
+		public ConfiguratorServices Configurator => new(_haContext);
 		public CounterServices Counter => new(_haContext);
 		public CoverServices Cover => new(_haContext);
 		public DeviceTrackerServices DeviceTracker => new(_haContext);
@@ -2695,6 +2831,7 @@ namespace HomeAutomations.Models.Generated
 		public SystemLogServices SystemLog => new(_haContext);
 		public TemplateServices Template => new(_haContext);
 		public TimerServices Timer => new(_haContext);
+		public UpdateServices Update => new(_haContext);
 		public VacuumServices Vacuum => new(_haContext);
 		public WakeOnLanServices WakeOnLan => new(_haContext);
 		public XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor => new(_haContext);
@@ -3430,7 +3567,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="mediaPlayer">Name(s) of media player to stream to.</param>
 		///<param name="format">Stream format supported by media player.</param>
-		public void PlayStream(ServiceTarget target, string @mediaPlayer, string? @format = null)
+		public void PlayStream(ServiceTarget target, string @mediaPlayer, object? @format = null)
 		{
 			_haContext.CallService("camera", "play_stream", target, new CameraPlayStreamParameters{MediaPlayer = @mediaPlayer, Format = @format});
 		}
@@ -3490,7 +3627,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Stream format supported by media player.</summary>
 		[JsonPropertyName("format")]
-		public string? Format { get; init; }
+		public object? Format { get; init; }
 	}
 
 	public record CameraRecordParameters
@@ -3617,7 +3754,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set HVAC operation mode for climate device.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="hvacMode">New value of operation mode.</param>
-		public void SetHvacMode(ServiceTarget target, string? @hvacMode = null)
+		public void SetHvacMode(ServiceTarget target, object? @hvacMode = null)
 		{
 			_haContext.CallService("climate", "set_hvac_mode", target, new ClimateSetHvacModeParameters{HvacMode = @hvacMode});
 		}
@@ -3665,7 +3802,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="targetTempHigh">New target high temperature for HVAC.</param>
 		///<param name="targetTempLow">New target low temperature for HVAC.</param>
 		///<param name="hvacMode">HVAC operation mode to set temperature to.</param>
-		public void SetTemperature(ServiceTarget target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
+		public void SetTemperature(ServiceTarget target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, object? @hvacMode = null)
 		{
 			_haContext.CallService("climate", "set_temperature", target, new ClimateSetTemperatureParameters{Temperature = @temperature, TargetTempHigh = @targetTempHigh, TargetTempLow = @targetTempLow, HvacMode = @hvacMode});
 		}
@@ -3710,7 +3847,7 @@ namespace HomeAutomations.Models.Generated
 	{
 		///<summary>New value of operation mode.</summary>
 		[JsonPropertyName("hvac_mode")]
-		public string? HvacMode { get; init; }
+		public object? HvacMode { get; init; }
 	}
 
 	public record ClimateSetPresetModeParameters
@@ -3743,7 +3880,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>HVAC operation mode to set temperature to.</summary>
 		[JsonPropertyName("hvac_mode")]
-		public string? HvacMode { get; init; }
+		public object? HvacMode { get; init; }
 	}
 
 	public class CloudServices
@@ -3764,6 +3901,20 @@ namespace HomeAutomations.Models.Generated
 		public void RemoteDisconnect()
 		{
 			_haContext.CallService("cloud", "remote_disconnect", null);
+		}
+	}
+
+	public class ConfiguratorServices
+	{
+		private readonly IHaContext _haContext;
+		public ConfiguratorServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		public void Configure()
+		{
+			_haContext.CallService("configurator", "configure", null);
 		}
 	}
 
@@ -4090,7 +4241,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set the fan rotation.</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="direction">The direction to rotate.</param>
-		public void SetDirection(ServiceTarget target, string @direction)
+		public void SetDirection(ServiceTarget target, object @direction)
 		{
 			_haContext.CallService("fan", "set_direction", target, new FanSetDirectionParameters{Direction = @direction});
 		}
@@ -4123,21 +4274,6 @@ namespace HomeAutomations.Models.Generated
 		public void SetPresetMode(ServiceTarget target, string @presetMode)
 		{
 			_haContext.CallService("fan", "set_preset_mode", target, new FanSetPresetModeParameters{PresetMode = @presetMode});
-		}
-
-		///<summary>Set fan speed.</summary>
-		///<param name="target">The target for this service call</param>
-		public void SetSpeed(ServiceTarget target, FanSetSpeedParameters data)
-		{
-			_haContext.CallService("fan", "set_speed", target, data);
-		}
-
-		///<summary>Set fan speed.</summary>
-		///<param name="target">The target for this service call</param>
-		///<param name="speed">Speed setting. eg: low</param>
-		public void SetSpeed(ServiceTarget target, string @speed)
-		{
-			_haContext.CallService("fan", "set_speed", target, new FanSetSpeedParameters{Speed = @speed});
 		}
 
 		///<summary>Toggle the fan on/off.</summary>
@@ -4197,7 +4333,7 @@ namespace HomeAutomations.Models.Generated
 	{
 		///<summary>The direction to rotate.</summary>
 		[JsonPropertyName("direction")]
-		public string? Direction { get; init; }
+		public object? Direction { get; init; }
 	}
 
 	public record FanSetPercentageParameters
@@ -4212,13 +4348,6 @@ namespace HomeAutomations.Models.Generated
 		///<summary>New value of preset mode. eg: auto</summary>
 		[JsonPropertyName("preset_mode")]
 		public string? PresetMode { get; init; }
-	}
-
-	public record FanSetSpeedParameters
-	{
-		///<summary>Speed setting. eg: low</summary>
-		[JsonPropertyName("speed")]
-		public string? Speed { get; init; }
 	}
 
 	public record FanTurnOnParameters
@@ -4326,9 +4455,9 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		///<summary>Set a theme unless the client selected per-device theme.</summary>
-		///<param name="name">Name of a predefined theme, 'default' or 'none'. eg: default</param>
+		///<param name="name">Name of a predefined theme eg: default</param>
 		///<param name="mode">The mode the theme is for.</param>
-		public void SetTheme(string @name, string? @mode = null)
+		public void SetTheme(object @name, object? @mode = null)
 		{
 			_haContext.CallService("frontend", "set_theme", null, new FrontendSetThemeParameters{Name = @name, Mode = @mode});
 		}
@@ -4336,13 +4465,13 @@ namespace HomeAutomations.Models.Generated
 
 	public record FrontendSetThemeParameters
 	{
-		///<summary>Name of a predefined theme, 'default' or 'none'. eg: default</summary>
+		///<summary>Name of a predefined theme eg: default</summary>
 		[JsonPropertyName("name")]
-		public string? Name { get; init; }
+		public object? Name { get; init; }
 
 		///<summary>The mode the theme is for.</summary>
 		[JsonPropertyName("mode")]
-		public string? Mode { get; init; }
+		public object? Mode { get; init; }
 	}
 
 	public class GoogleServices
@@ -4461,7 +4590,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="entities">List of all members in the group. Not compatible with 'delta'. eg: domain.entity_id1, domain.entity_id2</param>
 		///<param name="addEntities">List of members that will change on group listening. eg: domain.entity_id1, domain.entity_id2</param>
 		///<param name="all">Enable this option if the group should only turn on when all entities are on.</param>
-		public void Set(string @objectId, string? @name = null, string? @icon = null, object? @entities = null, object? @addEntities = null, bool? @all = null)
+		public void Set(string @objectId, string? @name = null, object? @icon = null, object? @entities = null, object? @addEntities = null, bool? @all = null)
 		{
 			_haContext.CallService("group", "set", null, new GroupSetParameters{ObjectId = @objectId, Name = @name, Icon = @icon, Entities = @entities, AddEntities = @addEntities, All = @all});
 		}
@@ -4486,7 +4615,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Name of icon for the group. eg: mdi:camera</summary>
 		[JsonPropertyName("icon")]
-		public string? Icon { get; init; }
+		public object? Icon { get; init; }
 
 		///<summary>List of all members in the group. Not compatible with 'delta'. eg: domain.entity_id1, domain.entity_id2</summary>
 		[JsonPropertyName("entities")]
@@ -5071,7 +5200,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public void Toggle(ServiceTarget target, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public void Toggle(ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
 			_haContext.CallService("light", "toggle", target, new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
@@ -5087,7 +5216,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
 		///<param name="flash">If the light should flash.</param>
-		public void TurnOff(ServiceTarget target, long? @transition = null, string? @flash = null)
+		public void TurnOff(ServiceTarget target, long? @transition = null, object? @flash = null)
 		{
 			_haContext.CallService("light", "turn_off", target, new LightTurnOffParameters{Transition = @transition, Flash = @flash});
 		}
@@ -5102,7 +5231,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
-		///<param name="rgbColor">A list containing three integers between 0 and 255 representing the RGB (red, green, blue) color for the light. eg: [255, 100, 100]</param>
+		///<param name="rgbColor">The color for the light (based on RGB - red, green, blue).</param>
 		///<param name="rgbwColor">A list containing four integers between 0 and 255 representing the RGBW (red, green, blue, white) color for the light. eg: [255, 100, 100, 50]</param>
 		///<param name="rgbwwColor">A list containing five integers between 0 and 255 representing the RGBWW (red, green, blue, cold white, warm white) color for the light. eg: [255, 100, 100, 50, 70]</param>
 		///<param name="colorName">A human readable color name.</param>
@@ -5118,7 +5247,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public void TurnOn(ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public void TurnOn(ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
 			_haContext.CallService("light", "turn_on", target, new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
@@ -5136,7 +5265,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>A human readable color name.</summary>
 		[JsonPropertyName("color_name")]
-		public string? ColorName { get; init; }
+		public object? ColorName { get; init; }
 
 		///<summary>Color for the light in hue/sat format. Hue is 0-360 and Sat is 0-100. eg: [300, 70]</summary>
 		[JsonPropertyName("hs_color")]
@@ -5148,7 +5277,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Color temperature for the light in mireds.</summary>
 		[JsonPropertyName("color_temp")]
-		public long? ColorTemp { get; init; }
+		public object? ColorTemp { get; init; }
 
 		///<summary>Color temperature for the light in Kelvin.</summary>
 		[JsonPropertyName("kelvin")]
@@ -5172,7 +5301,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>If the light should flash.</summary>
 		[JsonPropertyName("flash")]
-		public string? Flash { get; init; }
+		public object? Flash { get; init; }
 
 		///<summary>Light effect.</summary>
 		[JsonPropertyName("effect")]
@@ -5187,7 +5316,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>If the light should flash.</summary>
 		[JsonPropertyName("flash")]
-		public string? Flash { get; init; }
+		public object? Flash { get; init; }
 	}
 
 	public record LightTurnOnParameters
@@ -5196,7 +5325,7 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("transition")]
 		public long? Transition { get; init; }
 
-		///<summary>A list containing three integers between 0 and 255 representing the RGB (red, green, blue) color for the light. eg: [255, 100, 100]</summary>
+		///<summary>The color for the light (based on RGB - red, green, blue).</summary>
 		[JsonPropertyName("rgb_color")]
 		public object? RgbColor { get; init; }
 
@@ -5210,7 +5339,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>A human readable color name.</summary>
 		[JsonPropertyName("color_name")]
-		public string? ColorName { get; init; }
+		public object? ColorName { get; init; }
 
 		///<summary>Color for the light in hue/sat format. Hue is 0-360 and Sat is 0-100. eg: [300, 70]</summary>
 		[JsonPropertyName("hs_color")]
@@ -5222,7 +5351,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Color temperature for the light in mireds.</summary>
 		[JsonPropertyName("color_temp")]
-		public long? ColorTemp { get; init; }
+		public object? ColorTemp { get; init; }
 
 		///<summary>Color temperature for the light in Kelvin.</summary>
 		[JsonPropertyName("kelvin")]
@@ -5254,7 +5383,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>If the light should flash.</summary>
 		[JsonPropertyName("flash")]
-		public string? Flash { get; init; }
+		public object? Flash { get; init; }
 
 		///<summary>Light effect.</summary>
 		[JsonPropertyName("effect")]
@@ -5321,7 +5450,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Set the default log level for integrations.</summary>
 		///<param name="level">Default severity level for all integrations.</param>
-		public void SetDefaultLevel(string? @level = null)
+		public void SetDefaultLevel(object? @level = null)
 		{
 			_haContext.CallService("logger", "set_default_level", null, new LoggerSetDefaultLevelParameters{Level = @level});
 		}
@@ -5337,7 +5466,7 @@ namespace HomeAutomations.Models.Generated
 	{
 		///<summary>Default severity level for all integrations.</summary>
 		[JsonPropertyName("level")]
-		public string? Level { get; init; }
+		public object? Level { get; init; }
 	}
 
 	public class LovelaceServices
@@ -5468,7 +5597,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set repeat mode</summary>
 		///<param name="target">The target for this service call</param>
 		///<param name="repeat">Repeat mode to set.</param>
-		public void RepeatSet(ServiceTarget target, string @repeat)
+		public void RepeatSet(ServiceTarget target, object @repeat)
 		{
 			_haContext.CallService("media_player", "repeat_set", target, new MediaPlayerRepeatSetParameters{Repeat = @repeat});
 		}
@@ -5620,7 +5749,7 @@ namespace HomeAutomations.Models.Generated
 	{
 		///<summary>Repeat mode to set.</summary>
 		[JsonPropertyName("repeat")]
-		public string? Repeat { get; init; }
+		public object? Repeat { get; init; }
 	}
 
 	public record MediaPlayerSelectSoundModeParameters
@@ -5721,7 +5850,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="payloadTemplate">Template to render as payload value. Ignored if payload given. eg: {{ states('sensor.temperature') }}</param>
 		///<param name="qos">Quality of Service to use.</param>
 		///<param name="retain">If message should have the retain flag set.</param>
-		public void Publish(string @topic, string? @payload = null, object? @payloadTemplate = null, string? @qos = null, bool? @retain = null)
+		public void Publish(string @topic, string? @payload = null, object? @payloadTemplate = null, object? @qos = null, bool? @retain = null)
 		{
 			_haContext.CallService("mqtt", "publish", null, new MqttPublishParameters{Topic = @topic, Payload = @payload, PayloadTemplate = @payloadTemplate, Qos = @qos, Retain = @retain});
 		}
@@ -5760,7 +5889,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Quality of Service to use.</summary>
 		[JsonPropertyName("qos")]
-		public string? Qos { get; init; }
+		public object? Qos { get; init; }
 
 		///<summary>If message should have the retain flag set.</summary>
 		[JsonPropertyName("retain")]
@@ -5857,6 +5986,11 @@ namespace HomeAutomations.Models.Generated
 		public void ReloadApps()
 		{
 			_haContext.CallService("netdaemon", "reload_apps", null);
+		}
+
+		public void TrainingStart()
+		{
+			_haContext.CallService("netdaemon", "training_start", null);
 		}
 	}
 
@@ -6366,7 +6500,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="commandType">The type of command to be learned.</param>
 		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
 		///<param name="timeout">Timeout for the command to be learned.</param>
-		public void LearnCommand(ServiceTarget target, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
+		public void LearnCommand(ServiceTarget target, string? @device = null, object? @command = null, object? @commandType = null, bool? @alternative = null, long? @timeout = null)
 		{
 			_haContext.CallService("remote", "learn_command", target, new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
 		}
@@ -6443,7 +6577,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>The type of command to be learned.</summary>
 		[JsonPropertyName("command_type")]
-		public string? CommandType { get; init; }
+		public object? CommandType { get; init; }
 
 		///<summary>If code must be stored as alternative (useful for discrete remotes).</summary>
 		[JsonPropertyName("alternative")]
@@ -6744,7 +6878,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="offset">Set offset mode for playback. 0 is the first song. eg: 1</param>
 		///<param name="startVolume">Set the volume for playback in percentage. eg: 50</param>
 		///<param name="ignoreFullyPlayed">Set to ignore or not already played episodes in a podcast playlist eg: True</param>
-		public void Start(string? @deviceName = null, string? @spotifyDeviceId = null, string? @entityId = null, string? @uri = null, string? @category = null, string? @country = null, long? @limit = null, string? @search = null, string? @account = null, bool? @forcePlayback = null, bool? @randomSong = null, string? @repeat = null, bool? @shuffle = null, long? @offset = null, long? @startVolume = null, bool? @ignoreFullyPlayed = null)
+		public void Start(string? @deviceName = null, string? @spotifyDeviceId = null, string? @entityId = null, string? @uri = null, string? @category = null, string? @country = null, long? @limit = null, string? @search = null, string? @account = null, bool? @forcePlayback = null, bool? @randomSong = null, object? @repeat = null, bool? @shuffle = null, long? @offset = null, long? @startVolume = null, bool? @ignoreFullyPlayed = null)
 		{
 			_haContext.CallService("spotcast", "start", null, new SpotcastStartParameters{DeviceName = @deviceName, SpotifyDeviceId = @spotifyDeviceId, EntityId = @entityId, Uri = @uri, Category = @category, Country = @country, Limit = @limit, Search = @search, Account = @account, ForcePlayback = @forcePlayback, RandomSong = @randomSong, Repeat = @repeat, Shuffle = @shuffle, Offset = @offset, StartVolume = @startVolume, IgnoreFullyPlayed = @ignoreFullyPlayed});
 		}
@@ -6798,7 +6932,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Set repeat mode for playback. eg: track</summary>
 		[JsonPropertyName("repeat")]
-		public string? Repeat { get; init; }
+		public object? Repeat { get; init; }
 
 		///<summary>Set shuffle mode for playback. eg: True</summary>
 		[JsonPropertyName("shuffle")]
@@ -6920,7 +7054,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="message">Message to log. eg: Something went wrong</param>
 		///<param name="level">Log level.</param>
 		///<param name="logger">Logger name under which to log the message. Defaults to 'system_log.external'. eg: mycomponent.myplatform</param>
-		public void Write(string @message, string? @level = null, string? @logger = null)
+		public void Write(string @message, object? @level = null, string? @logger = null)
 		{
 			_haContext.CallService("system_log", "write", null, new SystemLogWriteParameters{Message = @message, Level = @level, Logger = @logger});
 		}
@@ -6934,7 +7068,7 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Log level.</summary>
 		[JsonPropertyName("level")]
-		public string? Level { get; init; }
+		public object? Level { get; init; }
 
 		///<summary>Logger name under which to log the message. Defaults to 'system_log.external'. eg: mycomponent.myplatform</summary>
 		[JsonPropertyName("logger")]
@@ -7011,6 +7145,49 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Duration the timer requires to finish. [optional] eg: 00:01:00 or 60</summary>
 		[JsonPropertyName("duration")]
 		public string? Duration { get; init; }
+	}
+
+	public class UpdateServices
+	{
+		private readonly IHaContext _haContext;
+		public UpdateServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Install an update for this device or service</summary>
+		///<param name="target">The target for this service call</param>
+		public void Install(ServiceTarget target, UpdateInstallParameters data)
+		{
+			_haContext.CallService("update", "install", target, data);
+		}
+
+		///<summary>Install an update for this device or service</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="version">Version to install, if omitted, the latest version will be installed. eg: 1.0.0</param>
+		///<param name="backup">Backup before installing the update, if supported by the integration.</param>
+		public void Install(ServiceTarget target, string? @version = null, bool? @backup = null)
+		{
+			_haContext.CallService("update", "install", target, new UpdateInstallParameters{Version = @version, Backup = @backup});
+		}
+
+		///<summary>Mark currently available update as skipped.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Skip(ServiceTarget target)
+		{
+			_haContext.CallService("update", "skip", target);
+		}
+	}
+
+	public record UpdateInstallParameters
+	{
+		///<summary>Version to install, if omitted, the latest version will be installed. eg: 1.0.0</summary>
+		[JsonPropertyName("version")]
+		public string? Version { get; init; }
+
+		///<summary>Backup before installing the update, if supported by the integration.</summary>
+		[JsonPropertyName("backup")]
+		public bool? Backup { get; init; }
 	}
 
 	public class VacuumServices
@@ -7627,7 +7804,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The CameraEntity to call this service for</param>
 		///<param name="mediaPlayer">Name(s) of media player to stream to.</param>
 		///<param name="format">Stream format supported by media player.</param>
-		public static void PlayStream(this CameraEntity target, string @mediaPlayer, string? @format = null)
+		public static void PlayStream(this CameraEntity target, string @mediaPlayer, object? @format = null)
 		{
 			target.CallService("play_stream", new CameraPlayStreamParameters{MediaPlayer = @mediaPlayer, Format = @format});
 		}
@@ -7636,7 +7813,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The IEnumerable<CameraEntity> to call this service for</param>
 		///<param name="mediaPlayer">Name(s) of media player to stream to.</param>
 		///<param name="format">Stream format supported by media player.</param>
-		public static void PlayStream(this IEnumerable<CameraEntity> target, string @mediaPlayer, string? @format = null)
+		public static void PlayStream(this IEnumerable<CameraEntity> target, string @mediaPlayer, object? @format = null)
 		{
 			target.CallService("play_stream", new CameraPlayStreamParameters{MediaPlayer = @mediaPlayer, Format = @format});
 		}
@@ -7827,7 +8004,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set HVAC operation mode for climate device.</summary>
 		///<param name="target">The ClimateEntity to call this service for</param>
 		///<param name="hvacMode">New value of operation mode.</param>
-		public static void SetHvacMode(this ClimateEntity target, string? @hvacMode = null)
+		public static void SetHvacMode(this ClimateEntity target, object? @hvacMode = null)
 		{
 			target.CallService("set_hvac_mode", new ClimateSetHvacModeParameters{HvacMode = @hvacMode});
 		}
@@ -7835,7 +8012,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set HVAC operation mode for climate device.</summary>
 		///<param name="target">The IEnumerable<ClimateEntity> to call this service for</param>
 		///<param name="hvacMode">New value of operation mode.</param>
-		public static void SetHvacMode(this IEnumerable<ClimateEntity> target, string? @hvacMode = null)
+		public static void SetHvacMode(this IEnumerable<ClimateEntity> target, object? @hvacMode = null)
 		{
 			target.CallService("set_hvac_mode", new ClimateSetHvacModeParameters{HvacMode = @hvacMode});
 		}
@@ -7914,7 +8091,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="targetTempHigh">New target high temperature for HVAC.</param>
 		///<param name="targetTempLow">New target low temperature for HVAC.</param>
 		///<param name="hvacMode">HVAC operation mode to set temperature to.</param>
-		public static void SetTemperature(this ClimateEntity target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
+		public static void SetTemperature(this ClimateEntity target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, object? @hvacMode = null)
 		{
 			target.CallService("set_temperature", new ClimateSetTemperatureParameters{Temperature = @temperature, TargetTempHigh = @targetTempHigh, TargetTempLow = @targetTempLow, HvacMode = @hvacMode});
 		}
@@ -7925,7 +8102,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="targetTempHigh">New target high temperature for HVAC.</param>
 		///<param name="targetTempLow">New target low temperature for HVAC.</param>
 		///<param name="hvacMode">HVAC operation mode to set temperature to.</param>
-		public static void SetTemperature(this IEnumerable<ClimateEntity> target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, string? @hvacMode = null)
+		public static void SetTemperature(this IEnumerable<ClimateEntity> target, double? @temperature = null, double? @targetTempHigh = null, double? @targetTempLow = null, object? @hvacMode = null)
 		{
 			target.CallService("set_temperature", new ClimateSetTemperatureParameters{Temperature = @temperature, TargetTempHigh = @targetTempHigh, TargetTempLow = @targetTempLow, HvacMode = @hvacMode});
 		}
@@ -8366,7 +8543,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void Toggle(this LightEntity target, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public static void Toggle(this LightEntity target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
 			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
@@ -8386,7 +8563,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void Toggle(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public static void Toggle(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
 			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
@@ -8407,7 +8584,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The LightEntity to call this service for</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
 		///<param name="flash">If the light should flash.</param>
-		public static void TurnOff(this LightEntity target, long? @transition = null, string? @flash = null)
+		public static void TurnOff(this LightEntity target, long? @transition = null, object? @flash = null)
 		{
 			target.CallService("turn_off", new LightTurnOffParameters{Transition = @transition, Flash = @flash});
 		}
@@ -8416,7 +8593,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The IEnumerable<LightEntity> to call this service for</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
 		///<param name="flash">If the light should flash.</param>
-		public static void TurnOff(this IEnumerable<LightEntity> target, long? @transition = null, string? @flash = null)
+		public static void TurnOff(this IEnumerable<LightEntity> target, long? @transition = null, object? @flash = null)
 		{
 			target.CallService("turn_off", new LightTurnOffParameters{Transition = @transition, Flash = @flash});
 		}
@@ -8436,7 +8613,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
 		///<param name="target">The LightEntity to call this service for</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
-		///<param name="rgbColor">A list containing three integers between 0 and 255 representing the RGB (red, green, blue) color for the light. eg: [255, 100, 100]</param>
+		///<param name="rgbColor">The color for the light (based on RGB - red, green, blue).</param>
 		///<param name="rgbwColor">A list containing four integers between 0 and 255 representing the RGBW (red, green, blue, white) color for the light. eg: [255, 100, 100, 50]</param>
 		///<param name="rgbwwColor">A list containing five integers between 0 and 255 representing the RGBWW (red, green, blue, cold white, warm white) color for the light. eg: [255, 100, 100, 50, 70]</param>
 		///<param name="colorName">A human readable color name.</param>
@@ -8452,7 +8629,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void TurnOn(this LightEntity target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public static void TurnOn(this LightEntity target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
 			target.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
@@ -8460,7 +8637,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Turn on one or more lights and adjust properties of the light, even when they are turned on already. </summary>
 		///<param name="target">The IEnumerable<LightEntity> to call this service for</param>
 		///<param name="transition">Duration it takes to get to next state.</param>
-		///<param name="rgbColor">A list containing three integers between 0 and 255 representing the RGB (red, green, blue) color for the light. eg: [255, 100, 100]</param>
+		///<param name="rgbColor">The color for the light (based on RGB - red, green, blue).</param>
 		///<param name="rgbwColor">A list containing four integers between 0 and 255 representing the RGBW (red, green, blue, white) color for the light. eg: [255, 100, 100, 50]</param>
 		///<param name="rgbwwColor">A list containing five integers between 0 and 255 representing the RGBWW (red, green, blue, cold white, warm white) color for the light. eg: [255, 100, 100, 50, 70]</param>
 		///<param name="colorName">A human readable color name.</param>
@@ -8476,7 +8653,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void TurnOn(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, string? @colorName = null, object? @hsColor = null, object? @xyColor = null, long? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, string? @flash = null, string? @effect = null)
+		public static void TurnOn(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
 			target.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
@@ -8669,7 +8846,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set repeat mode</summary>
 		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="repeat">Repeat mode to set.</param>
-		public static void RepeatSet(this MediaPlayerEntity target, string @repeat)
+		public static void RepeatSet(this MediaPlayerEntity target, object @repeat)
 		{
 			target.CallService("repeat_set", new MediaPlayerRepeatSetParameters{Repeat = @repeat});
 		}
@@ -8677,7 +8854,7 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Set repeat mode</summary>
 		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
 		///<param name="repeat">Repeat mode to set.</param>
-		public static void RepeatSet(this IEnumerable<MediaPlayerEntity> target, string @repeat)
+		public static void RepeatSet(this IEnumerable<MediaPlayerEntity> target, object @repeat)
 		{
 			target.CallService("repeat_set", new MediaPlayerRepeatSetParameters{Repeat = @repeat});
 		}
@@ -8946,7 +9123,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="commandType">The type of command to be learned.</param>
 		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
 		///<param name="timeout">Timeout for the command to be learned.</param>
-		public static void LearnCommand(this RemoteEntity target, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
+		public static void LearnCommand(this RemoteEntity target, string? @device = null, object? @command = null, object? @commandType = null, bool? @alternative = null, long? @timeout = null)
 		{
 			target.CallService("learn_command", new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
 		}
@@ -8958,7 +9135,7 @@ namespace HomeAutomations.Models.Generated
 		///<param name="commandType">The type of command to be learned.</param>
 		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
 		///<param name="timeout">Timeout for the command to be learned.</param>
-		public static void LearnCommand(this IEnumerable<RemoteEntity> target, string? @device = null, object? @command = null, string? @commandType = null, bool? @alternative = null, long? @timeout = null)
+		public static void LearnCommand(this IEnumerable<RemoteEntity> target, string? @device = null, object? @command = null, object? @commandType = null, bool? @alternative = null, long? @timeout = null)
 		{
 			target.CallService("learn_command", new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
 		}
@@ -9186,6 +9363,51 @@ namespace HomeAutomations.Models.Generated
 		public static void Start(this IEnumerable<TimerEntity> target, string? @duration = null)
 		{
 			target.CallService("start", new TimerStartParameters{Duration = @duration});
+		}
+	}
+
+	public static class UpdateEntityExtensionMethods
+	{
+		///<summary>Install an update for this device or service</summary>
+		public static void Install(this UpdateEntity target, UpdateInstallParameters data)
+		{
+			target.CallService("install", data);
+		}
+
+		///<summary>Install an update for this device or service</summary>
+		public static void Install(this IEnumerable<UpdateEntity> target, UpdateInstallParameters data)
+		{
+			target.CallService("install", data);
+		}
+
+		///<summary>Install an update for this device or service</summary>
+		///<param name="target">The UpdateEntity to call this service for</param>
+		///<param name="version">Version to install, if omitted, the latest version will be installed. eg: 1.0.0</param>
+		///<param name="backup">Backup before installing the update, if supported by the integration.</param>
+		public static void Install(this UpdateEntity target, string? @version = null, bool? @backup = null)
+		{
+			target.CallService("install", new UpdateInstallParameters{Version = @version, Backup = @backup});
+		}
+
+		///<summary>Install an update for this device or service</summary>
+		///<param name="target">The IEnumerable<UpdateEntity> to call this service for</param>
+		///<param name="version">Version to install, if omitted, the latest version will be installed. eg: 1.0.0</param>
+		///<param name="backup">Backup before installing the update, if supported by the integration.</param>
+		public static void Install(this IEnumerable<UpdateEntity> target, string? @version = null, bool? @backup = null)
+		{
+			target.CallService("install", new UpdateInstallParameters{Version = @version, Backup = @backup});
+		}
+
+		///<summary>Mark currently available update as skipped.</summary>
+		public static void Skip(this UpdateEntity target)
+		{
+			target.CallService("skip");
+		}
+
+		///<summary>Mark currently available update as skipped.</summary>
+		public static void Skip(this IEnumerable<UpdateEntity> target)
+		{
+			target.CallService("skip");
 		}
 	}
 

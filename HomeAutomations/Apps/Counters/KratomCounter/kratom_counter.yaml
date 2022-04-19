@@ -1,0 +1,11 @@
+﻿---
+HomeAutomations.Apps.Counters.KratomCounter.KratomCounterConfig:
+  Name: Kratom
+  EntityPrefix: sensor.kratom_intake_
+  EntityDescriptionPrefix: Daily kratom intake
+  ResetCrontab: 0 0 * * *
+  Events:
+    AddEventId: kratom_add_event
+    SetTargetEventId: kratom_set_target_event
+    UserProperty: user
+    AmountProperty: amount

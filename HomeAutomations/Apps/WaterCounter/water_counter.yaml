@@ -1,4 +1,0 @@
-﻿---
-HomeAutomations.Apps.WaterCounter.WaterCounterConfig:
-  EntityPrefix: sensor.water_intake_
-  ResetCrontab: 0 0 * * *

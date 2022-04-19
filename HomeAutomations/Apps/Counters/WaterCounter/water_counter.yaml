@@ -1,0 +1,11 @@
+﻿---
+HomeAutomations.Apps.Counters.WaterCounter.WaterCounterConfig:
+  Name: Water
+  EntityPrefix: sensor.water_intake_
+  EntityDescriptionPrefix: Daily water intake
+  ResetCrontab: 0 0 * * *
+  Events:
+    AddEventId: water_add_event
+    SetTargetEventId: water_set_target_event
+    UserProperty: user
+    AmountProperty: amount
