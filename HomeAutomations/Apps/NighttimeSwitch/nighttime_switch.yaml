@@ -1,5 +1,0 @@
----
-HomeAutomations.Apps.NighttimeSwitch.NighttimeSwitchConfig:
-  LocationSensor: sensor.buy_hodl_gme_geocoded_location
-  InputNumber: input_number.nighttime
-  ScheduleCrontab: "0 * * * *"
