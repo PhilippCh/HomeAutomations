@@ -10,6 +10,15 @@ namespace HomeAutomations.Client.Services.Media.VideoLan;
 
 public class VlcRemoteApiService : IMediaSessionManager
 {
+	[System.Runtime.InteropServices.DllImport("User32.dll")]
+	private static extern bool SetForegroundWindow(IntPtr handle);
+	[System.Runtime.InteropServices.DllImport("User32.dll")]
+	private static extern bool ShowWindow(IntPtr handle, int nCmdShow);
+	[System.Runtime.InteropServices.DllImport("User32.dll")]
+	private static extern bool IsIconic(IntPtr handle);
+
+	private const int SW_RESTORE = 9;
+
 	private VlcConfig _config;
 
 	public VlcRemoteApiService(IOptionsMonitor<VlcConfig> config)
@@ -46,7 +55,15 @@ public class VlcRemoteApiService : IMediaSessionManager
 
 	public void StartStream(string url)
 	{
-		Process.Start(_config.ExecutablePath, @$"""{url}""");
+		var process = Process.Start(_config.ExecutablePath, @$"""{url}""");
+
+		var handle = process.MainWindowHandle;
+		if (IsIconic(handle))
+		{
+			ShowWindow(handle, SW_RESTORE);
+		}
+
+		SetForegroundWindow(handle);
 	}
 
 	private string GetApiUrl(string method) => Path.Combine(_config.BaseUrl, "requests", method).Replace("\\", "/");

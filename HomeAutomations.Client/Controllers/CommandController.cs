@@ -15,11 +15,10 @@ public class CommandController : ControllerBase
     {
         _commandParser = commandParser;
     }
-        
+
     [HttpGet]
     [Route("{name}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ExecuteCommand(string name)
     {
         var command = _commandParser.Get(name);
@@ -28,7 +27,7 @@ public class CommandController : ControllerBase
         {
             return NotFound($"No command found '{name}'.");
         }
-            
+
         await command.ExecuteAsync();
         return Ok($"Executed command '{name}'.");
 
