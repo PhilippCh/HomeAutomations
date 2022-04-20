@@ -37,7 +37,8 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 
 	private async void UpdateMediaStatus()
 	{
-		await _mqttService.PublishMessage(await _mediaControllerService.GetStatus(), CancellationToken.None, _config.BaseTopic);
+		var statusMessage = await _mediaControllerService.GetStatus();
+		await _mqttService.PublishMessage(statusMessage, CancellationToken.None, _config.BaseTopic, statusMessage.DeviceId);
 	}
 
 	public Task StopAsync(CancellationToken stoppingToken)

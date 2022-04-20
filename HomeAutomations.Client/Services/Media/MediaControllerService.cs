@@ -47,10 +47,7 @@ public class MediaControllerService
 	public async Task<MediaStatusMessage> GetStatus()
 	{
 		var sessions = await GetSessions();
-		var deviceId = new DeviceIdBuilder()
-			.AddMachineName()
-			.AddMacAddress()
-			.ToString();
+		var deviceId = Environment.MachineName.ToString();
 
 		return new MediaStatusMessage
 		{
