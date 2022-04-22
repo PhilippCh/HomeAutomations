@@ -4,7 +4,7 @@ HomeAutomations.Apps.KitchenLight.KitchenLightConfig:
   CycleTime: '00:01:30'
   MinIlluminance: 70
   MotionSensor: binary_sensor.kitchen_motion_detector_occupancy
-  ManualTriggerSensorTopic: zigbee2mqtt/0x00158d0006397c0f/action
+  ManualTriggerSensorTopic: zigbee2mqtt/kitchen/light/action
   Brightness:
     - Start: '02:30:00'
       End: '09:00:00'
