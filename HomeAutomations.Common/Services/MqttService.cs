@@ -53,6 +53,31 @@ public class MqttService
 				});
 	}
 
+	public async Task<IObservable<T?>> GetMessagesForChildTopics<T>(params string?[] topicParts)
+	{
+		var parentTopic = topicParts.ToPath();
+		var topic = $"{parentTopic}/#";
+
+		await SubscribeToTopic(topic);
+
+		return _messages
+			.Where(m => m.Topic.StartsWith(parentTopic))
+			.Select(m => Encoding.UTF8.GetString(m.Payload))
+			.Select(
+				m =>
+				{
+					try
+					{
+						return JsonSerializer.Deserialize<T>(m);
+					}
+					catch (JsonException)
+					{
+						// Attempt returning a direct cast if message does not appear to be a JSON construct.
+						return (T)Convert.ChangeType(m, typeof(T));
+					}
+				});
+	}
+
 	public async Task PublishMessage<T>(T payload, CancellationToken cancellationToken, params string?[] topicParts)
 	{
 		var serializedPayload = JsonSerializer.Serialize(payload);

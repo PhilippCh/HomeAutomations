@@ -15,8 +15,8 @@ public record BrightnessConfig
 public record KitchenLightConfig : Config
 {
 	public LightEntity LightEntity { get; init; }
-	public int MinIlluminanceLux { get; init; }
-	public string CombinedSensorTopic { get; init; }
+	public int MinIlluminance { get; init; }
+	public BinarySensorEntity MotionSensor { get; init; }
 	public string ManualTriggerSensorTopic { get; init; }
 	public TimeSpan CycleTime { get; init; }
 	public IEnumerable<BrightnessConfig> Brightness { get; init; }

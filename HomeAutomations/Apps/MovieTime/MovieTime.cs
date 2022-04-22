@@ -27,7 +27,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		(await _mqttService.GetMessagesForTopic<MediaStatusMessage>(Config.StatusTopic)).Subscribe(OnStatusMessageReceived);
+		(await _mqttService.GetMessagesForChildTopics<MediaStatusMessage>(Config.StatusTopic)).Subscribe(OnStatusMessageReceived);
 		Context.Events.Filter<RokuCommandEventData>(RokuCommandEventData.Id).Subscribe(e => OnRokuCommandReceived(e.Data));
 	}
 
