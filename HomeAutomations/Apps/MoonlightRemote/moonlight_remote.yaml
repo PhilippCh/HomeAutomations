@@ -38,6 +38,8 @@ HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
           DisplayName: "LEGO Harry Potter 5-7"
         - Id: "LEGOLOTR"
           DisplayName: "LEGO Herr der Ringe"
+        - Id: "PlanetZoo"
+          DisplayName: "Planet Zoo"
   ShutdownNotification:
     Tag: moonlight
     Title: Moonlight Stream
