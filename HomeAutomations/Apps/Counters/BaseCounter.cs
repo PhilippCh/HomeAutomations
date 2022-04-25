@@ -31,10 +31,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		Context.Events.GetDataEvents(Config.Events.AddEventId).Subscribe(OnAdd);
 		Context.Events.GetDataEvents(Config.Events.SetTargetEventId).Subscribe(OnSetTarget);
 
-		if (Config.Button != null)
-		{
-			(await _mqttService.GetMessagesForTopic<ButtonDeviceMessage>(Config.Button.Topic)).Subscribe(OnButtonPressed);
-		}
+		Config.Button?.Sensor.StateChanges().Subscribe(s => OnButtonPressed(s.New?.State));
 	}
 
 	private async Task CreateEntities()
@@ -66,7 +63,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		}
 	}
 
-	private async void OnButtonPressed(ButtonDeviceMessage? message)
+	private async void OnButtonPressed(string? state)
 	{
 		if (Config.Button == null)
 		{
@@ -74,7 +71,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			return;
 		}
 
-		var action = message?.Action ?? ButtonAction.Undefined;
+		var action = WirelessSwitchActions.Map(state);
 
 		// For every non-special action, increase counter by X.
 		if (action != ButtonAction.Undefined && action < ButtonDeviceMessage.SpecialActionBegin)

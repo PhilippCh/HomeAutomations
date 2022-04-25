@@ -1,10 +1,11 @@
 ﻿using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.Counters;
 
 public record CounterButtonConfig
 {
-	public string Topic { get; init; }
+	public SensorEntity Sensor { get; init; }
 	public string AssociatedUser { get; init; }
 }
 

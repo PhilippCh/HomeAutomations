@@ -2,18 +2,6 @@
 
 namespace HomeAutomations.Models.DeviceMessages;
 
-public enum ButtonAction
-{
-	Undefined,
-	Single,
-	Double,
-	Triple,
-	Quadruple,
-	Hold,
-	Release,
-	Many
-}
-
 /// <summary>
 /// Aqara button device message.
 /// This devices reports the following properties:

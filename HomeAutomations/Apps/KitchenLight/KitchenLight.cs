@@ -38,7 +38,7 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		(await _mqttService.GetMessagesForTopic<string>(Config.ManualTriggerSensorTopic)).Subscribe(OnManualTriggerMessageReceived);
+		Config.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State));
 		Config.MotionSensor.StateChanges().Subscribe(s => OnMotionSensorUpdate(s.New?.Attributes));
 
 		SetBrightness();
@@ -90,9 +90,9 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		StartLightCycle();
 	}
 
-	private void OnManualTriggerMessageReceived(string? message)
+	private void OnManualTriggerStateChanged(string? state)
 	{
-		Action action = message switch
+		Action action = state switch
 		{
 			WirelessSwitchActions.Hold => TurnOnPermanent,
 			WirelessSwitchActions.Triple => Reset,

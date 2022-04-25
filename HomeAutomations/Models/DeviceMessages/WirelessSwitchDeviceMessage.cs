@@ -1,21 +1,39 @@
 ﻿using System.Text.Json.Serialization;
-using HomeAutomations.Models.DeviceMessages;
 
-namespace HomeAssistant.Automations.Models.DeviceMessages;
+namespace HomeAutomations.Models.DeviceMessages;
 
-public static class WirelessSwitchActions {
+public enum ButtonAction
+{
+	Undefined,
+	Single,
+	Double,
+	Triple,
+	Quadruple,
+	Hold,
+	Release,
+	Many
+}
+
+public static class WirelessSwitchActions
+{
 	public const string Single = "single";
 	public const string Double = "double";
 	public const string Triple = "triple";
 	public const string Hold = "hold";
 	public const string Release = "release";
-}
 
-/// <summary>
-/// Aqara wireless switch zigbee mapping.
-/// </summary>
-public class WirelessSwitchDeviceMessage : ZigbeeDeviceMessage
-{
-	[JsonPropertyName("action")]
-	public string Action { get; set; }
+	public static ButtonAction Map(string? action)
+	{
+		return action switch
+		{
+			"single" => ButtonAction.Single,
+			"double" => ButtonAction.Double,
+			"triple" => ButtonAction.Triple,
+			"quadruple" => ButtonAction.Quadruple,
+			"hold" => ButtonAction.Hold,
+			"release" => ButtonAction.Release,
+			"many" => ButtonAction.Many,
+			_ => ButtonAction.Undefined
+		};
+	}
 }

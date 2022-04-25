@@ -4,7 +4,7 @@ HomeAutomations.Apps.Counters.KratomCounter.KratomCounterConfig:
   EntityPrefix: sensor.kratom_intake_
   EntityDescriptionPrefix: Daily kratom intake
   Button:
-    Topic: zigbee2mqtt/0x00158d000678ed45
+    Sensor: sensor.kitchen_kratom_counter_action
     AssociatedUser: philipp
   ResetCrontab: 0 0 * * *
   Events:
