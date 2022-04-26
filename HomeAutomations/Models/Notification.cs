@@ -22,6 +22,7 @@ public record Notification
 		Title = template.Title;
 		Template = template.Template;
 		Tag = template.Tag;
+		Image = template.Image;
 		Actions = JsonSerializer.Deserialize<IEnumerable<NotificationAction>>(JsonSerializer.Serialize(template.Actions));
 
 		if (templateArgs != null)

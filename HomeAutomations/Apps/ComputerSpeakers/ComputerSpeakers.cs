@@ -7,7 +7,6 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.ComputerSpeakers;
 
-[Focus]
 public class ComputerSpeakers : BaseAutomation<ComputerSpeakers, ComputerSpeakersConfig>
 {
 	public ComputerSpeakers(BaseAutomationDependencyAggregate<ComputerSpeakers, ComputerSpeakersConfig> aggregate)
