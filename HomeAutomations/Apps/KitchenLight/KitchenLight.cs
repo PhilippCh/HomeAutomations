@@ -2,9 +2,6 @@
 using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAssistant.Automations.Models.DeviceMessages;
-using HomeAutomations.Common.Services;
-using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
@@ -14,6 +11,7 @@ using Notification = HomeAutomations.Models.Notification;
 
 namespace HomeAutomations.Apps.KitchenLight;
 
+[Focus]
 public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 {
 	private const int DefaultBrightnessPct = 100;
@@ -25,22 +23,22 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 	private int _brightnessPct = DefaultBrightnessPct;
 	private IDisposable? _currentCycleObserver;
 
-	private readonly MqttService _mqttService;
 	private readonly NotificationService _notificationService;
 
-	public KitchenLight(MqttService mqttService, BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate, NotificationService notificationService)
+	public KitchenLight(BaseAutomationDependencyAggregate<KitchenLight, KitchenLightConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
 	{
-		_mqttService = mqttService;
 		_notificationService = notificationService;
 	}
 
-	protected override async Task StartAsync(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		Config.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State));
 		Config.MotionSensor.StateChanges().Subscribe(s => OnMotionSensorUpdate(s.New?.Attributes));
 
 		SetBrightness();
+
+		return Task.CompletedTask;
 	}
 
 	private void OnMotionSensorUpdate(BinarySensorAttributes? attributes)
@@ -66,7 +64,7 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		}
 
 		_currentIlluminance = illuminance.Value;
-		Logger.Information("Set illuminance to {illuminance} lux.", _currentIlluminance);
+		Logger.Information("Set illuminance to {Illuminance} lux", _currentIlluminance);
 	}
 
 	private void UpdateOccupancy()
@@ -78,12 +76,12 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 		if (!ShouldLightTurnOn)
 		{
-			Logger.Information("{illuminance} lux is too bright.", _currentIlluminance);
+			Logger.Information("{Illuminance} lux is too bright", _currentIlluminance);
 
 			return;
 		}
 
-		Logger.Information("Motion detected.");
+		Logger.Information("Motion detected");
 
 		SetBrightness();
 		StartLightCycle();
@@ -91,12 +89,14 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	private void OnManualTriggerStateChanged(string? state)
 	{
-		Action action = state switch
+		var buttonAction = WirelessSwitchActions.Map(state);
+
+		Action action = buttonAction switch
 		{
-			WirelessSwitchActions.Hold => TurnOnPermanent,
-			WirelessSwitchActions.Triple => Reset,
-			WirelessSwitchActions.Release => () => {},
-			_ => ToggleWithCycle
+			ButtonAction.Single => ToggleWithCycle,
+			ButtonAction.Triple => Reset,
+			ButtonAction.Hold => TurnOnPermanent,
+			_ => () => {}
 		};
 
 		action();
@@ -110,7 +110,7 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 		if (activeBrightnessConfig != null)
 		{
 			Logger.Information(
-				"Switching to brightness setting from {from} to {to}: {value}% brightness.",
+				"Switching to brightness setting from {From} to {To}: {Value}% brightness",
 				activeBrightnessConfig.Start, activeBrightnessConfig.End, activeBrightnessConfig.Percentage);
 		}
 
@@ -156,7 +156,8 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 
 	private void StartLightCycle()
 	{
-		Logger.Information(_currentCycleObserver == null ? "Starting new light cycle." : "Restarting running light cycle.");
+		// ReSharper disable once TemplateIsNotCompileTimeConstantProblem
+		Logger.Information(_currentCycleObserver == null ? "Starting new light cycle" : "Restarting running light cycle");
 
 		Config.LightEntity.TurnOn(brightness: _brightnessPct);
 		_currentCycleObserver?.Dispose();
@@ -165,12 +166,16 @@ public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 			.Do(
 				_ =>
 				{
-					Logger.Information("Light cycle ended.");
+					Logger.Information("Light cycle ended");
+					StopLightCycle();
 					Config.LightEntity.TurnOff();
-					_currentCycleObserver?.Dispose();
 				})
 			.Subscribe();
 	}
 
-	private void StopLightCycle() => _currentCycleObserver?.Dispose();
+	private void StopLightCycle()
+	{
+		_currentCycleObserver?.Dispose();
+		_currentCycleObserver = null;
+	}
 }
