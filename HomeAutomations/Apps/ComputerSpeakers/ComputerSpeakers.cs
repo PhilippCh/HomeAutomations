@@ -7,6 +7,7 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.ComputerSpeakers;
 
+[Focus]
 public class ComputerSpeakers : BaseAutomation<ComputerSpeakers, ComputerSpeakersConfig>
 {
 	public ComputerSpeakers(BaseAutomationDependencyAggregate<ComputerSpeakers, ComputerSpeakersConfig> aggregate)
@@ -21,7 +22,12 @@ public class ComputerSpeakers : BaseAutomation<ComputerSpeakers, ComputerSpeaker
 			speakerConfig.ComputerStateSensors.Select(e => e.StateChanges().Select(s => s.New.AsBoolean()).StartWith(e.EntityState.AsBoolean()))
 				.CombineLatest()
 				.Select(r => r.Any(s => s ?? false))
-				.Subscribe(s => speakerConfig.Switch.SetState(s));
+				.Subscribe(
+					s =>
+					{
+						Logger.Information("Setting computer speakers to {state}.", s);
+						speakerConfig.Switch.SetState(s);
+					});
 		}
 
 		return Task.CompletedTask;
