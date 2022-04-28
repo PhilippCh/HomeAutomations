@@ -11,4 +11,5 @@ public record MovieTimeConfig : Config
 	public IEnumerable<string> SupportedActivities { get; init; }
 	public IEnumerable<LightEntity> Lights { get; init; }
 	public long DimBrightnessPct { get; init; }
+	public InputBooleanEntity EnableLightControlEntity { get; init; }
 }

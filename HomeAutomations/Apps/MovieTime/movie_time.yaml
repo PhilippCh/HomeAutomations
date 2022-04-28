@@ -1,6 +1,7 @@
 ---
 HomeAutomations.Apps.MovieTime.MovieTimeConfig:
   StatusTopic: homeautomations-client/media/status
+  EnableLightControlEntity: input_boolean.movie_time_enable_light_control
   SupportedActivities:
     - Kino
   Lights:

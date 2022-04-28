@@ -8,6 +8,9 @@ using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Models.Generated.HomeAutomation;
 using HomeAutomations.Common.Extensions;
+using HomeAutomations.Extensions;
+using NetDaemon.Extensions.MqttEntityManager;
+using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.MovieTime;
 
@@ -17,12 +20,18 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 
 	private readonly MqttService _mqttService;
 	private readonly HarmonyHubService _harmonyHubService;
+	private readonly IMqttEntityManager _entityManager;
 
-	public MovieTime(BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate, MqttService mqttService, HarmonyHubService harmonyHubService)
+	public MovieTime(
+		BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate,
+		MqttService mqttService,
+		HarmonyHubService harmonyHubService,
+		IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
 		_mqttService = mqttService;
 		_harmonyHubService = harmonyHubService;
+		_entityManager = entityManager;
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
@@ -44,7 +53,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		{
 			MediaPlaybackState.NotPlaying => OnPause,
 			MediaPlaybackState.Playing => OnResume,
-			_ => () => Logger.Warning("No action defined for media state {key}.", e?.State)
+			_ => () => Logger.Warning("No action defined for media state {State}", e?.State)
 		};
 
 		action();
@@ -58,7 +67,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 			"Play" => TogglePlayback,
 			"Search" => ToggleLight,
 			"Rewind" => DimLight,
-			_ => () => Logger.Warning("No action defined for key {key}.", e?.Key)
+			_ => () => Logger.Warning("No action defined for key {State}", e?.Key)
 		};
 
 		action();
@@ -68,7 +77,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 	{
 		if (_activeStatusMessage == null || _activeStatusMessage.BaseUrl == null)
 		{
-			Logger.Warning("No active device to send remote command to.");
+			Logger.Warning("No active device to send remote command to");
 
 			return;
 		}
@@ -89,7 +98,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 
 	private void OnPause()
 	{
-		if (_activeStatusMessage?.State != MediaPlaybackState.NotPlaying)
+		if (Config.EnableLightControlEntity.IsOn() && _activeStatusMessage?.State != MediaPlaybackState.NotPlaying)
 		{
 			Config.Lights.ForEach(l => l.TurnOn());
 		}
@@ -97,7 +106,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 
 	private void OnResume()
 	{
-		if (_activeStatusMessage?.State != MediaPlaybackState.Playing)
+		if (Config.EnableLightControlEntity.IsOn() && _activeStatusMessage?.State != MediaPlaybackState.Playing)
 		{
 			Config.Lights.ForEach(l => l.TurnOff());
 		}
