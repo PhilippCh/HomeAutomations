@@ -11,7 +11,6 @@ namespace HomeAutomations.Apps.Vacuum;
 public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 {
 	private CancellationTokenSource? _cleaningScheduleCancellationToken;
-	private IDisposable? _reminderLoopObserver;
 
 	private readonly NotificationService _notificationService;
 
@@ -33,23 +32,22 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		return Task.CompletedTask;
 	}
 
-	private async void StartReminderCron()
+	private void StartReminderCron()
 	{
 		_cleaningScheduleCancellationToken = new CancellationTokenSource();
-		await CronjobExtensions.ScheduleJob(Config.ReminderCrontab, SendReminder, cancellationToken: _cleaningScheduleCancellationToken.Token);
+		CronjobExtensions.ScheduleJob(Config.ReminderCrontab, SendReminder, cancellationToken: _cleaningScheduleCancellationToken.Token);
 	}
 
 	private void Reset()
 	{
 		_cleaningScheduleCancellationToken?.Cancel();
-		_reminderLoopObserver?.Dispose();
 
 		StartReminderCron();
 	}
 
 	private void SendReminder()
 	{
-		Logger.Debug("Sending vacuum reminder notification.");
+		Logger.Debug("Sending vacuum reminder notification");
 
 		if (!Config.Debug)
 		{
@@ -63,7 +61,7 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		{
 			VacuumNotificationActions.Start => () => Config.Vacuum.Start(),
 			VacuumNotificationActions.NoStart => Reset,
-			_ => () => Logger.Warning("Fired unknown notification action {action}.", e.Action)
+			_ => () => Logger.Warning("Fired unknown notification action {Action}", e.Action)
 		};
 
 		callback();
@@ -109,7 +107,7 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 	{
 		var point = new Vector2(33286, 32710); // Next to kitchen bin.
 
-		Logger.Debug("Go to point [{x}, {y}]", point.X, point.Y);
+		Logger.Debug("Go to point [{X}, {Y}]", point.X, point.Y);
 		Config.Vacuum.SendCommand("app_goto_target", new[] { point.X, point.Y });
 	}
 

@@ -36,12 +36,7 @@ public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingSchedul
 		Context.RegisterServiceCallBack<TrainingServiceData>("training_start", StartTraining);
 		(await _mqttService.GetMessagesForTopic<MediaStatusMessage>(Config.MediaStatusTopic)).Subscribe(e => _activeStatusMessage = e);
 
-		StartScheduleUpdateLoop();
-	}
-
-	private async void StartScheduleUpdateLoop()
-	{
-		await CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateSchedule, true);
+		CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateSchedule, true, cancellationToken);
 	}
 
 	private async void UpdateSchedule()

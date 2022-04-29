@@ -27,20 +27,10 @@ public class KiteReminder : BaseAutomation<KiteReminder, KiteReminderConfig>
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		StartCheckCron(cancellationToken);
-		StartResetCron(cancellationToken);
+		CronjobExtensions.ScheduleJob(Config.CheckCrontab, CheckWeatherConditions, true, cancellationToken);
+		CronjobExtensions.ScheduleJob(Config.ResetCrontab, Reset, false, cancellationToken);
 
 		return Task.CompletedTask;
-	}
-
-	private async void StartCheckCron(CancellationToken cancellationToken)
-	{
-		await CronjobExtensions.ScheduleJob(Config.CheckCrontab, CheckWeatherConditions, true, cancellationToken);
-	}
-
-	private async void StartResetCron(CancellationToken cancellationToken)
-	{
-		await CronjobExtensions.ScheduleJob(Config.ResetCrontab, Reset, false, cancellationToken);
 	}
 
 	private async void CheckWeatherConditions()

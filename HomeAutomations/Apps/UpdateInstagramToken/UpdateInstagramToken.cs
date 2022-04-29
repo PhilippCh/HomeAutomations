@@ -20,14 +20,9 @@ public class UpdateInstagramToken : BaseAutomation<UpdateInstagramToken, UpdateI
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		StartUpdateCron(cancellationToken);
+		CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateToken, true, cancellationToken);
 
 		return Task.CompletedTask;
-	}
-
-	private async void StartUpdateCron(CancellationToken cancellationToken)
-	{
-		await CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateToken, true, cancellationToken);
 	}
 
 	private async void UpdateToken()

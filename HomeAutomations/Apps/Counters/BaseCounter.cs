@@ -25,8 +25,9 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		StartResetSchedule();
 		await CreateEntities();
+
+		CronjobExtensions.ScheduleJob(Config.ResetCrontab, ResetCounter, cancellationToken: CancellationToken.None);
 
 		Context.Events.GetDataEvents(Config.Events.AddEventId).Subscribe(OnAdd);
 		Context.Events.GetDataEvents(Config.Events.SetTargetEventId).Subscribe(OnSetTarget);
@@ -44,11 +45,6 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			await _entityManager.CreateAsync(GetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "for", name));
 			await _entityManager.CreateAsync(GetTargetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "target for", name));
 		}
-	}
-
-	private async void StartResetSchedule()
-	{
-		await CronjobExtensions.ScheduleJob(Config.ResetCrontab, ResetCounter, cancellationToken: CancellationToken.None);
 	}
 
 	private async void ResetCounter()

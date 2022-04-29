@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Cronos;
 
@@ -10,9 +9,9 @@ public static class CronjobExtensions
 	private static readonly TimeSpan MinTimeSpan = TimeSpan.FromMilliseconds(500);
 	private static readonly TimeSpan WaitDelay = TimeSpan.FromMinutes(1);
 
-	public static async Task ScheduleJob(string cronSchedule, Action action, bool runOnStartup = false, CancellationToken cancellationToken = default)
+	public static void ScheduleJob(string cronSchedule, Action action, bool runOnStartup = false, CancellationToken cancellationToken = default)
 	{
-		await ScheduleJob(
+		ScheduleJob(
 			cronSchedule, async () =>
 			{
 				action();
@@ -20,11 +19,10 @@ public static class CronjobExtensions
 			}, runOnStartup, cancellationToken);
 	}
 
-	public static async Task ScheduleJob(string cronSchedule, Func<Task> action, bool runOnStartup = false, CancellationToken cancellationToken = default)
+	public static async void ScheduleJob(string cronSchedule, Func<Task> action, bool runOnStartup = false, CancellationToken cancellationToken = default)
 	{
 		var expression = CronExpression.Parse(cronSchedule);
 		var today = DateTime.Today;
-		var occurrencesToday = expression.GetOccurrences(today, today.AddDays(1), TimeZoneInfo.Local);
 		var next = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local);
 
 		if (next == null)
