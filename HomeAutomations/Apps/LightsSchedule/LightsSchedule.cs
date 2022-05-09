@@ -1,47 +1,50 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Extensions;
 using HomeAutomations.Models;
-using HomeAutomations.Services;
+using HomeAutomations.Models.Generated;
+using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.LightsSchedule;
 
+[Focus]
 public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfig>
 {
+	private readonly Dictionary<string, CycleInfo> _runningCycles = new();
+
 	public LightsSchedule(BaseAutomationDependencyAggregate<LightsSchedule, LightsScheduleConfig> aggregate)
 		: base(aggregate)
 	{
 	}
 
-	protected override Task Start(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		SetupLightCycles(cancellationToken);
-		SetupFountainCycle(cancellationToken);
+		ObservableExtensions.Interval(Config.UpdateInterval, true).Subscribe(_ => UpdateCycles());
 
 		return Task.CompletedTask;
 	}
 
-	private async void SetupLightCycles(CancellationToken cancellationToken)
+	private void UpdateCycles()
 	{
-#pragma warning disable CS4014
-		CronjobExtensions.ScheduleJob("0 9 * * *", StartLightCycles, false, cancellationToken).ConfigureAwait(false);
-		CronjobExtensions.ScheduleJob("0 9 * * *", StartLightCycles, false, cancellationToken).ConfigureAwait(false);
-#pragma warning restore CS4014
-	}
+		foreach (var cycle in Config.LightCycles)
+		{
+			var start = cycle.Start.GetActualTime(Config.Latitude, Config.Longitude);
+			var end = cycle.End.GetActualTime(Config.Latitude, Config.Longitude);
 
-	private async void StartLightCycles()
-	{
+			if (start == null || end == null)
+			{
+				Logger.Warning("Could not get actual start/end dates for cycle {Cycle}. Start: {Start} End: {End}", cycle.Name, cycle.Start.ToString(), cycle.End.ToString());
 
-	}
+				continue;
+			}
 
-	private async void SetupFountainCycle(CancellationToken cancellationToken)
-	{
+			var time = DateTime.Now;
+			var shouldRun = time >= start || time < end;
 
-		await CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateToken, true, cancellationToken);
-	}
-
-	private async void StartFountainCycle()
-	{
-
+			if (shouldRun && !_runningCycles.ContainsKey(cycle.Name))
+			{
+				_runningCycles.Add(cycle.Name, new CycleInfo(cycle));
+			}
+		}
 	}
 }
