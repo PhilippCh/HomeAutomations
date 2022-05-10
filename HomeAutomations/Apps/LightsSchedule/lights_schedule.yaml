@@ -4,25 +4,27 @@ HomeAutomations.Apps.LightsSchedule.LightsScheduleConfig:
   Longitude: 8.247879062542783
   UpdateInterval: 00:01:00
   LightCycles:
-#    - Name: Static lights
-#      Interval: 24:00:00 # This is essentially not used for static lights
-#      Start:
-#
-#      EntityCycles:
-#        - - light.tv_lightstrip
-#          - light.kitchen_neon_clock
-#    - Name: Trolley lights
-#      Interval: 01:00:00
-#      EntityCycles:
-#        - - light.living_room_lightbar
-#          - light.living_room_contract_light
-#        - - light.living_room_diorama
-#    - Name: Trolley lights
-#      Interval: 01:00:00
-#      EntityCycles:
-#        - - light.living_room_lightbar
-#          - light.living_room_contract_light
-#        - - light.living_room_diorama
+    - Name: Static lights
+      Interval: 24:00:00 # This is essentially not used for static lights
+      Start:
+        Hour: sunset
+      End:
+        Hour: 1.00:00:00 # 00:00 next day
+        HourWeekend: 1.01:00:00 # 01:00 next day
+      EntityCycles:
+        - - light.tv_lightstrip
+          - light.kitchen_neon_clock
+    - Name: Trolley lights
+      Interval: 01:00:00
+      Start:
+        Hour: sunset
+        End:
+          Hour: 1.00:00:00 # 00:00 next day
+          HourWeekend: 1.01:00:00 # 01:00 next day
+      EntityCycles:
+        - - light.living_room_lightbar
+          - light.living_room_contract_light
+        - - light.living_room_diorama
     - Name: Buddha fountain
       Interval: 00:30:00
       Start:
