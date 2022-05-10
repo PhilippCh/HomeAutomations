@@ -39,7 +39,7 @@ public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfi
 			}
 
 			var time = DateTime.Now;
-			var shouldRun = time >= start || time < end;
+			var shouldRun = time >= start || (time.Day == end.Value.Day && time < end);
 
 			if (shouldRun && !_runningCycles.ContainsKey(cycle.Name))
 			{
