@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
-using HomeAutomations.Models.Generated;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.LightsSchedule;
@@ -41,9 +40,16 @@ public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfi
 			var time = DateTime.Now;
 			var shouldRun = time >= start || (time.Day == end.Value.Day && time < end);
 
+			// Start new cycle if within schedule.
 			if (shouldRun && !_runningCycles.ContainsKey(cycle.Name))
 			{
 				_runningCycles.Add(cycle.Name, new CycleInfo(cycle));
+			}
+
+			// Stop running cycle if outside schedule.
+			if (!shouldRun && _runningCycles.TryGetValue(cycle.Name, out var runningCycle))
+			{
+				runningCycle.Dispose();
 			}
 		}
 	}

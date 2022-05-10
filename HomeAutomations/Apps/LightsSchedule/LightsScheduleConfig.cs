@@ -47,7 +47,7 @@ public record CycleConfig
 	public string Name { get; init; }
 	public TimeConfig Start { get; init; }
 	public TimeConfig End { get; init; }
-	public TimeSpan Interval { get; init; }
+	public TimeSpan? Interval { get; init; }
 	public IReadOnlyList<IEnumerable<LightEntity>> EntityCycles { get; init; }
 }
 
