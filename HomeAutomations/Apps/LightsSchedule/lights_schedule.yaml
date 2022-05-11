@@ -18,9 +18,9 @@ HomeAutomations.Apps.LightsSchedule.LightsScheduleConfig:
       Interval: 01:00:00
       Start:
         Hour: sunset
-        End:
-          Hour: 1.00:00:00 # 00:00 next day
-          HourWeekend: 1.01:00:00 # 01:00 next day
+      End:
+        Hour: 1.00:00:00 # 00:00 next day
+        HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
         - - light.living_room_lightbar
           - light.living_room_contract_light

@@ -14,7 +14,6 @@ public record TimeConfig
 	public DateTime? GetActualTime(double latitude, double longitude)
 	{
 		var date = DateTime.Now;
-		var hourRegular = date.Date.Add(TimeSpan.Parse(Hour));
 		var actualHour = date.IsWeekend() ? HourWeekend : Hour;
 
 		try

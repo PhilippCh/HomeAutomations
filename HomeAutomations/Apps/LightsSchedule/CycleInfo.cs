@@ -7,10 +7,11 @@ public class CycleInfo : IDisposable
 {
 	private int? _currentIndex;
 
+	private readonly ILogger _logger;
 	private readonly CycleConfig _config;
 	private readonly IDisposable? _subscription;
 
-	public CycleInfo(CycleConfig config)
+	public CycleInfo(CycleConfig config, ILogger logger)
 	{
 		_config = config;
 

@@ -43,7 +43,7 @@ public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfi
 			// Start new cycle if within schedule.
 			if (shouldRun && !_runningCycles.ContainsKey(cycle.Name))
 			{
-				_runningCycles.Add(cycle.Name, new CycleInfo(cycle));
+				_runningCycles.Add(cycle.Name, new CycleInfo(cycle, Logger));
 			}
 
 			// Stop running cycle if outside schedule.
