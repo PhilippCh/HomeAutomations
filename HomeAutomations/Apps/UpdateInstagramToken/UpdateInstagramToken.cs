@@ -41,7 +41,7 @@ public class UpdateInstagramToken : BaseAutomation<UpdateInstagramToken, UpdateI
 		}
 		catch (Exception ex)
 		{
-			_notificationService.SendNotification(new Notification(Config.FailureNotification, new object[] { ex.Message }));
+			_notificationService.SendNotification(Config.FailureNotification with { Template = Config.FailureNotification.RenderTemplate(ex.Message) });
 		}
 	}
 }

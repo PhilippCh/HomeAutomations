@@ -14,22 +14,7 @@ public record Notification
 	public bool? Sticky { get; init; }
 	public IEnumerable<NotificationAction>? Actions { get; init; }
 
-	public Notification() {}
-
-	public Notification(Notification template, object[]? templateArgs = null)
-	{
-		Service = template.Service;
-		Title = template.Title;
-		Template = template.Template;
-		Tag = template.Tag;
-		Image = template.Image;
-		Actions = JsonSerializer.Deserialize<IEnumerable<NotificationAction>>(JsonSerializer.Serialize(template.Actions));
-
-		if (templateArgs != null)
-		{
-			Template = string.Format(Template ?? string.Empty, templateArgs);
-		}
-	}
+	public string RenderTemplate(params object[] args) => string.Format(Template ?? string.Empty, args);
 }
 
 public class NotificationAction
