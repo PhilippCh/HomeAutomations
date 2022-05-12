@@ -17,6 +17,8 @@ public class CycleInfo
 		_config = config;
 		_logger = logger;
 
+		logger.Information("Starting light cycle {Name}", config.Name);
+
 		Update();
 
 		if (config.Interval != null)
@@ -34,14 +36,14 @@ public class CycleInfo
 		{
 			foreach (var entity in _config.EntityCycles[previousIndex.Value])
 			{
-				_logger.Information("Turning off {EntityId}", entity.EntityId);
+				_logger.Debug("Turning off {EntityId}", entity.EntityId);
 				entity.TurnOff();
 			}
 		}
 
 		foreach (var entity in _config.EntityCycles[_currentIndex.Value])
 		{
-			_logger.Information("Turning on {EntityId}", entity.EntityId);
+			_logger.Debug("Turning on {EntityId}", entity.EntityId);
 			entity.TurnOn();
 		}
 	}
@@ -58,6 +60,8 @@ public class CycleInfo
 
 	public void Stop()
 	{
+		_logger.Information("Stopping light cycle {Name}", _config.Name);
+
 		// Turn off all lights when cycle has finished.
 		foreach (var entity in _config.EntityCycles.Select(c => c))
 		{
