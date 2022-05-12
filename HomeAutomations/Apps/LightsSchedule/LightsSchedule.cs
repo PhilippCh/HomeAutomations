@@ -49,7 +49,7 @@ public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfi
 			// Stop running cycle if outside schedule.
 			if (!shouldRun && _runningCycles.TryGetValue(cycle.Name, out var runningCycle))
 			{
-				runningCycle.Dispose();
+				runningCycle.Stop();
 			}
 		}
 	}

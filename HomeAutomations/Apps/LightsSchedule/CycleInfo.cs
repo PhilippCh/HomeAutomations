@@ -1,9 +1,10 @@
-﻿using HomeAutomations.Models.Generated;
+﻿using System.Linq;
+using HomeAutomations.Models.Generated;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.LightsSchedule;
 
-public class CycleInfo : IDisposable
+public class CycleInfo
 {
 	private int? _currentIndex;
 
@@ -14,6 +15,7 @@ public class CycleInfo : IDisposable
 	public CycleInfo(CycleConfig config, ILogger logger)
 	{
 		_config = config;
+		_logger = logger;
 
 		Update();
 
@@ -32,12 +34,14 @@ public class CycleInfo : IDisposable
 		{
 			foreach (var entity in _config.EntityCycles[previousIndex.Value])
 			{
+				_logger.Information("Turning off {EntityId}", entity.EntityId);
 				entity.TurnOff();
 			}
 		}
 
 		foreach (var entity in _config.EntityCycles[_currentIndex.Value])
 		{
+			_logger.Information("Turning on {EntityId}", entity.EntityId);
 			entity.TurnOn();
 		}
 	}
@@ -52,8 +56,14 @@ public class CycleInfo : IDisposable
 		return _currentIndex.Value + 1;
 	}
 
-	public void Dispose()
+	public void Stop()
 	{
+		// Turn off all lights when cycle has finished.
+		foreach (var entity in _config.EntityCycles.Select(c => c))
+		{
+			entity.TurnOff();
+		}
+
 		_subscription?.Dispose();
 	}
 }
