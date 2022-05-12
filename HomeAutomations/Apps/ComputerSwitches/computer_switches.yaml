@@ -1,0 +1,15 @@
+---
+HomeAutomations.Apps.ComputerSwitches.ComputerSwitchesConfig:
+  ApiBaseUrl:
+    Values:
+      Development: https://moonlight-remote-api.pupslab.de
+      Production: http://moonlight-remote-api:8080
+  Hosts:
+    - Name: Desktop Philipp
+      EntityId: input_boolean.computer_wol_desktop_philipp
+      Host: 192.168.188.41
+      MacAddress: 40:B0:76:DD:34:61
+    - Name: Desktop Fabienne
+      EntityId: input_boolean.computer_wol_desktop_fabienne
+      Host: 192.168.188.34
+      MacAddress: AC:9E:17:EC:5F:83

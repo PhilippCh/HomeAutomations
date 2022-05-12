@@ -14,13 +14,5 @@ public static class EntityStateExtensions
 		return null;
 	}
 
-	public static bool? AsBoolean(this EntityState? entityState)
-	{
-		if (bool.TryParse(entityState?.State, out var result))
-		{
-			return result;
-		}
-
-		return entityState?.State == "on";
-	}
+	public static bool? AsBoolean(this EntityState? entityState) => entityState?.State.AsBoolean();
 }

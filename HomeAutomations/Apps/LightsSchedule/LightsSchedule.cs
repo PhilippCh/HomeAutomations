@@ -6,7 +6,6 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.LightsSchedule;
 
-[Focus]
 public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfig>
 {
 	private readonly Dictionary<string, CycleInfo> _runningCycles = new();
