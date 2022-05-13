@@ -1,0 +1,20 @@
+---
+HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
+  Groups:
+#    - Name: Kitchen
+#      MotionSensor: binary_sensor.kitchen_motion_detector_occupancy
+#      CycleTime: 00:01:30
+#      MinIlluminance: 70
+#      Lights:
+#        - Entity: light.kitchen_ceiling_light
+#          ManualTriggerSensor: sensor.kitchen_light_action
+
+    - Name: Bedroom
+      MotionSensor: binary_sensor.bedroom_motion_detector_occupancy
+      CycleTime: 00:01:30
+      MinIlluminance: 70
+      Lights:
+        - Entity: light.bedroom_bedside_light_philipp
+          ManualTriggerSensor: sensor.bedroom_bedside_light_switch_philipp_action
+        - Entity: light.bedroom_bedside_light_fabienne
+          ManualTriggerSensor: sensor.bedroom_bedside_light_switch_fabienne_action

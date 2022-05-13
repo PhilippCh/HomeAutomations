@@ -8,7 +8,6 @@ using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.ComputerSwitches;
 
-[Focus]
 public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitchesConfig>
 {
 	private readonly IMqttEntityManager _entityManager;

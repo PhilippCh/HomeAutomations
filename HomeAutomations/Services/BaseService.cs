@@ -1,6 +1,4 @@
-﻿using Serilog;
-
-namespace HomeAssistant.Automations.Services;
+﻿namespace HomeAutomations.Services;
 
 public class BaseServiceDependencyAggregate<T> where T : BaseService<T>
 {

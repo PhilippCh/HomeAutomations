@@ -9,7 +9,7 @@ using HomeAutomations.Services;
 using NetDaemon.HassModel.Entities;
 using Notification = HomeAutomations.Models.Notification;
 
-namespace HomeAutomations.Apps.KitchenLight;
+namespace HomeAutomations.Apps.Lights.KitchenLight;
 
 public class KitchenLight : BaseAutomation<KitchenLight, KitchenLightConfig>
 {

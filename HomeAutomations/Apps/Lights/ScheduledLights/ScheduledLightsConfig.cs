@@ -4,7 +4,7 @@ using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
 
-namespace HomeAutomations.Apps.LightsSchedule;
+namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
 public record TimeConfig
 {
@@ -50,7 +50,7 @@ public record CycleConfig
 	public IReadOnlyList<IEnumerable<LightEntity>> EntityCycles { get; init; }
 }
 
-public record LightsScheduleConfig : Config
+public record ScheduledLightsConfig : Config
 {
 	public double Latitude { get; init; }
 	public double Longitude { get; init; }

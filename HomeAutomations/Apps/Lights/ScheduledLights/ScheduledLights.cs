@@ -4,14 +4,13 @@ using System.Threading.Tasks;
 using HomeAutomations.Models;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
-namespace HomeAutomations.Apps.LightsSchedule;
+namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
-[Focus]
-public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfig>
+public class ScheduledLights : BaseAutomation<ScheduledLights, ScheduledLightsConfig>
 {
 	private readonly Dictionary<string, CycleInfo> _runningCycles = new();
 
-	public LightsSchedule(BaseAutomationDependencyAggregate<LightsSchedule, LightsScheduleConfig> aggregate)
+	public ScheduledLights(BaseAutomationDependencyAggregate<ScheduledLights, ScheduledLightsConfig> aggregate)
 		: base(aggregate)
 	{
 	}

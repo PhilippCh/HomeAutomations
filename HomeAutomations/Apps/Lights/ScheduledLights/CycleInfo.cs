@@ -2,7 +2,7 @@
 using HomeAutomations.Models.Generated;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
-namespace HomeAutomations.Apps.LightsSchedule;
+namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
 public class CycleInfo
 {

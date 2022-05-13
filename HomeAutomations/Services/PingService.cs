@@ -1,12 +1,9 @@
-﻿using System;
-using System.Net.NetworkInformation;
+﻿using System.Net.NetworkInformation;
 using System.Reactive;
-using System.Reactive.Linq;
 using System.Text;
-using HomeAssistant.Automations.Extensions;
-using Serilog;
+using HomeAutomations.Extensions;
 
-namespace HomeAssistant.Automations.Services;
+namespace HomeAutomations.Services;
 
 public class PingService : BaseService<PingService>
 {

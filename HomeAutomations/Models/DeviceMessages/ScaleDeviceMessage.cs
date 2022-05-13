@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using HomeAutomations.Models.DeviceMessages;
 
-namespace HomeAssistant.Automations.Models.DeviceMessages;
+namespace HomeAutomations.Models.DeviceMessages;
 
 /// <summary>
 /// Generic zigbee scale device mapping. Provides value and unit.

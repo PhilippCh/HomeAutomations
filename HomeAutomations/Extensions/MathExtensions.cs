@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HomeAssistant.Automations.Extensions;
+﻿namespace HomeAutomations.Extensions;
 
 public static class MathExtensions
 {

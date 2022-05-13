@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Reflection;
-using HomeAssistant.Automations.Services;
 using HomeAutomations.Apps.Scales.KitchenScale;
 using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 using HomeAutomations.Apps.Vacuum;
