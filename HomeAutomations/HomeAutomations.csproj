@@ -40,6 +40,7 @@
 		<PackageReference Include="NSwag.MSBuild" Version="13.15.10">
 			<PrivateAssets>All</PrivateAssets>
 		</PackageReference>
+		<PackageReference Include="VaultSharp" Version="1.7.0.4" />
     </ItemGroup>
 
     <ItemGroup>

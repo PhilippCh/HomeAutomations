@@ -6,6 +6,7 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.LightsSchedule;
 
+[Focus]
 public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfig>
 {
 	private readonly Dictionary<string, CycleInfo> _runningCycles = new();
@@ -37,7 +38,7 @@ public class LightsSchedule : BaseAutomation<LightsSchedule, LightsScheduleConfi
 			}
 
 			var time = DateTime.Now;
-			var shouldRun = time >= start || (time.Day == end.Value.Day && time < end);
+			var shouldRun = time >= start && time < end;
 
 			// Start new cycle if within schedule.
 			if (shouldRun && !_runningCycles.ContainsKey(cycle.Name))

@@ -6,7 +6,7 @@ namespace HomeAutomations.Apps.LightsSchedule;
 
 public class CycleInfo
 {
-	private int? _currentIndex;
+	private int _currentIndex = -1;
 
 	private readonly ILogger _logger;
 	private readonly CycleConfig _config;
@@ -32,30 +32,33 @@ public class CycleInfo
 		var previousIndex = _currentIndex;
 		_currentIndex = RotateIndex();
 
-		if (previousIndex != null)
+		if (previousIndex != -1)
 		{
-			foreach (var entity in _config.EntityCycles[previousIndex.Value])
+			foreach (var entity in _config.EntityCycles[previousIndex])
 			{
 				_logger.Debug("Turning off {EntityId}", entity.EntityId);
 				entity.TurnOff();
 			}
 		}
 
-		foreach (var entity in _config.EntityCycles[_currentIndex.Value])
+		if (_currentIndex != -1)
 		{
-			_logger.Debug("Turning on {EntityId}", entity.EntityId);
-			entity.TurnOn();
+			foreach (var entity in _config.EntityCycles[_currentIndex])
+			{
+				_logger.Debug("Turning on {EntityId}", entity.EntityId);
+				entity.TurnOn();
+			}
 		}
 	}
 
 	private int RotateIndex()
 	{
-		if (_currentIndex == null || _currentIndex >= _config.EntityCycles.Count - 1)
+		if (_currentIndex >= _config.EntityCycles.Count - 1)
 		{
-			return 0;
+			return -1;
 		}
 
-		return _currentIndex.Value + 1;
+		return _currentIndex + 1;
 	}
 
 	public void Stop()
