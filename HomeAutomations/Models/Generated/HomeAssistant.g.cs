@@ -36,13 +36,13 @@ namespace HomeAutomations.Models.Generated
 
 		LightEntities Light { get; }
 
+		LockEntities Lock { get; }
+
 		MediaPlayerEntities MediaPlayer { get; }
 
 		PersistentNotificationEntities PersistentNotification { get; }
 
 		PersonEntities Person { get; }
-
-		RemoteEntities Remote { get; }
 
 		SelectEntities Select { get; }
 
@@ -85,10 +85,10 @@ namespace HomeAutomations.Models.Generated
 		public InputSelectEntities InputSelect => new(_haContext);
 		public InputTextEntities InputText => new(_haContext);
 		public LightEntities Light => new(_haContext);
+		public LockEntities Lock => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
 		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
-		public RemoteEntities Remote => new(_haContext);
 		public SelectEntities Select => new(_haContext);
 		public SensorEntities Sensor => new(_haContext);
 		public SunEntities Sun => new(_haContext);
@@ -128,6 +128,8 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity BalkonturRechts => new(_haContext, "binary_sensor.balkontur_rechts");
 		///<summary>Balkontür rechts Battery</summary>
 		public BinarySensorEntity BalkonturRechtsBattery => new(_haContext, "binary_sensor.balkontur_rechts_battery");
+		///<summary>bedroom/motion_detector_occupancy</summary>
+		public BinarySensorEntity BedroomMotionDetectorOccupancy => new(_haContext, "binary_sensor.bedroom_motion_detector_occupancy");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Focus</summary>
 		public BinarySensorEntity BuyHodlGmeFocus => new(_haContext, "binary_sensor.buy_hodl_gme_focus");
 		///<summary>DesktopFabienne</summary>
@@ -154,14 +156,26 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity FensterSchlafzimmer => new(_haContext, "binary_sensor.fenster_schlafzimmer");
 		///<summary>Fenster Schlafzimmer Battery</summary>
 		public BinarySensorEntity FensterSchlafzimmerBattery => new(_haContext, "binary_sensor.fenster_schlafzimmer_battery");
+		///<summary>guest_bath/zigbee_repeater_update_available</summary>
+		public BinarySensorEntity GuestBathZigbeeRepeaterUpdateAvailable => new(_haContext, "binary_sensor.guest_bath_zigbee_repeater_update_available");
+		///<summary>iPhone Philipp 2 Focus</summary>
+		public BinarySensorEntity IphonePhilipp2Focus => new(_haContext, "binary_sensor.iphone_philipp_2_focus");
+		///<summary>kitchen/motion_detector_occupancy</summary>
+		public BinarySensorEntity KitchenMotionDetectorOccupancy => new(_haContext, "binary_sensor.kitchen_motion_detector_occupancy");
+		///<summary>kitchen/neon_clock_update_available</summary>
+		public BinarySensorEntity KitchenNeonClockUpdateAvailable2 => new(_haContext, "binary_sensor.kitchen_neon_clock_update_available_2");
 		///<summary>LaptopFabienne</summary>
 		public BinarySensorEntity Laptopfabienne => new(_haContext, "binary_sensor.laptopfabienne");
 		///<summary>LaptopPhilipp</summary>
 		public BinarySensorEntity Laptopphilipp => new(_haContext, "binary_sensor.laptopphilipp");
-		///<summary>motion_detector_kitchen occupancy</summary>
-		public BinarySensorEntity MotionDetectorKitchenOccupancy => new(_haContext, "binary_sensor.motion_detector_kitchen_occupancy");
-		///<summary>sleep_mode</summary>
-		public BinarySensorEntity Nodered34b1e88b368528 => new(_haContext, "binary_sensor.nodered_34b1e88b_368528");
+		///<summary>living_room/buddha_fountain_update_available</summary>
+		public BinarySensorEntity LivingRoomBuddhaFountainUpdateAvailable => new(_haContext, "binary_sensor.living_room_buddha_fountain_update_available");
+		///<summary>living_room/contract_light_update_available</summary>
+		public BinarySensorEntity LivingRoomContractLightUpdateAvailable => new(_haContext, "binary_sensor.living_room_contract_light_update_available");
+		///<summary>living_room/diorama_update_available</summary>
+		public BinarySensorEntity LivingRoomDioramaUpdateAvailable => new(_haContext, "binary_sensor.living_room_diorama_update_available");
+		///<summary>living_room/lightbar_update_available</summary>
+		public BinarySensorEntity LivingRoomLightbarUpdateAvailable => new(_haContext, "binary_sensor.living_room_lightbar_update_available");
 		///<summary>PupsStation Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationDrive1BelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_drive_1_below_min_remaining_life");
 		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
@@ -174,6 +188,8 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity PupsstationSecurityStatus => new(_haContext, "binary_sensor.pupsstation_security_status");
 		///<summary>PupsStation Update Available</summary>
 		public BinarySensorEntity PupsstationUpdateAvailable => new(_haContext, "binary_sensor.pupsstation_update_available");
+		///<summary>switch.study_speakers_philipp_update_available</summary>
+		public BinarySensorEntity SwitchStudySpeakersPhilippUpdateAvailable => new(_haContext, "binary_sensor.switch_study_speakers_philipp_update_available");
 		///<summary>Thermostat Arbeitszimmer Battery</summary>
 		public BinarySensorEntity ThermostatArbeitszimmerBattery => new(_haContext, "binary_sensor.thermostat_arbeitszimmer_battery");
 		///<summary>Thermostat Badezimmer Battery</summary>
@@ -322,6 +338,8 @@ namespace HomeAutomations.Models.Generated
 		public DeviceTrackerEntity IpadVonFabienne => new(_haContext, "device_tracker.ipad_von_fabienne");
 		///<summary>Philipp</summary>
 		public DeviceTrackerEntity IphonePhilipp => new(_haContext, "device_tracker.iphone_philipp");
+		///<summary>iPhone Philipp 2</summary>
+		public DeviceTrackerEntity IphonePhilipp2 => new(_haContext, "device_tracker.iphone_philipp_2");
 		///<summary>iPhone Philipp</summary>
 		public DeviceTrackerEntity IphonePhilipp3 => new(_haContext, "device_tracker.iphone_philipp_3");
 		///<summary>philipp</summary>
@@ -358,20 +376,26 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity MoonlightShutdownHarmony => new(_haContext, "input_boolean.moonlight_shutdown_harmony");
 		///<summary>Shut down host after moonlight stream ends?</summary>
 		public InputBooleanEntity MoonlightShutdownHost => new(_haContext, "input_boolean.moonlight_shutdown_host");
+		///<summary>Kontrolliere Kino-Lichter</summary>
+		public InputBooleanEntity MovieTimeEnableLightControl => new(_haContext, "input_boolean.movie_time_enable_light_control");
 		///<summary>netdaemon_home_automations_apps_calorie_counter_calorie_counter</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsCalorieCounterCalorieCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_calorie_counter_calorie_counter");
 		///<summary>netdaemon_home_automations_apps_computer_speakers_computer_speakers</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsComputerSpeakersComputerSpeakers => new(_haContext, "input_boolean.netdaemon_home_automations_apps_computer_speakers_computer_speakers");
+		///<summary>netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter");
+		///<summary>netdaemon_home_automations_apps_counters_water_counter_water_counter</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_counters_water_counter_water_counter");
 		///<summary>netdaemon_home_automations_apps_kitchen_light_kitchen_light</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsKitchenLightKitchenLight => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kitchen_light_kitchen_light");
-		///<summary>netdaemon_home_automations_apps_kratom_counter_kratom_counter</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsKratomCounterKratomCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kratom_counter_kratom_counter");
+		///<summary>netdaemon_home_automations_apps_kite_reminder_kite_reminder</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsKiteReminderKiteReminder => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kite_reminder_kite_reminder");
+		///<summary>netdaemon_home_automations_apps_lights_schedule_lights_schedule</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsLightsScheduleLightsSchedule => new(_haContext, "input_boolean.netdaemon_home_automations_apps_lights_schedule_lights_schedule");
 		///<summary>netdaemon_home_automations_apps_moonlight_remote_moonlight_remote</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsMoonlightRemoteMoonlightRemote => new(_haContext, "input_boolean.netdaemon_home_automations_apps_moonlight_remote_moonlight_remote");
 		///<summary>netdaemon_home_automations_apps_movie_time_movie_time</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsMovieTimeMovieTime => new(_haContext, "input_boolean.netdaemon_home_automations_apps_movie_time_movie_time");
-		///<summary>netdaemon_home_automations_apps_nighttime_switch_nighttime_switch</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsNighttimeSwitchNighttimeSwitch => new(_haContext, "input_boolean.netdaemon_home_automations_apps_nighttime_switch_nighttime_switch");
 		///<summary>netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsRazorBladeUsageRazorBladeUsage => new(_haContext, "input_boolean.netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage");
 		///<summary>netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale</summary>
@@ -380,12 +404,12 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsTrainingScheduleTrainingSchedule => new(_haContext, "input_boolean.netdaemon_home_automations_apps_training_schedule_training_schedule");
 		///<summary>netdaemon_home_automations_apps_trash_reminder_trash_reminder</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsTrashReminderTrashReminder => new(_haContext, "input_boolean.netdaemon_home_automations_apps_trash_reminder_trash_reminder");
+		///<summary>netdaemon_home_automations_apps_update_instagram_token_update_instagram_token</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsUpdateInstagramTokenUpdateInstagramToken => new(_haContext, "input_boolean.netdaemon_home_automations_apps_update_instagram_token_update_instagram_token");
 		///<summary>netdaemon_home_automations_apps_vacuum_vacuum</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsVacuumVacuum => new(_haContext, "input_boolean.netdaemon_home_automations_apps_vacuum_vacuum");
 		///<summary>netdaemon_home_automations_apps_wall_panel_wall_panel_monitor</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsWallPanelWallPanelMonitor => new(_haContext, "input_boolean.netdaemon_home_automations_apps_wall_panel_wall_panel_monitor");
-		///<summary>netdaemon_home_automations_apps_water_counter_water_counter</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsWaterCounterWaterCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_water_counter_water_counter");
 		///<summary>Bio</summary>
 		public InputBooleanEntity TrashBio => new(_haContext, "input_boolean.trash_bio");
 		///<summary>Glas</summary>
@@ -472,22 +496,63 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>bedroom/bedside_light_fabienne</summary>
+		public LightEntity BedroomBedsideLightFabienne => new(_haContext, "light.bedroom_bedside_light_fabienne");
+		///<summary>bedroom/bedside_light_philipp</summary>
+		public LightEntity BedroomBedsideLightPhilipp => new(_haContext, "light.bedroom_bedside_light_philipp");
 		public LightEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "light.browser_mod_18a35fcc_9cc51676");
+		public LightEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "light.browser_mod_4dfe8c51_c6acddb1");
 		public LightEntity BrowserMod7605937aF7c5c1de => new(_haContext, "light.browser_mod_7605937a_f7c5c1de");
 		public LightEntity BrowserMod83461556F7d0adba => new(_haContext, "light.browser_mod_83461556_f7d0adba");
 		public LightEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "light.browser_mod_8ff90475_f73ebe95");
 		public LightEntity BrowserModCe5a5526823fbc7c => new(_haContext, "light.browser_mod_ce5a5526_823fbc7c");
 		public LightEntity BrowserModFb34009b72400981 => new(_haContext, "light.browser_mod_fb34009b_72400981");
+		///<summary>kitchen/neon_clock</summary>
+		public LightEntity KitchenNeonClock => new(_haContext, "light.kitchen_neon_clock");
 		///<summary>Küchendecke</summary>
 		public LightEntity Kuchendecke => new(_haContext, "light.kuchendecke");
 		///<summary>Licht Nachttisch Fup</summary>
 		public LightEntity LichtNachttischFup => new(_haContext, "light.licht_nachttisch_fup");
 		///<summary>Licht Nachttisch Pups</summary>
 		public LightEntity LichtNachttischPups => new(_haContext, "light.licht_nachttisch_pups");
+		///<summary>living_room/buddha_fountain</summary>
+		public LightEntity LivingRoomBuddhaFountain => new(_haContext, "light.living_room_buddha_fountain");
+		///<summary>living_room/contract_light</summary>
+		public LightEntity LivingRoomContractLight => new(_haContext, "light.living_room_contract_light");
+		///<summary>living_room/diorama</summary>
+		public LightEntity LivingRoomDiorama => new(_haContext, "light.living_room_diorama");
+		///<summary>living_room/lightbar</summary>
+		public LightEntity LivingRoomLightbar => new(_haContext, "light.living_room_lightbar");
+		///<summary>living_room/standard_lamp</summary>
+		public LightEntity LivingRoomStandardLamp => new(_haContext, "light.living_room_standard_lamp");
 		///<summary>Stehlampe</summary>
 		public LightEntity Stehlampe => new(_haContext, "light.stehlampe");
 		///<summary>TV Lightstrip</summary>
 		public LightEntity TvLightstrip => new(_haContext, "light.tv_lightstrip");
+	}
+
+	public class LockEntities
+	{
+		private readonly IHaContext _haContext;
+		public LockEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>guest_bath/zigbee_repeater_child_lock</summary>
+		public LockEntity GuestBathZigbeeRepeaterChildLock => new(_haContext, "lock.guest_bath_zigbee_repeater_child_lock");
+		///<summary>kitchen/neon_clock_child_lock</summary>
+		public LockEntity KitchenNeonClockChildLock => new(_haContext, "lock.kitchen_neon_clock_child_lock");
+		///<summary>living_room/buddha_fountain_child_lock</summary>
+		public LockEntity LivingRoomBuddhaFountainChildLock => new(_haContext, "lock.living_room_buddha_fountain_child_lock");
+		///<summary>living_room/contract_light_child_lock</summary>
+		public LockEntity LivingRoomContractLightChildLock => new(_haContext, "lock.living_room_contract_light_child_lock");
+		///<summary>living_room/diorama_child_lock</summary>
+		public LockEntity LivingRoomDioramaChildLock => new(_haContext, "lock.living_room_diorama_child_lock");
+		///<summary>living_room/lightbar_child_lock</summary>
+		public LockEntity LivingRoomLightbarChildLock => new(_haContext, "lock.living_room_lightbar_child_lock");
+		///<summary>switch.study_speakers_philipp_child_lock</summary>
+		public LockEntity SwitchStudySpeakersPhilippChildLock => new(_haContext, "lock.switch_study_speakers_philipp_child_lock");
 	}
 
 	public class MediaPlayerEntities
@@ -499,6 +564,7 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		public MediaPlayerEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "media_player.browser_mod_18a35fcc_9cc51676");
+		public MediaPlayerEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "media_player.browser_mod_4dfe8c51_c6acddb1");
 		public MediaPlayerEntity BrowserMod7605937aF7c5c1de => new(_haContext, "media_player.browser_mod_7605937a_f7c5c1de");
 		public MediaPlayerEntity BrowserMod83461556F7d0adba => new(_haContext, "media_player.browser_mod_83461556_f7d0adba");
 		public MediaPlayerEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "media_player.browser_mod_8ff90475_f73ebe95");
@@ -520,8 +586,8 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Login attempt failed</summary>
-		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
+		///<summary>New devices discovered</summary>
+		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
 	}
 
 	public class PersonEntities
@@ -538,18 +604,6 @@ namespace HomeAutomations.Models.Generated
 		public PersonEntity Philipp => new(_haContext, "person.philipp");
 	}
 
-	public class RemoteEntities
-	{
-		private readonly IHaContext _haContext;
-		public RemoteEntities(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Harmony Hub</summary>
-		public RemoteEntity HarmonyHub => new(_haContext, "remote.harmony_hub");
-	}
-
 	public class SelectEntities
 	{
 		private readonly IHaContext _haContext;
@@ -558,8 +612,34 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Harmony Hub Activities</summary>
-		public SelectEntity HarmonyHubActivities => new(_haContext, "select.harmony_hub_activities");
+		///<summary>guest_bath/zigbee_repeater_indicator_mode</summary>
+		public SelectEntity GuestBathZigbeeRepeaterIndicatorMode => new(_haContext, "select.guest_bath_zigbee_repeater_indicator_mode");
+		///<summary>guest_bath/zigbee_repeater_power_outage_memory</summary>
+		public SelectEntity GuestBathZigbeeRepeaterPowerOutageMemory => new(_haContext, "select.guest_bath_zigbee_repeater_power_outage_memory");
+		///<summary>kitchen/neon_clock_indicator_mode</summary>
+		public SelectEntity KitchenNeonClockIndicatorMode2 => new(_haContext, "select.kitchen_neon_clock_indicator_mode_2");
+		///<summary>kitchen/neon_clock_power_outage_memory</summary>
+		public SelectEntity KitchenNeonClockPowerOutageMemory2 => new(_haContext, "select.kitchen_neon_clock_power_outage_memory_2");
+		///<summary>living_room/buddha_fountain_indicator_mode</summary>
+		public SelectEntity LivingRoomBuddhaFountainIndicatorMode => new(_haContext, "select.living_room_buddha_fountain_indicator_mode");
+		///<summary>living_room/buddha_fountain_power_outage_memory</summary>
+		public SelectEntity LivingRoomBuddhaFountainPowerOutageMemory => new(_haContext, "select.living_room_buddha_fountain_power_outage_memory");
+		///<summary>living_room/contract_light_indicator_mode</summary>
+		public SelectEntity LivingRoomContractLightIndicatorMode => new(_haContext, "select.living_room_contract_light_indicator_mode");
+		///<summary>living_room/contract_light_power_outage_memory</summary>
+		public SelectEntity LivingRoomContractLightPowerOutageMemory => new(_haContext, "select.living_room_contract_light_power_outage_memory");
+		///<summary>living_room/diorama_indicator_mode</summary>
+		public SelectEntity LivingRoomDioramaIndicatorMode => new(_haContext, "select.living_room_diorama_indicator_mode");
+		///<summary>living_room/diorama_power_outage_memory</summary>
+		public SelectEntity LivingRoomDioramaPowerOutageMemory => new(_haContext, "select.living_room_diorama_power_outage_memory");
+		///<summary>living_room/lightbar_indicator_mode</summary>
+		public SelectEntity LivingRoomLightbarIndicatorMode => new(_haContext, "select.living_room_lightbar_indicator_mode");
+		///<summary>living_room/lightbar_power_outage_memory</summary>
+		public SelectEntity LivingRoomLightbarPowerOutageMemory => new(_haContext, "select.living_room_lightbar_power_outage_memory");
+		///<summary>switch.study_speakers_philipp_indicator_mode</summary>
+		public SelectEntity SwitchStudySpeakersPhilippIndicatorMode => new(_haContext, "select.switch_study_speakers_philipp_indicator_mode");
+		///<summary>switch.study_speakers_philipp_power_outage_memory</summary>
+		public SelectEntity SwitchStudySpeakersPhilippPowerOutageMemory => new(_haContext, "select.switch_study_speakers_philipp_power_outage_memory");
 	}
 
 	public class SensorEntities
@@ -570,10 +650,6 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>0x00158d0006268613 action</summary>
-		public SensorEntity E0x00158d0006268613Action => new(_haContext, "sensor.0x00158d0006268613_action");
-		///<summary>0x00158d0006268613 click</summary>
-		public SensorEntity E0x00158d0006268613Click => new(_haContext, "sensor.0x00158d0006268613_click");
 		///<summary>0x00158d0006792498 action</summary>
 		public SensorEntity E0x00158d0006792498Action => new(_haContext, "sensor.0x00158d0006792498_action");
 		///<summary>0x00158d0006792498 click</summary>
@@ -582,7 +658,12 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BaseCaloriesForFabienne => new(_haContext, "sensor.base_calories_for_fabienne");
 		///<summary>Base calories for philipp</summary>
 		public SensorEntity BaseCaloriesForPhilipp => new(_haContext, "sensor.base_calories_for_philipp");
+		///<summary>bathroom/razor_blade_usage_action</summary>
+		public SensorEntity BathroomRazorBladeUsageAction => new(_haContext, "sensor.bathroom_razor_blade_usage_action");
+		///<summary>bathroom/razor_blade_usage_click</summary>
+		public SensorEntity BathroomRazorBladeUsageClick => new(_haContext, "sensor.bathroom_razor_blade_usage_click");
 		public SensorEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "sensor.browser_mod_18a35fcc_9cc51676");
+		public SensorEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "sensor.browser_mod_4dfe8c51_c6acddb1");
 		public SensorEntity BrowserMod7605937aF7c5c1de => new(_haContext, "sensor.browser_mod_7605937a_f7c5c1de");
 		public SensorEntity BrowserMod83461556F7d0adba => new(_haContext, "sensor.browser_mod_83461556_f7d0adba");
 		public SensorEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "sensor.browser_mod_8ff90475_f73ebe95");
@@ -604,10 +685,10 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BuyHodlGmeSim1 => new(_haContext, "sensor.buy_hodl_gme_sim_1");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 SSID</summary>
 		public SensorEntity BuyHodlGmeSsid => new(_haContext, "sensor.buy_hodl_gme_ssid");
+		///<summary>Canon MX490 series</summary>
+		public SensorEntity CanonMx490Series => new(_haContext, "sensor.canon_mx490_series");
 		///<summary>Current training schedule</summary>
 		public SensorEntity CurrentTrainingSchedule => new(_haContext, "sensor.current_training_schedule");
-		///<summary>fabienne_herion_last_update</summary>
-		public SensorEntity FabienneHerionLastUpdate => new(_haContext, "sensor.fabienne_herion_last_update");
 		///<summary>Fantenpad Activity</summary>
 		public SensorEntity FantenpadActivity => new(_haContext, "sensor.fantenpad_activity");
 		///<summary>Fantenpad Battery State</summary>
@@ -646,11 +727,23 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity FantenrusselLastCleanStart => new(_haContext, "sensor.fantenrussel_last_clean_start");
 		///<summary>hallway Cluster Leader</summary>
 		public SensorEntity HallwayClusterLeader => new(_haContext, "sensor.hallway_cluster_leader");
-		///<summary>icloud_photos_downloader_fabienne</summary>
-		public SensorEntity IcloudPhotosDownloaderFabienne => new(_haContext, "sensor.icloud_photos_downloader_fabienne");
-		///<summary>icloud_photos_downloader_philipp</summary>
-		public SensorEntity IcloudPhotosDownloaderPhilipp => new(_haContext, "sensor.icloud_photos_downloader_philipp");
 		public SensorEntity Icloud3EventLog => new(_haContext, "sensor.icloud3_event_log");
+		///<summary>iPhone Philipp 2 Activity</summary>
+		public SensorEntity IphonePhilipp2Activity => new(_haContext, "sensor.iphone_philipp_2_activity");
+		///<summary>iPhone Philipp 2 Battery State</summary>
+		public SensorEntity IphonePhilipp2BatteryState => new(_haContext, "sensor.iphone_philipp_2_battery_state");
+		///<summary>iPhone Philipp 2 BSSID</summary>
+		public SensorEntity IphonePhilipp2Bssid => new(_haContext, "sensor.iphone_philipp_2_bssid");
+		///<summary>iPhone Philipp 2 Connection Type</summary>
+		public SensorEntity IphonePhilipp2ConnectionType => new(_haContext, "sensor.iphone_philipp_2_connection_type");
+		///<summary>iPhone Philipp 2 Geocoded Location</summary>
+		public SensorEntity IphonePhilipp2GeocodedLocation => new(_haContext, "sensor.iphone_philipp_2_geocoded_location");
+		///<summary>iPhone Philipp 2 Last Update Trigger</summary>
+		public SensorEntity IphonePhilipp2LastUpdateTrigger => new(_haContext, "sensor.iphone_philipp_2_last_update_trigger");
+		///<summary>iPhone Philipp 2 SIM 1</summary>
+		public SensorEntity IphonePhilipp2Sim1 => new(_haContext, "sensor.iphone_philipp_2_sim_1");
+		///<summary>iPhone Philipp 2 SSID</summary>
+		public SensorEntity IphonePhilipp2Ssid => new(_haContext, "sensor.iphone_philipp_2_ssid");
 		///<summary>Philipp</summary>
 		public SensorEntity IphonePhilippBadge => new(_haContext, "sensor.iphone_philipp_badge");
 		///<summary>iPhone-Philipp Direction</summary>
@@ -685,16 +778,30 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity IphonePhilippZoneTimestamp => new(_haContext, "sensor.iphone_philipp_zone_timestamp");
 		///<summary>iPhone-Philipp  Zone Title</summary>
 		public SensorEntity IphonePhilippZoneTitle => new(_haContext, "sensor.iphone_philipp_zone_title");
+		///<summary>kitchen/kratom_counter_action</summary>
+		public SensorEntity KitchenKratomCounterAction => new(_haContext, "sensor.kitchen_kratom_counter_action");
+		///<summary>kitchen/kratom_counter_click</summary>
+		public SensorEntity KitchenKratomCounterClick => new(_haContext, "sensor.kitchen_kratom_counter_click");
+		///<summary>kitchen/light action</summary>
+		public SensorEntity KitchenLightAction => new(_haContext, "sensor.kitchen_light_action");
+		///<summary>kitchen/light click</summary>
+		public SensorEntity KitchenLightClick => new(_haContext, "sensor.kitchen_light_click");
 		///<summary>Kitchen scale</summary>
 		public SensorEntity KitchenScale => new(_haContext, "sensor.kitchen_scale");
+		///<summary>Daily kratom intake for fabienne</summary>
+		public SensorEntity KratomIntakeFabienne => new(_haContext, "sensor.kratom_intake_fabienne");
+		///<summary>Daily kratom intake target for fabienne</summary>
+		public SensorEntity KratomIntakeFabienneTarget => new(_haContext, "sensor.kratom_intake_fabienne_target");
+		///<summary>Daily kratom intake for philipp</summary>
+		public SensorEntity KratomIntakePhilipp => new(_haContext, "sensor.kratom_intake_philipp");
+		///<summary>Daily kratom intake target for philipp</summary>
+		public SensorEntity KratomIntakePhilippTarget => new(_haContext, "sensor.kratom_intake_philipp_target");
 		///<summary>netdaemon_status</summary>
 		public SensorEntity NetdaemonStatus => new(_haContext, "sensor.netdaemon_status");
 		///<summary>trash_collection_days</summary>
 		public SensorEntity Nodered92b5910e7f5ff => new(_haContext, "sensor.nodered_92b5910e_7f5ff");
 		///<summary>openwindows_count</summary>
 		public SensorEntity OpenwindowsCount => new(_haContext, "sensor.openwindows_count");
-		///<summary>p90x_workout</summary>
-		public SensorEntity P90xWorkoutToday => new(_haContext, "sensor.p90x_workout_today");
 		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationDrive1Status => new(_haContext, "sensor.pupsstation_drive_1_status");
 		///<summary>PupsStation Status</summary>
@@ -705,18 +812,6 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity RazorBladeUsage => new(_haContext, "sensor.razor_blade_usage");
 		///<summary>Ist heute Haushaltstag?</summary>
 		public SensorEntity ShowHouseholdDayTodo => new(_haContext, "sensor.show_household_day_todo");
-		///<summary>switch_kitchen_light action</summary>
-		public SensorEntity SwitchKitchenLightAction => new(_haContext, "sensor.switch_kitchen_light_action");
-		///<summary>switch_kitchen_light click</summary>
-		public SensorEntity SwitchKitchenLightClick => new(_haContext, "sensor.switch_kitchen_light_click");
-		///<summary>switch_kratom_counter action</summary>
-		public SensorEntity SwitchKratomCounterAction => new(_haContext, "sensor.switch_kratom_counter_action");
-		///<summary>switch_kratom_counter click</summary>
-		public SensorEntity SwitchKratomCounterClick => new(_haContext, "sensor.switch_kratom_counter_click");
-		///<summary>switch_razor_blade_usage action</summary>
-		public SensorEntity SwitchRazorBladeUsageAction => new(_haContext, "sensor.switch_razor_blade_usage_action");
-		///<summary>switch_razor_blade_usage click</summary>
-		public SensorEntity SwitchRazorBladeUsageClick => new(_haContext, "sensor.switch_razor_blade_usage_click");
 		///<summary>Thermostat Arbeitszimmer</summary>
 		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
 		///<summary>Thermostat Badezimmer</summary>
@@ -733,12 +828,6 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity WaterIntakePhilipp => new(_haContext, "sensor.water_intake_philipp");
 		///<summary>Daily water intake target for philipp</summary>
 		public SensorEntity WaterIntakePhilippTarget => new(_haContext, "sensor.water_intake_philipp_target");
-		///<summary>0x00158d0006268613 battery</summary>
-		public NumericSensorEntity E0x00158d0006268613Battery => new(_haContext, "sensor.0x00158d0006268613_battery");
-		///<summary>0x00158d0006268613 linkquality</summary>
-		public NumericSensorEntity E0x00158d0006268613Linkquality => new(_haContext, "sensor.0x00158d0006268613_linkquality");
-		///<summary>0x00158d0006268613 voltage</summary>
-		public NumericSensorEntity E0x00158d0006268613Voltage => new(_haContext, "sensor.0x00158d0006268613_voltage");
 		///<summary>0x00158d0006792498 battery</summary>
 		public NumericSensorEntity E0x00158d0006792498Battery => new(_haContext, "sensor.0x00158d0006792498_battery");
 		///<summary>0x00158d0006792498 linkquality</summary>
@@ -747,6 +836,14 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity E0x00158d0006792498Voltage => new(_haContext, "sensor.0x00158d0006792498_voltage");
 		///<summary>AMC Entertainment Holdings Inc</summary>
 		public NumericSensorEntity AmcEntertainmentHoldingsInc => new(_haContext, "sensor.amc_entertainment_holdings_inc");
+		///<summary>bathroom/razor_blade_usage_battery</summary>
+		public NumericSensorEntity BathroomRazorBladeUsageBattery => new(_haContext, "sensor.bathroom_razor_blade_usage_battery");
+		///<summary>bedroom/motion_detector_battery</summary>
+		public NumericSensorEntity BedroomMotionDetectorBattery => new(_haContext, "sensor.bedroom_motion_detector_battery");
+		///<summary>bedroom/motion_detector_illuminance_lux</summary>
+		public NumericSensorEntity BedroomMotionDetectorIlluminanceLux => new(_haContext, "sensor.bedroom_motion_detector_illuminance_lux");
+		///<summary>bedroom/motion_detector_temperature</summary>
+		public NumericSensorEntity BedroomMotionDetectorTemperature => new(_haContext, "sensor.bedroom_motion_detector_temperature");
 		///<summary>BlackBerry Ltd</summary>
 		public NumericSensorEntity BlackberryLtd => new(_haContext, "sensor.blackberry_ltd");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Average Active Pace</summary>
@@ -763,6 +860,10 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity BuyHodlGmeSteps => new(_haContext, "sensor.buy_hodl_gme_steps");
 		///<summary>🚀🚀🚀 BUY/HODL GME 🚀🚀🚀 Storage</summary>
 		public NumericSensorEntity BuyHodlGmeStorage => new(_haContext, "sensor.buy_hodl_gme_storage");
+		///<summary>Canon MX490 series Black</summary>
+		public NumericSensorEntity CanonMx490SeriesBlack => new(_haContext, "sensor.canon_mx490_series_black");
+		///<summary>Canon MX490 series Color</summary>
+		public NumericSensorEntity CanonMx490SeriesColor => new(_haContext, "sensor.canon_mx490_series_color");
 		///<summary>Core DAX</summary>
 		public NumericSensorEntity CoreDax => new(_haContext, "sensor.core_dax");
 		///<summary>Fantenpad Battery Level</summary>
@@ -825,6 +926,12 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity GlancesRamUsed => new(_haContext, "sensor.glances_ram_used");
 		///<summary>Glances  RAM used percent</summary>
 		public NumericSensorEntity GlancesRamUsedPercent => new(_haContext, "sensor.glances_ram_used_percent");
+		///<summary>Glances /run/containerd/runc/k8s.io/a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6/runc.neLJOF free</summary>
+		public NumericSensorEntity GlancesRunContainerdRuncK8sIoA74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6RuncNeljofFree => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6_runc_neljof_free");
+		///<summary>Glances /run/containerd/runc/k8s.io/a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6/runc.neLJOF used</summary>
+		public NumericSensorEntity GlancesRunContainerdRuncK8sIoA74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6RuncNeljofUsed => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6_runc_neljof_used");
+		///<summary>Glances /run/containerd/runc/k8s.io/a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6/runc.neLJOF used percent</summary>
+		public NumericSensorEntity GlancesRunContainerdRuncK8sIoA74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6RuncNeljofUsedPercent => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6_runc_neljof_used_percent");
 		///<summary>Glances  Running</summary>
 		public NumericSensorEntity GlancesRunning => new(_haContext, "sensor.glances_running");
 		///<summary>Glances  Sleeping</summary>
@@ -849,6 +956,24 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity GlancesVarLibKubeletPods007aa4c82a8b49c8A65eB6ed355f1b5aVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_007aa4c8_2a8b_49c8_a65e_b6ed355f1b5a_volume_subpaths_config_mariadb_1_used");
 		///<summary>Glances /var/lib/kubelet/pods/007aa4c8-2a8b-49c8-a65e-b6ed355f1b5a/volume-subpaths/config/mariadb/1 used percent</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods007aa4c82a8b49c8A65eB6ed355f1b5aVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_007aa4c8_2a8b_49c8_a65e_b6ed355f1b5a_volume_subpaths_config_mariadb_1_used_percent");
+		///<summary>Glances /var/lib/kubelet/pods/11aa4b7e-7aa3-4d96-8272-1a41454f4869/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 free</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods11aa4b7e7aa34d9682721a41454f4869VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_11aa4b7e_7aa3_4d96_8272_1a41454f4869_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
+		///<summary>Glances /var/lib/kubelet/pods/11aa4b7e-7aa3-4d96-8272-1a41454f4869/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods11aa4b7e7aa34d9682721a41454f4869VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_11aa4b7e_7aa3_4d96_8272_1a41454f4869_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
+		///<summary>Glances /var/lib/kubelet/pods/11aa4b7e-7aa3-4d96-8272-1a41454f4869/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used percent</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods11aa4b7e7aa34d9682721a41454f4869VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_11aa4b7e_7aa3_4d96_8272_1a41454f4869_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
+		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/adguard-home/0 free</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigAdguardHome0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_adguard_home_0_free");
+		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/adguard-home/0 used</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigAdguardHome0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_adguard_home_0_used");
+		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/adguard-home/0 used percent</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigAdguardHome0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_adguard_home_0_used_percent");
+		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/copy-configmap/0 free</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigCopyConfigmap0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_copy_configmap_0_free");
+		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/copy-configmap/0 used</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigCopyConfigmap0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_copy_configmap_0_used");
+		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/copy-configmap/0 used percent</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigCopyConfigmap0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_copy_configmap_0_used_percent");
 		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 free</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_free");
 		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 used</summary>
@@ -861,10 +986,34 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_used");
 		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 used percent</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_used_percent");
+		///<summary>Glances /var/lib/kubelet/pods/f8b2f25c-6be9-46e9-89e5-0303b04e4dc9/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 free</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPodsF8b2f25c6be946e989e50303b04e4dc9VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f8b2f25c_6be9_46e9_89e5_0303b04e4dc9_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
+		///<summary>Glances /var/lib/kubelet/pods/f8b2f25c-6be9-46e9-89e5-0303b04e4dc9/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPodsF8b2f25c6be946e989e50303b04e4dc9VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f8b2f25c_6be9_46e9_89e5_0303b04e4dc9_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
+		///<summary>Glances /var/lib/kubelet/pods/f8b2f25c-6be9-46e9-89e5-0303b04e4dc9/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used percent</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPodsF8b2f25c6be946e989e50303b04e4dc9VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f8b2f25c_6be9_46e9_89e5_0303b04e4dc9_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
+		///<summary>guest_bath/zigbee_repeater_energy</summary>
+		public NumericSensorEntity GuestBathZigbeeRepeaterEnergy => new(_haContext, "sensor.guest_bath_zigbee_repeater_energy");
+		///<summary>guest_bath/zigbee_repeater_power</summary>
+		public NumericSensorEntity GuestBathZigbeeRepeaterPower => new(_haContext, "sensor.guest_bath_zigbee_repeater_power");
 		///<summary>hacs</summary>
 		public NumericSensorEntity Hacs => new(_haContext, "sensor.hacs");
 		///<summary>hallway Cluster Size</summary>
 		public NumericSensorEntity HallwayClusterSize => new(_haContext, "sensor.hallway_cluster_size");
+		///<summary>iPhone Philipp 2 Average Active Pace</summary>
+		public NumericSensorEntity IphonePhilipp2AverageActivePace => new(_haContext, "sensor.iphone_philipp_2_average_active_pace");
+		///<summary>iPhone Philipp 2 Battery Level</summary>
+		public NumericSensorEntity IphonePhilipp2BatteryLevel => new(_haContext, "sensor.iphone_philipp_2_battery_level");
+		///<summary>iPhone Philipp 2 Distance</summary>
+		public NumericSensorEntity IphonePhilipp2Distance => new(_haContext, "sensor.iphone_philipp_2_distance");
+		///<summary>iPhone Philipp 2 Floors Ascended</summary>
+		public NumericSensorEntity IphonePhilipp2FloorsAscended => new(_haContext, "sensor.iphone_philipp_2_floors_ascended");
+		///<summary>iPhone Philipp 2 Floors Descended</summary>
+		public NumericSensorEntity IphonePhilipp2FloorsDescended => new(_haContext, "sensor.iphone_philipp_2_floors_descended");
+		///<summary>iPhone Philipp 2 Steps</summary>
+		public NumericSensorEntity IphonePhilipp2Steps => new(_haContext, "sensor.iphone_philipp_2_steps");
+		///<summary>iPhone Philipp 2 Storage</summary>
+		public NumericSensorEntity IphonePhilipp2Storage => new(_haContext, "sensor.iphone_philipp_2_storage");
 		///<summary>iPhone-Philipp Battery</summary>
 		public NumericSensorEntity IphonePhilippBattery => new(_haContext, "sensor.iphone_philipp_battery");
 		///<summary>iPhone-Philipp Calc Dist</summary>
@@ -879,22 +1028,40 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity IphonePhilippWazeDistance => new(_haContext, "sensor.iphone_philipp_waze_distance");
 		///<summary>iPhone-Philipp Zone Distance</summary>
 		public NumericSensorEntity IphonePhilippZoneDistance => new(_haContext, "sensor.iphone_philipp_zone_distance");
+		///<summary>kitchen/kratom_counter_battery</summary>
+		public NumericSensorEntity KitchenKratomCounterBattery => new(_haContext, "sensor.kitchen_kratom_counter_battery");
+		///<summary>kitchen/light battery</summary>
+		public NumericSensorEntity KitchenLightBattery => new(_haContext, "sensor.kitchen_light_battery");
+		///<summary>kitchen/motion_detector_battery</summary>
+		public NumericSensorEntity KitchenMotionDetectorBattery => new(_haContext, "sensor.kitchen_motion_detector_battery");
+		///<summary>kitchen/motion_detector_illuminance_lux</summary>
+		public NumericSensorEntity KitchenMotionDetectorIlluminanceLux => new(_haContext, "sensor.kitchen_motion_detector_illuminance_lux");
+		///<summary>kitchen/motion_detector_temperature</summary>
+		public NumericSensorEntity KitchenMotionDetectorTemperature => new(_haContext, "sensor.kitchen_motion_detector_temperature");
+		///<summary>kitchen/neon_clock_energy</summary>
+		public NumericSensorEntity KitchenNeonClockEnergy2 => new(_haContext, "sensor.kitchen_neon_clock_energy_2");
+		///<summary>kitchen/neon_clock_power</summary>
+		public NumericSensorEntity KitchenNeonClockPower2 => new(_haContext, "sensor.kitchen_neon_clock_power_2");
+		///<summary>living_room/buddha_fountain_energy</summary>
+		public NumericSensorEntity LivingRoomBuddhaFountainEnergy => new(_haContext, "sensor.living_room_buddha_fountain_energy");
+		///<summary>living_room/buddha_fountain_power</summary>
+		public NumericSensorEntity LivingRoomBuddhaFountainPower => new(_haContext, "sensor.living_room_buddha_fountain_power");
+		///<summary>living_room/contract_light_energy</summary>
+		public NumericSensorEntity LivingRoomContractLightEnergy => new(_haContext, "sensor.living_room_contract_light_energy");
+		///<summary>living_room/contract_light_power</summary>
+		public NumericSensorEntity LivingRoomContractLightPower => new(_haContext, "sensor.living_room_contract_light_power");
+		///<summary>living_room/diorama_energy</summary>
+		public NumericSensorEntity LivingRoomDioramaEnergy => new(_haContext, "sensor.living_room_diorama_energy");
+		///<summary>living_room/diorama_power</summary>
+		public NumericSensorEntity LivingRoomDioramaPower => new(_haContext, "sensor.living_room_diorama_power");
+		///<summary>living_room/lightbar_energy</summary>
+		public NumericSensorEntity LivingRoomLightbarEnergy => new(_haContext, "sensor.living_room_lightbar_energy");
+		///<summary>living_room/lightbar_power</summary>
+		public NumericSensorEntity LivingRoomLightbarPower => new(_haContext, "sensor.living_room_lightbar_power");
 		///<summary>Lufthansa</summary>
 		public NumericSensorEntity Lufthansa => new(_haContext, "sensor.lufthansa");
 		///<summary>METRO AG</summary>
 		public NumericSensorEntity MetroAg => new(_haContext, "sensor.metro_ag");
-		///<summary>motion_detector_kitchen battery</summary>
-		public NumericSensorEntity MotionDetectorKitchenBattery => new(_haContext, "sensor.motion_detector_kitchen_battery");
-		///<summary>motion_detector_kitchen illuminance</summary>
-		public NumericSensorEntity MotionDetectorKitchenIlluminance => new(_haContext, "sensor.motion_detector_kitchen_illuminance");
-		///<summary>motion_detector_kitchen illuminance lux</summary>
-		public NumericSensorEntity MotionDetectorKitchenIlluminanceLux => new(_haContext, "sensor.motion_detector_kitchen_illuminance_lux");
-		///<summary>motion_detector_kitchen linkquality</summary>
-		public NumericSensorEntity MotionDetectorKitchenLinkquality => new(_haContext, "sensor.motion_detector_kitchen_linkquality");
-		///<summary>motion_detector_kitchen temperature</summary>
-		public NumericSensorEntity MotionDetectorKitchenTemperature => new(_haContext, "sensor.motion_detector_kitchen_temperature");
-		///<summary>motion_detector_kitchen voltage</summary>
-		public NumericSensorEntity MotionDetectorKitchenVoltage => new(_haContext, "sensor.motion_detector_kitchen_voltage");
 		///<summary>Total</summary>
 		public NumericSensorEntity MyBitcoins2 => new(_haContext, "sensor.my_bitcoins_2");
 		///<summary>Profit</summary>
@@ -937,8 +1104,6 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity PupsstationVolume1UsedSpace => new(_haContext, "sensor.pupsstation_volume_1_used_space");
 		///<summary>PupsStation Volume Used</summary>
 		public NumericSensorEntity PupsstationVolume1VolumeUsed => new(_haContext, "sensor.pupsstation_volume_1_volume_used");
-		///<summary>shaves_count</summary>
-		public NumericSensorEntity ShavesCount => new(_haContext, "sensor.shaves_count");
 		///<summary>SpeedTest Download</summary>
 		public NumericSensorEntity SpeedtestDownload => new(_haContext, "sensor.speedtest_download");
 		///<summary>SpeedTest Ping</summary>
@@ -975,24 +1140,10 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity StockMetroAgShareprice => new(_haContext, "sensor.stock_metro_ag_shareprice");
 		///<summary>Metro AG Total</summary>
 		public NumericSensorEntity StockMetroAgTotalvalue => new(_haContext, "sensor.stock_metro_ag_totalvalue");
-		///<summary>switch_kitchen_light battery</summary>
-		public NumericSensorEntity SwitchKitchenLightBattery => new(_haContext, "sensor.switch_kitchen_light_battery");
-		///<summary>switch_kitchen_light linkquality</summary>
-		public NumericSensorEntity SwitchKitchenLightLinkquality => new(_haContext, "sensor.switch_kitchen_light_linkquality");
-		///<summary>switch_kitchen_light voltage</summary>
-		public NumericSensorEntity SwitchKitchenLightVoltage => new(_haContext, "sensor.switch_kitchen_light_voltage");
-		///<summary>switch_kratom_counter battery</summary>
-		public NumericSensorEntity SwitchKratomCounterBattery => new(_haContext, "sensor.switch_kratom_counter_battery");
-		///<summary>switch_kratom_counter linkquality</summary>
-		public NumericSensorEntity SwitchKratomCounterLinkquality => new(_haContext, "sensor.switch_kratom_counter_linkquality");
-		///<summary>switch_kratom_counter voltage</summary>
-		public NumericSensorEntity SwitchKratomCounterVoltage => new(_haContext, "sensor.switch_kratom_counter_voltage");
-		///<summary>switch_razor_blade_usage battery</summary>
-		public NumericSensorEntity SwitchRazorBladeUsageBattery => new(_haContext, "sensor.switch_razor_blade_usage_battery");
-		///<summary>switch_razor_blade_usage linkquality</summary>
-		public NumericSensorEntity SwitchRazorBladeUsageLinkquality => new(_haContext, "sensor.switch_razor_blade_usage_linkquality");
-		///<summary>switch_razor_blade_usage voltage</summary>
-		public NumericSensorEntity SwitchRazorBladeUsageVoltage => new(_haContext, "sensor.switch_razor_blade_usage_voltage");
+		///<summary>switch.study_speakers_philipp_energy</summary>
+		public NumericSensorEntity SwitchStudySpeakersPhilippEnergy => new(_haContext, "sensor.switch_study_speakers_philipp_energy");
+		///<summary>switch.study_speakers_philipp_power</summary>
+		public NumericSensorEntity SwitchStudySpeakersPhilippPower => new(_haContext, "sensor.switch_study_speakers_philipp_power");
 		///<summary>Thermostat Arbeitszimmer Temperature</summary>
 		public NumericSensorEntity ThermostatArbeitszimmerTemperature => new(_haContext, "sensor.thermostat_arbeitszimmer_temperature");
 		///<summary>Thermostat Arbeitszimmer Valvetappet</summary>
@@ -1037,6 +1188,10 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Buddha-Brunnen 2 Socket 1</summary>
 		public SwitchEntity BuddhaBrunnen2Socket1 => new(_haContext, "switch.buddha_brunnen_2_socket_1");
+		///<summary>WOL switch for Desktop Philipp</summary>
+		public SwitchEntity ComputerWolDesktopPhilipp => new(_haContext, "switch.computer_wol_desktop_philipp");
+		///<summary>WOL switch for Desktop Philipp</summary>
+		public SwitchEntity ComputerWolDesktopPhilipp2 => new(_haContext, "switch.computer_wol_desktop_philipp_2");
 		///<summary>enable_chrome_media_playback</summary>
 		public SwitchEntity EnableChromeMediaPlayback10 => new(_haContext, "switch.enable_chrome_media_playback_10");
 		///<summary>enable_chrome_media_playback</summary>
@@ -1057,20 +1212,24 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntity EnableChromeMediaPlayback8 => new(_haContext, "switch.enable_chrome_media_playback_8");
 		///<summary>enable_chrome_media_playback</summary>
 		public SwitchEntity EnableChromeMediaPlayback9 => new(_haContext, "switch.enable_chrome_media_playback_9");
-		///<summary>Harmony Hub Kino 2</summary>
-		public SwitchEntity HarmonyHubKino2 => new(_haContext, "switch.harmony_hub_kino_2");
-		///<summary>Harmony Hub Kino</summary>
-		public SwitchEntity HarmonyHubKinoLaptopFup => new(_haContext, "switch.harmony_hub_kino_laptop_fup");
-		///<summary>Harmony Hub Listen to Music</summary>
-		public SwitchEntity HarmonyHubListenToMusic => new(_haContext, "switch.harmony_hub_listen_to_music");
-		///<summary>Harmony Hub PlayStation</summary>
-		public SwitchEntity HarmonyHubPlaystation => new(_haContext, "switch.harmony_hub_playstation");
-		///<summary>Harmony Hub Spiel streamen</summary>
-		public SwitchEntity HarmonyHubSpielStreamen => new(_haContext, "switch.harmony_hub_spiel_streamen");
+		///<summary>guest_bath/zigbee_repeater</summary>
+		public SwitchEntity GuestBathZigbeeRepeater => new(_haContext, "switch.guest_bath_zigbee_repeater");
+		///<summary>kitchen/neon_clock</summary>
+		public SwitchEntity KitchenNeonClock2 => new(_haContext, "switch.kitchen_neon_clock_2");
 		///<summary>Lautsprecher Pup Socket 1</summary>
 		public SwitchEntity LautsprecherPupSocket1 => new(_haContext, "switch.lautsprecher_pup_socket_1");
 		///<summary>Lightbar Socket 1</summary>
 		public SwitchEntity LightbarSocket1 => new(_haContext, "switch.lightbar_socket_1");
+		///<summary>living_room/buddha_fountain</summary>
+		public SwitchEntity LivingRoomBuddhaFountain => new(_haContext, "switch.living_room_buddha_fountain");
+		///<summary>living_room/contract_light</summary>
+		public SwitchEntity LivingRoomContractLight => new(_haContext, "switch.living_room_contract_light");
+		///<summary>living_room/diorama</summary>
+		public SwitchEntity LivingRoomDiorama => new(_haContext, "switch.living_room_diorama");
+		///<summary>living_room/lightbar</summary>
+		public SwitchEntity LivingRoomLightbar => new(_haContext, "switch.living_room_lightbar");
+		///<summary>Enable movie time light control.</summary>
+		public SwitchEntity MovieTimeEnableLightControl => new(_haContext, "switch.movie_time_enable_light_control");
 		///<summary>Neon-Uhr Socket 1</summary>
 		public SwitchEntity NeonUhrSocket1 => new(_haContext, "switch.neon_uhr_socket_1");
 		///<summary>netdaemon_caloriecounter</summary>
@@ -1093,6 +1252,8 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntity NetdaemonWebhookserver => new(_haContext, "switch.netdaemon_webhookserver");
 		///<summary>Tablet Hallway Socket 1</summary>
 		public SwitchEntity SternenLichterketteSocket1 => new(_haContext, "switch.sternen_lichterkette_socket_1");
+		///<summary>switch.study_speakers_philipp</summary>
+		public SwitchEntity SwitchStudySpeakersPhilipp => new(_haContext, "switch.switch_study_speakers_philipp");
 		///<summary>toggle_chrome_media_playback</summary>
 		public SwitchEntity ToggleChromeMediaPlayback10 => new(_haContext, "switch.toggle_chrome_media_playback_10");
 		///<summary>toggle_chrome_media_playback</summary>
@@ -1340,6 +1501,17 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public record LockEntity : Entity<LockEntity, EntityState<LockAttributes>, LockAttributes>
+	{
+		public LockEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public LockEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
 	public record MediaPlayerEntity : Entity<MediaPlayerEntity, EntityState<MediaPlayerAttributes>, MediaPlayerAttributes>
 	{
 		public MediaPlayerEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -1369,17 +1541,6 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		public PersonEntity(Entity entity) : base(entity)
-		{
-		}
-	}
-
-	public record RemoteEntity : Entity<RemoteEntity, EntityState<RemoteAttributes>, RemoteAttributes>
-	{
-		public RemoteEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
-		{
-		}
-
-		public RemoteEntity(Entity entity) : base(entity)
 		{
 		}
 	}
@@ -1520,11 +1681,20 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("battery")]
 		public double? Battery { get; init; }
 
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
 
 		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1537,6 +1707,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("illuminance_lux")]
 		public double? IlluminanceLux { get; init; }
+
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
 
 		[JsonPropertyName("installed_version")]
 		public string? InstalledVersion { get; init; }
@@ -1558,6 +1731,12 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public object? PowerOutageMemory { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
@@ -1587,7 +1766,10 @@ namespace HomeAutomations.Models.Generated
 		public double? Temperature { get; init; }
 
 		[JsonPropertyName("update")]
-		public string? Update { get; init; }
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
 
 		[JsonPropertyName("userInfo")]
 		public string? UserInfo { get; init; }
@@ -1940,8 +2122,17 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("color_mode")]
 		public string? ColorMode { get; init; }
 
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
 
 		[JsonPropertyName("max_mireds")]
 		public double? MaxMireds { get; init; }
@@ -1959,11 +2150,53 @@ namespace HomeAutomations.Models.Generated
 		public double? SupportedFeatures { get; init; }
 	}
 
+	public record LockAttributes
+	{
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public object? PowerOutageMemory { get; init; }
+
+		[JsonPropertyName("supported_features")]
+		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
+	}
+
 	public record MediaPlayerAttributes
 	{
-		[JsonPropertyName("entity_picture")]
-		public string? EntityPicture { get; init; }
-
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
@@ -1973,44 +2206,14 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("is_volume_muted")]
 		public bool? IsVolumeMuted { get; init; }
 
-		[JsonPropertyName("media_album_name")]
-		public string? MediaAlbumName { get; init; }
-
-		[JsonPropertyName("media_artist")]
-		public string? MediaArtist { get; init; }
-
 		[JsonPropertyName("media_content_id")]
 		public string? MediaContentId { get; init; }
 
 		[JsonPropertyName("media_content_type")]
 		public string? MediaContentType { get; init; }
 
-		[JsonPropertyName("media_duration")]
-		public double? MediaDuration { get; init; }
-
-		[JsonPropertyName("media_position")]
-		public double? MediaPosition { get; init; }
-
-		[JsonPropertyName("media_position_updated_at")]
-		public string? MediaPositionUpdatedAt { get; init; }
-
-		[JsonPropertyName("media_title")]
-		public string? MediaTitle { get; init; }
-
-		[JsonPropertyName("media_track")]
-		public double? MediaTrack { get; init; }
-
-		[JsonPropertyName("repeat")]
-		public string? Repeat { get; init; }
-
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
-
-		[JsonPropertyName("shuffle")]
-		public bool? Shuffle { get; init; }
-
-		[JsonPropertyName("source")]
-		public string? Source { get; init; }
 
 		[JsonPropertyName("source_list")]
 		public object? SourceList { get; init; }
@@ -2064,40 +2267,52 @@ namespace HomeAutomations.Models.Generated
 		public string? UserId { get; init; }
 	}
 
-	public record RemoteAttributes
-	{
-		[JsonPropertyName("activity_list")]
-		public object? ActivityList { get; init; }
-
-		[JsonPropertyName("activity_starting")]
-		public object? ActivityStarting { get; init; }
-
-		[JsonPropertyName("current_activity")]
-		public string? CurrentActivity { get; init; }
-
-		[JsonPropertyName("devices_list")]
-		public object? DevicesList { get; init; }
-
-		[JsonPropertyName("friendly_name")]
-		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("last_activity")]
-		public string? LastActivity { get; init; }
-
-		[JsonPropertyName("supported_features")]
-		public double? SupportedFeatures { get; init; }
-	}
-
 	public record SelectAttributes
 	{
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
+
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
 		[JsonPropertyName("options")]
 		public object? Options { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public object? PowerOutageMemory { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
 	}
 
 	public record SensorAttributes
@@ -2126,8 +2341,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Carrier Name")]
 		public string? CarrierName { get; init; }
 
-		[JsonPropertyName("color")]
-		public string? Color { get; init; }
+		[JsonPropertyName("Cellular Technology")]
+		public string? CellularTechnology { get; init; }
+
+		[JsonPropertyName("click")]
+		public string? Click { get; init; }
 
 		[JsonPropertyName("Confidence")]
 		public string? Confidence { get; init; }
@@ -2150,12 +2368,6 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("filtername")]
 		public string? Filtername { get; init; }
 
-		[JsonPropertyName("firstworkout_title")]
-		public string? FirstworkoutTitle { get; init; }
-
-		[JsonPropertyName("firstworkout_url")]
-		public string? FirstworkoutUrl { get; init; }
-
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
@@ -2173,15 +2385,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
-
-		[JsonPropertyName("lastupdate")]
-		public string? Lastupdate { get; init; }
-
-		[JsonPropertyName("lastworkout_title")]
-		public string? LastworkoutTitle { get; init; }
-
-		[JsonPropertyName("lastworkout_url")]
-		public string? LastworkoutUrl { get; init; }
 
 		[JsonPropertyName("linkquality")]
 		public double? Linkquality { get; init; }
@@ -2240,8 +2443,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[JsonPropertyName("text")]
-		public string? Text { get; init; }
+		[JsonPropertyName("temperature")]
+		public double? Temperature { get; init; }
 
 		[JsonPropertyName("Thoroughfare")]
 		public string? Thoroughfare { get; init; }
@@ -2357,11 +2560,23 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("changeThreeYears")]
 		public object? ChangeThreeYears { get; init; }
 
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("click")]
+		public string? Click { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
 
 		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -2375,6 +2590,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("illuminance_lux")]
 		public double? IlluminanceLux { get; init; }
 
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
 
@@ -2386,6 +2604,12 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public object? PowerOutageMemory { get; init; }
 
 		[JsonPropertyName("profitLoss")]
 		public double? ProfitLoss { get; init; }
@@ -2462,6 +2686,12 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("unit_of_measurement")]
 		public string? UnitOfMeasurement { get; init; }
 
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+
 		[JsonPropertyName("valve_tappet_state")]
 		public string? ValveTappetState { get; init; }
 
@@ -2504,8 +2734,20 @@ namespace HomeAutomations.Models.Generated
 
 	public record SwitchAttributes
 	{
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
 		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -2513,14 +2755,38 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
 		[JsonPropertyName("integration")]
 		public string? Integration { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public object? PowerOutageMemory { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
 	}
 
 	public record TimerAttributes
@@ -2573,23 +2839,14 @@ namespace HomeAutomations.Models.Generated
 
 	public record VacuumAttributes
 	{
-		[JsonPropertyName("battery_icon")]
-		public string? BatteryIcon { get; init; }
-
-		[JsonPropertyName("battery_level")]
-		public double? BatteryLevel { get; init; }
-
-		[JsonPropertyName("fan_speed")]
-		public string? FanSpeed { get; init; }
-
 		[JsonPropertyName("fan_speed_list")]
 		public object? FanSpeedList { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[JsonPropertyName("status")]
-		public string? Status { get; init; }
+		[JsonPropertyName("restored")]
+		public bool? Restored { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
@@ -2669,8 +2926,6 @@ namespace HomeAutomations.Models.Generated
 
 		CloudServices Cloud { get; }
 
-		ConfiguratorServices Configurator { get; }
-
 		CounterServices Counter { get; }
 
 		CoverServices Cover { get; }
@@ -2686,8 +2941,6 @@ namespace HomeAutomations.Models.Generated
 		GoogleServices Google { get; }
 
 		GroupServices Group { get; }
-
-		HarmonyServices Harmony { get; }
 
 		HomeassistantServices Homeassistant { get; }
 
@@ -2706,6 +2959,8 @@ namespace HomeAutomations.Models.Generated
 		InputTextServices InputText { get; }
 
 		LightServices Light { get; }
+
+		LockServices Lock { get; }
 
 		LogbookServices Logbook { get; }
 
@@ -2765,8 +3020,6 @@ namespace HomeAutomations.Models.Generated
 
 		XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor { get; }
 
-		XiaomiMiioServices XiaomiMiio { get; }
-
 		ZoneServices Zone { get; }
 	}
 
@@ -2787,7 +3040,6 @@ namespace HomeAutomations.Models.Generated
 		public CastServices Cast => new(_haContext);
 		public ClimateServices Climate => new(_haContext);
 		public CloudServices Cloud => new(_haContext);
-		public ConfiguratorServices Configurator => new(_haContext);
 		public CounterServices Counter => new(_haContext);
 		public CoverServices Cover => new(_haContext);
 		public DeviceTrackerServices DeviceTracker => new(_haContext);
@@ -2796,7 +3048,6 @@ namespace HomeAutomations.Models.Generated
 		public FrontendServices Frontend => new(_haContext);
 		public GoogleServices Google => new(_haContext);
 		public GroupServices Group => new(_haContext);
-		public HarmonyServices Harmony => new(_haContext);
 		public HomeassistantServices Homeassistant => new(_haContext);
 		public HumidifierServices Humidifier => new(_haContext);
 		public InputBooleanServices InputBoolean => new(_haContext);
@@ -2806,6 +3057,7 @@ namespace HomeAutomations.Models.Generated
 		public InputSelectServices InputSelect => new(_haContext);
 		public InputTextServices InputText => new(_haContext);
 		public LightServices Light => new(_haContext);
+		public LockServices Lock => new(_haContext);
 		public LogbookServices Logbook => new(_haContext);
 		public LoggerServices Logger => new(_haContext);
 		public LovelaceServices Lovelace => new(_haContext);
@@ -2835,7 +3087,6 @@ namespace HomeAutomations.Models.Generated
 		public VacuumServices Vacuum => new(_haContext);
 		public WakeOnLanServices WakeOnLan => new(_haContext);
 		public XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor => new(_haContext);
-		public XiaomiMiioServices XiaomiMiio => new(_haContext);
 		public ZoneServices Zone => new(_haContext);
 	}
 
@@ -3904,20 +4155,6 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public class ConfiguratorServices
-	{
-		private readonly IHaContext _haContext;
-		public ConfiguratorServices(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		public void Configure()
-		{
-			_haContext.CallService("configurator", "configure", null);
-		}
-	}
-
 	public class CounterServices
 	{
 		private readonly IHaContext _haContext;
@@ -4628,44 +4865,6 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Enable this option if the group should only turn on when all entities are on.</summary>
 		[JsonPropertyName("all")]
 		public bool? All { get; init; }
-	}
-
-	public class HarmonyServices
-	{
-		private readonly IHaContext _haContext;
-		public HarmonyServices(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Sends change channel command to the Harmony HUB</summary>
-		///<param name="target">The target for this service call</param>
-		public void ChangeChannel(ServiceTarget target, HarmonyChangeChannelParameters data)
-		{
-			_haContext.CallService("harmony", "change_channel", target, data);
-		}
-
-		///<summary>Sends change channel command to the Harmony HUB</summary>
-		///<param name="target">The target for this service call</param>
-		///<param name="channel">Channel number to change to</param>
-		public void ChangeChannel(ServiceTarget target, long @channel)
-		{
-			_haContext.CallService("harmony", "change_channel", target, new HarmonyChangeChannelParameters{Channel = @channel});
-		}
-
-		///<summary>Syncs the remote's configuration.</summary>
-		///<param name="target">The target for this service call</param>
-		public void Sync(ServiceTarget target)
-		{
-			_haContext.CallService("harmony", "sync", target);
-		}
-	}
-
-	public record HarmonyChangeChannelParameters
-	{
-		///<summary>Channel number to change to</summary>
-		[JsonPropertyName("channel")]
-		public long? Channel { get; init; }
 	}
 
 	public class HomeassistantServices
@@ -5388,6 +5587,81 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Light effect.</summary>
 		[JsonPropertyName("effect")]
 		public string? Effect { get; init; }
+	}
+
+	public class LockServices
+	{
+		private readonly IHaContext _haContext;
+		public LockServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Lock(ServiceTarget target, LockLockParameters data)
+		{
+			_haContext.CallService("lock", "lock", target, data);
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">An optional code to lock the lock with. eg: 1234</param>
+		public void Lock(ServiceTarget target, string? @code = null)
+		{
+			_haContext.CallService("lock", "lock", target, new LockLockParameters{Code = @code});
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Open(ServiceTarget target, LockOpenParameters data)
+		{
+			_haContext.CallService("lock", "open", target, data);
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">An optional code to open the lock with. eg: 1234</param>
+		public void Open(ServiceTarget target, string? @code = null)
+		{
+			_haContext.CallService("lock", "open", target, new LockOpenParameters{Code = @code});
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Unlock(ServiceTarget target, LockUnlockParameters data)
+		{
+			_haContext.CallService("lock", "unlock", target, data);
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">An optional code to unlock the lock with. eg: 1234</param>
+		public void Unlock(ServiceTarget target, string? @code = null)
+		{
+			_haContext.CallService("lock", "unlock", target, new LockUnlockParameters{Code = @code});
+		}
+	}
+
+	public record LockLockParameters
+	{
+		///<summary>An optional code to lock the lock with. eg: 1234</summary>
+		[JsonPropertyName("code")]
+		public string? Code { get; init; }
+	}
+
+	public record LockOpenParameters
+	{
+		///<summary>An optional code to open the lock with. eg: 1234</summary>
+		[JsonPropertyName("code")]
+		public string? Code { get; init; }
+	}
+
+	public record LockUnlockParameters
+	{
+		///<summary>An optional code to unlock the lock with. eg: 1234</summary>
+		[JsonPropertyName("code")]
+		public string? Code { get; init; }
 	}
 
 	public class LogbookServices
@@ -6126,6 +6400,22 @@ namespace HomeAutomations.Models.Generated
 			_haContext.CallService("notify", "mobile_app_iphone_philipp", null, new NotifyMobileAppIphonePhilippParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
+		///<summary>Sends a notification message using the mobile_app_iphone_philipp_2 integration.</summary>
+		public void MobileAppIphonePhilipp2(NotifyMobileAppIphonePhilipp2Parameters data)
+		{
+			_haContext.CallService("notify", "mobile_app_iphone_philipp_2", null, data);
+		}
+
+		///<summary>Sends a notification message using the mobile_app_iphone_philipp_2 integration.</summary>
+		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
+		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
+		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
+		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
+		public void MobileAppIphonePhilipp2(string @message, string? @title = null, object? @target = null, object? @data = null)
+		{
+			_haContext.CallService("notify", "mobile_app_iphone_philipp_2", null, new NotifyMobileAppIphonePhilipp2Parameters{Message = @message, Title = @title, Target = @target, Data = @data});
+		}
+
 		///<summary>Sends a notification message using the notify service.</summary>
 		public void Notify(NotifyNotifyParameters data)
 		{
@@ -6196,6 +6486,25 @@ namespace HomeAutomations.Models.Generated
 	}
 
 	public record NotifyMobileAppIphonePhilippParameters
+	{
+		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
+
+		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
+		[JsonPropertyName("target")]
+		public object? Target { get; init; }
+
+		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
+		[JsonPropertyName("data")]
+		public object? Data { get; init; }
+	}
+
+	public record NotifyMobileAppIphonePhilipp2Parameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
 		[JsonPropertyName("message")]
@@ -7370,169 +7679,6 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public class XiaomiMiioServices
-	{
-		private readonly IHaContext _haContext;
-		public XiaomiMiioServices(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Start cleaning of the specified segment(s).</summary>
-		///<param name="target">The target for this service call</param>
-		public void VacuumCleanSegment(ServiceTarget target, XiaomiMiioVacuumCleanSegmentParameters data)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_clean_segment", target, data);
-		}
-
-		///<summary>Start cleaning of the specified segment(s).</summary>
-		///<param name="target">The target for this service call</param>
-		///<param name="segments">Segments. eg: [1,2]</param>
-		public void VacuumCleanSegment(ServiceTarget target, object? @segments = null)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_clean_segment", target, new XiaomiMiioVacuumCleanSegmentParameters{Segments = @segments});
-		}
-
-		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		///<param name="target">The target for this service call</param>
-		public void VacuumCleanZone(ServiceTarget target, XiaomiMiioVacuumCleanZoneParameters data)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_clean_zone", target, data);
-		}
-
-		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		///<param name="target">The target for this service call</param>
-		///<param name="zone">Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</param>
-		///<param name="repeats">Number of cleaning repeats for each zone.</param>
-		public void VacuumCleanZone(ServiceTarget target, object? @zone = null, long? @repeats = null)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_clean_zone", target, new XiaomiMiioVacuumCleanZoneParameters{Zone = @zone, Repeats = @repeats});
-		}
-
-		///<summary>Go to the specified coordinates.</summary>
-		///<param name="target">The target for this service call</param>
-		public void VacuumGoto(ServiceTarget target, XiaomiMiioVacuumGotoParameters data)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_goto", target, data);
-		}
-
-		///<summary>Go to the specified coordinates.</summary>
-		///<param name="target">The target for this service call</param>
-		///<param name="xCoord">x-coordinate. eg: 27500</param>
-		///<param name="yCoord">y-coordinate. eg: 32000</param>
-		public void VacuumGoto(ServiceTarget target, string? @xCoord = null, string? @yCoord = null)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_goto", target, new XiaomiMiioVacuumGotoParameters{XCoord = @xCoord, YCoord = @yCoord});
-		}
-
-		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlMove(ServiceTarget target, XiaomiMiioVacuumRemoteControlMoveParameters data)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move", target, data);
-		}
-
-		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		///<param name="target">The target for this service call</param>
-		///<param name="velocity">Speed.</param>
-		///<param name="rotation">Rotation, between -179 degrees and 179 degrees.</param>
-		///<param name="duration">Duration of the movement.</param>
-		public void VacuumRemoteControlMove(ServiceTarget target, double? @velocity = null, long? @rotation = null, long? @duration = null)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move", target, new XiaomiMiioVacuumRemoteControlMoveParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
-		}
-
-		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlMoveStep(ServiceTarget target, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move_step", target, data);
-		}
-
-		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		///<param name="target">The target for this service call</param>
-		///<param name="velocity">Speed.</param>
-		///<param name="rotation">Rotation.</param>
-		///<param name="duration">Duration of the movement.</param>
-		public void VacuumRemoteControlMoveStep(ServiceTarget target, double? @velocity = null, long? @rotation = null, long? @duration = null)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_move_step", target, new XiaomiMiioVacuumRemoteControlMoveStepParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
-		}
-
-		///<summary>Start remote control of the vacuum cleaner. You can then move it with `remote_control_move`, when done call `remote_control_stop`.</summary>
-		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlStart(ServiceTarget target)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_start", target);
-		}
-
-		///<summary>Stop remote control mode of the vacuum cleaner.</summary>
-		///<param name="target">The target for this service call</param>
-		public void VacuumRemoteControlStop(ServiceTarget target)
-		{
-			_haContext.CallService("xiaomi_miio", "vacuum_remote_control_stop", target);
-		}
-	}
-
-	public record XiaomiMiioVacuumCleanSegmentParameters
-	{
-		///<summary>Segments. eg: [1,2]</summary>
-		[JsonPropertyName("segments")]
-		public object? Segments { get; init; }
-	}
-
-	public record XiaomiMiioVacuumCleanZoneParameters
-	{
-		///<summary>Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</summary>
-		[JsonPropertyName("zone")]
-		public object? Zone { get; init; }
-
-		///<summary>Number of cleaning repeats for each zone.</summary>
-		[JsonPropertyName("repeats")]
-		public long? Repeats { get; init; }
-	}
-
-	public record XiaomiMiioVacuumGotoParameters
-	{
-		///<summary>x-coordinate. eg: 27500</summary>
-		[JsonPropertyName("x_coord")]
-		public string? XCoord { get; init; }
-
-		///<summary>y-coordinate. eg: 32000</summary>
-		[JsonPropertyName("y_coord")]
-		public string? YCoord { get; init; }
-	}
-
-	public record XiaomiMiioVacuumRemoteControlMoveParameters
-	{
-		///<summary>Speed.</summary>
-		[JsonPropertyName("velocity")]
-		public double? Velocity { get; init; }
-
-		///<summary>Rotation, between -179 degrees and 179 degrees.</summary>
-		[JsonPropertyName("rotation")]
-		public long? Rotation { get; init; }
-
-		///<summary>Duration of the movement.</summary>
-		[JsonPropertyName("duration")]
-		public long? Duration { get; init; }
-	}
-
-	public record XiaomiMiioVacuumRemoteControlMoveStepParameters
-	{
-		///<summary>Speed.</summary>
-		[JsonPropertyName("velocity")]
-		public double? Velocity { get; init; }
-
-		///<summary>Rotation.</summary>
-		[JsonPropertyName("rotation")]
-		public long? Rotation { get; init; }
-
-		///<summary>Duration of the movement.</summary>
-		[JsonPropertyName("duration")]
-		public long? Duration { get; init; }
-	}
-
 	public class ZoneServices
 	{
 		private readonly IHaContext _haContext;
@@ -8207,49 +8353,6 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public static class HarmonyEntityExtensionMethods
-	{
-		///<summary>Sends change channel command to the Harmony HUB</summary>
-		public static void ChangeChannel(this RemoteEntity target, HarmonyChangeChannelParameters data)
-		{
-			target.CallService("change_channel", data);
-		}
-
-		///<summary>Sends change channel command to the Harmony HUB</summary>
-		public static void ChangeChannel(this IEnumerable<RemoteEntity> target, HarmonyChangeChannelParameters data)
-		{
-			target.CallService("change_channel", data);
-		}
-
-		///<summary>Sends change channel command to the Harmony HUB</summary>
-		///<param name="target">The RemoteEntity to call this service for</param>
-		///<param name="channel">Channel number to change to</param>
-		public static void ChangeChannel(this RemoteEntity target, long @channel)
-		{
-			target.CallService("change_channel", new HarmonyChangeChannelParameters{Channel = @channel});
-		}
-
-		///<summary>Sends change channel command to the Harmony HUB</summary>
-		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
-		///<param name="channel">Channel number to change to</param>
-		public static void ChangeChannel(this IEnumerable<RemoteEntity> target, long @channel)
-		{
-			target.CallService("change_channel", new HarmonyChangeChannelParameters{Channel = @channel});
-		}
-
-		///<summary>Syncs the remote's configuration.</summary>
-		public static void Sync(this RemoteEntity target)
-		{
-			target.CallService("sync");
-		}
-
-		///<summary>Syncs the remote's configuration.</summary>
-		public static void Sync(this IEnumerable<RemoteEntity> target)
-		{
-			target.CallService("sync");
-		}
-	}
-
 	public static class InputBooleanEntityExtensionMethods
 	{
 		///<summary>Toggle an input boolean</summary>
@@ -8656,6 +8759,93 @@ namespace HomeAutomations.Models.Generated
 		public static void TurnOn(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, object? @rgbwColor = null, object? @rgbwwColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, long? @brightnessStep = null, long? @brightnessStepPct = null, long? @white = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
 			target.CallService("turn_on", new LightTurnOnParameters{Transition = @transition, RgbColor = @rgbColor, RgbwColor = @rgbwColor, RgbwwColor = @rgbwwColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, BrightnessStep = @brightnessStep, BrightnessStepPct = @brightnessStepPct, White = @white, Profile = @profile, Flash = @flash, Effect = @effect});
+		}
+	}
+
+	public static class LockEntityExtensionMethods
+	{
+		///<summary>Lock all or specified locks.</summary>
+		public static void Lock(this LockEntity target, LockLockParameters data)
+		{
+			target.CallService("lock", data);
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		public static void Lock(this IEnumerable<LockEntity> target, LockLockParameters data)
+		{
+			target.CallService("lock", data);
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="code">An optional code to lock the lock with. eg: 1234</param>
+		public static void Lock(this LockEntity target, string? @code = null)
+		{
+			target.CallService("lock", new LockLockParameters{Code = @code});
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="code">An optional code to lock the lock with. eg: 1234</param>
+		public static void Lock(this IEnumerable<LockEntity> target, string? @code = null)
+		{
+			target.CallService("lock", new LockLockParameters{Code = @code});
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		public static void Open(this LockEntity target, LockOpenParameters data)
+		{
+			target.CallService("open", data);
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		public static void Open(this IEnumerable<LockEntity> target, LockOpenParameters data)
+		{
+			target.CallService("open", data);
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="code">An optional code to open the lock with. eg: 1234</param>
+		public static void Open(this LockEntity target, string? @code = null)
+		{
+			target.CallService("open", new LockOpenParameters{Code = @code});
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="code">An optional code to open the lock with. eg: 1234</param>
+		public static void Open(this IEnumerable<LockEntity> target, string? @code = null)
+		{
+			target.CallService("open", new LockOpenParameters{Code = @code});
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		public static void Unlock(this LockEntity target, LockUnlockParameters data)
+		{
+			target.CallService("unlock", data);
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		public static void Unlock(this IEnumerable<LockEntity> target, LockUnlockParameters data)
+		{
+			target.CallService("unlock", data);
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="code">An optional code to unlock the lock with. eg: 1234</param>
+		public static void Unlock(this LockEntity target, string? @code = null)
+		{
+			target.CallService("unlock", new LockUnlockParameters{Code = @code});
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="code">An optional code to unlock the lock with. eg: 1234</param>
+		public static void Unlock(this IEnumerable<LockEntity> target, string? @code = null)
+		{
+			target.CallService("unlock", new LockUnlockParameters{Code = @code});
 		}
 	}
 
@@ -9072,163 +9262,6 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public static class RemoteEntityExtensionMethods
-	{
-		///<summary>Deletes a command or a list of commands from the database.</summary>
-		public static void DeleteCommand(this RemoteEntity target, RemoteDeleteCommandParameters data)
-		{
-			target.CallService("delete_command", data);
-		}
-
-		///<summary>Deletes a command or a list of commands from the database.</summary>
-		public static void DeleteCommand(this IEnumerable<RemoteEntity> target, RemoteDeleteCommandParameters data)
-		{
-			target.CallService("delete_command", data);
-		}
-
-		///<summary>Deletes a command or a list of commands from the database.</summary>
-		///<param name="target">The RemoteEntity to call this service for</param>
-		///<param name="device">Name of the device from which commands will be deleted. eg: television</param>
-		///<param name="command">A single command or a list of commands to delete. eg: Mute</param>
-		public static void DeleteCommand(this RemoteEntity target, object @command, string? @device = null)
-		{
-			target.CallService("delete_command", new RemoteDeleteCommandParameters{Device = @device, Command = @command});
-		}
-
-		///<summary>Deletes a command or a list of commands from the database.</summary>
-		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
-		///<param name="device">Name of the device from which commands will be deleted. eg: television</param>
-		///<param name="command">A single command or a list of commands to delete. eg: Mute</param>
-		public static void DeleteCommand(this IEnumerable<RemoteEntity> target, object @command, string? @device = null)
-		{
-			target.CallService("delete_command", new RemoteDeleteCommandParameters{Device = @device, Command = @command});
-		}
-
-		///<summary>Learns a command or a list of commands from a device.</summary>
-		public static void LearnCommand(this RemoteEntity target, RemoteLearnCommandParameters data)
-		{
-			target.CallService("learn_command", data);
-		}
-
-		///<summary>Learns a command or a list of commands from a device.</summary>
-		public static void LearnCommand(this IEnumerable<RemoteEntity> target, RemoteLearnCommandParameters data)
-		{
-			target.CallService("learn_command", data);
-		}
-
-		///<summary>Learns a command or a list of commands from a device.</summary>
-		///<param name="target">The RemoteEntity to call this service for</param>
-		///<param name="device">Device ID to learn command from. eg: television</param>
-		///<param name="command">A single command or a list of commands to learn. eg: Turn on</param>
-		///<param name="commandType">The type of command to be learned.</param>
-		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
-		///<param name="timeout">Timeout for the command to be learned.</param>
-		public static void LearnCommand(this RemoteEntity target, string? @device = null, object? @command = null, object? @commandType = null, bool? @alternative = null, long? @timeout = null)
-		{
-			target.CallService("learn_command", new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
-		}
-
-		///<summary>Learns a command or a list of commands from a device.</summary>
-		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
-		///<param name="device">Device ID to learn command from. eg: television</param>
-		///<param name="command">A single command or a list of commands to learn. eg: Turn on</param>
-		///<param name="commandType">The type of command to be learned.</param>
-		///<param name="alternative">If code must be stored as alternative (useful for discrete remotes).</param>
-		///<param name="timeout">Timeout for the command to be learned.</param>
-		public static void LearnCommand(this IEnumerable<RemoteEntity> target, string? @device = null, object? @command = null, object? @commandType = null, bool? @alternative = null, long? @timeout = null)
-		{
-			target.CallService("learn_command", new RemoteLearnCommandParameters{Device = @device, Command = @command, CommandType = @commandType, Alternative = @alternative, Timeout = @timeout});
-		}
-
-		///<summary>Sends a command or a list of commands to a device.</summary>
-		public static void SendCommand(this RemoteEntity target, RemoteSendCommandParameters data)
-		{
-			target.CallService("send_command", data);
-		}
-
-		///<summary>Sends a command or a list of commands to a device.</summary>
-		public static void SendCommand(this IEnumerable<RemoteEntity> target, RemoteSendCommandParameters data)
-		{
-			target.CallService("send_command", data);
-		}
-
-		///<summary>Sends a command or a list of commands to a device.</summary>
-		///<param name="target">The RemoteEntity to call this service for</param>
-		///<param name="device">Device ID to send command to. eg: 32756745</param>
-		///<param name="command">A single command or a list of commands to send. eg: Play</param>
-		///<param name="numRepeats">The number of times you want to repeat the command(s).</param>
-		///<param name="delaySecs">The time you want to wait in between repeated commands.</param>
-		///<param name="holdSecs">The time you want to have it held before the release is send.</param>
-		public static void SendCommand(this RemoteEntity target, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
-		{
-			target.CallService("send_command", new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
-		}
-
-		///<summary>Sends a command or a list of commands to a device.</summary>
-		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
-		///<param name="device">Device ID to send command to. eg: 32756745</param>
-		///<param name="command">A single command or a list of commands to send. eg: Play</param>
-		///<param name="numRepeats">The number of times you want to repeat the command(s).</param>
-		///<param name="delaySecs">The time you want to wait in between repeated commands.</param>
-		///<param name="holdSecs">The time you want to have it held before the release is send.</param>
-		public static void SendCommand(this IEnumerable<RemoteEntity> target, object @command, string? @device = null, long? @numRepeats = null, double? @delaySecs = null, double? @holdSecs = null)
-		{
-			target.CallService("send_command", new RemoteSendCommandParameters{Device = @device, Command = @command, NumRepeats = @numRepeats, DelaySecs = @delaySecs, HoldSecs = @holdSecs});
-		}
-
-		///<summary>Toggles a device.</summary>
-		public static void Toggle(this RemoteEntity target)
-		{
-			target.CallService("toggle");
-		}
-
-		///<summary>Toggles a device.</summary>
-		public static void Toggle(this IEnumerable<RemoteEntity> target)
-		{
-			target.CallService("toggle");
-		}
-
-		///<summary>Sends the Power Off Command.</summary>
-		public static void TurnOff(this RemoteEntity target)
-		{
-			target.CallService("turn_off");
-		}
-
-		///<summary>Sends the Power Off Command.</summary>
-		public static void TurnOff(this IEnumerable<RemoteEntity> target)
-		{
-			target.CallService("turn_off");
-		}
-
-		///<summary>Sends the Power On Command.</summary>
-		public static void TurnOn(this RemoteEntity target, RemoteTurnOnParameters data)
-		{
-			target.CallService("turn_on", data);
-		}
-
-		///<summary>Sends the Power On Command.</summary>
-		public static void TurnOn(this IEnumerable<RemoteEntity> target, RemoteTurnOnParameters data)
-		{
-			target.CallService("turn_on", data);
-		}
-
-		///<summary>Sends the Power On Command.</summary>
-		///<param name="target">The RemoteEntity to call this service for</param>
-		///<param name="activity">Activity ID or Activity Name to start. eg: BedroomTV</param>
-		public static void TurnOn(this RemoteEntity target, string? @activity = null)
-		{
-			target.CallService("turn_on", new RemoteTurnOnParameters{Activity = @activity});
-		}
-
-		///<summary>Sends the Power On Command.</summary>
-		///<param name="target">The IEnumerable<RemoteEntity> to call this service for</param>
-		///<param name="activity">Activity ID or Activity Name to start. eg: BedroomTV</param>
-		public static void TurnOn(this IEnumerable<RemoteEntity> target, string? @activity = null)
-		{
-			target.CallService("turn_on", new RemoteTurnOnParameters{Activity = @activity});
-		}
-	}
-
 	public static class SelectEntityExtensionMethods
 	{
 		///<summary>Select an option of an select entity.</summary>
@@ -9577,185 +9610,6 @@ namespace HomeAutomations.Models.Generated
 		public static void TurnOn(this IEnumerable<VacuumEntity> target)
 		{
 			target.CallService("turn_on");
-		}
-	}
-
-	public static class XiaomiMiioEntityExtensionMethods
-	{
-		///<summary>Start cleaning of the specified segment(s).</summary>
-		public static void VacuumCleanSegment(this VacuumEntity target, XiaomiMiioVacuumCleanSegmentParameters data)
-		{
-			target.CallService("vacuum_clean_segment", data);
-		}
-
-		///<summary>Start cleaning of the specified segment(s).</summary>
-		public static void VacuumCleanSegment(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumCleanSegmentParameters data)
-		{
-			target.CallService("vacuum_clean_segment", data);
-		}
-
-		///<summary>Start cleaning of the specified segment(s).</summary>
-		///<param name="target">The VacuumEntity to call this service for</param>
-		///<param name="segments">Segments. eg: [1,2]</param>
-		public static void VacuumCleanSegment(this VacuumEntity target, object? @segments = null)
-		{
-			target.CallService("vacuum_clean_segment", new XiaomiMiioVacuumCleanSegmentParameters{Segments = @segments});
-		}
-
-		///<summary>Start cleaning of the specified segment(s).</summary>
-		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
-		///<param name="segments">Segments. eg: [1,2]</param>
-		public static void VacuumCleanSegment(this IEnumerable<VacuumEntity> target, object? @segments = null)
-		{
-			target.CallService("vacuum_clean_segment", new XiaomiMiioVacuumCleanSegmentParameters{Segments = @segments});
-		}
-
-		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		public static void VacuumCleanZone(this VacuumEntity target, XiaomiMiioVacuumCleanZoneParameters data)
-		{
-			target.CallService("vacuum_clean_zone", data);
-		}
-
-		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		public static void VacuumCleanZone(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumCleanZoneParameters data)
-		{
-			target.CallService("vacuum_clean_zone", data);
-		}
-
-		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		///<param name="target">The VacuumEntity to call this service for</param>
-		///<param name="zone">Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</param>
-		///<param name="repeats">Number of cleaning repeats for each zone.</param>
-		public static void VacuumCleanZone(this VacuumEntity target, object? @zone = null, long? @repeats = null)
-		{
-			target.CallService("vacuum_clean_zone", new XiaomiMiioVacuumCleanZoneParameters{Zone = @zone, Repeats = @repeats});
-		}
-
-		///<summary>Start the cleaning operation in the selected areas for the number of repeats indicated.</summary>
-		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
-		///<param name="zone">Array of zones. Each zone is an array of 4 integer values. eg: [[23510,25311,25110,26362]]</param>
-		///<param name="repeats">Number of cleaning repeats for each zone.</param>
-		public static void VacuumCleanZone(this IEnumerable<VacuumEntity> target, object? @zone = null, long? @repeats = null)
-		{
-			target.CallService("vacuum_clean_zone", new XiaomiMiioVacuumCleanZoneParameters{Zone = @zone, Repeats = @repeats});
-		}
-
-		///<summary>Go to the specified coordinates.</summary>
-		public static void VacuumGoto(this VacuumEntity target, XiaomiMiioVacuumGotoParameters data)
-		{
-			target.CallService("vacuum_goto", data);
-		}
-
-		///<summary>Go to the specified coordinates.</summary>
-		public static void VacuumGoto(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumGotoParameters data)
-		{
-			target.CallService("vacuum_goto", data);
-		}
-
-		///<summary>Go to the specified coordinates.</summary>
-		///<param name="target">The VacuumEntity to call this service for</param>
-		///<param name="xCoord">x-coordinate. eg: 27500</param>
-		///<param name="yCoord">y-coordinate. eg: 32000</param>
-		public static void VacuumGoto(this VacuumEntity target, string? @xCoord = null, string? @yCoord = null)
-		{
-			target.CallService("vacuum_goto", new XiaomiMiioVacuumGotoParameters{XCoord = @xCoord, YCoord = @yCoord});
-		}
-
-		///<summary>Go to the specified coordinates.</summary>
-		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
-		///<param name="xCoord">x-coordinate. eg: 27500</param>
-		///<param name="yCoord">y-coordinate. eg: 32000</param>
-		public static void VacuumGoto(this IEnumerable<VacuumEntity> target, string? @xCoord = null, string? @yCoord = null)
-		{
-			target.CallService("vacuum_goto", new XiaomiMiioVacuumGotoParameters{XCoord = @xCoord, YCoord = @yCoord});
-		}
-
-		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		public static void VacuumRemoteControlMove(this VacuumEntity target, XiaomiMiioVacuumRemoteControlMoveParameters data)
-		{
-			target.CallService("vacuum_remote_control_move", data);
-		}
-
-		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		public static void VacuumRemoteControlMove(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumRemoteControlMoveParameters data)
-		{
-			target.CallService("vacuum_remote_control_move", data);
-		}
-
-		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		///<param name="target">The VacuumEntity to call this service for</param>
-		///<param name="velocity">Speed.</param>
-		///<param name="rotation">Rotation, between -179 degrees and 179 degrees.</param>
-		///<param name="duration">Duration of the movement.</param>
-		public static void VacuumRemoteControlMove(this VacuumEntity target, double? @velocity = null, long? @rotation = null, long? @duration = null)
-		{
-			target.CallService("vacuum_remote_control_move", new XiaomiMiioVacuumRemoteControlMoveParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
-		}
-
-		///<summary>Remote control the vacuum cleaner, make sure you first set it in remote control mode with `remote_control_start`.</summary>
-		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
-		///<param name="velocity">Speed.</param>
-		///<param name="rotation">Rotation, between -179 degrees and 179 degrees.</param>
-		///<param name="duration">Duration of the movement.</param>
-		public static void VacuumRemoteControlMove(this IEnumerable<VacuumEntity> target, double? @velocity = null, long? @rotation = null, long? @duration = null)
-		{
-			target.CallService("vacuum_remote_control_move", new XiaomiMiioVacuumRemoteControlMoveParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
-		}
-
-		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		public static void VacuumRemoteControlMoveStep(this VacuumEntity target, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
-		{
-			target.CallService("vacuum_remote_control_move_step", data);
-		}
-
-		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		public static void VacuumRemoteControlMoveStep(this IEnumerable<VacuumEntity> target, XiaomiMiioVacuumRemoteControlMoveStepParameters data)
-		{
-			target.CallService("vacuum_remote_control_move_step", data);
-		}
-
-		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		///<param name="target">The VacuumEntity to call this service for</param>
-		///<param name="velocity">Speed.</param>
-		///<param name="rotation">Rotation.</param>
-		///<param name="duration">Duration of the movement.</param>
-		public static void VacuumRemoteControlMoveStep(this VacuumEntity target, double? @velocity = null, long? @rotation = null, long? @duration = null)
-		{
-			target.CallService("vacuum_remote_control_move_step", new XiaomiMiioVacuumRemoteControlMoveStepParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
-		}
-
-		///<summary>Remote control the vacuum cleaner, only makes one move and then stops.</summary>
-		///<param name="target">The IEnumerable<VacuumEntity> to call this service for</param>
-		///<param name="velocity">Speed.</param>
-		///<param name="rotation">Rotation.</param>
-		///<param name="duration">Duration of the movement.</param>
-		public static void VacuumRemoteControlMoveStep(this IEnumerable<VacuumEntity> target, double? @velocity = null, long? @rotation = null, long? @duration = null)
-		{
-			target.CallService("vacuum_remote_control_move_step", new XiaomiMiioVacuumRemoteControlMoveStepParameters{Velocity = @velocity, Rotation = @rotation, Duration = @duration});
-		}
-
-		///<summary>Start remote control of the vacuum cleaner. You can then move it with `remote_control_move`, when done call `remote_control_stop`.</summary>
-		public static void VacuumRemoteControlStart(this VacuumEntity target)
-		{
-			target.CallService("vacuum_remote_control_start");
-		}
-
-		///<summary>Start remote control of the vacuum cleaner. You can then move it with `remote_control_move`, when done call `remote_control_stop`.</summary>
-		public static void VacuumRemoteControlStart(this IEnumerable<VacuumEntity> target)
-		{
-			target.CallService("vacuum_remote_control_start");
-		}
-
-		///<summary>Stop remote control mode of the vacuum cleaner.</summary>
-		public static void VacuumRemoteControlStop(this VacuumEntity target)
-		{
-			target.CallService("vacuum_remote_control_stop");
-		}
-
-		///<summary>Stop remote control mode of the vacuum cleaner.</summary>
-		public static void VacuumRemoteControlStop(this IEnumerable<VacuumEntity> target)
-		{
-			target.CallService("vacuum_remote_control_stop");
 		}
 	}
 }

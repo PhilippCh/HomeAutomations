@@ -5,5 +5,5 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
   SupportedActivities:
     - Kino
   Lights:
-    - light.stehlampe
+    - light.living_room_standard_lamp
   DimBrightnessPct: 10
