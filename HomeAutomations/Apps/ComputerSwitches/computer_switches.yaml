@@ -4,6 +4,9 @@ HomeAutomations.Apps.ComputerSwitches.ComputerSwitchesConfig:
     Values:
       Development: https://moonlight-remote-api.pupslab.de
       Production: http://moonlight-remote-api:8080
+  AvailabilityCheck:
+    Interval: 00:00:30
+    Port: 5000
   Hosts:
     - Name: Desktop Philipp
       Entity: input_boolean.computer_wol_desktop_philipp

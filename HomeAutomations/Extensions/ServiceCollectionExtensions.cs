@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using HomeAutomations.Apps.ComputerSwitches;
 using HomeAutomations.Apps.Scales.KitchenScale;
 using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 using HomeAutomations.Apps.Vacuum;
@@ -10,6 +11,7 @@ using HomeAutomations.Models;
 using HomeAutomations.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
 
 namespace HomeAutomations.Extensions;
 
@@ -28,6 +30,11 @@ public static class ServiceCollectionExtensions
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<>))
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>))
 			.AddAutomationDependencies(assembly, config);
+
+		services
+			.AddHttpClient<ComputerSwitches>()
+			.AddTransientHttpErrorPolicy(
+				x => x.WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(3, retryAttempt))));
 
 		return services;
 	}
