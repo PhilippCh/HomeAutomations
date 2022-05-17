@@ -8,7 +8,7 @@ namespace HomeAutomations.Apps.ComputerSwitches;
 public record HostConfig
 {
 	public string Name { get; init; }
-	public string EntityId { get; init; }
+	public InputBooleanEntity Entity { get; init; }
 	public string Host { get; init; }
 	public string MacAddress { get; init; }
 }

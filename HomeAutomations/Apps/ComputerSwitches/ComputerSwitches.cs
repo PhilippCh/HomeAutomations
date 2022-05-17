@@ -5,31 +5,29 @@ using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated.MoonlightRemoteApi;
 using NetDaemon.Extensions.MqttEntityManager;
+using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.ComputerSwitches;
 
 public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitchesConfig>
 {
-	private readonly IMqttEntityManager _entityManager;
 
-	public ComputerSwitches(BaseAutomationDependencyAggregate<ComputerSwitches, ComputerSwitchesConfig> aggregate, IMqttEntityManager entityManager)
+	public ComputerSwitches(BaseAutomationDependencyAggregate<ComputerSwitches, ComputerSwitchesConfig> aggregate)
 		: base(aggregate)
 	{
-		_entityManager = entityManager;
 	}
 
-	protected override async Task StartAsync(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		foreach (var hostConfig in Config.Hosts)
 		{
-			await _entityManager.CreateAsync(hostConfig.EntityId, new EntityCreationOptions(Name: $"WOL switch for {hostConfig.Name}"));
-
-			(await _entityManager.PrepareCommandSubscriptionAsync(hostConfig.EntityId))
-				.Subscribe(async s => await OnSwitchStateChanged(hostConfig, s.AsBoolean()));
+			hostConfig.Entity.StateChanges().Subscribe(s => OnWOLSwitchStateChanged(hostConfig, s.New?.IsOn()));
 		}
+
+		return Task.CompletedTask;
 	}
 
-	private async Task OnSwitchStateChanged(HostConfig hostConfig, bool? isOn)
+	private async void OnWOLSwitchStateChanged(HostConfig hostConfig, bool? isOn)
 	{
 		if (!isOn.HasValue)
 		{
