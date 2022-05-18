@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +25,10 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		ObservableExtensions.Interval(Config.AvailabilityCheck.Interval, true).Subscribe(_ => UpdateWolSwitchStatus());
+		ObservableExtensions.Interval(Config.AvailabilityCheck.Interval, true)
+			.SelectMany(_ => Config.Hosts)
+			.SelectMany(h => Observable.FromAsync(async () => await UpdateWolSwitchStatus(h)))
+			.Subscribe();
 
 		foreach (var hostConfig in Config.Hosts)
 		{
@@ -39,12 +43,14 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 		if (isOn == null)
 		{
 			Logger.Warning("Invalid value for WOL switch for {Name}", hostConfig.Name);
+
 			return;
 		}
 
 		if (_ignoreLastStateChange)
 		{
 			_ignoreLastStateChange = false;
+
 			return;
 		}
 
@@ -106,28 +112,25 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 			});
 	}
 
-	private async void UpdateWolSwitchStatus()
+	private async Task UpdateWolSwitchStatus(HostConfig host)
 	{
-		foreach (var host in Config.Hosts)
+		var isAvailable = await GetHostAvailability(host);
+
+		if (isAvailable == host.Entity.IsOn())
 		{
-			var isAvailable = await GetHostAvailability(host);
+			return;
+		}
 
-			if (isAvailable == host.Entity.IsOn())
-			{
-				return;
-			}
+		// Prevent triggering a boot/shutdown from internal state changes.
+		_ignoreLastStateChange = true;
 
-			// Prevent triggering a boot/shutdown from internal state changes.
-			_ignoreLastStateChange = true;
-
-			if (isAvailable)
-			{
-				host.Entity.TurnOn();
-			}
-			else
-			{
-				host.Entity.TurnOff();
-			}
+		if (isAvailable)
+		{
+			host.Entity.TurnOn();
+		}
+		else
+		{
+			host.Entity.TurnOff();
 		}
 	}
 
@@ -135,7 +138,8 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 	{
 		try
 		{
-			var result = await _httpClient.GetAsync(GetHostApiUrl(hostConfig.Host));
+			using var cts = new CancellationTokenSource(Config.AvailabilityCheck.Timeout);
+			var result = await _httpClient.GetAsync(GetHostApiUrl(hostConfig.Host), cts.Token);
 
 			return result.StatusCode == HttpStatusCode.NotFound;
 		}
@@ -147,6 +151,7 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 			}
 
 			Logger.Warning("Uncaught exception {Message}", ex.Message);
+
 			return false;
 		}
 	}

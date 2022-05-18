@@ -9,6 +9,7 @@ public record AvailabilityCheckConfig
 {
 	public int Port { get; init; }
 	public TimeSpan Interval { get; init; }
+	public TimeSpan Timeout { get; init; }
 }
 
 public record HostConfig
