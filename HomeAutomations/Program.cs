@@ -1,6 +1,5 @@
 using System.Reflection;
 using HomeAutomations.Extensions;
-using HomeAutomations.Vault;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using NetDaemon.Extensions.Logging;
@@ -8,6 +7,7 @@ using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.Extensions.Tts;
 using NetDaemon.Runtime;
+using VaultSharp.Extensions.Configuration;
 
 #pragma warning disable CA1812
 
@@ -15,34 +15,21 @@ try
 {
 	var assembly = Assembly.GetExecutingAssembly();
 
-    await Host.CreateDefaultBuilder(args)
+	await Host.CreateDefaultBuilder(args)
         .UseNetDaemonAppSettings()
         .UseNetDaemonDefaultLogging()
         .UseNetDaemonRuntime()
         .UseNetDaemonMqttEntityManagement()
         .UseNetDaemonTextToSpeech()
-        /*.ConfigureAppConfiguration(
-	        config =>
-	        {
-		        config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-		        config.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true);
-		        config.AddEnvironmentVariables(prefix: "VAULT_");
+        /*.ConfigureAppConfiguration((context, config) =>
+        {
+	        var appSettings = new ConfigurationBuilder()
+		        .AddJsonFile("appsettings.json")
+		        .AddJsonFile("appsettings." + context.HostingEnvironment.EnvironmentName + ".json", true)
+		        .Build();
 
-		        var builtConfig = config.Build();
-
-		        if (builtConfig.GetSection("Vault")["Role"] != null)
-		        {
-			        config.AddVault(options =>
-			        {
-				        var vaultOptions = builtConfig.GetSection("Vault");
-				        options.Address = vaultOptions["Address"];
-				        options.Role = vaultOptions["Role"];
-				        options.MountPath = vaultOptions["MountPath"];
-				        options.SecretType = vaultOptions["SecretType"];
-				        options.Secret = builtConfig.GetSection("VAULT_SECRET_ID").Value;
-			        });
-		        }
-	        })*/
+	        config.AddVaultConfiguration(() => appSettings.GetValue<VaultOptions>("Vault"), "vault", "secret");
+        })*/
         .ConfigureServices((context, services) =>
             services
                 .AddAppsFromAssembly(assembly)
