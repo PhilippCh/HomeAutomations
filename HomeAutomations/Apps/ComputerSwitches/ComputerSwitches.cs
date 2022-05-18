@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +10,6 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.ComputerSwitches;
 
-[Focus]
 public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitchesConfig>
 {
 	private bool _ignoreLastStateChange;

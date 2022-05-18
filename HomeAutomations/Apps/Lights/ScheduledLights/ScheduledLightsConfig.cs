@@ -28,12 +28,13 @@ public record TimeConfig
 
 	private static DateTime? ParseSunTime(double latitude, double longitude, DateTime date, string? actualHour)
 	{
-		var location = new Coordinate(latitude, longitude, date);
+		var utcOffset = TimeZoneInfo.Local.GetUtcOffset(date);
+		var celestial = new Celestial(latitude, longitude, date, utcOffset.TotalHours);
 
 		return actualHour switch
 		{
-			"sunrise" => location.CelestialInfo.SunRise,
-			"sunset" => location.CelestialInfo.SunSet,
+			"sunrise" => celestial.SunRise,
+			"sunset" => celestial.SunSet,
 			_ => null
 		};
 	}
