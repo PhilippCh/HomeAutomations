@@ -50,6 +50,7 @@ public class ScheduledLights : BaseAutomation<ScheduledLights, ScheduledLightsCo
 			if (!shouldRun && _runningCycles.TryGetValue(cycle.Name, out var runningCycle))
 			{
 				runningCycle.Stop();
+				_runningCycles.Remove(cycle.Name);
 			}
 		}
 	}
