@@ -11,6 +11,9 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
 
     - Name: Bedroom
       MotionSensor: binary_sensor.bedroom_motion_detector_occupancy
+      DisableMotionSensorTriggers:
+        - sensor.iphone_philipp_battery_state
+        - sensor.iphone_fabienne_battery_state
       CycleTime: 00:01:30
       MinIlluminance: 70
       Lights:

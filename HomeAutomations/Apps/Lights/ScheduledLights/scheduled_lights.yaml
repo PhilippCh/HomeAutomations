@@ -12,7 +12,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - light.tv_lightstrip
+        - - light.living_room_tv_lightstrip
           - light.kitchen_neon_clock
     - Name: Trolley lights
       Interval: 01:00:00
