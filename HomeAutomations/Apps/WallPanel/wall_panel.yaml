@@ -6,4 +6,4 @@ HomeAutomations.Apps.WallPanel.WallPanelMonitorConfig:
   Panels:
     - Name: Hallway
       BaseTopic: wallpanel/hallway
-      Switch: switch.sternen_lichterkette_socket_1
+      Switch: switch.tablet_hallway
