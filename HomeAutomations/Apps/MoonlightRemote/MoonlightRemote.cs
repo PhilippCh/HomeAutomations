@@ -52,7 +52,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 			Config.Pid.SetValue(status?.Pid ?? -1);
 			Config.CurrentHost.SetValue(!string.IsNullOrWhiteSpace(status?.Host) ? status!.Host : "None");
 		}
-		catch (TaskCanceledException ex)
+		catch (Exception ex)
 		{
 			Logger.Warning("Could not update status due to: {reason}", ex.Message);
 		}
