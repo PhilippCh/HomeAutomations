@@ -3,7 +3,9 @@ HomeAutomations.Apps.WallPanel.WallPanelMonitorConfig:
   OffRange:
     Min: 60
     Max: 80
+  Topics:
+    DeviceInfo: fully/deviceInfo
   Panels:
     - Name: Hallway
-      BaseTopic: wallpanel/hallway
+      DeviceId: 6eb46216-f190adc8
       Switch: switch.tablet_hallway

@@ -1,11 +1,8 @@
-﻿using HomeAutomations.Apps.WallPanel.Messages;
+﻿using System.Threading.Tasks;
+using HomeAutomations.Apps.WallPanel.Messages;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Models.Generated;
-using HomeAutomations.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using NetDaemon.HassModel.Entities;
-using ILogger = Serilog.ILogger;
 
 namespace HomeAutomations.Apps.WallPanel;
 
@@ -30,30 +27,30 @@ public class WallPanel
 		_logger = loggerFactory.ForContext<WallPanel>();
 	}
 
-	public void StartMonitoring()
+	public async Task StartMonitoringAsync()
 	{
-		StartBatteryMonitoring();
+		await StartBatteryMonitoringAsync();
 	}
 
-	private async void StartBatteryMonitoring()
+	private async Task StartBatteryMonitoringAsync()
 	{
-		(await _mqttService.GetMessagesForTopic<BatteryMessage>(Config?.BaseTopic, "sensor/battery"))
-			.Subscribe(OnBatteryStateChanged);
+		(await _mqttService.GetMessagesForTopic<FullyKioskDeviceInfoMessage>(MonitorConfig?.Topics.DeviceInfo, Config?.DeviceId))
+			.Subscribe(OnDeviceInfoChanged);
 	}
 
-	private void OnBatteryStateChanged(BatteryMessage? message)
+	private void OnDeviceInfoChanged(FullyKioskDeviceInfoMessage? message)
 	{
 		if (message == null)
 		{
 			return;
 		}
 
-		if ((MonitorConfig?.OffRange.IsSmallerThan(message.Value) ?? false) && (Config?.Switch.IsOff() ?? false))
+		if ((MonitorConfig?.OffRange.IsSmallerThan(message.BatteryLevel) ?? false) && (Config?.Switch.IsOff() ?? false))
 		{
 			StartCharging();
 		}
 
-		if ((MonitorConfig?.OffRange.IsLargerThan(message.Value) ?? false) && (Config?.Switch.IsOn() ?? false))
+		if ((MonitorConfig?.OffRange.IsLargerThan(message.BatteryLevel) ?? false) && (Config?.Switch.IsOn() ?? false))
 		{
 			StopCharging();
 		}
@@ -61,13 +58,13 @@ public class WallPanel
 
 	private void StartCharging()
 	{
-		_logger.Information("{name} charge is < {percentage}%, will turn on power.", Config?.Name, MonitorConfig?.OffRange.Min);
+		_logger.Information("{Name} charge is < {Percentage}%, will turn on power", Config?.Name, MonitorConfig?.OffRange.Min);
 		Config?.Switch.TurnOn();
 	}
 
 	private void StopCharging()
 	{
-		_logger.Information("{name} charge is > {percentage}%, will turn off power.", Config?.Name, MonitorConfig?.OffRange.Max);
+		_logger.Information("{Name} charge is > {Percentage}%, will turn off power", Config?.Name, MonitorConfig?.OffRange.Max);
 		Config?.Switch.TurnOff();
 	}
 

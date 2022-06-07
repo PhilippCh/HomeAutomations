@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Apps.Scales.KitchenScale.OpenFoodFacts;
+using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
+using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.HassModel.Entities;
@@ -34,9 +35,10 @@ public class KitchenScale : BaseAutomation<KitchenScale>
 		_nutritionInfoService = nutritionInfoService;
 	}
 
+	[UsedImplicitly]
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
-			.AddTransient<INutritionInfoService, Fddb.FddbService>();
+			.AddTransient<INutritionInfoService, FddbService>();
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{

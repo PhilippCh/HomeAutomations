@@ -3,15 +3,18 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
+using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomations.Apps.WallPanel;
 
+[Focus]
 public class WallPanelMonitor : BaseAutomation<WallPanelMonitor, WallPanelMonitorConfig>
 {
 	private readonly IEnumerable<WallPanel> _panels;
 
+	[UsedImplicitly]
 	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
 		services
 			.AddScoped<WallPanel.WallPanelFactory>()
@@ -27,7 +30,7 @@ public class WallPanelMonitor : BaseAutomation<WallPanelMonitor, WallPanelMonito
 	{
 		foreach (var panel in _panels)
 		{
-			panel.StartMonitoring();
+			panel.StartMonitoringAsync();
 		}
 
 		return Task.CompletedTask;
