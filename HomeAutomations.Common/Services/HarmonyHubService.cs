@@ -1,6 +1,4 @@
-﻿using System.Net.Sockets;
-using HarmonyHub;
-using HomeAutomations.Common.Models;
+﻿using HomeAutomations.Common.Models;
 using HomeAutomations.Common.Models.Config;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -22,7 +20,7 @@ public class HarmonyHubService
 
 	public async Task<TaskExecutionResult> StartActivityAsync(string name)
 	{
-		using var client = CreateClient();
+		/*using var client = CreateClient();
 
 		if (client == null)
 		{
@@ -39,9 +37,9 @@ public class HarmonyHubService
 				$"Found multiple or no activities for {name} (Available: {string.Join(", ", config.Activity.Select(a => a.Label))})");
 		}
 
-		await client.StartActivityAsync(int.Parse(activity.Id));
+		await client.StartActivityAsync(int.Parse(activity.Id));*/
 
-		return new TaskExecutionResult(true, $"Started harmony activity {activity.Label}");
+		return new TaskExecutionResult(true, $"Started harmony activity");
 	}
 
 	public async Task<TaskExecutionResult> StopActivityAsync(string name)
@@ -56,7 +54,7 @@ public class HarmonyHubService
 
 	public async Task<string?> GetCurrentActivity()
 	{
-		using var client = CreateClient();
+		/*using var client = CreateClient();
 
 		if (client == null)
 		{
@@ -67,12 +65,13 @@ public class HarmonyHubService
 		var activity = (await client.GetConfigAsync()).Activity
 			.FirstOrDefault(a => a.Id == currentActivityId.ToString());
 
-		return activity?.Label;
+		return activity?.Label;*/
+		return string.Empty;
 	}
 
 	private async Task<bool> IsActivityRunning(string name)
 	{
-		using var client = CreateClient();
+		/*using var client = CreateClient();
 
 		if (client == null)
 		{
@@ -83,10 +82,11 @@ public class HarmonyHubService
 		var activity = (await client.GetConfigAsync()).Activity
 			.FirstOrDefault(a => a.Label == name && a.Id == currentActivityId.ToString());
 
-		return activity != null;
+		return activity != null;*/
+		return true;
 	}
 
-	private Client? CreateClient()
+	/*private Client? CreateClient()
 	{
 		try
 		{
@@ -105,5 +105,5 @@ public class HarmonyHubService
 
 			return null;
 		}
-	}
+	}*/
 }
