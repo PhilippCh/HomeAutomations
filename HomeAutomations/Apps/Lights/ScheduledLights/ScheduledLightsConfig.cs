@@ -14,7 +14,7 @@ public record TimeConfig
 	public DateTime? GetActualTime(double latitude, double longitude)
 	{
 		var date = DateTime.Now;
-		var actualHour = date.IsWeekend() ? HourWeekend : Hour;
+		var actualHour = date.IsWeekend() ? HourWeekend ?? Hour : Hour;
 
 		try
 		{
