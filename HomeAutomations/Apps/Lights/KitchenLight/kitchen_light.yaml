@@ -1,6 +1,6 @@
 ---
 HomeAutomations.Apps.KitchenLight.KitchenLightConfig:
-  LightEntity: light.kitchen_ceiling_light
+  LightEntity: light.kitchen_ceiling_light_zigbee
   CycleTime: '00:01:30'
   MinIlluminance: 70
   MotionSensor: binary_sensor.kitchen_motion_detector_occupancy
