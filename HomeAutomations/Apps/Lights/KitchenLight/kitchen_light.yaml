@@ -1,5 +1,5 @@
 ---
-HomeAutomations.Apps.KitchenLight.KitchenLightConfig:
+HomeAutomations.Apps.Lights.KitchenLight.KitchenLightConfig:
   LightEntity: light.kitchen_ceiling_light_zigbee
   CycleTime: '00:01:30'
   MinIlluminance: 70
@@ -7,5 +7,5 @@ HomeAutomations.Apps.KitchenLight.KitchenLightConfig:
   ManualTriggerSensor: sensor.kitchen_light_action
   Brightness:
     - Start: '02:30:00'
-      End: '09:00:00'
+      End: '08:00:00'
       Percentage: 1
