@@ -1,7 +1,7 @@
 ---
 HomeAutomations.Apps.UpdateInstagramToken.UpdateInstagramTokenConfig:
   Url: https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=IGQVJWVVBHbk15NHhpeXI0T21RYlFQUXVTMWVxRFdXa0ZATekUxTGpvWngzak14NVBOQTlIdXNTUXYxN3hwZATgyRDhwSEVWeTk4RlozblMwRmd1MzY1aVFoME16aTlHNmw5VFBlRnE5YnB3OHhIbFVHeQZDZD
-  UpdateCrontab: 0 16 * * *
+  UpdateCrontab: 0 */2 * * *
   FilePath: instagram-token.dat
   Target:
     Host: ssh.strato.de
