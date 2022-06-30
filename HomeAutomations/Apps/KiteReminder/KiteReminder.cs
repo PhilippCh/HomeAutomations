@@ -55,7 +55,7 @@ public class KiteReminder : BaseAutomation<KiteReminder, KiteReminderConfig>
 		var gustSpeed = Math.Round(weather.Wind.GustSpeed * WindSpeedConversionFactor, 1);
 		var shouldFire = windSpeed >= Config.Thresholds.Speed && gustSpeed >= Config.Thresholds.GustSpeed;
 
-		Logger.Information("Wind speed: {Speed} | Gust speed: {GustSpeed} | Will send notification?: {ShouldFire}", windSpeed, gustSpeed, shouldFire);
+		Logger.Debug("Wind speed: {Speed} | Gust speed: {GustSpeed} | Will send notification?: {ShouldFire}", windSpeed, gustSpeed, shouldFire);
 
 		if (shouldFire)
 		{
