@@ -13,8 +13,10 @@ public record WallPanelTopicConfig
 public record WallPanelConfig
 {
 	public string Name { get; init; }
-	public string DeviceId {get;init;}
+	public string DeviceId { get; init; }
 	public SwitchEntity Switch { get; init; }
+	public IEnumerable<string>? PluggedRestCommands { get; init; }
+	public IEnumerable<string>? UnpluggedRestCommands { get; init; }
 }
 
 public record WallPanelMonitorConfig : Config

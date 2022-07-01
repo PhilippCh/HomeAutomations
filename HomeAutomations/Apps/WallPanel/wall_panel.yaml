@@ -9,3 +9,9 @@ HomeAutomations.Apps.WallPanel.WallPanelMonitorConfig:
     - Name: Hallway
       DeviceId: 6eb46216-f190adc8
       Switch: switch.tablet_hallway
+      PluggedRestCommands:
+        - http://192.168.188.128:2323/?cmd=screenOn&password=homeassistant
+        - http://192.168.188.128:2323/?cmd=startApplication&package=de.ozerov.fully&password=homeassistant
+      UnpluggedRestCommands:
+        - http://192.168.188.128:2323/?cmd=screenOn&password=homeassistant
+        - http://192.168.188.128:2323/?cmd=startApplication&package=cn.com.broadlink.econtrol.international&password=homeassistant

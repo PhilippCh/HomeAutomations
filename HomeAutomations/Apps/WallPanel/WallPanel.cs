@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 using HomeAutomations.Apps.WallPanel.Messages;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Models.Generated;
@@ -21,6 +23,8 @@ public class WallPanel
 	private readonly MqttService _mqttService;
 	private readonly ILogger _logger;
 
+	private FullyKioskDeviceInfoMessage? _lastMessage;
+
 	public WallPanel(MqttService mqttService, ILogger loggerFactory)
 	{
 		_mqttService = mqttService;
@@ -28,11 +32,6 @@ public class WallPanel
 	}
 
 	public async Task StartMonitoringAsync()
-	{
-		await StartBatteryMonitoringAsync();
-	}
-
-	private async Task StartBatteryMonitoringAsync()
 	{
 		(await _mqttService.GetMessagesForTopic<FullyKioskDeviceInfoMessage>(MonitorConfig?.Topics.DeviceInfo, Config?.DeviceId))
 			.Subscribe(OnDeviceInfoChanged);
@@ -45,27 +44,54 @@ public class WallPanel
 			return;
 		}
 
+		CheckBatteryStatus(message);
+		CheckPluggedStatus(message);
+
+		_lastMessage = message;
+	}
+
+	private void CheckBatteryStatus(FullyKioskDeviceInfoMessage message)
+	{
 		if ((MonitorConfig?.OffRange.IsSmallerThan(message.BatteryLevel) ?? false) && (Config?.Switch.IsOff() ?? false))
 		{
-			StartCharging();
+			_logger.Information("{Name} charge is < {Percentage}%, will turn on power", Config?.Name, MonitorConfig?.OffRange.Min);
+			Config?.Switch.TurnOn();
 		}
 
 		if ((MonitorConfig?.OffRange.IsLargerThan(message.BatteryLevel) ?? false) && (Config?.Switch.IsOn() ?? false))
 		{
-			StopCharging();
+			_logger.Information("{Name} charge is > {Percentage}%, will turn off power", Config?.Name, MonitorConfig?.OffRange.Max);
+			Config?.Switch.TurnOff();
 		}
 	}
 
-	private void StartCharging()
+	private void CheckPluggedStatus(FullyKioskDeviceInfoMessage message)
 	{
-		_logger.Information("{Name} charge is < {Percentage}%, will turn on power", Config?.Name, MonitorConfig?.OffRange.Min);
-		Config?.Switch.TurnOn();
+		if (_lastMessage == null)
+		{
+			// This can only be performed by comparing current to last device state, so we need both.
+			return;
+		}
+
+		if (Config?.PluggedRestCommands != null && message.IsPlugged && !_lastMessage.IsPlugged)
+		{
+			SendRemoteApiCommands(Config.PluggedRestCommands);
+		}
+
+		if (Config?.UnpluggedRestCommands != null && !message.IsPlugged && _lastMessage.IsPlugged)
+		{
+			SendRemoteApiCommands(Config.UnpluggedRestCommands);
+		}
 	}
 
-	private void StopCharging()
+	private async void SendRemoteApiCommands(IEnumerable<string> commands)
 	{
-		_logger.Information("{Name} charge is > {Percentage}%, will turn off power", Config?.Name, MonitorConfig?.OffRange.Max);
-		Config?.Switch.TurnOff();
+		var client = new HttpClient();
+
+		foreach (var command in commands)
+		{
+			await client.GetAsync(command);
+		}
 	}
 
 	public class WallPanelFactory
