@@ -70,16 +70,19 @@ public class WallPanel
 		if (_lastMessage == null)
 		{
 			// This can only be performed by comparing current to last device state, so we need both.
+			_logger.Information("No last wall panel message");
 			return;
 		}
 
 		if (Config?.PluggedRestCommands != null && message.IsPlugged && !_lastMessage.IsPlugged)
 		{
+			_logger.Information("Wall panel plugged in, running commands");
 			SendRemoteApiCommands(Config.PluggedRestCommands);
 		}
 
 		if (Config?.UnpluggedRestCommands != null && !message.IsPlugged && _lastMessage.IsPlugged)
 		{
+			_logger.Information("Wall panel unplugged, running commands");
 			SendRemoteApiCommands(Config.UnpluggedRestCommands);
 		}
 	}
