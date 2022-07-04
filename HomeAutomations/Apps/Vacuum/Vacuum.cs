@@ -8,6 +8,7 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.Vacuum;
 
+[Focus]
 public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 {
 	private CancellationTokenSource? _cleaningScheduleCancellationToken;
@@ -80,15 +81,15 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 				return Task.CompletedTask;
 			},
 			{
-				Old: VacuumState.Cleaning, New: VacuumState.Returning
+				Old: VacuumState.Idle, New: VacuumState.Returning
+			} => ReturnToBase,
+			{
+				New: VacuumState.Returning
 			} => async () =>
 			{
 				await SenCleanedAreaNotification();
 				SendToBin();
 			},
-			{
-				Old: VacuumState.Idle, New: VacuumState.Returning
-			} => ReturnToBase,
 			_ => () => Task.CompletedTask
 		};
 
