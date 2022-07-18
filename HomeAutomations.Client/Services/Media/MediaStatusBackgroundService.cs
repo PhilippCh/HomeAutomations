@@ -37,6 +37,12 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 
 	private async void UpdateMediaStatus()
 	{
+		// Only update media status if it appears that the machine has been hooked up to the TV/projector.
+		if (Screen.AllScreens.Length <= 1)
+		{
+			return;
+		}
+
 		var statusMessage = await _mediaControllerService.GetStatus();
 		await _mqttService.PublishMessage(statusMessage, CancellationToken.None, _config.BaseTopic, statusMessage.DeviceId);
 	}

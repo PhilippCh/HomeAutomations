@@ -54,6 +54,11 @@ public static class ObservableExtensions
 		return new ThrottleFirstObservable<T>(source, timeSource, timespan);
 	}
 
+	public static IObservable<T> WhereNotNull<T>(this IObservable<T?> source)
+	{
+		return source.Where(i => i != null).Select(i => i!);
+	}
+
 	sealed class ThrottleFirstObservable<T> : IObservable<T>
 	{
 		readonly IObservable<T> source;

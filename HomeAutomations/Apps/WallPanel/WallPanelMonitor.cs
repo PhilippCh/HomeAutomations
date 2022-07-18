@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomations.Apps.WallPanel;
 
+[Focus]
 public class WallPanelMonitor : BaseAutomation<WallPanelMonitor, WallPanelMonitorConfig>
 {
 	private readonly IEnumerable<WallPanel> _panels;
@@ -25,13 +26,11 @@ public class WallPanelMonitor : BaseAutomation<WallPanelMonitor, WallPanelMonito
 		_panels = Config?.Panels?.Select(p => wallPanelFactory.Create(Config, p)) ?? Enumerable.Empty<WallPanel>();
 	}
 
-	protected override Task StartAsync(CancellationToken cancellationToken)
+	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		foreach (var panel in _panels)
 		{
-			panel.StartMonitoringAsync();
+			await panel.StartMonitoringAsync();
 		}
-
-		return Task.CompletedTask;
 	}
 }

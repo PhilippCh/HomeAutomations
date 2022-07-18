@@ -2,7 +2,9 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using HomeAutomations.Apps.WallPanel.Messages;
+using HomeAutomations.Common.Models;
 using HomeAutomations.Common.Services;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
 
@@ -23,8 +25,6 @@ public class WallPanel
 	private readonly MqttService _mqttService;
 	private readonly ILogger _logger;
 
-	private FullyKioskDeviceInfoMessage? _lastMessage;
-
 	public WallPanel(MqttService mqttService, ILogger loggerFactory)
 	{
 		_mqttService = mqttService;
@@ -34,20 +34,23 @@ public class WallPanel
 	public async Task StartMonitoringAsync()
 	{
 		(await _mqttService.GetMessagesForTopic<FullyKioskDeviceInfoMessage>(MonitorConfig?.Topics.DeviceInfo, Config?.DeviceId))
+			.WhereNotNull()
 			.Subscribe(OnDeviceInfoChanged);
+
+		(await _mqttService.GetMessagesForChildTopics<MediaStatusMessage>(Config?.MediaCommands.StatusTopic))
+			.WhereNotNull()
+			.DistinctUntilChanged(m => m.State)
+			.Select(
+				m => m.State == MediaPlaybackState.NotPlaying //
+					? Observable.Return(m).Delay(Config?.MediaCommands.NotPlayingCommandsDelay ?? TimeSpan.Zero)
+					: Observable.Return(m))
+			.Switch()
+			.Subscribe(OnMediaStatusChanged);
 	}
 
-	private void OnDeviceInfoChanged(FullyKioskDeviceInfoMessage? message)
+	private void OnDeviceInfoChanged(FullyKioskDeviceInfoMessage message)
 	{
-		if (message == null)
-		{
-			return;
-		}
-
 		CheckBatteryStatus(message);
-		CheckPluggedStatus(message);
-
-		_lastMessage = message;
 	}
 
 	private void CheckBatteryStatus(FullyKioskDeviceInfoMessage message)
@@ -65,26 +68,23 @@ public class WallPanel
 		}
 	}
 
-	private void CheckPluggedStatus(FullyKioskDeviceInfoMessage message)
+	private void OnMediaStatusChanged(MediaStatusMessage message)
 	{
-		if (_lastMessage == null)
+		if (message.State == message.LastState)
 		{
-			// This can only be performed by comparing current to last device state, so we need both.
-			_logger.Information("No last wall panel message");
 			return;
 		}
 
-		if (Config?.PluggedRestCommands != null && message.IsPlugged && !_lastMessage.IsPlugged)
+		var commands = message.State == MediaPlaybackState.Playing ? Config?.MediaCommands.PlayingCommands : Config?.MediaCommands.NotPlayingCommands;
+
+		if (commands == null)
 		{
-			_logger.Information("Wall panel plugged in, running commands");
-			SendRemoteApiCommands(Config.PluggedRestCommands);
+			_logger.Warning("No commands found for media playback state {State}", Enum.GetName(typeof(MediaPlaybackState), message.State));
+
+			return;
 		}
 
-		if (Config?.UnpluggedRestCommands != null && !message.IsPlugged && _lastMessage.IsPlugged)
-		{
-			_logger.Information("Wall panel unplugged, running commands");
-			SendRemoteApiCommands(Config.UnpluggedRestCommands);
-		}
+		SendRemoteApiCommands(commands);
 	}
 
 	private async void SendRemoteApiCommands(IEnumerable<string> commands)

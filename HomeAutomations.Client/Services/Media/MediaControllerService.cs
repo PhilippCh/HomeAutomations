@@ -19,6 +19,8 @@ public record MediaPlayerPredicate
 
 public class MediaControllerService
 {
+	private MediaPlaybackState _lastState;
+
 	private readonly MediaStatusConfig _config;
 	private readonly HostService _hostService;
 	private readonly IEnumerable<IMediaSessionManager> _sessionManagers;
@@ -47,14 +49,20 @@ public class MediaControllerService
 	public async Task<MediaStatusMessage> GetStatus()
 	{
 		var sessions = await GetSessions();
-		var deviceId = Environment.MachineName.ToString();
+		var deviceId = Environment.MachineName;
+		var state = sessions.Any(s => s.State == MediaPlaybackState.Playing) ? MediaPlaybackState.Playing : MediaPlaybackState.NotPlaying;
 
-		return new MediaStatusMessage
+		var message = new MediaStatusMessage
 		{
 			DeviceId = deviceId,
 			BaseUrl = $"http://{_hostService.GetLocalIpAddress()}:{Constants.Port}",
-			State = sessions.Any(s => s.State == MediaPlaybackState.Playing) ? MediaPlaybackState.Playing : MediaPlaybackState.NotPlaying
+			State = state,
+			LastState = _lastState
 		};
+
+		_lastState = state;
+
+		return message;
 	}
 
 	private async Task<IEnumerable<MediaSession>> GetSessions() =>

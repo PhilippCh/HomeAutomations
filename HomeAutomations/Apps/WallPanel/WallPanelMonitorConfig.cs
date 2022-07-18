@@ -10,13 +10,21 @@ public record WallPanelTopicConfig
 	public string DeviceInfo { get; init; }
 }
 
+public record MediaCommandsConfig
+{
+	public string StatusTopic { get; init; }
+	public IEnumerable<string>? PlayingCommands { get; init; }
+	public IEnumerable<string>? NotPlayingCommands { get; init; }
+
+	public TimeSpan NotPlayingCommandsDelay { get; init; }
+}
+
 public record WallPanelConfig
 {
 	public string Name { get; init; }
 	public string DeviceId { get; init; }
 	public SwitchEntity Switch { get; init; }
-	public IEnumerable<string>? PluggedRestCommands { get; init; }
-	public IEnumerable<string>? UnpluggedRestCommands { get; init; }
+	public MediaCommandsConfig MediaCommands { get; init; }
 }
 
 public record WallPanelMonitorConfig : Config
