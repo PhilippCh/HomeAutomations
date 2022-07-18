@@ -1,23 +1,28 @@
 ---
 HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
   Groups:
-#    - Name: Kitchen
-#      MotionSensor: binary_sensor.kitchen_motion_detector_occupancy
+    - Name: Kitchen
+      Lights:
+        - Entity: light.kitchen_ceiling_light_zigbee
+          CycleTime: 00:01:30
+          MinIlluminance: 70
+          ManualTriggerSensor: sensor.kitchen_light_action
+          MotionSensor: binary_sensor.kitchen_motion_detector_occupancy
+          Brightness:
+            - Start: '02:30:00'
+              End: '08:00:00'
+              Percentage: 1
+
+#    - Name: Bedroom
+#      DisableMotionSensorTriggers:
+#        - sensor.iphone_philipp_battery_state
+#        - sensor.iphone_fabienne_battery_state
 #      CycleTime: 00:01:30
 #      MinIlluminance: 70
 #      Lights:
-#        - Entity: light.kitchen_ceiling_light
-#          ManualTriggerSensor: sensor.kitchen_light_action
-
-    - Name: Bedroom
-      MotionSensor: binary_sensor.bedroom_motion_detector_occupancy
-      DisableMotionSensorTriggers:
-        - sensor.iphone_philipp_battery_state
-        - sensor.iphone_fabienne_battery_state
-      CycleTime: 00:01:30
-      MinIlluminance: 70
-      Lights:
-        - Entity: light.bedroom_bedside_light_philipp
-          ManualTriggerSensor: sensor.bedroom_bedside_light_switch_philipp_action
-        - Entity: light.bedroom_bedside_light_fabienne
-          ManualTriggerSensor: sensor.bedroom_bedside_light_switch_fabienne_action
+#        - Entity: light.bedroom_bedside_light_philipp
+#          ManualTriggerSensor: sensor.bedroom_bedside_light_switch_philipp_action
+#          MotionSensor: binary_sensor.bedroom_motion_detector_occupancy
+#        - Entity: light.bedroom_bedside_light_fabienne
+#          ManualTriggerSensor: sensor.bedroom_bedside_light_switch_fabienne_action
+#          MotionSensor: binary_sensor.bedroom_motion_detector_occupancy

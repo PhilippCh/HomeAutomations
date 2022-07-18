@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Models;
+using HomeAutomations.Models.Generated;
 using JetBrains.Annotations;
 
 namespace HomeAutomations.Apps.TrashReminder;
@@ -24,5 +25,8 @@ public record TrashReminderConfig : Config
 {
 	public TrashCalendarConfig Calendar { get; init; }
 	public string PersonalCalendar { get; init; }
-	public IReadOnlyDictionary<string, string> Sensors { get; init; }
+	public InputBooleanEntity TakeOutEntity { get; init; }
+	public string TakeOutEventName { get; init; }
+	public Notification Notification { get; init; }
+	public IReadOnlyDictionary<string, InputBooleanEntity> Entities { get; init; }
 }

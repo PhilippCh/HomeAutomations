@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
-using HomeAutomations.Models.Generated;
+using HomeAutomations.Services;
 using Ical.Net;
 using Ical.Net.CalendarComponents;
 using Ical.Net.DataTypes;
@@ -14,25 +15,24 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.TrashReminder;
 
+[Focus]
 public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
-	private Calendar _personalCalendar;
-	private Calendar _calendar;
-	private IReadOnlyDictionary<string, InputBooleanEntity> _inputBooleans;
+	private Calendar? _personalCalendar;
+	private Calendar? _calendar;
 
-	public TrashReminder(BaseAutomationDependencyAggregate<TrashReminder, TrashReminderConfig> aggregate)
+	private readonly NotificationService _notificationService;
+
+	public TrashReminder(BaseAutomationDependencyAggregate<TrashReminder, TrashReminderConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
 	{
+		_notificationService = notificationService;
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		_inputBooleans = Config.Sensors
-			.Select(kv => (kv.Key, Value: new InputBooleanEntity(Context, $"input_boolean.{kv.Value}")))
-			.ToDictionary(kv => kv.Key, kv => kv.Value);
-
-		//_personalCalendar = await GetPersonalCalendar();
-		_calendar = await GetTrashCalendar();
+		_personalCalendar = await GetPersonalCalendarAsync();
+		_calendar = await GetTrashCalendarAsync();
 		StartUpdateLoop();
 	}
 
@@ -46,10 +46,10 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 	private void StartUpdateLoop()
 	{
 		ObservableExtensions.Interval(TimeSpan.FromMinutes(15), true)
-			.Subscribe(_ => UpdateNextDates());
+			.Subscribe(_ => UpdateNextDates(DateTime.Today));
 	}
 
-	private async Task<Calendar> GetTrashCalendar()
+	private async Task<Calendar?> GetTrashCalendarAsync()
 	{
 		var csrfToken = Guid.NewGuid().ToString();
 		var request = new RestRequest("", Method.Post)
@@ -72,28 +72,58 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 		client.CookieContainer.Add(new Cookie("csrf_https-contao_csrf_token", csrfToken, "/", "www.abfallwirtschaft-germersheim.de"));
 
 		var response = await client.DownloadDataAsync(request);
+
+		if (response == null)
+		{
+			return null;
+		}
+
 		var calendar = Encoding.Default.GetString(response);
 
 		return Calendar.Load(calendar);
 	}
 
-	private void UpdateNextDates()
+	private async Task<Calendar> GetPersonalCalendarAsync()
 	{
-		var eventsThisWeek = _calendar.GetOccurrences(DateTime.Today, DateTime.Today.AddDays(6));
-		var eventsToday = _calendar.GetOccurrences(DateTime.Today, DateTime.Today.AddHours(23));
-		var pickupToday = new List<string>();
+		var client = new HttpClient();
+		var content = await client.GetStringAsync(Config.PersonalCalendar);
 
-		foreach (var sensor in Config.Sensors)
+		return Calendar.Load(content);
+	}
+
+	private void UpdateNextDates(DateTime start)
+	{
+		if (_calendar == null)
 		{
-			_inputBooleans[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
-
-			if (ContainsEvent(sensor.Key, eventsToday))
-			{
-				pickupToday.Add(sensor.Key);
-			}
+			Logger.Warning("Could not load trash calendar");
+			return;
 		}
 
-		if (pickupToday.Any())
+		if (_personalCalendar == null)
+		{
+			Logger.Warning("Could not load personal calendar");
+			return;
+		}
+
+		var endOfDay = start.AddHours(23);
+		var endOfWeek = start.AddDays(7);
+		var eventsThisWeek = _calendar.GetOccurrences(start, endOfWeek);
+		var eventsToday = _calendar.GetOccurrences(start, endOfDay);
+		var takeOutEventsThisWeek = _personalCalendar.GetOccurrences(start, endOfWeek)
+			.Select(e => e.Source)
+			.Cast<CalendarEvent>()
+			.Where(e => e.Summary == Config.TakeOutEventName);
+
+		Config.TakeOutEntity.CallService(takeOutEventsThisWeek.Any() ? "turn_on" : "turn_off");
+
+		foreach (var sensor in Config.Entities)
+		{
+			Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
+
+
+		}
+
+		if (takeOutToday.Any())
 		{
 			SendPickupReminder();
 		}
@@ -101,5 +131,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 	private void SendPickupReminder()
 	{
+		var notification = Config.Notification with { Template = Config.Notification.RenderTemplate() };
+		_notificationService.SendNotification(notification);
 	}
 }

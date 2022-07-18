@@ -9,3 +9,8 @@ HomeAutomations.Apps.Counters.WaterCounter.WaterCounterConfig:
     SetTargetEventId: water_set_target_event
     UserProperty: user
     AmountProperty: amount
+  Alerts:
+    - User: philipp
+      Threshold: 0.5
+    - User: philipp
+      Threshold: 0.9

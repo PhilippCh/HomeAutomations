@@ -1,6 +1,6 @@
 ---
 HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
-  PersonalCalendar: https://calendar.google.com/calendar/ical/d1c1afdj2u8m6u2b8fg09dgkhs%40group.calendar.google.com/private-2903d9f5f4dc181862f24afbb69871a9/basic.ics
+  PersonalCalendar: https://calendar.google.com/calendar/ical/5tb9eckthg7vdn54gbh4cpmbao%40group.calendar.google.com/private-93bf924753ca44380f0001b7ebfd3e01/basic.ics
   Calendar:
     BaseUrl: https://www.abfallwirtschaft-germersheim.de/online-service/abfall-termine/abfalltermine-ics-export-bis-240-liter.html
     City:
@@ -14,9 +14,18 @@ HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
         - Glasbox
         - Papier
         - Restmüll
+  TakeOutEventName: Müll rausbringen
+  TakeOutEntity: input_boolean.trash_take_outside
+  Notification:
+    Service: mobile_app_iphone_philipp_2
+    Tag: trash_reminder
+    Title: Müll rausbringen
+    Template: Heute werden {0} abgeholt. {1}
+    Image: https://ha.pupslab.de/local/kite_reminder.png
+    Sticky: true
   Sensors:
-    Bioabfall: trash_bio
-    Gelber Sack: trash_recycling
-    Glasbox: trash_glass
-    Papier: trash_paper
-    Restmüll: trash_waste
+    Bioabfall: input_boolean.trash_bio
+    Gelber Sack: input_boolean.trash_recycling
+    Glasbox: input_boolean.trash_glass
+    Papier: input_boolean.trash_paper
+    Restmüll: input_boolean.trash_waste

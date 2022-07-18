@@ -8,7 +8,6 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.Vacuum;
 
-[Focus]
 public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 {
 	private CancellationTokenSource? _cleaningScheduleCancellationToken;

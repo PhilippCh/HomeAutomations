@@ -1,41 +1,30 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
-using HomeAutomations.Models.DeviceMessages;
-using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.Lights.AutomaticLights;
 
 public class AutomaticLights : BaseAutomation<AutomaticLights, AutomaticLightsConfig>
 {
+	private readonly NotificationService _notificationService;
+	private List<AutomaticLight> _lights = new();
+
 	public AutomaticLights(BaseAutomationDependencyAggregate<AutomaticLights, AutomaticLightsConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
 	{
+		_notificationService = notificationService;
 	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		foreach (var group in Config.Groups)
-		{
-			foreach (var lightTrigger in group.Lights)
-			{
-				lightTrigger.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(lightTrigger, s.New?.State));
-			}
-		}
+		_lights = Config.Groups
+			.SelectMany(g => g.Lights)
+			.Select(e => new AutomaticLight(e, Logger, _notificationService))
+			.ToList();
 
 		return Task.CompletedTask;
-	}
-
-	private void OnManualTriggerStateChanged(AutomaticLightEntity lightTrigger, string? state)
-	{
-		var buttonAction = WirelessSwitchActions.Map(state);
-
-		Action action = buttonAction switch
-		{
-			_ => () => lightTrigger.Entity.Toggle()
-		};
-
-		action();
 	}
 }

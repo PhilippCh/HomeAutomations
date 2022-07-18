@@ -9,6 +9,12 @@ public record CounterButtonConfig
 	public string AssociatedUser { get; init; }
 }
 
+public record ThresholdAlertConfig
+{
+	public string User { get; init; }
+	public double Threshold { get; init; }
+}
+
 public record CounterEvents
 {
 	public string AddEventId { get; init; }
@@ -25,4 +31,5 @@ public record CounterConfig : Config
 	public CounterButtonConfig? Button { get; init; }
 	public string ResetCrontab { get; init; }
 	public CounterEvents Events { get; init; }
+	public ThresholdAlertConfig Alerts { get; init; }
 }

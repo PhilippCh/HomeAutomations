@@ -64,6 +64,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		if (Config.Button == null)
 		{
 			Logger.Warning("Button config was null, this should never happen in {name}", nameof(OnButtonPressed));
+
 			return;
 		}
 
@@ -93,6 +94,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		}
 
 		_entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.Value.ToString());
+		SendAlerts(user);
 	}
 
 	private async void OnAdd(HaEvent e)
@@ -110,15 +112,27 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			return;
 		}
 
-		if (!int.TryParse(new Entity(Context, GetEntityId(user)).State, out var currentAmount))
-		{
-			currentAmount = 0;
-		}
-
-		await _entityManager.SetStateAsync(GetEntityId(user), (currentAmount + increment.Value).ToString());
+		await _entityManager.SetStateAsync(GetEntityId(user), (GetCurrentAmount(user) + increment.Value).ToString());
+		SendAlerts(user);
 	}
 
-	private string GetEntityId(string person) => $"{Config.EntityPrefix}{person}";
+	private void SendAlerts(string user)
+	{
+		var alertAttributes = new Entity(Context, GetAlertEntityId(user)).Attributes;
+	}
 
-	private string GetTargetEntityId(string person) => $"{GetEntityId(person)}_target";
+	private string GetEntityId(string user) => $"{Config.EntityPrefix}{user}";
+
+	private string GetTargetEntityId(string user) => $"{GetEntityId(user)}_target";
+
+	private string GetAlertEntityId(string user) => $"{GetEntityId(user)}_alert_sent";
+
+	private int GetCurrentAmount(string user) => GetAmount(GetEntityId(user));
+
+	private int GetTargetAmount(string user) => GetAmount(GetTargetEntityId(user));
+
+	private int GetAmount(string entityId)
+	{
+		return int.TryParse(new Entity(Context, entityId).State, out var amount) ? amount : 0;
+	}
 }
