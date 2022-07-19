@@ -22,7 +22,6 @@ public static class CronjobExtensions
 	public static async void ScheduleJob(string cronSchedule, Func<Task> action, bool runOnStartup = false, CancellationToken cancellationToken = default)
 	{
 		var expression = CronExpression.Parse(cronSchedule);
-		var today = DateTime.Today;
 		var next = expression.GetNextOccurrence(DateTimeOffset.Now, TimeZoneInfo.Local);
 
 		if (next == null)

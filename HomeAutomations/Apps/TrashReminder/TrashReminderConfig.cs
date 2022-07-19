@@ -27,6 +27,7 @@ public record TrashReminderConfig : Config
 	public string PersonalCalendar { get; init; }
 	public InputBooleanEntity TakeOutEntity { get; init; }
 	public string TakeOutEventName { get; init; }
+	public string ReminderCrontab { get; init; }
 	public Notification Notification { get; init; }
 	public IReadOnlyDictionary<string, InputBooleanEntity> Entities { get; init; }
 }

@@ -5,11 +5,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using Ical.Net;
 using Ical.Net.CalendarComponents;
 using Ical.Net.DataTypes;
+using NetDaemon.HassModel.Entities;
 using RestSharp;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
@@ -47,6 +49,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 	{
 		ObservableExtensions.Interval(TimeSpan.FromMinutes(15), true)
 			.Subscribe(_ => UpdateNextDates(DateTime.Today));
+		CronjobExtensions.ScheduleJob(Config.ReminderCrontab, SendPickupReminder);
 	}
 
 	private async Task<Calendar?> GetTrashCalendarAsync()
@@ -63,12 +66,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 			request.AddQueryParameter(Config.Calendar.Types.Id, type);
 		}
 
-		var client = new RestClient(
-			new RestClientOptions(Config.Calendar.BaseUrl)
-			{
-				// Enable this to enable HTTP tracing.
-				//ConfigureMessageHandler = handler => new HttpTracerHandler(handler, HttpMessageParts.All)
-			});
+		var client = new RestClient(new RestClientOptions(Config.Calendar.BaseUrl));
 		client.CookieContainer.Add(new Cookie("csrf_https-contao_csrf_token", csrfToken, "/", "www.abfallwirtschaft-germersheim.de"));
 
 		var response = await client.DownloadDataAsync(request);
@@ -105,33 +103,34 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 			return;
 		}
 
-		var endOfDay = start.AddHours(23);
 		var endOfWeek = start.AddDays(7);
 		var eventsThisWeek = _calendar.GetOccurrences(start, endOfWeek);
-		var eventsToday = _calendar.GetOccurrences(start, endOfDay);
 		var takeOutEventsThisWeek = _personalCalendar.GetOccurrences(start, endOfWeek)
 			.Select(e => e.Source)
 			.Cast<CalendarEvent>()
-			.Where(e => e.Summary == Config.TakeOutEventName);
+			.Where(e => e.Summary == Config.TakeOutEventName)
+			.ToList();
 
 		Config.TakeOutEntity.CallService(takeOutEventsThisWeek.Any() ? "turn_on" : "turn_off");
 
 		foreach (var sensor in Config.Entities)
 		{
 			Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
-
-
-		}
-
-		if (takeOutToday.Any())
-		{
-			SendPickupReminder();
 		}
 	}
 
 	private void SendPickupReminder()
 	{
-		var notification = Config.Notification with { Template = Config.Notification.RenderTemplate() };
+		if (Config.TakeOutEntity.IsOff())
+		{
+			return; // No need to send reminder, we're not responsible this week.
+		}
+
+		var pickUps = Config.Entities
+			.Where(e => e.Value.IsOn())
+			.Select(e => e.Key);
+
+		var notification = Config.Notification with { Template = Config.Notification.RenderTemplate(pickUps.JoinAnd()) };
 		_notificationService.SendNotification(notification);
 	}
 }

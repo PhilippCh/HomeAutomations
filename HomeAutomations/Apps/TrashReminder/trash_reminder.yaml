@@ -16,14 +16,14 @@ HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
         - Restmüll
   TakeOutEventName: Müll rausbringen
   TakeOutEntity: input_boolean.trash_take_outside
+  ReminderCrontab: 00 13 * * SUN
   Notification:
-    Service: mobile_app_iphone_philipp_2
     Tag: trash_reminder
     Title: Müll rausbringen
-    Template: Heute werden {0} abgeholt. {1}
-    Image: https://ha.pupslab.de/local/kite_reminder.png
+    Template: Wir sind dran mit Müll rausbringen! Heute werden {0} geholt.
+    Image: https://ha.pupslab.de/local/trash_reminder.jpg
     Sticky: true
-  Sensors:
+  Entities:
     Bioabfall: input_boolean.trash_bio
     Gelber Sack: input_boolean.trash_recycling
     Glasbox: input_boolean.trash_glass
