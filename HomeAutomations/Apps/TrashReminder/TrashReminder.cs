@@ -17,7 +17,6 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.TrashReminder;
 
-[Focus]
 public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
 	private Calendar? _personalCalendar;

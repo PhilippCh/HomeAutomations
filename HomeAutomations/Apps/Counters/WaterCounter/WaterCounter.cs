@@ -6,6 +6,7 @@ namespace HomeAutomations.Apps.Counters.WaterCounter;
 
 public record WaterCounterConfig : CounterConfig;
 
+[Focus]
 public class WaterCounter : BaseCounter<WaterCounter, WaterCounterConfig>
 {
 	public WaterCounter(BaseAutomationDependencyAggregate<WaterCounter, WaterCounterConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)

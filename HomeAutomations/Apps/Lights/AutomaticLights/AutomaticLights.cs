@@ -7,6 +7,7 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.Lights.AutomaticLights;
 
+[Focus]
 public class AutomaticLights : BaseAutomation<AutomaticLights, AutomaticLightsConfig>
 {
 	private readonly NotificationService _notificationService;

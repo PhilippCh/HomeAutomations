@@ -7,9 +7,8 @@ using HomeAutomations.Common.Models.Config;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MQTTnet;
-using MQTTnet.Client.Options;
+using MQTTnet.Client;
 using MQTTnet.Extensions.ManagedClient;
-using Serilog;
 
 namespace HomeAutomations.Common.Services;
 
@@ -48,7 +47,7 @@ public class MqttService
 					catch (JsonException)
 					{
 						// Attempt returning a direct cast if message does not appear to be a JSON construct.
-						return (T)Convert.ChangeType(m, typeof(T));
+						return (T) Convert.ChangeType(m, typeof(T));
 					}
 				});
 	}
@@ -73,7 +72,7 @@ public class MqttService
 					catch (JsonException)
 					{
 						// Attempt returning a direct cast if message does not appear to be a JSON construct.
-						return (T)Convert.ChangeType(m, typeof(T));
+						return (T) Convert.ChangeType(m, typeof(T));
 					}
 				});
 	}
@@ -86,7 +85,7 @@ public class MqttService
 			.WithPayload(serializedPayload)
 			.Build();
 
-		await _client.PublishAsync(message, cancellationToken);
+		await _client.EnqueueAsync(message);
 	}
 
 	private async Task SubscribeToTopic(string topic)
@@ -95,24 +94,39 @@ public class MqttService
 			.WithTopic(topic)
 			.Build();
 
-		await _client.SubscribeAsync(filter);
+		await _client.SubscribeAsync(new[] { filter });
 	}
 
 	private async void Connect()
 	{
-		_logger.LogDebug("Connecting to mqtt broker {broker}.", _config.CurrentValue.Host);
+		_logger.LogDebug("Connecting to mqtt broker {Broker}", _config.CurrentValue.Host);
 
+		var clientOptions = new MqttClientOptionsBuilder()
+			.WithTcpServer(_config.CurrentValue.Host, _config.CurrentValue.Port)
+			.Build();
 		var options = new ManagedMqttClientOptionsBuilder()
 			.WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
-			.WithClientOptions(
-				new MqttClientOptionsBuilder()
-					.WithTcpServer(_config.CurrentValue.Host, _config.CurrentValue.Port)
-					.Build())
+			.WithClientOptions(clientOptions)
 			.Build();
 
-		_client.UseConnectedHandler(_ => _logger.LogInformation("Connected to MQTT server."));
-		_client.UseApplicationMessageReceivedHandler(e => _messages.OnNext(e.ApplicationMessage));
-		_client.UseDisconnectedHandler(e => _logger.LogDebug("Disconnected due to: {reason}", e.Reason));
+		_client.ApplicationMessageReceivedAsync += e =>
+		{
+			_messages.OnNext(e.ApplicationMessage);
+
+			return Task.CompletedTask;
+		};
+		_client.ConnectedAsync += _ =>
+		{
+			_logger.LogInformation("Connected to MQTT server");
+
+			return Task.CompletedTask;
+		};
+		_client.DisconnectedAsync += e =>
+		{
+			_logger.LogDebug("Disconnected due to: {Reason}", e.Reason);
+
+			return Task.CompletedTask;
+		};
 
 		await _client.StartAsync(options);
 	}
