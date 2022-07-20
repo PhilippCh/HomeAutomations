@@ -48,6 +48,7 @@ public class Startup
             .AddTransient<HostService>()
             .AddSingleton<CommandParser>()
             .AddSingleton<MediaControllerService>()
+            .AddSingleton<DisplayService>()
             .AddSingleton<NowPlayingMediaSessionManager>()
             .AddSingleton<VlcRemoteApiService>()
             .AddSingleton<MqttService>()

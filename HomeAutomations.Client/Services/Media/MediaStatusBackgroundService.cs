@@ -9,6 +9,7 @@ namespace HomeAutomations.Client.Services.Media;
 public class MediaStatusBackgroundService : IHostedService, IDisposable
 {
 	private readonly MediaControllerService _mediaControllerService;
+	private readonly DisplayService _displayService;
 	private readonly MqttService _mqttService;
 	private IDisposable? _observer;
 
@@ -18,10 +19,12 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 	public MediaStatusBackgroundService(
 		IOptionsMonitor<MediaStatusConfig> config,
 		MediaControllerService mediaControllerService,
+		DisplayService displayService,
 		MqttService mqttService,
 		ILogger<MediaStatusBackgroundService> logger)
 	{
 		_mediaControllerService = mediaControllerService;
+		_displayService = displayService;
 		_mqttService = mqttService;
 		_config = config.CurrentValue;
 		_logger = logger;
@@ -29,7 +32,7 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 
 	public Task StartAsync(CancellationToken stoppingToken)
 	{
-		_logger.LogInformation("Starting media status background check every {interval}.", _config.UpdateInterval);
+		_logger.LogInformation("Starting media status background check every {Interval}", _config.UpdateInterval);
 		_observer = Observable.Interval(_config.UpdateInterval).Subscribe(_ => UpdateMediaStatus());
 
 		return Task.CompletedTask;
@@ -38,7 +41,9 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 	private async void UpdateMediaStatus()
 	{
 		// Only update media status if it appears that the machine has been hooked up to the TV/projector.
-		if (Screen.AllScreens.Length <= 1)
+		// NOTE: Screen.AllScreens count caches the initial call, so any connect/disconnect of a display while the client is
+		// running will not be properly reflected.
+		if (!_displayService.IsConnectedToMultipleDisplays())
 		{
 			return;
 		}
@@ -49,7 +54,7 @@ public class MediaStatusBackgroundService : IHostedService, IDisposable
 
 	public Task StopAsync(CancellationToken stoppingToken)
 	{
-		_logger.LogInformation("Stopping media service background check.");
+		_logger.LogInformation("Stopping media service background check");
 		_observer?.Dispose();
 
 		return Task.CompletedTask;
