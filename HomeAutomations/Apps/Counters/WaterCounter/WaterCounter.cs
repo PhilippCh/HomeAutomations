@@ -6,6 +6,8 @@ namespace HomeAutomations.Apps.Counters.WaterCounter;
 
 public record WaterCounterConfig : CounterConfig;
 
+// DO NOT REMOVE
+// When debugging, this allows for counters to still work.
 [Focus]
 public class WaterCounter : BaseCounter<WaterCounter, WaterCounterConfig>
 {

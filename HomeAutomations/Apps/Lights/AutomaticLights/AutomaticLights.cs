@@ -26,6 +26,8 @@ public class AutomaticLights : BaseAutomation<AutomaticLights, AutomaticLightsCo
 			.Select(e => new AutomaticLight(e, Logger, _notificationService))
 			.ToList();
 
+		_lights.ForEach(l => l.StartMonitoring());
+
 		return Task.CompletedTask;
 	}
 }

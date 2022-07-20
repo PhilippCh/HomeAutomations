@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Disposables;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
@@ -19,7 +21,7 @@ public class AutomaticLight
 	private readonly ILogger _logger;
 	private readonly NotificationService _notificationService;
 
-	private int _brightnessPct = DefaultBrightnessPct;
+	private int _brightness = DefaultBrightnessPct;
 	private IDisposable? _lightCycleObserver;
 
 	public AutomaticLight(AutomaticLightEntity entity, ILogger logger, NotificationService notificationService)
@@ -27,8 +29,15 @@ public class AutomaticLight
 		_entity = entity;
 		_logger = logger;
 		_notificationService = notificationService;
-		entity.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State));
-		entity.MotionSensor.StateChanges().Subscribe(s => OnMotionSensorStateChanged(s.New?.Attributes));
+	}
+
+	public IDisposable StartMonitoring()
+	{
+		var disposables = new CompositeDisposable();
+		disposables.Add(_entity.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State)));
+		disposables.Add(_entity.MotionSensor.StateChanges().Subscribe(s => OnMotionSensorStateChanged(s.New?.Attributes)));
+
+		return disposables;
 	}
 
 	private void OnManualTriggerStateChanged(string? state)
@@ -68,9 +77,9 @@ public class AutomaticLight
 			return;
 		}
 
-		if (!_entity.Entity.IsOn() || LastIlluminance > _entity.MinIlluminance)
+		if (!_entity.Entity.IsOn() && LastIlluminance > _entity.MaxIlluminance)
 		{
-			_logger.Information("{Illuminance} lux is too bright for {Entity}", LastIlluminance, _entity.Entity.EntityId);
+			_logger.Information("{Illuminance} lux is too bright for {Light}", LastIlluminance, _entity.Entity.GetName());
 
 			return;
 		}
@@ -89,17 +98,18 @@ public class AutomaticLight
 		if (activeBrightnessConfig != null)
 		{
 			_logger.Information(
-				"Switching to brightness setting from {From} to {To}: {Value}% brightness",
-				activeBrightnessConfig.Start, activeBrightnessConfig.End, activeBrightnessConfig.Percentage);
+				"Switching to brightness setting from {From} to {To}: {Value}% brightness for {Light}",
+				activeBrightnessConfig.Start, activeBrightnessConfig.End, activeBrightnessConfig.Percentage, _entity.Entity.GetName());
 		}
 
-		_brightnessPct = activeBrightnessConfig?.Percentage ?? DefaultBrightnessPct;
+		_brightness = (activeBrightnessConfig?.Percentage ?? DefaultBrightnessPct) * _entity.MaxBrightness / 100;
 	}
 
 	private void Reset()
 	{
 		StopLightCycle();
 		IsPermanentlyOn = false;
+		SetBrightness();
 		StartLightCycle();
 
 		_notificationService.SendNotification(
@@ -115,14 +125,17 @@ public class AutomaticLight
 		StopLightCycle();
 		IsPermanentlyOn = true;
 
+		_logger.Information("Turning {Light} on permanently", _entity.Entity.GetName());
+
 		// Always turn on permanent lights with default brightness because it is a manual decision.
-		_entity.Entity.TurnOn(brightness: DefaultBrightnessPct);
+		_entity.Entity.TurnOn(brightness: DefaultBrightnessPct * _entity.MaxBrightness);
 	}
 
 	private void ToggleWithCycle()
 	{
 		if (_entity.Entity.IsOff())
 		{
+			SetBrightness();
 			StartLightCycle();
 		}
 		else
@@ -136,16 +149,16 @@ public class AutomaticLight
 	private void StartLightCycle()
 	{
 		// ReSharper disable once TemplateIsNotCompileTimeConstantProblem
-		_logger.Information(_lightCycleObserver == null ? "Starting new light cycle" : "Restarting running light cycle");
+		_logger.Information(_lightCycleObserver == null ? "Starting new light cycle for {Light}" : "Restarting running light cycle for {Light}", _entity.Entity.GetName());
 
-		_entity.Entity.TurnOn(brightness: _brightnessPct);
+		_entity.Entity.TurnOn(brightness: _brightness);
 		_lightCycleObserver?.Dispose();
 		_lightCycleObserver = Observable.Return(new Unit())
 			.Delay(_entity.CycleTime)
 			.Do(
 				_ =>
 				{
-					_logger.Information("Light cycle ended");
+					_logger.Information("Light cycle ended for {Light}", _entity.Entity.GetName());
 					StopLightCycle();
 					_entity.Entity.TurnOff();
 				})
