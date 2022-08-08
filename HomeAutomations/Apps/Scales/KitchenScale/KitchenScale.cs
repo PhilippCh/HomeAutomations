@@ -35,11 +35,6 @@ public class KitchenScale : BaseAutomation<KitchenScale>
 		_nutritionInfoService = nutritionInfoService;
 	}
 
-	[UsedImplicitly]
-	public static IServiceCollection AddServices(IServiceCollection services, IConfiguration config) =>
-		services
-			.AddTransient<INutritionInfoService, FddbService>();
-
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		var entities = new Entities(Context);

@@ -7,6 +7,7 @@ using HomeAutomations.Apps.Vacuum;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
+using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +27,14 @@ public static class ServiceCollectionExtensions
 			.AddSingleton<HarmonyHubService>()
 			.AddScoped<NotificationService>()
 			.AddTransient<PingService>()
+
+			// Bluetooth
+			.Configure<BluetoothServiceConfig>(config.GetSection("Bluetooth"))
+			.AddSingleton<BluetoothService>()
+			.AddTransient<AtCommandService>()
+
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
+			.AddTransient(typeof(BaseServiceDependencyAggregate<,>))
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<>))
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>))
 			.AddAutomationDependencies(assembly, config);

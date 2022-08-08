@@ -8,6 +8,7 @@ using Simple.MPD.Networking;
 
 namespace HomeAutomations.Apps.SleepSoundscapes;
 
+[Focus]
 public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscapesConfig>
 {
 	public SleepSoundscapes(BaseAutomationDependencyAggregate<SleepSoundscapes, SleepSoundscapesConfig> aggregate)
