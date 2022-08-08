@@ -2,7 +2,9 @@ using System.IO.Ports;
 using System.Text;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Common.Services.Bluetooth.AtCommands;
 using HomeAutomations.Services;
+using Newtonsoft.Json.Linq;
 
 namespace HomeAutomations.Common.Services.Bluetooth;
 
@@ -21,6 +23,8 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 
 	public void Notify(BluetoothConnectionInfo connectionInfo, string characteristicId)
 	{
+		SendCommand("ATV1", string.Empty);			// Enable verbose mode (parseable JSON output).
+		SendCommand("CENTRAL");							// Set to central mode (can query slave devices).
 		SendCommand("GETCONN");
 		SendCommand($"GAPCONNECT={connectionInfo}");
 		SendCommand($"SETNOTI={characteristicId}");
@@ -37,9 +41,6 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 			serialPort.Open();
 
 			Logger.Information("Opened serial port {Port}", Config.Port);
-
-			SendCommand("ATV1");	// Enable verbose mode (parseable JSON output).
-			SendCommand("CENTRAL");	// Set to central mode (can query slave devices).
 		}
 		catch (Exception ex)
 		{
@@ -56,14 +57,15 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		Logger.Warning("Error received: {Message}", _serialPort?.ReadExisting());
 	}
 
-	private void SendCommand(string command)
+	private void SendCommand(string command, string prefix = "AT+")
 	{
 		var inputByte = new byte[] { 13 };
-		var bytes = Encoding.UTF8.GetBytes($"AT+{command}")
+		var fullCommand = $"{prefix}{command}";
+		var bytes = Encoding.UTF8.GetBytes(fullCommand)
 			.Concat(inputByte)
 			.ToArray();
 
-		_atCommandService.BeginCommand(command);
+		_atCommandService.BeginCommand(fullCommand);
 		_serialPort?.Write(bytes, 0, bytes.Length);
 	}
 
@@ -76,9 +78,11 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 			return;
 		}
 
+		Logger.Information(serialData);
+
 		var messages = serialData.Split("\r\n")
 			.Select(d => d.Trim('\r', '\n'))
-			.Select(JsonDocumentExtensions.TryParse);
+			.Select(JObjectExtensions.TryParse);
 		_atCommandService.AddMessages(messages);
 	}
 }
