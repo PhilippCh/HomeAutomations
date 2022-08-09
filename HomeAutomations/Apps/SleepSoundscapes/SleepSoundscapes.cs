@@ -18,6 +18,8 @@ public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscape
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
+		await RemoveExistingPlaylistsAsync();
+
 		foreach (var soundscape in Config.Soundscapes)
 		{
 			await CreatePlaylistAsync(soundscape);
@@ -64,16 +66,34 @@ public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscape
 	{
 		var client = await CreateMpdClientAsync();
 		await client.QueueClear();
-		await client.RemovePlaylist(soundscape.Id);
 
 		Logger.Information("Creating playlist {Id}", soundscape.Id);
 
-		foreach (var songInfo in await client.LsInfo(soundscape.Directory))
+		var songFiles = (await client.LsInfo(soundscape.Directory))
+			.Where(si => !string.IsNullOrWhiteSpace(si.File));
+
+		foreach (var songInfo in songFiles)
 		{
 			await client.QueueAdd(songInfo.File);
 		}
 
 		await client.SaveQueue(soundscape.Id);
+	}
+
+	private async Task RemoveExistingPlaylistsAsync()
+	{
+		var client = await CreateMpdClientAsync();
+		var playlists = Config.Soundscapes.Select(s => s.Id).ToList();
+		var removePlaylists = (await client.ListPlaylists())
+			.Where(pl => playlists.Contains(pl.PlayList))
+			.ToList();
+
+		Logger.Information("Removing {Count} old playlists", removePlaylists.Count);
+
+		foreach (var playlist in removePlaylists)
+		{
+			await client.RemovePlaylist(playlist.PlayList);
+		}
 	}
 
 	private async void Play(MPD client, string playlistId)
@@ -86,11 +106,13 @@ public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscape
 			await client.QueueAdd(song.File);
 		}
 
+		Logger.Information("Playing soundscape {Id}", playlistId);
 		await client.PlayAsync();
 	}
 
 	private async void Stop(MPD client)
 	{
+		Logger.Information("Stopping soundscape");
 		await client.StopAsync();
 		await client.QueueClear();
 	}
@@ -99,6 +121,7 @@ public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscape
 	{
 		var client = new MPD(new TcpConnection(Config.MpdServerHost));
 		await client.SetCrossfadeAsync(Config.CrossfadeSeconds);
+		await client.SetRepeatAsync(true);
 
 		return client;
 	}
