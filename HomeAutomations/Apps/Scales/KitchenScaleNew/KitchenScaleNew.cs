@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomations.Apps.Scales.KitchenScaleNew;
 
-[Focus]
 public class KitchenScaleNew : BaseAutomation<KitchenScaleNew, KitchenScaleNewConfig>
 {
 	private readonly BluetoothService _bluetoothService;
