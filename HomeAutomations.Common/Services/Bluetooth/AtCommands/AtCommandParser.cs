@@ -1,3 +1,4 @@
+using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
@@ -18,24 +19,24 @@ public class AtCommandParser
 	{
 		foreach (var schema in _schemata)
 		{
-			if (message?.IsValid(schema.Value, out IList<ValidationError> errors) ?? false)
+			if (message?.IsValid(schema.Value) ?? false)
 			{
 				return (IAtResult?) message.ToObject(schema.Key);
 			}
 		}
 
-		return null;
+		// Return a generic event object if all else fails.
+		return message?.ToObject<EventAtResult>();
 	}
 
 	private IReadOnlyDictionary<Type, JSchema> CreateSchemata()
 	{
 		var generator = new JSchemaGenerator();
-		var types = new[] // TODO: Do this with attributes and reflection?
-		{
-			typeof(CommandAtResult)
-		};
+		var types = GetAtResultTypes();
 
 		return types.Select(t => (Type: t, Schema: generator.Generate(t)))
 			.ToDictionary(kv => kv.Type, kv => kv.Schema);
 	}
+
+	private IEnumerable<Type> GetAtResultTypes() => Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetCustomAttribute<AtResultAttribute>() != null);
 }

@@ -1,10 +1,10 @@
 using System.IO.Ports;
+using System.Reactive.Linq;
 using System.Text;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services.Bluetooth.AtCommands;
 using HomeAutomations.Services;
-using Newtonsoft.Json.Linq;
 
 namespace HomeAutomations.Common.Services.Bluetooth;
 
@@ -25,9 +25,13 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 	{
 		SendCommand("ATV1", string.Empty);			// Enable verbose mode (parseable JSON output).
 		SendCommand("CENTRAL");							// Set to central mode (can query slave devices).
-		SendCommand("GETCONN");
-		SendCommand($"GAPCONNECT={connectionInfo}");
+		SendCommand($"GAPCONNECT={connectionInfo}").Subscribe(OnGetConnections);
 		SendCommand($"SETNOTI={characteristicId}");
+	}
+
+	private void OnGetConnections(ResponseAtResult response)
+	{
+
 	}
 
 	private SerialPort? InitializeSerialPort()
@@ -57,7 +61,7 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		Logger.Warning("Error received: {Message}", _serialPort?.ReadExisting());
 	}
 
-	private void SendCommand(string command, string prefix = "AT+")
+	private IObservable<ResponseAtResult> SendCommand(string command, string prefix = "AT+")
 	{
 		var inputByte = new byte[] { 13 };
 		var fullCommand = $"{prefix}{command}";
@@ -65,8 +69,10 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 			.Concat(inputByte)
 			.ToArray();
 
-		_atCommandService.BeginCommand(fullCommand);
+		var observable = _atCommandService.BeginCommand(fullCommand);
 		_serialPort?.Write(bytes, 0, bytes.Length);
+
+		return observable;
 	}
 
 	private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
