@@ -4,13 +4,13 @@ using HomeAutomations.Apps.Scales.KitchenScale;
 using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Models;
-using HomeAutomations.Services;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HomeAutomations.Apps.Scales.KitchenScaleNew;
 
+[Focus]
 public class KitchenScaleNew : BaseAutomation<KitchenScaleNew, KitchenScaleNewConfig>
 {
 	private readonly BluetoothService _bluetoothService;

@@ -1,9 +1,11 @@
 using System.IO.Ports;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services.Bluetooth.AtCommands;
+using HomeAutomations.Common.Services.Bluetooth.AtCommands.Commands;
 using HomeAutomations.Services;
 
 namespace HomeAutomations.Common.Services.Bluetooth;
@@ -23,10 +25,11 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 
 	public void Notify(BluetoothConnectionInfo connectionInfo, string characteristicId)
 	{
-		SendCommand("ATV1", string.Empty);			// Enable verbose mode (parseable JSON output).
-		SendCommand("CENTRAL");							// Set to central mode (can query slave devices).
-		SendCommand($"GAPCONNECT={connectionInfo}").Subscribe(OnGetConnections);
-		SendCommand($"SETNOTI={characteristicId}");
+		SendCommand(new AtvAtCommand(true));
+		SendCommand(new BluetoothRoleAtCommand(BluetoothRole.Central));
+		SendCommand(new GapConnectAtCommand(connectionInfo));
+
+		//SendCommand($"SETNOTI={characteristicId}");
 	}
 
 	private void OnGetConnections(ResponseAtResult response)
@@ -61,15 +64,15 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		Logger.Warning("Error received: {Message}", _serialPort?.ReadExisting());
 	}
 
-	private IObservable<ResponseAtResult> SendCommand(string command, string prefix = "AT+")
+	private IObservable<ResponseAtResult> SendCommand(IAtCommand command)
 	{
 		var inputByte = new byte[] { 13 };
-		var fullCommand = $"{prefix}{command}";
-		var bytes = Encoding.UTF8.GetBytes(fullCommand)
+		var atCommand = command.CommandString;
+		var bytes = Encoding.UTF8.GetBytes(command.CommandString)
 			.Concat(inputByte)
 			.ToArray();
 
-		var observable = _atCommandService.BeginCommand(fullCommand);
+		var observable = _atCommandService.BeginCommand(command);
 		_serialPort?.Write(bytes, 0, bytes.Length);
 
 		return observable;
@@ -87,8 +90,7 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		Logger.Information(serialData);
 
 		var messages = serialData.Split("\r\n")
-			.Select(d => d.Trim('\r', '\n'))
-			.Select(JObjectExtensions.TryParse);
+			.Select(d => d.Trim('\r', '\n'));
 		_atCommandService.AddMessages(messages);
 	}
 }

@@ -8,7 +8,6 @@ using Simple.MPD.Networking;
 
 namespace HomeAutomations.Apps.SleepSoundscapes;
 
-[Focus]
 public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscapesConfig>
 {
 	public SleepSoundscapes(BaseAutomationDependencyAggregate<SleepSoundscapes, SleepSoundscapesConfig> aggregate)
@@ -92,7 +91,7 @@ public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscape
 
 		foreach (var playlist in removePlaylists)
 		{
-			await client.RemovePlaylist(playlist);
+			await client.RemovePlaylist(playlist.PlayList);
 		}
 	}
 
