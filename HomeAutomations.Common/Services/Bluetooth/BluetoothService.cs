@@ -1,16 +1,16 @@
 using System.IO.Ports;
-using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using HomeAutomations.Common.Extensions;
-using HomeAutomations.Common.Models.Config;
-using HomeAutomations.Common.Services.Bluetooth.AtCommands;
-using HomeAutomations.Common.Services.Bluetooth.AtCommands.Commands;
-using HomeAutomations.Services;
+using HomeAutomations.Common.Services.Bluetooth.Commands;
+using HomeAutomations.Common.Services.Bluetooth.Commands.Commands;
+using HomeAutomations.Common.Services.Bluetooth.Commands.Messages.Events;
+using HomeAutomations.Common.Services.Bluetooth.Commands.Messages.Results;
+using Newtonsoft.Json;
 
 namespace HomeAutomations.Common.Services.Bluetooth;
 
-public class BluetoothService: BaseService<BluetoothService, BluetoothServiceConfig>
+public class BluetoothService : BaseService<BluetoothService, BluetoothServiceConfig>
 {
 	private SerialPort? _serialPort;
 
@@ -23,18 +23,13 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		_serialPort = InitializeSerialPort();
 	}
 
-	public void Notify(BluetoothConnectionInfo connectionInfo, string characteristicId)
+	public IObservable<ValueNotificationReceivedEvent> Notify(BluetoothConnectionInfo connectionInfo, string characteristicId)
 	{
-		SendCommand(new AtvAtCommand(true));
-		SendCommand(new BluetoothRoleAtCommand(BluetoothRole.Central));
-		SendCommand(new GapConnectAtCommand(connectionInfo));
-
-		//SendCommand($"SETNOTI={characteristicId}");
-	}
-
-	private void OnGetConnections(ResponseAtResult response)
-	{
-
+		return SendCommand(new AtvAtCommand(true))
+			.SwitchMap(_ => SendCommand(new BluetoothRoleAtCommand(BluetoothRole.Central)))
+			.SwitchMap(_ => SendCommand(new GapConnectAtCommand(connectionInfo)))
+			.SwitchMap(_ => SendCommand(new SetNotificationCommand(characteristicId)))
+			.Select(r => (ValueNotificationReceivedEvent) r);
 	}
 
 	private SerialPort? InitializeSerialPort()
@@ -64,10 +59,9 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		Logger.Warning("Error received: {Message}", _serialPort?.ReadExisting());
 	}
 
-	private IObservable<ResponseAtResult> SendCommand(IAtCommand command)
+	private IObservable<IAtResult> SendCommand(IAtCommand command)
 	{
 		var inputByte = new byte[] { 13 };
-		var atCommand = command.CommandString;
 		var bytes = Encoding.UTF8.GetBytes(command.CommandString)
 			.Concat(inputByte)
 			.ToArray();
@@ -86,8 +80,6 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		{
 			return;
 		}
-
-		Logger.Information(serialData);
 
 		var messages = serialData.Split("\r\n")
 			.Select(d => d.Trim('\r', '\n'));

@@ -2,14 +2,13 @@
 using Microsoft.Extensions.Options;
 using Serilog;
 
-namespace HomeAutomations.Services;
+namespace HomeAutomations.Common.Services;
 
 public class BaseServiceDependencyAggregate<T, TConfig> : BaseServiceDependencyAggregate<T> where T : BaseService<T> where TConfig : Config
 {
 	public IOptionsMonitor<TConfig> Config { get; }
 
-	public BaseServiceDependencyAggregate(IOptionsMonitor<TConfig> config, ILogger loggerFactory)
-		: base(loggerFactory)
+	public BaseServiceDependencyAggregate(IOptionsMonitor<TConfig> config)
 	{
 		Config = config;
 	}
@@ -19,9 +18,10 @@ public class BaseServiceDependencyAggregate<T> where T : BaseService<T>
 {
 	public ILogger Logger { get; }
 
-	public BaseServiceDependencyAggregate(ILogger loggerFactory)
+	public BaseServiceDependencyAggregate()
 	{
-		Logger = loggerFactory.ForContext<T>();
+		// ReSharper disable once ContextualLoggerProblem
+		Logger = Log.Logger.ForContext<T>();
 	}
 }
 
@@ -32,7 +32,7 @@ public abstract class BaseService<T, TConfig> : BaseService<T> where T: BaseServ
 	private readonly BaseServiceDependencyAggregate<T, TConfig> _aggregate;
 
 	public BaseService(BaseServiceDependencyAggregate<T, TConfig> aggregate)
-		: base(new BaseServiceDependencyAggregate<T>(aggregate.Logger))
+		: base(new BaseServiceDependencyAggregate<T>())
 	{
 		_aggregate = aggregate;
 	}

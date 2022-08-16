@@ -5,6 +5,7 @@ using HomeAutomations.Client.Services.Media.NowPlaying;
 using HomeAutomations.Client.Services.Media.VideoLan;
 using HomeAutomations.Client.Services.TrayIcon;
 using HomeAutomations.Client.Util;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
 using Microsoft.AspNetCore.Builder;
@@ -40,7 +41,6 @@ public class Startup
             .AddOpenApiDocument(s => s.PostProcess = d => d.Info.Title = DocumentName)
 
             // Config
-            .Configure<MqttConfig>(_config.GetSection("MQTT"))
             .Configure<MediaStatusConfig>(_config.GetSection("MediaStatus"))
             .Configure<VlcConfig>(_config.GetSection("VLC"))
 
@@ -51,8 +51,8 @@ public class Startup
             .AddSingleton<DisplayService>()
             .AddSingleton<NowPlayingMediaSessionManager>()
             .AddSingleton<VlcRemoteApiService>()
-            .AddSingleton<MqttService>()
             .AddSingleton(trayIconService)
+            .AddMqttService(_config)
 
             // Background services
             .AddHostedService<MediaStatusBackgroundService>()
