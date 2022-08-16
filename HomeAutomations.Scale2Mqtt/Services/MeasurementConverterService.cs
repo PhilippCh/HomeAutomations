@@ -1,60 +1,33 @@
 using System.Globalization;
-using HomeAutomations.Common.Extensions;
+using HomeAutomations.Scale2Mqtt.Config;
+using HomeAutomations.Scale2Mqtt.Services.Converters;
+using Microsoft.Extensions.Options;
 
 namespace HomeAutomations.Scale2Mqtt.Services;
 
-// EC816-BT Byte Format
-// --------------------
-// 0xAC050000E700CEB5
-//         ||||
-//         Value (0-5000)
-//             ||
-//             Flags
-//
-// Flags Hex (DEC)
-// -----
-// 00 (00) = g
-// 01 (01) = Negative (gets added to other flags)
-// 34 (52) = oz
-// 24 (34) = lb oz
-// 10 (16) = ml
-// 92 (146) fl oz
-
 public class MeasurementConverterService
 {
-	public MeasurementValue? FromHex(string? hex)
+	private readonly IReadOnlyDictionary<string, IMeasurementConverter> _converters;
+
+	public MeasurementConverterService(IOptionsMonitor<MeasurementConverterServiceConfig> config)
 	{
-		if (hex == null)
+		_converters = CreateConverters(config.CurrentValue);
+	}
+
+	public MeasurementValue? FromHex(string? address, string? hex)
+	{
+		if (address == null || hex == null || !_converters.TryGetValue(address, out var converter))
 		{
 			return null;
 		}
 
-		try
-		{
-			var weight = int.Parse(hex[8..12], NumberStyles.HexNumber);
-			var rawUnit = int.Parse(hex[12..14], NumberStyles.HexNumber);
-			var isNegative = false;
+		return converter.Convert(hex);
+	}
 
-			if (!Enum.IsDefined(typeof(MeasurementUnit), rawUnit))
-			{
-				isNegative = true;
-				rawUnit--;
-			}
-
-			if (!Enum.IsDefined(typeof(MeasurementUnit), rawUnit))
-			{
-				// If it's still not defined, we have some invalid reported hex value.
-				return null;
-			}
-
-			var unit = (MeasurementUnit) rawUnit;
-			weight = isNegative ? -weight : weight;
-
-			return new MeasurementValue(weight, unit);
-		}
-		catch (ArgumentOutOfRangeException)
-		{
-			return null;
-		}
+	private static IReadOnlyDictionary<string, IMeasurementConverter> CreateConverters(MeasurementConverterServiceConfig config)
+	{
+		return config.Converters.Select(c => (c.Address, ConverterType: Type.GetType(c.ConverterType)))
+			.Where(c => c.ConverterType != null)
+			.ToDictionary(c => c.Address, c => (IMeasurementConverter) Activator.CreateInstance(c.ConverterType!)!);
 	}
 }

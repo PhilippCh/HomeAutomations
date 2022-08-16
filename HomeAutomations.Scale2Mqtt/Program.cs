@@ -21,7 +21,8 @@ var hostBuilder = Host.CreateDefaultBuilder(args)
 		{
 			services
 				.Configure<ScaleServiceConfig>(hostContext.Configuration.GetSection("Scale"))
-				.Configure<BluetoothServiceConfig>(hostContext.Configuration.GetSection("Bluetooth"));
+				.Configure<BluetoothServiceConfig>(hostContext.Configuration.GetSection("Bluetooth"))
+				.Configure<MeasurementConverterServiceConfig>(hostContext.Configuration.GetSection("MeasurementConverter"));
 
 			services
 				.AddSingleton(Log.Logger)

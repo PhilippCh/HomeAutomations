@@ -55,7 +55,7 @@ public class ScaleService : BaseService<ScaleService, ScaleServiceConfig>
 			.Delay(Config.DisconnectTimeout)
 			.Subscribe(_ => _disconnectObservable.OnNext(Unit.Default));
 
-		var measurement = _measurementConverterService.FromHex(hex);
+		var measurement = _measurementConverterService.FromHex(Config.ConnectionInfo.Id, hex);
 
 		if (measurement == null)
 		{
