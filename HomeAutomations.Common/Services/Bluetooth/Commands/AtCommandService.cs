@@ -14,9 +14,15 @@ public class AtCommandService : BaseService<AtCommandService>
 	{
 	}
 
+	public void Reset()
+	{
+		_atCommands.Clear();
+		_messages.Clear();
+	}
+
 	public IObservable<IAtResult> BeginCommand(IAtCommand command)
 	{
-		Logger.Information("Beginning command {Command}", command);
+		Logger.Information("Beginning command {Command}", command.GetType().Name);
 		_atCommands.Add(command);
 
 		return command.Observable;

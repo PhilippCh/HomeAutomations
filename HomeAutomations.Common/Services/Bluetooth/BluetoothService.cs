@@ -25,6 +25,8 @@ public class BluetoothService : BaseService<BluetoothService, BluetoothServiceCo
 
 	public IObservable<ValueNotificationReceivedEvent> Notify(BluetoothConnectionInfo connectionInfo, string characteristicId)
 	{
+		_atCommandService.Reset();
+
 		return SendCommand(new AtvAtCommand(true))
 			.SwitchMap(_ => SendCommand(new BluetoothRoleAtCommand(BluetoothRole.Central)))
 			.SwitchMap(_ => SendCommand(new GapConnectAtCommand(connectionInfo)))

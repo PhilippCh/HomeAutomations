@@ -1,3 +1,6 @@
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Scale2Mqtt.Config;
@@ -7,6 +10,9 @@ namespace HomeAutomations.Scale2Mqtt.Services;
 
 public class ScaleService : BaseService<ScaleService, ScaleServiceConfig>
 {
+	private Subject<Unit> _disconnectObservable = new();
+	private IDisposable? _disconnectTriggerObserver;
+
 	private readonly BluetoothService _bluetoothService;
 	private readonly MeasurementConverterService _measurementConverterService;
 	private readonly MqttService _mqttService;
@@ -26,9 +32,14 @@ public class ScaleService : BaseService<ScaleService, ScaleServiceConfig>
 	public void Start()
 	{
 		SendDisconnectedMessage();
+		StartNotifyLoop();
+	}
 
+	private void StartNotifyLoop()
+	{
 		_bluetoothService.Notify(Config.ConnectionInfo, Config.MeasurementCharacteristicId)
-			.Subscribe(e => OnMeasurementReceived(e.Data?.Hex));
+			.TakeUntil(_disconnectObservable)
+			.Subscribe(e => OnMeasurementReceived(e.Data?.Hex), onCompleted: Start);
 	}
 
 	private async void SendDisconnectedMessage()
@@ -38,6 +49,12 @@ public class ScaleService : BaseService<ScaleService, ScaleServiceConfig>
 
 	private async void OnMeasurementReceived(string? hex)
 	{
+		_disconnectTriggerObserver?.Dispose();
+		_disconnectTriggerObserver = new[] { new Unit() }
+			.ToObservable()
+			.Delay(Config.DisconnectTimeout)
+			.Subscribe(_ => _disconnectObservable.OnNext(Unit.Default));
+
 		var measurement = _measurementConverterService.FromHex(hex);
 
 		if (measurement == null)
