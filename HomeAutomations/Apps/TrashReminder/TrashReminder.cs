@@ -17,6 +17,7 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.TrashReminder;
 
+[Focus]
 public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
 	private Calendar? _personalCalendar;
@@ -34,6 +35,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 	{
 		_personalCalendar = await GetPersonalCalendarAsync();
 		_calendar = await GetTrashCalendarAsync();
+
 		StartUpdateLoop();
 	}
 
@@ -47,7 +49,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 	private void StartUpdateLoop()
 	{
 		ObservableExtensions.Interval(TimeSpan.FromMinutes(15), true)
-			.Subscribe(_ => UpdateNextDates(DateTime.Today));
+			.Subscribe(_ => UpdateNextDates(DateTime.Now));
 		CronjobExtensions.ScheduleJob(Config.ReminderCrontab, SendPickupReminder);
 	}
 
@@ -104,23 +106,26 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 		var endOfWeek = start.AddDays(7);
 		var eventsThisWeek = _calendar.GetOccurrences(start, endOfWeek);
-		var takeOutEventsThisWeek = _personalCalendar.GetOccurrences(start, endOfWeek)
+
+		var takeOutEventsLookAhead = start.AddDays(Config.TakeOutEvent.LookAheadDays);
+		var takeOutEventsThisWeek = _personalCalendar.GetOccurrences(start, takeOutEventsLookAhead)
 			.Select(e => e.Source)
 			.Cast<CalendarEvent>()
-			.Where(e => e.Summary == Config.TakeOutEventName)
+			.Where(e => e.Summary == Config.TakeOutEvent.Name)
 			.ToList();
 
-		Config.TakeOutEntity.CallService(takeOutEventsThisWeek.Any() ? "turn_on" : "turn_off");
+		Config.TakeOutEvent.Entity.CallService(takeOutEventsThisWeek.Any() ? "turn_on" : "turn_off");
 
 		foreach (var sensor in Config.Entities)
 		{
-			Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
+			Logger.Information("{Key}: {Contains}", sensor.Key, ContainsEvent(sensor.Key, eventsThisWeek));
+			//Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
 		}
 	}
 
 	private void SendPickupReminder()
 	{
-		if (Config.TakeOutEntity.IsOff())
+		if (Config.TakeOutEvent.Entity.IsOff())
 		{
 			return; // No need to send reminder, we're not responsible this week.
 		}
