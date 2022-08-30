@@ -39,6 +39,8 @@ namespace HomeAutomations.Models.Generated
 
 		MediaPlayerEntities MediaPlayer { get; }
 
+		PersistentNotificationEntities PersistentNotification { get; }
+
 		PersonEntities Person { get; }
 
 		RemoteEntities Remote { get; }
@@ -83,6 +85,7 @@ namespace HomeAutomations.Models.Generated
 		public InputTextEntities InputText => new(_haContext);
 		public LightEntities Light => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
+		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
 		public RemoteEntities Remote => new(_haContext);
 		public SensorEntities Sensor => new(_haContext);
@@ -123,8 +126,6 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity BalkonturRechts => new(_haContext, "binary_sensor.balkontur_rechts");
 		///<summary>Balkontür rechts Battery</summary>
 		public BinarySensorEntity BalkonturRechtsBattery => new(_haContext, "binary_sensor.balkontur_rechts_battery");
-		///<summary>bedroom/motion_detector_occupancy</summary>
-		public BinarySensorEntity BedroomMotionDetectorOccupancy => new(_haContext, "binary_sensor.bedroom_motion_detector_occupancy");
 		///<summary>DesktopFabienne</summary>
 		public BinarySensorEntity Desktopfabienne => new(_haContext, "binary_sensor.desktopfabienne");
 		///<summary>DesktopPhilipp</summary>
@@ -158,6 +159,12 @@ namespace HomeAutomations.Models.Generated
 		///<summary>LaptopPhilipp</summary>
 		public BinarySensorEntity Laptopphilipp => new(_haContext, "binary_sensor.laptopphilipp");
 		///<summary>PupsStation Below Min Remaining Life</summary>
+		public BinarySensorEntity PupsstationBelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life");
+		///<summary>PupsStation Below Min Remaining Life</summary>
+		public BinarySensorEntity PupsstationBelowMinRemainingLife2 => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life_2");
+		///<summary>PupsStation Below Min Remaining Life</summary>
+		public BinarySensorEntity PupsstationBelowMinRemainingLife3 => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life_3");
+		///<summary>PupsStation Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationDrive1BelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_drive_1_below_min_remaining_life");
 		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationDrive1ExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_drive_1_exceeded_max_bad_sectors");
@@ -165,8 +172,16 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity PupsstationDrive2BelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_drive_2_below_min_remaining_life");
 		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationDrive2ExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_drive_2_exceeded_max_bad_sectors");
+		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
+		public BinarySensorEntity PupsstationExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors");
+		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
+		public BinarySensorEntity PupsstationExceededMaxBadSectors2 => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors_2");
+		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
+		public BinarySensorEntity PupsstationExceededMaxBadSectors3 => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors_3");
 		///<summary>PupsStation Security Status</summary>
 		public BinarySensorEntity PupsstationSecurityStatus => new(_haContext, "binary_sensor.pupsstation_security_status");
+		///<summary>PupsStation Security Status</summary>
+		public BinarySensorEntity PupsstationSecurityStatus2 => new(_haContext, "binary_sensor.pupsstation_security_status_2");
 		///<summary>PupsStation Update Available</summary>
 		public BinarySensorEntity PupsstationUpdateAvailable => new(_haContext, "binary_sensor.pupsstation_update_available");
 		///<summary>Thermostat Arbeitszimmer Battery</summary>
@@ -187,6 +202,14 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity WallpanelHallwayMotionDetected => new(_haContext, "binary_sensor.wallpanel_hallway_motion_detected");
 		///<summary>Wallpanel Hallway USB Plugged</summary>
 		public BinarySensorEntity WallpanelHallwayUsbPlugged => new(_haContext, "binary_sensor.wallpanel_hallway_usb_plugged");
+		///<summary>yi_hack_a2_9faf14_baby_crying</summary>
+		public BinarySensorEntity YiHackA29faf14BabyCrying => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_baby_crying");
+		///<summary>yi_hack_a2_9faf14_motion_detection</summary>
+		public BinarySensorEntity YiHackA29faf14MotionDetection => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_motion_detection");
+		///<summary>yi_hack_a2_9faf14_sound_detection</summary>
+		public BinarySensorEntity YiHackA29faf14SoundDetection => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_sound_detection");
+		///<summary>yi_hack_a2_9faf14_status</summary>
+		public BinarySensorEntity YiHackA29faf14Status => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_status");
 	}
 
 	public partial class ButtonEntities
@@ -197,10 +220,16 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>Kamera Wohnzimmer Reboot</summary>
+		public ButtonEntity KameraWohnzimmerReboot => new(_haContext, "button.kamera_wohnzimmer_reboot");
 		///<summary>PupsStation Reboot</summary>
 		public ButtonEntity PupsstationReboot => new(_haContext, "button.pupsstation_reboot");
+		///<summary>PupsStation Reboot</summary>
+		public ButtonEntity PupsstationReboot2 => new(_haContext, "button.pupsstation_reboot_2");
 		///<summary>PupsStation Shutdown</summary>
 		public ButtonEntity PupsstationShutdown => new(_haContext, "button.pupsstation_shutdown");
+		///<summary>PupsStation Shutdown</summary>
+		public ButtonEntity PupsstationShutdown2 => new(_haContext, "button.pupsstation_shutdown_2");
 	}
 
 	public partial class CalendarEntities
@@ -241,10 +270,14 @@ namespace HomeAutomations.Models.Generated
 		public CalendarEntity RundreiseNeuseeland => new(_haContext, "calendar.rundreise_neuseeland");
 		///<summary>Secret Santa</summary>
 		public CalendarEntity SecretSanta => new(_haContext, "calendar.secret_santa");
+		///<summary>Skyrim Mods</summary>
+		public CalendarEntity SkyrimMods => new(_haContext, "calendar.skyrim_mods");
 		///<summary> The Millionaire’s Bucket List 💸</summary>
 		public CalendarEntity TheMillionairesBucketList => new(_haContext, "calendar.the_millionaires_bucket_list");
 		///<summary>The Shadows On Your Soul</summary>
 		public CalendarEntity TheShadowsOnYourSoul => new(_haContext, "calendar.the_shadows_on_your_soul");
+		///<summary> Tierarzt 🐈</summary>
+		public CalendarEntity Tierarzt => new(_haContext, "calendar.tierarzt");
 		///<summary>Unser Haus 🏠</summary>
 		public CalendarEntity UnserHaus => new(_haContext, "calendar.unser_haus");
 		///<summary> Urlaub Ibiza 🇪🇸</summary>
@@ -271,8 +304,14 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Fantenrüssel_Map</summary>
 		public CameraEntity FantenrusselMap => new(_haContext, "camera.fantenrussel_map");
+		///<summary>Kamera Wohnzimmer - Profile_0</summary>
+		public CameraEntity KameraWohnzimmerProfile0 => new(_haContext, "camera.kamera_wohnzimmer_profile_0");
 		///<summary>Wohnzimmer Camera</summary>
 		public CameraEntity WohnzimmerCamera => new(_haContext, "camera.wohnzimmer_camera");
+		///<summary>yi_hack_a2_9faf14_cam</summary>
+		public CameraEntity YiHackA29faf14Cam => new(_haContext, "camera.yi_hack_a2_9faf14_cam");
+		///<summary>yi_hack_a2_9faf14_motion_detection_cam</summary>
+		public CameraEntity YiHackA29faf14MotionDetectionCam => new(_haContext, "camera.yi_hack_a2_9faf14_motion_detection_cam");
 	}
 
 	public partial class ClimateEntities
@@ -351,8 +390,14 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity ComputerWolDesktopFabienne => new(_haContext, "input_boolean.computer_wol_desktop_fabienne");
 		///<summary>Desktop Philipp</summary>
 		public InputBooleanEntity ComputerWolDesktopPhilipp => new(_haContext, "input_boolean.computer_wol_desktop_philipp");
-		///<summary>dev_netdaemon_home_automations_apps_trash_reminder_trash_reminder</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsTrashReminderTrashReminder => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_trash_reminder_trash_reminder");
+		///<summary>dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter");
+		///<summary>dev_netdaemon_home_automations_apps_counters_water_counter_water_counter</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_water_counter_water_counter");
+		///<summary>dev_netdaemon_home_automations_apps_motion_detector_motion_detector</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsMotionDetectorMotionDetector => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_motion_detector_motion_detector");
+		///<summary>Enable motion detector</summary>
+		public InputBooleanEntity EnableMotionDetector => new(_haContext, "input_boolean.enable_motion_detector");
 		///<summary>Meditation active?</summary>
 		public InputBooleanEntity MeditationActive => new(_haContext, "input_boolean.meditation_active");
 		///<summary>Shut down harmony activity after moonlight stream ends?</summary>
@@ -375,8 +420,6 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsKiteReminderKiteReminder => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kite_reminder_kite_reminder");
 		///<summary>netdaemon_home_automations_apps_lights_automatic_lights_automatic_lights</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsLightsAutomaticLightsAutomaticLights => new(_haContext, "input_boolean.netdaemon_home_automations_apps_lights_automatic_lights_automatic_lights");
-		///<summary>netdaemon_home_automations_apps_lights_kitchen_light_kitchen_light</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsLightsKitchenLightKitchenLight => new(_haContext, "input_boolean.netdaemon_home_automations_apps_lights_kitchen_light_kitchen_light");
 		///<summary>netdaemon_home_automations_apps_lights_scheduled_lights_scheduled_lights</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsLightsScheduledLightsScheduledLights => new(_haContext, "input_boolean.netdaemon_home_automations_apps_lights_scheduled_lights_scheduled_lights");
 		///<summary>netdaemon_home_automations_apps_moonlight_remote_moonlight_remote</summary>
@@ -387,6 +430,8 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsRazorBladeUsageRazorBladeUsage => new(_haContext, "input_boolean.netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage");
 		///<summary>netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsScalesKitchenScaleKitchenScale => new(_haContext, "input_boolean.netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale");
+		///<summary>netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsSleepSoundscapesSleepSoundscapes => new(_haContext, "input_boolean.netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes");
 		///<summary>netdaemon_home_automations_apps_training_schedule_training_schedule</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsTrainingScheduleTrainingSchedule => new(_haContext, "input_boolean.netdaemon_home_automations_apps_training_schedule_training_schedule");
 		///<summary>netdaemon_home_automations_apps_trash_reminder_trash_reminder</summary>
@@ -487,21 +532,20 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>bedroom/bedside_light_fabienne</summary>
 		public LightEntity BedroomBedsideLightFabienne => new(_haContext, "light.bedroom_bedside_light_fabienne");
-		///<summary>bedroom/bedside_light_philipp</summary>
-		public LightEntity BedroomBedsideLightPhilipp => new(_haContext, "light.bedroom_bedside_light_philipp");
 		public LightEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "light.browser_mod_18a35fcc_9cc51676");
+		public LightEntity BrowserMod367cd1ac14d9f17d => new(_haContext, "light.browser_mod_367cd1ac_14d9f17d");
 		public LightEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "light.browser_mod_4dfe8c51_c6acddb1");
 		public LightEntity BrowserMod50e35bf5B410ba6f => new(_haContext, "light.browser_mod_50e35bf5_b410ba6f");
 		public LightEntity BrowserMod5415f277B69b1789 => new(_haContext, "light.browser_mod_5415f277_b69b1789");
 		public LightEntity BrowserMod7605937aF7c5c1de => new(_haContext, "light.browser_mod_7605937a_f7c5c1de");
 		public LightEntity BrowserMod83461556F7d0adba => new(_haContext, "light.browser_mod_83461556_f7d0adba");
+		public LightEntity BrowserMod85c1d623De31f646 => new(_haContext, "light.browser_mod_85c1d623_de31f646");
 		public LightEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "light.browser_mod_8ff90475_f73ebe95");
+		public LightEntity BrowserModB258752a08baa428 => new(_haContext, "light.browser_mod_b258752a_08baa428");
 		public LightEntity BrowserModCe5a5526823fbc7c => new(_haContext, "light.browser_mod_ce5a5526_823fbc7c");
 		public LightEntity BrowserModE57688b3B2627e9a => new(_haContext, "light.browser_mod_e57688b3_b2627e9a");
 		public LightEntity BrowserModF37266029d6ed113 => new(_haContext, "light.browser_mod_f3726602_9d6ed113");
 		public LightEntity BrowserModFb34009b72400981 => new(_haContext, "light.browser_mod_fb34009b_72400981");
-		///<summary>Küchendecke</summary>
-		public LightEntity KitchenCeilingLight => new(_haContext, "light.kitchen_ceiling_light");
 		///<summary>kitchen/ceiling_light_zigbee</summary>
 		public LightEntity KitchenCeilingLightZigbee => new(_haContext, "light.kitchen_ceiling_light_zigbee");
 		///<summary>Neon-Uhr</summary>
@@ -529,12 +573,15 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		public MediaPlayerEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "media_player.browser_mod_18a35fcc_9cc51676");
+		public MediaPlayerEntity BrowserMod367cd1ac14d9f17d => new(_haContext, "media_player.browser_mod_367cd1ac_14d9f17d");
 		public MediaPlayerEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "media_player.browser_mod_4dfe8c51_c6acddb1");
 		public MediaPlayerEntity BrowserMod50e35bf5B410ba6f => new(_haContext, "media_player.browser_mod_50e35bf5_b410ba6f");
 		public MediaPlayerEntity BrowserMod5415f277B69b1789 => new(_haContext, "media_player.browser_mod_5415f277_b69b1789");
 		public MediaPlayerEntity BrowserMod7605937aF7c5c1de => new(_haContext, "media_player.browser_mod_7605937a_f7c5c1de");
 		public MediaPlayerEntity BrowserMod83461556F7d0adba => new(_haContext, "media_player.browser_mod_83461556_f7d0adba");
+		public MediaPlayerEntity BrowserMod85c1d623De31f646 => new(_haContext, "media_player.browser_mod_85c1d623_de31f646");
 		public MediaPlayerEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "media_player.browser_mod_8ff90475_f73ebe95");
+		public MediaPlayerEntity BrowserModB258752a08baa428 => new(_haContext, "media_player.browser_mod_b258752a_08baa428");
 		public MediaPlayerEntity BrowserModCe5a5526823fbc7c => new(_haContext, "media_player.browser_mod_ce5a5526_823fbc7c");
 		public MediaPlayerEntity BrowserModE57688b3B2627e9a => new(_haContext, "media_player.browser_mod_e57688b3_b2627e9a");
 		public MediaPlayerEntity BrowserModF37266029d6ed113 => new(_haContext, "media_player.browser_mod_f3726602_9d6ed113");
@@ -545,6 +592,20 @@ namespace HomeAutomations.Models.Generated
 		public MediaPlayerEntity Nesthub4ae6 => new(_haContext, "media_player.nesthub4ae6");
 		///<summary>Spotify Philipp Christoph</summary>
 		public MediaPlayerEntity SpotifyPhilippChristoph => new(_haContext, "media_player.spotify_philipp_christoph");
+		///<summary>yi_hack_a2_9faf14_media_player</summary>
+		public MediaPlayerEntity YiHackA29faf14MediaPlayer => new(_haContext, "media_player.yi_hack_a2_9faf14_media_player");
+	}
+
+	public partial class PersistentNotificationEntities
+	{
+		private readonly IHaContext _haContext;
+		public PersistentNotificationEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Login attempt failed</summary>
+		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
 	}
 
 	public partial class PersonEntities
@@ -583,10 +644,6 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>AMC Entertainment Holdings Inc</summary>
 		public NumericSensorEntity AmcEntertainmentHoldingsInc => new(_haContext, "sensor.amc_entertainment_holdings_inc");
-		///<summary>bathroom/razor_blade_usage_battery</summary>
-		public NumericSensorEntity BathroomRazorBladeUsageBattery => new(_haContext, "sensor.bathroom_razor_blade_usage_battery");
-		///<summary>bathroom/razor_blade_usage_device_temperature</summary>
-		public NumericSensorEntity BathroomRazorBladeUsageDeviceTemperature => new(_haContext, "sensor.bathroom_razor_blade_usage_device_temperature");
 		///<summary>bedroom/bedside_light_switch_fabienne_battery</summary>
 		public NumericSensorEntity BedroomBedsideLightSwitchFabienneBattery => new(_haContext, "sensor.bedroom_bedside_light_switch_fabienne_battery");
 		///<summary>bedroom/bedside_light_switch_fabienne_device_temperature</summary>
@@ -595,12 +652,6 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity BedroomBedsideLightSwitchPhilippBattery => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_battery");
 		///<summary>bedroom/bedside_light_switch_philipp_device_temperature</summary>
 		public NumericSensorEntity BedroomBedsideLightSwitchPhilippDeviceTemperature => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_device_temperature");
-		///<summary>bedroom/motion_detector_battery</summary>
-		public NumericSensorEntity BedroomMotionDetectorBattery => new(_haContext, "sensor.bedroom_motion_detector_battery");
-		///<summary>bedroom/motion_detector_device_temperature</summary>
-		public NumericSensorEntity BedroomMotionDetectorDeviceTemperature => new(_haContext, "sensor.bedroom_motion_detector_device_temperature");
-		///<summary>bedroom/motion_detector_illuminance_lux</summary>
-		public NumericSensorEntity BedroomMotionDetectorIlluminanceLux => new(_haContext, "sensor.bedroom_motion_detector_illuminance_lux");
 		///<summary>bedroom/motion_detector_temperature</summary>
 		public NumericSensorEntity BedroomMotionDetectorTemperature => new(_haContext, "sensor.bedroom_motion_detector_temperature");
 		///<summary>BlackBerry Ltd</summary>
@@ -715,6 +766,18 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_used");
 		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
+		///<summary>Glances /var/lib/kubelet/pods/192c4d61-c5ff-4d08-9caf-2e2c829aacaf/volume-subpaths/config/mariadb/1 free</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods192c4d61C5ff4d089caf2e2c829aacafVolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_192c4d61_c5ff_4d08_9caf_2e2c829aacaf_volume_subpaths_config_mariadb_1_free");
+		///<summary>Glances /var/lib/kubelet/pods/192c4d61-c5ff-4d08-9caf-2e2c829aacaf/volume-subpaths/config/mariadb/1 used</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods192c4d61C5ff4d089caf2e2c829aacafVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_192c4d61_c5ff_4d08_9caf_2e2c829aacaf_volume_subpaths_config_mariadb_1_used");
+		///<summary>Glances /var/lib/kubelet/pods/192c4d61-c5ff-4d08-9caf-2e2c829aacaf/volume-subpaths/config/mariadb/1 used percent</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods192c4d61C5ff4d089caf2e2c829aacafVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_192c4d61_c5ff_4d08_9caf_2e2c829aacaf_volume_subpaths_config_mariadb_1_used_percent");
+		///<summary>Glances /var/lib/kubelet/pods/2f4b7bfe-9e0d-4b06-ac09-c0af1a89c518/volume-subpaths/mosquitto-config/mosquitto/2 free</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods2f4b7bfe9e0d4b06Ac09C0af1a89c518VolumeSubpathsMosquittoConfigMosquitto2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2f4b7bfe_9e0d_4b06_ac09_c0af1a89c518_volume_subpaths_mosquitto_config_mosquitto_2_free");
+		///<summary>Glances /var/lib/kubelet/pods/2f4b7bfe-9e0d-4b06-ac09-c0af1a89c518/volume-subpaths/mosquitto-config/mosquitto/2 used</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods2f4b7bfe9e0d4b06Ac09C0af1a89c518VolumeSubpathsMosquittoConfigMosquitto2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2f4b7bfe_9e0d_4b06_ac09_c0af1a89c518_volume_subpaths_mosquitto_config_mosquitto_2_used");
+		///<summary>Glances /var/lib/kubelet/pods/2f4b7bfe-9e0d-4b06-ac09-c0af1a89c518/volume-subpaths/mosquitto-config/mosquitto/2 used percent</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPods2f4b7bfe9e0d4b06Ac09C0af1a89c518VolumeSubpathsMosquittoConfigMosquitto2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2f4b7bfe_9e0d_4b06_ac09_c0af1a89c518_volume_subpaths_mosquitto_config_mosquitto_2_used_percent");
 		///<summary>Glances /var/lib/kubelet/pods/500343b7-5b4c-4ce1-bc59-6a65494d9c28/volume-subpaths/config/mariadb/1 free</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods500343b75b4c4ce1Bc596a65494d9c28VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_500343b7_5b4c_4ce1_bc59_6a65494d9c28_volume_subpaths_config_mariadb_1_free");
 		///<summary>Glances /var/lib/kubelet/pods/500343b7-5b4c-4ce1-bc59-6a65494d9c28/volume-subpaths/config/mariadb/1 used</summary>
@@ -739,6 +802,12 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity GlancesVarLibKubeletPods9a332023843747f9B16a08dcc4ccd9c7VolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_9a332023_8437_47f9_b16a_08dcc4ccd9c7_volume_subpaths_mosquitto_config_mosquitto_0_used");
 		///<summary>Glances /var/lib/kubelet/pods/9a332023-8437-47f9-b16a-08dcc4ccd9c7/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPods9a332023843747f9B16a08dcc4ccd9c7VolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_9a332023_8437_47f9_b16a_08dcc4ccd9c7_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
+		///<summary>Glances /var/lib/kubelet/pods/eff5e21b-d553-4e97-8ba8-17c5745f257b/volume-subpaths/config/mariadb/1 free</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPodsEff5e21bD5534e978ba817c5745f257bVolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_eff5e21b_d553_4e97_8ba8_17c5745f257b_volume_subpaths_config_mariadb_1_free");
+		///<summary>Glances /var/lib/kubelet/pods/eff5e21b-d553-4e97-8ba8-17c5745f257b/volume-subpaths/config/mariadb/1 used</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPodsEff5e21bD5534e978ba817c5745f257bVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_eff5e21b_d553_4e97_8ba8_17c5745f257b_volume_subpaths_config_mariadb_1_used");
+		///<summary>Glances /var/lib/kubelet/pods/eff5e21b-d553-4e97-8ba8-17c5745f257b/volume-subpaths/config/mariadb/1 used percent</summary>
+		public NumericSensorEntity GlancesVarLibKubeletPodsEff5e21bD5534e978ba817c5745f257bVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_eff5e21b_d553_4e97_8ba8_17c5745f257b_volume_subpaths_config_mariadb_1_used_percent");
 		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 free</summary>
 		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_free");
 		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 used</summary>
@@ -797,10 +866,6 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity IphonePhilippWazeDistance => new(_haContext, "sensor.iphone_philipp_waze_distance");
 		///<summary>iPhone-Philipp Zone Distance</summary>
 		public NumericSensorEntity IphonePhilippZoneDistance => new(_haContext, "sensor.iphone_philipp_zone_distance");
-		///<summary>kitchen/kratom_counter_battery</summary>
-		public NumericSensorEntity KitchenKratomCounterBattery => new(_haContext, "sensor.kitchen_kratom_counter_battery");
-		///<summary>kitchen/kratom_counter_device_temperature</summary>
-		public NumericSensorEntity KitchenKratomCounterDeviceTemperature => new(_haContext, "sensor.kitchen_kratom_counter_device_temperature");
 		///<summary>kitchen/light battery</summary>
 		public NumericSensorEntity KitchenLightBattery => new(_haContext, "sensor.kitchen_light_battery");
 		///<summary>kitchen/light device temperature</summary>
@@ -825,40 +890,76 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity MyDogecoinsNodered => new(_haContext, "sensor.my_dogecoins_nodered");
 		///<summary>Profit</summary>
 		public NumericSensorEntity MyDogecoinsProfitNodered => new(_haContext, "sensor.my_dogecoins_profit_nodered");
+		///<summary>PupsStation Average Disk Temp</summary>
+		public NumericSensorEntity PupsstationAverageDiskTemp => new(_haContext, "sensor.pupsstation_average_disk_temp");
 		///<summary>PupsStation CPU Load Average (15 min)</summary>
 		public NumericSensorEntity PupsstationCpuLoad15Min => new(_haContext, "sensor.pupsstation_cpu_load_15_min");
 		///<summary>PupsStation CPU Load Average (5 min)</summary>
 		public NumericSensorEntity PupsstationCpuLoad5Min => new(_haContext, "sensor.pupsstation_cpu_load_5_min");
+		///<summary>PupsStation CPU Load Average (15 min)</summary>
+		public NumericSensorEntity PupsstationCpuLoadAverage15Min => new(_haContext, "sensor.pupsstation_cpu_load_average_15_min");
+		///<summary>PupsStation CPU Load Average (5 min)</summary>
+		public NumericSensorEntity PupsstationCpuLoadAverage5Min => new(_haContext, "sensor.pupsstation_cpu_load_average_5_min");
 		///<summary>PupsStation CPU Utilization (Total)</summary>
 		public NumericSensorEntity PupsstationCpuLoadTotal => new(_haContext, "sensor.pupsstation_cpu_load_total");
 		///<summary>PupsStation CPU Utilization (User)</summary>
 		public NumericSensorEntity PupsstationCpuLoadUser => new(_haContext, "sensor.pupsstation_cpu_load_user");
+		///<summary>PupsStation CPU Utilization (Total)</summary>
+		public NumericSensorEntity PupsstationCpuUtilizationTotal => new(_haContext, "sensor.pupsstation_cpu_utilization_total");
+		///<summary>PupsStation CPU Utilization (User)</summary>
+		public NumericSensorEntity PupsstationCpuUtilizationUser => new(_haContext, "sensor.pupsstation_cpu_utilization_user");
+		///<summary>PupsStation Download Throughput</summary>
+		public NumericSensorEntity PupsstationDownloadThroughput => new(_haContext, "sensor.pupsstation_download_throughput");
 		///<summary>PupsStation Temperature</summary>
 		public NumericSensorEntity PupsstationDrive1Temperature => new(_haContext, "sensor.pupsstation_drive_1_temperature");
 		///<summary>PupsStation Temperature</summary>
 		public NumericSensorEntity PupsstationDrive2Temperature => new(_haContext, "sensor.pupsstation_drive_2_temperature");
 		///<summary>PupsStation Memory Available (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryAvailableReal => new(_haContext, "sensor.pupsstation_memory_available_real");
+		///<summary>PupsStation Memory Available (Real)</summary>
+		public NumericSensorEntity PupsstationMemoryAvailableReal2 => new(_haContext, "sensor.pupsstation_memory_available_real_2");
 		///<summary>PupsStation Memory Available (Swap)</summary>
 		public NumericSensorEntity PupsstationMemoryAvailableSwap => new(_haContext, "sensor.pupsstation_memory_available_swap");
+		///<summary>PupsStation Memory Available (Swap)</summary>
+		public NumericSensorEntity PupsstationMemoryAvailableSwap2 => new(_haContext, "sensor.pupsstation_memory_available_swap_2");
 		///<summary>PupsStation Memory Total (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryTotalReal => new(_haContext, "sensor.pupsstation_memory_total_real");
+		///<summary>PupsStation Memory Total (Real)</summary>
+		public NumericSensorEntity PupsstationMemoryTotalReal2 => new(_haContext, "sensor.pupsstation_memory_total_real_2");
 		///<summary>PupsStation Memory Total (Swap)</summary>
 		public NumericSensorEntity PupsstationMemoryTotalSwap => new(_haContext, "sensor.pupsstation_memory_total_swap");
+		///<summary>PupsStation Memory Total (Swap)</summary>
+		public NumericSensorEntity PupsstationMemoryTotalSwap2 => new(_haContext, "sensor.pupsstation_memory_total_swap_2");
 		///<summary>PupsStation Memory Usage (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryUsageReal => new(_haContext, "sensor.pupsstation_memory_usage_real");
+		///<summary>PupsStation Memory Usage (Real)</summary>
+		public NumericSensorEntity PupsstationMemoryUsageReal2 => new(_haContext, "sensor.pupsstation_memory_usage_real_2");
 		///<summary>PupsStation Download Throughput</summary>
 		public NumericSensorEntity PupsstationNetworkDown => new(_haContext, "sensor.pupsstation_network_down");
 		///<summary>PupsStation Upload Throughput</summary>
 		public NumericSensorEntity PupsstationNetworkUp => new(_haContext, "sensor.pupsstation_network_up");
 		///<summary>PupsStation Temperature</summary>
 		public NumericSensorEntity PupsstationTemperature => new(_haContext, "sensor.pupsstation_temperature");
+		///<summary>PupsStation Temperature</summary>
+		public NumericSensorEntity PupsstationTemperature2 => new(_haContext, "sensor.pupsstation_temperature_2");
+		///<summary>PupsStation Temperature</summary>
+		public NumericSensorEntity PupsstationTemperature3 => new(_haContext, "sensor.pupsstation_temperature_3");
+		///<summary>PupsStation Temperature</summary>
+		public NumericSensorEntity PupsstationTemperature4 => new(_haContext, "sensor.pupsstation_temperature_4");
+		///<summary>PupsStation Temperature</summary>
+		public NumericSensorEntity PupsstationTemperature5 => new(_haContext, "sensor.pupsstation_temperature_5");
+		///<summary>PupsStation Upload Throughput</summary>
+		public NumericSensorEntity PupsstationUploadThroughput => new(_haContext, "sensor.pupsstation_upload_throughput");
+		///<summary>PupsStation Used Space</summary>
+		public NumericSensorEntity PupsstationUsedSpace => new(_haContext, "sensor.pupsstation_used_space");
 		///<summary>PupsStation Average Disk Temp</summary>
 		public NumericSensorEntity PupsstationVolume1AverageDiskTemp => new(_haContext, "sensor.pupsstation_volume_1_average_disk_temp");
 		///<summary>PupsStation Used Space</summary>
 		public NumericSensorEntity PupsstationVolume1UsedSpace => new(_haContext, "sensor.pupsstation_volume_1_used_space");
 		///<summary>PupsStation Volume Used</summary>
 		public NumericSensorEntity PupsstationVolume1VolumeUsed => new(_haContext, "sensor.pupsstation_volume_1_volume_used");
+		///<summary>PupsStation Volume Used</summary>
+		public NumericSensorEntity PupsstationVolumeUsed => new(_haContext, "sensor.pupsstation_volume_used");
 		///<summary>SpeedTest Download</summary>
 		public NumericSensorEntity SpeedtestDownload => new(_haContext, "sensor.speedtest_download");
 		///<summary>SpeedTest Ping</summary>
@@ -919,12 +1020,6 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BaseCaloriesForFabienne => new(_haContext, "sensor.base_calories_for_fabienne");
 		///<summary>Base calories for philipp</summary>
 		public SensorEntity BaseCaloriesForPhilipp => new(_haContext, "sensor.base_calories_for_philipp");
-		///<summary>bathroom/razor_blade_usage_action</summary>
-		public SensorEntity BathroomRazorBladeUsageAction => new(_haContext, "sensor.bathroom_razor_blade_usage_action");
-		///<summary>bathroom/razor_blade_usage_click</summary>
-		public SensorEntity BathroomRazorBladeUsageClick => new(_haContext, "sensor.bathroom_razor_blade_usage_click");
-		///<summary>bathroom/razor_blade_usage_power_outage_count</summary>
-		public SensorEntity BathroomRazorBladeUsagePowerOutageCount => new(_haContext, "sensor.bathroom_razor_blade_usage_power_outage_count");
 		///<summary>bedroom/bedside_light_switch_fabienne_action</summary>
 		public SensorEntity BedroomBedsideLightSwitchFabienneAction => new(_haContext, "sensor.bedroom_bedside_light_switch_fabienne_action");
 		///<summary>bedroom/bedside_light_switch_fabienne_click</summary>
@@ -937,15 +1032,16 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BedroomBedsideLightSwitchPhilippClick => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_click");
 		///<summary>bedroom/bedside_light_switch_philipp_power_outage_count</summary>
 		public SensorEntity BedroomBedsideLightSwitchPhilippPowerOutageCount => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_power_outage_count");
-		///<summary>bedroom/motion_detector_power_outage_count</summary>
-		public SensorEntity BedroomMotionDetectorPowerOutageCount => new(_haContext, "sensor.bedroom_motion_detector_power_outage_count");
 		public SensorEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "sensor.browser_mod_18a35fcc_9cc51676");
+		public SensorEntity BrowserMod367cd1ac14d9f17d => new(_haContext, "sensor.browser_mod_367cd1ac_14d9f17d");
 		public SensorEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "sensor.browser_mod_4dfe8c51_c6acddb1");
 		public SensorEntity BrowserMod50e35bf5B410ba6f => new(_haContext, "sensor.browser_mod_50e35bf5_b410ba6f");
 		public SensorEntity BrowserMod5415f277B69b1789 => new(_haContext, "sensor.browser_mod_5415f277_b69b1789");
 		public SensorEntity BrowserMod7605937aF7c5c1de => new(_haContext, "sensor.browser_mod_7605937a_f7c5c1de");
 		public SensorEntity BrowserMod83461556F7d0adba => new(_haContext, "sensor.browser_mod_83461556_f7d0adba");
+		public SensorEntity BrowserMod85c1d623De31f646 => new(_haContext, "sensor.browser_mod_85c1d623_de31f646");
 		public SensorEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "sensor.browser_mod_8ff90475_f73ebe95");
+		public SensorEntity BrowserModB258752a08baa428 => new(_haContext, "sensor.browser_mod_b258752a_08baa428");
 		public SensorEntity BrowserModCe5a5526823fbc7c => new(_haContext, "sensor.browser_mod_ce5a5526_823fbc7c");
 		public SensorEntity BrowserModE57688b3B2627e9a => new(_haContext, "sensor.browser_mod_e57688b3_b2627e9a");
 		public SensorEntity BrowserModF37266029d6ed113 => new(_haContext, "sensor.browser_mod_f3726602_9d6ed113");
@@ -1041,12 +1137,6 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity IphonePhilippZoneTimestamp => new(_haContext, "sensor.iphone_philipp_zone_timestamp");
 		///<summary>iPhone-Philipp  Zone Title</summary>
 		public SensorEntity IphonePhilippZoneTitle => new(_haContext, "sensor.iphone_philipp_zone_title");
-		///<summary>kitchen/kratom_counter_action</summary>
-		public SensorEntity KitchenKratomCounterAction => new(_haContext, "sensor.kitchen_kratom_counter_action");
-		///<summary>kitchen/kratom_counter_click</summary>
-		public SensorEntity KitchenKratomCounterClick => new(_haContext, "sensor.kitchen_kratom_counter_click");
-		///<summary>kitchen/kratom_counter_power_outage_count</summary>
-		public SensorEntity KitchenKratomCounterPowerOutageCount => new(_haContext, "sensor.kitchen_kratom_counter_power_outage_count");
 		///<summary>kitchen/light action</summary>
 		public SensorEntity KitchenLightAction => new(_haContext, "sensor.kitchen_light_action");
 		///<summary>kitchen/light click</summary>
@@ -1075,6 +1165,14 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity PupsstationDrive1Status => new(_haContext, "sensor.pupsstation_drive_1_status");
 		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationDrive2Status => new(_haContext, "sensor.pupsstation_drive_2_status");
+		///<summary>PupsStation Status</summary>
+		public SensorEntity PupsstationStatus => new(_haContext, "sensor.pupsstation_status");
+		///<summary>PupsStation Status</summary>
+		public SensorEntity PupsstationStatus2 => new(_haContext, "sensor.pupsstation_status_2");
+		///<summary>PupsStation Status</summary>
+		public SensorEntity PupsstationStatus3 => new(_haContext, "sensor.pupsstation_status_3");
+		///<summary>PupsStation Status</summary>
+		public SensorEntity PupsstationStatus4 => new(_haContext, "sensor.pupsstation_status_4");
 		///<summary>PupsStation Status</summary>
 		public SensorEntity PupsstationVolume1Status => new(_haContext, "sensor.pupsstation_volume_1_status");
 		///<summary>Razor blade usage</summary>
@@ -1205,6 +1303,8 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntity Windows => new(_haContext, "switch.windows");
 		///<summary>windowswol</summary>
 		public SwitchEntity Windowswol => new(_haContext, "switch.windowswol");
+		///<summary>yi_hack_a2_9faf14_privacy</summary>
+		public SwitchEntity YiHackA29faf14Privacy => new(_haContext, "switch.yi_hack_a2_9faf14_privacy");
 	}
 
 	public partial class TimerEntities
@@ -1228,6 +1328,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>PupsStation DSM Update</summary>
 		public UpdateEntity PupsstationDsmUpdate => new(_haContext, "update.pupsstation_dsm_update");
+		///<summary>PupsStation DSM Update</summary>
+		public UpdateEntity PupsstationDsmUpdate2 => new(_haContext, "update.pupsstation_dsm_update_2");
 	}
 
 	public partial class VacuumEntities
@@ -1310,9 +1412,6 @@ namespace HomeAutomations.Models.Generated
 
 	public record BinarySensorAttributes
 	{
-		[JsonPropertyName("attribution")]
-		public string? Attribution { get; init; }
-
 		[JsonPropertyName("battery")]
 		public double? Battery { get; init; }
 
@@ -1323,7 +1422,7 @@ namespace HomeAutomations.Models.Generated
 		public string? DeviceClass { get; init; }
 
 		[JsonPropertyName("device_temperature")]
-		public object? DeviceTemperature { get; init; }
+		public double? DeviceTemperature { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1337,29 +1436,17 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("illuminance_lux")]
 		public double? IlluminanceLux { get; init; }
 
-		[JsonPropertyName("installed_version")]
-		public string? InstalledVersion { get; init; }
-
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
 
-		[JsonPropertyName("latest_available_version")]
-		public string? LatestAvailableVersion { get; init; }
-
 		[JsonPropertyName("linkquality")]
 		public double? Linkquality { get; init; }
-
-		[JsonPropertyName("malware")]
-		public string? Malware { get; init; }
-
-		[JsonPropertyName("network")]
-		public string? Network { get; init; }
 
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
 
 		[JsonPropertyName("power_outage_count")]
-		public object? PowerOutageCount { get; init; }
+		public double? PowerOutageCount { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
@@ -1376,23 +1463,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("round_trip_time_min")]
 		public double? RoundTripTimeMin { get; init; }
 
-		[JsonPropertyName("securitySetting")]
-		public string? SecuritySetting { get; init; }
-
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[JsonPropertyName("systemCheck")]
-		public string? SystemCheck { get; init; }
-
-		[JsonPropertyName("temperature")]
-		public double? Temperature { get; init; }
-
-		[JsonPropertyName("update")]
-		public string? Update { get; init; }
-
-		[JsonPropertyName("userInfo")]
-		public string? UserInfo { get; init; }
 
 		[JsonPropertyName("voltage")]
 		public double? Voltage { get; init; }
@@ -1419,6 +1491,12 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
+
+		[JsonPropertyName("restored")]
+		public bool? Restored { get; init; }
+
+		[JsonPropertyName("supported_features")]
+		public double? SupportedFeatures { get; init; }
 	}
 
 	public partial record CalendarEntity : Entity<CalendarEntity, EntityState<CalendarAttributes>, CalendarAttributes>
@@ -1459,7 +1537,7 @@ namespace HomeAutomations.Models.Generated
 		public bool? OffsetReached { get; init; }
 
 		[JsonPropertyName("overdue_tasks")]
-		public IReadOnlyList<string>? OverdueTasks { get; init; }
+		public IReadOnlyList<object>? OverdueTasks { get; init; }
 
 		[JsonPropertyName("start_time")]
 		public string? StartTime { get; init; }
@@ -1481,6 +1559,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("access_token")]
 		public string? AccessToken { get; init; }
 
+		[JsonPropertyName("brand")]
+		public string? Brand { get; init; }
+
 		[JsonPropertyName("calibration_points")]
 		public IReadOnlyList<object>? CalibrationPoints { get; init; }
 
@@ -1489,6 +1570,12 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("frontend_stream_type")]
+		public string? FrontendStreamType { get; init; }
+
+		[JsonPropertyName("icon")]
+		public string? Icon { get; init; }
 
 		[JsonPropertyName("model")]
 		public string? Model { get; init; }
@@ -1942,6 +2029,9 @@ namespace HomeAutomations.Models.Generated
 
 	public record MediaPlayerAttributes
 	{
+		[JsonPropertyName("device_class")]
+		public string? DeviceClass { get; init; }
+
 		[JsonPropertyName("deviceID")]
 		public string? DeviceID { get; init; }
 
@@ -1974,6 +2064,29 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("volume_level")]
 		public double? VolumeLevel { get; init; }
+	}
+
+	public partial record PersistentNotificationEntity : Entity<PersistentNotificationEntity, EntityState<PersistentNotificationAttributes>, PersistentNotificationAttributes>
+	{
+		public PersistentNotificationEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public PersistentNotificationEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record PersistentNotificationAttributes
+	{
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
 	}
 
 	public partial record PersonEntity : Entity<PersonEntity, EntityState<PersonAttributes>, PersonAttributes>
@@ -2138,7 +2251,7 @@ namespace HomeAutomations.Models.Generated
 		public string? DeviceClass { get; init; }
 
 		[JsonPropertyName("device_temperature")]
-		public object? DeviceTemperature { get; init; }
+		public double? DeviceTemperature { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -2165,7 +2278,7 @@ namespace HomeAutomations.Models.Generated
 		public bool? Occupancy { get; init; }
 
 		[JsonPropertyName("power_outage_count")]
-		public object? PowerOutageCount { get; init; }
+		public double? PowerOutageCount { get; init; }
 
 		[JsonPropertyName("profitLoss")]
 		public double? ProfitLoss { get; init; }
@@ -2199,9 +2312,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[JsonPropertyName("temperature")]
-		public double? Temperature { get; init; }
 
 		[JsonPropertyName("Total")]
 		public string? Total { get; init; }
@@ -2274,9 +2384,6 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Areas Of Interest")]
 		public string? AreasOfInterest { get; init; }
 
-		[JsonPropertyName("attribution")]
-		public string? Attribution { get; init; }
-
 		[JsonPropertyName("battery")]
 		public double? Battery { get; init; }
 
@@ -2288,6 +2395,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("Carrier Name")]
 		public string? CarrierName { get; init; }
+
+		[JsonPropertyName("Cellular Technology")]
+		public string? CellularTechnology { get; init; }
 
 		[JsonPropertyName("charging")]
 		public bool? Charging { get; init; }
@@ -2323,7 +2433,7 @@ namespace HomeAutomations.Models.Generated
 		public string? DeviceID { get; init; }
 
 		[JsonPropertyName("device_temperature")]
-		public object? DeviceTemperature { get; init; }
+		public double? DeviceTemperature { get; init; }
 
 		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
@@ -2410,7 +2520,7 @@ namespace HomeAutomations.Models.Generated
 		public string? PostalCode { get; init; }
 
 		[JsonPropertyName("power_outage_count")]
-		public object? PowerOutageCount { get; init; }
+		public double? PowerOutageCount { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
@@ -2426,9 +2536,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[JsonPropertyName("temperature")]
-		public double? Temperature { get; init; }
 
 		[JsonPropertyName("Thoroughfare")]
 		public string? Thoroughfare { get; init; }
@@ -2594,41 +2701,14 @@ namespace HomeAutomations.Models.Generated
 
 	public record UpdateAttributes
 	{
-		[JsonPropertyName("attribution")]
-		public string? Attribution { get; init; }
-
-		[JsonPropertyName("auto_update")]
-		public bool? AutoUpdate { get; init; }
-
-		[JsonPropertyName("entity_picture")]
-		public string? EntityPicture { get; init; }
-
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
-		[JsonPropertyName("in_progress")]
-		public bool? InProgress { get; init; }
-
-		[JsonPropertyName("installed_version")]
-		public string? InstalledVersion { get; init; }
-
-		[JsonPropertyName("latest_version")]
-		public string? LatestVersion { get; init; }
-
-		[JsonPropertyName("release_summary")]
-		public object? ReleaseSummary { get; init; }
-
-		[JsonPropertyName("release_url")]
-		public string? ReleaseUrl { get; init; }
-
-		[JsonPropertyName("skipped_version")]
-		public object? SkippedVersion { get; init; }
+		[JsonPropertyName("restored")]
+		public bool? Restored { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
-
-		[JsonPropertyName("title")]
-		public string? Title { get; init; }
 	}
 
 	public partial record VacuumEntity : Entity<VacuumEntity, EntityState<VacuumAttributes>, VacuumAttributes>
@@ -2810,6 +2890,8 @@ namespace HomeAutomations.Models.Generated
 
 		NotifyServices Notify { get; }
 
+		OnvifServices Onvif { get; }
+
 		PersistentNotificationServices PersistentNotification { get; }
 
 		PersonServices Person { get; }
@@ -2846,9 +2928,13 @@ namespace HomeAutomations.Models.Generated
 
 		WakeOnLanServices WakeOnLan { get; }
 
+		WebrtcServices Webrtc { get; }
+
 		XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor { get; }
 
 		XiaomiMiioServices XiaomiMiio { get; }
+
+		YiHackServices YiHack { get; }
 
 		ZoneServices Zone { get; }
 	}
@@ -2894,6 +2980,7 @@ namespace HomeAutomations.Models.Generated
 		public MqttServices Mqtt => new(_haContext);
 		public NetdaemonServices Netdaemon => new(_haContext);
 		public NotifyServices Notify => new(_haContext);
+		public OnvifServices Onvif => new(_haContext);
 		public PersistentNotificationServices PersistentNotification => new(_haContext);
 		public PersonServices Person => new(_haContext);
 		public PingServices Ping => new(_haContext);
@@ -2912,8 +2999,10 @@ namespace HomeAutomations.Models.Generated
 		public UpdateServices Update => new(_haContext);
 		public VacuumServices Vacuum => new(_haContext);
 		public WakeOnLanServices WakeOnLan => new(_haContext);
+		public WebrtcServices Webrtc => new(_haContext);
 		public XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor => new(_haContext);
 		public XiaomiMiioServices XiaomiMiio => new(_haContext);
+		public YiHackServices YiHack => new(_haContext);
 		public ZoneServices Zone => new(_haContext);
 	}
 
@@ -6069,6 +6158,72 @@ namespace HomeAutomations.Models.Generated
 		public string? Title { get; init; }
 	}
 
+	public class OnvifServices
+	{
+		private readonly IHaContext _haContext;
+		public OnvifServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Ptz(ServiceTarget target, OnvifPtzParameters data)
+		{
+			_haContext.CallService("onvif", "ptz", target, data);
+		}
+
+		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="tilt">Tilt direction.</param>
+		///<param name="pan">Pan direction.</param>
+		///<param name="zoom">Zoom.</param>
+		///<param name="distance">Distance coefficient. Sets how much PTZ should be executed in one request.</param>
+		///<param name="speed">Speed coefficient. Sets how fast PTZ will be executed.</param>
+		///<param name="continuousDuration">Set ContinuousMove delay in seconds before stopping the move</param>
+		///<param name="preset">PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</param>
+		///<param name="moveMode">PTZ moving mode.</param>
+		public void Ptz(ServiceTarget target, object? @tilt = null, object? @pan = null, object? @zoom = null, double? @distance = null, double? @speed = null, double? @continuousDuration = null, string? @preset = null, object? @moveMode = null)
+		{
+			_haContext.CallService("onvif", "ptz", target, new OnvifPtzParameters{Tilt = @tilt, Pan = @pan, Zoom = @zoom, Distance = @distance, Speed = @speed, ContinuousDuration = @continuousDuration, Preset = @preset, MoveMode = @moveMode});
+		}
+	}
+
+	public record OnvifPtzParameters
+	{
+		///<summary>Tilt direction.</summary>
+		[JsonPropertyName("tilt")]
+		public object? Tilt { get; init; }
+
+		///<summary>Pan direction.</summary>
+		[JsonPropertyName("pan")]
+		public object? Pan { get; init; }
+
+		///<summary>Zoom.</summary>
+		[JsonPropertyName("zoom")]
+		public object? Zoom { get; init; }
+
+		///<summary>Distance coefficient. Sets how much PTZ should be executed in one request.</summary>
+		[JsonPropertyName("distance")]
+		public double? Distance { get; init; }
+
+		///<summary>Speed coefficient. Sets how fast PTZ will be executed.</summary>
+		[JsonPropertyName("speed")]
+		public double? Speed { get; init; }
+
+		///<summary>Set ContinuousMove delay in seconds before stopping the move</summary>
+		[JsonPropertyName("continuous_duration")]
+		public double? ContinuousDuration { get; init; }
+
+		///<summary>PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</summary>
+		[JsonPropertyName("preset")]
+		public string? Preset { get; init; }
+
+		///<summary>PTZ moving mode.</summary>
+		[JsonPropertyName("move_mode")]
+		public object? MoveMode { get; init; }
+	}
+
 	public class PersistentNotificationServices
 	{
 		private readonly IHaContext _haContext;
@@ -7094,6 +7249,85 @@ namespace HomeAutomations.Models.Generated
 		public long? BroadcastPort { get; init; }
 	}
 
+	public class WebrtcServices
+	{
+		private readonly IHaContext _haContext;
+		public WebrtcServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Create a temporary or permanent link to a stream (enter "url" or "entity")</summary>
+		public void CreateLink(WebrtcCreateLinkParameters data)
+		{
+			_haContext.CallService("webrtc", "create_link", null, data);
+		}
+
+		///<summary>Create a temporary or permanent link to a stream (enter "url" or "entity")</summary>
+		///<param name="linkId">Create a random or permanent ID for your link eg: fd0a53ca-e9ab-4e7a-86a2-441642b16ae1</param>
+		///<param name="url">Link to RTSP-stream eg: rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0</param>
+		///<param name="entity">Camera entity eg: camera.generic_stream</param>
+		///<param name="openLimit">How many times a link can be opened (0 - unlimit) eg: 1</param>
+		///<param name="timeToLive">How many seconds will the link live (0 - unlimit) eg: 60</param>
+		public void CreateLink(string @linkId, string? @url = null, string? @entity = null, long? @openLimit = null, long? @timeToLive = null)
+		{
+			_haContext.CallService("webrtc", "create_link", null, new WebrtcCreateLinkParameters{LinkId = @linkId, Url = @url, Entity = @entity, OpenLimit = @openLimit, TimeToLive = @timeToLive});
+		}
+
+		///<summary>Cast stream to Chromecast device via DashCast application</summary>
+		public void DashCast(WebrtcDashCastParameters data)
+		{
+			_haContext.CallService("webrtc", "dash_cast", null, data);
+		}
+
+		///<summary>Cast stream to Chromecast device via DashCast application</summary>
+		///<param name="entityId">Media player entity eg: media_player.mibox4</param>
+		///<param name="url">Link to RTSP-stream eg: rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0</param>
+		///<param name="entity">Camera entity eg: camera.generic_stream</param>
+		public void DashCast(string @entityId, string? @url = null, string? @entity = null)
+		{
+			_haContext.CallService("webrtc", "dash_cast", null, new WebrtcDashCastParameters{EntityId = @entityId, Url = @url, Entity = @entity});
+		}
+	}
+
+	public record WebrtcCreateLinkParameters
+	{
+		///<summary>Create a random or permanent ID for your link eg: fd0a53ca-e9ab-4e7a-86a2-441642b16ae1</summary>
+		[JsonPropertyName("link_id")]
+		public string? LinkId { get; init; }
+
+		///<summary>Link to RTSP-stream eg: rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0</summary>
+		[JsonPropertyName("url")]
+		public string? Url { get; init; }
+
+		///<summary>Camera entity eg: camera.generic_stream</summary>
+		[JsonPropertyName("entity")]
+		public string? Entity { get; init; }
+
+		///<summary>How many times a link can be opened (0 - unlimit) eg: 1</summary>
+		[JsonPropertyName("open_limit")]
+		public long? OpenLimit { get; init; }
+
+		///<summary>How many seconds will the link live (0 - unlimit) eg: 60</summary>
+		[JsonPropertyName("time_to_live")]
+		public long? TimeToLive { get; init; }
+	}
+
+	public record WebrtcDashCastParameters
+	{
+		///<summary>Media player entity eg: media_player.mibox4</summary>
+		[JsonPropertyName("entity_id")]
+		public string? EntityId { get; init; }
+
+		///<summary>Link to RTSP-stream eg: rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0</summary>
+		[JsonPropertyName("url")]
+		public string? Url { get; init; }
+
+		///<summary>Camera entity eg: camera.generic_stream</summary>
+		[JsonPropertyName("entity")]
+		public string? Entity { get; init; }
+	}
+
 	public class XiaomiCloudMapExtractorServices
 	{
 		private readonly IHaContext _haContext;
@@ -7270,6 +7504,75 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Duration of the movement.</summary>
 		[JsonPropertyName("duration")]
 		public long? Duration { get; init; }
+	}
+
+	public class YiHackServices
+	{
+		private readonly IHaContext _haContext;
+		public YiHackServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Pan/Tilt service for yi-hack camera.</summary>
+		public void Ptz(YiHackPtzParameters data)
+		{
+			_haContext.CallService("yi_hack", "ptz", null, data);
+		}
+
+		///<summary>Pan/Tilt service for yi-hack camera.</summary>
+		///<param name="entityId">Name of entity to move. eg: camera.living_room_camera</param>
+		///<param name="movement">Direction of the movement. Allowed values: up, down, left and right. eg: left</param>
+		///<param name="travelTime">(Optional) Travel time in seconds. Allowed values: float from 0.1 to 5.0. Default: 0.3 eg: 0,3</param>
+		public void Ptz(string @entityId, object @movement, double? @travelTime = null)
+		{
+			_haContext.CallService("yi_hack", "ptz", null, new YiHackPtzParameters{EntityId = @entityId, Movement = @movement, TravelTime = @travelTime});
+		}
+
+		///<summary>TTS service for yi-hack camera.</summary>
+		public void Speak(YiHackSpeakParameters data)
+		{
+			_haContext.CallService("yi_hack", "speak", null, data);
+		}
+
+		///<summary>TTS service for yi-hack camera.</summary>
+		///<param name="entityId">Name of entity to use. eg: camera.living_room_camera</param>
+		///<param name="language">Language of the TTS engine. Allowed values: de-DE, en-GB, en-US, es-ES, fr-FR, it-IT. Default: en-US eg: en-US</param>
+		///<param name="sentence">Sentence to pronounce. eg: Hello world!</param>
+		public void Speak(string @entityId, object @language, string @sentence)
+		{
+			_haContext.CallService("yi_hack", "speak", null, new YiHackSpeakParameters{EntityId = @entityId, Language = @language, Sentence = @sentence});
+		}
+	}
+
+	public record YiHackPtzParameters
+	{
+		///<summary>Name of entity to move. eg: camera.living_room_camera</summary>
+		[JsonPropertyName("entity_id")]
+		public string? EntityId { get; init; }
+
+		///<summary>Direction of the movement. Allowed values: up, down, left and right. eg: left</summary>
+		[JsonPropertyName("movement")]
+		public object? Movement { get; init; }
+
+		///<summary>(Optional) Travel time in seconds. Allowed values: float from 0.1 to 5.0. Default: 0.3 eg: 0,3</summary>
+		[JsonPropertyName("travel_time")]
+		public double? TravelTime { get; init; }
+	}
+
+	public record YiHackSpeakParameters
+	{
+		///<summary>Name of entity to use. eg: camera.living_room_camera</summary>
+		[JsonPropertyName("entity_id")]
+		public string? EntityId { get; init; }
+
+		///<summary>Language of the TTS engine. Allowed values: de-DE, en-GB, en-US, es-ES, fr-FR, it-IT. Default: en-US eg: en-US</summary>
+		[JsonPropertyName("language")]
+		public object? Language { get; init; }
+
+		///<summary>Sentence to pronounce. eg: Hello world!</summary>
+		[JsonPropertyName("sentence")]
+		public string? Sentence { get; init; }
 	}
 
 	public class ZoneServices
@@ -8765,6 +9068,51 @@ namespace HomeAutomations.Models.Generated
 		public static void VolumeUp(this IEnumerable<MediaPlayerEntity> target)
 		{
 			target.CallService("volume_up");
+		}
+	}
+
+	public static class OnvifEntityExtensionMethods
+	{
+		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		public static void Ptz(this CameraEntity target, OnvifPtzParameters data)
+		{
+			target.CallService("ptz", data);
+		}
+
+		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		public static void Ptz(this IEnumerable<CameraEntity> target, OnvifPtzParameters data)
+		{
+			target.CallService("ptz", data);
+		}
+
+		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		///<param name="target">The CameraEntity to call this service for</param>
+		///<param name="tilt">Tilt direction.</param>
+		///<param name="pan">Pan direction.</param>
+		///<param name="zoom">Zoom.</param>
+		///<param name="distance">Distance coefficient. Sets how much PTZ should be executed in one request.</param>
+		///<param name="speed">Speed coefficient. Sets how fast PTZ will be executed.</param>
+		///<param name="continuousDuration">Set ContinuousMove delay in seconds before stopping the move</param>
+		///<param name="preset">PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</param>
+		///<param name="moveMode">PTZ moving mode.</param>
+		public static void Ptz(this CameraEntity target, object? @tilt = null, object? @pan = null, object? @zoom = null, double? @distance = null, double? @speed = null, double? @continuousDuration = null, string? @preset = null, object? @moveMode = null)
+		{
+			target.CallService("ptz", new OnvifPtzParameters{Tilt = @tilt, Pan = @pan, Zoom = @zoom, Distance = @distance, Speed = @speed, ContinuousDuration = @continuousDuration, Preset = @preset, MoveMode = @moveMode});
+		}
+
+		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		///<param name="target">The IEnumerable<CameraEntity> to call this service for</param>
+		///<param name="tilt">Tilt direction.</param>
+		///<param name="pan">Pan direction.</param>
+		///<param name="zoom">Zoom.</param>
+		///<param name="distance">Distance coefficient. Sets how much PTZ should be executed in one request.</param>
+		///<param name="speed">Speed coefficient. Sets how fast PTZ will be executed.</param>
+		///<param name="continuousDuration">Set ContinuousMove delay in seconds before stopping the move</param>
+		///<param name="preset">PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</param>
+		///<param name="moveMode">PTZ moving mode.</param>
+		public static void Ptz(this IEnumerable<CameraEntity> target, object? @tilt = null, object? @pan = null, object? @zoom = null, double? @distance = null, double? @speed = null, double? @continuousDuration = null, string? @preset = null, object? @moveMode = null)
+		{
+			target.CallService("ptz", new OnvifPtzParameters{Tilt = @tilt, Pan = @pan, Zoom = @zoom, Distance = @distance, Speed = @speed, ContinuousDuration = @continuousDuration, Preset = @preset, MoveMode = @moveMode});
 		}
 	}
 
