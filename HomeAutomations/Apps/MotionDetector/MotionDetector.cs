@@ -1,8 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Net.Mime;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Services;
