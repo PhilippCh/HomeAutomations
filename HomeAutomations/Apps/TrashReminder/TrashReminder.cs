@@ -117,8 +117,8 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 		foreach (var sensor in Config.Entities)
 		{
-			Logger.Information("{Key}: {Contains}", sensor.Key, ContainsEvent(sensor.Key, eventsThisWeek));
-			//Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
+			//Logger.Information("{Key}: {Contains}", sensor.Key, ContainsEvent(sensor.Key, eventsThisWeek));
+			Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
 		}
 	}
 
