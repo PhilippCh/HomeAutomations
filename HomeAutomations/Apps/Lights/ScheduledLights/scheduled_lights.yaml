@@ -12,8 +12,8 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - light.living_room_tv_lightstrip
-          - light.kitchen_neon_clock
+        - - switch.tv_lightstrip
+          - switch.neon_uhr
     - Name: Trolley lights
       Interval: 01:00:00
       Start:
@@ -22,9 +22,9 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - light.living_room_lightbar
-          - light.living_room_contract_light
-        - - light.living_room_diorama
+        - - switch.lightbar
+          - switch.vertragslicht
+        - - switch.living_room_twtyh_diorama
     - Name: Buddha fountain
       Interval: 00:30:00
       Start:
@@ -33,4 +33,4 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - light.living_room_buddha_fountain
+        - - switch.buddha_brunnen
