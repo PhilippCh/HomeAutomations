@@ -91,9 +91,16 @@ public class WallPanel
 	{
 		var client = new HttpClient();
 
-		foreach (var command in commands)
+		try
 		{
-			await client.GetAsync(command);
+			foreach (var command in commands)
+			{
+				await client.GetAsync(command);
+			}
+		}
+		catch (Exception ex)
+		{
+			_logger.Information("Could not send commands due to {Message}", ex.Message);
 		}
 	}
 
