@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-HomeAutomations.Scale2Mqtt-C562D49C-994D-4C6F-8F66-B4FD86958398</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+        <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.1.0.247" />
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="5.0.1" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.2-dev-00890" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HomeAutomations.Common\HomeAutomations.Common.csproj" />
+    </ItemGroup>
+</Project>

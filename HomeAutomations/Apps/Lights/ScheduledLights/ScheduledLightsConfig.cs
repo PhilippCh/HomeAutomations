@@ -2,7 +2,7 @@
 using CoordinateSharp;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Extensions;
-using HomeAutomations.Models.Generated;
+using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
@@ -48,7 +48,7 @@ public record CycleConfig
 	public TimeConfig Start { get; init; }
 	public TimeConfig End { get; init; }
 	public TimeSpan? Interval { get; init; }
-	public IReadOnlyList<IEnumerable<LightEntity>> EntityCycles { get; init; }
+	public IReadOnlyList<IEnumerable<Entity>> EntityCycles { get; init; }
 }
 
 public record ScheduledLightsConfig : Config

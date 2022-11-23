@@ -14,8 +14,10 @@ HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
         - Glasbox
         - Papier
         - Restmüll
-  TakeOutEventName: Müll rausbringen
-  TakeOutEntity: input_boolean.trash_take_outside
+  TakeOutEvent:
+    Name: Müll rausbringen
+    Entity: input_boolean.trash_take_outside
+    LookAheadDays: 4
   ReminderCrontab: 00 13 * * SUN
   Notification:
     Tag: trash_reminder

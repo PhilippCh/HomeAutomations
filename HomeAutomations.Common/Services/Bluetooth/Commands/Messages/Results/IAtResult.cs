@@ -1,4 +1,4 @@
-namespace HomeAutomations.Common.Services.Bluetooth.AtCommands;
+namespace HomeAutomations.Common.Services.Bluetooth.Commands.Messages.Results;
 
 public interface IAtResult
 {

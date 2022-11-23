@@ -36,7 +36,8 @@ public class NotificationService
 					tag = notification.Tag,
 					actions = notification.Actions,
 					image = notification.Image,
-					sticky = notification.Sticky
+					sticky = notification.Sticky,
+					url = notification.Url
 				}
 			});
 	}

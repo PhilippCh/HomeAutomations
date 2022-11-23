@@ -1,4 +1,6 @@
-namespace HomeAutomations.Common.Models.Config;
+using HomeAutomations.Common.Models.Config;
+
+namespace HomeAutomations.Common.Services.Bluetooth;
 
 public record BluetoothServiceConfig : Config
 {

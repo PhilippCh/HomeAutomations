@@ -2,13 +2,15 @@ using System.IO.Ports;
 using System.Reactive.Linq;
 using System.Text;
 using HomeAutomations.Common.Extensions;
-using HomeAutomations.Common.Models.Config;
-using HomeAutomations.Common.Services.Bluetooth.AtCommands;
-using HomeAutomations.Services;
+using HomeAutomations.Common.Services.Bluetooth.Commands;
+using HomeAutomations.Common.Services.Bluetooth.Commands.Commands;
+using HomeAutomations.Common.Services.Bluetooth.Commands.Messages.Events;
+using HomeAutomations.Common.Services.Bluetooth.Commands.Messages.Results;
+using Newtonsoft.Json;
 
 namespace HomeAutomations.Common.Services.Bluetooth;
 
-public class BluetoothService: BaseService<BluetoothService, BluetoothServiceConfig>
+public class BluetoothService : BaseService<BluetoothService, BluetoothServiceConfig>
 {
 	private SerialPort? _serialPort;
 
@@ -21,17 +23,15 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		_serialPort = InitializeSerialPort();
 	}
 
-	public void Notify(BluetoothConnectionInfo connectionInfo, string characteristicId)
+	public IObservable<ValueNotificationReceivedEvent> Notify(BluetoothConnectionInfo connectionInfo, string characteristicId)
 	{
-		SendCommand("ATV1", string.Empty);			// Enable verbose mode (parseable JSON output).
-		SendCommand("CENTRAL");							// Set to central mode (can query slave devices).
-		SendCommand($"GAPCONNECT={connectionInfo}").Subscribe(OnGetConnections);
-		SendCommand($"SETNOTI={characteristicId}");
-	}
+		_atCommandService.Reset();
 
-	private void OnGetConnections(ResponseAtResult response)
-	{
-
+		return SendCommand(new AtvAtCommand(true))
+			.SwitchMap(_ => SendCommand(new BluetoothRoleAtCommand(BluetoothRole.Central)))
+			.SwitchMap(_ => SendCommand(new GapConnectAtCommand(connectionInfo)))
+			.SwitchMap(_ => SendCommand(new SetNotificationCommand(characteristicId)))
+			.Select(r => (ValueNotificationReceivedEvent) r);
 	}
 
 	private SerialPort? InitializeSerialPort()
@@ -61,15 +61,14 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 		Logger.Warning("Error received: {Message}", _serialPort?.ReadExisting());
 	}
 
-	private IObservable<ResponseAtResult> SendCommand(string command, string prefix = "AT+")
+	private IObservable<IAtResult> SendCommand(IAtCommand command)
 	{
 		var inputByte = new byte[] { 13 };
-		var fullCommand = $"{prefix}{command}";
-		var bytes = Encoding.UTF8.GetBytes(fullCommand)
+		var bytes = Encoding.UTF8.GetBytes(command.CommandString)
 			.Concat(inputByte)
 			.ToArray();
 
-		var observable = _atCommandService.BeginCommand(fullCommand);
+		var observable = _atCommandService.BeginCommand(command);
 		_serialPort?.Write(bytes, 0, bytes.Length);
 
 		return observable;
@@ -84,11 +83,8 @@ public class BluetoothService: BaseService<BluetoothService, BluetoothServiceCon
 			return;
 		}
 
-		Logger.Information(serialData);
-
 		var messages = serialData.Split("\r\n")
-			.Select(d => d.Trim('\r', '\n'))
-			.Select(JObjectExtensions.TryParse);
+			.Select(d => d.Trim('\r', '\n'));
 		_atCommandService.AddMessages(messages);
 	}
 }

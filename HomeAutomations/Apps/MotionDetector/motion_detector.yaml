@@ -1,0 +1,15 @@
+---
+HomeAutomations.Apps.MotionDetector.MotionDetectorConfig:
+  Name: Wohnzimmer
+  ImageTopic: yicam/motion_detection_image
+  ImagePath: /motion_detection_images
+  EnableEntity: input_boolean.enable_motion_detector
+  Notification:
+    Tag: motion_detector
+    Title: Bewegung im Haus
+    Template: Die Kamera {0} meldet Bewegung im Haus.
+    Image: https://ha.pupslab.de/local/motion_detection_images/motion.jpg
+    Sticky: true
+    Service: mobile_app_iphone_philipp_2
+
+

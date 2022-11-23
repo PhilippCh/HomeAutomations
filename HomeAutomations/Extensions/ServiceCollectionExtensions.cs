@@ -8,7 +8,7 @@ using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Common.Services.Bluetooth;
-using HomeAutomations.Common.Services.Bluetooth.AtCommands;
+using HomeAutomations.Common.Services.Bluetooth.Commands;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using Microsoft.Extensions.Configuration;

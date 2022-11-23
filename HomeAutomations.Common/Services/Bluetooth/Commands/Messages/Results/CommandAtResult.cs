@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace HomeAutomations.Common.Services.Bluetooth.AtCommands;
+namespace HomeAutomations.Common.Services.Bluetooth.Commands.Messages.Results;
 
 [AtResult]
 public class CommandAtResult : IAtResult

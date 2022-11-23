@@ -5,8 +5,13 @@ namespace HomeAutomations.Common.Extensions;
 
 public static class JObjectExtensions
 {
-	public static JObject? TryParse(string input)
+	public static JObject? TryParse(string? input)
 	{
+		if (input == null)
+		{
+			return null;
+		}
+
 		try
 		{
 			return JObject.Parse(input);

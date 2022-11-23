@@ -13,6 +13,13 @@ public record QueryParameterConfig<T>
 	public T Value { get; init; }
 }
 
+public record TakeOutEventConfig
+{
+	public string Name { get; init; }
+	public InputBooleanEntity Entity { get; init; }
+	public int LookAheadDays { get; init; }
+}
+
 [UsedImplicitly]
 public record TrashCalendarConfig
 {
@@ -25,8 +32,7 @@ public record TrashReminderConfig : Config
 {
 	public TrashCalendarConfig Calendar { get; init; }
 	public string PersonalCalendar { get; init; }
-	public InputBooleanEntity TakeOutEntity { get; init; }
-	public string TakeOutEventName { get; init; }
+	public TakeOutEventConfig TakeOutEvent { get; init; }
 	public string ReminderCrontab { get; init; }
 	public Notification Notification { get; init; }
 	public IReadOnlyDictionary<string, InputBooleanEntity> Entities { get; init; }

@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace HomeAutomations.Common.Services.Bluetooth.AtCommands;
+namespace HomeAutomations.Common.Services.Bluetooth.Commands.Messages.Results;
 
 [AtResult]
 [JsonConverter(typeof(ResponseAtResultJsonConverter))]

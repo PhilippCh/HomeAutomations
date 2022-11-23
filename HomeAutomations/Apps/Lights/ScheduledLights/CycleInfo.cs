@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using HomeAutomations.Models.Generated;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
@@ -37,7 +36,7 @@ public class CycleInfo
 			foreach (var entity in _config.EntityCycles[previousIndex])
 			{
 				_logger.Debug("Turning off {EntityId}", entity.EntityId);
-				entity.TurnOff();
+				entity.CallService("turn_off");
 			}
 		}
 
@@ -46,7 +45,7 @@ public class CycleInfo
 			foreach (var entity in _config.EntityCycles[_currentIndex])
 			{
 				_logger.Debug("Turning on {EntityId}", entity.EntityId);
-				entity.TurnOn();
+				entity.CallService("turn_on");
 			}
 		}
 	}
@@ -66,9 +65,12 @@ public class CycleInfo
 		_logger.Information("Stopping light cycle {Name}", _config.Name);
 
 		// Turn off all lights when cycle has finished.
-		foreach (var entity in _config.EntityCycles.Select(c => c))
+		foreach (var group in _config.EntityCycles.Select(c => c))
 		{
-			entity.TurnOff();
+			foreach (var entity in group)
+			{
+				entity.CallService("turn_off");
+			}
 		}
 
 		_subscription?.Dispose();

@@ -52,6 +52,17 @@ public class MqttService
 				});
 	}
 
+	public async Task<IObservable<byte[]>> GetBinaryMessagesForTopic(params string?[] topicParts)
+	{
+		var topic = topicParts.ToPath();
+
+		await SubscribeToTopic(topic);
+
+		return _messages
+			.Where(m => m.Topic == topic)
+			.Select(m => m.Payload);
+	}
+
 	public async Task<IObservable<T?>> GetMessagesForChildTopics<T>(params string?[] topicParts)
 	{
 		var parentTopic = topicParts.ToPath();
