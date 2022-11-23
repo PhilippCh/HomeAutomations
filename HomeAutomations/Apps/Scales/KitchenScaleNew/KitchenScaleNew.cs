@@ -4,7 +4,6 @@ using HomeAutomations.Apps.Scales.KitchenScale;
 using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
 using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Models;
-using HomeAutomations.Services;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +27,7 @@ public class KitchenScaleNew : BaseAutomation<KitchenScaleNew, KitchenScaleNewCo
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		_bluetoothService.Notify(Config.Scale, "0015");
+		//_bluetoothService.Notify(Config.Scale, "0015");
 		return Task.CompletedTask;
 	}
 }
