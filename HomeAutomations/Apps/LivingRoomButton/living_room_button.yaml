@@ -1,0 +1,4 @@
+---
+HomeAutomations.Apps.LivingRoomButton.LivingRoomButtonConfig:
+  Button: sensor.kitchen_kratom_counter_action
+  StandardLamp: light.stehlampe
