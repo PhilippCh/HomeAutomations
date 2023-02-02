@@ -1,9 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
 using HomeAutomations.Apps.ComputerSwitches;
-using HomeAutomations.Apps.Scales.KitchenScale;
-using HomeAutomations.Apps.Scales.KitchenScale.Fddb;
-using HomeAutomations.Apps.Vacuum;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
