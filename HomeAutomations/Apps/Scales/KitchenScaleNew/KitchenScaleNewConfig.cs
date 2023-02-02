@@ -1,5 +1,4 @@
 using HomeAutomations.Common.Models.Config;
-using HomeAutomations.Common.Services.Bluetooth;
 
 namespace HomeAutomations.Apps.Scales.KitchenScaleNew;
 
