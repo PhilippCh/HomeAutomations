@@ -3,7 +3,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
   Groups:
     - Name: Kitchen
       Lights:
-        - Entity: light.kitchen_ceiling_light_zigbee
+        - Entity: light.kitchen_ceiling_light
           CycleTime: 00:01:30
           MaxIlluminance: 70
           ManualTriggerSensor: sensor.kitchen_light_action
