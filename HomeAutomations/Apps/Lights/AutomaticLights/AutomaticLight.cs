@@ -34,8 +34,12 @@ public class AutomaticLight
 	public IDisposable StartMonitoring()
 	{
 		var disposables = new CompositeDisposable();
-		disposables.Add(_entity.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State)));
 		disposables.Add(_entity.MotionSensor.Entity.StateChanges().Subscribe(s => OnMotionSensorStateChanged(s.New?.Attributes)));
+
+		if (_entity.ManualTriggerSensor is not null)
+		{
+			disposables.Add(_entity.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State)));
+		}
 
 		return disposables;
 	}
