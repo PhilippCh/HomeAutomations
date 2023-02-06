@@ -272,9 +272,9 @@ csharp_preserve_single_line_blocks = true
 #leave statements and member declarations on the same line
 csharp_preserve_single_line_statements = true
 #prefer block bodies for constructors
-csharp_style_expression_bodied_constructors = false:suggestion
+csharp_style_expression_bodied_constructors = true:suggestion
 #prefer block bodies for methods
-csharp_style_expression_bodied_methods = false:suggestion
+csharp_style_expression_bodied_methods = true:suggestion
 #prefer expression-bodied members for properties
 csharp_style_expression_bodied_properties = true:suggestion
 #prefer out variables to be declared inline in the argument list of a method call when possible

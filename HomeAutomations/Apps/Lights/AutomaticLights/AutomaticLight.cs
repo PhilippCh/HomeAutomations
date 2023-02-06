@@ -35,7 +35,7 @@ public class AutomaticLight
 	{
 		var disposables = new CompositeDisposable();
 		disposables.Add(_entity.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State)));
-		disposables.Add(_entity.MotionSensor.StateChanges().Subscribe(s => OnMotionSensorStateChanged(s.New?.Attributes)));
+		disposables.Add(_entity.MotionSensor.Entity.StateChanges().Subscribe(s => OnMotionSensorStateChanged(s.New?.Attributes)));
 
 		return disposables;
 	}
@@ -59,6 +59,12 @@ public class AutomaticLight
 	{
 		if (attributes == null)
 		{
+			return;
+		}
+
+		if (!_entity.MotionSensor.ActiveIntervals.Any(i => i.IsActiveFor(DateTime.Now.TimeOfDay)))
+		{
+			// We're not in any active motion sensor interval, so cancel.
 			return;
 		}
 
@@ -92,14 +98,14 @@ public class AutomaticLight
 
 	private void SetBrightness()
 	{
-		var timeOfDay = DateTime.Now.TimeOfDay;
-		var activeBrightnessConfig = _entity.Brightness.FirstOrDefault(b => b.Start <= timeOfDay && timeOfDay <= b.End);
+		var date = DateTime.Now.TimeOfDay;
+		var activeBrightnessConfig = _entity.Brightness.FirstOrDefault(b => b.Interval.IsActiveFor(date));
 
 		if (activeBrightnessConfig != null)
 		{
 			_logger.Information(
 				"Switching to brightness setting from {From} to {To}: {Value}% brightness for {Light}",
-				activeBrightnessConfig.Start, activeBrightnessConfig.End, activeBrightnessConfig.Percentage, _entity.Entity.GetName());
+				activeBrightnessConfig.Interval.Start, activeBrightnessConfig.Interval.End, activeBrightnessConfig.Percentage, _entity.Entity.GetName());
 		}
 
 		_brightness = (activeBrightnessConfig?.Percentage ?? DefaultBrightnessPct) * _entity.MaxBrightness / 100;
