@@ -124,11 +124,6 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 	private void SendPickupReminder()
 	{
-		if (Config.TakeOutEvent.Entity.IsOff())
-		{
-			return; // No need to send reminder, we're not responsible this week.
-		}
-
 		var pickUps = Config.Entities
 			.Where(e => e.Value.IsOn())
 			.Select(e => e.Key);

@@ -22,7 +22,7 @@ HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
   Notification:
     Tag: trash_reminder
     Title: Müll rausbringen
-    Template: Wir sind dran mit Müll rausbringen! Heute werden {0} geholt.
+    Template: Morgen werden {0} geholt.
     Image: https://ha.pupslab.de/local/trash_reminder.jpg
     Sticky: true
   Entities:
