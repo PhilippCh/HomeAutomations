@@ -10,6 +10,7 @@ using Notification = HomeAutomations.Models.Notification;
 
 namespace HomeAutomations.Apps.Lights.AutomaticLights;
 
+[Focus]
 public class AutomaticLight
 {
 	private const int DefaultBrightnessPct = 100;
@@ -66,7 +67,7 @@ public class AutomaticLight
 			return;
 		}
 
-		if (!_entity.MotionSensor.ActiveIntervals.Any(i => i.IsActiveFor(DateTime.Now.TimeOfDay)))
+		if (!_entity.MotionSensor.ActiveIntervals.Any(i => i.IsActiveFor(DateTime.Now)))
 		{
 			// We're not in any active motion sensor interval, so cancel.
 			return;
@@ -102,8 +103,7 @@ public class AutomaticLight
 
 	private void SetBrightness()
 	{
-		var date = DateTime.Now.TimeOfDay;
-		var activeBrightnessConfig = _entity.Brightness.FirstOrDefault(b => b.Interval.IsActiveFor(date));
+		var activeBrightnessConfig = _entity.Brightness?.FirstOrDefault(b => b.Interval.IsActiveFor(DateTime.Now));
 
 		if (activeBrightnessConfig != null)
 		{

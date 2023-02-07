@@ -25,7 +25,7 @@ public record AutomaticLightEntity
 	public SensorEntity? ManualTriggerSensor { get; init; }
 	public int MaxBrightness { get; init; }
 	public MotionSensorConfig MotionSensor { get; init; }
-	public IEnumerable<BrightnessConfig> Brightness { get; init; }
+	public IEnumerable<BrightnessConfig>? Brightness { get; init; }
 }
 
 public record LightGroup

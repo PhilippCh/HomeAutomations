@@ -38,7 +38,7 @@
         <PackageReference Include="RestSharp" Version="107.3.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
         <PackageReference Include="Simple.MPD" Version="0.6.3.2" />
-        <PackageReference Include="SSH.NET" Version="2020.0.1" />
+        <PackageReference Include="SSH.NET" Version="2020.0.2" />
         <PackageReference Include="Staty" Version="2.1.3" />
         <PackageReference Include="System.Reactive" Version="5.0.0" />
 		<PackageReference Include="NSwag.MSBuild" Version="13.15.10">
