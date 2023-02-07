@@ -1,7 +1,11 @@
 ﻿using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Apps.MoonlightRemote.Dtos;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Models.Generated.MoonlightRemoteApi;
@@ -10,6 +14,7 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MoonlightRemote;
 
+[Focus]
 public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteConfig>
 {
 	private const string ShutdownAction = "MOONLIGHT_SHUTDOWN";
@@ -21,7 +26,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		: base(aggregate)
 	{
 		var baseUrl = Config.ApiBaseUrl.CurrentValue;
-		Logger.Information("Connecting to {baseUrl}.", baseUrl);
+		Logger.Information("Connecting to {BaseUrl}", baseUrl);
 
 		_apiClient = new MoonlightRemoteApiClient(baseUrl, new HttpClient());
 		_browserModServices = Services.BrowserMod;
@@ -32,11 +37,23 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_start", StartStream);
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_stop", _ => StopStream());
 		Context.RegisterServiceCallBack<MoonlightServiceData>("moonlight_reset_bluetooth", _ => ResetBluetooth());
+
 		Context.Events.Filter<MobileAppNotificationData>(MobileAppNotificationData.Id)
 			.Where(e => e.Data?.Action == ShutdownAction)
 			.Subscribe(_ => StopStream());
+
 		Config.SelectedHost.StateChanges()
-			.Subscribe(s => UpdateAvailableGames(s.New?.State));
+			.Select(s => s.New?.State)
+			.StartWith(Config.SelectedHost.State)
+			.Select(x => Observable.FromAsync(() => UpdateAvailableGamesAsync(x)))
+			.Concat()
+			.Subscribe(
+				x =>
+				{
+					var gameNames = x?.Apps.Select(y => y.Name) ?? new[] { "Keine Auswahl" };
+					Config.SelectedGame.SetOptions(new InputSelectSetOptionsParameters { Options = gameNames });
+					Config.SelectedGame.SelectFirst();
+				});
 
 		Observable.Interval(TimeSpan.FromSeconds(20))
 			.Subscribe(_ => UpdateStatus());
@@ -50,37 +67,60 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		{
 			var status = await _apiClient.StatusAsync();
 			Config.Pid.SetValue(status?.Pid ?? -1);
-			Config.CurrentHost.SetValue(!string.IsNullOrWhiteSpace(status?.Host) ? status!.Host : "None");
+			Config.CurrentHost.SetValue(!string.IsNullOrWhiteSpace(status?.Host) ? status.Host : "None");
 		}
 		catch (Exception ex)
 		{
-			Logger.Warning("Could not update status due to: {reason}", ex.Message);
+			Logger.Warning("Could not update status due to: {Reason}", ex.Message);
 		}
 	}
 
-	private void UpdateAvailableGames(string? hostDisplayName)
+	private async Task<SunshineAppsResponseDto?> UpdateAvailableGamesAsync(string? hostDisplayName)
 	{
 		var host = GetHostByDisplayName(hostDisplayName);
-		var availableGames = (host?.Games.Select(g => g.DisplayName) ?? new[] { "Keine Auswahl" }).ToList();
 
-		availableGames.Insert(0, "Bitte wählen ...");
+		if (host is null)
+		{
+			Logger.Warning("Could not find host {DisplayName}", hostDisplayName);
 
-		Config.SelectedGame.SetOptions(
-			new InputSelectSetOptionsParameters
-			{
-				Options = availableGames
-			});
-		Config.SelectedGame.SelectOption(availableGames.FirstOrDefault() ?? string.Empty);
+			return null;
+		}
+
+		var client = GetSunshineHttpClient(Config.Sunshine.Username, Config.Sunshine.Password);
+
+		try
+		{
+			return await client.GetFromJsonAsync<SunshineAppsResponseDto>(GetSunshineAppsUrl(host.Host));
+		}
+		catch (HttpRequestException)
+		{
+			return null;
+		}
+	}
+
+	private string GetSunshineAppsUrl(string hostname) => $"https://{hostname}:{Config.Sunshine.Port}{Config.Sunshine.AppsPath}";
+
+	private HttpClient GetSunshineHttpClient(string username, string password)
+	{
+		var byteArray = Encoding.ASCII.GetBytes($"{username}:{password}");
+		var handler = new HttpClientHandler();
+		handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+		handler.ServerCertificateCustomValidationCallback = (_, _, _, _) => true;
+
+		return new HttpClient(handler)
+		{
+			DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray)) }
+		};
 	}
 
 	private async void StartStream(MoonlightServiceData e)
 	{
 		var host = GetHostByDisplayName(Config.SelectedHost.State);
-		var game = host?.GetGameByDisplayName(Config.SelectedGame.State);
+		var game = Config.SelectedGame.State;
 
 		if (host == null || game == null)
 		{
-			Logger.Warning("Could not find host {host} or game {game}", Config.SelectedGame.State, Config.SelectedGame.State);
+			Logger.Warning("Could not find host {Host} or game {Game}", Config.SelectedGame.State, Config.SelectedGame.State);
 
 			return;
 		}
@@ -88,7 +128,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		var request = new StartStreamRequest
 		{
 			Host = new StreamRequestHost { Host = host.Host, MacAddress = host.MacAddress },
-			Game = game.Id,
+			Game = game,
 			Features = new StreamRequestFeatures
 			{
 				Host = true,
@@ -97,7 +137,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 				Bluetooth = true
 			}
 		};
-		await ExecuteWithResultToast(_apiClient.StartAsync(request));
+		await ExecuteWithResultToastAsync(_apiClient.StartAsync(request));
 	}
 
 	private async void StopStream()
@@ -107,7 +147,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 
 		if (host == null)
 		{
-			Logger.Warning("Could not find host {host} in list.", hostAddress);
+			Logger.Warning("Could not find host {Host} in list", hostAddress);
 
 			return;
 		}
@@ -124,19 +164,19 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 			}
 		};
 
-		await ExecuteWithResultToast(_apiClient.StopAsync(request));
+		await ExecuteWithResultToastAsync(_apiClient.StopAsync(request));
 	}
 
 	private async void ResetBluetooth()
 	{
-		await ExecuteWithResultToast(_apiClient.ResetBluetoothAsync());
+		await ExecuteWithResultToastAsync(_apiClient.ResetBluetoothAsync());
 	}
 
 	private MoonlightHost? GetHost(string? host) => Config.Hosts.FirstOrDefault(h => h.Host == host);
 
 	private MoonlightHost? GetHostByDisplayName(string? displayName) => Config.Hosts.FirstOrDefault(h => h.DisplayName == displayName);
 
-	private async Task ExecuteWithResultToast(Task<TaskExecutionResult> task)
+	private async Task ExecuteWithResultToastAsync(Task<TaskExecutionResult> task)
 	{
 		var response = await task;
 		_browserModServices.Toast(response.Message);

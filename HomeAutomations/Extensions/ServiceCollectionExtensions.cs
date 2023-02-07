@@ -20,9 +20,7 @@ public static class ServiceCollectionExtensions
 	{
 		services
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
-			.Configure<HarmonyHubConfig>(config.GetSection("HarmonyHub"))
 			.AddSingleton<MqttService>()
-			.AddSingleton<HarmonyHubService>()
 			.AddScoped<NotificationService>()
 			.AddTransient<PingService>()
 

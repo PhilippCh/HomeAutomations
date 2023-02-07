@@ -19,18 +19,15 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 	private MediaStatusMessage? _activeStatusMessage;
 
 	private readonly MqttService _mqttService;
-	private readonly HarmonyHubService _harmonyHubService;
 	private readonly IMqttEntityManager _entityManager;
 
 	public MovieTime(
 		BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate,
 		MqttService mqttService,
-		HarmonyHubService harmonyHubService,
 		IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
 		_mqttService = mqttService;
-		_harmonyHubService = harmonyHubService;
 		_entityManager = entityManager;
 	}
 
@@ -42,7 +39,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 
 	private async void OnStatusMessageReceived(MediaStatusMessage? e)
 	{
-		var currentActivity = await _harmonyHubService.GetCurrentActivity();
+		/*var currentActivity = await _harmonyHubService.GetCurrentActivity();
 
 		if (!Config.SupportedActivities.Contains(currentActivity))
 		{
@@ -57,7 +54,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		};
 
 		action();
-		_activeStatusMessage = e;
+		_activeStatusMessage = e;*/
 	}
 
 	private void OnRokuCommandReceived(RokuCommandEventData? e)

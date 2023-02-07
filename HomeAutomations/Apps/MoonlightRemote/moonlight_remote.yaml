@@ -4,6 +4,11 @@ HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
     Values:
       Development: https://moonlight-remote-api.pupslab.de
       Production: http://moonlight-remote-api:8080
+  Sunshine:
+    Port: 47990
+    AppsPath: /api/apps
+    Username: philipp
+    Password: 'wAN5Kib6&X%%z238'
   Pid: input_number.moonlight_pid
   CurrentHost: input_text.moonlight_current_host
   SelectedHost: input_select.moonlight_selected_host
@@ -12,34 +17,15 @@ HomeAutomations.Apps.MoonlightRemote.MoonlightRemoteConfig:
   ShutdownHarmony: input_boolean.moonlight_shutdown_harmony
   Features:
     Host: true
-    Harmony: false
     Moonlight: true
     Bluetooth: true
   Hosts:
     - DisplayName: Desktop Philipp
       Host: 192.168.188.41
       MacAddress: 40:B0:76:DD:34:61
-      Games:
-        - Id: SH9
-          DisplayName: "Sherlock Holmes: Chapter One"
-        - Id: "LEGO The LEGO Movie 2_DX11"
-          DisplayName: "The LEGO Movie 2"
-        - Id: "UnrealEngine"
-          DisplayName: "HYPERCHARGE - Unboxed"
     - DisplayName: Desktop Fabienne
       Host: 192.168.188.34
       MacAddress: AC:9E:17:EC:5F:83
-      Games:
-        - Id: "Overcooked All You Can Eat"
-          DisplayName: "Overcooked: All You Can Eat"
-        - Id: "The Witcher 3: Wild Hunt"
-          DisplayName: "The Witcher 3: Wild Hunt"
-        - Id: "harry2"
-          DisplayName: "LEGO Harry Potter 5-7"
-        - Id: "LEGOLOTR"
-          DisplayName: "LEGO Herr der Ringe"
-        - Id: "PlanetZoo"
-          DisplayName: "Planet Zoo"
   ShutdownNotification:
     Tag: moonlight
     Title: Moonlight Stream
