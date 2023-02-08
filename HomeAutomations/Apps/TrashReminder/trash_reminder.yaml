@@ -1,6 +1,5 @@
 ---
 HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
-  PersonalCalendar: https://calendar.google.com/calendar/ical/5tb9eckthg7vdn54gbh4cpmbao%40group.calendar.google.com/private-93bf924753ca44380f0001b7ebfd3e01/basic.ics
   Calendar:
     BaseUrl: https://www.abfallwirtschaft-germersheim.de/online-service/abfall-termine/abfalltermine-ics-export-bis-240-liter.html
     City:
@@ -14,10 +13,6 @@ HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
         - Glasbox
         - Papier
         - Restmüll
-  TakeOutEvent:
-    Name: Müll rausbringen
-    Entity: input_boolean.trash_take_outside
-    LookAheadDays: 4
   ReminderCrontab: 00 13 * * SUN
   Notification:
     Tag: trash_reminder

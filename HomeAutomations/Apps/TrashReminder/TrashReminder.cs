@@ -19,7 +19,6 @@ namespace HomeAutomations.Apps.TrashReminder;
 
 public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
-	private Calendar? _personalCalendar;
 	private Calendar? _calendar;
 
 	private readonly NotificationService _notificationService;
@@ -32,7 +31,6 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		_personalCalendar = await GetPersonalCalendarAsync();
 		_calendar = await GetTrashCalendarAsync();
 
 		StartUpdateLoop();
@@ -81,14 +79,6 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 		return Calendar.Load(calendar);
 	}
 
-	private async Task<Calendar> GetPersonalCalendarAsync()
-	{
-		var client = new HttpClient();
-		var content = await client.GetStringAsync(Config.PersonalCalendar);
-
-		return Calendar.Load(content);
-	}
-
 	private void UpdateNextDates(DateTime start)
 	{
 		if (_calendar == null)
@@ -97,27 +87,11 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 			return;
 		}
 
-		if (_personalCalendar == null)
-		{
-			Logger.Warning("Could not load personal calendar");
-			return;
-		}
-
 		var endOfWeek = start.AddDays(7);
 		var eventsThisWeek = _calendar.GetOccurrences(start, endOfWeek);
 
-		var takeOutEventsLookAhead = start.AddDays(Config.TakeOutEvent.LookAheadDays);
-		var takeOutEventsThisWeek = _personalCalendar.GetOccurrences(start, takeOutEventsLookAhead)
-			.Select(e => e.Source)
-			.Cast<CalendarEvent>()
-			.Where(e => e.Summary == Config.TakeOutEvent.Name)
-			.ToList();
-
-		Config.TakeOutEvent.Entity.CallService(takeOutEventsThisWeek.Any() ? "turn_on" : "turn_off");
-
 		foreach (var sensor in Config.Entities)
 		{
-			//Logger.Information("{Key}: {Contains}", sensor.Key, ContainsEvent(sensor.Key, eventsThisWeek));
 			Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
 		}
 	}
