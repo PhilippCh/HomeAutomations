@@ -67,7 +67,7 @@ public class AutomaticLight
 			return;
 		}
 
-		if (!_entity.MotionSensor.ActiveIntervals.Any(i => i.IsActiveFor(DateTime.Now)))
+		if (!_entity.MotionSensor.ActiveIntervals.Any(i => i.IsActiveFor(DateTime.Now.TimeOfDay)))
 		{
 			// We're not in any active motion sensor interval, so cancel.
 			return;
@@ -103,7 +103,7 @@ public class AutomaticLight
 
 	private void SetBrightness()
 	{
-		var activeBrightnessConfig = _entity.Brightness?.FirstOrDefault(b => b.Interval.IsActiveFor(DateTime.Now));
+		var activeBrightnessConfig = _entity.Brightness?.FirstOrDefault(b => b.Interval.IsActiveFor(DateTime.Now.TimeOfDay));
 
 		if (activeBrightnessConfig != null)
 		{

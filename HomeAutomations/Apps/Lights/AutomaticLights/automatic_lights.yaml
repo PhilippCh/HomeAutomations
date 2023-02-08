@@ -10,7 +10,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
             Entity: binary_sensor.kitchen_motion_detector_occupancy
             ActiveIntervals:
               - Start: '08:00:00'
-                End: '01:02:30:00'
+                End: '02:30:00'
           MaxBrightness: 254
         - Entity: light.kitchen_cabinet_light
           CycleTime: 00:01:30
@@ -25,5 +25,5 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
           Brightness:
             - Interval:
                 Start: '08:00:00'
-                End: '01:02:30:00'
+                End: '02:30:00'
               Percentage: 1
