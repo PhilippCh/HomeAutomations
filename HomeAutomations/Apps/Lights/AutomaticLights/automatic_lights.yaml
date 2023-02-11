@@ -21,9 +21,4 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
             ActiveIntervals:
               - Start: '02:30:00'
                 End: '08:00:00'
-          MaxBrightness: 254
-          Brightness:
-            - Interval:
-                Start: '08:00:00'
-                End: '02:30:00'
-              Percentage: 1
+          MaxBrightness: 5
