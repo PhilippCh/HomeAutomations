@@ -71,7 +71,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		}
 		catch (Exception ex)
 		{
-			Logger.Warning("Could not update status due to: {Reason}", ex.Message);
+			Logger.Warning("Could not update streaming host status");
 		}
 	}
 
