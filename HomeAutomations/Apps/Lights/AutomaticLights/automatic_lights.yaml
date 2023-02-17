@@ -6,6 +6,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
         - Entity: light.kitchen_ceiling_light
           CycleTime: 00:01:30
           MaxIlluminance: 70
+          ManualTriggerSensor: sensor.kitchen_ceiling_light_action
           MotionSensor:
             Entity: binary_sensor.kitchen_motion_detector_occupancy
             ActiveIntervals:
@@ -15,7 +16,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
         - Entity: light.kitchen_cabinet_light
           CycleTime: 00:01:30
           MaxIlluminance: 70
-          ManualTriggerSensor: sensor.kitchen_light_action
+          ManualTriggerSensor: sensor.kitchen_cabinet_light_action
           MotionSensor:
             Entity: binary_sensor.kitchen_motion_detector_occupancy
             ActiveIntervals:
