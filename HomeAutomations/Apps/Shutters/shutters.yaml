@@ -1,0 +1,11 @@
+---
+HomeAutomations.Apps.Shutters.ShuttersConfig:
+  Latitude: 48.985865943289255 # TODO: Use a global config for this. Also used in ScheduledLights.
+  Longitude: 8.247879062542783
+  CloseDelay: 01:00:00
+  OpenSensorEntity: sensor.bedroom_bedside_light_switch_philipp_action
+  Shutters:
+    - Entity: cover.bedroom_roller_shutter_left
+      ForceOpenOverride: binary_sensor.fenster_schlafzimmer
+    - Entity: cover.bedroom_roller_shutter_right
+      ForceOpenOverride: binary_sensor.fenster_schlafzimmer

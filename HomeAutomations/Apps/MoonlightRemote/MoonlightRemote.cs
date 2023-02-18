@@ -14,7 +14,6 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MoonlightRemote;
 
-[Focus]
 public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteConfig>
 {
 	private const string ShutdownAction = "MOONLIGHT_SHUTDOWN";
@@ -179,6 +178,6 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 	private async Task ExecuteWithResultToastAsync(Task<TaskExecutionResult> task)
 	{
 		var response = await task;
-		_browserModServices.Toast(response.Message);
+		//_browserModServices.Toast(response.Message);
 	}
 }

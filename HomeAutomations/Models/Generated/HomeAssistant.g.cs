@@ -15,13 +15,15 @@ namespace HomeAutomations.Models.Generated
 
 		ButtonEntities Button { get; }
 
-		CalendarEntities Calendar { get; }
-
 		CameraEntities Camera { get; }
 
 		ClimateEntities Climate { get; }
 
+		ConfiguratorEntities Configurator { get; }
+
 		CounterEntities Counter { get; }
+
+		CoverEntities Cover { get; }
 
 		DeviceTrackerEntities DeviceTracker { get; }
 
@@ -37,13 +39,19 @@ namespace HomeAutomations.Models.Generated
 
 		LightEntities Light { get; }
 
+		LockEntities Lock { get; }
+
 		MediaPlayerEntities MediaPlayer { get; }
+
+		NumberEntities Number { get; }
 
 		PersistentNotificationEntities PersistentNotification { get; }
 
 		PersonEntities Person { get; }
 
 		RemoteEntities Remote { get; }
+
+		SelectEntities Select { get; }
 
 		SensorEntities Sensor { get; }
 
@@ -73,10 +81,11 @@ namespace HomeAutomations.Models.Generated
 		public AlarmControlPanelEntities AlarmControlPanel => new(_haContext);
 		public BinarySensorEntities BinarySensor => new(_haContext);
 		public ButtonEntities Button => new(_haContext);
-		public CalendarEntities Calendar => new(_haContext);
 		public CameraEntities Camera => new(_haContext);
 		public ClimateEntities Climate => new(_haContext);
+		public ConfiguratorEntities Configurator => new(_haContext);
 		public CounterEntities Counter => new(_haContext);
+		public CoverEntities Cover => new(_haContext);
 		public DeviceTrackerEntities DeviceTracker => new(_haContext);
 		public GroupEntities Group => new(_haContext);
 		public InputBooleanEntities InputBoolean => new(_haContext);
@@ -84,10 +93,13 @@ namespace HomeAutomations.Models.Generated
 		public InputSelectEntities InputSelect => new(_haContext);
 		public InputTextEntities InputText => new(_haContext);
 		public LightEntities Light => new(_haContext);
+		public LockEntities Lock => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
+		public NumberEntities Number => new(_haContext);
 		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
 		public RemoteEntities Remote => new(_haContext);
+		public SelectEntities Select => new(_haContext);
 		public SensorEntities Sensor => new(_haContext);
 		public SunEntities Sun => new(_haContext);
 		public SwitchEntities Switch => new(_haContext);
@@ -126,15 +138,29 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity BalkonturRechts => new(_haContext, "binary_sensor.balkontur_rechts");
 		///<summary>Balkontür rechts Battery</summary>
 		public BinarySensorEntity BalkonturRechtsBattery => new(_haContext, "binary_sensor.balkontur_rechts_battery");
+		///<summary>bedroom/lava_lamp_update_available</summary>
+		public BinarySensorEntity BedroomLavaLampUpdateAvailable => new(_haContext, "binary_sensor.bedroom_lava_lamp_update_available");
+		///<summary>bedroom/roller_shutter_left_charging_status</summary>
+		public BinarySensorEntity BedroomRollerShutterLeftChargingStatus => new(_haContext, "binary_sensor.bedroom_roller_shutter_left_charging_status");
+		///<summary>bedroom/roller_shutter_left_running</summary>
+		public BinarySensorEntity BedroomRollerShutterLeftRunning => new(_haContext, "binary_sensor.bedroom_roller_shutter_left_running");
+		///<summary>bedroom/roller_shutter_left_update_available</summary>
+		public BinarySensorEntity BedroomRollerShutterLeftUpdateAvailable => new(_haContext, "binary_sensor.bedroom_roller_shutter_left_update_available");
+		///<summary>bedroom/roller_shutter_right_charging_status</summary>
+		public BinarySensorEntity BedroomRollerShutterRightChargingStatus => new(_haContext, "binary_sensor.bedroom_roller_shutter_right_charging_status");
+		///<summary>bedroom/roller_shutter_right_running</summary>
+		public BinarySensorEntity BedroomRollerShutterRightRunning => new(_haContext, "binary_sensor.bedroom_roller_shutter_right_running");
+		///<summary>bedroom/roller_shutter_right_update_available</summary>
+		public BinarySensorEntity BedroomRollerShutterRightUpdateAvailable => new(_haContext, "binary_sensor.bedroom_roller_shutter_right_update_available");
 		///<summary>DesktopFabienne</summary>
 		public BinarySensorEntity Desktopfabienne => new(_haContext, "binary_sensor.desktopfabienne");
 		///<summary>DesktopPhilipp</summary>
 		public BinarySensorEntity Desktopphilipp => new(_haContext, "binary_sensor.desktopphilipp");
 		///<summary>Fantenpad Focus</summary>
 		public BinarySensorEntity FantenpadFocus => new(_haContext, "binary_sensor.fantenpad_focus");
-		///<summary>Fantenrüssel Mop Attached</summary>
+		///<summary>Fantenrüssel Mop attached</summary>
 		public BinarySensorEntity FantenrusselMopAttached => new(_haContext, "binary_sensor.fantenrussel_mop_attached");
-		///<summary>Fantenrüssel Water Box Attached</summary>
+		///<summary>Fantenrüssel Water box attached</summary>
 		public BinarySensorEntity FantenrusselWaterBoxAttached => new(_haContext, "binary_sensor.fantenrussel_water_box_attached");
 		///<summary>Fenster Arbeitszimmer</summary>
 		public BinarySensorEntity FensterArbeitszimmer => new(_haContext, "binary_sensor.fenster_arbeitszimmer");
@@ -152,42 +178,36 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity IphoneFabienneFocus => new(_haContext, "binary_sensor.iphone_fabienne_focus");
 		///<summary>iPhone Philipp Focus</summary>
 		public BinarySensorEntity IphonePhilippFocus => new(_haContext, "binary_sensor.iphone_philipp_focus");
+		///<summary>kitchen/cabinet_light_update_available</summary>
+		public BinarySensorEntity KitchenCabinetLightUpdateAvailable => new(_haContext, "binary_sensor.kitchen_cabinet_light_update_available");
+		///<summary>kitchen/ceiling_light_update_available</summary>
+		public BinarySensorEntity KitchenCeilingLightUpdateAvailable => new(_haContext, "binary_sensor.kitchen_ceiling_light_update_available");
 		///<summary>kitchen/motion_detector_occupancy</summary>
 		public BinarySensorEntity KitchenMotionDetectorOccupancy => new(_haContext, "binary_sensor.kitchen_motion_detector_occupancy");
 		///<summary>LaptopFabienne</summary>
 		public BinarySensorEntity Laptopfabienne => new(_haContext, "binary_sensor.laptopfabienne");
 		///<summary>LaptopPhilipp</summary>
 		public BinarySensorEntity Laptopphilipp => new(_haContext, "binary_sensor.laptopphilipp");
-		///<summary>PupsStation Below Min Remaining Life</summary>
+		///<summary>PupsStation (Drive 1) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life");
-		///<summary>PupsStation Below Min Remaining Life</summary>
+		///<summary>PupsStation (Drive 2) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife2 => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life_2");
-		///<summary>PupsStation Below Min Remaining Life</summary>
+		///<summary>PupsStation (Drive 3) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife3 => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life_3");
-		///<summary>PupsStation Below Min Remaining Life</summary>
-		public BinarySensorEntity PupsstationDrive1BelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_drive_1_below_min_remaining_life");
-		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
-		public BinarySensorEntity PupsstationDrive1ExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_drive_1_exceeded_max_bad_sectors");
-		///<summary>PupsStation Below Min Remaining Life</summary>
-		public BinarySensorEntity PupsstationDrive2BelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_drive_2_below_min_remaining_life");
-		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
-		public BinarySensorEntity PupsstationDrive2ExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_drive_2_exceeded_max_bad_sectors");
-		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
+		///<summary>PupsStation (Drive 1) Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors");
-		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
+		///<summary>PupsStation (Drive 2) Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationExceededMaxBadSectors2 => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors_2");
-		///<summary>PupsStation Exceeded Max Bad Sectors</summary>
+		///<summary>PupsStation (Drive 3) Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationExceededMaxBadSectors3 => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors_3");
 		///<summary>PupsStation Security Status</summary>
 		public BinarySensorEntity PupsstationSecurityStatus => new(_haContext, "binary_sensor.pupsstation_security_status");
-		///<summary>PupsStation Security Status</summary>
-		public BinarySensorEntity PupsstationSecurityStatus2 => new(_haContext, "binary_sensor.pupsstation_security_status_2");
-		///<summary>PupsStation Update Available</summary>
-		public BinarySensorEntity PupsstationUpdateAvailable => new(_haContext, "binary_sensor.pupsstation_update_available");
 		///<summary>Thermostat Arbeitszimmer Battery</summary>
 		public BinarySensorEntity ThermostatArbeitszimmerBattery => new(_haContext, "binary_sensor.thermostat_arbeitszimmer_battery");
 		///<summary>Thermostat Badezimmer Battery</summary>
 		public BinarySensorEntity ThermostatBadezimmerBattery => new(_haContext, "binary_sensor.thermostat_badezimmer_battery");
+		///<summary>Thermostat Küche Battery</summary>
+		public BinarySensorEntity ThermostatKucheBattery => new(_haContext, "binary_sensor.thermostat_kuche_battery");
 		///<summary>Thermostat Schlafzimmer Battery</summary>
 		public BinarySensorEntity ThermostatSchlafzimmerBattery => new(_haContext, "binary_sensor.thermostat_schlafzimmer_battery");
 		///<summary>Thermostat Wohnzimmer Battery</summary>
@@ -202,14 +222,6 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity WallpanelHallwayMotionDetected => new(_haContext, "binary_sensor.wallpanel_hallway_motion_detected");
 		///<summary>Wallpanel Hallway USB Plugged</summary>
 		public BinarySensorEntity WallpanelHallwayUsbPlugged => new(_haContext, "binary_sensor.wallpanel_hallway_usb_plugged");
-		///<summary>yi_hack_a2_9faf14_baby_crying</summary>
-		public BinarySensorEntity YiHackA29faf14BabyCrying => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_baby_crying");
-		///<summary>yi_hack_a2_9faf14_motion_detection</summary>
-		public BinarySensorEntity YiHackA29faf14MotionDetection => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_motion_detection");
-		///<summary>yi_hack_a2_9faf14_sound_detection</summary>
-		public BinarySensorEntity YiHackA29faf14SoundDetection => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_sound_detection");
-		///<summary>yi_hack_a2_9faf14_status</summary>
-		public BinarySensorEntity YiHackA29faf14Status => new(_haContext, "binary_sensor.yi_hack_a2_9faf14_status");
 	}
 
 	public partial class ButtonEntities
@@ -220,78 +232,10 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Kamera Wohnzimmer Reboot</summary>
-		public ButtonEntity KameraWohnzimmerReboot => new(_haContext, "button.kamera_wohnzimmer_reboot");
 		///<summary>PupsStation Reboot</summary>
 		public ButtonEntity PupsstationReboot => new(_haContext, "button.pupsstation_reboot");
-		///<summary>PupsStation Reboot</summary>
-		public ButtonEntity PupsstationReboot2 => new(_haContext, "button.pupsstation_reboot_2");
 		///<summary>PupsStation Shutdown</summary>
 		public ButtonEntity PupsstationShutdown => new(_haContext, "button.pupsstation_shutdown");
-		///<summary>PupsStation Shutdown</summary>
-		public ButtonEntity PupsstationShutdown2 => new(_haContext, "button.pupsstation_shutdown_2");
-	}
-
-	public partial class CalendarEntities
-	{
-		private readonly IHaContext _haContext;
-		public CalendarEntities(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Abfallleerungen</summary>
-		public CalendarEntity Abfallleerungen => new(_haContext, "calendar.abfallleerungen");
-		///<summary> Aktien 💰</summary>
-		public CalendarEntity Aktien => new(_haContext, "calendar.aktien");
-		///<summary>Aufgaben</summary>
-		public CalendarEntity Aufgaben => new(_haContext, "calendar.aufgaben");
-		///<summary>Birthdays</summary>
-		public CalendarEntity Birthdays => new(_haContext, "calendar.birthdays");
-		///<summary>christoph680@gmx.de</summary>
-		public CalendarEntity Christoph680GmxDe => new(_haContext, "calendar.christoph680_gmx_de");
-		///<summary> Essen holen 🍱</summary>
-		public CalendarEntity EssenHolen => new(_haContext, "calendar.essen_holen");
-		///<summary>Family</summary>
-		public CalendarEntity Family => new(_haContext, "calendar.family");
-		///<summary>Feiertage in Deutschland</summary>
-		public CalendarEntity FeiertageInDeutschland => new(_haContext, "calendar.feiertage_in_deutschland");
-		///<summary>Game ideas</summary>
-		public CalendarEntity GameIdeas => new(_haContext, "calendar.game_ideas");
-		///<summary>Geschenke 🎁</summary>
-		public CalendarEntity Geschenke => new(_haContext, "calendar.geschenke");
-		///<summary>Haushaltstag</summary>
-		public CalendarEntity Haushaltstag => new(_haContext, "calendar.haushaltstag");
-		///<summary>Homelab</summary>
-		public CalendarEntity Homelab => new(_haContext, "calendar.homelab");
-		///<summary>National Park Chocolate</summary>
-		public CalendarEntity NationalParkChocolate => new(_haContext, "calendar.national_park_chocolate");
-		///<summary> Rundreise Neuseeland 🇳🇿</summary>
-		public CalendarEntity RundreiseNeuseeland => new(_haContext, "calendar.rundreise_neuseeland");
-		///<summary>Secret Santa</summary>
-		public CalendarEntity SecretSanta => new(_haContext, "calendar.secret_santa");
-		///<summary>Skyrim Mods</summary>
-		public CalendarEntity SkyrimMods => new(_haContext, "calendar.skyrim_mods");
-		///<summary> The Millionaire’s Bucket List 💸</summary>
-		public CalendarEntity TheMillionairesBucketList => new(_haContext, "calendar.the_millionaires_bucket_list");
-		///<summary>The Shadows On Your Soul</summary>
-		public CalendarEntity TheShadowsOnYourSoul => new(_haContext, "calendar.the_shadows_on_your_soul");
-		///<summary> Tierarzt 🐈</summary>
-		public CalendarEntity Tierarzt => new(_haContext, "calendar.tierarzt");
-		///<summary>Unser Haus 🏠</summary>
-		public CalendarEntity UnserHaus => new(_haContext, "calendar.unser_haus");
-		///<summary> Urlaub Ibiza 🇪🇸</summary>
-		public CalendarEntity UrlaubIbiza => new(_haContext, "calendar.urlaub_ibiza");
-		///<summary> Urlaub Paris 🇫🇷</summary>
-		public CalendarEntity UrlaubParis => new(_haContext, "calendar.urlaub_paris");
-		///<summary> Urlaub Schottland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</summary>
-		public CalendarEntity UrlaubSchottland => new(_haContext, "calendar.urlaub_schottland");
-		///<summary>Weihnachtsgeschenke</summary>
-		public CalendarEntity Weihnachtsgeschenke => new(_haContext, "calendar.weihnachtsgeschenke");
-		///<summary>Weihnachtswünsche</summary>
-		public CalendarEntity Weihnachtswunsche => new(_haContext, "calendar.weihnachtswunsche");
-		///<summary> Zoo</summary>
-		public CalendarEntity Zoo => new(_haContext, "calendar.zoo");
 	}
 
 	public partial class CameraEntities
@@ -304,14 +248,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Fantenrüssel_Map</summary>
 		public CameraEntity FantenrusselMap => new(_haContext, "camera.fantenrussel_map");
-		///<summary>Kamera Wohnzimmer - Profile_0</summary>
-		public CameraEntity KameraWohnzimmerProfile0 => new(_haContext, "camera.kamera_wohnzimmer_profile_0");
 		///<summary>Wohnzimmer Camera</summary>
 		public CameraEntity WohnzimmerCamera => new(_haContext, "camera.wohnzimmer_camera");
-		///<summary>yi_hack_a2_9faf14_cam</summary>
-		public CameraEntity YiHackA29faf14Cam => new(_haContext, "camera.yi_hack_a2_9faf14_cam");
-		///<summary>yi_hack_a2_9faf14_motion_detection_cam</summary>
-		public CameraEntity YiHackA29faf14MotionDetectionCam => new(_haContext, "camera.yi_hack_a2_9faf14_motion_detection_cam");
 	}
 
 	public partial class ClimateEntities
@@ -326,10 +264,24 @@ namespace HomeAutomations.Models.Generated
 		public ClimateEntity RoomClimateArbeitszimmer => new(_haContext, "climate.room_climate_arbeitszimmer");
 		///<summary>Room Climate Badezimmer</summary>
 		public ClimateEntity RoomClimateBadezimmer => new(_haContext, "climate.room_climate_badezimmer");
+		///<summary>Room Climate Küche</summary>
+		public ClimateEntity RoomClimateKuche => new(_haContext, "climate.room_climate_kuche");
 		///<summary>Room Climate Schlafzimmer</summary>
 		public ClimateEntity RoomClimateSchlafzimmer => new(_haContext, "climate.room_climate_schlafzimmer");
 		///<summary>Room Climate Wohnzimmer</summary>
 		public ClimateEntity RoomClimateWohnzimmer => new(_haContext, "climate.room_climate_wohnzimmer");
+	}
+
+	public partial class ConfiguratorEntities
+	{
+		private readonly IHaContext _haContext;
+		public ConfiguratorEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>O365 - Account1</summary>
+		public ConfiguratorEntity O365Account1 => new(_haContext, "configurator.o365_account1");
 	}
 
 	public partial class CounterEntities
@@ -342,6 +294,20 @@ namespace HomeAutomations.Models.Generated
 
 		public CounterEntity KratomIntakeDay => new(_haContext, "counter.kratom_intake_day");
 		public CounterEntity MeditationMinutesWeek => new(_haContext, "counter.meditation_minutes_week");
+	}
+
+	public partial class CoverEntities
+	{
+		private readonly IHaContext _haContext;
+		public CoverEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>bedroom/roller_shutter_left</summary>
+		public CoverEntity BedroomRollerShutterLeft => new(_haContext, "cover.bedroom_roller_shutter_left");
+		///<summary>bedroom/roller_shutter_right</summary>
+		public CoverEntity BedroomRollerShutterRight => new(_haContext, "cover.bedroom_roller_shutter_right");
 	}
 
 	public partial class DeviceTrackerEntities
@@ -390,12 +356,6 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity ComputerWolDesktopFabienne => new(_haContext, "input_boolean.computer_wol_desktop_fabienne");
 		///<summary>Desktop Philipp</summary>
 		public InputBooleanEntity ComputerWolDesktopPhilipp => new(_haContext, "input_boolean.computer_wol_desktop_philipp");
-		///<summary>dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter");
-		///<summary>dev_netdaemon_home_automations_apps_counters_water_counter_water_counter</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_water_counter_water_counter");
-		///<summary>dev_netdaemon_home_automations_apps_motion_detector_motion_detector</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsMotionDetectorMotionDetector => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_motion_detector_motion_detector");
 		///<summary>Enable motion detector</summary>
 		public InputBooleanEntity EnableMotionDetector => new(_haContext, "input_boolean.enable_motion_detector");
 		///<summary>Meditation active?</summary>
@@ -422,14 +382,16 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsLightsAutomaticLightsAutomaticLights => new(_haContext, "input_boolean.netdaemon_home_automations_apps_lights_automatic_lights_automatic_lights");
 		///<summary>netdaemon_home_automations_apps_lights_scheduled_lights_scheduled_lights</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsLightsScheduledLightsScheduledLights => new(_haContext, "input_boolean.netdaemon_home_automations_apps_lights_scheduled_lights_scheduled_lights");
+		///<summary>netdaemon_home_automations_apps_living_room_button_living_room_button</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsLivingRoomButtonLivingRoomButton => new(_haContext, "input_boolean.netdaemon_home_automations_apps_living_room_button_living_room_button");
 		///<summary>netdaemon_home_automations_apps_moonlight_remote_moonlight_remote</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsMoonlightRemoteMoonlightRemote => new(_haContext, "input_boolean.netdaemon_home_automations_apps_moonlight_remote_moonlight_remote");
+		///<summary>netdaemon_home_automations_apps_motion_detector_motion_detector</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsMotionDetectorMotionDetector => new(_haContext, "input_boolean.netdaemon_home_automations_apps_motion_detector_motion_detector");
 		///<summary>netdaemon_home_automations_apps_movie_time_movie_time</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsMovieTimeMovieTime => new(_haContext, "input_boolean.netdaemon_home_automations_apps_movie_time_movie_time");
 		///<summary>netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsRazorBladeUsageRazorBladeUsage => new(_haContext, "input_boolean.netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage");
-		///<summary>netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsScalesKitchenScaleKitchenScale => new(_haContext, "input_boolean.netdaemon_home_automations_apps_scales_kitchen_scale_kitchen_scale");
 		///<summary>netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsSleepSoundscapesSleepSoundscapes => new(_haContext, "input_boolean.netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes");
 		///<summary>netdaemon_home_automations_apps_training_schedule_training_schedule</summary>
@@ -532,36 +494,26 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>bedroom/bedside_light_fabienne</summary>
 		public LightEntity BedroomBedsideLightFabienne => new(_haContext, "light.bedroom_bedside_light_fabienne");
-		public LightEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "light.browser_mod_18a35fcc_9cc51676");
-		public LightEntity BrowserMod367cd1ac14d9f17d => new(_haContext, "light.browser_mod_367cd1ac_14d9f17d");
-		public LightEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "light.browser_mod_4dfe8c51_c6acddb1");
-		public LightEntity BrowserMod50e35bf5B410ba6f => new(_haContext, "light.browser_mod_50e35bf5_b410ba6f");
-		public LightEntity BrowserMod5415f277B69b1789 => new(_haContext, "light.browser_mod_5415f277_b69b1789");
-		public LightEntity BrowserMod7605937aF7c5c1de => new(_haContext, "light.browser_mod_7605937a_f7c5c1de");
-		public LightEntity BrowserMod83461556F7d0adba => new(_haContext, "light.browser_mod_83461556_f7d0adba");
-		public LightEntity BrowserMod85c1d623De31f646 => new(_haContext, "light.browser_mod_85c1d623_de31f646");
-		public LightEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "light.browser_mod_8ff90475_f73ebe95");
-		public LightEntity BrowserModB258752a08baa428 => new(_haContext, "light.browser_mod_b258752a_08baa428");
-		public LightEntity BrowserModCe5a5526823fbc7c => new(_haContext, "light.browser_mod_ce5a5526_823fbc7c");
-		public LightEntity BrowserModE57688b3B2627e9a => new(_haContext, "light.browser_mod_e57688b3_b2627e9a");
-		public LightEntity BrowserModF37266029d6ed113 => new(_haContext, "light.browser_mod_f3726602_9d6ed113");
-		public LightEntity BrowserModFb34009b72400981 => new(_haContext, "light.browser_mod_fb34009b_72400981");
-		///<summary>kitchen/ceiling_light_zigbee</summary>
-		public LightEntity KitchenCeilingLightZigbee => new(_haContext, "light.kitchen_ceiling_light_zigbee");
-		///<summary>Neon-Uhr</summary>
-		public LightEntity KitchenNeonClock => new(_haContext, "light.kitchen_neon_clock");
-		///<summary>Buddha-Brunnen</summary>
-		public LightEntity LivingRoomBuddhaFountain => new(_haContext, "light.living_room_buddha_fountain");
-		///<summary>Vertragslicht</summary>
-		public LightEntity LivingRoomContractLight => new(_haContext, "light.living_room_contract_light");
-		///<summary>TWtYH Diorama</summary>
-		public LightEntity LivingRoomDiorama => new(_haContext, "light.living_room_diorama");
-		///<summary>Lightbar</summary>
-		public LightEntity LivingRoomLightbar => new(_haContext, "light.living_room_lightbar");
-		///<summary>TV Lightstrip</summary>
+		///<summary>kitchen/cabinet_light</summary>
+		public LightEntity KitchenCabinetLight => new(_haContext, "light.kitchen_cabinet_light");
+		///<summary>kitchen/ceiling_light</summary>
+		public LightEntity KitchenCeilingLight => new(_haContext, "light.kitchen_ceiling_light");
+		///<summary>living_room/tv_lightstrip</summary>
 		public LightEntity LivingRoomTvLightstrip => new(_haContext, "light.living_room_tv_lightstrip");
-		///<summary>Stehlampe</summary>
+		///<summary>living_room/standard_lamp</summary>
 		public LightEntity Stehlampe => new(_haContext, "light.stehlampe");
+	}
+
+	public partial class LockEntities
+	{
+		private readonly IHaContext _haContext;
+		public LockEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>bedroom/lava_lamp_child_lock</summary>
+		public LockEntity BedroomLavaLampChildLock => new(_haContext, "lock.bedroom_lava_lamp_child_lock");
 	}
 
 	public partial class MediaPlayerEntities
@@ -572,28 +524,32 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		public MediaPlayerEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "media_player.browser_mod_18a35fcc_9cc51676");
-		public MediaPlayerEntity BrowserMod367cd1ac14d9f17d => new(_haContext, "media_player.browser_mod_367cd1ac_14d9f17d");
-		public MediaPlayerEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "media_player.browser_mod_4dfe8c51_c6acddb1");
-		public MediaPlayerEntity BrowserMod50e35bf5B410ba6f => new(_haContext, "media_player.browser_mod_50e35bf5_b410ba6f");
-		public MediaPlayerEntity BrowserMod5415f277B69b1789 => new(_haContext, "media_player.browser_mod_5415f277_b69b1789");
-		public MediaPlayerEntity BrowserMod7605937aF7c5c1de => new(_haContext, "media_player.browser_mod_7605937a_f7c5c1de");
-		public MediaPlayerEntity BrowserMod83461556F7d0adba => new(_haContext, "media_player.browser_mod_83461556_f7d0adba");
-		public MediaPlayerEntity BrowserMod85c1d623De31f646 => new(_haContext, "media_player.browser_mod_85c1d623_de31f646");
-		public MediaPlayerEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "media_player.browser_mod_8ff90475_f73ebe95");
-		public MediaPlayerEntity BrowserModB258752a08baa428 => new(_haContext, "media_player.browser_mod_b258752a_08baa428");
-		public MediaPlayerEntity BrowserModCe5a5526823fbc7c => new(_haContext, "media_player.browser_mod_ce5a5526_823fbc7c");
-		public MediaPlayerEntity BrowserModE57688b3B2627e9a => new(_haContext, "media_player.browser_mod_e57688b3_b2627e9a");
-		public MediaPlayerEntity BrowserModF37266029d6ed113 => new(_haContext, "media_player.browser_mod_f3726602_9d6ed113");
-		public MediaPlayerEntity BrowserModFb34009b72400981 => new(_haContext, "media_player.browser_mod_fb34009b_72400981");
 		///<summary>master_bedroom_speaker</summary>
 		public MediaPlayerEntity MasterBedroomSpeaker => new(_haContext, "media_player.master_bedroom_speaker");
 		///<summary>Hall Display</summary>
 		public MediaPlayerEntity Nesthub4ae6 => new(_haContext, "media_player.nesthub4ae6");
-		///<summary>Spotify Philipp Christoph</summary>
-		public MediaPlayerEntity SpotifyPhilippChristoph => new(_haContext, "media_player.spotify_philipp_christoph");
-		///<summary>yi_hack_a2_9faf14_media_player</summary>
-		public MediaPlayerEntity YiHackA29faf14MediaPlayer => new(_haContext, "media_player.yi_hack_a2_9faf14_media_player");
+	}
+
+	public partial class NumberEntities
+	{
+		private readonly IHaContext _haContext;
+		public NumberEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Raumthermostat Schlafzimmer Offset</summary>
+		public NumberEntity RaumthermostatSchlafzimmerOffset => new(_haContext, "number.raumthermostat_schlafzimmer_offset");
+		///<summary>Thermostat Arbeitszimmer Offset</summary>
+		public NumberEntity ThermostatArbeitszimmerOffset => new(_haContext, "number.thermostat_arbeitszimmer_offset");
+		///<summary>Thermostat Badezimmer Offset</summary>
+		public NumberEntity ThermostatBadezimmerOffset => new(_haContext, "number.thermostat_badezimmer_offset");
+		///<summary>Thermostat Küche Offset</summary>
+		public NumberEntity ThermostatKucheOffset => new(_haContext, "number.thermostat_kuche_offset");
+		///<summary>Thermostat Schlafzimmer Offset</summary>
+		public NumberEntity ThermostatSchlafzimmerOffset => new(_haContext, "number.thermostat_schlafzimmer_offset");
+		///<summary>Thermostat Wohnzimmer Offset</summary>
+		public NumberEntity ThermostatWohnzimmerOffset => new(_haContext, "number.thermostat_wohnzimmer_offset");
 	}
 
 	public partial class PersistentNotificationEntities
@@ -604,8 +560,8 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Login attempt failed</summary>
-		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
+		///<summary>Invalid config</summary>
+		public PersistentNotificationEntity InvalidConfig => new(_haContext, "persistent_notification.invalid_config");
 	}
 
 	public partial class PersonEntities
@@ -630,8 +586,30 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Fernbedienung Remote</summary>
+		///<summary>Fernbedienung</summary>
 		public RemoteEntity FernbedienungRemote => new(_haContext, "remote.fernbedienung_remote");
+	}
+
+	public partial class SelectEntities
+	{
+		private readonly IHaContext _haContext;
+		public SelectEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>bedroom/lava_lamp_indicator_mode</summary>
+		public SelectEntity BedroomLavaLampIndicatorMode => new(_haContext, "select.bedroom_lava_lamp_indicator_mode");
+		///<summary>bedroom/lava_lamp_power_outage_memory</summary>
+		public SelectEntity BedroomLavaLampPowerOutageMemory => new(_haContext, "select.bedroom_lava_lamp_power_outage_memory");
+		///<summary>kitchen/cabinet_light_power_on_behavior</summary>
+		public SelectEntity KitchenCabinetLightPowerOnBehavior => new(_haContext, "select.kitchen_cabinet_light_power_on_behavior");
+		///<summary>kitchen/ceiling_light_power_on_behavior</summary>
+		public SelectEntity KitchenCeilingLightPowerOnBehavior => new(_haContext, "select.kitchen_ceiling_light_power_on_behavior");
+		///<summary>living_room/christmas_stars Indicator light mode</summary>
+		public SelectEntity LivingRoomChristmasStarsIndicatorLightMode => new(_haContext, "select.living_room_christmas_stars_indicator_light_mode");
+		///<summary>living_room/christmas_stars Power on behavior</summary>
+		public SelectEntity LivingRoomChristmasStarsPowerOnBehavior => new(_haContext, "select.living_room_christmas_stars_power_on_behavior");
 	}
 
 	public partial class SensorEntities
@@ -652,8 +630,20 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity BedroomBedsideLightSwitchPhilippBattery => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_battery");
 		///<summary>bedroom/bedside_light_switch_philipp_device_temperature</summary>
 		public NumericSensorEntity BedroomBedsideLightSwitchPhilippDeviceTemperature => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_device_temperature");
+		///<summary>bedroom/lava_lamp_energy</summary>
+		public NumericSensorEntity BedroomLavaLampEnergy => new(_haContext, "sensor.bedroom_lava_lamp_energy");
+		///<summary>bedroom/lava_lamp_power</summary>
+		public NumericSensorEntity BedroomLavaLampPower => new(_haContext, "sensor.bedroom_lava_lamp_power");
 		///<summary>bedroom/motion_detector_temperature</summary>
 		public NumericSensorEntity BedroomMotionDetectorTemperature => new(_haContext, "sensor.bedroom_motion_detector_temperature");
+		///<summary>bedroom/roller_shutter_left_battery</summary>
+		public NumericSensorEntity BedroomRollerShutterLeftBattery => new(_haContext, "sensor.bedroom_roller_shutter_left_battery");
+		///<summary>bedroom/roller_shutter_left_device_temperature</summary>
+		public NumericSensorEntity BedroomRollerShutterLeftDeviceTemperature => new(_haContext, "sensor.bedroom_roller_shutter_left_device_temperature");
+		///<summary>bedroom/roller_shutter_right_battery</summary>
+		public NumericSensorEntity BedroomRollerShutterRightBattery => new(_haContext, "sensor.bedroom_roller_shutter_right_battery");
+		///<summary>bedroom/roller_shutter_right_device_temperature</summary>
+		public NumericSensorEntity BedroomRollerShutterRightDeviceTemperature => new(_haContext, "sensor.bedroom_roller_shutter_right_device_temperature");
 		///<summary>BlackBerry Ltd</summary>
 		public NumericSensorEntity BlackberryLtd => new(_haContext, "sensor.blackberry_ltd");
 		///<summary>Core DAX</summary>
@@ -662,164 +652,24 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity FantenpadBatteryLevel => new(_haContext, "sensor.fantenpad_battery_level");
 		///<summary>Fantenpad Storage</summary>
 		public NumericSensorEntity FantenpadStorage => new(_haContext, "sensor.fantenpad_storage");
-		///<summary>Fantenrüssel Current Clean Area</summary>
+		///<summary>Fantenrüssel Current clean area</summary>
 		public NumericSensorEntity FantenrusselCurrentCleanArea => new(_haContext, "sensor.fantenrussel_current_clean_area");
-		///<summary>Fantenrüssel Current Clean Duration</summary>
+		///<summary>Fantenrüssel Current clean duration</summary>
 		public NumericSensorEntity FantenrusselCurrentCleanDuration => new(_haContext, "sensor.fantenrussel_current_clean_duration");
-		///<summary>Fantenrüssel Filter Left</summary>
+		///<summary>Fantenrüssel Filter left</summary>
 		public NumericSensorEntity FantenrusselFilterLeft => new(_haContext, "sensor.fantenrussel_filter_left");
-		///<summary>Fantenrüssel Last Clean Area</summary>
+		///<summary>Fantenrüssel Last clean area</summary>
 		public NumericSensorEntity FantenrusselLastCleanArea => new(_haContext, "sensor.fantenrussel_last_clean_area");
-		///<summary>Fantenrüssel Last Clean Duration</summary>
+		///<summary>Fantenrüssel Last clean duration</summary>
 		public NumericSensorEntity FantenrusselLastCleanDuration => new(_haContext, "sensor.fantenrussel_last_clean_duration");
-		///<summary>Fantenrüssel Main Brush Left</summary>
+		///<summary>Fantenrüssel Main brush left</summary>
 		public NumericSensorEntity FantenrusselMainBrushLeft => new(_haContext, "sensor.fantenrussel_main_brush_left");
-		///<summary>Fantenrüssel Sensor Dirty Left</summary>
+		///<summary>Fantenrüssel Sensor dirty left</summary>
 		public NumericSensorEntity FantenrusselSensorDirtyLeft => new(_haContext, "sensor.fantenrussel_sensor_dirty_left");
-		///<summary>Fantenrüssel Side Brush Left</summary>
+		///<summary>Fantenrüssel Side brush left</summary>
 		public NumericSensorEntity FantenrusselSideBrushLeft => new(_haContext, "sensor.fantenrussel_side_brush_left");
 		///<summary>GameStop Corp</summary>
 		public NumericSensorEntity GamestopCorp => new(_haContext, "sensor.gamestop_corp");
-		///<summary>Glances acpitz 1 Temperature</summary>
-		public NumericSensorEntity GlancesAcpitz1Temperature => new(_haContext, "sensor.glances_acpitz_1_temperature");
-		///<summary>Glances acpitz 2 Temperature</summary>
-		public NumericSensorEntity GlancesAcpitz2Temperature => new(_haContext, "sensor.glances_acpitz_2_temperature");
-		///<summary>Glances  Containers active</summary>
-		public NumericSensorEntity GlancesContainersActive => new(_haContext, "sensor.glances_containers_active");
-		///<summary>Glances  Containers CPU used</summary>
-		public NumericSensorEntity GlancesContainersCpuUsed => new(_haContext, "sensor.glances_containers_cpu_used");
-		///<summary>Glances  Containers RAM used</summary>
-		public NumericSensorEntity GlancesContainersRamUsed => new(_haContext, "sensor.glances_containers_ram_used");
-		///<summary>Glances Core 0 Temperature</summary>
-		public NumericSensorEntity GlancesCore0Temperature => new(_haContext, "sensor.glances_core_0_temperature");
-		///<summary>Glances Core 1 Temperature</summary>
-		public NumericSensorEntity GlancesCore1Temperature => new(_haContext, "sensor.glances_core_1_temperature");
-		///<summary>Glances Core 2 Temperature</summary>
-		public NumericSensorEntity GlancesCore2Temperature => new(_haContext, "sensor.glances_core_2_temperature");
-		///<summary>Glances Core 3 Temperature</summary>
-		public NumericSensorEntity GlancesCore3Temperature => new(_haContext, "sensor.glances_core_3_temperature");
-		///<summary>Glances  CPU load</summary>
-		public NumericSensorEntity GlancesCpuLoad => new(_haContext, "sensor.glances_cpu_load");
-		///<summary>Glances  CPU used</summary>
-		public NumericSensorEntity GlancesCpuUsed => new(_haContext, "sensor.glances_cpu_used");
-		///<summary>Glances / free</summary>
-		public NumericSensorEntity GlancesFree => new(_haContext, "sensor.glances_free");
-		///<summary>Glances Package id 0 Temperature</summary>
-		public NumericSensorEntity GlancesPackageId0Temperature => new(_haContext, "sensor.glances_package_id_0_temperature");
-		///<summary>Glances  RAM free</summary>
-		public NumericSensorEntity GlancesRamFree => new(_haContext, "sensor.glances_ram_free");
-		///<summary>Glances  RAM used</summary>
-		public NumericSensorEntity GlancesRamUsed => new(_haContext, "sensor.glances_ram_used");
-		///<summary>Glances  RAM used percent</summary>
-		public NumericSensorEntity GlancesRamUsedPercent => new(_haContext, "sensor.glances_ram_used_percent");
-		///<summary>Glances /run/containerd/runc/k8s.io/a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6/runc.neLJOF free</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIoA74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6RuncNeljofFree => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6_runc_neljof_free");
-		///<summary>Glances /run/containerd/runc/k8s.io/a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6/runc.neLJOF used</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIoA74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6RuncNeljofUsed => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6_runc_neljof_used");
-		///<summary>Glances /run/containerd/runc/k8s.io/a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6/runc.neLJOF used percent</summary>
-		public NumericSensorEntity GlancesRunContainerdRuncK8sIoA74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6RuncNeljofUsedPercent => new(_haContext, "sensor.glances_run_containerd_runc_k8s_io_a74d9cdc64bea1df2952208e7eacf04ddd1f84558b51e9c486b68ba8b767d8e6_runc_neljof_used_percent");
-		///<summary>Glances  Running</summary>
-		public NumericSensorEntity GlancesRunning => new(_haContext, "sensor.glances_running");
-		///<summary>Glances  Sleeping</summary>
-		public NumericSensorEntity GlancesSleeping => new(_haContext, "sensor.glances_sleeping");
-		///<summary>Glances  Swap free</summary>
-		public NumericSensorEntity GlancesSwapFree => new(_haContext, "sensor.glances_swap_free");
-		///<summary>Glances  Swap used</summary>
-		public NumericSensorEntity GlancesSwapUsed => new(_haContext, "sensor.glances_swap_used");
-		///<summary>Glances  Swap used percent</summary>
-		public NumericSensorEntity GlancesSwapUsedPercent => new(_haContext, "sensor.glances_swap_used_percent");
-		///<summary>Glances  Thread</summary>
-		public NumericSensorEntity GlancesThread => new(_haContext, "sensor.glances_thread");
-		///<summary>Glances  Total</summary>
-		public NumericSensorEntity GlancesTotal => new(_haContext, "sensor.glances_total");
-		///<summary>Glances / used</summary>
-		public NumericSensorEntity GlancesUsed => new(_haContext, "sensor.glances_used");
-		///<summary>Glances / used percent</summary>
-		public NumericSensorEntity GlancesUsedPercent => new(_haContext, "sensor.glances_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/007aa4c8-2a8b-49c8-a65e-b6ed355f1b5a/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods007aa4c82a8b49c8A65eB6ed355f1b5aVolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_007aa4c8_2a8b_49c8_a65e_b6ed355f1b5a_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/007aa4c8-2a8b-49c8-a65e-b6ed355f1b5a/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods007aa4c82a8b49c8A65eB6ed355f1b5aVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_007aa4c8_2a8b_49c8_a65e_b6ed355f1b5a_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/007aa4c8-2a8b-49c8-a65e-b6ed355f1b5a/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods007aa4c82a8b49c8A65eB6ed355f1b5aVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_007aa4c8_2a8b_49c8_a65e_b6ed355f1b5a_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/11aa4b7e-7aa3-4d96-8272-1a41454f4869/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods11aa4b7e7aa34d9682721a41454f4869VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_11aa4b7e_7aa3_4d96_8272_1a41454f4869_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/11aa4b7e-7aa3-4d96-8272-1a41454f4869/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods11aa4b7e7aa34d9682721a41454f4869VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_11aa4b7e_7aa3_4d96_8272_1a41454f4869_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/11aa4b7e-7aa3-4d96-8272-1a41454f4869/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods11aa4b7e7aa34d9682721a41454f4869VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_11aa4b7e_7aa3_4d96_8272_1a41454f4869_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/adguard-home/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigAdguardHome0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_adguard_home_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/adguard-home/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigAdguardHome0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_adguard_home_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/adguard-home/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigAdguardHome0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_adguard_home_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/copy-configmap/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigCopyConfigmap0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_copy_configmap_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/copy-configmap/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigCopyConfigmap0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_copy_configmap_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/14952757-0bd0-4d0b-9e20-a1c2cf67c711/volume-subpaths/adguard-home-config/copy-configmap/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods149527570bd04d0b9e20A1c2cf67c711VolumeSubpathsAdguardHomeConfigCopyConfigmap0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_14952757_0bd0_4d0b_9e20_a1c2cf67c711_volume_subpaths_adguard_home_config_copy_configmap_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/18b3903e-69e2-44c0-aebc-a44d4e7ace1a/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods18b3903e69e244c0AebcA44d4e7ace1aVolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_18b3903e_69e2_44c0_aebc_a44d4e7ace1a_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/192c4d61-c5ff-4d08-9caf-2e2c829aacaf/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods192c4d61C5ff4d089caf2e2c829aacafVolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_192c4d61_c5ff_4d08_9caf_2e2c829aacaf_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/192c4d61-c5ff-4d08-9caf-2e2c829aacaf/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods192c4d61C5ff4d089caf2e2c829aacafVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_192c4d61_c5ff_4d08_9caf_2e2c829aacaf_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/192c4d61-c5ff-4d08-9caf-2e2c829aacaf/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods192c4d61C5ff4d089caf2e2c829aacafVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_192c4d61_c5ff_4d08_9caf_2e2c829aacaf_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/2f4b7bfe-9e0d-4b06-ac09-c0af1a89c518/volume-subpaths/mosquitto-config/mosquitto/2 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods2f4b7bfe9e0d4b06Ac09C0af1a89c518VolumeSubpathsMosquittoConfigMosquitto2Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2f4b7bfe_9e0d_4b06_ac09_c0af1a89c518_volume_subpaths_mosquitto_config_mosquitto_2_free");
-		///<summary>Glances /var/lib/kubelet/pods/2f4b7bfe-9e0d-4b06-ac09-c0af1a89c518/volume-subpaths/mosquitto-config/mosquitto/2 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods2f4b7bfe9e0d4b06Ac09C0af1a89c518VolumeSubpathsMosquittoConfigMosquitto2Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2f4b7bfe_9e0d_4b06_ac09_c0af1a89c518_volume_subpaths_mosquitto_config_mosquitto_2_used");
-		///<summary>Glances /var/lib/kubelet/pods/2f4b7bfe-9e0d-4b06-ac09-c0af1a89c518/volume-subpaths/mosquitto-config/mosquitto/2 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods2f4b7bfe9e0d4b06Ac09C0af1a89c518VolumeSubpathsMosquittoConfigMosquitto2UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_2f4b7bfe_9e0d_4b06_ac09_c0af1a89c518_volume_subpaths_mosquitto_config_mosquitto_2_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/500343b7-5b4c-4ce1-bc59-6a65494d9c28/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods500343b75b4c4ce1Bc596a65494d9c28VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_500343b7_5b4c_4ce1_bc59_6a65494d9c28_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/500343b7-5b4c-4ce1-bc59-6a65494d9c28/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods500343b75b4c4ce1Bc596a65494d9c28VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_500343b7_5b4c_4ce1_bc59_6a65494d9c28_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/500343b7-5b4c-4ce1-bc59-6a65494d9c28/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods500343b75b4c4ce1Bc596a65494d9c28VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_500343b7_5b4c_4ce1_bc59_6a65494d9c28_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/7f19b18f-6d20-4588-8571-50c2e7508179/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods7f19b18f6d204588857150c2e7508179VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_7f19b18f_6d20_4588_8571_50c2e7508179_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/7f19b18f-6d20-4588-8571-50c2e7508179/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods7f19b18f6d204588857150c2e7508179VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_7f19b18f_6d20_4588_8571_50c2e7508179_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/7f19b18f-6d20-4588-8571-50c2e7508179/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods7f19b18f6d204588857150c2e7508179VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_7f19b18f_6d20_4588_8571_50c2e7508179_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/8a0507c3-97e9-4b77-a7e0-66a1c0f63223/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods8a0507c397e94b77A7e066a1c0f63223VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_8a0507c3_97e9_4b77_a7e0_66a1c0f63223_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/8a0507c3-97e9-4b77-a7e0-66a1c0f63223/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods8a0507c397e94b77A7e066a1c0f63223VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_8a0507c3_97e9_4b77_a7e0_66a1c0f63223_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/8a0507c3-97e9-4b77-a7e0-66a1c0f63223/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods8a0507c397e94b77A7e066a1c0f63223VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_8a0507c3_97e9_4b77_a7e0_66a1c0f63223_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/9a332023-8437-47f9-b16a-08dcc4ccd9c7/volume-subpaths/mosquitto-config/mosquitto/0 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods9a332023843747f9B16a08dcc4ccd9c7VolumeSubpathsMosquittoConfigMosquitto0Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_9a332023_8437_47f9_b16a_08dcc4ccd9c7_volume_subpaths_mosquitto_config_mosquitto_0_free");
-		///<summary>Glances /var/lib/kubelet/pods/9a332023-8437-47f9-b16a-08dcc4ccd9c7/volume-subpaths/mosquitto-config/mosquitto/0 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods9a332023843747f9B16a08dcc4ccd9c7VolumeSubpathsMosquittoConfigMosquitto0Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_9a332023_8437_47f9_b16a_08dcc4ccd9c7_volume_subpaths_mosquitto_config_mosquitto_0_used");
-		///<summary>Glances /var/lib/kubelet/pods/9a332023-8437-47f9-b16a-08dcc4ccd9c7/volume-subpaths/mosquitto-config/mosquitto/0 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPods9a332023843747f9B16a08dcc4ccd9c7VolumeSubpathsMosquittoConfigMosquitto0UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_9a332023_8437_47f9_b16a_08dcc4ccd9c7_volume_subpaths_mosquitto_config_mosquitto_0_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/eff5e21b-d553-4e97-8ba8-17c5745f257b/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsEff5e21bD5534e978ba817c5745f257bVolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_eff5e21b_d553_4e97_8ba8_17c5745f257b_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/eff5e21b-d553-4e97-8ba8-17c5745f257b/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsEff5e21bD5534e978ba817c5745f257bVolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_eff5e21b_d553_4e97_8ba8_17c5745f257b_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/eff5e21b-d553-4e97-8ba8-17c5745f257b/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsEff5e21bD5534e978ba817c5745f257bVolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_eff5e21b_d553_4e97_8ba8_17c5745f257b_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/f0edab55-3def-49c1-833c-4f1788b40431/volume-subpaths/config/mariadb/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsF0edab553def49c1833c4f1788b40431VolumeSubpathsConfigMariadb1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f0edab55_3def_49c1_833c_4f1788b40431_volume_subpaths_config_mariadb_1_used_percent");
-		///<summary>Glances /var/lib/kubelet/pods/f8b2f25c-6be9-46e9-89e5-0303b04e4dc9/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 free</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsF8b2f25c6be946e989e50303b04e4dc9VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Free => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f8b2f25c_6be9_46e9_89e5_0303b04e4dc9_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_free");
-		///<summary>Glances /var/lib/kubelet/pods/f8b2f25c-6be9-46e9-89e5-0303b04e4dc9/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsF8b2f25c6be946e989e50303b04e4dc9VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1Used => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f8b2f25c_6be9_46e9_89e5_0303b04e4dc9_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used");
-		///<summary>Glances /var/lib/kubelet/pods/f8b2f25c-6be9-46e9-89e5-0303b04e4dc9/volume-subpaths/zigbee2mqtt-settings/zigbee2mqtt/1 used percent</summary>
-		public NumericSensorEntity GlancesVarLibKubeletPodsF8b2f25c6be946e989e50303b04e4dc9VolumeSubpathsZigbee2mqttSettingsZigbee2mqtt1UsedPercent => new(_haContext, "sensor.glances_var_lib_kubelet_pods_f8b2f25c_6be9_46e9_89e5_0303b04e4dc9_volume_subpaths_zigbee2mqtt_settings_zigbee2mqtt_1_used_percent");
 		///<summary>hacs</summary>
 		public NumericSensorEntity Hacs => new(_haContext, "sensor.hacs");
 		///<summary>hallway Cluster Size</summary>
@@ -840,12 +690,8 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity IphoneFabienneStorage => new(_haContext, "sensor.iphone_fabienne_storage");
 		///<summary>iPhone Philipp Average Active Pace</summary>
 		public NumericSensorEntity IphonePhilippAverageActivePace => new(_haContext, "sensor.iphone_philipp_average_active_pace");
-		///<summary>iPhone-Philipp Battery</summary>
-		public NumericSensorEntity IphonePhilippBattery => new(_haContext, "sensor.iphone_philipp_battery");
 		///<summary>iPhone Philipp Battery Level</summary>
 		public NumericSensorEntity IphonePhilippBatteryLevel => new(_haContext, "sensor.iphone_philipp_battery_level");
-		///<summary>iPhone-Philipp Calc Dist</summary>
-		public NumericSensorEntity IphonePhilippCalcDistance => new(_haContext, "sensor.iphone_philipp_calc_distance");
 		///<summary>iPhone Philipp Distance</summary>
 		public NumericSensorEntity IphonePhilippDistance => new(_haContext, "sensor.iphone_philipp_distance");
 		///<summary>iPhone Philipp Floors Ascended</summary>
@@ -856,20 +702,18 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity IphonePhilippSteps => new(_haContext, "sensor.iphone_philipp_steps");
 		///<summary>iPhone Philipp Storage</summary>
 		public NumericSensorEntity IphonePhilippStorage => new(_haContext, "sensor.iphone_philipp_storage");
-		///<summary>iPhone-Philipp Travel Dist</summary>
-		public NumericSensorEntity IphonePhilippTravelDistance => new(_haContext, "sensor.iphone_philipp_travel_distance");
-		///<summary>iPhone-Philipp Travel Time</summary>
-		public NumericSensorEntity IphonePhilippTravelTime => new(_haContext, "sensor.iphone_philipp_travel_time");
-		///<summary>iPhone-Philipp Travel Time</summary>
-		public NumericSensorEntity IphonePhilippTravelTimeMin => new(_haContext, "sensor.iphone_philipp_travel_time_min");
-		///<summary>iPhone-Philipp Waze Dist</summary>
-		public NumericSensorEntity IphonePhilippWazeDistance => new(_haContext, "sensor.iphone_philipp_waze_distance");
-		///<summary>iPhone-Philipp Zone Distance</summary>
-		public NumericSensorEntity IphonePhilippZoneDistance => new(_haContext, "sensor.iphone_philipp_zone_distance");
-		///<summary>kitchen/light battery</summary>
-		public NumericSensorEntity KitchenLightBattery => new(_haContext, "sensor.kitchen_light_battery");
-		///<summary>kitchen/light device temperature</summary>
-		public NumericSensorEntity KitchenLightDeviceTemperature => new(_haContext, "sensor.kitchen_light_device_temperature");
+		///<summary>kitchen/cabinet_light_button_battery</summary>
+		public NumericSensorEntity KitchenCabinetLightButtonBattery => new(_haContext, "sensor.kitchen_cabinet_light_button_battery");
+		///<summary>kitchen/cabinet_light_button_device_temperature</summary>
+		public NumericSensorEntity KitchenCabinetLightButtonDeviceTemperature => new(_haContext, "sensor.kitchen_cabinet_light_button_device_temperature");
+		///<summary>kitchen/ceiling_light_button_battery</summary>
+		public NumericSensorEntity KitchenCeilingLightButtonBattery => new(_haContext, "sensor.kitchen_ceiling_light_button_battery");
+		///<summary>kitchen/ceiling_light_button_device_temperature</summary>
+		public NumericSensorEntity KitchenCeilingLightButtonDeviceTemperature => new(_haContext, "sensor.kitchen_ceiling_light_button_device_temperature");
+		///<summary>kitchen/kratom_counter_battery</summary>
+		public NumericSensorEntity KitchenKratomCounterBattery => new(_haContext, "sensor.kitchen_kratom_counter_battery");
+		///<summary>kitchen/kratom_counter_device_temperature</summary>
+		public NumericSensorEntity KitchenKratomCounterDeviceTemperature => new(_haContext, "sensor.kitchen_kratom_counter_device_temperature");
 		///<summary>kitchen/motion_detector_battery</summary>
 		public NumericSensorEntity KitchenMotionDetectorBattery => new(_haContext, "sensor.kitchen_motion_detector_battery");
 		///<summary>kitchen/motion_detector_device_temperature</summary>
@@ -882,84 +726,46 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity Lufthansa => new(_haContext, "sensor.lufthansa");
 		///<summary>METRO AG</summary>
 		public NumericSensorEntity MetroAg => new(_haContext, "sensor.metro_ag");
-		///<summary>Total</summary>
-		public NumericSensorEntity MyBitcoins2 => new(_haContext, "sensor.my_bitcoins_2");
-		///<summary>Profit</summary>
-		public NumericSensorEntity MyBitcoins3 => new(_haContext, "sensor.my_bitcoins_3");
-		///<summary>Total</summary>
-		public NumericSensorEntity MyDogecoinsNodered => new(_haContext, "sensor.my_dogecoins_nodered");
-		///<summary>Profit</summary>
-		public NumericSensorEntity MyDogecoinsProfitNodered => new(_haContext, "sensor.my_dogecoins_profit_nodered");
-		///<summary>PupsStation Average Disk Temp</summary>
+		///<summary>PupsStation (Volume 1) Average Disk Temp</summary>
 		public NumericSensorEntity PupsstationAverageDiskTemp => new(_haContext, "sensor.pupsstation_average_disk_temp");
-		///<summary>PupsStation CPU Load Average (15 min)</summary>
-		public NumericSensorEntity PupsstationCpuLoad15Min => new(_haContext, "sensor.pupsstation_cpu_load_15_min");
-		///<summary>PupsStation CPU Load Average (5 min)</summary>
-		public NumericSensorEntity PupsstationCpuLoad5Min => new(_haContext, "sensor.pupsstation_cpu_load_5_min");
 		///<summary>PupsStation CPU Load Average (15 min)</summary>
 		public NumericSensorEntity PupsstationCpuLoadAverage15Min => new(_haContext, "sensor.pupsstation_cpu_load_average_15_min");
 		///<summary>PupsStation CPU Load Average (5 min)</summary>
 		public NumericSensorEntity PupsstationCpuLoadAverage5Min => new(_haContext, "sensor.pupsstation_cpu_load_average_5_min");
-		///<summary>PupsStation CPU Utilization (Total)</summary>
-		public NumericSensorEntity PupsstationCpuLoadTotal => new(_haContext, "sensor.pupsstation_cpu_load_total");
-		///<summary>PupsStation CPU Utilization (User)</summary>
-		public NumericSensorEntity PupsstationCpuLoadUser => new(_haContext, "sensor.pupsstation_cpu_load_user");
 		///<summary>PupsStation CPU Utilization (Total)</summary>
 		public NumericSensorEntity PupsstationCpuUtilizationTotal => new(_haContext, "sensor.pupsstation_cpu_utilization_total");
 		///<summary>PupsStation CPU Utilization (User)</summary>
 		public NumericSensorEntity PupsstationCpuUtilizationUser => new(_haContext, "sensor.pupsstation_cpu_utilization_user");
 		///<summary>PupsStation Download Throughput</summary>
 		public NumericSensorEntity PupsstationDownloadThroughput => new(_haContext, "sensor.pupsstation_download_throughput");
-		///<summary>PupsStation Temperature</summary>
-		public NumericSensorEntity PupsstationDrive1Temperature => new(_haContext, "sensor.pupsstation_drive_1_temperature");
-		///<summary>PupsStation Temperature</summary>
-		public NumericSensorEntity PupsstationDrive2Temperature => new(_haContext, "sensor.pupsstation_drive_2_temperature");
 		///<summary>PupsStation Memory Available (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryAvailableReal => new(_haContext, "sensor.pupsstation_memory_available_real");
-		///<summary>PupsStation Memory Available (Real)</summary>
-		public NumericSensorEntity PupsstationMemoryAvailableReal2 => new(_haContext, "sensor.pupsstation_memory_available_real_2");
 		///<summary>PupsStation Memory Available (Swap)</summary>
 		public NumericSensorEntity PupsstationMemoryAvailableSwap => new(_haContext, "sensor.pupsstation_memory_available_swap");
-		///<summary>PupsStation Memory Available (Swap)</summary>
-		public NumericSensorEntity PupsstationMemoryAvailableSwap2 => new(_haContext, "sensor.pupsstation_memory_available_swap_2");
 		///<summary>PupsStation Memory Total (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryTotalReal => new(_haContext, "sensor.pupsstation_memory_total_real");
-		///<summary>PupsStation Memory Total (Real)</summary>
-		public NumericSensorEntity PupsstationMemoryTotalReal2 => new(_haContext, "sensor.pupsstation_memory_total_real_2");
 		///<summary>PupsStation Memory Total (Swap)</summary>
 		public NumericSensorEntity PupsstationMemoryTotalSwap => new(_haContext, "sensor.pupsstation_memory_total_swap");
-		///<summary>PupsStation Memory Total (Swap)</summary>
-		public NumericSensorEntity PupsstationMemoryTotalSwap2 => new(_haContext, "sensor.pupsstation_memory_total_swap_2");
 		///<summary>PupsStation Memory Usage (Real)</summary>
 		public NumericSensorEntity PupsstationMemoryUsageReal => new(_haContext, "sensor.pupsstation_memory_usage_real");
-		///<summary>PupsStation Memory Usage (Real)</summary>
-		public NumericSensorEntity PupsstationMemoryUsageReal2 => new(_haContext, "sensor.pupsstation_memory_usage_real_2");
-		///<summary>PupsStation Download Throughput</summary>
-		public NumericSensorEntity PupsstationNetworkDown => new(_haContext, "sensor.pupsstation_network_down");
-		///<summary>PupsStation Upload Throughput</summary>
-		public NumericSensorEntity PupsstationNetworkUp => new(_haContext, "sensor.pupsstation_network_up");
-		///<summary>PupsStation Temperature</summary>
+		///<summary>PupsStation (Drive 1) Temperature</summary>
 		public NumericSensorEntity PupsstationTemperature => new(_haContext, "sensor.pupsstation_temperature");
-		///<summary>PupsStation Temperature</summary>
+		///<summary>PupsStation (Drive 2) Temperature</summary>
 		public NumericSensorEntity PupsstationTemperature2 => new(_haContext, "sensor.pupsstation_temperature_2");
-		///<summary>PupsStation Temperature</summary>
+		///<summary>PupsStation (Drive 3) Temperature</summary>
 		public NumericSensorEntity PupsstationTemperature3 => new(_haContext, "sensor.pupsstation_temperature_3");
 		///<summary>PupsStation Temperature</summary>
 		public NumericSensorEntity PupsstationTemperature4 => new(_haContext, "sensor.pupsstation_temperature_4");
-		///<summary>PupsStation Temperature</summary>
-		public NumericSensorEntity PupsstationTemperature5 => new(_haContext, "sensor.pupsstation_temperature_5");
 		///<summary>PupsStation Upload Throughput</summary>
 		public NumericSensorEntity PupsstationUploadThroughput => new(_haContext, "sensor.pupsstation_upload_throughput");
-		///<summary>PupsStation Used Space</summary>
+		///<summary>PupsStation (Volume 1) Used Space</summary>
 		public NumericSensorEntity PupsstationUsedSpace => new(_haContext, "sensor.pupsstation_used_space");
-		///<summary>PupsStation Average Disk Temp</summary>
-		public NumericSensorEntity PupsstationVolume1AverageDiskTemp => new(_haContext, "sensor.pupsstation_volume_1_average_disk_temp");
-		///<summary>PupsStation Used Space</summary>
-		public NumericSensorEntity PupsstationVolume1UsedSpace => new(_haContext, "sensor.pupsstation_volume_1_used_space");
-		///<summary>PupsStation Volume Used</summary>
-		public NumericSensorEntity PupsstationVolume1VolumeUsed => new(_haContext, "sensor.pupsstation_volume_1_volume_used");
-		///<summary>PupsStation Volume Used</summary>
+		///<summary>PupsStation (Volume 1) Volume Used</summary>
 		public NumericSensorEntity PupsstationVolumeUsed => new(_haContext, "sensor.pupsstation_volume_used");
+		///<summary>Raumthermostat Schlafzimmer Humidity</summary>
+		public NumericSensorEntity RaumthermostatSchlafzimmerHumidity => new(_haContext, "sensor.raumthermostat_schlafzimmer_humidity");
+		///<summary>Raumthermostat Schlafzimmer Temperature</summary>
+		public NumericSensorEntity RaumthermostatSchlafzimmerTemperature => new(_haContext, "sensor.raumthermostat_schlafzimmer_temperature");
 		///<summary>SpeedTest Download</summary>
 		public NumericSensorEntity SpeedtestDownload => new(_haContext, "sensor.speedtest_download");
 		///<summary>SpeedTest Ping</summary>
@@ -1004,6 +810,10 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity ThermostatBadezimmerTemperature => new(_haContext, "sensor.thermostat_badezimmer_temperature");
 		///<summary>Thermostat Badezimmer Valvetappet</summary>
 		public NumericSensorEntity ThermostatBadezimmerValvetappet => new(_haContext, "sensor.thermostat_badezimmer_valvetappet");
+		///<summary>Thermostat Küche Temperature</summary>
+		public NumericSensorEntity ThermostatKucheTemperature => new(_haContext, "sensor.thermostat_kuche_temperature");
+		///<summary>Thermostat Küche Valvetappet</summary>
+		public NumericSensorEntity ThermostatKucheValvetappet => new(_haContext, "sensor.thermostat_kuche_valvetappet");
 		///<summary>Thermostat Schlafzimmer Temperature</summary>
 		public NumericSensorEntity ThermostatSchlafzimmerTemperature => new(_haContext, "sensor.thermostat_schlafzimmer_temperature");
 		///<summary>Thermostat Schlafzimmer Valvetappet</summary>
@@ -1032,20 +842,12 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BedroomBedsideLightSwitchPhilippClick => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_click");
 		///<summary>bedroom/bedside_light_switch_philipp_power_outage_count</summary>
 		public SensorEntity BedroomBedsideLightSwitchPhilippPowerOutageCount => new(_haContext, "sensor.bedroom_bedside_light_switch_philipp_power_outage_count");
-		public SensorEntity BrowserMod18a35fcc9cc51676 => new(_haContext, "sensor.browser_mod_18a35fcc_9cc51676");
-		public SensorEntity BrowserMod367cd1ac14d9f17d => new(_haContext, "sensor.browser_mod_367cd1ac_14d9f17d");
-		public SensorEntity BrowserMod4dfe8c51C6acddb1 => new(_haContext, "sensor.browser_mod_4dfe8c51_c6acddb1");
-		public SensorEntity BrowserMod50e35bf5B410ba6f => new(_haContext, "sensor.browser_mod_50e35bf5_b410ba6f");
-		public SensorEntity BrowserMod5415f277B69b1789 => new(_haContext, "sensor.browser_mod_5415f277_b69b1789");
-		public SensorEntity BrowserMod7605937aF7c5c1de => new(_haContext, "sensor.browser_mod_7605937a_f7c5c1de");
-		public SensorEntity BrowserMod83461556F7d0adba => new(_haContext, "sensor.browser_mod_83461556_f7d0adba");
-		public SensorEntity BrowserMod85c1d623De31f646 => new(_haContext, "sensor.browser_mod_85c1d623_de31f646");
-		public SensorEntity BrowserMod8ff90475F73ebe95 => new(_haContext, "sensor.browser_mod_8ff90475_f73ebe95");
-		public SensorEntity BrowserModB258752a08baa428 => new(_haContext, "sensor.browser_mod_b258752a_08baa428");
-		public SensorEntity BrowserModCe5a5526823fbc7c => new(_haContext, "sensor.browser_mod_ce5a5526_823fbc7c");
-		public SensorEntity BrowserModE57688b3B2627e9a => new(_haContext, "sensor.browser_mod_e57688b3_b2627e9a");
-		public SensorEntity BrowserModF37266029d6ed113 => new(_haContext, "sensor.browser_mod_f3726602_9d6ed113");
-		public SensorEntity BrowserModFb34009b72400981 => new(_haContext, "sensor.browser_mod_fb34009b_72400981");
+		///<summary>bedroom/roller_shutter_left_motor_state</summary>
+		public SensorEntity BedroomRollerShutterLeftMotorState => new(_haContext, "sensor.bedroom_roller_shutter_left_motor_state");
+		///<summary>bedroom/roller_shutter_right_motor_state</summary>
+		public SensorEntity BedroomRollerShutterRightMotorState => new(_haContext, "sensor.bedroom_roller_shutter_right_motor_state");
+		///<summary>Brother MFC-1910W, using brlaser v6</summary>
+		public SensorEntity BrotherMfc1910wUsingBrlaserV6 => new(_haContext, "sensor.brother_mfc_1910w_using_brlaser_v6");
 		///<summary>Current training schedule</summary>
 		public SensorEntity CurrentTrainingSchedule => new(_haContext, "sensor.current_training_schedule");
 		///<summary>Fantenpad Activity</summary>
@@ -1062,9 +864,9 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity FantenpadLastUpdateTrigger => new(_haContext, "sensor.fantenpad_last_update_trigger");
 		///<summary>Fantenpad SSID</summary>
 		public SensorEntity FantenpadSsid => new(_haContext, "sensor.fantenpad_ssid");
-		///<summary>Fantenrüssel Last Clean End</summary>
+		///<summary>Fantenrüssel Last clean end</summary>
 		public SensorEntity FantenrusselLastCleanEnd => new(_haContext, "sensor.fantenrussel_last_clean_end");
-		///<summary>Fantenrüssel Last Clean Start</summary>
+		///<summary>Fantenrüssel Last clean start</summary>
 		public SensorEntity FantenrusselLastCleanStart => new(_haContext, "sensor.fantenrussel_last_clean_start");
 		///<summary>hallway Cluster Leader</summary>
 		public SensorEntity HallwayClusterLeader => new(_haContext, "sensor.hallway_cluster_leader");
@@ -1087,66 +889,46 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity IphoneFabienneSim2 => new(_haContext, "sensor.iphone_fabienne_sim_2");
 		///<summary>iPhone Fabienne SSID</summary>
 		public SensorEntity IphoneFabienneSsid => new(_haContext, "sensor.iphone_fabienne_ssid");
+		///<summary>iPhone Philipp 2 SIM 2</summary>
+		public SensorEntity IphonePhilipp2Sim2 => new(_haContext, "sensor.iphone_philipp_2_sim_2");
 		///<summary>iPhone Philipp Activity</summary>
 		public SensorEntity IphonePhilippActivity => new(_haContext, "sensor.iphone_philipp_activity");
-		///<summary>Philipp</summary>
-		public SensorEntity IphonePhilippBadge => new(_haContext, "sensor.iphone_philipp_badge");
 		///<summary>iPhone Philipp Battery State</summary>
 		public SensorEntity IphonePhilippBatteryState => new(_haContext, "sensor.iphone_philipp_battery_state");
 		///<summary>iPhone Philipp BSSID</summary>
 		public SensorEntity IphonePhilippBssid => new(_haContext, "sensor.iphone_philipp_bssid");
 		///<summary>iPhone Philipp Connection Type</summary>
 		public SensorEntity IphonePhilippConnectionType => new(_haContext, "sensor.iphone_philipp_connection_type");
-		///<summary>iPhone-Philipp Direction</summary>
-		public SensorEntity IphonePhilippDirOfTravel => new(_haContext, "sensor.iphone_philipp_dir_of_travel");
 		///<summary>iPhone Philipp Geocoded Location</summary>
 		public SensorEntity IphonePhilippGeocodedLocation => new(_haContext, "sensor.iphone_philipp_geocoded_location");
-		///<summary>iPhone-Philipp GPS Accuracy</summary>
-		public SensorEntity IphonePhilippGpsAccuracy => new(_haContext, "sensor.iphone_philipp_gps_accuracy");
-		///<summary>iPhone-Philipp Info</summary>
+		///<summary>NoneInfo</summary>
 		public SensorEntity IphonePhilippInfo => new(_haContext, "sensor.iphone_philipp_info");
-		///<summary>iPhone-Philipp Interval</summary>
-		public SensorEntity IphonePhilippInterval => new(_haContext, "sensor.iphone_philipp_interval");
-		///<summary>iPhone-Philipp Last Located</summary>
-		public SensorEntity IphonePhilippLastLocated => new(_haContext, "sensor.iphone_philipp_last_located");
-		///<summary>iPhone-Philipp Last Update</summary>
-		public SensorEntity IphonePhilippLastUpdate => new(_haContext, "sensor.iphone_philipp_last_update");
 		///<summary>iPhone Philipp Last Update Trigger</summary>
 		public SensorEntity IphonePhilippLastUpdateTrigger => new(_haContext, "sensor.iphone_philipp_last_update_trigger");
-		///<summary>iPhone-Philipp Last Zone</summary>
-		public SensorEntity IphonePhilippLastZone => new(_haContext, "sensor.iphone_philipp_last_zone");
-		///<summary>iPhone-Philipp  Last Zone Fname</summary>
-		public SensorEntity IphonePhilippLastZoneFname => new(_haContext, "sensor.iphone_philipp_last_zone_fname");
-		///<summary>iPhone-Philipp Next Update</summary>
-		public SensorEntity IphonePhilippNextUpdate => new(_haContext, "sensor.iphone_philipp_next_update");
-		///<summary>iPhone-Philipp Poll Count</summary>
-		public SensorEntity IphonePhilippPollCount => new(_haContext, "sensor.iphone_philipp_poll_count");
 		///<summary>iPhone Philipp SIM 1</summary>
 		public SensorEntity IphonePhilippSim1 => new(_haContext, "sensor.iphone_philipp_sim_1");
 		///<summary>iPhone Philipp SSID</summary>
 		public SensorEntity IphonePhilippSsid => new(_haContext, "sensor.iphone_philipp_ssid");
-		///<summary>iPhone-Philipp Trigger</summary>
-		public SensorEntity IphonePhilippTrigger => new(_haContext, "sensor.iphone_philipp_trigger");
-		///<summary>iPhone-Philipp Zone</summary>
-		public SensorEntity IphonePhilippZone => new(_haContext, "sensor.iphone_philipp_zone");
-		///<summary>iPhone-Philipp  Zone Fname</summary>
-		public SensorEntity IphonePhilippZoneFname => new(_haContext, "sensor.iphone_philipp_zone_fname");
-		///<summary>iPhone-Philipp  Zone Name</summary>
-		public SensorEntity IphonePhilippZoneName => new(_haContext, "sensor.iphone_philipp_zone_name");
-		///<summary>iPhone-Philipp Zone Timestamp</summary>
-		public SensorEntity IphonePhilippZoneTimestamp => new(_haContext, "sensor.iphone_philipp_zone_timestamp");
-		///<summary>iPhone-Philipp  Zone Title</summary>
-		public SensorEntity IphonePhilippZoneTitle => new(_haContext, "sensor.iphone_philipp_zone_title");
-		///<summary>kitchen/light action</summary>
-		public SensorEntity KitchenLightAction => new(_haContext, "sensor.kitchen_light_action");
-		///<summary>kitchen/light click</summary>
-		public SensorEntity KitchenLightClick => new(_haContext, "sensor.kitchen_light_click");
-		///<summary>kitchen/light power outage count</summary>
-		public SensorEntity KitchenLightPowerOutageCount => new(_haContext, "sensor.kitchen_light_power_outage_count");
+		///<summary>kitchen/cabinet_light_button_action</summary>
+		public SensorEntity KitchenCabinetLightButtonAction => new(_haContext, "sensor.kitchen_cabinet_light_button_action");
+		///<summary>kitchen/cabinet_light_button_click</summary>
+		public SensorEntity KitchenCabinetLightButtonClick => new(_haContext, "sensor.kitchen_cabinet_light_button_click");
+		///<summary>kitchen/cabinet_light_button_power_outage_count</summary>
+		public SensorEntity KitchenCabinetLightButtonPowerOutageCount => new(_haContext, "sensor.kitchen_cabinet_light_button_power_outage_count");
+		///<summary>kitchen/ceiling_light_button_action</summary>
+		public SensorEntity KitchenCeilingLightButtonAction => new(_haContext, "sensor.kitchen_ceiling_light_button_action");
+		///<summary>kitchen/ceiling_light_button_click</summary>
+		public SensorEntity KitchenCeilingLightButtonClick => new(_haContext, "sensor.kitchen_ceiling_light_button_click");
+		///<summary>kitchen/ceiling_light_button_power_outage_count</summary>
+		public SensorEntity KitchenCeilingLightButtonPowerOutageCount => new(_haContext, "sensor.kitchen_ceiling_light_button_power_outage_count");
+		///<summary>kitchen/kratom_counter_action</summary>
+		public SensorEntity KitchenKratomCounterAction => new(_haContext, "sensor.kitchen_kratom_counter_action");
+		///<summary>kitchen/kratom_counter_click</summary>
+		public SensorEntity KitchenKratomCounterClick => new(_haContext, "sensor.kitchen_kratom_counter_click");
+		///<summary>kitchen/kratom_counter_power_outage_count</summary>
+		public SensorEntity KitchenKratomCounterPowerOutageCount => new(_haContext, "sensor.kitchen_kratom_counter_power_outage_count");
 		///<summary>kitchen/motion_detector_power_outage_count</summary>
 		public SensorEntity KitchenMotionDetectorPowerOutageCount => new(_haContext, "sensor.kitchen_motion_detector_power_outage_count");
-		///<summary>Kitchen scale</summary>
-		public SensorEntity KitchenScale => new(_haContext, "sensor.kitchen_scale");
 		///<summary>Daily kratom intake for fabienne</summary>
 		public SensorEntity KratomIntakeFabienne => new(_haContext, "sensor.kratom_intake_fabienne");
 		///<summary>Daily kratom intake target for fabienne</summary>
@@ -1155,26 +937,20 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity KratomIntakePhilipp => new(_haContext, "sensor.kratom_intake_philipp");
 		///<summary>Daily kratom intake target for philipp</summary>
 		public SensorEntity KratomIntakePhilippTarget => new(_haContext, "sensor.kratom_intake_philipp_target");
+		///<summary>Mailbox door sensor</summary>
+		public SensorEntity MailboxDoor => new(_haContext, "sensor.mailbox_door");
 		///<summary>netdaemon_status</summary>
 		public SensorEntity NetdaemonStatus => new(_haContext, "sensor.netdaemon_status");
-		///<summary>trash_collection_days</summary>
-		public SensorEntity Nodered92b5910e7f5ff => new(_haContext, "sensor.nodered_92b5910e_7f5ff");
 		///<summary>openwindows_count</summary>
 		public SensorEntity OpenwindowsCount => new(_haContext, "sensor.openwindows_count");
-		///<summary>PupsStation Status</summary>
-		public SensorEntity PupsstationDrive1Status => new(_haContext, "sensor.pupsstation_drive_1_status");
-		///<summary>PupsStation Status</summary>
-		public SensorEntity PupsstationDrive2Status => new(_haContext, "sensor.pupsstation_drive_2_status");
-		///<summary>PupsStation Status</summary>
+		///<summary>PupsStation (Volume 1) Status</summary>
 		public SensorEntity PupsstationStatus => new(_haContext, "sensor.pupsstation_status");
-		///<summary>PupsStation Status</summary>
+		///<summary>PupsStation (Drive 1) Status</summary>
 		public SensorEntity PupsstationStatus2 => new(_haContext, "sensor.pupsstation_status_2");
-		///<summary>PupsStation Status</summary>
+		///<summary>PupsStation (Drive 2) Status</summary>
 		public SensorEntity PupsstationStatus3 => new(_haContext, "sensor.pupsstation_status_3");
-		///<summary>PupsStation Status</summary>
+		///<summary>PupsStation (Drive 3) Status</summary>
 		public SensorEntity PupsstationStatus4 => new(_haContext, "sensor.pupsstation_status_4");
-		///<summary>PupsStation Status</summary>
-		public SensorEntity PupsstationVolume1Status => new(_haContext, "sensor.pupsstation_volume_1_status");
 		///<summary>Razor blade usage</summary>
 		public SensorEntity RazorBladeUsage => new(_haContext, "sensor.razor_blade_usage");
 		///<summary>Ist heute Haushaltstag?</summary>
@@ -1183,8 +959,6 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
 		///<summary>Thermostat Badezimmer</summary>
 		public SensorEntity ThermostatBadezimmer => new(_haContext, "sensor.thermostat_badezimmer");
-		///<summary>Thermostat Schlafzimmer</summary>
-		public SensorEntity ThermostatSchlafzimmer => new(_haContext, "sensor.thermostat_schlafzimmer");
 		///<summary>Thermostat Wohnzimmer</summary>
 		public SensorEntity ThermostatWohnzimmer => new(_haContext, "sensor.thermostat_wohnzimmer");
 		///<summary>Daily water intake for fabienne</summary>
@@ -1217,42 +991,28 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>bedroom/lava_lamp</summary>
+		public SwitchEntity BedroomLavaLamp => new(_haContext, "switch.bedroom_lava_lamp");
 		///<summary>WOL switch for Desktop Philipp</summary>
 		public SwitchEntity ComputerWolDesktopPhilipp => new(_haContext, "switch.computer_wol_desktop_philipp");
 		///<summary>WOL switch for Desktop Philipp</summary>
 		public SwitchEntity ComputerWolDesktopPhilipp2 => new(_haContext, "switch.computer_wol_desktop_philipp_2");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback10 => new(_haContext, "switch.enable_chrome_media_playback_10");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback11 => new(_haContext, "switch.enable_chrome_media_playback_11");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback12 => new(_haContext, "switch.enable_chrome_media_playback_12");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback13 => new(_haContext, "switch.enable_chrome_media_playback_13");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback4 => new(_haContext, "switch.enable_chrome_media_playback_4");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback5 => new(_haContext, "switch.enable_chrome_media_playback_5");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback6 => new(_haContext, "switch.enable_chrome_media_playback_6");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback7 => new(_haContext, "switch.enable_chrome_media_playback_7");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback8 => new(_haContext, "switch.enable_chrome_media_playback_8");
-		///<summary>enable_chrome_media_playback</summary>
-		public SwitchEntity EnableChromeMediaPlayback9 => new(_haContext, "switch.enable_chrome_media_playback_9");
-		///<summary>Neon-Uhr</summary>
-		public SwitchEntity KitchenNeonClock => new(_haContext, "switch.kitchen_neon_clock");
-		///<summary>Buddha-Brunnen</summary>
-		public SwitchEntity LivingRoomBuddhaFountain => new(_haContext, "switch.living_room_buddha_fountain");
-		///<summary>Vertragslicht</summary>
-		public SwitchEntity LivingRoomContractLight => new(_haContext, "switch.living_room_contract_light");
-		///<summary>Lightbar</summary>
-		public SwitchEntity LivingRoomLightbar => new(_haContext, "switch.living_room_lightbar");
-		///<summary>TV Lightstrip</summary>
-		public SwitchEntity LivingRoomTvLightstrip => new(_haContext, "switch.living_room_tv_lightstrip");
-		///<summary>TWtYH Diorama</summary>
-		public SwitchEntity LivingRoomTwtyhDiorama => new(_haContext, "switch.living_room_twtyh_diorama");
+		///<summary>hallway/tablet Socket 1</summary>
+		public SwitchEntity HallwayTabletSocket1 => new(_haContext, "switch.hallway_tablet_socket_1");
+		///<summary>kitchen/neon_clock Socket 1</summary>
+		public SwitchEntity KitchenNeonClockSocket1 => new(_haContext, "switch.kitchen_neon_clock_socket_1");
+		///<summary>living_room/buddha_fountain Socket 1</summary>
+		public SwitchEntity LivingRoomBuddhaFountainSocket1 => new(_haContext, "switch.living_room_buddha_fountain_socket_1");
+		///<summary>living_room/christmas_stars Socket 1</summary>
+		public SwitchEntity LivingRoomChristmasStars => new(_haContext, "switch.living_room_christmas_stars");
+		///<summary>living_room/christmas_stars Child Lock</summary>
+		public SwitchEntity LivingRoomChristmasStarsChildLock => new(_haContext, "switch.living_room_christmas_stars_child_lock");
+		///<summary>living_room/contract_light Socket 1</summary>
+		public SwitchEntity LivingRoomContractLightSocket1 => new(_haContext, "switch.living_room_contract_light_socket_1");
+		///<summary>living_room/lightbar Socket 1</summary>
+		public SwitchEntity LivingRoomLightbarSocket1 => new(_haContext, "switch.living_room_lightbar_socket_1");
+		///<summary>living_room/twtyh_diorama Socket 1</summary>
+		public SwitchEntity LivingRoomTwtyhDioramaSocket1 => new(_haContext, "switch.living_room_twtyh_diorama_socket_1");
 		///<summary>Enable movie time light control.</summary>
 		public SwitchEntity MovieTimeEnableLightControl => new(_haContext, "switch.movie_time_enable_light_control");
 		///<summary>netdaemon_caloriecounter</summary>
@@ -1273,38 +1033,24 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntity NetdaemonVacuumreminder => new(_haContext, "switch.netdaemon_vacuumreminder");
 		///<summary>netdaemon_webhookserver</summary>
 		public SwitchEntity NetdaemonWebhookserver => new(_haContext, "switch.netdaemon_webhookserver");
-		///<summary>Lautsprecher Pup</summary>
-		public SwitchEntity StudySpeakersPhilipp => new(_haContext, "switch.study_speakers_philipp");
-		///<summary>Tablet Hallway</summary>
-		public SwitchEntity TabletHallway => new(_haContext, "switch.tablet_hallway");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback10 => new(_haContext, "switch.toggle_chrome_media_playback_10");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback11 => new(_haContext, "switch.toggle_chrome_media_playback_11");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback12 => new(_haContext, "switch.toggle_chrome_media_playback_12");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback13 => new(_haContext, "switch.toggle_chrome_media_playback_13");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback4 => new(_haContext, "switch.toggle_chrome_media_playback_4");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback5 => new(_haContext, "switch.toggle_chrome_media_playback_5");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback6 => new(_haContext, "switch.toggle_chrome_media_playback_6");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback7 => new(_haContext, "switch.toggle_chrome_media_playback_7");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback8 => new(_haContext, "switch.toggle_chrome_media_playback_8");
-		///<summary>toggle_chrome_media_playback</summary>
-		public SwitchEntity ToggleChromeMediaPlayback9 => new(_haContext, "switch.toggle_chrome_media_playback_9");
-		///<summary>toggle_kino_playback</summary>
-		public SwitchEntity ToggleKinoPlayback => new(_haContext, "switch.toggle_kino_playback");
+		///<summary>Raumthermostat Schlafzimmer ChildLock</summary>
+		public SwitchEntity RaumthermostatSchlafzimmerChildlock => new(_haContext, "switch.raumthermostat_schlafzimmer_childlock");
+		///<summary>study/speakers_philipp Socket 1</summary>
+		public SwitchEntity StudySpeakersPhilippSocket1 => new(_haContext, "switch.study_speakers_philipp_socket_1");
+		///<summary>Thermostat Arbeitszimmer ChildLock</summary>
+		public SwitchEntity ThermostatArbeitszimmerChildlock => new(_haContext, "switch.thermostat_arbeitszimmer_childlock");
+		///<summary>Thermostat Badezimmer ChildLock</summary>
+		public SwitchEntity ThermostatBadezimmerChildlock => new(_haContext, "switch.thermostat_badezimmer_childlock");
+		///<summary>Thermostat Küche ChildLock</summary>
+		public SwitchEntity ThermostatKucheChildlock => new(_haContext, "switch.thermostat_kuche_childlock");
+		///<summary>Thermostat Schlafzimmer ChildLock</summary>
+		public SwitchEntity ThermostatSchlafzimmerChildlock => new(_haContext, "switch.thermostat_schlafzimmer_childlock");
+		///<summary>Thermostat Wohnzimmer ChildLock</summary>
+		public SwitchEntity ThermostatWohnzimmerChildlock => new(_haContext, "switch.thermostat_wohnzimmer_childlock");
 		///<summary>windows</summary>
 		public SwitchEntity Windows => new(_haContext, "switch.windows");
 		///<summary>windowswol</summary>
 		public SwitchEntity Windowswol => new(_haContext, "switch.windowswol");
-		///<summary>yi_hack_a2_9faf14_privacy</summary>
-		public SwitchEntity YiHackA29faf14Privacy => new(_haContext, "switch.yi_hack_a2_9faf14_privacy");
 	}
 
 	public partial class TimerEntities
@@ -1328,8 +1074,6 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>PupsStation DSM Update</summary>
 		public UpdateEntity PupsstationDsmUpdate => new(_haContext, "update.pupsstation_dsm_update");
-		///<summary>PupsStation DSM Update</summary>
-		public UpdateEntity PupsstationDsmUpdate2 => new(_haContext, "update.pupsstation_dsm_update_2");
 	}
 
 	public partial class VacuumEntities
@@ -1352,7 +1096,7 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Zuhause</summary>
+		///<summary>Forecast Zuhause</summary>
 		public WeatherEntity Zuhause => new(_haContext, "weather.zuhause");
 	}
 
@@ -1366,8 +1110,6 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Zuhause</summary>
 		public ZoneEntity Home => new(_haContext, "zone.home");
-		///<summary>iphone_philipp_stationary</summary>
-		public ZoneEntity IphonePhilippStationary => new(_haContext, "zone.iphone_philipp_stationary");
 	}
 
 	public partial record AlarmControlPanelEntity : Entity<AlarmControlPanelEntity, EntityState<AlarmControlPanelAttributes>, AlarmControlPanelAttributes>
@@ -1412,8 +1154,29 @@ namespace HomeAutomations.Models.Generated
 
 	public record BinarySensorAttributes
 	{
+		[JsonPropertyName("attribution")]
+		public string? Attribution { get; init; }
+
 		[JsonPropertyName("battery")]
 		public double? Battery { get; init; }
+
+		[JsonPropertyName("brightness")]
+		public double? Brightness { get; init; }
+
+		[JsonPropertyName("charging_status")]
+		public object? ChargingStatus { get; init; }
+
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("color_mode")]
+		public string? ColorMode { get; init; }
+
+		[JsonPropertyName("color_temp")]
+		public double? ColorTemp { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
 
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
@@ -1423,6 +1186,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("device_temperature")]
 		public double? DeviceTemperature { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1436,17 +1202,41 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("illuminance_lux")]
 		public double? IlluminanceLux { get; init; }
 
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
 
 		[JsonPropertyName("linkquality")]
 		public double? Linkquality { get; init; }
 
+		[JsonPropertyName("malware")]
+		public string? Malware { get; init; }
+
+		[JsonPropertyName("motor_state")]
+		public object? MotorState { get; init; }
+
+		[JsonPropertyName("network")]
+		public string? Network { get; init; }
+
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
 
+		[JsonPropertyName("position")]
+		public double? Position { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_on_behavior")]
+		public string? PowerOnBehavior { get; init; }
+
 		[JsonPropertyName("power_outage_count")]
 		public double? PowerOutageCount { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public string? PowerOutageMemory { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
@@ -1463,8 +1253,26 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("round_trip_time_min")]
 		public double? RoundTripTimeMin { get; init; }
 
+		[JsonPropertyName("running")]
+		public object? Running { get; init; }
+
+		[JsonPropertyName("securitySetting")]
+		public string? SecuritySetting { get; init; }
+
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("systemCheck")]
+		public string? SystemCheck { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("userInfo")]
+		public string? UserInfo { get; init; }
 
 		[JsonPropertyName("voltage")]
 		public double? Voltage { get; init; }
@@ -1491,56 +1299,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
-
-		[JsonPropertyName("restored")]
-		public bool? Restored { get; init; }
-
-		[JsonPropertyName("supported_features")]
-		public double? SupportedFeatures { get; init; }
-	}
-
-	public partial record CalendarEntity : Entity<CalendarEntity, EntityState<CalendarAttributes>, CalendarAttributes>
-	{
-		public CalendarEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
-		{
-		}
-
-		public CalendarEntity(Entity entity) : base(entity)
-		{
-		}
-	}
-
-	public record CalendarAttributes
-	{
-		[JsonPropertyName("all_day")]
-		public bool? AllDay { get; init; }
-
-		[JsonPropertyName("all_tasks")]
-		public IReadOnlyList<object>? AllTasks { get; init; }
-
-		[JsonPropertyName("description")]
-		public string? Description { get; init; }
-
-		[JsonPropertyName("end_time")]
-		public string? EndTime { get; init; }
-
-		[JsonPropertyName("friendly_name")]
-		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("location")]
-		public string? Location { get; init; }
-
-		[JsonPropertyName("message")]
-		public string? Message { get; init; }
-
-		[JsonPropertyName("offset_reached")]
-		public bool? OffsetReached { get; init; }
-
-		[JsonPropertyName("overdue_tasks")]
-		public IReadOnlyList<object>? OverdueTasks { get; init; }
-
-		[JsonPropertyName("start_time")]
-		public string? StartTime { get; init; }
 	}
 
 	public partial record CameraEntity : Entity<CameraEntity, EntityState<CameraAttributes>, CameraAttributes>
@@ -1559,9 +1317,6 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("access_token")]
 		public string? AccessToken { get; init; }
 
-		[JsonPropertyName("brand")]
-		public string? Brand { get; init; }
-
 		[JsonPropertyName("calibration_points")]
 		public IReadOnlyList<object>? CalibrationPoints { get; init; }
 
@@ -1570,12 +1325,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("frontend_stream_type")]
-		public string? FrontendStreamType { get; init; }
-
-		[JsonPropertyName("icon")]
-		public string? Icon { get; init; }
 
 		[JsonPropertyName("model")]
 		public string? Model { get; init; }
@@ -1631,6 +1380,38 @@ namespace HomeAutomations.Models.Generated
 		public double? Temperature { get; init; }
 	}
 
+	public partial record ConfiguratorEntity : Entity<ConfiguratorEntity, EntityState<ConfiguratorAttributes>, ConfiguratorAttributes>
+	{
+		public ConfiguratorEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public ConfiguratorEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record ConfiguratorAttributes
+	{
+		[JsonPropertyName("configure_id")]
+		public string? ConfigureId { get; init; }
+
+		[JsonPropertyName("description")]
+		public string? Description { get; init; }
+
+		[JsonPropertyName("entity_picture")]
+		public object? EntityPicture { get; init; }
+
+		[JsonPropertyName("fields")]
+		public IReadOnlyList<object>? Fields { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("submit_caption")]
+		public string? SubmitCaption { get; init; }
+	}
+
 	public partial record CounterEntity : Entity<CounterEntity, EntityState<CounterAttributes>, CounterAttributes>
 	{
 		public CounterEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -1660,6 +1441,62 @@ namespace HomeAutomations.Models.Generated
 		public double? SupportedFeatures { get; init; }
 	}
 
+	public partial record CoverEntity : Entity<CoverEntity, EntityState<CoverAttributes>, CoverAttributes>
+	{
+		public CoverEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public CoverEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record CoverAttributes
+	{
+		[JsonPropertyName("battery")]
+		public double? Battery { get; init; }
+
+		[JsonPropertyName("charging_status")]
+		public object? ChargingStatus { get; init; }
+
+		[JsonPropertyName("current_position")]
+		public double? CurrentPosition { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
+		[JsonPropertyName("device_temperature")]
+		public object? DeviceTemperature { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("motor_state")]
+		public object? MotorState { get; init; }
+
+		[JsonPropertyName("position")]
+		public double? Position { get; init; }
+
+		[JsonPropertyName("running")]
+		public object? Running { get; init; }
+
+		[JsonPropertyName("supported_features")]
+		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+	}
+
 	public partial record DeviceTrackerEntity : Entity<DeviceTrackerEntity, EntityState<DeviceTrackerAttributes>, DeviceTrackerAttributes>
 	{
 		public DeviceTrackerEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -1676,29 +1513,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("altitude")]
 		public double? Altitude { get; init; }
 
-		[JsonPropertyName("authenticated")]
-		public string? Authenticated { get; init; }
-
-		[JsonPropertyName("battery")]
-		public double? Battery { get; init; }
-
 		[JsonPropertyName("battery_level")]
 		public double? BatteryLevel { get; init; }
-
-		[JsonPropertyName("battery_status")]
-		public string? BatteryStatus { get; init; }
-
-		[JsonPropertyName("calc_distance")]
-		public double? CalcDistance { get; init; }
-
-		[JsonPropertyName("device_status")]
-		public string? DeviceStatus { get; init; }
-
-		[JsonPropertyName("dir_of_travel")]
-		public string? DirOfTravel { get; init; }
-
-		[JsonPropertyName("entity_picture")]
-		public string? EntityPicture { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1706,41 +1522,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("gps_accuracy")]
 		public double? GpsAccuracy { get; init; }
 
-		[JsonPropertyName("icloud3_version")]
-		public string? Icloud3Version { get; init; }
-
-		[JsonPropertyName("info")]
-		public string? Info { get; init; }
-
-		[JsonPropertyName("interval")]
-		public string? Interval { get; init; }
-
-		[JsonPropertyName("last_located")]
-		public string? LastLocated { get; init; }
-
-		[JsonPropertyName("last_update")]
-		public string? LastUpdate { get; init; }
-
-		[JsonPropertyName("last_zone")]
-		public string? LastZone { get; init; }
-
 		[JsonPropertyName("latitude")]
 		public double? Latitude { get; init; }
 
 		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
-
-		[JsonPropertyName("low_power_mode")]
-		public bool? LowPowerMode { get; init; }
-
-		[JsonPropertyName("name")]
-		public string? Name { get; init; }
-
-		[JsonPropertyName("next_update")]
-		public string? NextUpdate { get; init; }
-
-		[JsonPropertyName("poll_count")]
-		public string? PollCount { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
@@ -1751,38 +1537,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[JsonPropertyName("timestamp")]
-		public string? Timestamp { get; init; }
-
-		[JsonPropertyName("tracking")]
-		public string? Tracking { get; init; }
-
-		[JsonPropertyName("travel_distance")]
-		public double? TravelDistance { get; init; }
-
-		[JsonPropertyName("travel_time")]
-		public double? TravelTime { get; init; }
-
-		[JsonPropertyName("travel_time_min")]
-		public double? TravelTimeMin { get; init; }
-
-		[JsonPropertyName("trigger")]
-		public string? Trigger { get; init; }
-
 		[JsonPropertyName("vertical_accuracy")]
 		public double? VerticalAccuracy { get; init; }
-
-		[JsonPropertyName("waze_distance")]
-		public double? WazeDistance { get; init; }
-
-		[JsonPropertyName("zone")]
-		public string? Zone { get; init; }
-
-		[JsonPropertyName("zone_distance")]
-		public double? ZoneDistance { get; init; }
-
-		[JsonPropertyName("zone_timestamp")]
-		public string? ZoneTimestamp { get; init; }
 	}
 
 	public partial record GroupEntity : Entity<GroupEntity, EntityState<GroupAttributes>, GroupAttributes>
@@ -1958,32 +1714,17 @@ namespace HomeAutomations.Models.Generated
 
 	public record LightAttributes
 	{
-		[JsonPropertyName("brightness")]
-		public double? Brightness { get; init; }
-
-		[JsonPropertyName("color")]
-		public object? Color { get; init; }
-
 		[JsonPropertyName("color_mode")]
 		public string? ColorMode { get; init; }
-
-		[JsonPropertyName("color_temp")]
-		public double? ColorTemp { get; init; }
 
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
 
-		[JsonPropertyName("deviceID")]
-		public string? DeviceID { get; init; }
-
 		[JsonPropertyName("effect_list")]
-		public IReadOnlyList<object>? EffectList { get; init; }
+		public IReadOnlyList<string>? EffectList { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("hs_color")]
-		public IReadOnlyList<double>? HsColor { get; init; }
 
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
@@ -1991,17 +1732,20 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("linkquality")]
 		public double? Linkquality { get; init; }
 
+		[JsonPropertyName("max_color_temp_kelvin")]
+		public double? MaxColorTempKelvin { get; init; }
+
 		[JsonPropertyName("max_mireds")]
 		public double? MaxMireds { get; init; }
+
+		[JsonPropertyName("min_color_temp_kelvin")]
+		public double? MinColorTempKelvin { get; init; }
 
 		[JsonPropertyName("min_mireds")]
 		public double? MinMireds { get; init; }
 
-		[JsonPropertyName("restored")]
-		public bool? Restored { get; init; }
-
-		[JsonPropertyName("rgb_color")]
-		public IReadOnlyList<double>? RgbColor { get; init; }
+		[JsonPropertyName("power_on_behavior")]
+		public string? PowerOnBehavior { get; init; }
 
 		[JsonPropertyName("supported_color_modes")]
 		public IReadOnlyList<string>? SupportedColorModes { get; init; }
@@ -2009,11 +1753,67 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
-		[JsonPropertyName("type")]
-		public string? Type { get; init; }
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
 
-		[JsonPropertyName("xy_color")]
-		public IReadOnlyList<double>? XyColor { get; init; }
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+	}
+
+	public partial record LockEntity : Entity<LockEntity, EntityState<LockAttributes>, LockAttributes>
+	{
+		public LockEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public LockEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record LockAttributes
+	{
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public string? PowerOutageMemory { get; init; }
+
+		[JsonPropertyName("supported_features")]
+		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public object? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
 	}
 
 	public partial record MediaPlayerEntity : Entity<MediaPlayerEntity, EntityState<MediaPlayerAttributes>, MediaPlayerAttributes>
@@ -2029,41 +1829,49 @@ namespace HomeAutomations.Models.Generated
 
 	public record MediaPlayerAttributes
 	{
-		[JsonPropertyName("device_class")]
-		public string? DeviceClass { get; init; }
-
-		[JsonPropertyName("deviceID")]
-		public string? DeviceID { get; init; }
-
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("icon")]
-		public string? Icon { get; init; }
-
-		[JsonPropertyName("is_volume_muted")]
-		public bool? IsVolumeMuted { get; init; }
-
-		[JsonPropertyName("media_content_id")]
-		public string? MediaContentId { get; init; }
-
-		[JsonPropertyName("media_content_type")]
-		public string? MediaContentType { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
-		[JsonPropertyName("source_list")]
-		public IReadOnlyList<string>? SourceList { get; init; }
-
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+	}
 
-		[JsonPropertyName("type")]
-		public string? Type { get; init; }
+	public partial record NumberEntity : NumericEntity<NumberEntity, NumericEntityState<NumberAttributes>, NumberAttributes>
+	{
+		public NumberEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
 
-		[JsonPropertyName("volume_level")]
-		public double? VolumeLevel { get; init; }
+		public NumberEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record NumberAttributes
+	{
+		[JsonPropertyName("device_class")]
+		public string? DeviceClass { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("max")]
+		public double? Max { get; init; }
+
+		[JsonPropertyName("min")]
+		public double? Min { get; init; }
+
+		[JsonPropertyName("mode")]
+		public string? Mode { get; init; }
+
+		[JsonPropertyName("step")]
+		public double? Step { get; init; }
+
+		[JsonPropertyName("unit_of_measurement")]
+		public string? UnitOfMeasurement { get; init; }
 	}
 
 	public partial record PersistentNotificationEntity : Entity<PersistentNotificationEntity, EntityState<PersistentNotificationAttributes>, PersistentNotificationAttributes>
@@ -2150,6 +1958,77 @@ namespace HomeAutomations.Models.Generated
 		public double? SupportedFeatures { get; init; }
 	}
 
+	public partial record SelectEntity : Entity<SelectEntity, EntityState<SelectAttributes>, SelectAttributes>
+	{
+		public SelectEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public SelectEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record SelectAttributes
+	{
+		[JsonPropertyName("brightness")]
+		public double? Brightness { get; init; }
+
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("color_mode")]
+		public string? ColorMode { get; init; }
+
+		[JsonPropertyName("color_temp")]
+		public double? ColorTemp { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("icon")]
+		public string? Icon { get; init; }
+
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("options")]
+		public IReadOnlyList<string>? Options { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_on_behavior")]
+		public string? PowerOnBehavior { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public string? PowerOutageMemory { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
+	}
+
 	public partial record NumericSensorEntity : NumericEntity<NumericSensorEntity, NumericEntityState<NumericSensorAttributes>, NumericSensorAttributes>
 	{
 		public NumericSensorEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -2223,8 +2102,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("changePercentOneYear")]
 		public double? ChangePercentOneYear { get; init; }
 
-		[JsonPropertyName("changePercentSixMonths")]
-		public double? ChangePercentSixMonths { get; init; }
+		[JsonPropertyName("changePercentTenYears")]
+		public object? ChangePercentTenYears { get; init; }
 
 		[JsonPropertyName("changePercentThreeMonths")]
 		public double? ChangePercentThreeMonths { get; init; }
@@ -2232,8 +2111,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("changePercentThreeYears")]
 		public double? ChangePercentThreeYears { get; init; }
 
-		[JsonPropertyName("changeSixMonths")]
-		public double? ChangeSixMonths { get; init; }
+		[JsonPropertyName("changeTenYears")]
+		public object? ChangeTenYears { get; init; }
 
 		[JsonPropertyName("changeThreeMonths")]
 		public double? ChangeThreeMonths { get; init; }
@@ -2241,8 +2120,17 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("changeThreeYears")]
 		public double? ChangeThreeYears { get; init; }
 
+		[JsonPropertyName("charging_status")]
+		public object? ChargingStatus { get; init; }
+
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
 		[JsonPropertyName("click")]
-		public object? Click { get; init; }
+		public string? Click { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
 
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
@@ -2252,6 +2140,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("device_temperature")]
 		public double? DeviceTemperature { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -2265,11 +2156,17 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("illuminance_lux")]
 		public double? IlluminanceLux { get; init; }
 
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
 
 		[JsonPropertyName("linkquality")]
 		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("motor_state")]
+		public object? MotorState { get; init; }
 
 		[JsonPropertyName("name")]
 		public string? Name { get; init; }
@@ -2277,8 +2174,17 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
 
+		[JsonPropertyName("position")]
+		public double? Position { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
 		[JsonPropertyName("power_outage_count")]
 		public double? PowerOutageCount { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public string? PowerOutageMemory { get; init; }
 
 		[JsonPropertyName("profitLoss")]
 		public double? ProfitLoss { get; init; }
@@ -2294,6 +2200,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
+
+		[JsonPropertyName("running")]
+		public object? Running { get; init; }
 
 		[JsonPropertyName("server_country")]
 		public string? ServerCountry { get; init; }
@@ -2334,8 +2243,8 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("totalChangeOneYear")]
 		public double? TotalChangeOneYear { get; init; }
 
-		[JsonPropertyName("totalChangeSixMonths")]
-		public double? TotalChangeSixMonths { get; init; }
+		[JsonPropertyName("totalChangeTenYears")]
+		public object? TotalChangeTenYears { get; init; }
 
 		[JsonPropertyName("totalChangeThreeMonths")]
 		public double? TotalChangeThreeMonths { get; init; }
@@ -2351,6 +2260,12 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("unit_of_measurement")]
 		public string? UnitOfMeasurement { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
 
 		[JsonPropertyName("valve_tappet_state")]
 		public string? ValveTappetState { get; init; }
@@ -2384,11 +2299,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Areas Of Interest")]
 		public string? AreasOfInterest { get; init; }
 
+		[JsonPropertyName("attribution")]
+		public string? Attribution { get; init; }
+
 		[JsonPropertyName("battery")]
 		public double? Battery { get; init; }
-
-		[JsonPropertyName("battery_level")]
-		public double? BatteryLevel { get; init; }
 
 		[JsonPropertyName("Carrier ID")]
 		public string? CarrierID { get; init; }
@@ -2396,20 +2311,17 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Carrier Name")]
 		public string? CarrierName { get; init; }
 
-		[JsonPropertyName("Cellular Technology")]
-		public string? CellularTechnology { get; init; }
-
-		[JsonPropertyName("charging")]
-		public bool? Charging { get; init; }
+		[JsonPropertyName("charging_status")]
+		public object? ChargingStatus { get; init; }
 
 		[JsonPropertyName("click")]
-		public object? Click { get; init; }
+		public string? Click { get; init; }
+
+		[JsonPropertyName("command_set")]
+		public string? CommandSet { get; init; }
 
 		[JsonPropertyName("Confidence")]
 		public string? Confidence { get; init; }
-
-		[JsonPropertyName("config")]
-		public object? Config { get; init; }
 
 		[JsonPropertyName("Country")]
 		public string? Country { get; init; }
@@ -2417,38 +2329,20 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Current Radio Technology")]
 		public string? CurrentRadioTechnology { get; init; }
 
-		[JsonPropertyName("currentUser")]
-		public string? CurrentUser { get; init; }
-
-		[JsonPropertyName("darkMode")]
-		public bool? DarkMode { get; init; }
-
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
 
 		[JsonPropertyName("device_class")]
 		public string? DeviceClass { get; init; }
 
-		[JsonPropertyName("deviceID")]
-		public string? DeviceID { get; init; }
-
 		[JsonPropertyName("device_temperature")]
 		public double? DeviceTemperature { get; init; }
-
-		[JsonPropertyName("entity_picture")]
-		public string? EntityPicture { get; init; }
 
 		[JsonPropertyName("filtername")]
 		public string? Filtername { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("fullyKiosk")]
-		public bool? FullyKiosk { get; init; }
-
-		[JsonPropertyName("height")]
-		public double? Height { get; init; }
 
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
@@ -2458,6 +2352,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("illuminance_lux")]
 		public double? IlluminanceLux { get; init; }
+
+		[JsonPropertyName("info")]
+		public string? Info { get; init; }
 
 		[JsonPropertyName("Inland Water")]
 		public string? InlandWater { get; init; }
@@ -2477,8 +2374,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Locality")]
 		public string? Locality { get; init; }
 
+		[JsonPropertyName("location")]
+		public string? Location_0 { get; init; }
+
 		[JsonPropertyName("Location")]
-		public IReadOnlyList<double>? Location { get; init; }
+		public IReadOnlyList<double>? Location_1 { get; init; }
 
 		[JsonPropertyName("log_level_debug")]
 		public string? LogLevelDebug { get; init; }
@@ -2495,11 +2395,14 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Mobile Network Code")]
 		public string? MobileNetworkCode { get; init; }
 
+		[JsonPropertyName("motor_state")]
+		public object? MotorState { get; init; }
+
 		[JsonPropertyName("Name")]
 		public string? Name { get; init; }
 
 		[JsonPropertyName("names")]
-		public object? Names { get; init; }
+		public IReadOnlyList<string>? Names { get; init; }
 
 		[JsonPropertyName("number_of_loaded_apps")]
 		public double? NumberOfLoadedApps { get; init; }
@@ -2513,8 +2416,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Ocean")]
 		public string? Ocean { get; init; }
 
-		[JsonPropertyName("path")]
-		public string? Path { get; init; }
+		[JsonPropertyName("options")]
+		public IReadOnlyList<string>? Options { get; init; }
+
+		[JsonPropertyName("position")]
+		public double? Position { get; init; }
 
 		[JsonPropertyName("Postal Code")]
 		public string? PostalCode { get; init; }
@@ -2524,6 +2430,18 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
+
+		[JsonPropertyName("running")]
+		public object? Running { get; init; }
+
+		[JsonPropertyName("serial")]
+		public object? Serial { get; init; }
+
+		[JsonPropertyName("state_message")]
+		public string? StateMessage { get; init; }
+
+		[JsonPropertyName("state_reason")]
+		public object? StateReason { get; init; }
 
 		[JsonPropertyName("Sub Administrative Area")]
 		public string? SubAdministrativeArea { get; init; }
@@ -2543,32 +2461,26 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Time Zone")]
 		public string? TimeZone { get; init; }
 
-		[JsonPropertyName("type")]
-		public string? Type { get; init; }
-
 		[JsonPropertyName("Types")]
 		public IReadOnlyList<string>? Types { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
 
 		[JsonPropertyName("update_time")]
 		public string? UpdateTime { get; init; }
 
-		[JsonPropertyName("userAgent")]
-		public string? UserAgent { get; init; }
-
-		[JsonPropertyName("userData")]
-		public object? UserData { get; init; }
+		[JsonPropertyName("uri_supported")]
+		public string? UriSupported { get; init; }
 
 		[JsonPropertyName("version")]
 		public string? Version { get; init; }
 
-		[JsonPropertyName("visibility")]
-		public string? Visibility { get; init; }
-
 		[JsonPropertyName("voltage")]
 		public double? Voltage { get; init; }
-
-		[JsonPropertyName("width")]
-		public double? Width { get; init; }
 
 		[JsonPropertyName("workout0_title")]
 		public string? Workout0Title { get; init; }
@@ -2643,11 +2555,20 @@ namespace HomeAutomations.Models.Generated
 
 	public record SwitchAttributes
 	{
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
 		[JsonPropertyName("current")]
 		public double? Current { get; init; }
 
-		[JsonPropertyName("current_consumption")]
-		public double? CurrentConsumption { get; init; }
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
+		[JsonPropertyName("device_class")]
+		public string? DeviceClass { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -2655,14 +2576,35 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("icon")]
 		public string? Icon { get; init; }
 
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
 		[JsonPropertyName("integration")]
 		public string? Integration { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public string? PowerOutageMemory { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public object? UpdateAvailable { get; init; }
 
 		[JsonPropertyName("voltage")]
 		public double? Voltage { get; init; }
@@ -2701,11 +2643,14 @@ namespace HomeAutomations.Models.Generated
 
 	public record UpdateAttributes
 	{
+		[JsonPropertyName("attribution")]
+		public string? Attribution { get; init; }
+
+		[JsonPropertyName("entity_picture")]
+		public string? EntityPicture { get; init; }
+
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("restored")]
-		public bool? Restored { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
@@ -2771,17 +2716,32 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("humidity")]
 		public double? Humidity { get; init; }
 
+		[JsonPropertyName("precipitation_unit")]
+		public string? PrecipitationUnit { get; init; }
+
 		[JsonPropertyName("pressure")]
 		public double? Pressure { get; init; }
 
+		[JsonPropertyName("pressure_unit")]
+		public string? PressureUnit { get; init; }
+
 		[JsonPropertyName("temperature")]
 		public double? Temperature { get; init; }
+
+		[JsonPropertyName("temperature_unit")]
+		public string? TemperatureUnit { get; init; }
+
+		[JsonPropertyName("visibility_unit")]
+		public string? VisibilityUnit { get; init; }
 
 		[JsonPropertyName("wind_bearing")]
 		public double? WindBearing { get; init; }
 
 		[JsonPropertyName("wind_speed")]
 		public double? WindSpeed { get; init; }
+
+		[JsonPropertyName("wind_speed_unit")]
+		public string? WindSpeedUnit { get; init; }
 	}
 
 	public partial record ZoneEntity : Entity<ZoneEntity, EntityState<ZoneAttributes>, ZoneAttributes>
@@ -2812,11 +2772,11 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
 
-		[JsonPropertyName("name")]
-		public string? Name { get; init; }
-
 		[JsonPropertyName("passive")]
 		public bool? Passive { get; init; }
+
+		[JsonPropertyName("persons")]
+		public IReadOnlyList<string>? Persons { get; init; }
 
 		[JsonPropertyName("radius")]
 		public double? Radius { get; init; }
@@ -2827,6 +2787,8 @@ namespace HomeAutomations.Models.Generated
 		AlarmControlPanelServices AlarmControlPanel { get; }
 
 		AutomationServices Automation { get; }
+
+		BackupServices Backup { get; }
 
 		BoschShcServices BoschShc { get; }
 
@@ -2842,21 +2804,27 @@ namespace HomeAutomations.Models.Generated
 
 		CloudServices Cloud { get; }
 
+		ConfiguratorServices Configurator { get; }
+
+		ConversationServices Conversation { get; }
+
 		CounterServices Counter { get; }
 
 		CoverServices Cover { get; }
 
 		DeviceTrackerServices DeviceTracker { get; }
 
+		FanServices Fan { get; }
+
 		FfmpegServices Ffmpeg { get; }
 
 		FrontendServices Frontend { get; }
 
-		GoogleServices Google { get; }
-
 		GroupServices Group { get; }
 
 		HomeassistantServices Homeassistant { get; }
+
+		HumidifierServices Humidifier { get; }
 
 		InputBooleanServices InputBoolean { get; }
 
@@ -2872,7 +2840,7 @@ namespace HomeAutomations.Models.Generated
 
 		LightServices Light { get; }
 
-		LocaltuyaServices Localtuya { get; }
+		LockServices Lock { get; }
 
 		LogbookServices Logbook { get; }
 
@@ -2882,15 +2850,13 @@ namespace HomeAutomations.Models.Generated
 
 		MediaPlayerServices MediaPlayer { get; }
 
-		MicrosoftTodoServices MicrosoftTodo { get; }
-
 		MqttServices Mqtt { get; }
 
 		NetdaemonServices Netdaemon { get; }
 
 		NotifyServices Notify { get; }
 
-		OnvifServices Onvif { get; }
+		NumberServices Number { get; }
 
 		PersistentNotificationServices PersistentNotification { get; }
 
@@ -2904,13 +2870,13 @@ namespace HomeAutomations.Models.Generated
 
 		SceneServices Scene { get; }
 
+		ScheduleServices Schedule { get; }
+
 		ScriptServices Script { get; }
 
 		SelectServices Select { get; }
 
-		SpeedtestdotnetServices Speedtestdotnet { get; }
-
-		SpotcastServices Spotcast { get; }
+		SirenServices Siren { get; }
 
 		SwitchServices Switch { get; }
 
@@ -2919,6 +2885,8 @@ namespace HomeAutomations.Models.Generated
 		SystemLogServices SystemLog { get; }
 
 		TemplateServices Template { get; }
+
+		TextServices Text { get; }
 
 		TimerServices Timer { get; }
 
@@ -2934,8 +2902,6 @@ namespace HomeAutomations.Models.Generated
 
 		XiaomiMiioServices XiaomiMiio { get; }
 
-		YiHackServices YiHack { get; }
-
 		ZoneServices Zone { get; }
 	}
 
@@ -2949,6 +2915,7 @@ namespace HomeAutomations.Models.Generated
 
 		public AlarmControlPanelServices AlarmControlPanel => new(_haContext);
 		public AutomationServices Automation => new(_haContext);
+		public BackupServices Backup => new(_haContext);
 		public BoschShcServices BoschShc => new(_haContext);
 		public BrowserModServices BrowserMod => new(_haContext);
 		public ButtonServices Button => new(_haContext);
@@ -2956,14 +2923,17 @@ namespace HomeAutomations.Models.Generated
 		public CastServices Cast => new(_haContext);
 		public ClimateServices Climate => new(_haContext);
 		public CloudServices Cloud => new(_haContext);
+		public ConfiguratorServices Configurator => new(_haContext);
+		public ConversationServices Conversation => new(_haContext);
 		public CounterServices Counter => new(_haContext);
 		public CoverServices Cover => new(_haContext);
 		public DeviceTrackerServices DeviceTracker => new(_haContext);
+		public FanServices Fan => new(_haContext);
 		public FfmpegServices Ffmpeg => new(_haContext);
 		public FrontendServices Frontend => new(_haContext);
-		public GoogleServices Google => new(_haContext);
 		public GroupServices Group => new(_haContext);
 		public HomeassistantServices Homeassistant => new(_haContext);
+		public HumidifierServices Humidifier => new(_haContext);
 		public InputBooleanServices InputBoolean => new(_haContext);
 		public InputButtonServices InputButton => new(_haContext);
 		public InputDatetimeServices InputDatetime => new(_haContext);
@@ -2971,30 +2941,30 @@ namespace HomeAutomations.Models.Generated
 		public InputSelectServices InputSelect => new(_haContext);
 		public InputTextServices InputText => new(_haContext);
 		public LightServices Light => new(_haContext);
-		public LocaltuyaServices Localtuya => new(_haContext);
+		public LockServices Lock => new(_haContext);
 		public LogbookServices Logbook => new(_haContext);
 		public LoggerServices Logger => new(_haContext);
 		public LovelaceServices Lovelace => new(_haContext);
 		public MediaPlayerServices MediaPlayer => new(_haContext);
-		public MicrosoftTodoServices MicrosoftTodo => new(_haContext);
 		public MqttServices Mqtt => new(_haContext);
 		public NetdaemonServices Netdaemon => new(_haContext);
 		public NotifyServices Notify => new(_haContext);
-		public OnvifServices Onvif => new(_haContext);
+		public NumberServices Number => new(_haContext);
 		public PersistentNotificationServices PersistentNotification => new(_haContext);
 		public PersonServices Person => new(_haContext);
 		public PingServices Ping => new(_haContext);
 		public RecorderServices Recorder => new(_haContext);
 		public RemoteServices Remote => new(_haContext);
 		public SceneServices Scene => new(_haContext);
+		public ScheduleServices Schedule => new(_haContext);
 		public ScriptServices Script => new(_haContext);
 		public SelectServices Select => new(_haContext);
-		public SpeedtestdotnetServices Speedtestdotnet => new(_haContext);
-		public SpotcastServices Spotcast => new(_haContext);
+		public SirenServices Siren => new(_haContext);
 		public SwitchServices Switch => new(_haContext);
 		public SynologyDsmServices SynologyDsm => new(_haContext);
 		public SystemLogServices SystemLog => new(_haContext);
 		public TemplateServices Template => new(_haContext);
+		public TextServices Text => new(_haContext);
 		public TimerServices Timer => new(_haContext);
 		public UpdateServices Update => new(_haContext);
 		public VacuumServices Vacuum => new(_haContext);
@@ -3002,7 +2972,6 @@ namespace HomeAutomations.Models.Generated
 		public WebrtcServices Webrtc => new(_haContext);
 		public XiaomiCloudMapExtractorServices XiaomiCloudMapExtractor => new(_haContext);
 		public XiaomiMiioServices XiaomiMiio => new(_haContext);
-		public YiHackServices YiHack => new(_haContext);
 		public ZoneServices Zone => new(_haContext);
 	}
 
@@ -3242,6 +3211,21 @@ namespace HomeAutomations.Models.Generated
 		public bool? StopActions { get; init; }
 	}
 
+	public class BackupServices
+	{
+		private readonly IHaContext _haContext;
+		public BackupServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Create a new backup.</summary>
+		public void Create()
+		{
+			_haContext.CallService("backup", "create", null);
+		}
+	}
+
 	public class BoschShcServices
 	{
 		private readonly IHaContext _haContext;
@@ -3324,380 +3308,313 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Cover screen in black until the mouse is moved or a key is pressed.</summary>
-		public void Blackout(BrowserModBlackoutParameters data)
+		///<summary>Close a popup</summary>
+		///<param name="target">The target for this service call</param>
+		public void ClosePopup(ServiceTarget target)
 		{
-			_haContext.CallService("browser_mod", "blackout", null, data);
+			_haContext.CallService("browser_mod", "close_popup", target);
 		}
 
-		///<summary>Cover screen in black until the mouse is moved or a key is pressed.</summary>
-		///<param name="time">(optional) The blackout will turn on automatically after the specified number of seconds. It works kind of like a screensaver and will keep turning on until blackout is called again with time: -1. eg: 20</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void Blackout(object? @time = null, object? @deviceID = null)
+		///<summary>Print text to browser console</summary>
+		///<param name="target">The target for this service call</param>
+		public void Console(ServiceTarget target, BrowserModConsoleParameters data)
 		{
-			_haContext.CallService("browser_mod", "blackout", null, new BrowserModBlackoutParameters{Time = @time, DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "console", target, data);
 		}
 
-		public void CallService()
+		///<summary>Print text to browser console</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="message">Text to print</param>
+		public void Console(ServiceTarget target, string? @message = null)
 		{
-			_haContext.CallService("browser_mod", "call_service", null);
+			_haContext.CallService("browser_mod", "console", target, new BrowserModConsoleParameters{Message = @message});
 		}
 
-		public void CleanDevices()
+		///<summary>Wait for a time</summary>
+		///<param name="target">The target for this service call</param>
+		public void Delay(ServiceTarget target, BrowserModDelayParameters data)
 		{
-			_haContext.CallService("browser_mod", "clean_devices", null);
+			_haContext.CallService("browser_mod", "delay", target, data);
 		}
 
-		///<summary>Close all popups on all browsers.</summary>
-		public void ClosePopup(BrowserModClosePopupParameters data)
+		///<summary>Wait for a time</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="time">Time to wait (ms)</param>
+		public void Delay(ServiceTarget target, long? @time = null)
 		{
-			_haContext.CallService("browser_mod", "close_popup", null, data);
+			_haContext.CallService("browser_mod", "delay", target, new BrowserModDelayParameters{Time = @time});
 		}
 
-		///<summary>Close all popups on all browsers.</summary>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void ClosePopup(object? @deviceID = null)
+		///<summary>Run arbitrary JavaScript code</summary>
+		///<param name="target">The target for this service call</param>
+		public void Javascript(ServiceTarget target, BrowserModJavascriptParameters data)
 		{
-			_haContext.CallService("browser_mod", "close_popup", null, new BrowserModClosePopupParameters{DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "javascript", target, data);
 		}
 
-		///<summary>Send a command to a browser.</summary>
-		public void Command(BrowserModCommandParameters data)
+		///<summary>Run arbitrary JavaScript code</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">JavaScript code to run</param>
+		public void Javascript(ServiceTarget target, object? @code = null)
 		{
-			_haContext.CallService("browser_mod", "command", null, data);
+			_haContext.CallService("browser_mod", "javascript", target, new BrowserModJavascriptParameters{Code = @code});
 		}
 
-		///<summary>Send a command to a browser.</summary>
-		///<param name="command">Command to send eg: navigate</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void Command(object? @command = null, object? @deviceID = null)
+		///<summary>Show more-info dialog</summary>
+		///<param name="target">The target for this service call</param>
+		public void MoreInfo(ServiceTarget target, BrowserModMoreInfoParameters data)
 		{
-			_haContext.CallService("browser_mod", "command", null, new BrowserModCommandParameters{Command = @command, DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "more_info", target, data);
 		}
 
-		///<summary>Send several commands to a browser</summary>
-		public void Commands(BrowserModCommandsParameters data)
+		///<summary>Show more-info dialog</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="entity"></param>
+		///<param name="large"></param>
+		///<param name="ignorePopupCard"></param>
+		public void MoreInfo(ServiceTarget target, string @entity, bool? @large = null, bool? @ignorePopupCard = null)
 		{
-			_haContext.CallService("browser_mod", "commands", null, data);
+			_haContext.CallService("browser_mod", "more_info", target, new BrowserModMoreInfoParameters{Entity = @entity, Large = @large, IgnorePopupCard = @ignorePopupCard});
 		}
 
-		///<summary>Send several commands to a browser</summary>
-		///<param name="commands">List of commands to send</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void Commands(object? @commands = null, object? @deviceID = null)
+		///<summary>Navigate browser to a different page</summary>
+		///<param name="target">The target for this service call</param>
+		public void Navigate(ServiceTarget target, BrowserModNavigateParameters data)
 		{
-			_haContext.CallService("browser_mod", "commands", null, new BrowserModCommandsParameters{Commands = @commands, DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "navigate", target, data);
 		}
 
-		///<summary>On all browsers, show a popup, and a javascript alert with the current device ID.</summary>
-		public void Debug(BrowserModDebugParameters data)
+		///<summary>Navigate browser to a different page</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="path">Target path</param>
+		public void Navigate(ServiceTarget target, string? @path = null)
 		{
-			_haContext.CallService("browser_mod", "debug", null, data);
+			_haContext.CallService("browser_mod", "navigate", target, new BrowserModNavigateParameters{Path = @path});
 		}
 
-		///<summary>On all browsers, show a popup, and a javascript alert with the current device ID.</summary>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void Debug(object? @deviceID = null)
+		///<summary>Display a short notification</summary>
+		///<param name="target">The target for this service call</param>
+		public void Notification(ServiceTarget target, BrowserModNotificationParameters data)
 		{
-			_haContext.CallService("browser_mod", "debug", null, new BrowserModDebugParameters{DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "notification", target, data);
 		}
 
-		///<summary>Do nothing for a while</summary>
-		public void Delay(BrowserModDelayParameters data)
+		///<summary>Display a short notification</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="message">Message to display</param>
+		///<param name="duration">Time before closing (ms)</param>
+		///<param name="actionText">Text of optional action button</param>
+		///<param name="action">Action to perform when the action button is pressed</param>
+		public void Notification(ServiceTarget target, string @message, long? @duration = null, string? @actionText = null, object? @action = null)
 		{
-			_haContext.CallService("browser_mod", "delay", null, data);
+			_haContext.CallService("browser_mod", "notification", target, new BrowserModNotificationParameters{Message = @message, Duration = @duration, ActionText = @actionText, Action = @action});
 		}
 
-		///<summary>Do nothing for a while</summary>
-		///<param name="seconds">Number of seconds to delay eg: 5</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void Delay(object? @seconds = null, object? @deviceID = null)
+		///<summary>Display a popup</summary>
+		///<param name="target">The target for this service call</param>
+		public void Popup(ServiceTarget target, BrowserModPopupParameters data)
 		{
-			_haContext.CallService("browser_mod", "delay", null, new BrowserModDelayParameters{Seconds = @seconds, DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "popup", target, data);
 		}
 
-		///<summary>Refresh the lovelace configuration.</summary>
-		public void LovelaceReload(BrowserModLovelaceReloadParameters data)
+		///<summary>Display a popup</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="title">Popup title</param>
+		///<param name="content">Popup content (Test or lovelace card configuration)</param>
+		///<param name="size"></param>
+		///<param name="rightButton">Text of the right button</param>
+		///<param name="rightButtonAction">Action to perform when the right button is pressed</param>
+		///<param name="leftButton">Text of the left button</param>
+		///<param name="leftButtonAction">Action to perform when left button is pressed</param>
+		///<param name="dismissable">Whether the popup can be closed by the user without action</param>
+		///<param name="dismissAction">Action to perform when popup is dismissed</param>
+		///<param name="autoclose">Close the popup automatically on mouse, pointer or keyboard activity</param>
+		///<param name="timeout">Time before closing (ms)</param>
+		///<param name="timeoutAction">Action to perform when popup is closed by timeout</param>
+		///<param name="style">CSS code to apply to the popup window</param>
+		public void Popup(ServiceTarget target, object @content, string? @title = null, object? @size = null, string? @rightButton = null, object? @rightButtonAction = null, string? @leftButton = null, object? @leftButtonAction = null, bool? @dismissable = null, object? @dismissAction = null, bool? @autoclose = null, long? @timeout = null, object? @timeoutAction = null, string? @style = null)
 		{
-			_haContext.CallService("browser_mod", "lovelace_reload", null, data);
+			_haContext.CallService("browser_mod", "popup", target, new BrowserModPopupParameters{Title = @title, Content = @content, Size = @size, RightButton = @rightButton, RightButtonAction = @rightButtonAction, LeftButton = @leftButton, LeftButtonAction = @leftButtonAction, Dismissable = @dismissable, DismissAction = @dismissAction, Autoclose = @autoclose, Timeout = @timeout, TimeoutAction = @timeoutAction, Style = @style});
 		}
 
-		///<summary>Refresh the lovelace configuration.</summary>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void LovelaceReload(object? @deviceID = null)
+		///<summary>Refresh page</summary>
+		///<param name="target">The target for this service call</param>
+		public void Refresh(ServiceTarget target)
 		{
-			_haContext.CallService("browser_mod", "lovelace_reload", null, new BrowserModLovelaceReloadParameters{DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "refresh", target);
 		}
 
-		///<summary>Open the more info dialog of an entity on a browser.</summary>
-		public void MoreInfo(BrowserModMoreInfoParameters data)
+		///<summary>Run a sequence of services</summary>
+		///<param name="target">The target for this service call</param>
+		public void Sequence(ServiceTarget target, BrowserModSequenceParameters data)
 		{
-			_haContext.CallService("browser_mod", "more_info", null, data);
+			_haContext.CallService("browser_mod", "sequence", target, data);
 		}
 
-		///<summary>Open the more info dialog of an entity on a browser.</summary>
-		///<param name="entityId">Entity to show more info for eg: camera.front_door</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		///<param name="large">(optional) Set to true to make wider eg: true</param>
-		public void MoreInfo(object? @entityId = null, object? @deviceID = null, object? @large = null)
+		///<summary>Run a sequence of services</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="sequence">List of services to run</param>
+		public void Sequence(ServiceTarget target, object? @sequence = null)
 		{
-			_haContext.CallService("browser_mod", "more_info", null, new BrowserModMoreInfoParameters{EntityId = @entityId, DeviceID = @deviceID, Large = @large});
+			_haContext.CallService("browser_mod", "sequence", target, new BrowserModSequenceParameters{Sequence = @sequence});
 		}
 
-		///<summary>Navigate to a path on a browser.</summary>
-		public void Navigate(BrowserModNavigateParameters data)
+		///<summary>Change the current theme</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetTheme(ServiceTarget target, BrowserModSetThemeParameters data)
 		{
-			_haContext.CallService("browser_mod", "navigate", null, data);
+			_haContext.CallService("browser_mod", "set_theme", target, data);
 		}
 
-		///<summary>Navigate to a path on a browser.</summary>
-		///<param name="navigationPath">Path to navigate to eg: /lovelace/1</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void Navigate(object? @navigationPath = null, object? @deviceID = null)
+		///<summary>Change the current theme</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="theme">Name of theme or 'auto'</param>
+		///<param name="dark">Dark/light mode</param>
+		///<param name="primaryColor">Primary theme color</param>
+		///<param name="accentColor">Accent theme color</param>
+		public void SetTheme(ServiceTarget target, string? @theme = null, object? @dark = null, object? @primaryColor = null, object? @accentColor = null)
 		{
-			_haContext.CallService("browser_mod", "navigate", null, new BrowserModNavigateParameters{NavigationPath = @navigationPath, DeviceID = @deviceID});
-		}
-
-		///<summary>Remove a blackout from a browser.</summary>
-		public void NoBlackout(BrowserModNoBlackoutParameters data)
-		{
-			_haContext.CallService("browser_mod", "no_blackout", null, data);
-		}
-
-		///<summary>Remove a blackout from a browser.</summary>
-		///<param name="brightness">(optional) On a Fully Kiosk Browser Plus set the screen brightness from 0 - 255.</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void NoBlackout(object? @brightness = null, object? @deviceID = null)
-		{
-			_haContext.CallService("browser_mod", "no_blackout", null, new BrowserModNoBlackoutParameters{Brightness = @brightness, DeviceID = @deviceID});
-		}
-
-		///<summary>Pop up a card on a browser.</summary>
-		public void Popup(BrowserModPopupParameters data)
-		{
-			_haContext.CallService("browser_mod", "popup", null, data);
-		}
-
-		///<summary>Pop up a card on a browser.</summary>
-		///<param name="title">Name to show in popup bar eg: Popup example</param>
-		///<param name="card">YAML config for card to show</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		///<param name="large">(optional) Set to true to make wider eg: true</param>
-		///<param name="hideHeader">(optional) Hide header title and close button eg: true</param>
-		///<param name="autoClose">(optional) Close popup when mouse is moved or key is pressed. Also hides header eg: true</param>
-		///<param name="time">(optional) When mouse isn't moved or keys aren't pressed for this amount of seconds, reopen. Only usable with auto_close. See blackout eg: 20</param>
-		public void Popup(object? @title = null, object? @card = null, object? @deviceID = null, object? @large = null, object? @hideHeader = null, object? @autoClose = null, object? @time = null)
-		{
-			_haContext.CallService("browser_mod", "popup", null, new BrowserModPopupParameters{Title = @title, Card = @card, DeviceID = @deviceID, Large = @large, HideHeader = @hideHeader, AutoClose = @autoClose, Time = @time});
-		}
-
-		///<summary>On all browsers, change the theme.</summary>
-		public void SetTheme(BrowserModSetThemeParameters data)
-		{
-			_haContext.CallService("browser_mod", "set_theme", null, data);
-		}
-
-		///<summary>On all browsers, change the theme.</summary>
-		///<param name="theme">Theme to change to eg: {theme: "clear_light"}</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void SetTheme(object? @theme = null, object? @deviceID = null)
-		{
-			_haContext.CallService("browser_mod", "set_theme", null, new BrowserModSetThemeParameters{Theme = @theme, DeviceID = @deviceID});
-		}
-
-		///<summary>Show a toast message in the bottom left on all browsers.</summary>
-		public void Toast(BrowserModToastParameters data)
-		{
-			_haContext.CallService("browser_mod", "toast", null, data);
-		}
-
-		///<summary>Show a toast message in the bottom left on all browsers.</summary>
-		///<param name="message">Message to show eg: Short message</param>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		///<param name="duration">(optional) Time in milliseconds to show message for. Set to 0 for persistent display. eg: 10000</param>
-		public void Toast(object? @message = null, object? @deviceID = null, object? @duration = null)
-		{
-			_haContext.CallService("browser_mod", "toast", null, new BrowserModToastParameters{Message = @message, DeviceID = @deviceID, Duration = @duration});
-		}
-
-		///<summary>Forces the browser to reload the page. Same as clicking your browser's refresh button. Note: This is not guaranteed to clear the frontend cache.</summary>
-		public void WindowReload(BrowserModWindowReloadParameters data)
-		{
-			_haContext.CallService("browser_mod", "window_reload", null, data);
-		}
-
-		///<summary>Forces the browser to reload the page. Same as clicking your browser's refresh button. Note: This is not guaranteed to clear the frontend cache.</summary>
-		///<param name="deviceID">(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</param>
-		public void WindowReload(object? @deviceID = null)
-		{
-			_haContext.CallService("browser_mod", "window_reload", null, new BrowserModWindowReloadParameters{DeviceID = @deviceID});
+			_haContext.CallService("browser_mod", "set_theme", target, new BrowserModSetThemeParameters{Theme = @theme, Dark = @dark, PrimaryColor = @primaryColor, AccentColor = @accentColor});
 		}
 	}
 
-	public record BrowserModBlackoutParameters
+	public record BrowserModConsoleParameters
 	{
-		///<summary>(optional) The blackout will turn on automatically after the specified number of seconds. It works kind of like a screensaver and will keep turning on until blackout is called again with time: -1. eg: 20</summary>
-		[JsonPropertyName("time")]
-		public object? Time { get; init; }
-
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
-	}
-
-	public record BrowserModClosePopupParameters
-	{
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
-	}
-
-	public record BrowserModCommandParameters
-	{
-		///<summary>Command to send eg: navigate</summary>
-		[JsonPropertyName("command")]
-		public object? Command { get; init; }
-
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
-	}
-
-	public record BrowserModCommandsParameters
-	{
-		///<summary>List of commands to send</summary>
-		[JsonPropertyName("commands")]
-		public object? Commands { get; init; }
-
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
-	}
-
-	public record BrowserModDebugParameters
-	{
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
+		///<summary>Text to print</summary>
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
 	}
 
 	public record BrowserModDelayParameters
 	{
-		///<summary>Number of seconds to delay eg: 5</summary>
-		[JsonPropertyName("seconds")]
-		public object? Seconds { get; init; }
-
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
+		///<summary>Time to wait (ms)</summary>
+		[JsonPropertyName("time")]
+		public long? Time { get; init; }
 	}
 
-	public record BrowserModLovelaceReloadParameters
+	public record BrowserModJavascriptParameters
 	{
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
+		///<summary>JavaScript code to run</summary>
+		[JsonPropertyName("code")]
+		public object? Code { get; init; }
 	}
 
 	public record BrowserModMoreInfoParameters
 	{
-		///<summary>Entity to show more info for eg: camera.front_door</summary>
-		[JsonPropertyName("entity_id")]
-		public object? EntityId { get; init; }
+		[JsonPropertyName("entity")]
+		public string? Entity { get; init; }
 
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
-
-		///<summary>(optional) Set to true to make wider eg: true</summary>
 		[JsonPropertyName("large")]
-		public object? Large { get; init; }
+		public bool? Large { get; init; }
+
+		[JsonPropertyName("ignore_popup_card")]
+		public bool? IgnorePopupCard { get; init; }
 	}
 
 	public record BrowserModNavigateParameters
 	{
-		///<summary>Path to navigate to eg: /lovelace/1</summary>
-		[JsonPropertyName("navigation_path")]
-		public object? NavigationPath { get; init; }
-
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
+		///<summary>Target path</summary>
+		[JsonPropertyName("path")]
+		public string? Path { get; init; }
 	}
 
-	public record BrowserModNoBlackoutParameters
+	public record BrowserModNotificationParameters
 	{
-		///<summary>(optional) On a Fully Kiosk Browser Plus set the screen brightness from 0 - 255.</summary>
-		[JsonPropertyName("brightness")]
-		public object? Brightness { get; init; }
+		///<summary>Message to display</summary>
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
 
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
+		///<summary>Time before closing (ms)</summary>
+		[JsonPropertyName("duration")]
+		public long? Duration { get; init; }
+
+		///<summary>Text of optional action button</summary>
+		[JsonPropertyName("action_text")]
+		public string? ActionText { get; init; }
+
+		///<summary>Action to perform when the action button is pressed</summary>
+		[JsonPropertyName("action")]
+		public object? Action { get; init; }
 	}
 
 	public record BrowserModPopupParameters
 	{
-		///<summary>Name to show in popup bar eg: Popup example</summary>
+		///<summary>Popup title</summary>
 		[JsonPropertyName("title")]
-		public object? Title { get; init; }
+		public string? Title { get; init; }
 
-		///<summary>YAML config for card to show</summary>
-		[JsonPropertyName("card")]
-		public object? Card { get; init; }
+		///<summary>Popup content (Test or lovelace card configuration)</summary>
+		[JsonPropertyName("content")]
+		public object? Content { get; init; }
 
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
+		[JsonPropertyName("size")]
+		public object? Size { get; init; }
 
-		///<summary>(optional) Set to true to make wider eg: true</summary>
-		[JsonPropertyName("large")]
-		public object? Large { get; init; }
+		///<summary>Text of the right button</summary>
+		[JsonPropertyName("right_button")]
+		public string? RightButton { get; init; }
 
-		///<summary>(optional) Hide header title and close button eg: true</summary>
-		[JsonPropertyName("hide_header")]
-		public object? HideHeader { get; init; }
+		///<summary>Action to perform when the right button is pressed</summary>
+		[JsonPropertyName("right_button_action")]
+		public object? RightButtonAction { get; init; }
 
-		///<summary>(optional) Close popup when mouse is moved or key is pressed. Also hides header eg: true</summary>
-		[JsonPropertyName("auto_close")]
-		public object? AutoClose { get; init; }
+		///<summary>Text of the left button</summary>
+		[JsonPropertyName("left_button")]
+		public string? LeftButton { get; init; }
 
-		///<summary>(optional) When mouse isn't moved or keys aren't pressed for this amount of seconds, reopen. Only usable with auto_close. See blackout eg: 20</summary>
-		[JsonPropertyName("time")]
-		public object? Time { get; init; }
+		///<summary>Action to perform when left button is pressed</summary>
+		[JsonPropertyName("left_button_action")]
+		public object? LeftButtonAction { get; init; }
+
+		///<summary>Whether the popup can be closed by the user without action</summary>
+		[JsonPropertyName("dismissable")]
+		public bool? Dismissable { get; init; }
+
+		///<summary>Action to perform when popup is dismissed</summary>
+		[JsonPropertyName("dismiss_action")]
+		public object? DismissAction { get; init; }
+
+		///<summary>Close the popup automatically on mouse, pointer or keyboard activity</summary>
+		[JsonPropertyName("autoclose")]
+		public bool? Autoclose { get; init; }
+
+		///<summary>Time before closing (ms)</summary>
+		[JsonPropertyName("timeout")]
+		public long? Timeout { get; init; }
+
+		///<summary>Action to perform when popup is closed by timeout</summary>
+		[JsonPropertyName("timeout_action")]
+		public object? TimeoutAction { get; init; }
+
+		///<summary>CSS code to apply to the popup window</summary>
+		[JsonPropertyName("style")]
+		public string? Style { get; init; }
+	}
+
+	public record BrowserModSequenceParameters
+	{
+		///<summary>List of services to run</summary>
+		[JsonPropertyName("sequence")]
+		public object? Sequence { get; init; }
 	}
 
 	public record BrowserModSetThemeParameters
 	{
-		///<summary>Theme to change to eg: {theme: "clear_light"}</summary>
+		///<summary>Name of theme or 'auto'</summary>
 		[JsonPropertyName("theme")]
-		public object? Theme { get; init; }
+		public string? Theme { get; init; }
 
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
-	}
+		///<summary>Dark/light mode</summary>
+		[JsonPropertyName("dark")]
+		public object? Dark { get; init; }
 
-	public record BrowserModToastParameters
-	{
-		///<summary>Message to show eg: Short message</summary>
-		[JsonPropertyName("message")]
-		public object? Message { get; init; }
+		///<summary>Primary theme color</summary>
+		[JsonPropertyName("primaryColor")]
+		public object? PrimaryColor { get; init; }
 
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
-
-		///<summary>(optional) Time in milliseconds to show message for. Set to 0 for persistent display. eg: 10000</summary>
-		[JsonPropertyName("duration")]
-		public object? Duration { get; init; }
-	}
-
-	public record BrowserModWindowReloadParameters
-	{
-		///<summary>(optional) List of receiving browsers eg: ["99980b13-dabc9563", "office_computer"]</summary>
-		[JsonPropertyName("deviceID")]
-		public object? DeviceID { get; init; }
+		///<summary>Accent theme color</summary>
+		[JsonPropertyName("accentColor")]
+		public object? AccentColor { get; init; }
 	}
 
 	public class ButtonServices
@@ -4086,6 +4003,54 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public class ConfiguratorServices
+	{
+		private readonly IHaContext _haContext;
+		public ConfiguratorServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		public void Configure()
+		{
+			_haContext.CallService("configurator", "configure", null);
+		}
+	}
+
+	public class ConversationServices
+	{
+		private readonly IHaContext _haContext;
+		public ConversationServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Launch a conversation from a transcribed text.</summary>
+		public void Process(ConversationProcessParameters data)
+		{
+			_haContext.CallService("conversation", "process", null, data);
+		}
+
+		///<summary>Launch a conversation from a transcribed text.</summary>
+		///<param name="text">Transcribed text eg: Turn all lights on</param>
+		public void Process(string? @text = null)
+		{
+			_haContext.CallService("conversation", "process", null, new ConversationProcessParameters{Text = @text});
+		}
+
+		public void Reload()
+		{
+			_haContext.CallService("conversation", "reload", null);
+		}
+	}
+
+	public record ConversationProcessParameters
+	{
+		///<summary>Transcribed text eg: Turn all lights on</summary>
+		[JsonPropertyName("text")]
+		public string? Text { get; init; }
+	}
+
 	public class CounterServices
 	{
 		private readonly IHaContext _haContext;
@@ -4346,6 +4311,193 @@ namespace HomeAutomations.Models.Generated
 		public long? Battery { get; init; }
 	}
 
+	public class FanServices
+	{
+		private readonly IHaContext _haContext;
+		public FanServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Decrease the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		public void DecreaseSpeed(ServiceTarget target, FanDecreaseSpeedParameters data)
+		{
+			_haContext.CallService("fan", "decrease_speed", target, data);
+		}
+
+		///<summary>Decrease the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="percentageStep">Decrease speed by a percentage.</param>
+		public void DecreaseSpeed(ServiceTarget target, long? @percentageStep = null)
+		{
+			_haContext.CallService("fan", "decrease_speed", target, new FanDecreaseSpeedParameters{PercentageStep = @percentageStep});
+		}
+
+		///<summary>Increase the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		public void IncreaseSpeed(ServiceTarget target, FanIncreaseSpeedParameters data)
+		{
+			_haContext.CallService("fan", "increase_speed", target, data);
+		}
+
+		///<summary>Increase the speed of the fan by one speed or a percentage_step.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="percentageStep">Increase speed by a percentage.</param>
+		public void IncreaseSpeed(ServiceTarget target, long? @percentageStep = null)
+		{
+			_haContext.CallService("fan", "increase_speed", target, new FanIncreaseSpeedParameters{PercentageStep = @percentageStep});
+		}
+
+		///<summary>Oscillate the fan.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Oscillate(ServiceTarget target, FanOscillateParameters data)
+		{
+			_haContext.CallService("fan", "oscillate", target, data);
+		}
+
+		///<summary>Oscillate the fan.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="oscillating">Flag to turn on/off oscillation.</param>
+		public void Oscillate(ServiceTarget target, bool @oscillating)
+		{
+			_haContext.CallService("fan", "oscillate", target, new FanOscillateParameters{Oscillating = @oscillating});
+		}
+
+		///<summary>Set the fan rotation.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetDirection(ServiceTarget target, FanSetDirectionParameters data)
+		{
+			_haContext.CallService("fan", "set_direction", target, data);
+		}
+
+		///<summary>Set the fan rotation.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="direction">The direction to rotate.</param>
+		public void SetDirection(ServiceTarget target, object @direction)
+		{
+			_haContext.CallService("fan", "set_direction", target, new FanSetDirectionParameters{Direction = @direction});
+		}
+
+		///<summary>Set fan speed percentage.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetPercentage(ServiceTarget target, FanSetPercentageParameters data)
+		{
+			_haContext.CallService("fan", "set_percentage", target, data);
+		}
+
+		///<summary>Set fan speed percentage.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="percentage">Percentage speed setting.</param>
+		public void SetPercentage(ServiceTarget target, long @percentage)
+		{
+			_haContext.CallService("fan", "set_percentage", target, new FanSetPercentageParameters{Percentage = @percentage});
+		}
+
+		///<summary>Set preset mode for a fan device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetPresetMode(ServiceTarget target, FanSetPresetModeParameters data)
+		{
+			_haContext.CallService("fan", "set_preset_mode", target, data);
+		}
+
+		///<summary>Set preset mode for a fan device.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="presetMode">New value of preset mode. eg: auto</param>
+		public void SetPresetMode(ServiceTarget target, string @presetMode)
+		{
+			_haContext.CallService("fan", "set_preset_mode", target, new FanSetPresetModeParameters{PresetMode = @presetMode});
+		}
+
+		///<summary>Toggle the fan on/off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Toggle(ServiceTarget target)
+		{
+			_haContext.CallService("fan", "toggle", target);
+		}
+
+		///<summary>Turn fan off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOff(ServiceTarget target)
+		{
+			_haContext.CallService("fan", "turn_off", target);
+		}
+
+		///<summary>Turn fan on.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOn(ServiceTarget target, FanTurnOnParameters data)
+		{
+			_haContext.CallService("fan", "turn_on", target, data);
+		}
+
+		///<summary>Turn fan on.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="speed">Speed setting. eg: high</param>
+		///<param name="percentage">Percentage speed setting.</param>
+		///<param name="presetMode">Preset mode setting. eg: auto</param>
+		public void TurnOn(ServiceTarget target, string? @speed = null, long? @percentage = null, string? @presetMode = null)
+		{
+			_haContext.CallService("fan", "turn_on", target, new FanTurnOnParameters{Speed = @speed, Percentage = @percentage, PresetMode = @presetMode});
+		}
+	}
+
+	public record FanDecreaseSpeedParameters
+	{
+		///<summary>Decrease speed by a percentage.</summary>
+		[JsonPropertyName("percentage_step")]
+		public long? PercentageStep { get; init; }
+	}
+
+	public record FanIncreaseSpeedParameters
+	{
+		///<summary>Increase speed by a percentage.</summary>
+		[JsonPropertyName("percentage_step")]
+		public long? PercentageStep { get; init; }
+	}
+
+	public record FanOscillateParameters
+	{
+		///<summary>Flag to turn on/off oscillation.</summary>
+		[JsonPropertyName("oscillating")]
+		public bool? Oscillating { get; init; }
+	}
+
+	public record FanSetDirectionParameters
+	{
+		///<summary>The direction to rotate.</summary>
+		[JsonPropertyName("direction")]
+		public object? Direction { get; init; }
+	}
+
+	public record FanSetPercentageParameters
+	{
+		///<summary>Percentage speed setting.</summary>
+		[JsonPropertyName("percentage")]
+		public long? Percentage { get; init; }
+	}
+
+	public record FanSetPresetModeParameters
+	{
+		///<summary>New value of preset mode. eg: auto</summary>
+		[JsonPropertyName("preset_mode")]
+		public string? PresetMode { get; init; }
+	}
+
+	public record FanTurnOnParameters
+	{
+		///<summary>Speed setting. eg: high</summary>
+		[JsonPropertyName("speed")]
+		public string? Speed { get; init; }
+
+		///<summary>Percentage speed setting.</summary>
+		[JsonPropertyName("percentage")]
+		public long? Percentage { get; init; }
+
+		///<summary>Preset mode setting. eg: auto</summary>
+		[JsonPropertyName("preset_mode")]
+		public string? PresetMode { get; init; }
+	}
+
 	public class FfmpegServices
 	{
 		private readonly IHaContext _haContext;
@@ -4455,82 +4607,6 @@ namespace HomeAutomations.Models.Generated
 		public object? Mode { get; init; }
 	}
 
-	public class GoogleServices
-	{
-		private readonly IHaContext _haContext;
-		public GoogleServices(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Add a new calendar event.</summary>
-		public void AddEvent(GoogleAddEventParameters data)
-		{
-			_haContext.CallService("google", "add_event", null, data);
-		}
-
-		///<summary>Add a new calendar event.</summary>
-		///<param name="calendarId">The id of the calendar you want. eg: Your email</param>
-		///<param name="summary">Acts as the title of the event. eg: Bowling</param>
-		///<param name="description">The description of the event. Optional. eg: Birthday bowling</param>
-		///<param name="startDateTime">The date and time the event should start. eg: 2019-03-22 20:00:00</param>
-		///<param name="endDateTime">The date and time the event should end. eg: 2019-03-22 22:00:00</param>
-		///<param name="startDate">The date the whole day event should start. eg: 2019-03-10</param>
-		///<param name="endDate">The date the whole day event should end. eg: 2019-03-11</param>
-		///<param name="in">Days or weeks that you want to create the event in. eg: "days": 2 or "weeks": 2</param>
-		public void AddEvent(string @calendarId, string @summary, string? @description = null, string? @startDateTime = null, string? @endDateTime = null, string? @startDate = null, string? @endDate = null, object? @in = null)
-		{
-			_haContext.CallService("google", "add_event", null, new GoogleAddEventParameters{CalendarId = @calendarId, Summary = @summary, Description = @description, StartDateTime = @startDateTime, EndDateTime = @endDateTime, StartDate = @startDate, EndDate = @endDate, In = @in});
-		}
-
-		///<summary>Add calendar if it has not been already discovered.</summary>
-		public void FoundCalendar()
-		{
-			_haContext.CallService("google", "found_calendar", null);
-		}
-
-		///<summary>Scan for new calendars.</summary>
-		public void ScanForCalendars()
-		{
-			_haContext.CallService("google", "scan_for_calendars", null);
-		}
-	}
-
-	public record GoogleAddEventParameters
-	{
-		///<summary>The id of the calendar you want. eg: Your email</summary>
-		[JsonPropertyName("calendar_id")]
-		public string? CalendarId { get; init; }
-
-		///<summary>Acts as the title of the event. eg: Bowling</summary>
-		[JsonPropertyName("summary")]
-		public string? Summary { get; init; }
-
-		///<summary>The description of the event. Optional. eg: Birthday bowling</summary>
-		[JsonPropertyName("description")]
-		public string? Description { get; init; }
-
-		///<summary>The date and time the event should start. eg: 2019-03-22 20:00:00</summary>
-		[JsonPropertyName("start_date_time")]
-		public string? StartDateTime { get; init; }
-
-		///<summary>The date and time the event should end. eg: 2019-03-22 22:00:00</summary>
-		[JsonPropertyName("end_date_time")]
-		public string? EndDateTime { get; init; }
-
-		///<summary>The date the whole day event should start. eg: 2019-03-10</summary>
-		[JsonPropertyName("start_date")]
-		public string? StartDate { get; init; }
-
-		///<summary>The date the whole day event should end. eg: 2019-03-11</summary>
-		[JsonPropertyName("end_date")]
-		public string? EndDate { get; init; }
-
-		///<summary>Days or weeks that you want to create the event in. eg: "days": 2 or "weeks": 2</summary>
-		[JsonPropertyName("in")]
-		public object? In { get; init; }
-	}
-
 	public class GroupServices
 	{
 		private readonly IHaContext _haContext;
@@ -4570,10 +4646,11 @@ namespace HomeAutomations.Models.Generated
 		///<param name="icon">Name of icon for the group. eg: mdi:camera</param>
 		///<param name="entities">List of all members in the group. Not compatible with 'delta'. eg: domain.entity_id1, domain.entity_id2</param>
 		///<param name="addEntities">List of members that will change on group listening. eg: domain.entity_id1, domain.entity_id2</param>
+		///<param name="removeEntities">List of members that will be removed from group listening. eg: domain.entity_id1, domain.entity_id2</param>
 		///<param name="all">Enable this option if the group should only turn on when all entities are on.</param>
-		public void Set(string @objectId, string? @name = null, object? @icon = null, object? @entities = null, object? @addEntities = null, bool? @all = null)
+		public void Set(string @objectId, string? @name = null, object? @icon = null, object? @entities = null, object? @addEntities = null, object? @removeEntities = null, bool? @all = null)
 		{
-			_haContext.CallService("group", "set", null, new GroupSetParameters{ObjectId = @objectId, Name = @name, Icon = @icon, Entities = @entities, AddEntities = @addEntities, All = @all});
+			_haContext.CallService("group", "set", null, new GroupSetParameters{ObjectId = @objectId, Name = @name, Icon = @icon, Entities = @entities, AddEntities = @addEntities, RemoveEntities = @removeEntities, All = @all});
 		}
 	}
 
@@ -4605,6 +4682,10 @@ namespace HomeAutomations.Models.Generated
 		///<summary>List of members that will change on group listening. eg: domain.entity_id1, domain.entity_id2</summary>
 		[JsonPropertyName("add_entities")]
 		public object? AddEntities { get; init; }
+
+		///<summary>List of members that will be removed from group listening. eg: domain.entity_id1, domain.entity_id2</summary>
+		[JsonPropertyName("remove_entities")]
+		public object? RemoveEntities { get; init; }
 
 		///<summary>Enable this option if the group should only turn on when all entities are on.</summary>
 		[JsonPropertyName("all")]
@@ -4723,6 +4804,80 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Longitude of your location. eg: 117,22743</summary>
 		[JsonPropertyName("longitude")]
 		public string? Longitude { get; init; }
+	}
+
+	public class HumidifierServices
+	{
+		private readonly IHaContext _haContext;
+		public HumidifierServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Set target humidity of humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetHumidity(ServiceTarget target, HumidifierSetHumidityParameters data)
+		{
+			_haContext.CallService("humidifier", "set_humidity", target, data);
+		}
+
+		///<summary>Set target humidity of humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="humidity">New target humidity for humidifier device.</param>
+		public void SetHumidity(ServiceTarget target, long @humidity)
+		{
+			_haContext.CallService("humidifier", "set_humidity", target, new HumidifierSetHumidityParameters{Humidity = @humidity});
+		}
+
+		///<summary>Set mode for humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetMode(ServiceTarget target, HumidifierSetModeParameters data)
+		{
+			_haContext.CallService("humidifier", "set_mode", target, data);
+		}
+
+		///<summary>Set mode for humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="mode">New mode eg: away</param>
+		public void SetMode(ServiceTarget target, string @mode)
+		{
+			_haContext.CallService("humidifier", "set_mode", target, new HumidifierSetModeParameters{Mode = @mode});
+		}
+
+		///<summary>Toggles a humidifier device.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Toggle(ServiceTarget target)
+		{
+			_haContext.CallService("humidifier", "toggle", target);
+		}
+
+		///<summary>Turn humidifier device off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOff(ServiceTarget target)
+		{
+			_haContext.CallService("humidifier", "turn_off", target);
+		}
+
+		///<summary>Turn humidifier device on.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOn(ServiceTarget target)
+		{
+			_haContext.CallService("humidifier", "turn_on", target);
+		}
+	}
+
+	public record HumidifierSetHumidityParameters
+	{
+		///<summary>New target humidity for humidifier device.</summary>
+		[JsonPropertyName("humidity")]
+		public long? Humidity { get; init; }
+	}
+
+	public record HumidifierSetModeParameters
+	{
+		///<summary>New mode eg: away</summary>
+		[JsonPropertyName("mode")]
+		public string? Mode { get; init; }
 	}
 
 	public class InputBooleanServices
@@ -5063,15 +5218,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="xyColor">Color for the light in XY-format. eg: [0.52, 0.43]</param>
 		///<param name="colorTemp">Color temperature for the light in mireds.</param>
 		///<param name="kelvin">Color temperature for the light in Kelvin.</param>
-		///<param name="whiteValue">Number indicating level of white.</param>
 		///<param name="brightness">Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
 		///<param name="brightnessPct">Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</param>
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public void Toggle(ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
+		public void Toggle(ServiceTarget target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
-			_haContext.CallService("light", "toggle", target, new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
+			_haContext.CallService("light", "toggle", target, new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 
 		///<summary>Turns off one or more lights.</summary>
@@ -5151,10 +5305,6 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Color temperature for the light in Kelvin.</summary>
 		[JsonPropertyName("kelvin")]
 		public long? Kelvin { get; init; }
-
-		///<summary>Number indicating level of white.</summary>
-		[JsonPropertyName("white_value")]
-		public long? WhiteValue { get; init; }
 
 		///<summary>Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</summary>
 		[JsonPropertyName("brightness")]
@@ -5259,49 +5409,79 @@ namespace HomeAutomations.Models.Generated
 		public string? Effect { get; init; }
 	}
 
-	public class LocaltuyaServices
+	public class LockServices
 	{
 		private readonly IHaContext _haContext;
-		public LocaltuyaServices(IHaContext haContext)
+		public LockServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
-		///<summary>Reload localtuya and re-process yaml configuration.</summary>
-		public void Reload()
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Lock(ServiceTarget target, LockLockParameters data)
 		{
-			_haContext.CallService("localtuya", "reload", null);
+			_haContext.CallService("lock", "lock", target, data);
 		}
 
-		///<summary>Change the value of a datapoint (DP)</summary>
-		public void SetDp(LocaltuyaSetDpParameters data)
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">An optional code to lock the lock with. eg: 1234</param>
+		public void Lock(ServiceTarget target, string? @code = null)
 		{
-			_haContext.CallService("localtuya", "set_dp", null, data);
+			_haContext.CallService("lock", "lock", target, new LockLockParameters{Code = @code});
 		}
 
-		///<summary>Change the value of a datapoint (DP)</summary>
-		///<param name="deviceId">Device ID of device to change datapoint value for eg: 11100118278aab4de001</param>
-		///<param name="dp">Datapoint index eg: 1</param>
-		///<param name="value">New value to set eg: False</param>
-		public void SetDp(object? @deviceId = null, object? @dp = null, object? @value = null)
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Open(ServiceTarget target, LockOpenParameters data)
 		{
-			_haContext.CallService("localtuya", "set_dp", null, new LocaltuyaSetDpParameters{DeviceId = @deviceId, Dp = @dp, Value = @value});
+			_haContext.CallService("lock", "open", target, data);
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">An optional code to open the lock with. eg: 1234</param>
+		public void Open(ServiceTarget target, string? @code = null)
+		{
+			_haContext.CallService("lock", "open", target, new LockOpenParameters{Code = @code});
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Unlock(ServiceTarget target, LockUnlockParameters data)
+		{
+			_haContext.CallService("lock", "unlock", target, data);
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="code">An optional code to unlock the lock with. eg: 1234</param>
+		public void Unlock(ServiceTarget target, string? @code = null)
+		{
+			_haContext.CallService("lock", "unlock", target, new LockUnlockParameters{Code = @code});
 		}
 	}
 
-	public record LocaltuyaSetDpParameters
+	public record LockLockParameters
 	{
-		///<summary>Device ID of device to change datapoint value for eg: 11100118278aab4de001</summary>
-		[JsonPropertyName("device_id")]
-		public object? DeviceId { get; init; }
+		///<summary>An optional code to lock the lock with. eg: 1234</summary>
+		[JsonPropertyName("code")]
+		public string? Code { get; init; }
+	}
 
-		///<summary>Datapoint index eg: 1</summary>
-		[JsonPropertyName("dp")]
-		public object? Dp { get; init; }
+	public record LockOpenParameters
+	{
+		///<summary>An optional code to open the lock with. eg: 1234</summary>
+		[JsonPropertyName("code")]
+		public string? Code { get; init; }
+	}
 
-		///<summary>New value to set eg: False</summary>
-		[JsonPropertyName("value")]
-		public object? Value { get; init; }
+	public record LockUnlockParameters
+	{
+		///<summary>An optional code to unlock the lock with. eg: 1234</summary>
+		[JsonPropertyName("code")]
+		public string? Code { get; init; }
 	}
 
 	public class LogbookServices
@@ -5422,8 +5602,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
 		///<param name="target">The target for this service call</param>
-		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
-		public void Join(ServiceTarget target, object? @groupMembers = null)
+		///<param name="groupMembers">The players which will be synced with the target player. eg: - media_player.multiroom_player2 - media_player.multiroom_player3 </param>
+		public void Join(ServiceTarget target, string @groupMembers)
 		{
 			_haContext.CallService("media_player", "join", target, new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
 		}
@@ -5496,9 +5676,11 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The target for this service call</param>
 		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
 		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
-		public void PlayMedia(ServiceTarget target, string @mediaContentId, string @mediaContentType)
+		///<param name="enqueue">If the content should be played now or be added to the queue.</param>
+		///<param name="announce">If the media should be played as an announcement. eg: true</param>
+		public void PlayMedia(ServiceTarget target, string @mediaContentId, string @mediaContentType, object? @enqueue = null, bool? @announce = null)
 		{
-			_haContext.CallService("media_player", "play_media", target, new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType});
+			_haContext.CallService("media_player", "play_media", target, new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType, Enqueue = @enqueue, Announce = @announce});
 		}
 
 		///<summary>Set repeat mode</summary>
@@ -5636,9 +5818,9 @@ namespace HomeAutomations.Models.Generated
 
 	public record MediaPlayerJoinParameters
 	{
-		///<summary>The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</summary>
+		///<summary>The players which will be synced with the target player. eg: - media_player.multiroom_player2 - media_player.multiroom_player3 </summary>
 		[JsonPropertyName("group_members")]
-		public object? GroupMembers { get; init; }
+		public string? GroupMembers { get; init; }
 	}
 
 	public record MediaPlayerMediaSeekParameters
@@ -5657,6 +5839,14 @@ namespace HomeAutomations.Models.Generated
 		///<summary>The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</summary>
 		[JsonPropertyName("media_content_type")]
 		public string? MediaContentType { get; init; }
+
+		///<summary>If the content should be played now or be added to the queue.</summary>
+		[JsonPropertyName("enqueue")]
+		public object? Enqueue { get; init; }
+
+		///<summary>If the media should be played as an announcement. eg: true</summary>
+		[JsonPropertyName("announce")]
+		public bool? Announce { get; init; }
 	}
 
 	public record MediaPlayerRepeatSetParameters
@@ -5699,35 +5889,6 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Volume level to set as float.</summary>
 		[JsonPropertyName("volume_level")]
 		public double? VolumeLevel { get; init; }
-	}
-
-	public class MicrosoftTodoServices
-	{
-		private readonly IHaContext _haContext;
-		public MicrosoftTodoServices(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Create a new task.</summary>
-		public void NewTask(MicrosoftTodoNewTaskParameters data)
-		{
-			_haContext.CallService("microsoft_todo", "new_task", null, data);
-		}
-
-		///<summary>Create a new task.</summary>
-		///<param name="subject">The subject of the task. eg: Pick up the mail.</param>
-		public void NewTask(object? @subject = null)
-		{
-			_haContext.CallService("microsoft_todo", "new_task", null, new MicrosoftTodoNewTaskParameters{Subject = @subject});
-		}
-	}
-
-	public record MicrosoftTodoNewTaskParameters
-	{
-		///<summary>The subject of the task. eg: Pick up the mail.</summary>
-		[JsonPropertyName("subject")]
-		public object? Subject { get; init; }
 	}
 
 	public class MqttServices
@@ -6024,20 +6185,20 @@ namespace HomeAutomations.Models.Generated
 			_haContext.CallService("notify", "mobile_app_fantenphone", null, new NotifyMobileAppFantenphoneParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
-		///<summary>Sends a notification message using the mobile_app_iphone_philipp_2 integration.</summary>
-		public void MobileAppIphonePhilipp2(NotifyMobileAppIphonePhilipp2Parameters data)
+		///<summary>Sends a notification message using the mobile_app_iphone_philipp integration.</summary>
+		public void MobileAppIphonePhilipp(NotifyMobileAppIphonePhilippParameters data)
 		{
-			_haContext.CallService("notify", "mobile_app_iphone_philipp_2", null, data);
+			_haContext.CallService("notify", "mobile_app_iphone_philipp", null, data);
 		}
 
-		///<summary>Sends a notification message using the mobile_app_iphone_philipp_2 integration.</summary>
+		///<summary>Sends a notification message using the mobile_app_iphone_philipp integration.</summary>
 		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
 		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
 		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
 		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
-		public void MobileAppIphonePhilipp2(string @message, string? @title = null, object? @target = null, object? @data = null)
+		public void MobileAppIphonePhilipp(string @message, string? @title = null, object? @target = null, object? @data = null)
 		{
-			_haContext.CallService("notify", "mobile_app_iphone_philipp_2", null, new NotifyMobileAppIphonePhilipp2Parameters{Message = @message, Title = @title, Target = @target, Data = @data});
+			_haContext.CallService("notify", "mobile_app_iphone_philipp", null, new NotifyMobileAppIphonePhilippParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
 		///<summary>Sends a notification message using the notify service.</summary>
@@ -6056,13 +6217,13 @@ namespace HomeAutomations.Models.Generated
 			_haContext.CallService("notify", "notify", null, new NotifyNotifyParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
-		///<summary>Sends a notification to the visible in the front-end.</summary>
+		///<summary>Sends a notification that is visible in the front-end.</summary>
 		public void PersistentNotification(NotifyPersistentNotificationParameters data)
 		{
 			_haContext.CallService("notify", "persistent_notification", null, data);
 		}
 
-		///<summary>Sends a notification to the visible in the front-end.</summary>
+		///<summary>Sends a notification that is visible in the front-end.</summary>
 		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
 		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
 		public void PersistentNotification(string @message, string? @title = null)
@@ -6109,7 +6270,7 @@ namespace HomeAutomations.Models.Generated
 		public object? Data { get; init; }
 	}
 
-	public record NotifyMobileAppIphonePhilipp2Parameters
+	public record NotifyMobileAppIphonePhilippParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
 		[JsonPropertyName("message")]
@@ -6158,70 +6319,35 @@ namespace HomeAutomations.Models.Generated
 		public string? Title { get; init; }
 	}
 
-	public class OnvifServices
+	public class NumberServices
 	{
 		private readonly IHaContext _haContext;
-		public OnvifServices(IHaContext haContext)
+		public NumberServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
-		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		///<summary>Set the value of a Number entity.</summary>
 		///<param name="target">The target for this service call</param>
-		public void Ptz(ServiceTarget target, OnvifPtzParameters data)
+		public void SetValue(ServiceTarget target, NumberSetValueParameters data)
 		{
-			_haContext.CallService("onvif", "ptz", target, data);
+			_haContext.CallService("number", "set_value", target, data);
 		}
 
-		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
+		///<summary>Set the value of a Number entity.</summary>
 		///<param name="target">The target for this service call</param>
-		///<param name="tilt">Tilt direction.</param>
-		///<param name="pan">Pan direction.</param>
-		///<param name="zoom">Zoom.</param>
-		///<param name="distance">Distance coefficient. Sets how much PTZ should be executed in one request.</param>
-		///<param name="speed">Speed coefficient. Sets how fast PTZ will be executed.</param>
-		///<param name="continuousDuration">Set ContinuousMove delay in seconds before stopping the move</param>
-		///<param name="preset">PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</param>
-		///<param name="moveMode">PTZ moving mode.</param>
-		public void Ptz(ServiceTarget target, object? @tilt = null, object? @pan = null, object? @zoom = null, double? @distance = null, double? @speed = null, double? @continuousDuration = null, string? @preset = null, object? @moveMode = null)
+		///<param name="value">The target value the entity should be set to. eg: 42</param>
+		public void SetValue(ServiceTarget target, string? @value = null)
 		{
-			_haContext.CallService("onvif", "ptz", target, new OnvifPtzParameters{Tilt = @tilt, Pan = @pan, Zoom = @zoom, Distance = @distance, Speed = @speed, ContinuousDuration = @continuousDuration, Preset = @preset, MoveMode = @moveMode});
+			_haContext.CallService("number", "set_value", target, new NumberSetValueParameters{Value = @value});
 		}
 	}
 
-	public record OnvifPtzParameters
+	public record NumberSetValueParameters
 	{
-		///<summary>Tilt direction.</summary>
-		[JsonPropertyName("tilt")]
-		public object? Tilt { get; init; }
-
-		///<summary>Pan direction.</summary>
-		[JsonPropertyName("pan")]
-		public object? Pan { get; init; }
-
-		///<summary>Zoom.</summary>
-		[JsonPropertyName("zoom")]
-		public object? Zoom { get; init; }
-
-		///<summary>Distance coefficient. Sets how much PTZ should be executed in one request.</summary>
-		[JsonPropertyName("distance")]
-		public double? Distance { get; init; }
-
-		///<summary>Speed coefficient. Sets how fast PTZ will be executed.</summary>
-		[JsonPropertyName("speed")]
-		public double? Speed { get; init; }
-
-		///<summary>Set ContinuousMove delay in seconds before stopping the move</summary>
-		[JsonPropertyName("continuous_duration")]
-		public double? ContinuousDuration { get; init; }
-
-		///<summary>PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</summary>
-		[JsonPropertyName("preset")]
-		public string? Preset { get; init; }
-
-		///<summary>PTZ moving mode.</summary>
-		[JsonPropertyName("move_mode")]
-		public object? MoveMode { get; init; }
+		///<summary>The target value the entity should be set to. eg: 42</summary>
+		[JsonPropertyName("value")]
+		public string? Value { get; init; }
 	}
 
 	public class PersistentNotificationServices
@@ -6659,6 +6785,21 @@ namespace HomeAutomations.Models.Generated
 		public long? Transition { get; init; }
 	}
 
+	public class ScheduleServices
+	{
+		private readonly IHaContext _haContext;
+		public ScheduleServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Reload the schedule configuration</summary>
+		public void Reload()
+		{
+			_haContext.CallService("schedule", "reload", null);
+		}
+	}
+
 	public class ScriptServices
 	{
 		private readonly IHaContext _haContext;
@@ -6726,123 +6867,59 @@ namespace HomeAutomations.Models.Generated
 		public string? Option { get; init; }
 	}
 
-	public class SpeedtestdotnetServices
+	public class SirenServices
 	{
 		private readonly IHaContext _haContext;
-		public SpeedtestdotnetServices(IHaContext haContext)
+		public SirenServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
-		///<summary>Immediately execute a speed test with Speedtest.net</summary>
-		public void Speedtest()
+		///<summary>Toggles a siren.</summary>
+		///<param name="target">The target for this service call</param>
+		public void Toggle(ServiceTarget target)
 		{
-			_haContext.CallService("speedtestdotnet", "speedtest", null);
+			_haContext.CallService("siren", "toggle", target);
+		}
+
+		///<summary>Turn siren off.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOff(ServiceTarget target)
+		{
+			_haContext.CallService("siren", "turn_off", target);
+		}
+
+		///<summary>Turn siren on.</summary>
+		///<param name="target">The target for this service call</param>
+		public void TurnOn(ServiceTarget target, SirenTurnOnParameters data)
+		{
+			_haContext.CallService("siren", "turn_on", target, data);
+		}
+
+		///<summary>Turn siren on.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="tone">The tone to emit when turning the siren on. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration. eg: fire</param>
+		///<param name="volumeLevel">The volume level of the noise to emit when turning the siren on. Must be supported by the integration. eg: 0,5</param>
+		///<param name="duration">The duration in seconds of the noise to emit when turning the siren on. Must be supported by the integration. eg: 15</param>
+		public void TurnOn(ServiceTarget target, string? @tone = null, double? @volumeLevel = null, string? @duration = null)
+		{
+			_haContext.CallService("siren", "turn_on", target, new SirenTurnOnParameters{Tone = @tone, VolumeLevel = @volumeLevel, Duration = @duration});
 		}
 	}
 
-	public class SpotcastServices
+	public record SirenTurnOnParameters
 	{
-		private readonly IHaContext _haContext;
-		public SpotcastServices(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
+		///<summary>The tone to emit when turning the siren on. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration. eg: fire</summary>
+		[JsonPropertyName("tone")]
+		public string? Tone { get; init; }
 
-		///<summary>Starts spotify playback on chromecast devices</summary>
-		public void Start(SpotcastStartParameters data)
-		{
-			_haContext.CallService("spotcast", "start", null, data);
-		}
+		///<summary>The volume level of the noise to emit when turning the siren on. Must be supported by the integration. eg: 0,5</summary>
+		[JsonPropertyName("volume_level")]
+		public double? VolumeLevel { get; init; }
 
-		///<summary>Starts spotify playback on chromecast devices</summary>
-		///<param name="deviceName">The friendly name of the chromecast or spotify connect device. First checks spotify device list for name (not used together with entity_id and spotify_device_id). eg: Livingroom</param>
-		///<param name="spotifyDeviceId">Advanced users only. The spotify device id (not used together with entity_id or device_name). eg: 4363634563457346xcyvydgf3qwa</param>
-		///<param name="entityId">The entity_id of the chromecast mediaplayer. Friendly name MUST match the spotify connect device name (not used together with device_name and spotify_device_id). eg: media_player.vardagsrum</param>
-		///<param name="uri">Supported Spotify URI as string. None or empty uri will transfer the current/last playback (see parameter force_playback). eg: spotify:playlist:37i9dQZF1DX3yvAYDslnv8</param>
-		///<param name="category">A category to fetch playlist from. See https://developer.spotify.com/console/get-browse-categories/ for a list of categories</param>
-		///<param name="country">Country code to use with category. See https://spotipy.readthedocs.io/en/2.19.0/#spotipy.client.Spotify.country_codes for list of available codes</param>
-		///<param name="limit">Limit of playlist to fetch in a given category. Default 20</param>
-		///<param name="search">A Search request to the spotify API. Will play the most relevant search result.</param>
-		///<param name="account">Optionally starts Spotify using an alternative account specified in config. eg: my_wifes</param>
-		///<param name="forcePlayback">In case of transfering playback: If true starts playing the user's last playback even if nothing is currently playing. eg: True</param>
-		///<param name="randomSong">Starts the playback at a random position in the playlist or album. eg: True</param>
-		///<param name="repeat">Set repeat mode for playback. eg: track</param>
-		///<param name="shuffle">Set shuffle mode for playback. eg: True</param>
-		///<param name="offset">Set offset mode for playback. 0 is the first song. eg: 1</param>
-		///<param name="startVolume">Set the volume for playback in percentage. eg: 50</param>
-		///<param name="ignoreFullyPlayed">Set to ignore or not already played episodes in a podcast playlist eg: True</param>
-		public void Start(string? @deviceName = null, string? @spotifyDeviceId = null, string? @entityId = null, string? @uri = null, string? @category = null, string? @country = null, long? @limit = null, string? @search = null, string? @account = null, bool? @forcePlayback = null, bool? @randomSong = null, object? @repeat = null, bool? @shuffle = null, long? @offset = null, long? @startVolume = null, bool? @ignoreFullyPlayed = null)
-		{
-			_haContext.CallService("spotcast", "start", null, new SpotcastStartParameters{DeviceName = @deviceName, SpotifyDeviceId = @spotifyDeviceId, EntityId = @entityId, Uri = @uri, Category = @category, Country = @country, Limit = @limit, Search = @search, Account = @account, ForcePlayback = @forcePlayback, RandomSong = @randomSong, Repeat = @repeat, Shuffle = @shuffle, Offset = @offset, StartVolume = @startVolume, IgnoreFullyPlayed = @ignoreFullyPlayed});
-		}
-	}
-
-	public record SpotcastStartParameters
-	{
-		///<summary>The friendly name of the chromecast or spotify connect device. First checks spotify device list for name (not used together with entity_id and spotify_device_id). eg: Livingroom</summary>
-		[JsonPropertyName("device_name")]
-		public string? DeviceName { get; init; }
-
-		///<summary>Advanced users only. The spotify device id (not used together with entity_id or device_name). eg: 4363634563457346xcyvydgf3qwa</summary>
-		[JsonPropertyName("spotify_device_id")]
-		public string? SpotifyDeviceId { get; init; }
-
-		///<summary>The entity_id of the chromecast mediaplayer. Friendly name MUST match the spotify connect device name (not used together with device_name and spotify_device_id). eg: media_player.vardagsrum</summary>
-		[JsonPropertyName("entity_id")]
-		public string? EntityId { get; init; }
-
-		///<summary>Supported Spotify URI as string. None or empty uri will transfer the current/last playback (see parameter force_playback). eg: spotify:playlist:37i9dQZF1DX3yvAYDslnv8</summary>
-		[JsonPropertyName("uri")]
-		public string? Uri { get; init; }
-
-		///<summary>A category to fetch playlist from. See https://developer.spotify.com/console/get-browse-categories/ for a list of categories</summary>
-		[JsonPropertyName("category")]
-		public string? Category { get; init; }
-
-		///<summary>Country code to use with category. See https://spotipy.readthedocs.io/en/2.19.0/#spotipy.client.Spotify.country_codes for list of available codes</summary>
-		[JsonPropertyName("country")]
-		public string? Country { get; init; }
-
-		///<summary>Limit of playlist to fetch in a given category. Default 20</summary>
-		[JsonPropertyName("limit")]
-		public long? Limit { get; init; }
-
-		///<summary>A Search request to the spotify API. Will play the most relevant search result.</summary>
-		[JsonPropertyName("search")]
-		public string? Search { get; init; }
-
-		///<summary>Optionally starts Spotify using an alternative account specified in config. eg: my_wifes</summary>
-		[JsonPropertyName("account")]
-		public string? Account { get; init; }
-
-		///<summary>In case of transfering playback: If true starts playing the user's last playback even if nothing is currently playing. eg: True</summary>
-		[JsonPropertyName("force_playback")]
-		public bool? ForcePlayback { get; init; }
-
-		///<summary>Starts the playback at a random position in the playlist or album. eg: True</summary>
-		[JsonPropertyName("random_song")]
-		public bool? RandomSong { get; init; }
-
-		///<summary>Set repeat mode for playback. eg: track</summary>
-		[JsonPropertyName("repeat")]
-		public object? Repeat { get; init; }
-
-		///<summary>Set shuffle mode for playback. eg: True</summary>
-		[JsonPropertyName("shuffle")]
-		public bool? Shuffle { get; init; }
-
-		///<summary>Set offset mode for playback. 0 is the first song. eg: 1</summary>
-		[JsonPropertyName("offset")]
-		public long? Offset { get; init; }
-
-		///<summary>Set the volume for playback in percentage. eg: 50</summary>
-		[JsonPropertyName("start_volume")]
-		public long? StartVolume { get; init; }
-
-		///<summary>Set to ignore or not already played episodes in a podcast playlist eg: True</summary>
-		[JsonPropertyName("ignore_fully_played")]
-		public bool? IgnoreFullyPlayed { get; init; }
+		///<summary>The duration in seconds of the noise to emit when turning the siren on. Must be supported by the integration. eg: 15</summary>
+		[JsonPropertyName("duration")]
+		public string? Duration { get; init; }
 	}
 
 	public class SwitchServices
@@ -6984,6 +7061,37 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public class TextServices
+	{
+		private readonly IHaContext _haContext;
+		public TextServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Set value of a text entity.</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetValue(ServiceTarget target, TextSetValueParameters data)
+		{
+			_haContext.CallService("text", "set_value", target, data);
+		}
+
+		///<summary>Set value of a text entity.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="value">Value to set. eg: Hello world!</param>
+		public void SetValue(ServiceTarget target, string @value)
+		{
+			_haContext.CallService("text", "set_value", target, new TextSetValueParameters{Value = @value});
+		}
+	}
+
+	public record TextSetValueParameters
+	{
+		///<summary>Value to set. eg: Hello world!</summary>
+		[JsonPropertyName("value")]
+		public string? Value { get; init; }
+	}
+
 	public class TimerServices
 	{
 		private readonly IHaContext _haContext;
@@ -7047,6 +7155,13 @@ namespace HomeAutomations.Models.Generated
 		public UpdateServices(IHaContext haContext)
 		{
 			_haContext = haContext;
+		}
+
+		///<summary>Removes the skipped version marker from an update.</summary>
+		///<param name="target">The target for this service call</param>
+		public void ClearSkipped(ServiceTarget target)
+		{
+			_haContext.CallService("update", "clear_skipped", target);
 		}
 
 		///<summary>Install an update for this device or service</summary>
@@ -7504,75 +7619,6 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Duration of the movement.</summary>
 		[JsonPropertyName("duration")]
 		public long? Duration { get; init; }
-	}
-
-	public class YiHackServices
-	{
-		private readonly IHaContext _haContext;
-		public YiHackServices(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Pan/Tilt service for yi-hack camera.</summary>
-		public void Ptz(YiHackPtzParameters data)
-		{
-			_haContext.CallService("yi_hack", "ptz", null, data);
-		}
-
-		///<summary>Pan/Tilt service for yi-hack camera.</summary>
-		///<param name="entityId">Name of entity to move. eg: camera.living_room_camera</param>
-		///<param name="movement">Direction of the movement. Allowed values: up, down, left and right. eg: left</param>
-		///<param name="travelTime">(Optional) Travel time in seconds. Allowed values: float from 0.1 to 5.0. Default: 0.3 eg: 0,3</param>
-		public void Ptz(string @entityId, object @movement, double? @travelTime = null)
-		{
-			_haContext.CallService("yi_hack", "ptz", null, new YiHackPtzParameters{EntityId = @entityId, Movement = @movement, TravelTime = @travelTime});
-		}
-
-		///<summary>TTS service for yi-hack camera.</summary>
-		public void Speak(YiHackSpeakParameters data)
-		{
-			_haContext.CallService("yi_hack", "speak", null, data);
-		}
-
-		///<summary>TTS service for yi-hack camera.</summary>
-		///<param name="entityId">Name of entity to use. eg: camera.living_room_camera</param>
-		///<param name="language">Language of the TTS engine. Allowed values: de-DE, en-GB, en-US, es-ES, fr-FR, it-IT. Default: en-US eg: en-US</param>
-		///<param name="sentence">Sentence to pronounce. eg: Hello world!</param>
-		public void Speak(string @entityId, object @language, string @sentence)
-		{
-			_haContext.CallService("yi_hack", "speak", null, new YiHackSpeakParameters{EntityId = @entityId, Language = @language, Sentence = @sentence});
-		}
-	}
-
-	public record YiHackPtzParameters
-	{
-		///<summary>Name of entity to move. eg: camera.living_room_camera</summary>
-		[JsonPropertyName("entity_id")]
-		public string? EntityId { get; init; }
-
-		///<summary>Direction of the movement. Allowed values: up, down, left and right. eg: left</summary>
-		[JsonPropertyName("movement")]
-		public object? Movement { get; init; }
-
-		///<summary>(Optional) Travel time in seconds. Allowed values: float from 0.1 to 5.0. Default: 0.3 eg: 0,3</summary>
-		[JsonPropertyName("travel_time")]
-		public double? TravelTime { get; init; }
-	}
-
-	public record YiHackSpeakParameters
-	{
-		///<summary>Name of entity to use. eg: camera.living_room_camera</summary>
-		[JsonPropertyName("entity_id")]
-		public string? EntityId { get; init; }
-
-		///<summary>Language of the TTS engine. Allowed values: de-DE, en-GB, en-US, es-ES, fr-FR, it-IT. Default: en-US eg: en-US</summary>
-		[JsonPropertyName("language")]
-		public object? Language { get; init; }
-
-		///<summary>Sentence to pronounce. eg: Hello world!</summary>
-		[JsonPropertyName("sentence")]
-		public string? Sentence { get; init; }
 	}
 
 	public class ZoneServices
@@ -8249,6 +8295,161 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public static class CoverEntityExtensionMethods
+	{
+		///<summary>Close all or specified cover.</summary>
+		public static void CloseCover(this CoverEntity target)
+		{
+			target.CallService("close_cover");
+		}
+
+		///<summary>Close all or specified cover.</summary>
+		public static void CloseCover(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("close_cover");
+		}
+
+		///<summary>Close all or specified cover tilt.</summary>
+		public static void CloseCoverTilt(this CoverEntity target)
+		{
+			target.CallService("close_cover_tilt");
+		}
+
+		///<summary>Close all or specified cover tilt.</summary>
+		public static void CloseCoverTilt(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("close_cover_tilt");
+		}
+
+		///<summary>Open all or specified cover.</summary>
+		public static void OpenCover(this CoverEntity target)
+		{
+			target.CallService("open_cover");
+		}
+
+		///<summary>Open all or specified cover.</summary>
+		public static void OpenCover(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("open_cover");
+		}
+
+		///<summary>Open all or specified cover tilt.</summary>
+		public static void OpenCoverTilt(this CoverEntity target)
+		{
+			target.CallService("open_cover_tilt");
+		}
+
+		///<summary>Open all or specified cover tilt.</summary>
+		public static void OpenCoverTilt(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("open_cover_tilt");
+		}
+
+		///<summary>Move to specific position all or specified cover.</summary>
+		public static void SetCoverPosition(this CoverEntity target, CoverSetCoverPositionParameters data)
+		{
+			target.CallService("set_cover_position", data);
+		}
+
+		///<summary>Move to specific position all or specified cover.</summary>
+		public static void SetCoverPosition(this IEnumerable<CoverEntity> target, CoverSetCoverPositionParameters data)
+		{
+			target.CallService("set_cover_position", data);
+		}
+
+		///<summary>Move to specific position all or specified cover.</summary>
+		///<param name="target">The CoverEntity to call this service for</param>
+		///<param name="position">Position of the cover</param>
+		public static void SetCoverPosition(this CoverEntity target, long @position)
+		{
+			target.CallService("set_cover_position", new CoverSetCoverPositionParameters{Position = @position});
+		}
+
+		///<summary>Move to specific position all or specified cover.</summary>
+		///<param name="target">The IEnumerable<CoverEntity> to call this service for</param>
+		///<param name="position">Position of the cover</param>
+		public static void SetCoverPosition(this IEnumerable<CoverEntity> target, long @position)
+		{
+			target.CallService("set_cover_position", new CoverSetCoverPositionParameters{Position = @position});
+		}
+
+		///<summary>Move to specific position all or specified cover tilt.</summary>
+		public static void SetCoverTiltPosition(this CoverEntity target, CoverSetCoverTiltPositionParameters data)
+		{
+			target.CallService("set_cover_tilt_position", data);
+		}
+
+		///<summary>Move to specific position all or specified cover tilt.</summary>
+		public static void SetCoverTiltPosition(this IEnumerable<CoverEntity> target, CoverSetCoverTiltPositionParameters data)
+		{
+			target.CallService("set_cover_tilt_position", data);
+		}
+
+		///<summary>Move to specific position all or specified cover tilt.</summary>
+		///<param name="target">The CoverEntity to call this service for</param>
+		///<param name="tiltPosition">Tilt position of the cover.</param>
+		public static void SetCoverTiltPosition(this CoverEntity target, long @tiltPosition)
+		{
+			target.CallService("set_cover_tilt_position", new CoverSetCoverTiltPositionParameters{TiltPosition = @tiltPosition});
+		}
+
+		///<summary>Move to specific position all or specified cover tilt.</summary>
+		///<param name="target">The IEnumerable<CoverEntity> to call this service for</param>
+		///<param name="tiltPosition">Tilt position of the cover.</param>
+		public static void SetCoverTiltPosition(this IEnumerable<CoverEntity> target, long @tiltPosition)
+		{
+			target.CallService("set_cover_tilt_position", new CoverSetCoverTiltPositionParameters{TiltPosition = @tiltPosition});
+		}
+
+		///<summary>Stop all or specified cover.</summary>
+		public static void StopCover(this CoverEntity target)
+		{
+			target.CallService("stop_cover");
+		}
+
+		///<summary>Stop all or specified cover.</summary>
+		public static void StopCover(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("stop_cover");
+		}
+
+		///<summary>Stop all or specified cover.</summary>
+		public static void StopCoverTilt(this CoverEntity target)
+		{
+			target.CallService("stop_cover_tilt");
+		}
+
+		///<summary>Stop all or specified cover.</summary>
+		public static void StopCoverTilt(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("stop_cover_tilt");
+		}
+
+		///<summary>Toggle a cover open/closed.</summary>
+		public static void Toggle(this CoverEntity target)
+		{
+			target.CallService("toggle");
+		}
+
+		///<summary>Toggle a cover open/closed.</summary>
+		public static void Toggle(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("toggle");
+		}
+
+		///<summary>Toggle a cover tilt open/closed.</summary>
+		public static void ToggleCoverTilt(this CoverEntity target)
+		{
+			target.CallService("toggle_cover_tilt");
+		}
+
+		///<summary>Toggle a cover tilt open/closed.</summary>
+		public static void ToggleCoverTilt(this IEnumerable<CoverEntity> target)
+		{
+			target.CallService("toggle_cover_tilt");
+		}
+	}
+
 	public static class InputBooleanEntityExtensionMethods
 	{
 		///<summary>Toggle an input boolean</summary>
@@ -8536,15 +8737,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="xyColor">Color for the light in XY-format. eg: [0.52, 0.43]</param>
 		///<param name="colorTemp">Color temperature for the light in mireds.</param>
 		///<param name="kelvin">Color temperature for the light in Kelvin.</param>
-		///<param name="whiteValue">Number indicating level of white.</param>
 		///<param name="brightness">Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
 		///<param name="brightnessPct">Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</param>
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void Toggle(this LightEntity target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
+		public static void Toggle(this LightEntity target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
-			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
+			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 
 		///<summary>Toggles one or more lights, from on to off, or, off to on, based on their current state. </summary>
@@ -8556,15 +8756,14 @@ namespace HomeAutomations.Models.Generated
 		///<param name="xyColor">Color for the light in XY-format. eg: [0.52, 0.43]</param>
 		///<param name="colorTemp">Color temperature for the light in mireds.</param>
 		///<param name="kelvin">Color temperature for the light in Kelvin.</param>
-		///<param name="whiteValue">Number indicating level of white.</param>
 		///<param name="brightness">Number indicating brightness, where 0 turns the light off, 1 is the minimum brightness and 255 is the maximum brightness supported by the light.</param>
 		///<param name="brightnessPct">Number indicating percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness and 100 is the maximum brightness supported by the light.</param>
 		///<param name="profile">Name of a light profile to use. eg: relax</param>
 		///<param name="flash">If the light should flash.</param>
 		///<param name="effect">Light effect.</param>
-		public static void Toggle(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @whiteValue = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
+		public static void Toggle(this IEnumerable<LightEntity> target, long? @transition = null, object? @rgbColor = null, object? @colorName = null, object? @hsColor = null, object? @xyColor = null, object? @colorTemp = null, long? @kelvin = null, long? @brightness = null, long? @brightnessPct = null, string? @profile = null, object? @flash = null, string? @effect = null)
 		{
-			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, WhiteValue = @whiteValue, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
+			target.CallService("toggle", new LightToggleParameters{Transition = @transition, RgbColor = @rgbColor, ColorName = @colorName, HsColor = @hsColor, XyColor = @xyColor, ColorTemp = @colorTemp, Kelvin = @kelvin, Brightness = @brightness, BrightnessPct = @brightnessPct, Profile = @profile, Flash = @flash, Effect = @effect});
 		}
 
 		///<summary>Turns off one or more lights.</summary>
@@ -8658,6 +8857,93 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public static class LockEntityExtensionMethods
+	{
+		///<summary>Lock all or specified locks.</summary>
+		public static void Lock(this LockEntity target, LockLockParameters data)
+		{
+			target.CallService("lock", data);
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		public static void Lock(this IEnumerable<LockEntity> target, LockLockParameters data)
+		{
+			target.CallService("lock", data);
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="code">An optional code to lock the lock with. eg: 1234</param>
+		public static void Lock(this LockEntity target, string? @code = null)
+		{
+			target.CallService("lock", new LockLockParameters{Code = @code});
+		}
+
+		///<summary>Lock all or specified locks.</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="code">An optional code to lock the lock with. eg: 1234</param>
+		public static void Lock(this IEnumerable<LockEntity> target, string? @code = null)
+		{
+			target.CallService("lock", new LockLockParameters{Code = @code});
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		public static void Open(this LockEntity target, LockOpenParameters data)
+		{
+			target.CallService("open", data);
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		public static void Open(this IEnumerable<LockEntity> target, LockOpenParameters data)
+		{
+			target.CallService("open", data);
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="code">An optional code to open the lock with. eg: 1234</param>
+		public static void Open(this LockEntity target, string? @code = null)
+		{
+			target.CallService("open", new LockOpenParameters{Code = @code});
+		}
+
+		///<summary>Open all or specified locks.</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="code">An optional code to open the lock with. eg: 1234</param>
+		public static void Open(this IEnumerable<LockEntity> target, string? @code = null)
+		{
+			target.CallService("open", new LockOpenParameters{Code = @code});
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		public static void Unlock(this LockEntity target, LockUnlockParameters data)
+		{
+			target.CallService("unlock", data);
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		public static void Unlock(this IEnumerable<LockEntity> target, LockUnlockParameters data)
+		{
+			target.CallService("unlock", data);
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="code">An optional code to unlock the lock with. eg: 1234</param>
+		public static void Unlock(this LockEntity target, string? @code = null)
+		{
+			target.CallService("unlock", new LockUnlockParameters{Code = @code});
+		}
+
+		///<summary>Unlock all or specified locks.</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="code">An optional code to unlock the lock with. eg: 1234</param>
+		public static void Unlock(this IEnumerable<LockEntity> target, string? @code = null)
+		{
+			target.CallService("unlock", new LockUnlockParameters{Code = @code});
+		}
+	}
+
 	public static class MediaPlayerEntityExtensionMethods
 	{
 		///<summary>Send the media player the command to clear players playlist.</summary>
@@ -8686,16 +8972,16 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
 		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
-		public static void Join(this MediaPlayerEntity target, object? @groupMembers = null)
+		///<param name="groupMembers">The players which will be synced with the target player. eg: - media_player.multiroom_player2 - media_player.multiroom_player3 </param>
+		public static void Join(this MediaPlayerEntity target, string @groupMembers)
 		{
 			target.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
 		}
 
 		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
 		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="groupMembers">The players which will be synced with the target player. eg: ["media_player.multiroom_player2","media_player.multiroom_player3"]</param>
-		public static void Join(this IEnumerable<MediaPlayerEntity> target, object? @groupMembers = null)
+		///<param name="groupMembers">The players which will be synced with the target player. eg: - media_player.multiroom_player2 - media_player.multiroom_player3 </param>
+		public static void Join(this IEnumerable<MediaPlayerEntity> target, string @groupMembers)
 		{
 			target.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
 		}
@@ -8816,18 +9102,22 @@ namespace HomeAutomations.Models.Generated
 		///<param name="target">The MediaPlayerEntity to call this service for</param>
 		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
 		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
-		public static void PlayMedia(this MediaPlayerEntity target, string @mediaContentId, string @mediaContentType)
+		///<param name="enqueue">If the content should be played now or be added to the queue.</param>
+		///<param name="announce">If the media should be played as an announcement. eg: true</param>
+		public static void PlayMedia(this MediaPlayerEntity target, string @mediaContentId, string @mediaContentType, object? @enqueue = null, bool? @announce = null)
 		{
-			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType});
+			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType, Enqueue = @enqueue, Announce = @announce});
 		}
 
 		///<summary>Send the media player the command for playing media.</summary>
 		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
 		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
 		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
-		public static void PlayMedia(this IEnumerable<MediaPlayerEntity> target, string @mediaContentId, string @mediaContentType)
+		///<param name="enqueue">If the content should be played now or be added to the queue.</param>
+		///<param name="announce">If the media should be played as an announcement. eg: true</param>
+		public static void PlayMedia(this IEnumerable<MediaPlayerEntity> target, string @mediaContentId, string @mediaContentType, object? @enqueue = null, bool? @announce = null)
 		{
-			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType});
+			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType, Enqueue = @enqueue, Announce = @announce});
 		}
 
 		///<summary>Set repeat mode</summary>
@@ -9071,48 +9361,34 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public static class OnvifEntityExtensionMethods
+	public static class NumberEntityExtensionMethods
 	{
-		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
-		public static void Ptz(this CameraEntity target, OnvifPtzParameters data)
+		///<summary>Set the value of a Number entity.</summary>
+		public static void SetValue(this NumberEntity target, NumberSetValueParameters data)
 		{
-			target.CallService("ptz", data);
+			target.CallService("set_value", data);
 		}
 
-		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
-		public static void Ptz(this IEnumerable<CameraEntity> target, OnvifPtzParameters data)
+		///<summary>Set the value of a Number entity.</summary>
+		public static void SetValue(this IEnumerable<NumberEntity> target, NumberSetValueParameters data)
 		{
-			target.CallService("ptz", data);
+			target.CallService("set_value", data);
 		}
 
-		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
-		///<param name="target">The CameraEntity to call this service for</param>
-		///<param name="tilt">Tilt direction.</param>
-		///<param name="pan">Pan direction.</param>
-		///<param name="zoom">Zoom.</param>
-		///<param name="distance">Distance coefficient. Sets how much PTZ should be executed in one request.</param>
-		///<param name="speed">Speed coefficient. Sets how fast PTZ will be executed.</param>
-		///<param name="continuousDuration">Set ContinuousMove delay in seconds before stopping the move</param>
-		///<param name="preset">PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</param>
-		///<param name="moveMode">PTZ moving mode.</param>
-		public static void Ptz(this CameraEntity target, object? @tilt = null, object? @pan = null, object? @zoom = null, double? @distance = null, double? @speed = null, double? @continuousDuration = null, string? @preset = null, object? @moveMode = null)
+		///<summary>Set the value of a Number entity.</summary>
+		///<param name="target">The NumberEntity to call this service for</param>
+		///<param name="value">The target value the entity should be set to. eg: 42</param>
+		public static void SetValue(this NumberEntity target, string? @value = null)
 		{
-			target.CallService("ptz", new OnvifPtzParameters{Tilt = @tilt, Pan = @pan, Zoom = @zoom, Distance = @distance, Speed = @speed, ContinuousDuration = @continuousDuration, Preset = @preset, MoveMode = @moveMode});
+			target.CallService("set_value", new NumberSetValueParameters{Value = @value});
 		}
 
-		///<summary>If your ONVIF camera supports PTZ, you will be able to pan, tilt or zoom your camera.</summary>
-		///<param name="target">The IEnumerable<CameraEntity> to call this service for</param>
-		///<param name="tilt">Tilt direction.</param>
-		///<param name="pan">Pan direction.</param>
-		///<param name="zoom">Zoom.</param>
-		///<param name="distance">Distance coefficient. Sets how much PTZ should be executed in one request.</param>
-		///<param name="speed">Speed coefficient. Sets how fast PTZ will be executed.</param>
-		///<param name="continuousDuration">Set ContinuousMove delay in seconds before stopping the move</param>
-		///<param name="preset">PTZ preset profile token. Sets the preset profile token which is executed with GotoPreset eg: 1</param>
-		///<param name="moveMode">PTZ moving mode.</param>
-		public static void Ptz(this IEnumerable<CameraEntity> target, object? @tilt = null, object? @pan = null, object? @zoom = null, double? @distance = null, double? @speed = null, double? @continuousDuration = null, string? @preset = null, object? @moveMode = null)
+		///<summary>Set the value of a Number entity.</summary>
+		///<param name="target">The IEnumerable<NumberEntity> to call this service for</param>
+		///<param name="value">The target value the entity should be set to. eg: 42</param>
+		public static void SetValue(this IEnumerable<NumberEntity> target, string? @value = null)
 		{
-			target.CallService("ptz", new OnvifPtzParameters{Tilt = @tilt, Pan = @pan, Zoom = @zoom, Distance = @distance, Speed = @speed, ContinuousDuration = @continuousDuration, Preset = @preset, MoveMode = @moveMode});
+			target.CallService("set_value", new NumberSetValueParameters{Value = @value});
 		}
 	}
 
@@ -9273,6 +9549,37 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public static class SelectEntityExtensionMethods
+	{
+		///<summary>Select an option of an select entity.</summary>
+		public static void SelectOption(this SelectEntity target, SelectSelectOptionParameters data)
+		{
+			target.CallService("select_option", data);
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		public static void SelectOption(this IEnumerable<SelectEntity> target, SelectSelectOptionParameters data)
+		{
+			target.CallService("select_option", data);
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		///<param name="target">The SelectEntity to call this service for</param>
+		///<param name="option">Option to be selected. eg: "Item A"</param>
+		public static void SelectOption(this SelectEntity target, string @option)
+		{
+			target.CallService("select_option", new SelectSelectOptionParameters{Option = @option});
+		}
+
+		///<summary>Select an option of an select entity.</summary>
+		///<param name="target">The IEnumerable<SelectEntity> to call this service for</param>
+		///<param name="option">Option to be selected. eg: "Item A"</param>
+		public static void SelectOption(this IEnumerable<SelectEntity> target, string @option)
+		{
+			target.CallService("select_option", new SelectSelectOptionParameters{Option = @option});
+		}
+	}
+
 	public static class SwitchEntityExtensionMethods
 	{
 		///<summary>Toggles a switch state</summary>
@@ -9381,6 +9688,18 @@ namespace HomeAutomations.Models.Generated
 
 	public static class UpdateEntityExtensionMethods
 	{
+		///<summary>Removes the skipped version marker from an update.</summary>
+		public static void ClearSkipped(this UpdateEntity target)
+		{
+			target.CallService("clear_skipped");
+		}
+
+		///<summary>Removes the skipped version marker from an update.</summary>
+		public static void ClearSkipped(this IEnumerable<UpdateEntity> target)
+		{
+			target.CallService("clear_skipped");
+		}
+
 		///<summary>Install an update for this device or service</summary>
 		public static void Install(this UpdateEntity target, UpdateInstallParameters data)
 		{

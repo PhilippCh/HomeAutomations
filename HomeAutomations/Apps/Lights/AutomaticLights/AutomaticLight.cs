@@ -10,7 +10,6 @@ using Notification = HomeAutomations.Models.Notification;
 
 namespace HomeAutomations.Apps.Lights.AutomaticLights;
 
-[Focus]
 public class AutomaticLight
 {
 	private const int DefaultBrightnessPct = 100;

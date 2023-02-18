@@ -10,7 +10,6 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.MotionDetector;
 
-[Focus]
 public class MotionDetector : BaseAutomation<MotionDetector, MotionDetectorConfig>
 {
 	private readonly NotificationService _notificationService;
