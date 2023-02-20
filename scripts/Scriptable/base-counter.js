@@ -7,9 +7,12 @@ module.exports.createWidget = async function(config) {
     const json = await req.loadJSON();
 
     /* Parse data received from API */
+	const sensorName = `${config.sensorPrefix}${config.name}`;
     const data = {
-        today: Number(getSensorData(json, `${config.sensorPrefix}${config.name}`, 0)),
-        target: Number(getSensorData(json, `${config.sensorPrefix}${config.name}_target`, 0))
+        today: Number(getSensorData(json, sensorName, 0)),
+        target: Number(getSensorData(json, `${config.sensorPrefix}${config.name}_target`, 0)),
+		lastUpdated: getSensorLastUpdated(json, sensorName),
+		lastIncrement: getSensorAttribute(json, sensorName, 'last_increment')
     }
 
     const widget = new ListWidget();
@@ -36,14 +39,26 @@ async function loadImage(imgUrl) {
     return await req.loadImage()
 }
 
+function getSensor(json, sensor, defaultValue) {
+	const sensors = json.filter(x => x.entity_id === sensor);
+
+	if (sensors.length === 0 || sensors.length > 1) {
+		return undefined;
+	}
+
+	return sensors[0];
+}
+
 function getSensorData(json, sensor, defaultValue) {
-    const sensors = json.filter(x => x.entity_id === sensor);
+    return getSensor(json, sensor)?.state ?? defaultValue;
+}
 
-    if (sensors.length === 0 || sensors.length > 1) {
-        return defaultValue;
-    }
+function getSensorLastUpdated(json, sensor) {
+	return getSensor(json, sensor)?.last_changed ?? undefined;
+}
 
-    return sensors[0].state;
+function getSensorAttribute(json, sensor, attribute) {
+	return getSensor(json, sensor)?.attributes[attribute] ?? undefined;
 }
 
 function addLabel(bodyStack, config, text) {
@@ -91,6 +106,7 @@ async function createBody(widget, data, config) {
     chart.imageSize = getWidgetSize(50);
 
 	addLabel(bodyStack, config, `${config.getAmountText(data.today)} of ${config.getAmountText(data.target)}`);
+	addLabel(bodyStack, config, `${data.lastUpdated} (${data.lastIncrement})`);
 }
 
 function getWidgetSize(marginBottom) {

@@ -54,8 +54,9 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 		foreach (var person in persons)
 		{
-			var name = person.GetName();
-			await _entityManager.SetStateAsync(GetEntityId(name), 0.ToString());
+			var entityId = GetEntityId(person.GetName());
+			await _entityManager.SetStateAsync(entityId, 0.ToString());
+			await _entityManager.SetAttributesAsync(entityId, new { last_increment = 0 });
 		}
 	}
 
@@ -112,7 +113,9 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			return;
 		}
 
-		await _entityManager.SetStateAsync(GetEntityId(user), (GetCurrentAmount(user) + increment.Value).ToString());
+		var entityId = GetEntityId(user);
+		await _entityManager.SetStateAsync(entityId, (GetCurrentAmount(user) + increment.Value).ToString());
+		await _entityManager.SetAttributesAsync(entityId, new { last_increment = increment });
 		SendAlerts(user);
 	}
 
