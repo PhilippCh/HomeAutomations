@@ -1,3 +1,6 @@
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: brown; icon-glyph: magic;
 module.exports.createWidget = async function(config) {
     const req = new Request("https://ha.pupslab.de/api/states")
     req.headers = {
@@ -10,9 +13,7 @@ module.exports.createWidget = async function(config) {
 	const sensorName = `${config.sensorPrefix}${config.name}`;
     const data = {
         today: Number(getSensorData(json, sensorName, 0)),
-        target: Number(getSensorData(json, `${config.sensorPrefix}${config.name}_target`, 0)),
-		lastUpdated: getSensorLastUpdated(json, sensorName),
-		lastIncrement: getSensorAttribute(json, sensorName, 'last_increment')
+        target: Number(getSensorData(json, `${config.sensorPrefix}${config.name}_target`, 0))
     }
 
     const widget = new ListWidget();
@@ -51,14 +52,6 @@ function getSensor(json, sensor, defaultValue) {
 
 function getSensorData(json, sensor, defaultValue) {
     return getSensor(json, sensor)?.state ?? defaultValue;
-}
-
-function getSensorLastUpdated(json, sensor) {
-	return getSensor(json, sensor)?.last_changed ?? undefined;
-}
-
-function getSensorAttribute(json, sensor, attribute) {
-	return getSensor(json, sensor)?.attributes[attribute] ?? undefined;
 }
 
 function addLabel(bodyStack, config, text) {
@@ -106,7 +99,6 @@ async function createBody(widget, data, config) {
     chart.imageSize = getWidgetSize(50);
 
 	addLabel(bodyStack, config, `${config.getAmountText(data.today)} of ${config.getAmountText(data.target)}`);
-	addLabel(bodyStack, config, `${data.lastUpdated} (${data.lastIncrement})`);
 }
 
 function getWidgetSize(marginBottom) {
