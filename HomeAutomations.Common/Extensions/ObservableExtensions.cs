@@ -7,6 +7,11 @@ public static class ObservableExtensions
 {
 	public static IObservable<TResult> SwitchMap<TIn, TResult>(this IObservable<TIn> observable, Func<TIn, IObservable<TResult>> selector) => observable.Select(selector).Switch();
 
+	public static IObservable<int> TryParseInt(this IObservable<string?> observable) =>
+		observable.Select(x => (IsSuccess: int.TryParse(x, out var Value), Value))
+			.Where(x => x.IsSuccess)
+			.Select(x => x.Value);
+
 	public static IObservable<DateTime> IntervalSunset(double latitude, double longitude) =>
 		GetIsSunUp(latitude, longitude)
 			.Where(x => !x.IsSunUp)

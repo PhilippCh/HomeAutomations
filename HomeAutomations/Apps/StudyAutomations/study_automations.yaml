@@ -1,0 +1,11 @@
+---
+HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
+  Speaker: switch.study_speakers_philipp_socket_1
+  Computers:
+    - binary_sensor.laptopphilipp
+    - binary_sensor.desktopphilipp
+  DeskLamp: light.study_desk_lamp
+  DeskLampTriggerConfig:
+    Entity: sensor.study_motion_detector_illuminance_lux
+    MinBrightness: 0
+    MaxBrightness: 80

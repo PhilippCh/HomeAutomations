@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Extensions;
