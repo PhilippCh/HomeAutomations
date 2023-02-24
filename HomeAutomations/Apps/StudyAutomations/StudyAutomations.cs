@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Apps.StudyAutomations.Triggers;
 using HomeAutomations.Extensions;
@@ -25,12 +26,15 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 						Config.Speaker.SetState(x);
 					});
 
-		new BrightnessTrigger(Config.DeskLampTriggerConfig).GetTrigger()
+		Observable.CombineLatest(
+			new BrightnessTrigger(Config.DeskLampTriggerConfig).GetTrigger(),
+			new MultiBinarySwitchTrigger(Config.Computers).GetTrigger())
 			.Subscribe(
 				x =>
 				{
-					Logger.Information("Setting desk lamp to {State}", x);
-					Config.DeskLamp.SetState(x);
+					var state = x.All(y => y);
+					Logger.Information("Setting desk lamp to {State}", state);
+					Config.DeskLamp.SetState(state);
 				});
 
 		return Task.CompletedTask;

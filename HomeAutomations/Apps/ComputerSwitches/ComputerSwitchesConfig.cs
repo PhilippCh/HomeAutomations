@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using HomeAutomations.Apps.ComputerSpeakers;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Models.Generated;
 
