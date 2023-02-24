@@ -5,6 +5,8 @@ HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
     - binary_sensor.laptopphilipp
     - binary_sensor.desktopphilipp
   DeskLamp: light.study_desk_lamp
+  DeskLampSwitch: sensor.study_desk_lamp_switch_action
+  DeskLampOverride: input_boolean.override_desk_lamp
   DeskLampTriggerConfig:
     Entity: sensor.study_motion_detector_illuminance_lux
     MinBrightness: 0

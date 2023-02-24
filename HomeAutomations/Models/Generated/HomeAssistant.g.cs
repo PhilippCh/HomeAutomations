@@ -202,6 +202,8 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity PupsstationExceededMaxBadSectors3 => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors_3");
 		///<summary>PupsStation Security Status</summary>
 		public BinarySensorEntity PupsstationSecurityStatus => new(_haContext, "binary_sensor.pupsstation_security_status");
+		///<summary>study/motion_detector_occupancy</summary>
+		public BinarySensorEntity StudyMotionDetectorOccupancy => new(_haContext, "binary_sensor.study_motion_detector_occupancy");
 		///<summary>Thermostat Arbeitszimmer Battery</summary>
 		public BinarySensorEntity ThermostatArbeitszimmerBattery => new(_haContext, "binary_sensor.thermostat_arbeitszimmer_battery");
 		///<summary>Thermostat Badezimmer Battery</summary>
@@ -280,6 +282,8 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>Apple ID Verification Code</summary>
+		public ConfiguratorEntity AppleIdVerificationCode2 => new(_haContext, "configurator.apple_id_verification_code_2");
 		///<summary>O365 - Account1</summary>
 		public ConfiguratorEntity O365Account1 => new(_haContext, "configurator.o365_account1");
 	}
@@ -324,7 +328,7 @@ namespace HomeAutomations.Models.Generated
 		public DeviceTrackerEntity IpadVonFabienne => new(_haContext, "device_tracker.ipad_von_fabienne");
 		///<summary>Philipp</summary>
 		public DeviceTrackerEntity IphonePhilipp => new(_haContext, "device_tracker.iphone_philipp");
-		///<summary>iPhone Philipp 2</summary>
+		///<summary>iPhone Philipp</summary>
 		public DeviceTrackerEntity IphonePhilipp2 => new(_haContext, "device_tracker.iphone_philipp_2");
 		///<summary>philipp</summary>
 		public DeviceTrackerEntity Philipp2b775363D7b348719abc6f36aa202757 => new(_haContext, "device_tracker.philipp_2b775363_d7b3_4871_9abc_6f36aa202757");
@@ -356,6 +360,14 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity ComputerWolDesktopFabienne => new(_haContext, "input_boolean.computer_wol_desktop_fabienne");
 		///<summary>Desktop Philipp</summary>
 		public InputBooleanEntity ComputerWolDesktopPhilipp => new(_haContext, "input_boolean.computer_wol_desktop_philipp");
+		///<summary>dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter");
+		///<summary>dev_netdaemon_home_automations_apps_counters_water_counter_water_counter</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_water_counter_water_counter");
+		///<summary>dev_netdaemon_home_automations_apps_shutters_shutters</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsShuttersShutters => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_shutters_shutters");
+		///<summary>dev_netdaemon_home_automations_apps_study_automations_study_automations</summary>
+		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsStudyAutomationsStudyAutomations => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_study_automations_study_automations");
 		///<summary>Enable motion detector</summary>
 		public InputBooleanEntity EnableMotionDetector => new(_haContext, "input_boolean.enable_motion_detector");
 		///<summary>Meditation active?</summary>
@@ -368,8 +380,6 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity MovieTimeEnableLightControl => new(_haContext, "input_boolean.movie_time_enable_light_control");
 		///<summary>netdaemon_home_automations_apps_calorie_counter_calorie_counter</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsCalorieCounterCalorieCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_calorie_counter_calorie_counter");
-		///<summary>netdaemon_home_automations_apps_computer_speakers_computer_speakers</summary>
-		public InputBooleanEntity NetdaemonHomeAutomationsAppsComputerSpeakersComputerSpeakers => new(_haContext, "input_boolean.netdaemon_home_automations_apps_computer_speakers_computer_speakers");
 		///<summary>netdaemon_home_automations_apps_computer_switches_computer_switches</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsComputerSwitchesComputerSwitches => new(_haContext, "input_boolean.netdaemon_home_automations_apps_computer_switches_computer_switches");
 		///<summary>netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter</summary>
@@ -392,8 +402,12 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsMovieTimeMovieTime => new(_haContext, "input_boolean.netdaemon_home_automations_apps_movie_time_movie_time");
 		///<summary>netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsRazorBladeUsageRazorBladeUsage => new(_haContext, "input_boolean.netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage");
+		///<summary>netdaemon_home_automations_apps_shutters_shutters</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsShuttersShutters => new(_haContext, "input_boolean.netdaemon_home_automations_apps_shutters_shutters");
 		///<summary>netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsSleepSoundscapesSleepSoundscapes => new(_haContext, "input_boolean.netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes");
+		///<summary>netdaemon_home_automations_apps_study_automations_study_automations</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsStudyAutomationsStudyAutomations => new(_haContext, "input_boolean.netdaemon_home_automations_apps_study_automations_study_automations");
 		///<summary>netdaemon_home_automations_apps_training_schedule_training_schedule</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsTrainingScheduleTrainingSchedule => new(_haContext, "input_boolean.netdaemon_home_automations_apps_training_schedule_training_schedule");
 		///<summary>netdaemon_home_automations_apps_trash_reminder_trash_reminder</summary>
@@ -404,6 +418,8 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsVacuumVacuum => new(_haContext, "input_boolean.netdaemon_home_automations_apps_vacuum_vacuum");
 		///<summary>netdaemon_home_automations_apps_wall_panel_wall_panel_monitor</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsWallPanelWallPanelMonitor => new(_haContext, "input_boolean.netdaemon_home_automations_apps_wall_panel_wall_panel_monitor");
+		///<summary>Override desk lamp</summary>
+		public InputBooleanEntity OverrideDeskLamp => new(_haContext, "input_boolean.override_desk_lamp");
 		///<summary>Bio</summary>
 		public InputBooleanEntity TrashBio => new(_haContext, "input_boolean.trash_bio");
 		///<summary>Glas</summary>
@@ -502,6 +518,8 @@ namespace HomeAutomations.Models.Generated
 		public LightEntity LivingRoomTvLightstrip => new(_haContext, "light.living_room_tv_lightstrip");
 		///<summary>living_room/standard_lamp</summary>
 		public LightEntity Stehlampe => new(_haContext, "light.stehlampe");
+		///<summary>study/desk_lamp</summary>
+		public LightEntity StudyDeskLamp => new(_haContext, "light.study_desk_lamp");
 	}
 
 	public partial class LockEntities
@@ -560,6 +578,8 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>Login attempt failed</summary>
+		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
 		///<summary>Invalid config</summary>
 		public PersistentNotificationEntity InvalidConfig => new(_haContext, "persistent_notification.invalid_config");
 	}
@@ -690,8 +710,12 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity IphoneFabienneStorage => new(_haContext, "sensor.iphone_fabienne_storage");
 		///<summary>iPhone Philipp Average Active Pace</summary>
 		public NumericSensorEntity IphonePhilippAverageActivePace => new(_haContext, "sensor.iphone_philipp_average_active_pace");
+		///<summary>iPhone-Philipp Battery</summary>
+		public NumericSensorEntity IphonePhilippBattery => new(_haContext, "sensor.iphone_philipp_battery");
 		///<summary>iPhone Philipp Battery Level</summary>
 		public NumericSensorEntity IphonePhilippBatteryLevel => new(_haContext, "sensor.iphone_philipp_battery_level");
+		///<summary>iPhone-Philipp Calc Dist</summary>
+		public NumericSensorEntity IphonePhilippCalcDistance => new(_haContext, "sensor.iphone_philipp_calc_distance");
 		///<summary>iPhone Philipp Distance</summary>
 		public NumericSensorEntity IphonePhilippDistance => new(_haContext, "sensor.iphone_philipp_distance");
 		///<summary>iPhone Philipp Floors Ascended</summary>
@@ -702,6 +726,16 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity IphonePhilippSteps => new(_haContext, "sensor.iphone_philipp_steps");
 		///<summary>iPhone Philipp Storage</summary>
 		public NumericSensorEntity IphonePhilippStorage => new(_haContext, "sensor.iphone_philipp_storage");
+		///<summary>iPhone-Philipp Travel Dist</summary>
+		public NumericSensorEntity IphonePhilippTravelDistance => new(_haContext, "sensor.iphone_philipp_travel_distance");
+		///<summary>iPhone-Philipp Travel Time</summary>
+		public NumericSensorEntity IphonePhilippTravelTime => new(_haContext, "sensor.iphone_philipp_travel_time");
+		///<summary>iPhone-Philipp Travel Time</summary>
+		public NumericSensorEntity IphonePhilippTravelTimeMin => new(_haContext, "sensor.iphone_philipp_travel_time_min");
+		///<summary>iPhone-Philipp Waze Dist</summary>
+		public NumericSensorEntity IphonePhilippWazeDistance => new(_haContext, "sensor.iphone_philipp_waze_distance");
+		///<summary>iPhone-Philipp Zone Distance</summary>
+		public NumericSensorEntity IphonePhilippZoneDistance => new(_haContext, "sensor.iphone_philipp_zone_distance");
 		///<summary>kitchen/cabinet_light_button_battery</summary>
 		public NumericSensorEntity KitchenCabinetLightButtonBattery => new(_haContext, "sensor.kitchen_cabinet_light_button_battery");
 		///<summary>kitchen/cabinet_light_button_device_temperature</summary>
@@ -802,6 +836,16 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity StockMetroAgShareprice => new(_haContext, "sensor.stock_metro_ag_shareprice");
 		///<summary>Metro AG Total</summary>
 		public NumericSensorEntity StockMetroAgTotalvalue => new(_haContext, "sensor.stock_metro_ag_totalvalue");
+		///<summary>study/desk_lamp_switch_battery</summary>
+		public NumericSensorEntity StudyDeskLampSwitchBattery => new(_haContext, "sensor.study_desk_lamp_switch_battery");
+		///<summary>study/desk_lamp_switch_device_temperature</summary>
+		public NumericSensorEntity StudyDeskLampSwitchDeviceTemperature => new(_haContext, "sensor.study_desk_lamp_switch_device_temperature");
+		///<summary>study/motion_detector_battery</summary>
+		public NumericSensorEntity StudyMotionDetectorBattery => new(_haContext, "sensor.study_motion_detector_battery");
+		///<summary>study/motion_detector_device_temperature</summary>
+		public NumericSensorEntity StudyMotionDetectorDeviceTemperature => new(_haContext, "sensor.study_motion_detector_device_temperature");
+		///<summary>study/motion_detector_illuminance_lux</summary>
+		public NumericSensorEntity StudyMotionDetectorIlluminanceLux => new(_haContext, "sensor.study_motion_detector_illuminance_lux");
 		///<summary>Thermostat Arbeitszimmer Temperature</summary>
 		public NumericSensorEntity ThermostatArbeitszimmerTemperature => new(_haContext, "sensor.thermostat_arbeitszimmer_temperature");
 		///<summary>Thermostat Arbeitszimmer Valvetappet</summary>
@@ -893,22 +937,54 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity IphonePhilipp2Sim2 => new(_haContext, "sensor.iphone_philipp_2_sim_2");
 		///<summary>iPhone Philipp Activity</summary>
 		public SensorEntity IphonePhilippActivity => new(_haContext, "sensor.iphone_philipp_activity");
+		///<summary>Philipp</summary>
+		public SensorEntity IphonePhilippBadge => new(_haContext, "sensor.iphone_philipp_badge");
 		///<summary>iPhone Philipp Battery State</summary>
 		public SensorEntity IphonePhilippBatteryState => new(_haContext, "sensor.iphone_philipp_battery_state");
 		///<summary>iPhone Philipp BSSID</summary>
 		public SensorEntity IphonePhilippBssid => new(_haContext, "sensor.iphone_philipp_bssid");
 		///<summary>iPhone Philipp Connection Type</summary>
 		public SensorEntity IphonePhilippConnectionType => new(_haContext, "sensor.iphone_philipp_connection_type");
+		///<summary>iPhone-Philipp Direction</summary>
+		public SensorEntity IphonePhilippDirOfTravel => new(_haContext, "sensor.iphone_philipp_dir_of_travel");
 		///<summary>iPhone Philipp Geocoded Location</summary>
 		public SensorEntity IphonePhilippGeocodedLocation => new(_haContext, "sensor.iphone_philipp_geocoded_location");
-		///<summary>NoneInfo</summary>
+		///<summary>iPhone-Philipp GPS Accuracy</summary>
+		public SensorEntity IphonePhilippGpsAccuracy => new(_haContext, "sensor.iphone_philipp_gps_accuracy");
+		///<summary>iPhone-Philipp Info</summary>
 		public SensorEntity IphonePhilippInfo => new(_haContext, "sensor.iphone_philipp_info");
+		///<summary>iPhone-Philipp Interval</summary>
+		public SensorEntity IphonePhilippInterval => new(_haContext, "sensor.iphone_philipp_interval");
+		///<summary>iPhone-Philipp Last Located</summary>
+		public SensorEntity IphonePhilippLastLocated => new(_haContext, "sensor.iphone_philipp_last_located");
+		///<summary>iPhone-Philipp Last Update</summary>
+		public SensorEntity IphonePhilippLastUpdate => new(_haContext, "sensor.iphone_philipp_last_update");
 		///<summary>iPhone Philipp Last Update Trigger</summary>
 		public SensorEntity IphonePhilippLastUpdateTrigger => new(_haContext, "sensor.iphone_philipp_last_update_trigger");
+		///<summary>iPhone-Philipp Last Zone</summary>
+		public SensorEntity IphonePhilippLastZone => new(_haContext, "sensor.iphone_philipp_last_zone");
+		///<summary>iPhone-Philipp  Last Zone Fname</summary>
+		public SensorEntity IphonePhilippLastZoneFname => new(_haContext, "sensor.iphone_philipp_last_zone_fname");
+		///<summary>iPhone-Philipp Next Update</summary>
+		public SensorEntity IphonePhilippNextUpdate => new(_haContext, "sensor.iphone_philipp_next_update");
+		///<summary>iPhone-Philipp Poll Count</summary>
+		public SensorEntity IphonePhilippPollCount => new(_haContext, "sensor.iphone_philipp_poll_count");
 		///<summary>iPhone Philipp SIM 1</summary>
 		public SensorEntity IphonePhilippSim1 => new(_haContext, "sensor.iphone_philipp_sim_1");
 		///<summary>iPhone Philipp SSID</summary>
 		public SensorEntity IphonePhilippSsid => new(_haContext, "sensor.iphone_philipp_ssid");
+		///<summary>iPhone-Philipp Trigger</summary>
+		public SensorEntity IphonePhilippTrigger => new(_haContext, "sensor.iphone_philipp_trigger");
+		///<summary>iPhone-Philipp Zone</summary>
+		public SensorEntity IphonePhilippZone => new(_haContext, "sensor.iphone_philipp_zone");
+		///<summary>iPhone-Philipp  Zone Fname</summary>
+		public SensorEntity IphonePhilippZoneFname => new(_haContext, "sensor.iphone_philipp_zone_fname");
+		///<summary>iPhone-Philipp  Zone Name</summary>
+		public SensorEntity IphonePhilippZoneName => new(_haContext, "sensor.iphone_philipp_zone_name");
+		///<summary>iPhone-Philipp Zone Timestamp</summary>
+		public SensorEntity IphonePhilippZoneTimestamp => new(_haContext, "sensor.iphone_philipp_zone_timestamp");
+		///<summary>iPhone-Philipp  Zone Title</summary>
+		public SensorEntity IphonePhilippZoneTitle => new(_haContext, "sensor.iphone_philipp_zone_title");
 		///<summary>kitchen/cabinet_light_button_action</summary>
 		public SensorEntity KitchenCabinetLightButtonAction => new(_haContext, "sensor.kitchen_cabinet_light_button_action");
 		///<summary>kitchen/cabinet_light_button_click</summary>
@@ -955,6 +1031,14 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity RazorBladeUsage => new(_haContext, "sensor.razor_blade_usage");
 		///<summary>Ist heute Haushaltstag?</summary>
 		public SensorEntity ShowHouseholdDayTodo => new(_haContext, "sensor.show_household_day_todo");
+		///<summary>study/desk_lamp_switch_action</summary>
+		public SensorEntity StudyDeskLampSwitchAction => new(_haContext, "sensor.study_desk_lamp_switch_action");
+		///<summary>study/desk_lamp_switch_click</summary>
+		public SensorEntity StudyDeskLampSwitchClick => new(_haContext, "sensor.study_desk_lamp_switch_click");
+		///<summary>study/desk_lamp_switch_power_outage_count</summary>
+		public SensorEntity StudyDeskLampSwitchPowerOutageCount => new(_haContext, "sensor.study_desk_lamp_switch_power_outage_count");
+		///<summary>study/motion_detector_power_outage_count</summary>
+		public SensorEntity StudyMotionDetectorPowerOutageCount => new(_haContext, "sensor.study_motion_detector_power_outage_count");
 		///<summary>Thermostat Arbeitszimmer</summary>
 		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
 		///<summary>Thermostat Badezimmer</summary>
@@ -1110,6 +1194,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Zuhause</summary>
 		public ZoneEntity Home => new(_haContext, "zone.home");
+		///<summary>iphone_philipp_stationary</summary>
+		public ZoneEntity IphonePhilippStationary => new(_haContext, "zone.iphone_philipp_stationary");
 	}
 
 	public partial record AlarmControlPanelEntity : Entity<AlarmControlPanelEntity, EntityState<AlarmControlPanelAttributes>, AlarmControlPanelAttributes>
@@ -1318,7 +1404,7 @@ namespace HomeAutomations.Models.Generated
 		public string? AccessToken { get; init; }
 
 		[JsonPropertyName("calibration_points")]
-		public IReadOnlyList<object>? CalibrationPoints { get; init; }
+		public object? CalibrationPoints { get; init; }
 
 		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
@@ -1400,7 +1486,7 @@ namespace HomeAutomations.Models.Generated
 		public string? Description { get; init; }
 
 		[JsonPropertyName("entity_picture")]
-		public object? EntityPicture { get; init; }
+		public string? EntityPicture { get; init; }
 
 		[JsonPropertyName("fields")]
 		public IReadOnlyList<object>? Fields { get; init; }
@@ -1513,8 +1599,32 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("altitude")]
 		public double? Altitude { get; init; }
 
+		[JsonPropertyName("authenticated")]
+		public string? Authenticated { get; init; }
+
+		[JsonPropertyName("battery")]
+		public double? Battery { get; init; }
+
 		[JsonPropertyName("battery_level")]
 		public double? BatteryLevel { get; init; }
+
+		[JsonPropertyName("battery_status")]
+		public string? BatteryStatus { get; init; }
+
+		[JsonPropertyName("calc_distance")]
+		public double? CalcDistance { get; init; }
+
+		[JsonPropertyName("course")]
+		public double? Course { get; init; }
+
+		[JsonPropertyName("device_status")]
+		public string? DeviceStatus { get; init; }
+
+		[JsonPropertyName("dir_of_travel")]
+		public string? DirOfTravel { get; init; }
+
+		[JsonPropertyName("entity_picture")]
+		public string? EntityPicture { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
@@ -1522,11 +1632,41 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("gps_accuracy")]
 		public double? GpsAccuracy { get; init; }
 
+		[JsonPropertyName("icloud3_version")]
+		public string? Icloud3Version { get; init; }
+
+		[JsonPropertyName("info")]
+		public string? Info { get; init; }
+
+		[JsonPropertyName("interval")]
+		public string? Interval { get; init; }
+
+		[JsonPropertyName("last_located")]
+		public string? LastLocated { get; init; }
+
+		[JsonPropertyName("last_update")]
+		public string? LastUpdate { get; init; }
+
+		[JsonPropertyName("last_zone")]
+		public string? LastZone { get; init; }
+
 		[JsonPropertyName("latitude")]
 		public double? Latitude { get; init; }
 
 		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
+
+		[JsonPropertyName("low_power_mode")]
+		public bool? LowPowerMode { get; init; }
+
+		[JsonPropertyName("name")]
+		public string? Name { get; init; }
+
+		[JsonPropertyName("next_update")]
+		public string? NextUpdate { get; init; }
+
+		[JsonPropertyName("poll_count")]
+		public string? PollCount { get; init; }
 
 		[JsonPropertyName("restored")]
 		public bool? Restored { get; init; }
@@ -1534,11 +1674,44 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("source_type")]
 		public string? SourceType { get; init; }
 
+		[JsonPropertyName("speed")]
+		public double? Speed { get; init; }
+
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
+		[JsonPropertyName("timestamp")]
+		public string? Timestamp { get; init; }
+
+		[JsonPropertyName("tracking")]
+		public string? Tracking { get; init; }
+
+		[JsonPropertyName("travel_distance")]
+		public double? TravelDistance { get; init; }
+
+		[JsonPropertyName("travel_time")]
+		public double? TravelTime { get; init; }
+
+		[JsonPropertyName("travel_time_min")]
+		public double? TravelTimeMin { get; init; }
+
+		[JsonPropertyName("trigger")]
+		public string? Trigger { get; init; }
+
 		[JsonPropertyName("vertical_accuracy")]
 		public double? VerticalAccuracy { get; init; }
+
+		[JsonPropertyName("waze_distance")]
+		public double? WazeDistance { get; init; }
+
+		[JsonPropertyName("zone")]
+		public string? Zone { get; init; }
+
+		[JsonPropertyName("zone_distance")]
+		public double? ZoneDistance { get; init; }
+
+		[JsonPropertyName("zone_timestamp")]
+		public string? ZoneTimestamp { get; init; }
 	}
 
 	public partial record GroupEntity : Entity<GroupEntity, EntityState<GroupAttributes>, GroupAttributes>
@@ -1714,8 +1887,20 @@ namespace HomeAutomations.Models.Generated
 
 	public record LightAttributes
 	{
+		[JsonPropertyName("brightness")]
+		public double? Brightness { get; init; }
+
+		[JsonPropertyName("color")]
+		public object? Color { get; init; }
+
 		[JsonPropertyName("color_mode")]
 		public string? ColorMode { get; init; }
+
+		[JsonPropertyName("color_temp")]
+		public double? ColorTemp { get; init; }
+
+		[JsonPropertyName("color_temp_kelvin")]
+		public double? ColorTempKelvin { get; init; }
 
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
@@ -1725,6 +1910,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("hs_color")]
+		public IReadOnlyList<double>? HsColor { get; init; }
 
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
@@ -1747,6 +1935,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("power_on_behavior")]
 		public string? PowerOnBehavior { get; init; }
 
+		[JsonPropertyName("rgb_color")]
+		public IReadOnlyList<double>? RgbColor { get; init; }
+
 		[JsonPropertyName("supported_color_modes")]
 		public IReadOnlyList<string>? SupportedColorModes { get; init; }
 
@@ -1758,6 +1949,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("update_available")]
 		public bool? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("xy_color")]
+		public IReadOnlyList<double>? XyColor { get; init; }
 	}
 
 	public partial record LockEntity : Entity<LockEntity, EntityState<LockAttributes>, LockAttributes>
@@ -2127,7 +2321,7 @@ namespace HomeAutomations.Models.Generated
 		public string? ChildLock { get; init; }
 
 		[JsonPropertyName("click")]
-		public string? Click { get; init; }
+		public object? Click { get; init; }
 
 		[JsonPropertyName("current")]
 		public double? Current { get; init; }
@@ -2315,7 +2509,7 @@ namespace HomeAutomations.Models.Generated
 		public object? ChargingStatus { get; init; }
 
 		[JsonPropertyName("click")]
-		public string? Click { get; init; }
+		public object? Click { get; init; }
 
 		[JsonPropertyName("command_set")]
 		public string? CommandSet { get; init; }
@@ -2337,6 +2531,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("device_temperature")]
 		public double? DeviceTemperature { get; init; }
+
+		[JsonPropertyName("entity_picture")]
+		public string? EntityPicture { get; init; }
 
 		[JsonPropertyName("filtername")]
 		public string? Filtername { get; init; }
@@ -2364,6 +2561,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("ISO Country Code")]
 		public string? ISOCountryCode { get; init; }
+
+		[JsonPropertyName("last_increment")]
+		public double? LastIncrement { get; init; }
 
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
@@ -2402,7 +2602,7 @@ namespace HomeAutomations.Models.Generated
 		public string? Name { get; init; }
 
 		[JsonPropertyName("names")]
-		public IReadOnlyList<string>? Names { get; init; }
+		public object? Names { get; init; }
 
 		[JsonPropertyName("number_of_loaded_apps")]
 		public double? NumberOfLoadedApps { get; init; }
@@ -2669,23 +2869,11 @@ namespace HomeAutomations.Models.Generated
 
 	public record VacuumAttributes
 	{
-		[JsonPropertyName("battery_icon")]
-		public string? BatteryIcon { get; init; }
-
-		[JsonPropertyName("battery_level")]
-		public double? BatteryLevel { get; init; }
-
-		[JsonPropertyName("fan_speed")]
-		public string? FanSpeed { get; init; }
-
 		[JsonPropertyName("fan_speed_list")]
 		public IReadOnlyList<string>? FanSpeedList { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("status")]
-		public string? Status { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
@@ -2771,6 +2959,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("longitude")]
 		public double? Longitude { get; init; }
+
+		[JsonPropertyName("name")]
+		public string? Name { get; init; }
 
 		[JsonPropertyName("passive")]
 		public bool? Passive { get; init; }
