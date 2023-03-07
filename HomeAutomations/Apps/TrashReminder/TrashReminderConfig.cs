@@ -24,7 +24,7 @@ public record TrashCalendarConfig
 public record TrashReminderConfig : Config
 {
 	public TrashCalendarConfig Calendar { get; init; }
-	public string ReminderCrontab { get; init; }
+	public TimeSpan ReminderTime { get; init; }
 	public Notification Notification { get; init; }
 	public IReadOnlyDictionary<string, InputBooleanEntity> Entities { get; init; }
 }

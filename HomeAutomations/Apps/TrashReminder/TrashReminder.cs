@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,9 +16,11 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.TrashReminder;
 
+[Focus]
 public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
 	private Calendar? _calendar;
+	private IDisposable? _reminderObserver;
 
 	private readonly NotificationService _notificationService;
 
@@ -47,7 +48,6 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 	{
 		ObservableExtensions.Interval(TimeSpan.FromMinutes(15), true)
 			.Subscribe(_ => UpdateNextDates(DateTime.Now));
-		CronjobExtensions.ScheduleJob(Config.ReminderCrontab, SendPickupReminder);
 	}
 
 	private async Task<Calendar?> GetTrashCalendarAsync()
@@ -94,6 +94,23 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 		{
 			Config.Entities[sensor.Key].CallService(ContainsEvent(sensor.Key, eventsThisWeek) ? "turn_on" : "turn_off");
 		}
+
+		var nextDate = eventsThisWeek.FirstOrDefault()?.Period.StartTime;
+
+		if (nextDate is not null)
+		{
+			CreatePickupReminder(nextDate.AsDateTimeOffset);
+		}
+	}
+
+	private void CreatePickupReminder(DateTimeOffset date)
+	{
+		var reminderDate = date
+			.Subtract(TimeSpan.FromDays(1))
+			.Add(Config.ReminderTime);
+
+		_reminderObserver?.Dispose();
+		_reminderObserver = Observable.Timer(reminderDate).Subscribe(_ => SendPickupReminder());
 	}
 
 	private void SendPickupReminder()

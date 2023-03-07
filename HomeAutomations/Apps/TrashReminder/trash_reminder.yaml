@@ -13,7 +13,7 @@ HomeAutomations.Apps.TrashReminder.TrashReminderConfig:
         - Glasbox
         - Papier
         - Restmüll
-  ReminderCrontab: 00 13 * * SUN
+  ReminderTime: 18:00:00
   Notification:
     Tag: trash_reminder
     Title: Müll rausbringen
