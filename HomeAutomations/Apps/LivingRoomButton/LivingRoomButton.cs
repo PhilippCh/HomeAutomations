@@ -22,11 +22,15 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 
 	private void OnButtonPressed(string? state)
 	{
-		var action = WirelessSwitchActions.Map(state);
-
-		if (action == ButtonAction.Single)
+		var buttonAction = WirelessSwitchActions.Map(state);
+		Action action = buttonAction switch
 		{
-			Config.StandardLamp.Toggle();
-		}
+			ButtonAction.Single => () => Config.StandardLamp.Toggle(),
+			ButtonAction.On => () => Config.StandardLamp.TurnOn(),
+			ButtonAction.Off => () => Config.StandardLamp.TurnOff(),
+			_ => () => {} // Do nothing
+		};
+
+		action();
 	}
 }

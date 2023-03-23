@@ -11,7 +11,9 @@ public enum ButtonAction
 	Quadruple,
 	Hold,
 	Release,
-	Many
+	Many,
+	On,
+	Off
 }
 
 public static class WirelessSwitchActions
@@ -21,6 +23,8 @@ public static class WirelessSwitchActions
 	public const string Triple = "triple";
 	public const string Hold = "hold";
 	public const string Release = "release";
+	public const string On = "on";
+	public const string Off = "off";
 
 	public static ButtonAction Map(string? action)
 	{
@@ -33,6 +37,8 @@ public static class WirelessSwitchActions
 			"hold" => ButtonAction.Hold,
 			"release" => ButtonAction.Release,
 			"many" => ButtonAction.Many,
+			"on" => ButtonAction.On,
+			"off" => ButtonAction.Off,
 			_ => ButtonAction.Undefined
 		};
 	}
