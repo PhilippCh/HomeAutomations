@@ -8,6 +8,7 @@ namespace HomeAutomations.Apps.DoorLock;
 public record NukiBridgeApiConfig
 {
 	public string BaseUrl { get; init; }
+	public string CallbackUrl { get; init; }
 	public string Token { get; init; }
 };
 

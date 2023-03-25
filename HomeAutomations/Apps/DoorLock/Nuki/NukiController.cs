@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace HomeAutomations.Apps.DoorLock.Nuki;
 
 [ApiController]
+[Route("[controller]/[action]")]
 public class NukiController
 {
-	[HttpPost("callback")]
-	public string ProcessCallback(NukiCallback callback)
+	[HttpPost]
+	public string ProcessCallback([FromBody] string callback)
 	{
 		return "test";
 	}

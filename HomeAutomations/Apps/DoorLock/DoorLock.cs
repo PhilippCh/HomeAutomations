@@ -48,26 +48,37 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 		if (response.Callbacks.Any())
 		{
-
+			foreach (var callback in response.Callbacks)
+			{
+				await _httpClient.GetAsync(
+					GetBridgeApiCall(
+						"callback/remove", new NameValueCollection
+						{
+							{ "id", callback.Id.ToString() }
+						}));
+			}
 		}
 
-		response = await _httpClient.GetFromJsonAsync<CallbackListResponse>(GetBridgeApiCall("callback/add", new NameValueCollection
-		{
-			{"url", "https://ha.pupslab.de/api/events/door_ring_event"}
-		}));
+		var response2 = await _httpClient.GetAsync(
+			GetBridgeApiCall(
+				"callback/add", new NameValueCollection
+				{
+					{ "url", Config.BridgeApi.CallbackUrl }
+				}));
 	}
 
 	private Uri GetBridgeApiCall(string method, NameValueCollection? extraParameters = null)
 	{
 		var uriBuilder = new UriBuilder($"{Config.BridgeApi.BaseUrl}/{method}");
-		var queryParameters = new NameValueCollection
-		{
-			{ "token", "Config.BridgeApi.Token" }
-		};
+		var queryParameters = HttpUtility.ParseQueryString(string.Empty);
+		queryParameters["token"] = Config.BridgeApi.Token;
 
-		foreach (string? parameter in extraParameters ?? new NameValueCollection())
+		if (extraParameters is not null)
 		{
-			queryParameters[parameter] = extraParameters[parameter];
+			foreach (string parameter in extraParameters)
+			{
+				queryParameters[parameter] = extraParameters[parameter];
+			}
 		}
 
 		uriBuilder.Query = queryParameters.ToString();

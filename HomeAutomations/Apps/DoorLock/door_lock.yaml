@@ -2,6 +2,7 @@
 HomeAutomations.Apps.DoorLock.DoorLockConfig:
   BridgeApi:
     BaseUrl: http://192.168.188.50:8080
+    CallbackUrl: http://192.168.188.41:5000/Nuki/ProcessCallback
     Token: "569640"
   Token: 0GdY0L#C%IWb1BmM%W^CC2VJ
   LockEntity: lock.wohnungstur
