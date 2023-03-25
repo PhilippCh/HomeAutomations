@@ -10,7 +10,6 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.StudyAutomations;
 
-[Focus]
 public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomationsConfig>
 {
 	private InputBooleanEntity _deskLampOverrideSwitch;

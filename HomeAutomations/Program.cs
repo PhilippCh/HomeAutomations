@@ -1,5 +1,8 @@
+using System.Linq;
 using System.Reflection;
 using HomeAutomations.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetDaemon.Extensions.Logging;
 using NetDaemon.Extensions.MqttEntityManager;
@@ -13,22 +16,37 @@ try
 {
 	var assembly = Assembly.GetExecutingAssembly();
 
-	await Host.CreateDefaultBuilder(args)
-        .UseNetDaemonAppSettings()
-        .UseNetDaemonDefaultLogging()
-        .UseNetDaemonRuntime()
-        .UseNetDaemonMqttEntityManagement()
-        .UseNetDaemonTextToSpeech()
-        .ConfigureServices((context, services) =>
-            services
-                .AddAppsFromAssembly(assembly)
-                .AddNetDaemonStateManager()
-                .AddNetDaemonScheduler()
-                .AddAutomationServices(assembly, context.Configuration)
-        )
-        .Build()
-        .RunAsync()
-        .ConfigureAwait(false);
+	var builder = WebApplication.CreateBuilder(args);
+	builder.Host
+		.UseNetDaemonAppSettings()
+		.UseNetDaemonDefaultLogging()
+		.UseNetDaemonRuntime()
+		.UseNetDaemonMqttEntityManagement()
+		.UseNetDaemonTextToSpeech()
+		.ConfigureServices(
+			(context, services) =>
+				services
+					.AddAppsFromAssembly(assembly)
+					.AddNetDaemonStateManager()
+					.AddNetDaemonScheduler()
+					.AddAutomationServices(assembly, context.Configuration)
+		);
+
+	builder.Services
+		.AddEndpointsApiExplorer()
+		.AddSwaggerGen();
+
+	var app = builder.Build();
+
+	app.MapControllers();
+
+	if (app.Environment.IsDevelopment())
+	{
+		app.UseSwagger();
+		app.UseSwaggerUI();
+	}
+
+	app.Run();
 }
 catch (Exception e)
 {

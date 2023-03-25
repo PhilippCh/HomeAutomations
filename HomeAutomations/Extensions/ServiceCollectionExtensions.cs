@@ -35,6 +35,9 @@ public static class ServiceCollectionExtensions
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<,>))
 			.AddAutomationDependencies(assembly, config);
 
+		// To provide the Nuki Bridge API callback controller.
+		services.AddControllers();
+
 		services
 			.AddHttpClient<ComputerSwitches>()
 			.AddTransientHttpErrorPolicy(

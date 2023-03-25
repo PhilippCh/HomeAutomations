@@ -15,11 +15,11 @@ namespace HomeAutomations.Models.Generated
 
 		ButtonEntities Button { get; }
 
+		CalendarEntities Calendar { get; }
+
 		CameraEntities Camera { get; }
 
 		ClimateEntities Climate { get; }
-
-		ConfiguratorEntities Configurator { get; }
 
 		CounterEntities Counter { get; }
 
@@ -44,8 +44,6 @@ namespace HomeAutomations.Models.Generated
 		MediaPlayerEntities MediaPlayer { get; }
 
 		NumberEntities Number { get; }
-
-		PersistentNotificationEntities PersistentNotification { get; }
 
 		PersonEntities Person { get; }
 
@@ -81,9 +79,9 @@ namespace HomeAutomations.Models.Generated
 		public AlarmControlPanelEntities AlarmControlPanel => new(_haContext);
 		public BinarySensorEntities BinarySensor => new(_haContext);
 		public ButtonEntities Button => new(_haContext);
+		public CalendarEntities Calendar => new(_haContext);
 		public CameraEntities Camera => new(_haContext);
 		public ClimateEntities Climate => new(_haContext);
-		public ConfiguratorEntities Configurator => new(_haContext);
 		public CounterEntities Counter => new(_haContext);
 		public CoverEntities Cover => new(_haContext);
 		public DeviceTrackerEntities DeviceTracker => new(_haContext);
@@ -96,7 +94,6 @@ namespace HomeAutomations.Models.Generated
 		public LockEntities Lock => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
 		public NumberEntities Number => new(_haContext);
-		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
 		public RemoteEntities Remote => new(_haContext);
 		public SelectEntities Select => new(_haContext);
@@ -152,6 +149,20 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity BedroomRollerShutterRightRunning => new(_haContext, "binary_sensor.bedroom_roller_shutter_right_running");
 		///<summary>bedroom/roller_shutter_right_update_available</summary>
 		public BinarySensorEntity BedroomRollerShutterRightUpdateAvailable => new(_haContext, "binary_sensor.bedroom_roller_shutter_right_update_available");
+		///<summary>desktop-171ttut Client</summary>
+		public BinarySensorEntity Desktop171ttutClient => new(_haContext, "binary_sensor.desktop_171ttut_client");
+		///<summary>desktop-171ttut Supports hairpinning</summary>
+		public BinarySensorEntity Desktop171ttutSupportsHairpinning => new(_haContext, "binary_sensor.desktop_171ttut_supports_hairpinning");
+		///<summary>desktop-171ttut Supports IPv6</summary>
+		public BinarySensorEntity Desktop171ttutSupportsIpv6 => new(_haContext, "binary_sensor.desktop_171ttut_supports_ipv6");
+		///<summary>desktop-171ttut Supports NAT-PMP</summary>
+		public BinarySensorEntity Desktop171ttutSupportsNatPmp => new(_haContext, "binary_sensor.desktop_171ttut_supports_nat_pmp");
+		///<summary>desktop-171ttut Supports PCP</summary>
+		public BinarySensorEntity Desktop171ttutSupportsPcp => new(_haContext, "binary_sensor.desktop_171ttut_supports_pcp");
+		///<summary>desktop-171ttut Supports UDP</summary>
+		public BinarySensorEntity Desktop171ttutSupportsUdp => new(_haContext, "binary_sensor.desktop_171ttut_supports_udp");
+		///<summary>desktop-171ttut Supports UPnP</summary>
+		public BinarySensorEntity Desktop171ttutSupportsUpnp => new(_haContext, "binary_sensor.desktop_171ttut_supports_upnp");
 		///<summary>DesktopFabienne</summary>
 		public BinarySensorEntity Desktopfabienne => new(_haContext, "binary_sensor.desktopfabienne");
 		///<summary>DesktopPhilipp</summary>
@@ -174,6 +185,174 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity FensterSchlafzimmer => new(_haContext, "binary_sensor.fenster_schlafzimmer");
 		///<summary>Fenster Schlafzimmer Battery</summary>
 		public BinarySensorEntity FensterSchlafzimmerBattery => new(_haContext, "binary_sensor.fenster_schlafzimmer_battery");
+		///<summary>home-desktop-fabienne Client</summary>
+		public BinarySensorEntity HomeDesktopFabienneClient => new(_haContext, "binary_sensor.home_desktop_fabienne_client");
+		///<summary>home-desktop-fabienne Supports hairpinning</summary>
+		public BinarySensorEntity HomeDesktopFabienneSupportsHairpinning => new(_haContext, "binary_sensor.home_desktop_fabienne_supports_hairpinning");
+		///<summary>home-desktop-fabienne Supports IPv6</summary>
+		public BinarySensorEntity HomeDesktopFabienneSupportsIpv6 => new(_haContext, "binary_sensor.home_desktop_fabienne_supports_ipv6");
+		///<summary>home-desktop-fabienne Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeDesktopFabienneSupportsNatPmp => new(_haContext, "binary_sensor.home_desktop_fabienne_supports_nat_pmp");
+		///<summary>home-desktop-fabienne Supports PCP</summary>
+		public BinarySensorEntity HomeDesktopFabienneSupportsPcp => new(_haContext, "binary_sensor.home_desktop_fabienne_supports_pcp");
+		///<summary>home-desktop-fabienne Supports UDP</summary>
+		public BinarySensorEntity HomeDesktopFabienneSupportsUdp => new(_haContext, "binary_sensor.home_desktop_fabienne_supports_udp");
+		///<summary>home-desktop-fabienne Supports UPnP</summary>
+		public BinarySensorEntity HomeDesktopFabienneSupportsUpnp => new(_haContext, "binary_sensor.home_desktop_fabienne_supports_upnp");
+		///<summary>home-desktop-oma Client</summary>
+		public BinarySensorEntity HomeDesktopOmaClient => new(_haContext, "binary_sensor.home_desktop_oma_client");
+		///<summary>home-desktop-oma Supports hairpinning</summary>
+		public BinarySensorEntity HomeDesktopOmaSupportsHairpinning => new(_haContext, "binary_sensor.home_desktop_oma_supports_hairpinning");
+		///<summary>home-desktop-oma Supports IPv6</summary>
+		public BinarySensorEntity HomeDesktopOmaSupportsIpv6 => new(_haContext, "binary_sensor.home_desktop_oma_supports_ipv6");
+		///<summary>home-desktop-oma Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeDesktopOmaSupportsNatPmp => new(_haContext, "binary_sensor.home_desktop_oma_supports_nat_pmp");
+		///<summary>home-desktop-oma Supports PCP</summary>
+		public BinarySensorEntity HomeDesktopOmaSupportsPcp => new(_haContext, "binary_sensor.home_desktop_oma_supports_pcp");
+		///<summary>home-desktop-oma Supports UDP</summary>
+		public BinarySensorEntity HomeDesktopOmaSupportsUdp => new(_haContext, "binary_sensor.home_desktop_oma_supports_udp");
+		///<summary>home-desktop-oma Supports UPnP</summary>
+		public BinarySensorEntity HomeDesktopOmaSupportsUpnp => new(_haContext, "binary_sensor.home_desktop_oma_supports_upnp");
+		///<summary>home-desktop-philipp Client</summary>
+		public BinarySensorEntity HomeDesktopPhilippClient => new(_haContext, "binary_sensor.home_desktop_philipp_client");
+		///<summary>home-desktop-philipp Supports hairpinning</summary>
+		public BinarySensorEntity HomeDesktopPhilippSupportsHairpinning => new(_haContext, "binary_sensor.home_desktop_philipp_supports_hairpinning");
+		///<summary>home-desktop-philipp Supports IPv6</summary>
+		public BinarySensorEntity HomeDesktopPhilippSupportsIpv6 => new(_haContext, "binary_sensor.home_desktop_philipp_supports_ipv6");
+		///<summary>home-desktop-philipp Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeDesktopPhilippSupportsNatPmp => new(_haContext, "binary_sensor.home_desktop_philipp_supports_nat_pmp");
+		///<summary>home-desktop-philipp Supports PCP</summary>
+		public BinarySensorEntity HomeDesktopPhilippSupportsPcp => new(_haContext, "binary_sensor.home_desktop_philipp_supports_pcp");
+		///<summary>home-desktop-philipp Supports UDP</summary>
+		public BinarySensorEntity HomeDesktopPhilippSupportsUdp => new(_haContext, "binary_sensor.home_desktop_philipp_supports_udp");
+		///<summary>home-desktop-philipp Supports UPnP</summary>
+		public BinarySensorEntity HomeDesktopPhilippSupportsUpnp => new(_haContext, "binary_sensor.home_desktop_philipp_supports_upnp");
+		///<summary>home-k8s-master Client</summary>
+		public BinarySensorEntity HomeK8sMasterClient => new(_haContext, "binary_sensor.home_k8s_master_client");
+		///<summary>home-k8s-master Supports hairpinning</summary>
+		public BinarySensorEntity HomeK8sMasterSupportsHairpinning => new(_haContext, "binary_sensor.home_k8s_master_supports_hairpinning");
+		///<summary>home-k8s-master Supports IPv6</summary>
+		public BinarySensorEntity HomeK8sMasterSupportsIpv6 => new(_haContext, "binary_sensor.home_k8s_master_supports_ipv6");
+		///<summary>home-k8s-master Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeK8sMasterSupportsNatPmp => new(_haContext, "binary_sensor.home_k8s_master_supports_nat_pmp");
+		///<summary>home-k8s-master Supports PCP</summary>
+		public BinarySensorEntity HomeK8sMasterSupportsPcp => new(_haContext, "binary_sensor.home_k8s_master_supports_pcp");
+		///<summary>home-k8s-master Supports UDP</summary>
+		public BinarySensorEntity HomeK8sMasterSupportsUdp => new(_haContext, "binary_sensor.home_k8s_master_supports_udp");
+		///<summary>home-k8s-master Supports UPnP</summary>
+		public BinarySensorEntity HomeK8sMasterSupportsUpnp => new(_haContext, "binary_sensor.home_k8s_master_supports_upnp");
+		///<summary>home-laptop-enbw Client</summary>
+		public BinarySensorEntity HomeLaptopEnbwClient => new(_haContext, "binary_sensor.home_laptop_enbw_client");
+		///<summary>home-laptop-enbw Supports hairpinning</summary>
+		public BinarySensorEntity HomeLaptopEnbwSupportsHairpinning => new(_haContext, "binary_sensor.home_laptop_enbw_supports_hairpinning");
+		///<summary>home-laptop-enbw Supports IPv6</summary>
+		public BinarySensorEntity HomeLaptopEnbwSupportsIpv6 => new(_haContext, "binary_sensor.home_laptop_enbw_supports_ipv6");
+		///<summary>home-laptop-enbw Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeLaptopEnbwSupportsNatPmp => new(_haContext, "binary_sensor.home_laptop_enbw_supports_nat_pmp");
+		///<summary>home-laptop-enbw Supports PCP</summary>
+		public BinarySensorEntity HomeLaptopEnbwSupportsPcp => new(_haContext, "binary_sensor.home_laptop_enbw_supports_pcp");
+		///<summary>home-laptop-enbw Supports UDP</summary>
+		public BinarySensorEntity HomeLaptopEnbwSupportsUdp => new(_haContext, "binary_sensor.home_laptop_enbw_supports_udp");
+		///<summary>home-laptop-enbw Supports UPnP</summary>
+		public BinarySensorEntity HomeLaptopEnbwSupportsUpnp => new(_haContext, "binary_sensor.home_laptop_enbw_supports_upnp");
+		///<summary>home-laptop-fabienne Client</summary>
+		public BinarySensorEntity HomeLaptopFabienneClient => new(_haContext, "binary_sensor.home_laptop_fabienne_client");
+		///<summary>home-laptop-fabienne Supports hairpinning</summary>
+		public BinarySensorEntity HomeLaptopFabienneSupportsHairpinning => new(_haContext, "binary_sensor.home_laptop_fabienne_supports_hairpinning");
+		///<summary>home-laptop-fabienne Supports IPv6</summary>
+		public BinarySensorEntity HomeLaptopFabienneSupportsIpv6 => new(_haContext, "binary_sensor.home_laptop_fabienne_supports_ipv6");
+		///<summary>home-laptop-fabienne Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeLaptopFabienneSupportsNatPmp => new(_haContext, "binary_sensor.home_laptop_fabienne_supports_nat_pmp");
+		///<summary>home-laptop-fabienne Supports PCP</summary>
+		public BinarySensorEntity HomeLaptopFabienneSupportsPcp => new(_haContext, "binary_sensor.home_laptop_fabienne_supports_pcp");
+		///<summary>home-laptop-fabienne Supports UDP</summary>
+		public BinarySensorEntity HomeLaptopFabienneSupportsUdp => new(_haContext, "binary_sensor.home_laptop_fabienne_supports_udp");
+		///<summary>home-laptop-fabienne Supports UPnP</summary>
+		public BinarySensorEntity HomeLaptopFabienneSupportsUpnp => new(_haContext, "binary_sensor.home_laptop_fabienne_supports_upnp");
+		///<summary>home-smartphone-fabienne Client</summary>
+		public BinarySensorEntity HomeSmartphoneFabienneClient => new(_haContext, "binary_sensor.home_smartphone_fabienne_client");
+		///<summary>home-smartphone-fabienne Supports hairpinning</summary>
+		public BinarySensorEntity HomeSmartphoneFabienneSupportsHairpinning => new(_haContext, "binary_sensor.home_smartphone_fabienne_supports_hairpinning");
+		///<summary>home-smartphone-fabienne Supports IPv6</summary>
+		public BinarySensorEntity HomeSmartphoneFabienneSupportsIpv6 => new(_haContext, "binary_sensor.home_smartphone_fabienne_supports_ipv6");
+		///<summary>home-smartphone-fabienne Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeSmartphoneFabienneSupportsNatPmp => new(_haContext, "binary_sensor.home_smartphone_fabienne_supports_nat_pmp");
+		///<summary>home-smartphone-fabienne Supports PCP</summary>
+		public BinarySensorEntity HomeSmartphoneFabienneSupportsPcp => new(_haContext, "binary_sensor.home_smartphone_fabienne_supports_pcp");
+		///<summary>home-smartphone-fabienne Supports UDP</summary>
+		public BinarySensorEntity HomeSmartphoneFabienneSupportsUdp => new(_haContext, "binary_sensor.home_smartphone_fabienne_supports_udp");
+		///<summary>home-smartphone-fabienne Supports UPnP</summary>
+		public BinarySensorEntity HomeSmartphoneFabienneSupportsUpnp => new(_haContext, "binary_sensor.home_smartphone_fabienne_supports_upnp");
+		///<summary>home-smartphone-philipp Client</summary>
+		public BinarySensorEntity HomeSmartphonePhilippClient => new(_haContext, "binary_sensor.home_smartphone_philipp_client");
+		///<summary>home-smartphone-philipp Supports hairpinning</summary>
+		public BinarySensorEntity HomeSmartphonePhilippSupportsHairpinning => new(_haContext, "binary_sensor.home_smartphone_philipp_supports_hairpinning");
+		///<summary>home-smartphone-philipp Supports IPv6</summary>
+		public BinarySensorEntity HomeSmartphonePhilippSupportsIpv6 => new(_haContext, "binary_sensor.home_smartphone_philipp_supports_ipv6");
+		///<summary>home-smartphone-philipp Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeSmartphonePhilippSupportsNatPmp => new(_haContext, "binary_sensor.home_smartphone_philipp_supports_nat_pmp");
+		///<summary>home-smartphone-philipp Supports PCP</summary>
+		public BinarySensorEntity HomeSmartphonePhilippSupportsPcp => new(_haContext, "binary_sensor.home_smartphone_philipp_supports_pcp");
+		///<summary>home-smartphone-philipp Supports UDP</summary>
+		public BinarySensorEntity HomeSmartphonePhilippSupportsUdp => new(_haContext, "binary_sensor.home_smartphone_philipp_supports_udp");
+		///<summary>home-smartphone-philipp Supports UPnP</summary>
+		public BinarySensorEntity HomeSmartphonePhilippSupportsUpnp => new(_haContext, "binary_sensor.home_smartphone_philipp_supports_upnp");
+		///<summary>home-tablet-hallway-android Client</summary>
+		public BinarySensorEntity HomeTabletHallwayAndroidClient => new(_haContext, "binary_sensor.home_tablet_hallway_android_client");
+		///<summary>home-tablet-hallway-android Supports hairpinning</summary>
+		public BinarySensorEntity HomeTabletHallwayAndroidSupportsHairpinning => new(_haContext, "binary_sensor.home_tablet_hallway_android_supports_hairpinning");
+		///<summary>home-tablet-hallway-android Supports IPv6</summary>
+		public BinarySensorEntity HomeTabletHallwayAndroidSupportsIpv6 => new(_haContext, "binary_sensor.home_tablet_hallway_android_supports_ipv6");
+		///<summary>home-tablet-hallway-android Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeTabletHallwayAndroidSupportsNatPmp => new(_haContext, "binary_sensor.home_tablet_hallway_android_supports_nat_pmp");
+		///<summary>home-tablet-hallway-android Supports PCP</summary>
+		public BinarySensorEntity HomeTabletHallwayAndroidSupportsPcp => new(_haContext, "binary_sensor.home_tablet_hallway_android_supports_pcp");
+		///<summary>home-tablet-hallway-android Supports UDP</summary>
+		public BinarySensorEntity HomeTabletHallwayAndroidSupportsUdp => new(_haContext, "binary_sensor.home_tablet_hallway_android_supports_udp");
+		///<summary>home-tablet-hallway-android Supports UPnP</summary>
+		public BinarySensorEntity HomeTabletHallwayAndroidSupportsUpnp => new(_haContext, "binary_sensor.home_tablet_hallway_android_supports_upnp");
+		///<summary>home-tablet-ios Client</summary>
+		public BinarySensorEntity HomeTabletIosClient => new(_haContext, "binary_sensor.home_tablet_ios_client");
+		///<summary>home-tablet-ios Supports hairpinning</summary>
+		public BinarySensorEntity HomeTabletIosSupportsHairpinning => new(_haContext, "binary_sensor.home_tablet_ios_supports_hairpinning");
+		///<summary>home-tablet-ios Supports IPv6</summary>
+		public BinarySensorEntity HomeTabletIosSupportsIpv6 => new(_haContext, "binary_sensor.home_tablet_ios_supports_ipv6");
+		///<summary>home-tablet-ios Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeTabletIosSupportsNatPmp => new(_haContext, "binary_sensor.home_tablet_ios_supports_nat_pmp");
+		///<summary>home-tablet-ios Supports PCP</summary>
+		public BinarySensorEntity HomeTabletIosSupportsPcp => new(_haContext, "binary_sensor.home_tablet_ios_supports_pcp");
+		///<summary>home-tablet-ios Supports UDP</summary>
+		public BinarySensorEntity HomeTabletIosSupportsUdp => new(_haContext, "binary_sensor.home_tablet_ios_supports_udp");
+		///<summary>home-tablet-ios Supports UPnP</summary>
+		public BinarySensorEntity HomeTabletIosSupportsUpnp => new(_haContext, "binary_sensor.home_tablet_ios_supports_upnp");
+		///<summary>home-thinclient-development Client</summary>
+		public BinarySensorEntity HomeThinclientDevelopmentClient => new(_haContext, "binary_sensor.home_thinclient_development_client");
+		///<summary>home-thinclient-development Supports hairpinning</summary>
+		public BinarySensorEntity HomeThinclientDevelopmentSupportsHairpinning => new(_haContext, "binary_sensor.home_thinclient_development_supports_hairpinning");
+		///<summary>home-thinclient-development Supports IPv6</summary>
+		public BinarySensorEntity HomeThinclientDevelopmentSupportsIpv6 => new(_haContext, "binary_sensor.home_thinclient_development_supports_ipv6");
+		///<summary>home-thinclient-development Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeThinclientDevelopmentSupportsNatPmp => new(_haContext, "binary_sensor.home_thinclient_development_supports_nat_pmp");
+		///<summary>home-thinclient-development Supports PCP</summary>
+		public BinarySensorEntity HomeThinclientDevelopmentSupportsPcp => new(_haContext, "binary_sensor.home_thinclient_development_supports_pcp");
+		///<summary>home-thinclient-development Supports UDP</summary>
+		public BinarySensorEntity HomeThinclientDevelopmentSupportsUdp => new(_haContext, "binary_sensor.home_thinclient_development_supports_udp");
+		///<summary>home-thinclient-development Supports UPnP</summary>
+		public BinarySensorEntity HomeThinclientDevelopmentSupportsUpnp => new(_haContext, "binary_sensor.home_thinclient_development_supports_upnp");
+		///<summary>home-thinclient-living-room Client</summary>
+		public BinarySensorEntity HomeThinclientLivingRoomClient => new(_haContext, "binary_sensor.home_thinclient_living_room_client");
+		///<summary>home-thinclient-living-room Supports hairpinning</summary>
+		public BinarySensorEntity HomeThinclientLivingRoomSupportsHairpinning => new(_haContext, "binary_sensor.home_thinclient_living_room_supports_hairpinning");
+		///<summary>home-thinclient-living-room Supports IPv6</summary>
+		public BinarySensorEntity HomeThinclientLivingRoomSupportsIpv6 => new(_haContext, "binary_sensor.home_thinclient_living_room_supports_ipv6");
+		///<summary>home-thinclient-living-room Supports NAT-PMP</summary>
+		public BinarySensorEntity HomeThinclientLivingRoomSupportsNatPmp => new(_haContext, "binary_sensor.home_thinclient_living_room_supports_nat_pmp");
+		///<summary>home-thinclient-living-room Supports PCP</summary>
+		public BinarySensorEntity HomeThinclientLivingRoomSupportsPcp => new(_haContext, "binary_sensor.home_thinclient_living_room_supports_pcp");
+		///<summary>home-thinclient-living-room Supports UDP</summary>
+		public BinarySensorEntity HomeThinclientLivingRoomSupportsUdp => new(_haContext, "binary_sensor.home_thinclient_living_room_supports_udp");
+		///<summary>home-thinclient-living-room Supports UPnP</summary>
+		public BinarySensorEntity HomeThinclientLivingRoomSupportsUpnp => new(_haContext, "binary_sensor.home_thinclient_living_room_supports_upnp");
 		///<summary>iPhone Fabienne Focus</summary>
 		public BinarySensorEntity IphoneFabienneFocus => new(_haContext, "binary_sensor.iphone_fabienne_focus");
 		///<summary>iPhone Philipp Focus</summary>
@@ -188,12 +367,16 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity Laptopfabienne => new(_haContext, "binary_sensor.laptopfabienne");
 		///<summary>LaptopPhilipp</summary>
 		public BinarySensorEntity Laptopphilipp => new(_haContext, "binary_sensor.laptopphilipp");
+		///<summary>Nuki battery low</summary>
+		public BinarySensorEntity NukiBatteryLow => new(_haContext, "binary_sensor.nuki_battery_low");
 		///<summary>PupsStation (Drive 1) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life");
 		///<summary>PupsStation (Drive 2) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife2 => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life_2");
 		///<summary>PupsStation (Drive 3) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife3 => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life_3");
+		///<summary>pupsstation Client</summary>
+		public BinarySensorEntity PupsstationClient => new(_haContext, "binary_sensor.pupsstation_client");
 		///<summary>PupsStation (Drive 1) Exceeded Max Bad Sectors</summary>
 		public BinarySensorEntity PupsstationExceededMaxBadSectors => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors");
 		///<summary>PupsStation (Drive 2) Exceeded Max Bad Sectors</summary>
@@ -202,6 +385,18 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity PupsstationExceededMaxBadSectors3 => new(_haContext, "binary_sensor.pupsstation_exceeded_max_bad_sectors_3");
 		///<summary>PupsStation Security Status</summary>
 		public BinarySensorEntity PupsstationSecurityStatus => new(_haContext, "binary_sensor.pupsstation_security_status");
+		///<summary>pupsstation Supports hairpinning</summary>
+		public BinarySensorEntity PupsstationSupportsHairpinning => new(_haContext, "binary_sensor.pupsstation_supports_hairpinning");
+		///<summary>pupsstation Supports IPv6</summary>
+		public BinarySensorEntity PupsstationSupportsIpv6 => new(_haContext, "binary_sensor.pupsstation_supports_ipv6");
+		///<summary>pupsstation Supports NAT-PMP</summary>
+		public BinarySensorEntity PupsstationSupportsNatPmp => new(_haContext, "binary_sensor.pupsstation_supports_nat_pmp");
+		///<summary>pupsstation Supports PCP</summary>
+		public BinarySensorEntity PupsstationSupportsPcp => new(_haContext, "binary_sensor.pupsstation_supports_pcp");
+		///<summary>pupsstation Supports UDP</summary>
+		public BinarySensorEntity PupsstationSupportsUdp => new(_haContext, "binary_sensor.pupsstation_supports_udp");
+		///<summary>pupsstation Supports UPnP</summary>
+		public BinarySensorEntity PupsstationSupportsUpnp => new(_haContext, "binary_sensor.pupsstation_supports_upnp");
 		///<summary>study/motion_detector_occupancy</summary>
 		public BinarySensorEntity StudyMotionDetectorOccupancy => new(_haContext, "binary_sensor.study_motion_detector_occupancy");
 		///<summary>Thermostat Arbeitszimmer Battery</summary>
@@ -240,6 +435,26 @@ namespace HomeAutomations.Models.Generated
 		public ButtonEntity PupsstationShutdown => new(_haContext, "button.pupsstation_shutdown");
 	}
 
+	public partial class CalendarEntities
+	{
+		private readonly IHaContext _haContext;
+		public CalendarEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Calendar</summary>
+		public CalendarEntity CalendarPhilipp => new(_haContext, "calendar.calendar_philipp");
+		///<summary>Deutsche Feiertage</summary>
+		public CalendarEntity DeutscheFeiertagePhilipp => new(_haContext, "calendar.deutsche_feiertage_philipp");
+		///<summary>FILIADATA</summary>
+		public CalendarEntity FiliadataPhilipp => new(_haContext, "calendar.filiadata_philipp");
+		///<summary>Geburtstagskalender</summary>
+		public CalendarEntity GeburtstagskalenderPhilipp => new(_haContext, "calendar.geburtstagskalender_philipp");
+		///<summary>TINF11B2</summary>
+		public CalendarEntity Tinf11b2Philipp => new(_haContext, "calendar.tinf11b2_philipp");
+	}
+
 	public partial class CameraEntities
 	{
 		private readonly IHaContext _haContext;
@@ -272,20 +487,6 @@ namespace HomeAutomations.Models.Generated
 		public ClimateEntity RoomClimateSchlafzimmer => new(_haContext, "climate.room_climate_schlafzimmer");
 		///<summary>Room Climate Wohnzimmer</summary>
 		public ClimateEntity RoomClimateWohnzimmer => new(_haContext, "climate.room_climate_wohnzimmer");
-	}
-
-	public partial class ConfiguratorEntities
-	{
-		private readonly IHaContext _haContext;
-		public ConfiguratorEntities(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Apple ID Verification Code</summary>
-		public ConfiguratorEntity AppleIdVerificationCode2 => new(_haContext, "configurator.apple_id_verification_code_2");
-		///<summary>O365 - Account1</summary>
-		public ConfiguratorEntity O365Account1 => new(_haContext, "configurator.o365_account1");
 	}
 
 	public partial class CounterEntities
@@ -360,14 +561,6 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity ComputerWolDesktopFabienne => new(_haContext, "input_boolean.computer_wol_desktop_fabienne");
 		///<summary>Desktop Philipp</summary>
 		public InputBooleanEntity ComputerWolDesktopPhilipp => new(_haContext, "input_boolean.computer_wol_desktop_philipp");
-		///<summary>dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter");
-		///<summary>dev_netdaemon_home_automations_apps_counters_water_counter_water_counter</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_counters_water_counter_water_counter");
-		///<summary>dev_netdaemon_home_automations_apps_shutters_shutters</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsShuttersShutters => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_shutters_shutters");
-		///<summary>dev_netdaemon_home_automations_apps_study_automations_study_automations</summary>
-		public InputBooleanEntity DevNetdaemonHomeAutomationsAppsStudyAutomationsStudyAutomations => new(_haContext, "input_boolean.dev_netdaemon_home_automations_apps_study_automations_study_automations");
 		///<summary>Enable motion detector</summary>
 		public InputBooleanEntity EnableMotionDetector => new(_haContext, "input_boolean.enable_motion_detector");
 		///<summary>Meditation active?</summary>
@@ -514,10 +707,10 @@ namespace HomeAutomations.Models.Generated
 		public LightEntity KitchenCabinetLight => new(_haContext, "light.kitchen_cabinet_light");
 		///<summary>kitchen/ceiling_light</summary>
 		public LightEntity KitchenCeilingLight => new(_haContext, "light.kitchen_ceiling_light");
+		///<summary>living_room/standard_lamp</summary>
+		public LightEntity LivingRoomStandardLamp => new(_haContext, "light.living_room_standard_lamp");
 		///<summary>living_room/tv_lightstrip</summary>
 		public LightEntity LivingRoomTvLightstrip => new(_haContext, "light.living_room_tv_lightstrip");
-		///<summary>living_room/standard_lamp</summary>
-		public LightEntity Stehlampe => new(_haContext, "light.stehlampe");
 		///<summary>study/desk_lamp</summary>
 		public LightEntity StudyDeskLamp => new(_haContext, "light.study_desk_lamp");
 	}
@@ -532,6 +725,12 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>bedroom/lava_lamp_child_lock</summary>
 		public LockEntity BedroomLavaLampChildLock => new(_haContext, "lock.bedroom_lava_lamp_child_lock");
+		///<summary>Haustür</summary>
+		public LockEntity Haustur => new(_haContext, "lock.haustur");
+		///<summary>Nuki</summary>
+		public LockEntity Nuki => new(_haContext, "lock.nuki");
+		///<summary>Wohnungstür</summary>
+		public LockEntity Wohnungstur => new(_haContext, "lock.wohnungstur");
 	}
 
 	public partial class MediaPlayerEntities
@@ -556,6 +755,8 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>Nuki LED brightness</summary>
+		public NumberEntity NukiLedBrightness => new(_haContext, "number.nuki_led_brightness");
 		///<summary>Raumthermostat Schlafzimmer Offset</summary>
 		public NumberEntity RaumthermostatSchlafzimmerOffset => new(_haContext, "number.raumthermostat_schlafzimmer_offset");
 		///<summary>Thermostat Arbeitszimmer Offset</summary>
@@ -568,20 +769,6 @@ namespace HomeAutomations.Models.Generated
 		public NumberEntity ThermostatSchlafzimmerOffset => new(_haContext, "number.thermostat_schlafzimmer_offset");
 		///<summary>Thermostat Wohnzimmer Offset</summary>
 		public NumberEntity ThermostatWohnzimmerOffset => new(_haContext, "number.thermostat_wohnzimmer_offset");
-	}
-
-	public partial class PersistentNotificationEntities
-	{
-		private readonly IHaContext _haContext;
-		public PersistentNotificationEntities(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>Login attempt failed</summary>
-		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
-		///<summary>Invalid config</summary>
-		public PersistentNotificationEntity InvalidConfig => new(_haContext, "persistent_notification.invalid_config");
 	}
 
 	public partial class PersonEntities
@@ -618,6 +805,8 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>bedroom/bedside_light_fabienne_power_on_behavior</summary>
+		public SelectEntity BedroomBedsideLightFabiennePowerOnBehavior => new(_haContext, "select.bedroom_bedside_light_fabienne_power_on_behavior");
 		///<summary>bedroom/lava_lamp_indicator_mode</summary>
 		public SelectEntity BedroomLavaLampIndicatorMode => new(_haContext, "select.bedroom_lava_lamp_indicator_mode");
 		///<summary>bedroom/lava_lamp_power_outage_memory</summary>
@@ -630,6 +819,12 @@ namespace HomeAutomations.Models.Generated
 		public SelectEntity LivingRoomChristmasStarsIndicatorLightMode => new(_haContext, "select.living_room_christmas_stars_indicator_light_mode");
 		///<summary>living_room/christmas_stars Power on behavior</summary>
 		public SelectEntity LivingRoomChristmasStarsPowerOnBehavior => new(_haContext, "select.living_room_christmas_stars_power_on_behavior");
+		///<summary>living_room/christmas_tree Indicator light mode</summary>
+		public SelectEntity LivingRoomChristmasTreeIndicatorLightMode => new(_haContext, "select.living_room_christmas_tree_indicator_light_mode");
+		///<summary>living_room/christmas_tree Power on behavior</summary>
+		public SelectEntity LivingRoomChristmasTreePowerOnBehavior => new(_haContext, "select.living_room_christmas_tree_power_on_behavior");
+		///<summary>living_room/standard_lamp_power_on_behavior</summary>
+		public SelectEntity LivingRoomStandardLampPowerOnBehavior => new(_haContext, "select.living_room_standard_lamp_power_on_behavior");
 	}
 
 	public partial class SensorEntities
@@ -640,8 +835,14 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>living_room/lamp_switch_battery</summary>
+		public NumericSensorEntity E0x90ab96fffe180250Battery => new(_haContext, "sensor.0x90ab96fffe180250_battery");
 		///<summary>AMC Entertainment Holdings Inc</summary>
 		public NumericSensorEntity AmcEntertainmentHoldingsInc => new(_haContext, "sensor.amc_entertainment_holdings_inc");
+		///<summary>bathroom/razor_blade_usage_battery</summary>
+		public NumericSensorEntity BathroomRazorBladeUsageBattery => new(_haContext, "sensor.bathroom_razor_blade_usage_battery");
+		///<summary>bathroom/razor_blade_usage_device_temperature</summary>
+		public NumericSensorEntity BathroomRazorBladeUsageDeviceTemperature => new(_haContext, "sensor.bathroom_razor_blade_usage_device_temperature");
 		///<summary>bedroom/bedside_light_switch_fabienne_battery</summary>
 		public NumericSensorEntity BedroomBedsideLightSwitchFabienneBattery => new(_haContext, "sensor.bedroom_bedside_light_switch_fabienne_battery");
 		///<summary>bedroom/bedside_light_switch_fabienne_device_temperature</summary>
@@ -760,6 +961,24 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity Lufthansa => new(_haContext, "sensor.lufthansa");
 		///<summary>METRO AG</summary>
 		public NumericSensorEntity MetroAg => new(_haContext, "sensor.metro_ag");
+		///<summary>Black toner remaining</summary>
+		public NumericSensorEntity Mfc1910wBlackTonerRemaining => new(_haContext, "sensor.mfc_1910w_black_toner_remaining");
+		///<summary>Drum counter</summary>
+		public NumericSensorEntity Mfc1910wDrumCounter => new(_haContext, "sensor.mfc_1910w_drum_counter");
+		///<summary>Drum remaining life</summary>
+		public NumericSensorEntity Mfc1910wDrumRemainingLife => new(_haContext, "sensor.mfc_1910w_drum_remaining_life");
+		///<summary>Drum remaining pages</summary>
+		public NumericSensorEntity Mfc1910wDrumRemainingPages => new(_haContext, "sensor.mfc_1910w_drum_remaining_pages");
+		///<summary>Page counter</summary>
+		public NumericSensorEntity Mfc1910wPageCounter => new(_haContext, "sensor.mfc_1910w_page_counter");
+		///<summary>Nuki battery level</summary>
+		public NumericSensorEntity NukiBatteryLevel => new(_haContext, "sensor.nuki_battery_level");
+		///<summary>Nuki battery voltage</summary>
+		public NumericSensorEntity NukiBatteryVoltage => new(_haContext, "sensor.nuki_battery_voltage");
+		///<summary>Nuki bluetooth signal strength</summary>
+		public NumericSensorEntity NukiBluetoothSignalStrength => new(_haContext, "sensor.nuki_bluetooth_signal_strength");
+		///<summary>Nuki wifi signal strength</summary>
+		public NumericSensorEntity NukiWifiSignalStrength => new(_haContext, "sensor.nuki_wifi_signal_strength");
 		///<summary>PupsStation (Volume 1) Average Disk Temp</summary>
 		public NumericSensorEntity PupsstationAverageDiskTemp => new(_haContext, "sensor.pupsstation_average_disk_temp");
 		///<summary>PupsStation CPU Load Average (15 min)</summary>
@@ -800,6 +1019,20 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity RaumthermostatSchlafzimmerHumidity => new(_haContext, "sensor.raumthermostat_schlafzimmer_humidity");
 		///<summary>Raumthermostat Schlafzimmer Temperature</summary>
 		public NumericSensorEntity RaumthermostatSchlafzimmerTemperature => new(_haContext, "sensor.raumthermostat_schlafzimmer_temperature");
+		///<summary>Seventeentrack Packages Delivered</summary>
+		public NumericSensorEntity SeventeentrackPackagesDelivered => new(_haContext, "sensor.seventeentrack_packages_delivered");
+		///<summary>Seventeentrack Packages Expired</summary>
+		public NumericSensorEntity SeventeentrackPackagesExpired => new(_haContext, "sensor.seventeentrack_packages_expired");
+		///<summary>Seventeentrack Packages In Transit</summary>
+		public NumericSensorEntity SeventeentrackPackagesInTransit => new(_haContext, "sensor.seventeentrack_packages_in_transit");
+		///<summary>Seventeentrack Packages Not Found</summary>
+		public NumericSensorEntity SeventeentrackPackagesNotFound => new(_haContext, "sensor.seventeentrack_packages_not_found");
+		///<summary>Seventeentrack Packages Ready to be Picked Up</summary>
+		public NumericSensorEntity SeventeentrackPackagesReadyToBePickedUp => new(_haContext, "sensor.seventeentrack_packages_ready_to_be_picked_up");
+		///<summary>Seventeentrack Packages Returned</summary>
+		public NumericSensorEntity SeventeentrackPackagesReturned => new(_haContext, "sensor.seventeentrack_packages_returned");
+		///<summary>Seventeentrack Packages Undelivered</summary>
+		public NumericSensorEntity SeventeentrackPackagesUndelivered => new(_haContext, "sensor.seventeentrack_packages_undelivered");
 		///<summary>SpeedTest Download</summary>
 		public NumericSensorEntity SpeedtestDownload => new(_haContext, "sensor.speedtest_download");
 		///<summary>SpeedTest Ping</summary>
@@ -870,10 +1103,28 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity WallpanelHallwayBatteryLevel => new(_haContext, "sensor.wallpanel_hallway_battery_level");
 		///<summary>Wallpanel Hallway Light</summary>
 		public NumericSensorEntity WallpanelHallwayLight => new(_haContext, "sensor.wallpanel_hallway_light");
+		///<summary>Wohnungstür Battery</summary>
+		public NumericSensorEntity WohnungsturBattery => new(_haContext, "sensor.wohnungstur_battery");
+		///<summary>2-Wochen-Gerichte Philipp</summary>
+		public SensorEntity E2WochenGerichtePhilipp => new(_haContext, "sensor.2_wochen_gerichte_philipp");
+		///<summary>Am Ende der Tausend Sterne Philipp</summary>
+		public SensorEntity AmEndeDerTausendSternePhilipp => new(_haContext, "sensor.am_ende_der_tausend_sterne_philipp");
+		///<summary>Anno 1800 Philipp</summary>
+		public SensorEntity Anno1800Philipp => new(_haContext, "sensor.anno_1800_philipp");
+		///<summary>Aufgaben Philipp</summary>
+		public SensorEntity AufgabenPhilipp => new(_haContext, "sensor.aufgaben_philipp");
+		///<summary>Ausflüge & Urlaub Philipp</summary>
+		public SensorEntity AusflugeUrlaubPhilipp => new(_haContext, "sensor.ausfluge_urlaub_philipp");
 		///<summary>Base calories for fabienne</summary>
 		public SensorEntity BaseCaloriesForFabienne => new(_haContext, "sensor.base_calories_for_fabienne");
 		///<summary>Base calories for philipp</summary>
 		public SensorEntity BaseCaloriesForPhilipp => new(_haContext, "sensor.base_calories_for_philipp");
+		///<summary>bathroom/razor_blade_usage_action</summary>
+		public SensorEntity BathroomRazorBladeUsageAction => new(_haContext, "sensor.bathroom_razor_blade_usage_action");
+		///<summary>bathroom/razor_blade_usage_click</summary>
+		public SensorEntity BathroomRazorBladeUsageClick => new(_haContext, "sensor.bathroom_razor_blade_usage_click");
+		///<summary>bathroom/razor_blade_usage_power_outage_count</summary>
+		public SensorEntity BathroomRazorBladeUsagePowerOutageCount => new(_haContext, "sensor.bathroom_razor_blade_usage_power_outage_count");
 		///<summary>bedroom/bedside_light_switch_fabienne_action</summary>
 		public SensorEntity BedroomBedsideLightSwitchFabienneAction => new(_haContext, "sensor.bedroom_bedside_light_switch_fabienne_action");
 		///<summary>bedroom/bedside_light_switch_fabienne_click</summary>
@@ -892,8 +1143,24 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity BedroomRollerShutterRightMotorState => new(_haContext, "sensor.bedroom_roller_shutter_right_motor_state");
 		///<summary>Brother MFC-1910W, using brlaser v6</summary>
 		public SensorEntity BrotherMfc1910wUsingBrlaserV6 => new(_haContext, "sensor.brother_mfc_1910w_using_brlaser_v6");
+		///<summary>Bücher Oma Philipp</summary>
+		public SensorEntity BucherOmaPhilipp => new(_haContext, "sensor.bucher_oma_philipp");
 		///<summary>Current training schedule</summary>
 		public SensorEntity CurrentTrainingSchedule => new(_haContext, "sensor.current_training_schedule");
+		///<summary>desktop-171ttut Expires</summary>
+		public SensorEntity Desktop171ttutExpires => new(_haContext, "sensor.desktop_171ttut_expires");
+		///<summary>desktop-171ttut IP address</summary>
+		public SensorEntity Desktop171ttutIpAddress => new(_haContext, "sensor.desktop_171ttut_ip_address");
+		///<summary>desktop-171ttut Last seen</summary>
+		public SensorEntity Desktop171ttutLastSeen => new(_haContext, "sensor.desktop_171ttut_last_seen");
+		///<summary>Dioramen Philipp</summary>
+		public SensorEntity DioramenPhilipp => new(_haContext, "sensor.dioramen_philipp");
+		///<summary>Einkaufen 🛒 Philipp</summary>
+		public SensorEntity EinkaufenPhilipp => new(_haContext, "sensor.einkaufen_philipp");
+		///<summary>🥘 Essen holen 🍱 Philipp</summary>
+		public SensorEntity EssenHolenPhilipp => new(_haContext, "sensor.essen_holen_philipp");
+		///<summary>Essen 😍 Philipp</summary>
+		public SensorEntity EssenPhilipp => new(_haContext, "sensor.essen_philipp");
 		///<summary>Fantenpad Activity</summary>
 		public SensorEntity FantenpadActivity => new(_haContext, "sensor.fantenpad_activity");
 		///<summary>Fantenpad Battery State</summary>
@@ -912,8 +1179,100 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity FantenrusselLastCleanEnd => new(_haContext, "sensor.fantenrussel_last_clean_end");
 		///<summary>Fantenrüssel Last clean start</summary>
 		public SensorEntity FantenrusselLastCleanStart => new(_haContext, "sensor.fantenrussel_last_clean_start");
+		///<summary>🍔 Finger Food evening 🍟 Philipp</summary>
+		public SensorEntity FingerFoodEveningPhilipp => new(_haContext, "sensor.finger_food_evening_philipp");
+		///<summary>Flagged Emails Philipp</summary>
+		public SensorEntity FlaggedEmailsPhilipp => new(_haContext, "sensor.flagged_emails_philipp");
+		///<summary>Fragen Mieterbund Philipp</summary>
+		public SensorEntity FragenMieterbundPhilipp => new(_haContext, "sensor.fragen_mieterbund_philipp");
+		///<summary>Game ideas Philipp</summary>
+		public SensorEntity GameIdeasPhilipp => new(_haContext, "sensor.game_ideas_philipp");
+		///<summary>Games Philipp</summary>
+		public SensorEntity GamesPhilipp => new(_haContext, "sensor.games_philipp");
+		///<summary>🎁 Geschenke Eltern 🎁 Philipp</summary>
+		public SensorEntity GeschenkeElternPhilipp => new(_haContext, "sensor.geschenke_eltern_philipp");
+		///<summary>Geschenke 🎁 Philipp</summary>
+		public SensorEntity GeschenkePhilipp => new(_haContext, "sensor.geschenke_philipp");
 		///<summary>hallway Cluster Leader</summary>
 		public SensorEntity HallwayClusterLeader => new(_haContext, "sensor.hallway_cluster_leader");
+		///<summary>Haushaltstag Philipp</summary>
+		public SensorEntity HaushaltstagPhilipp => new(_haContext, "sensor.haushaltstag_philipp");
+		///<summary>Hochzeit Philipp</summary>
+		public SensorEntity HochzeitPhilipp => new(_haContext, "sensor.hochzeit_philipp");
+		///<summary>home-desktop-fabienne Expires</summary>
+		public SensorEntity HomeDesktopFabienneExpires => new(_haContext, "sensor.home_desktop_fabienne_expires");
+		///<summary>home-desktop-fabienne IP address</summary>
+		public SensorEntity HomeDesktopFabienneIpAddress => new(_haContext, "sensor.home_desktop_fabienne_ip_address");
+		///<summary>home-desktop-fabienne Last seen</summary>
+		public SensorEntity HomeDesktopFabienneLastSeen => new(_haContext, "sensor.home_desktop_fabienne_last_seen");
+		///<summary>home-desktop-oma Expires</summary>
+		public SensorEntity HomeDesktopOmaExpires => new(_haContext, "sensor.home_desktop_oma_expires");
+		///<summary>home-desktop-oma IP address</summary>
+		public SensorEntity HomeDesktopOmaIpAddress => new(_haContext, "sensor.home_desktop_oma_ip_address");
+		///<summary>home-desktop-oma Last seen</summary>
+		public SensorEntity HomeDesktopOmaLastSeen => new(_haContext, "sensor.home_desktop_oma_last_seen");
+		///<summary>home-desktop-philipp Expires</summary>
+		public SensorEntity HomeDesktopPhilippExpires => new(_haContext, "sensor.home_desktop_philipp_expires");
+		///<summary>home-desktop-philipp IP address</summary>
+		public SensorEntity HomeDesktopPhilippIpAddress => new(_haContext, "sensor.home_desktop_philipp_ip_address");
+		///<summary>home-desktop-philipp Last seen</summary>
+		public SensorEntity HomeDesktopPhilippLastSeen => new(_haContext, "sensor.home_desktop_philipp_last_seen");
+		///<summary>home-k8s-master Expires</summary>
+		public SensorEntity HomeK8sMasterExpires => new(_haContext, "sensor.home_k8s_master_expires");
+		///<summary>home-k8s-master IP address</summary>
+		public SensorEntity HomeK8sMasterIpAddress => new(_haContext, "sensor.home_k8s_master_ip_address");
+		///<summary>home-k8s-master Last seen</summary>
+		public SensorEntity HomeK8sMasterLastSeen => new(_haContext, "sensor.home_k8s_master_last_seen");
+		///<summary>home-laptop-enbw Expires</summary>
+		public SensorEntity HomeLaptopEnbwExpires => new(_haContext, "sensor.home_laptop_enbw_expires");
+		///<summary>home-laptop-enbw IP address</summary>
+		public SensorEntity HomeLaptopEnbwIpAddress => new(_haContext, "sensor.home_laptop_enbw_ip_address");
+		///<summary>home-laptop-enbw Last seen</summary>
+		public SensorEntity HomeLaptopEnbwLastSeen => new(_haContext, "sensor.home_laptop_enbw_last_seen");
+		///<summary>home-laptop-fabienne Expires</summary>
+		public SensorEntity HomeLaptopFabienneExpires => new(_haContext, "sensor.home_laptop_fabienne_expires");
+		///<summary>home-laptop-fabienne IP address</summary>
+		public SensorEntity HomeLaptopFabienneIpAddress => new(_haContext, "sensor.home_laptop_fabienne_ip_address");
+		///<summary>home-laptop-fabienne Last seen</summary>
+		public SensorEntity HomeLaptopFabienneLastSeen => new(_haContext, "sensor.home_laptop_fabienne_last_seen");
+		///<summary>home-smartphone-fabienne Expires</summary>
+		public SensorEntity HomeSmartphoneFabienneExpires => new(_haContext, "sensor.home_smartphone_fabienne_expires");
+		///<summary>home-smartphone-fabienne IP address</summary>
+		public SensorEntity HomeSmartphoneFabienneIpAddress => new(_haContext, "sensor.home_smartphone_fabienne_ip_address");
+		///<summary>home-smartphone-fabienne Last seen</summary>
+		public SensorEntity HomeSmartphoneFabienneLastSeen => new(_haContext, "sensor.home_smartphone_fabienne_last_seen");
+		///<summary>home-smartphone-philipp Expires</summary>
+		public SensorEntity HomeSmartphonePhilippExpires => new(_haContext, "sensor.home_smartphone_philipp_expires");
+		///<summary>home-smartphone-philipp IP address</summary>
+		public SensorEntity HomeSmartphonePhilippIpAddress => new(_haContext, "sensor.home_smartphone_philipp_ip_address");
+		///<summary>home-smartphone-philipp Last seen</summary>
+		public SensorEntity HomeSmartphonePhilippLastSeen => new(_haContext, "sensor.home_smartphone_philipp_last_seen");
+		///<summary>home-tablet-hallway-android Expires</summary>
+		public SensorEntity HomeTabletHallwayAndroidExpires => new(_haContext, "sensor.home_tablet_hallway_android_expires");
+		///<summary>home-tablet-hallway-android IP address</summary>
+		public SensorEntity HomeTabletHallwayAndroidIpAddress => new(_haContext, "sensor.home_tablet_hallway_android_ip_address");
+		///<summary>home-tablet-hallway-android Last seen</summary>
+		public SensorEntity HomeTabletHallwayAndroidLastSeen => new(_haContext, "sensor.home_tablet_hallway_android_last_seen");
+		///<summary>home-tablet-ios Expires</summary>
+		public SensorEntity HomeTabletIosExpires => new(_haContext, "sensor.home_tablet_ios_expires");
+		///<summary>home-tablet-ios IP address</summary>
+		public SensorEntity HomeTabletIosIpAddress => new(_haContext, "sensor.home_tablet_ios_ip_address");
+		///<summary>home-tablet-ios Last seen</summary>
+		public SensorEntity HomeTabletIosLastSeen => new(_haContext, "sensor.home_tablet_ios_last_seen");
+		///<summary>home-thinclient-development Expires</summary>
+		public SensorEntity HomeThinclientDevelopmentExpires => new(_haContext, "sensor.home_thinclient_development_expires");
+		///<summary>home-thinclient-development IP address</summary>
+		public SensorEntity HomeThinclientDevelopmentIpAddress => new(_haContext, "sensor.home_thinclient_development_ip_address");
+		///<summary>home-thinclient-development Last seen</summary>
+		public SensorEntity HomeThinclientDevelopmentLastSeen => new(_haContext, "sensor.home_thinclient_development_last_seen");
+		///<summary>home-thinclient-living-room Expires</summary>
+		public SensorEntity HomeThinclientLivingRoomExpires => new(_haContext, "sensor.home_thinclient_living_room_expires");
+		///<summary>home-thinclient-living-room IP address</summary>
+		public SensorEntity HomeThinclientLivingRoomIpAddress => new(_haContext, "sensor.home_thinclient_living_room_ip_address");
+		///<summary>home-thinclient-living-room Last seen</summary>
+		public SensorEntity HomeThinclientLivingRoomLastSeen => new(_haContext, "sensor.home_thinclient_living_room_last_seen");
+		///<summary>Homelab Philipp</summary>
+		public SensorEntity HomelabPhilipp => new(_haContext, "sensor.homelab_philipp");
 		public SensorEntity Icloud3EventLog => new(_haContext, "sensor.icloud3_event_log");
 		///<summary>iPhone Fabienne Activity</summary>
 		public SensorEntity IphoneFabienneActivity => new(_haContext, "sensor.iphone_fabienne_activity");
@@ -1005,6 +1364,8 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity KitchenKratomCounterPowerOutageCount => new(_haContext, "sensor.kitchen_kratom_counter_power_outage_count");
 		///<summary>kitchen/motion_detector_power_outage_count</summary>
 		public SensorEntity KitchenMotionDetectorPowerOutageCount => new(_haContext, "sensor.kitchen_motion_detector_power_outage_count");
+		///<summary>Koch- und Backideen Philipp</summary>
+		public SensorEntity KochUndBackideenPhilipp => new(_haContext, "sensor.koch_und_backideen_philipp");
 		///<summary>Daily kratom intake for fabienne</summary>
 		public SensorEntity KratomIntakeFabienne => new(_haContext, "sensor.kratom_intake_fabienne");
 		///<summary>Daily kratom intake target for fabienne</summary>
@@ -1013,12 +1374,34 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity KratomIntakePhilipp => new(_haContext, "sensor.kratom_intake_philipp");
 		///<summary>Daily kratom intake target for philipp</summary>
 		public SensorEntity KratomIntakePhilippTarget => new(_haContext, "sensor.kratom_intake_philipp_target");
+		///<summary>living_room/lamp_switch_action</summary>
+		public SensorEntity LivingRoomLampSwitchAction => new(_haContext, "sensor.living_room_lamp_switch_action");
+		///<summary>living_room/lamp_switch_click</summary>
+		public SensorEntity LivingRoomLampSwitchClick => new(_haContext, "sensor.living_room_lamp_switch_click");
 		///<summary>Mailbox door sensor</summary>
 		public SensorEntity MailboxDoor => new(_haContext, "sensor.mailbox_door");
+		///<summary>Status</summary>
+		public SensorEntity Mfc1910wStatus => new(_haContext, "sensor.mfc_1910w_status");
 		///<summary>netdaemon_status</summary>
 		public SensorEntity NetdaemonStatus => new(_haContext, "sensor.netdaemon_status");
+		///<summary>🇫🇷 Normandie 🇫🇷 Philipp</summary>
+		public SensorEntity NormandiePhilipp => new(_haContext, "sensor.normandie_philipp");
+		///<summary>Nuki Firmware version</summary>
+		public SensorEntity NukiFirmwareVersion => new(_haContext, "sensor.nuki_firmware_version");
+		///<summary>Nuki Hardware version</summary>
+		public SensorEntity NukiHardwareVersion => new(_haContext, "sensor.nuki_hardware_version");
+		///<summary>Nuki trigger</summary>
+		public SensorEntity NukiTrigger => new(_haContext, "sensor.nuki_trigger");
+		///<summary>🌲Nürnberg🎄🍄 Philipp</summary>
+		public SensorEntity NurnbergPhilipp => new(_haContext, "sensor.nurnberg_philipp");
 		///<summary>openwindows_count</summary>
 		public SensorEntity OpenwindowsCount => new(_haContext, "sensor.openwindows_count");
+		///<summary>pupsstation Expires</summary>
+		public SensorEntity PupsstationExpires => new(_haContext, "sensor.pupsstation_expires");
+		///<summary>pupsstation IP address</summary>
+		public SensorEntity PupsstationIpAddress => new(_haContext, "sensor.pupsstation_ip_address");
+		///<summary>pupsstation Last seen</summary>
+		public SensorEntity PupsstationLastSeen => new(_haContext, "sensor.pupsstation_last_seen");
 		///<summary>PupsStation (Volume 1) Status</summary>
 		public SensorEntity PupsstationStatus => new(_haContext, "sensor.pupsstation_status");
 		///<summary>PupsStation (Drive 1) Status</summary>
@@ -1029,6 +1412,18 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity PupsstationStatus4 => new(_haContext, "sensor.pupsstation_status_4");
 		///<summary>Razor blade usage</summary>
 		public SensorEntity RazorBladeUsage => new(_haContext, "sensor.razor_blade_usage");
+		///<summary>🇳🇿 Rundreise Neuseeland 🇳🇿 Philipp</summary>
+		public SensorEntity RundreiseNeuseelandPhilipp => new(_haContext, "sensor.rundreise_neuseeland_philipp");
+		///<summary>🇺🇸 Rundreise West Coast 🇺🇸 Philipp</summary>
+		public SensorEntity RundreiseWestCoastPhilipp => new(_haContext, "sensor.rundreise_west_coast_philipp");
+		///<summary>🇺🇸 Rundreisen Zukunft 🇺🇸 Philipp</summary>
+		public SensorEntity RundreisenZukunftPhilipp => new(_haContext, "sensor.rundreisen_zukunft_philipp");
+		///<summary>Schreib-Ideen Philipp</summary>
+		public SensorEntity SchreibIdeenPhilipp => new(_haContext, "sensor.schreib_ideen_philipp");
+		///<summary>Sehenswerte Filme Philipp</summary>
+		public SensorEntity SehenswerteFilmePhilipp => new(_haContext, "sensor.sehenswerte_filme_philipp");
+		///<summary>Serien Philipp</summary>
+		public SensorEntity SerienPhilipp => new(_haContext, "sensor.serien_philipp");
 		///<summary>Ist heute Haushaltstag?</summary>
 		public SensorEntity ShowHouseholdDayTodo => new(_haContext, "sensor.show_household_day_todo");
 		///<summary>study/desk_lamp_switch_action</summary>
@@ -1039,12 +1434,30 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity StudyDeskLampSwitchPowerOutageCount => new(_haContext, "sensor.study_desk_lamp_switch_power_outage_count");
 		///<summary>study/motion_detector_power_outage_count</summary>
 		public SensorEntity StudyMotionDetectorPowerOutageCount => new(_haContext, "sensor.study_motion_detector_power_outage_count");
+		///<summary>🫖 Tee-Ranking ☕️ (und anderes…) Philipp</summary>
+		public SensorEntity TeeRankingUndAnderesPhilipp => new(_haContext, "sensor.tee_ranking_und_anderes_philipp");
+		///<summary>💸 The Millionaire’s Bucket List 💸 Philipp</summary>
+		public SensorEntity TheMillionairesBucketListPhilipp => new(_haContext, "sensor.the_millionaires_bucket_list_philipp");
 		///<summary>Thermostat Arbeitszimmer</summary>
 		public SensorEntity ThermostatArbeitszimmer => new(_haContext, "sensor.thermostat_arbeitszimmer");
 		///<summary>Thermostat Badezimmer</summary>
 		public SensorEntity ThermostatBadezimmer => new(_haContext, "sensor.thermostat_badezimmer");
 		///<summary>Thermostat Wohnzimmer</summary>
 		public SensorEntity ThermostatWohnzimmer => new(_haContext, "sensor.thermostat_wohnzimmer");
+		///<summary>Unser Haus 🏠 Philipp</summary>
+		public SensorEntity UnserHausPhilipp => new(_haContext, "sensor.unser_haus_philipp");
+		///<summary>🌺 Urlaub Hawaii 🧳 Philipp</summary>
+		public SensorEntity UrlaubHawaiiPhilipp => new(_haContext, "sensor.urlaub_hawaii_philipp");
+		///<summary>Urlaub Köln SYML ⛪️ Philipp</summary>
+		public SensorEntity UrlaubKolnSymlPhilipp => new(_haContext, "sensor.urlaub_koln_syml_philipp");
+		///<summary>🇨🇺 Urlaub Kuba 🇨🇺 Philipp</summary>
+		public SensorEntity UrlaubKubaPhilipp => new(_haContext, "sensor.urlaub_kuba_philipp");
+		///<summary>🇫🇷 Urlaub Paris 🇫🇷 Philipp</summary>
+		public SensorEntity UrlaubParisPhilipp => new(_haContext, "sensor.urlaub_paris_philipp");
+		///<summary>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Urlaub Schottland 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Philipp</summary>
+		public SensorEntity UrlaubSchottlandPhilipp => new(_haContext, "sensor.urlaub_schottland_philipp");
+		///<summary>Urlaubsziele 2023 Philipp</summary>
+		public SensorEntity Urlaubsziele2023Philipp => new(_haContext, "sensor.urlaubsziele_2023_philipp");
 		///<summary>Daily water intake for fabienne</summary>
 		public SensorEntity WaterIntakeFabienne => new(_haContext, "sensor.water_intake_fabienne");
 		///<summary>Daily water intake target for fabienne</summary>
@@ -1053,6 +1466,12 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity WaterIntakePhilipp => new(_haContext, "sensor.water_intake_philipp");
 		///<summary>Daily water intake target for philipp</summary>
 		public SensorEntity WaterIntakePhilippTarget => new(_haContext, "sensor.water_intake_philipp_target");
+		///<summary>Weihnachtsgeschenke Philipp</summary>
+		public SensorEntity WeihnachtsgeschenkePhilipp => new(_haContext, "sensor.weihnachtsgeschenke_philipp");
+		///<summary>Weihnachtswünsche Philipp</summary>
+		public SensorEntity WeihnachtswunschePhilipp => new(_haContext, "sensor.weihnachtswunsche_philipp");
+		///<summary>🌍 Zoo Philipp</summary>
+		public SensorEntity ZooPhilipp => new(_haContext, "sensor.zoo_philipp");
 	}
 
 	public partial class SunEntities
@@ -1091,6 +1510,10 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntity LivingRoomChristmasStars => new(_haContext, "switch.living_room_christmas_stars");
 		///<summary>living_room/christmas_stars Child Lock</summary>
 		public SwitchEntity LivingRoomChristmasStarsChildLock => new(_haContext, "switch.living_room_christmas_stars_child_lock");
+		///<summary>living_room/christmas_tree Child Lock</summary>
+		public SwitchEntity LivingRoomChristmasTreeChildLock => new(_haContext, "switch.living_room_christmas_tree_child_lock");
+		///<summary>living_room/christmas_tree Socket 1</summary>
+		public SwitchEntity LivingRoomChristmasTreeSocket1 => new(_haContext, "switch.living_room_christmas_tree_socket_1");
 		///<summary>living_room/contract_light Socket 1</summary>
 		public SwitchEntity LivingRoomContractLightSocket1 => new(_haContext, "switch.living_room_contract_light_socket_1");
 		///<summary>living_room/lightbar Socket 1</summary>
@@ -1117,10 +1540,12 @@ namespace HomeAutomations.Models.Generated
 		public SwitchEntity NetdaemonVacuumreminder => new(_haContext, "switch.netdaemon_vacuumreminder");
 		///<summary>netdaemon_webhookserver</summary>
 		public SwitchEntity NetdaemonWebhookserver => new(_haContext, "switch.netdaemon_webhookserver");
+		///<summary>Nuki Button enabled</summary>
+		public SwitchEntity NukiButtonEnabled => new(_haContext, "switch.nuki_button_enabled");
+		///<summary>Nuki LED enabled</summary>
+		public SwitchEntity NukiLedEnabled => new(_haContext, "switch.nuki_led_enabled");
 		///<summary>Raumthermostat Schlafzimmer ChildLock</summary>
 		public SwitchEntity RaumthermostatSchlafzimmerChildlock => new(_haContext, "switch.raumthermostat_schlafzimmer_childlock");
-		///<summary>study/speakers_philipp Socket 1</summary>
-		public SwitchEntity StudySpeakersPhilippSocket1 => new(_haContext, "switch.study_speakers_philipp_socket_1");
 		///<summary>Thermostat Arbeitszimmer ChildLock</summary>
 		public SwitchEntity ThermostatArbeitszimmerChildlock => new(_haContext, "switch.thermostat_arbeitszimmer_childlock");
 		///<summary>Thermostat Badezimmer ChildLock</summary>
@@ -1156,6 +1581,20 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>living_room/lamp_switch</summary>
+		public UpdateEntity E0x90ab96fffe180250 => new(_haContext, "update.0x90ab96fffe180250");
+		///<summary>bedroom/lava_lamp</summary>
+		public UpdateEntity BedroomLavaLamp => new(_haContext, "update.bedroom_lava_lamp");
+		///<summary>bedroom/roller_shutter_left</summary>
+		public UpdateEntity BedroomRollerShutterLeft => new(_haContext, "update.bedroom_roller_shutter_left");
+		///<summary>bedroom/roller_shutter_right</summary>
+		public UpdateEntity BedroomRollerShutterRight => new(_haContext, "update.bedroom_roller_shutter_right");
+		///<summary>kitchen/cabinet_light</summary>
+		public UpdateEntity KitchenCabinetLight => new(_haContext, "update.kitchen_cabinet_light");
+		///<summary>kitchen/ceiling_light</summary>
+		public UpdateEntity KitchenCeilingLight => new(_haContext, "update.kitchen_ceiling_light");
+		///<summary>living_room/standard_lamp</summary>
+		public UpdateEntity LivingRoomStandardLamp => new(_haContext, "update.living_room_standard_lamp");
 		///<summary>PupsStation DSM Update</summary>
 		public UpdateEntity PupsstationDsmUpdate => new(_haContext, "update.pupsstation_dsm_update");
 	}
@@ -1192,10 +1631,16 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>Zuhause</summary>
+		///<summary>EnBW</summary>
+		public ZoneEntity Enbw => new(_haContext, "zone.enbw");
+		///<summary>Home</summary>
 		public ZoneEntity Home => new(_haContext, "zone.home");
 		///<summary>iphone_philipp_stationary</summary>
 		public ZoneEntity IphonePhilippStationary => new(_haContext, "zone.iphone_philipp_stationary");
+		///<summary>Messe Karlsruhe (dm Arena)</summary>
+		public ZoneEntity MesseKarlsruheDmArena => new(_haContext, "zone.messe_karlsruhe_dm_arena");
+		///<summary>Messe Karlsruhe (Festplatz)</summary>
+		public ZoneEntity MesseKarlsruheFestplatz => new(_haContext, "zone.messe_karlsruhe_festplatz");
 	}
 
 	public partial record AlarmControlPanelEntity : Entity<AlarmControlPanelEntity, EntityState<AlarmControlPanelAttributes>, AlarmControlPanelAttributes>
@@ -1387,6 +1832,26 @@ namespace HomeAutomations.Models.Generated
 		public string? Icon { get; init; }
 	}
 
+	public partial record CalendarEntity : Entity<CalendarEntity, EntityState<CalendarAttributes>, CalendarAttributes>
+	{
+		public CalendarEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public CalendarEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record CalendarAttributes
+	{
+		[JsonPropertyName("data")]
+		public IReadOnlyList<object>? Data { get; init; }
+
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+	}
+
 	public partial record CameraEntity : Entity<CameraEntity, EntityState<CameraAttributes>, CameraAttributes>
 	{
 		public CameraEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -1404,7 +1869,7 @@ namespace HomeAutomations.Models.Generated
 		public string? AccessToken { get; init; }
 
 		[JsonPropertyName("calibration_points")]
-		public object? CalibrationPoints { get; init; }
+		public IReadOnlyList<object>? CalibrationPoints { get; init; }
 
 		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
@@ -1464,38 +1929,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("temperature")]
 		public double? Temperature { get; init; }
-	}
-
-	public partial record ConfiguratorEntity : Entity<ConfiguratorEntity, EntityState<ConfiguratorAttributes>, ConfiguratorAttributes>
-	{
-		public ConfiguratorEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
-		{
-		}
-
-		public ConfiguratorEntity(Entity entity) : base(entity)
-		{
-		}
-	}
-
-	public record ConfiguratorAttributes
-	{
-		[JsonPropertyName("configure_id")]
-		public string? ConfigureId { get; init; }
-
-		[JsonPropertyName("description")]
-		public string? Description { get; init; }
-
-		[JsonPropertyName("entity_picture")]
-		public string? EntityPicture { get; init; }
-
-		[JsonPropertyName("fields")]
-		public IReadOnlyList<object>? Fields { get; init; }
-
-		[JsonPropertyName("friendly_name")]
-		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("submit_caption")]
-		public string? SubmitCaption { get; init; }
 	}
 
 	public partial record CounterEntity : Entity<CounterEntity, EntityState<CounterAttributes>, CounterAttributes>
@@ -1967,6 +2400,9 @@ namespace HomeAutomations.Models.Generated
 
 	public record LockAttributes
 	{
+		[JsonPropertyName("battery_critical")]
+		public bool? BatteryCritical { get; init; }
+
 		[JsonPropertyName("child_lock")]
 		public string? ChildLock { get; init; }
 
@@ -1990,6 +2426,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("linkquality")]
 		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("nuki_id")]
+		public double? NukiId { get; init; }
 
 		[JsonPropertyName("power")]
 		public double? Power { get; init; }
@@ -2052,6 +2491,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
+		[JsonPropertyName("icon")]
+		public string? Icon { get; init; }
+
 		[JsonPropertyName("max")]
 		public double? Max { get; init; }
 
@@ -2066,29 +2508,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("unit_of_measurement")]
 		public string? UnitOfMeasurement { get; init; }
-	}
-
-	public partial record PersistentNotificationEntity : Entity<PersistentNotificationEntity, EntityState<PersistentNotificationAttributes>, PersistentNotificationAttributes>
-	{
-		public PersistentNotificationEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
-		{
-		}
-
-		public PersistentNotificationEntity(Entity entity) : base(entity)
-		{
-		}
-	}
-
-	public record PersistentNotificationAttributes
-	{
-		[JsonPropertyName("friendly_name")]
-		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("message")]
-		public string? Message { get; init; }
-
-		[JsonPropertyName("title")]
-		public string? Title { get; init; }
 	}
 
 	public partial record PersonEntity : Entity<PersonEntity, EntityState<PersonAttributes>, PersonAttributes>
@@ -2170,6 +2589,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("child_lock")]
 		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("color")]
+		public object? Color { get; init; }
 
 		[JsonPropertyName("color_mode")]
 		public string? ColorMode { get; init; }
@@ -2365,8 +2787,14 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("name")]
 		public string? Name { get; init; }
 
+		[JsonPropertyName("nuki_id")]
+		public double? NukiId { get; init; }
+
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
+
+		[JsonPropertyName("packages")]
+		public IReadOnlyList<object>? Packages { get; init; }
 
 		[JsonPropertyName("position")]
 		public double? Position { get; init; }
@@ -2489,6 +2917,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("Allows VoIP")]
 		public bool? AllowsVoIP { get; init; }
+
+		[JsonPropertyName("all_tasks")]
+		public IReadOnlyList<object>? AllTasks { get; init; }
 
 		[JsonPropertyName("Areas Of Interest")]
 		public string? AreasOfInterest { get; init; }
@@ -2618,6 +3049,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("options")]
 		public IReadOnlyList<string>? Options { get; init; }
+
+		[JsonPropertyName("overdue_tasks")]
+		public IReadOnlyList<object>? OverdueTasks { get; init; }
 
 		[JsonPropertyName("position")]
 		public double? Position { get; init; }
@@ -2843,8 +3277,50 @@ namespace HomeAutomations.Models.Generated
 
 	public record UpdateAttributes
 	{
+		[JsonPropertyName("action")]
+		public object? Action { get; init; }
+
 		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
+
+		[JsonPropertyName("auto_update")]
+		public bool? AutoUpdate { get; init; }
+
+		[JsonPropertyName("battery")]
+		public double? Battery { get; init; }
+
+		[JsonPropertyName("brightness")]
+		public double? Brightness { get; init; }
+
+		[JsonPropertyName("charging_status")]
+		public object? ChargingStatus { get; init; }
+
+		[JsonPropertyName("child_lock")]
+		public string? ChildLock { get; init; }
+
+		[JsonPropertyName("click")]
+		public object? Click { get; init; }
+
+		[JsonPropertyName("color_mode")]
+		public string? ColorMode { get; init; }
+
+		[JsonPropertyName("color_temp")]
+		public double? ColorTemp { get; init; }
+
+		[JsonPropertyName("current")]
+		public double? Current { get; init; }
+
+		[JsonPropertyName("device")]
+		public object? Device { get; init; }
+
+		[JsonPropertyName("device_class")]
+		public string? DeviceClass { get; init; }
+
+		[JsonPropertyName("device_temperature")]
+		public object? DeviceTemperature { get; init; }
+
+		[JsonPropertyName("energy")]
+		public double? Energy { get; init; }
 
 		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
@@ -2852,8 +3328,65 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
+		[JsonPropertyName("indicator_mode")]
+		public string? IndicatorMode { get; init; }
+
+		[JsonPropertyName("in_progress")]
+		public bool? InProgress { get; init; }
+
+		[JsonPropertyName("installed_version")]
+		public string? InstalledVersion { get; init; }
+
+		[JsonPropertyName("last_seen")]
+		public string? LastSeen { get; init; }
+
+		[JsonPropertyName("latest_version")]
+		public string? LatestVersion { get; init; }
+
+		[JsonPropertyName("linkquality")]
+		public double? Linkquality { get; init; }
+
+		[JsonPropertyName("motor_state")]
+		public object? MotorState { get; init; }
+
+		[JsonPropertyName("position")]
+		public double? Position { get; init; }
+
+		[JsonPropertyName("power")]
+		public double? Power { get; init; }
+
+		[JsonPropertyName("power_on_behavior")]
+		public string? PowerOnBehavior { get; init; }
+
+		[JsonPropertyName("power_outage_memory")]
+		public string? PowerOutageMemory { get; init; }
+
+		[JsonPropertyName("release_summary")]
+		public object? ReleaseSummary { get; init; }
+
+		[JsonPropertyName("release_url")]
+		public string? ReleaseUrl { get; init; }
+
+		[JsonPropertyName("running")]
+		public object? Running { get; init; }
+
+		[JsonPropertyName("skipped_version")]
+		public object? SkippedVersion { get; init; }
+
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
+
+		[JsonPropertyName("update")]
+		public object? Update { get; init; }
+
+		[JsonPropertyName("update_available")]
+		public bool? UpdateAvailable { get; init; }
+
+		[JsonPropertyName("voltage")]
+		public double? Voltage { get; init; }
 	}
 
 	public partial record VacuumEntity : Entity<VacuumEntity, EntityState<VacuumAttributes>, VacuumAttributes>
@@ -2869,11 +3402,23 @@ namespace HomeAutomations.Models.Generated
 
 	public record VacuumAttributes
 	{
+		[JsonPropertyName("battery_icon")]
+		public string? BatteryIcon { get; init; }
+
+		[JsonPropertyName("battery_level")]
+		public double? BatteryLevel { get; init; }
+
+		[JsonPropertyName("fan_speed")]
+		public string? FanSpeed { get; init; }
+
 		[JsonPropertyName("fan_speed_list")]
 		public IReadOnlyList<string>? FanSpeedList { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("status")]
+		public string? Status { get; init; }
 
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
@@ -2987,6 +3532,8 @@ namespace HomeAutomations.Models.Generated
 
 		ButtonServices Button { get; }
 
+		CalendarServices Calendar { get; }
+
 		CameraServices Camera { get; }
 
 		CastServices Cast { get; }
@@ -2995,7 +3542,7 @@ namespace HomeAutomations.Models.Generated
 
 		CloudServices Cloud { get; }
 
-		ConfiguratorServices Configurator { get; }
+		CloudflareServices Cloudflare { get; }
 
 		ConversationServices Conversation { get; }
 
@@ -3047,7 +3594,11 @@ namespace HomeAutomations.Models.Generated
 
 		NotifyServices Notify { get; }
 
+		NukiServices Nuki { get; }
+
 		NumberServices Number { get; }
+
+		O365Services O365 { get; }
 
 		PersistentNotificationServices PersistentNotification { get; }
 
@@ -3110,11 +3661,12 @@ namespace HomeAutomations.Models.Generated
 		public BoschShcServices BoschShc => new(_haContext);
 		public BrowserModServices BrowserMod => new(_haContext);
 		public ButtonServices Button => new(_haContext);
+		public CalendarServices Calendar => new(_haContext);
 		public CameraServices Camera => new(_haContext);
 		public CastServices Cast => new(_haContext);
 		public ClimateServices Climate => new(_haContext);
 		public CloudServices Cloud => new(_haContext);
-		public ConfiguratorServices Configurator => new(_haContext);
+		public CloudflareServices Cloudflare => new(_haContext);
 		public ConversationServices Conversation => new(_haContext);
 		public CounterServices Counter => new(_haContext);
 		public CoverServices Cover => new(_haContext);
@@ -3140,7 +3692,9 @@ namespace HomeAutomations.Models.Generated
 		public MqttServices Mqtt => new(_haContext);
 		public NetdaemonServices Netdaemon => new(_haContext);
 		public NotifyServices Notify => new(_haContext);
+		public NukiServices Nuki => new(_haContext);
 		public NumberServices Number => new(_haContext);
+		public O365Services O365 => new(_haContext);
 		public PersistentNotificationServices PersistentNotification => new(_haContext);
 		public PersonServices Person => new(_haContext);
 		public PingServices Ping => new(_haContext);
@@ -3824,6 +4378,67 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public class CalendarServices
+	{
+		private readonly IHaContext _haContext;
+		public CalendarServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Add a new calendar event.</summary>
+		///<param name="target">The target for this service call</param>
+		public void CreateEvent(ServiceTarget target, CalendarCreateEventParameters data)
+		{
+			_haContext.CallService("calendar", "create_event", target, data);
+		}
+
+		///<summary>Add a new calendar event.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="summary">Defines the short summary or subject for the event eg: Department Party</param>
+		///<param name="description">A more complete description of the event than that provided by the summary. eg: Meeting to provide technical review for 'Phoenix' design.</param>
+		///<param name="startDateTime">The date and time the event should start. eg: 2022-03-22 20:00:00</param>
+		///<param name="endDateTime">The date and time the event should end. eg: 2022-03-22 22:00:00</param>
+		///<param name="startDate">The date the all-day event should start. eg: 2022-03-22</param>
+		///<param name="endDate">The date the all-day event should end (exclusive). eg: 2022-03-23</param>
+		///<param name="in">Days or weeks that you want to create the event in. eg: "days": 2 or "weeks": 2</param>
+		public void CreateEvent(ServiceTarget target, string @summary, string? @description = null, object? @startDateTime = null, object? @endDateTime = null, object? @startDate = null, object? @endDate = null, object? @in = null)
+		{
+			_haContext.CallService("calendar", "create_event", target, new CalendarCreateEventParameters{Summary = @summary, Description = @description, StartDateTime = @startDateTime, EndDateTime = @endDateTime, StartDate = @startDate, EndDate = @endDate, In = @in});
+		}
+	}
+
+	public record CalendarCreateEventParameters
+	{
+		///<summary>Defines the short summary or subject for the event eg: Department Party</summary>
+		[JsonPropertyName("summary")]
+		public string? Summary { get; init; }
+
+		///<summary>A more complete description of the event than that provided by the summary. eg: Meeting to provide technical review for 'Phoenix' design.</summary>
+		[JsonPropertyName("description")]
+		public string? Description { get; init; }
+
+		///<summary>The date and time the event should start. eg: 2022-03-22 20:00:00</summary>
+		[JsonPropertyName("start_date_time")]
+		public object? StartDateTime { get; init; }
+
+		///<summary>The date and time the event should end. eg: 2022-03-22 22:00:00</summary>
+		[JsonPropertyName("end_date_time")]
+		public object? EndDateTime { get; init; }
+
+		///<summary>The date the all-day event should start. eg: 2022-03-22</summary>
+		[JsonPropertyName("start_date")]
+		public object? StartDate { get; init; }
+
+		///<summary>The date the all-day event should end (exclusive). eg: 2022-03-23</summary>
+		[JsonPropertyName("end_date")]
+		public object? EndDate { get; init; }
+
+		///<summary>Days or weeks that you want to create the event in. eg: "days": 2 or "weeks": 2</summary>
+		[JsonPropertyName("in")]
+		public object? In { get; init; }
+	}
+
 	public class CameraServices
 	{
 		private readonly IHaContext _haContext;
@@ -4194,17 +4809,18 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public class ConfiguratorServices
+	public class CloudflareServices
 	{
 		private readonly IHaContext _haContext;
-		public ConfiguratorServices(IHaContext haContext)
+		public CloudflareServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
-		public void Configure()
+		///<summary>Manually trigger update to Cloudflare records</summary>
+		public void UpdateRecords()
 		{
-			_haContext.CallService("configurator", "configure", null);
+			_haContext.CallService("cloudflare", "update_records", null);
 		}
 	}
 
@@ -6408,6 +7024,22 @@ namespace HomeAutomations.Models.Generated
 			_haContext.CallService("notify", "notify", null, new NotifyNotifyParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
+		///<summary>Sends a notification message using the o365_email_philipp integration.</summary>
+		public void O365EmailPhilipp(NotifyO365EmailPhilippParameters data)
+		{
+			_haContext.CallService("notify", "o365_email_philipp", null, data);
+		}
+
+		///<summary>Sends a notification message using the o365_email_philipp integration.</summary>
+		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
+		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
+		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
+		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
+		public void O365EmailPhilipp(string @message, string? @title = null, object? @target = null, object? @data = null)
+		{
+			_haContext.CallService("notify", "o365_email_philipp", null, new NotifyO365EmailPhilippParameters{Message = @message, Title = @title, Target = @target, Data = @data});
+		}
+
 		///<summary>Sends a notification that is visible in the front-end.</summary>
 		public void PersistentNotification(NotifyPersistentNotificationParameters data)
 		{
@@ -6499,6 +7131,25 @@ namespace HomeAutomations.Models.Generated
 		public object? Data { get; init; }
 	}
 
+	public record NotifyO365EmailPhilippParameters
+	{
+		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
+
+		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
+		[JsonPropertyName("target")]
+		public object? Target { get; init; }
+
+		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
+		[JsonPropertyName("data")]
+		public object? Data { get; init; }
+	}
+
 	public record NotifyPersistentNotificationParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
@@ -6508,6 +7159,59 @@ namespace HomeAutomations.Models.Generated
 		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
 		[JsonPropertyName("title")]
 		public string? Title { get; init; }
+	}
+
+	public class NukiServices
+	{
+		private readonly IHaContext _haContext;
+		public NukiServices(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Nuki Lock 'n' Go</summary>
+		///<param name="target">The target for this service call</param>
+		public void LockNGo(ServiceTarget target, NukiLockNGoParameters data)
+		{
+			_haContext.CallService("nuki", "lock_n_go", target, data);
+		}
+
+		///<summary>Nuki Lock 'n' Go</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="unlatch">Whether to unlatch the lock.</param>
+		public void LockNGo(ServiceTarget target, bool? @unlatch = null)
+		{
+			_haContext.CallService("nuki", "lock_n_go", target, new NukiLockNGoParameters{Unlatch = @unlatch});
+		}
+
+		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
+		///<param name="target">The target for this service call</param>
+		public void SetContinuousMode(ServiceTarget target, NukiSetContinuousModeParameters data)
+		{
+			_haContext.CallService("nuki", "set_continuous_mode", target, data);
+		}
+
+		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="enable">Whether to enable or disable the feature</param>
+		public void SetContinuousMode(ServiceTarget target, bool? @enable = null)
+		{
+			_haContext.CallService("nuki", "set_continuous_mode", target, new NukiSetContinuousModeParameters{Enable = @enable});
+		}
+	}
+
+	public record NukiLockNGoParameters
+	{
+		///<summary>Whether to unlatch the lock.</summary>
+		[JsonPropertyName("unlatch")]
+		public bool? Unlatch { get; init; }
+	}
+
+	public record NukiSetContinuousModeParameters
+	{
+		///<summary>Whether to enable or disable the feature</summary>
+		[JsonPropertyName("enable")]
+		public bool? Enable { get; init; }
 	}
 
 	public class NumberServices
@@ -6539,6 +7243,326 @@ namespace HomeAutomations.Models.Generated
 		///<summary>The target value the entity should be set to. eg: 42</summary>
 		[JsonPropertyName("value")]
 		public string? Value { get; init; }
+	}
+
+	public class O365Services
+	{
+		private readonly IHaContext _haContext;
+		public O365Services(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Create new calendar event</summary>
+		///<param name="target">The target for this service call</param>
+		public void CreateCalendarEvent(ServiceTarget target, O365CreateCalendarEventParameters data)
+		{
+			_haContext.CallService("o365", "create_calendar_event", target, data);
+		}
+
+		///<summary>Create new calendar event</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="subject">The subject of the created event eg: Clean up the garage</param>
+		///<param name="start">The start time of the event eg: 2023-01-01T12:00:00+0000</param>
+		///<param name="end">The end time of the event eg: 2023-01-01T12:30:00+0000</param>
+		///<param name="body">The body text for the event (optional) eg: Remember to also clean out the gutters</param>
+		///<param name="location">The location for the event (optional) eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</param>
+		///<param name="categories">list of categories for the event (optional)</param>
+		///<param name="sensitivity">The sensitivity for the event (optional) [Normal, Personal, Private, Confidential] eg: normal</param>
+		///<param name="showAs">Show event as (optional) [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</param>
+		///<param name="isAllDay">Set whether event is all day (optional) eg: False</param>
+		///<param name="attendees">list of attendees formatted as email: example@example.com type: Required, Optional, or Resource (optional)</param>
+		public void CreateCalendarEvent(ServiceTarget target, string @subject, string @start, string @end, string? @body = null, string? @location = null, string? @categories = null, object? @sensitivity = null, object? @showAs = null, bool? @isAllDay = null, object? @attendees = null)
+		{
+			_haContext.CallService("o365", "create_calendar_event", target, new O365CreateCalendarEventParameters{Subject = @subject, Start = @start, End = @end, Body = @body, Location = @location, Categories = @categories, Sensitivity = @sensitivity, ShowAs = @showAs, IsAllDay = @isAllDay, Attendees = @attendees});
+		}
+
+		///<summary>Delete a new task/ToDo</summary>
+		///<param name="target">The target for this service call</param>
+		public void DeleteTask(ServiceTarget target, O365DeleteTaskParameters data)
+		{
+			_haContext.CallService("o365", "delete_task", target, data);
+		}
+
+		///<summary>Delete a new task/ToDo</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="taskId">ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		public void DeleteTask(ServiceTarget target, string @taskId)
+		{
+			_haContext.CallService("o365", "delete_task", target, new O365DeleteTaskParameters{TaskId = @taskId});
+		}
+
+		///<summary>Modify existing calendar event, all properties except event_id are optional.</summary>
+		///<param name="target">The target for this service call</param>
+		public void ModifyCalendarEvent(ServiceTarget target, O365ModifyCalendarEventParameters data)
+		{
+			_haContext.CallService("o365", "modify_calendar_event", target, data);
+		}
+
+		///<summary>Modify existing calendar event, all properties except event_id are optional.</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="eventId">ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="subject">The subject of the created event eg: Clean up the garage</param>
+		///<param name="start">The start time of the event eg: 2023-01-01T12:00:00+0000</param>
+		///<param name="end">The end time of the event eg: 2023-01-01T12:30:00+0000</param>
+		///<param name="body">The body text for the event eg: Remember to also clean out the gutters</param>
+		///<param name="location">The location for the event eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</param>
+		///<param name="categories">list of categories for the event</param>
+		///<param name="sensitivity">The sensitivity for the event[Normal, Personal, Private, Confidential] eg: normal</param>
+		///<param name="showAs">Show event as [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</param>
+		///<param name="isAllDay">Set whether event is all day eg: False</param>
+		///<param name="attendees">list of attendees formatted as email: example@example.com type: Required, Optional, or Resource</param>
+		public void ModifyCalendarEvent(ServiceTarget target, string @eventId, string? @subject = null, string? @start = null, string? @end = null, string? @body = null, string? @location = null, string? @categories = null, object? @sensitivity = null, object? @showAs = null, bool? @isAllDay = null, object? @attendees = null)
+		{
+			_haContext.CallService("o365", "modify_calendar_event", target, new O365ModifyCalendarEventParameters{EventId = @eventId, Subject = @subject, Start = @start, End = @end, Body = @body, Location = @location, Categories = @categories, Sensitivity = @sensitivity, ShowAs = @showAs, IsAllDay = @isAllDay, Attendees = @attendees});
+		}
+
+		///<summary>Create a new task/ToDo</summary>
+		///<param name="target">The target for this service call</param>
+		public void NewTask(ServiceTarget target, O365NewTaskParameters data)
+		{
+			_haContext.CallService("o365", "new_task", target, data);
+		}
+
+		///<summary>Create a new task/ToDo</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="subject">The subject of the task eg: Pick up the mail</param>
+		///<param name="description">Description of the task eg: Walk to the post box and collect the mail</param>
+		///<param name="due">When the task is due by eg: YYYY-MM-DD</param>
+		///<param name="reminder">When a reminder is needed eg: 2023-01-01T12:00:00+0000</param>
+		public void NewTask(ServiceTarget target, string @subject, string? @description = null, object? @due = null, string? @reminder = null)
+		{
+			_haContext.CallService("o365", "new_task", target, new O365NewTaskParameters{Subject = @subject, Description = @description, Due = @due, Reminder = @reminder});
+		}
+
+		///<summary>Delete calendar event</summary>
+		///<param name="target">The target for this service call</param>
+		public void RemoveCalendarEvent(ServiceTarget target, O365RemoveCalendarEventParameters data)
+		{
+			_haContext.CallService("o365", "remove_calendar_event", target, data);
+		}
+
+		///<summary>Delete calendar event</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="eventId">ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		public void RemoveCalendarEvent(ServiceTarget target, string @eventId)
+		{
+			_haContext.CallService("o365", "remove_calendar_event", target, new O365RemoveCalendarEventParameters{EventId = @eventId});
+		}
+
+		///<summary>Respond to calendar event/invite</summary>
+		///<param name="target">The target for this service call</param>
+		public void RespondCalendarEvent(ServiceTarget target, O365RespondCalendarEventParameters data)
+		{
+			_haContext.CallService("o365", "respond_calendar_event", target, data);
+		}
+
+		///<summary>Respond to calendar event/invite</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="eventId">ID for event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="response">The response to the invite [Accept, Tentative, Decline] eg: Decline</param>
+		///<param name="message">The response message to the invite (Optional) eg: I cannot attend this meeting</param>
+		///<param name="sendResponse">Send the response to the organizer (Optional) eg: True</param>
+		public void RespondCalendarEvent(ServiceTarget target, string @eventId, string @response, string? @message = null, bool? @sendResponse = null)
+		{
+			_haContext.CallService("o365", "respond_calendar_event", target, new O365RespondCalendarEventParameters{EventId = @eventId, Response = @response, Message = @message, SendResponse = @sendResponse});
+		}
+
+		///<summary>Scan for newly available calendars</summary>
+		public void ScanForCalendars()
+		{
+			_haContext.CallService("o365", "scan_for_calendars", null);
+		}
+
+		///<summary>Scan for newly available task lists</summary>
+		public void ScanForTaskLists()
+		{
+			_haContext.CallService("o365", "scan_for_task_lists", null);
+		}
+
+		///<summary>Update a new task/ToDo</summary>
+		///<param name="target">The target for this service call</param>
+		public void UpdateTask(ServiceTarget target, O365UpdateTaskParameters data)
+		{
+			_haContext.CallService("o365", "update_task", target, data);
+		}
+
+		///<summary>Update a new task/ToDo</summary>
+		///<param name="target">The target for this service call</param>
+		///<param name="taskId">ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="subject">The subject of the task eg: Pick up the mail</param>
+		///<param name="description">Description of the task eg: Walk to the post box and collect the mail</param>
+		///<param name="due">When the task is due by eg: 2023-01-01</param>
+		///<param name="reminder">When a reminder is needed eg: 2023-01-01T12:00:00+0000</param>
+		public void UpdateTask(ServiceTarget target, string @taskId, string? @subject = null, string? @description = null, object? @due = null, string? @reminder = null)
+		{
+			_haContext.CallService("o365", "update_task", target, new O365UpdateTaskParameters{TaskId = @taskId, Subject = @subject, Description = @description, Due = @due, Reminder = @reminder});
+		}
+	}
+
+	public record O365CreateCalendarEventParameters
+	{
+		///<summary>The subject of the created event eg: Clean up the garage</summary>
+		[JsonPropertyName("subject")]
+		public string? Subject { get; init; }
+
+		///<summary>The start time of the event eg: 2023-01-01T12:00:00+0000</summary>
+		[JsonPropertyName("start")]
+		public string? Start { get; init; }
+
+		///<summary>The end time of the event eg: 2023-01-01T12:30:00+0000</summary>
+		[JsonPropertyName("end")]
+		public string? End { get; init; }
+
+		///<summary>The body text for the event (optional) eg: Remember to also clean out the gutters</summary>
+		[JsonPropertyName("body")]
+		public string? Body { get; init; }
+
+		///<summary>The location for the event (optional) eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</summary>
+		[JsonPropertyName("location")]
+		public string? Location { get; init; }
+
+		///<summary>list of categories for the event (optional)</summary>
+		[JsonPropertyName("categories")]
+		public string? Categories { get; init; }
+
+		///<summary>The sensitivity for the event (optional) [Normal, Personal, Private, Confidential] eg: normal</summary>
+		[JsonPropertyName("sensitivity")]
+		public object? Sensitivity { get; init; }
+
+		///<summary>Show event as (optional) [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</summary>
+		[JsonPropertyName("show_as")]
+		public object? ShowAs { get; init; }
+
+		///<summary>Set whether event is all day (optional) eg: False</summary>
+		[JsonPropertyName("is_all_day")]
+		public bool? IsAllDay { get; init; }
+
+		///<summary>list of attendees formatted as email: example@example.com type: Required, Optional, or Resource (optional)</summary>
+		[JsonPropertyName("attendees")]
+		public object? Attendees { get; init; }
+	}
+
+	public record O365DeleteTaskParameters
+	{
+		///<summary>ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</summary>
+		[JsonPropertyName("task_id")]
+		public string? TaskId { get; init; }
+	}
+
+	public record O365ModifyCalendarEventParameters
+	{
+		///<summary>ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</summary>
+		[JsonPropertyName("event_id")]
+		public string? EventId { get; init; }
+
+		///<summary>The subject of the created event eg: Clean up the garage</summary>
+		[JsonPropertyName("subject")]
+		public string? Subject { get; init; }
+
+		///<summary>The start time of the event eg: 2023-01-01T12:00:00+0000</summary>
+		[JsonPropertyName("start")]
+		public string? Start { get; init; }
+
+		///<summary>The end time of the event eg: 2023-01-01T12:30:00+0000</summary>
+		[JsonPropertyName("end")]
+		public string? End { get; init; }
+
+		///<summary>The body text for the event eg: Remember to also clean out the gutters</summary>
+		[JsonPropertyName("body")]
+		public string? Body { get; init; }
+
+		///<summary>The location for the event eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</summary>
+		[JsonPropertyName("location")]
+		public string? Location { get; init; }
+
+		///<summary>list of categories for the event</summary>
+		[JsonPropertyName("categories")]
+		public string? Categories { get; init; }
+
+		///<summary>The sensitivity for the event[Normal, Personal, Private, Confidential] eg: normal</summary>
+		[JsonPropertyName("sensitivity")]
+		public object? Sensitivity { get; init; }
+
+		///<summary>Show event as [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</summary>
+		[JsonPropertyName("show_as")]
+		public object? ShowAs { get; init; }
+
+		///<summary>Set whether event is all day eg: False</summary>
+		[JsonPropertyName("is_all_day")]
+		public bool? IsAllDay { get; init; }
+
+		///<summary>list of attendees formatted as email: example@example.com type: Required, Optional, or Resource</summary>
+		[JsonPropertyName("attendees")]
+		public object? Attendees { get; init; }
+	}
+
+	public record O365NewTaskParameters
+	{
+		///<summary>The subject of the task eg: Pick up the mail</summary>
+		[JsonPropertyName("subject")]
+		public string? Subject { get; init; }
+
+		///<summary>Description of the task eg: Walk to the post box and collect the mail</summary>
+		[JsonPropertyName("description")]
+		public string? Description { get; init; }
+
+		///<summary>When the task is due by eg: YYYY-MM-DD</summary>
+		[JsonPropertyName("due")]
+		public object? Due { get; init; }
+
+		///<summary>When a reminder is needed eg: 2023-01-01T12:00:00+0000</summary>
+		[JsonPropertyName("reminder")]
+		public string? Reminder { get; init; }
+	}
+
+	public record O365RemoveCalendarEventParameters
+	{
+		///<summary>ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</summary>
+		[JsonPropertyName("event_id")]
+		public string? EventId { get; init; }
+	}
+
+	public record O365RespondCalendarEventParameters
+	{
+		///<summary>ID for event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</summary>
+		[JsonPropertyName("event_id")]
+		public string? EventId { get; init; }
+
+		///<summary>The response to the invite [Accept, Tentative, Decline] eg: Decline</summary>
+		[JsonPropertyName("response")]
+		public string? Response { get; init; }
+
+		///<summary>The response message to the invite (Optional) eg: I cannot attend this meeting</summary>
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		///<summary>Send the response to the organizer (Optional) eg: True</summary>
+		[JsonPropertyName("send_response")]
+		public bool? SendResponse { get; init; }
+	}
+
+	public record O365UpdateTaskParameters
+	{
+		///<summary>ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</summary>
+		[JsonPropertyName("task_id")]
+		public string? TaskId { get; init; }
+
+		///<summary>The subject of the task eg: Pick up the mail</summary>
+		[JsonPropertyName("subject")]
+		public string? Subject { get; init; }
+
+		///<summary>Description of the task eg: Walk to the post box and collect the mail</summary>
+		[JsonPropertyName("description")]
+		public string? Description { get; init; }
+
+		///<summary>When the task is due by eg: 2023-01-01</summary>
+		[JsonPropertyName("due")]
+		public object? Due { get; init; }
+
+		///<summary>When a reminder is needed eg: 2023-01-01T12:00:00+0000</summary>
+		[JsonPropertyName("reminder")]
+		public string? Reminder { get; init; }
 	}
 
 	public class PersistentNotificationServices
@@ -8038,6 +9062,49 @@ namespace HomeAutomations.Models.Generated
 		public static void Press(this IEnumerable<ButtonEntity> target)
 		{
 			target.CallService("press");
+		}
+	}
+
+	public static class CalendarEntityExtensionMethods
+	{
+		///<summary>Add a new calendar event.</summary>
+		public static void CreateEvent(this CalendarEntity target, CalendarCreateEventParameters data)
+		{
+			target.CallService("create_event", data);
+		}
+
+		///<summary>Add a new calendar event.</summary>
+		public static void CreateEvent(this IEnumerable<CalendarEntity> target, CalendarCreateEventParameters data)
+		{
+			target.CallService("create_event", data);
+		}
+
+		///<summary>Add a new calendar event.</summary>
+		///<param name="target">The CalendarEntity to call this service for</param>
+		///<param name="summary">Defines the short summary or subject for the event eg: Department Party</param>
+		///<param name="description">A more complete description of the event than that provided by the summary. eg: Meeting to provide technical review for 'Phoenix' design.</param>
+		///<param name="startDateTime">The date and time the event should start. eg: 2022-03-22 20:00:00</param>
+		///<param name="endDateTime">The date and time the event should end. eg: 2022-03-22 22:00:00</param>
+		///<param name="startDate">The date the all-day event should start. eg: 2022-03-22</param>
+		///<param name="endDate">The date the all-day event should end (exclusive). eg: 2022-03-23</param>
+		///<param name="in">Days or weeks that you want to create the event in. eg: "days": 2 or "weeks": 2</param>
+		public static void CreateEvent(this CalendarEntity target, string @summary, string? @description = null, object? @startDateTime = null, object? @endDateTime = null, object? @startDate = null, object? @endDate = null, object? @in = null)
+		{
+			target.CallService("create_event", new CalendarCreateEventParameters{Summary = @summary, Description = @description, StartDateTime = @startDateTime, EndDateTime = @endDateTime, StartDate = @startDate, EndDate = @endDate, In = @in});
+		}
+
+		///<summary>Add a new calendar event.</summary>
+		///<param name="target">The IEnumerable<CalendarEntity> to call this service for</param>
+		///<param name="summary">Defines the short summary or subject for the event eg: Department Party</param>
+		///<param name="description">A more complete description of the event than that provided by the summary. eg: Meeting to provide technical review for 'Phoenix' design.</param>
+		///<param name="startDateTime">The date and time the event should start. eg: 2022-03-22 20:00:00</param>
+		///<param name="endDateTime">The date and time the event should end. eg: 2022-03-22 22:00:00</param>
+		///<param name="startDate">The date the all-day event should start. eg: 2022-03-22</param>
+		///<param name="endDate">The date the all-day event should end (exclusive). eg: 2022-03-23</param>
+		///<param name="in">Days or weeks that you want to create the event in. eg: "days": 2 or "weeks": 2</param>
+		public static void CreateEvent(this IEnumerable<CalendarEntity> target, string @summary, string? @description = null, object? @startDateTime = null, object? @endDateTime = null, object? @startDate = null, object? @endDate = null, object? @in = null)
+		{
+			target.CallService("create_event", new CalendarCreateEventParameters{Summary = @summary, Description = @description, StartDateTime = @startDateTime, EndDateTime = @endDateTime, StartDate = @startDate, EndDate = @endDate, In = @in});
 		}
 	}
 
@@ -9552,6 +10619,65 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
+	public static class NukiEntityExtensionMethods
+	{
+		///<summary>Nuki Lock 'n' Go</summary>
+		public static void LockNGo(this LockEntity target, NukiLockNGoParameters data)
+		{
+			target.CallService("lock_n_go", data);
+		}
+
+		///<summary>Nuki Lock 'n' Go</summary>
+		public static void LockNGo(this IEnumerable<LockEntity> target, NukiLockNGoParameters data)
+		{
+			target.CallService("lock_n_go", data);
+		}
+
+		///<summary>Nuki Lock 'n' Go</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="unlatch">Whether to unlatch the lock.</param>
+		public static void LockNGo(this LockEntity target, bool? @unlatch = null)
+		{
+			target.CallService("lock_n_go", new NukiLockNGoParameters{Unlatch = @unlatch});
+		}
+
+		///<summary>Nuki Lock 'n' Go</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="unlatch">Whether to unlatch the lock.</param>
+		public static void LockNGo(this IEnumerable<LockEntity> target, bool? @unlatch = null)
+		{
+			target.CallService("lock_n_go", new NukiLockNGoParameters{Unlatch = @unlatch});
+		}
+
+		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
+		public static void SetContinuousMode(this LockEntity target, NukiSetContinuousModeParameters data)
+		{
+			target.CallService("set_continuous_mode", data);
+		}
+
+		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
+		public static void SetContinuousMode(this IEnumerable<LockEntity> target, NukiSetContinuousModeParameters data)
+		{
+			target.CallService("set_continuous_mode", data);
+		}
+
+		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
+		///<param name="target">The LockEntity to call this service for</param>
+		///<param name="enable">Whether to enable or disable the feature</param>
+		public static void SetContinuousMode(this LockEntity target, bool? @enable = null)
+		{
+			target.CallService("set_continuous_mode", new NukiSetContinuousModeParameters{Enable = @enable});
+		}
+
+		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
+		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
+		///<param name="enable">Whether to enable or disable the feature</param>
+		public static void SetContinuousMode(this IEnumerable<LockEntity> target, bool? @enable = null)
+		{
+			target.CallService("set_continuous_mode", new NukiSetContinuousModeParameters{Enable = @enable});
+		}
+	}
+
 	public static class NumberEntityExtensionMethods
 	{
 		///<summary>Set the value of a Number entity.</summary>
@@ -9580,6 +10706,263 @@ namespace HomeAutomations.Models.Generated
 		public static void SetValue(this IEnumerable<NumberEntity> target, string? @value = null)
 		{
 			target.CallService("set_value", new NumberSetValueParameters{Value = @value});
+		}
+	}
+
+	public static class O365EntityExtensionMethods
+	{
+		///<summary>Create new calendar event</summary>
+		public static void CreateCalendarEvent(this CalendarEntity target, O365CreateCalendarEventParameters data)
+		{
+			target.CallService("create_calendar_event", data);
+		}
+
+		///<summary>Create new calendar event</summary>
+		public static void CreateCalendarEvent(this IEnumerable<CalendarEntity> target, O365CreateCalendarEventParameters data)
+		{
+			target.CallService("create_calendar_event", data);
+		}
+
+		///<summary>Create new calendar event</summary>
+		///<param name="target">The CalendarEntity to call this service for</param>
+		///<param name="subject">The subject of the created event eg: Clean up the garage</param>
+		///<param name="start">The start time of the event eg: 2023-01-01T12:00:00+0000</param>
+		///<param name="end">The end time of the event eg: 2023-01-01T12:30:00+0000</param>
+		///<param name="body">The body text for the event (optional) eg: Remember to also clean out the gutters</param>
+		///<param name="location">The location for the event (optional) eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</param>
+		///<param name="categories">list of categories for the event (optional)</param>
+		///<param name="sensitivity">The sensitivity for the event (optional) [Normal, Personal, Private, Confidential] eg: normal</param>
+		///<param name="showAs">Show event as (optional) [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</param>
+		///<param name="isAllDay">Set whether event is all day (optional) eg: False</param>
+		///<param name="attendees">list of attendees formatted as email: example@example.com type: Required, Optional, or Resource (optional)</param>
+		public static void CreateCalendarEvent(this CalendarEntity target, string @subject, string @start, string @end, string? @body = null, string? @location = null, string? @categories = null, object? @sensitivity = null, object? @showAs = null, bool? @isAllDay = null, object? @attendees = null)
+		{
+			target.CallService("create_calendar_event", new O365CreateCalendarEventParameters{Subject = @subject, Start = @start, End = @end, Body = @body, Location = @location, Categories = @categories, Sensitivity = @sensitivity, ShowAs = @showAs, IsAllDay = @isAllDay, Attendees = @attendees});
+		}
+
+		///<summary>Create new calendar event</summary>
+		///<param name="target">The IEnumerable<CalendarEntity> to call this service for</param>
+		///<param name="subject">The subject of the created event eg: Clean up the garage</param>
+		///<param name="start">The start time of the event eg: 2023-01-01T12:00:00+0000</param>
+		///<param name="end">The end time of the event eg: 2023-01-01T12:30:00+0000</param>
+		///<param name="body">The body text for the event (optional) eg: Remember to also clean out the gutters</param>
+		///<param name="location">The location for the event (optional) eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</param>
+		///<param name="categories">list of categories for the event (optional)</param>
+		///<param name="sensitivity">The sensitivity for the event (optional) [Normal, Personal, Private, Confidential] eg: normal</param>
+		///<param name="showAs">Show event as (optional) [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</param>
+		///<param name="isAllDay">Set whether event is all day (optional) eg: False</param>
+		///<param name="attendees">list of attendees formatted as email: example@example.com type: Required, Optional, or Resource (optional)</param>
+		public static void CreateCalendarEvent(this IEnumerable<CalendarEntity> target, string @subject, string @start, string @end, string? @body = null, string? @location = null, string? @categories = null, object? @sensitivity = null, object? @showAs = null, bool? @isAllDay = null, object? @attendees = null)
+		{
+			target.CallService("create_calendar_event", new O365CreateCalendarEventParameters{Subject = @subject, Start = @start, End = @end, Body = @body, Location = @location, Categories = @categories, Sensitivity = @sensitivity, ShowAs = @showAs, IsAllDay = @isAllDay, Attendees = @attendees});
+		}
+
+		///<summary>Delete a new task/ToDo</summary>
+		public static void DeleteTask(this SensorEntity target, O365DeleteTaskParameters data)
+		{
+			target.CallService("delete_task", data);
+		}
+
+		///<summary>Delete a new task/ToDo</summary>
+		public static void DeleteTask(this IEnumerable<SensorEntity> target, O365DeleteTaskParameters data)
+		{
+			target.CallService("delete_task", data);
+		}
+
+		///<summary>Delete a new task/ToDo</summary>
+		///<param name="target">The SensorEntity to call this service for</param>
+		///<param name="taskId">ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		public static void DeleteTask(this SensorEntity target, string @taskId)
+		{
+			target.CallService("delete_task", new O365DeleteTaskParameters{TaskId = @taskId});
+		}
+
+		///<summary>Delete a new task/ToDo</summary>
+		///<param name="target">The IEnumerable<SensorEntity> to call this service for</param>
+		///<param name="taskId">ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		public static void DeleteTask(this IEnumerable<SensorEntity> target, string @taskId)
+		{
+			target.CallService("delete_task", new O365DeleteTaskParameters{TaskId = @taskId});
+		}
+
+		///<summary>Modify existing calendar event, all properties except event_id are optional.</summary>
+		public static void ModifyCalendarEvent(this CalendarEntity target, O365ModifyCalendarEventParameters data)
+		{
+			target.CallService("modify_calendar_event", data);
+		}
+
+		///<summary>Modify existing calendar event, all properties except event_id are optional.</summary>
+		public static void ModifyCalendarEvent(this IEnumerable<CalendarEntity> target, O365ModifyCalendarEventParameters data)
+		{
+			target.CallService("modify_calendar_event", data);
+		}
+
+		///<summary>Modify existing calendar event, all properties except event_id are optional.</summary>
+		///<param name="target">The CalendarEntity to call this service for</param>
+		///<param name="eventId">ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="subject">The subject of the created event eg: Clean up the garage</param>
+		///<param name="start">The start time of the event eg: 2023-01-01T12:00:00+0000</param>
+		///<param name="end">The end time of the event eg: 2023-01-01T12:30:00+0000</param>
+		///<param name="body">The body text for the event eg: Remember to also clean out the gutters</param>
+		///<param name="location">The location for the event eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</param>
+		///<param name="categories">list of categories for the event</param>
+		///<param name="sensitivity">The sensitivity for the event[Normal, Personal, Private, Confidential] eg: normal</param>
+		///<param name="showAs">Show event as [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</param>
+		///<param name="isAllDay">Set whether event is all day eg: False</param>
+		///<param name="attendees">list of attendees formatted as email: example@example.com type: Required, Optional, or Resource</param>
+		public static void ModifyCalendarEvent(this CalendarEntity target, string @eventId, string? @subject = null, string? @start = null, string? @end = null, string? @body = null, string? @location = null, string? @categories = null, object? @sensitivity = null, object? @showAs = null, bool? @isAllDay = null, object? @attendees = null)
+		{
+			target.CallService("modify_calendar_event", new O365ModifyCalendarEventParameters{EventId = @eventId, Subject = @subject, Start = @start, End = @end, Body = @body, Location = @location, Categories = @categories, Sensitivity = @sensitivity, ShowAs = @showAs, IsAllDay = @isAllDay, Attendees = @attendees});
+		}
+
+		///<summary>Modify existing calendar event, all properties except event_id are optional.</summary>
+		///<param name="target">The IEnumerable<CalendarEntity> to call this service for</param>
+		///<param name="eventId">ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="subject">The subject of the created event eg: Clean up the garage</param>
+		///<param name="start">The start time of the event eg: 2023-01-01T12:00:00+0000</param>
+		///<param name="end">The end time of the event eg: 2023-01-01T12:30:00+0000</param>
+		///<param name="body">The body text for the event eg: Remember to also clean out the gutters</param>
+		///<param name="location">The location for the event eg: 1600 Pennsylvania Ave Nw, Washington, DC 20500</param>
+		///<param name="categories">list of categories for the event</param>
+		///<param name="sensitivity">The sensitivity for the event[Normal, Personal, Private, Confidential] eg: normal</param>
+		///<param name="showAs">Show event as [Free, Tentative, Busy, Oof, WorkingElsewhere, Unknown] eg: busy</param>
+		///<param name="isAllDay">Set whether event is all day eg: False</param>
+		///<param name="attendees">list of attendees formatted as email: example@example.com type: Required, Optional, or Resource</param>
+		public static void ModifyCalendarEvent(this IEnumerable<CalendarEntity> target, string @eventId, string? @subject = null, string? @start = null, string? @end = null, string? @body = null, string? @location = null, string? @categories = null, object? @sensitivity = null, object? @showAs = null, bool? @isAllDay = null, object? @attendees = null)
+		{
+			target.CallService("modify_calendar_event", new O365ModifyCalendarEventParameters{EventId = @eventId, Subject = @subject, Start = @start, End = @end, Body = @body, Location = @location, Categories = @categories, Sensitivity = @sensitivity, ShowAs = @showAs, IsAllDay = @isAllDay, Attendees = @attendees});
+		}
+
+		///<summary>Create a new task/ToDo</summary>
+		public static void NewTask(this SensorEntity target, O365NewTaskParameters data)
+		{
+			target.CallService("new_task", data);
+		}
+
+		///<summary>Create a new task/ToDo</summary>
+		public static void NewTask(this IEnumerable<SensorEntity> target, O365NewTaskParameters data)
+		{
+			target.CallService("new_task", data);
+		}
+
+		///<summary>Create a new task/ToDo</summary>
+		///<param name="target">The SensorEntity to call this service for</param>
+		///<param name="subject">The subject of the task eg: Pick up the mail</param>
+		///<param name="description">Description of the task eg: Walk to the post box and collect the mail</param>
+		///<param name="due">When the task is due by eg: YYYY-MM-DD</param>
+		///<param name="reminder">When a reminder is needed eg: 2023-01-01T12:00:00+0000</param>
+		public static void NewTask(this SensorEntity target, string @subject, string? @description = null, object? @due = null, string? @reminder = null)
+		{
+			target.CallService("new_task", new O365NewTaskParameters{Subject = @subject, Description = @description, Due = @due, Reminder = @reminder});
+		}
+
+		///<summary>Create a new task/ToDo</summary>
+		///<param name="target">The IEnumerable<SensorEntity> to call this service for</param>
+		///<param name="subject">The subject of the task eg: Pick up the mail</param>
+		///<param name="description">Description of the task eg: Walk to the post box and collect the mail</param>
+		///<param name="due">When the task is due by eg: YYYY-MM-DD</param>
+		///<param name="reminder">When a reminder is needed eg: 2023-01-01T12:00:00+0000</param>
+		public static void NewTask(this IEnumerable<SensorEntity> target, string @subject, string? @description = null, object? @due = null, string? @reminder = null)
+		{
+			target.CallService("new_task", new O365NewTaskParameters{Subject = @subject, Description = @description, Due = @due, Reminder = @reminder});
+		}
+
+		///<summary>Delete calendar event</summary>
+		public static void RemoveCalendarEvent(this CalendarEntity target, O365RemoveCalendarEventParameters data)
+		{
+			target.CallService("remove_calendar_event", data);
+		}
+
+		///<summary>Delete calendar event</summary>
+		public static void RemoveCalendarEvent(this IEnumerable<CalendarEntity> target, O365RemoveCalendarEventParameters data)
+		{
+			target.CallService("remove_calendar_event", data);
+		}
+
+		///<summary>Delete calendar event</summary>
+		///<param name="target">The CalendarEntity to call this service for</param>
+		///<param name="eventId">ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		public static void RemoveCalendarEvent(this CalendarEntity target, string @eventId)
+		{
+			target.CallService("remove_calendar_event", new O365RemoveCalendarEventParameters{EventId = @eventId});
+		}
+
+		///<summary>Delete calendar event</summary>
+		///<param name="target">The IEnumerable<CalendarEntity> to call this service for</param>
+		///<param name="eventId">ID for the event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		public static void RemoveCalendarEvent(this IEnumerable<CalendarEntity> target, string @eventId)
+		{
+			target.CallService("remove_calendar_event", new O365RemoveCalendarEventParameters{EventId = @eventId});
+		}
+
+		///<summary>Respond to calendar event/invite</summary>
+		public static void RespondCalendarEvent(this CalendarEntity target, O365RespondCalendarEventParameters data)
+		{
+			target.CallService("respond_calendar_event", data);
+		}
+
+		///<summary>Respond to calendar event/invite</summary>
+		public static void RespondCalendarEvent(this IEnumerable<CalendarEntity> target, O365RespondCalendarEventParameters data)
+		{
+			target.CallService("respond_calendar_event", data);
+		}
+
+		///<summary>Respond to calendar event/invite</summary>
+		///<param name="target">The CalendarEntity to call this service for</param>
+		///<param name="eventId">ID for event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="response">The response to the invite [Accept, Tentative, Decline] eg: Decline</param>
+		///<param name="message">The response message to the invite (Optional) eg: I cannot attend this meeting</param>
+		///<param name="sendResponse">Send the response to the organizer (Optional) eg: True</param>
+		public static void RespondCalendarEvent(this CalendarEntity target, string @eventId, string @response, string? @message = null, bool? @sendResponse = null)
+		{
+			target.CallService("respond_calendar_event", new O365RespondCalendarEventParameters{EventId = @eventId, Response = @response, Message = @message, SendResponse = @sendResponse});
+		}
+
+		///<summary>Respond to calendar event/invite</summary>
+		///<param name="target">The IEnumerable<CalendarEntity> to call this service for</param>
+		///<param name="eventId">ID for event, can be found as an attribute on you calendar entity's events eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="response">The response to the invite [Accept, Tentative, Decline] eg: Decline</param>
+		///<param name="message">The response message to the invite (Optional) eg: I cannot attend this meeting</param>
+		///<param name="sendResponse">Send the response to the organizer (Optional) eg: True</param>
+		public static void RespondCalendarEvent(this IEnumerable<CalendarEntity> target, string @eventId, string @response, string? @message = null, bool? @sendResponse = null)
+		{
+			target.CallService("respond_calendar_event", new O365RespondCalendarEventParameters{EventId = @eventId, Response = @response, Message = @message, SendResponse = @sendResponse});
+		}
+
+		///<summary>Update a new task/ToDo</summary>
+		public static void UpdateTask(this SensorEntity target, O365UpdateTaskParameters data)
+		{
+			target.CallService("update_task", data);
+		}
+
+		///<summary>Update a new task/ToDo</summary>
+		public static void UpdateTask(this IEnumerable<SensorEntity> target, O365UpdateTaskParameters data)
+		{
+			target.CallService("update_task", data);
+		}
+
+		///<summary>Update a new task/ToDo</summary>
+		///<param name="target">The SensorEntity to call this service for</param>
+		///<param name="taskId">ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="subject">The subject of the task eg: Pick up the mail</param>
+		///<param name="description">Description of the task eg: Walk to the post box and collect the mail</param>
+		///<param name="due">When the task is due by eg: 2023-01-01</param>
+		///<param name="reminder">When a reminder is needed eg: 2023-01-01T12:00:00+0000</param>
+		public static void UpdateTask(this SensorEntity target, string @taskId, string? @subject = null, string? @description = null, object? @due = null, string? @reminder = null)
+		{
+			target.CallService("update_task", new O365UpdateTaskParameters{TaskId = @taskId, Subject = @subject, Description = @description, Due = @due, Reminder = @reminder});
+		}
+
+		///<summary>Update a new task/ToDo</summary>
+		///<param name="target">The IEnumerable<SensorEntity> to call this service for</param>
+		///<param name="taskId">ID for the task, can be found as an attribute on your task eg: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</param>
+		///<param name="subject">The subject of the task eg: Pick up the mail</param>
+		///<param name="description">Description of the task eg: Walk to the post box and collect the mail</param>
+		///<param name="due">When the task is due by eg: 2023-01-01</param>
+		///<param name="reminder">When a reminder is needed eg: 2023-01-01T12:00:00+0000</param>
+		public static void UpdateTask(this IEnumerable<SensorEntity> target, string @taskId, string? @subject = null, string? @description = null, object? @due = null, string? @reminder = null)
+		{
+			target.CallService("update_task", new O365UpdateTaskParameters{TaskId = @taskId, Subject = @subject, Description = @description, Due = @due, Reminder = @reminder});
 		}
 	}
 

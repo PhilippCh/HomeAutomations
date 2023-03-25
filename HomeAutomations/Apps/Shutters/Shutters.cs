@@ -8,7 +8,6 @@ using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensi
 
 namespace HomeAutomations.Apps.Shutters;
 
-[Focus]
 public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 {
 	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate)
