@@ -70,7 +70,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 		}
 		catch (Exception ex)
 		{
-			Logger.Warning("Could not update streaming host status");
+			Logger.Debug("Could not update streaming host status");
 		}
 	}
 
@@ -80,7 +80,7 @@ public class MoonlightRemote : BaseAutomation<MoonlightRemote, MoonlightRemoteCo
 
 		if (host is null)
 		{
-			Logger.Warning("Could not find host {DisplayName}", hostDisplayName);
+			Logger.Debug("Could not find host {DisplayName}", hostDisplayName);
 
 			return null;
 		}
