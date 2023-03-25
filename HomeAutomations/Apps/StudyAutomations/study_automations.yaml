@@ -10,4 +10,4 @@ HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
   DeskLampTriggerConfig:
     Entity: sensor.study_motion_detector_illuminance_lux
     MinBrightness: 0
-    MaxBrightness: 80
+    MaxBrightness: 120
