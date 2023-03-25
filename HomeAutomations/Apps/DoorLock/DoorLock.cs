@@ -10,6 +10,8 @@ using HomeAutomations.Apps.DoorLock.Nuki;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
+using HomeAutomations.Services;
+using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.DoorLock;
 
@@ -17,18 +19,21 @@ namespace HomeAutomations.Apps.DoorLock;
 public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 {
 	private IDisposable? _rtoTimeoutObserver;
+	private IDisposable? _ringSensorObserver;
 
 	private readonly HttpClient _httpClient;
+	private readonly NotificationService _notificationService;
 
-	public DoorLock(BaseAutomationDependencyAggregate<DoorLock, DoorLockConfig> aggregate, HttpClient httpClient)
+	public DoorLock(BaseAutomationDependencyAggregate<DoorLock, DoorLockConfig> aggregate, HttpClient httpClient, NotificationService notificationService)
 		: base(aggregate)
 	{
 		_httpClient = httpClient;
+		_notificationService = notificationService;
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		await CreateBridgeCallbacks();
+		await CreateBridgeCallbacksAsync();
 
 		Context.Events.Filter<EnableRtoEventData>(EnableRtoEventData.Id)
 			.SwitchMap(Authenticate)
@@ -42,7 +47,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 			.Subscribe(_ => EnableRingToOpen());
 	}
 
-	private async Task CreateBridgeCallbacks()
+	private async Task CreateBridgeCallbacksAsync()
 	{
 		var response = await _httpClient.GetFromJsonAsync<CallbackListResponse>(GetBridgeApiCall("callback/list"));
 
@@ -98,9 +103,24 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 	private void EnableRingToOpen()
 	{
+		_notificationService.SendNotification(Config.ArrivalNotification);
 		Config.OpenerEntity.Unlock();
+
+		_ringSensorObserver?.Dispose();
+		_ringSensorObserver = Config.RingSensor.StateChanges()
+			.Where(s => s.New?.IsOn() ?? false)
+			.Subscribe(_ => OnRing());
 
 		_rtoTimeoutObserver?.Dispose();
 		_rtoTimeoutObserver = Observable.Timer(Config.RtoTimeout).Subscribe(_ => Config.OpenerEntity.Lock());
+	}
+
+	private void OnRing()
+	{
+		// Sanity check to see if we're still in ring-to-open state.
+		if (Config.OpenerEntity.IsOff())
+		{
+			Config.LockEntity.Open();
+		}
 	}
 }

@@ -8,3 +8,9 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
   LockEntity: lock.wohnungstur
   OpenerEntity: lock.haustur
   RtoTimeout: 00:05:00
+  RingSensor: binary_sensor.nuki_haustur_ring_action
+  ArrivalNotification:
+    Tag: nuki
+    Title: Türschloss
+    Template: Wenn du läutest, gehen beide Türen auf.
+    Sticky: true

@@ -45,6 +45,8 @@ namespace HomeAutomations.Models.Generated
 
 		NumberEntities Number { get; }
 
+		PersistentNotificationEntities PersistentNotification { get; }
+
 		PersonEntities Person { get; }
 
 		RemoteEntities Remote { get; }
@@ -94,6 +96,7 @@ namespace HomeAutomations.Models.Generated
 		public LockEntities Lock => new(_haContext);
 		public MediaPlayerEntities MediaPlayer => new(_haContext);
 		public NumberEntities Number => new(_haContext);
+		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
 		public RemoteEntities Remote => new(_haContext);
 		public SelectEntities Select => new(_haContext);
@@ -169,6 +172,8 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity Desktopphilipp => new(_haContext, "binary_sensor.desktopphilipp");
 		///<summary>Fantenpad Focus</summary>
 		public BinarySensorEntity FantenpadFocus => new(_haContext, "binary_sensor.fantenpad_focus");
+		///<summary>FantenPhone2 Focus</summary>
+		public BinarySensorEntity Fantenphone2Focus => new(_haContext, "binary_sensor.fantenphone2_focus");
 		///<summary>Fantenrüssel Mop attached</summary>
 		public BinarySensorEntity FantenrusselMopAttached => new(_haContext, "binary_sensor.fantenrussel_mop_attached");
 		///<summary>Fantenrüssel Water box attached</summary>
@@ -369,6 +374,22 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity Laptopphilipp => new(_haContext, "binary_sensor.laptopphilipp");
 		///<summary>Nuki battery low</summary>
 		public BinarySensorEntity NukiBatteryLow => new(_haContext, "binary_sensor.nuki_battery_low");
+		///<summary>Nuki Bridge Bridge Callback Set</summary>
+		public BinarySensorEntity NukiBridgeBridgeCallbackSet => new(_haContext, "binary_sensor.nuki_bridge_bridge_callback_set");
+		///<summary>Nuki Bridge Connected</summary>
+		public BinarySensorEntity NukiBridgeConnected => new(_haContext, "binary_sensor.nuki_bridge_connected");
+		///<summary>Nuki Haustür Battery Critical</summary>
+		public BinarySensorEntity NukiHausturBatteryCritical => new(_haContext, "binary_sensor.nuki_haustur_battery_critical");
+		///<summary>Nuki Haustür Locked</summary>
+		public BinarySensorEntity NukiHausturLocked => new(_haContext, "binary_sensor.nuki_haustur_locked");
+		///<summary>Nuki Haustür Ring Action</summary>
+		public BinarySensorEntity NukiHausturRingAction => new(_haContext, "binary_sensor.nuki_haustur_ring_action");
+		///<summary>Nuki Wohnungstür Battery Charging</summary>
+		public BinarySensorEntity NukiWohnungsturBatteryCharging => new(_haContext, "binary_sensor.nuki_wohnungstur_battery_charging");
+		///<summary>Nuki Wohnungstür Battery Critical</summary>
+		public BinarySensorEntity NukiWohnungsturBatteryCritical => new(_haContext, "binary_sensor.nuki_wohnungstur_battery_critical");
+		///<summary>Nuki Wohnungstür Locked</summary>
+		public BinarySensorEntity NukiWohnungsturLocked => new(_haContext, "binary_sensor.nuki_wohnungstur_locked");
 		///<summary>PupsStation (Drive 1) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life");
 		///<summary>PupsStation (Drive 2) Below Min Remaining Life</summary>
@@ -429,6 +450,10 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
+		///<summary>Nuki Bridge Firmware Update</summary>
+		public ButtonEntity NukiBridgeFirmwareUpdate => new(_haContext, "button.nuki_bridge_firmware_update");
+		///<summary>Nuki Bridge Reboot</summary>
+		public ButtonEntity NukiBridgeReboot => new(_haContext, "button.nuki_bridge_reboot");
 		///<summary>PupsStation Reboot</summary>
 		public ButtonEntity PupsstationReboot => new(_haContext, "button.pupsstation_reboot");
 		///<summary>PupsStation Shutdown</summary>
@@ -525,6 +550,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>iPhone Fabienne</summary>
 		public DeviceTrackerEntity Fabienne => new(_haContext, "device_tracker.fabienne");
+		///<summary>FantenPhone2</summary>
+		public DeviceTrackerEntity Fantenphone2 => new(_haContext, "device_tracker.fantenphone2");
 		///<summary>Fantenpad</summary>
 		public DeviceTrackerEntity IpadVonFabienne => new(_haContext, "device_tracker.ipad_von_fabienne");
 		///<summary>Philipp</summary>
@@ -579,6 +606,8 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter");
 		///<summary>netdaemon_home_automations_apps_counters_water_counter_water_counter</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_counters_water_counter_water_counter");
+		///<summary>netdaemon_home_automations_apps_door_lock_door_lock</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsDoorLockDoorLock => new(_haContext, "input_boolean.netdaemon_home_automations_apps_door_lock_door_lock");
 		///<summary>netdaemon_home_automations_apps_kite_reminder_kite_reminder</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsKiteReminderKiteReminder => new(_haContext, "input_boolean.netdaemon_home_automations_apps_kite_reminder_kite_reminder");
 		///<summary>netdaemon_home_automations_apps_lights_automatic_lights_automatic_lights</summary>
@@ -725,12 +754,12 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>bedroom/lava_lamp_child_lock</summary>
 		public LockEntity BedroomLavaLampChildLock => new(_haContext, "lock.bedroom_lava_lamp_child_lock");
-		///<summary>Haustür</summary>
-		public LockEntity Haustur => new(_haContext, "lock.haustur");
 		///<summary>Nuki</summary>
 		public LockEntity Nuki => new(_haContext, "lock.nuki");
-		///<summary>Wohnungstür</summary>
-		public LockEntity Wohnungstur => new(_haContext, "lock.wohnungstur");
+		///<summary>Nuki Haustür Lock</summary>
+		public LockEntity NukiHausturLock => new(_haContext, "lock.nuki_haustur_lock");
+		///<summary>Nuki Wohnungstür Lock</summary>
+		public LockEntity NukiWohnungsturLock => new(_haContext, "lock.nuki_wohnungstur_lock");
 	}
 
 	public partial class MediaPlayerEntities
@@ -769,6 +798,20 @@ namespace HomeAutomations.Models.Generated
 		public NumberEntity ThermostatSchlafzimmerOffset => new(_haContext, "number.thermostat_schlafzimmer_offset");
 		///<summary>Thermostat Wohnzimmer Offset</summary>
 		public NumberEntity ThermostatWohnzimmerOffset => new(_haContext, "number.thermostat_wohnzimmer_offset");
+	}
+
+	public partial class PersistentNotificationEntities
+	{
+		private readonly IHaContext _haContext;
+		public PersistentNotificationEntities(IHaContext haContext)
+		{
+			_haContext = haContext;
+		}
+
+		///<summary>Invalid config</summary>
+		public PersistentNotificationEntity InvalidConfig => new(_haContext, "persistent_notification.invalid_config");
+		///<summary>Package 1Z14597W6808897066 delivered</summary>
+		public PersistentNotificationEntity Package1z14597w6808897066Delivered => new(_haContext, "persistent_notification.package_1z14597w6808897066_delivered");
 	}
 
 	public partial class PersonEntities
@@ -873,6 +916,20 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity FantenpadBatteryLevel => new(_haContext, "sensor.fantenpad_battery_level");
 		///<summary>Fantenpad Storage</summary>
 		public NumericSensorEntity FantenpadStorage => new(_haContext, "sensor.fantenpad_storage");
+		///<summary>FantenPhone2 Average Active Pace</summary>
+		public NumericSensorEntity Fantenphone2AverageActivePace => new(_haContext, "sensor.fantenphone2_average_active_pace");
+		///<summary>FantenPhone2 Battery Level</summary>
+		public NumericSensorEntity Fantenphone2BatteryLevel => new(_haContext, "sensor.fantenphone2_battery_level");
+		///<summary>FantenPhone2 Distance</summary>
+		public NumericSensorEntity Fantenphone2Distance => new(_haContext, "sensor.fantenphone2_distance");
+		///<summary>FantenPhone2 Floors Ascended</summary>
+		public NumericSensorEntity Fantenphone2FloorsAscended => new(_haContext, "sensor.fantenphone2_floors_ascended");
+		///<summary>FantenPhone2 Floors Descended</summary>
+		public NumericSensorEntity Fantenphone2FloorsDescended => new(_haContext, "sensor.fantenphone2_floors_descended");
+		///<summary>FantenPhone2 Steps</summary>
+		public NumericSensorEntity Fantenphone2Steps => new(_haContext, "sensor.fantenphone2_steps");
+		///<summary>FantenPhone2 Storage</summary>
+		public NumericSensorEntity Fantenphone2Storage => new(_haContext, "sensor.fantenphone2_storage");
 		///<summary>Fantenrüssel Current clean area</summary>
 		public NumericSensorEntity FantenrusselCurrentCleanArea => new(_haContext, "sensor.fantenrussel_current_clean_area");
 		///<summary>Fantenrüssel Current clean duration</summary>
@@ -977,8 +1034,14 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity NukiBatteryVoltage => new(_haContext, "sensor.nuki_battery_voltage");
 		///<summary>Nuki bluetooth signal strength</summary>
 		public NumericSensorEntity NukiBluetoothSignalStrength => new(_haContext, "sensor.nuki_bluetooth_signal_strength");
+		///<summary>Nuki Haustür RSSI</summary>
+		public NumericSensorEntity NukiHausturRssi => new(_haContext, "sensor.nuki_haustur_rssi");
 		///<summary>Nuki wifi signal strength</summary>
 		public NumericSensorEntity NukiWifiSignalStrength => new(_haContext, "sensor.nuki_wifi_signal_strength");
+		///<summary>Nuki Wohnungstür Battery</summary>
+		public NumericSensorEntity NukiWohnungsturBattery => new(_haContext, "sensor.nuki_wohnungstur_battery");
+		///<summary>Nuki Wohnungstür RSSI</summary>
+		public NumericSensorEntity NukiWohnungsturRssi => new(_haContext, "sensor.nuki_wohnungstur_rssi");
 		///<summary>PupsStation (Volume 1) Average Disk Temp</summary>
 		public NumericSensorEntity PupsstationAverageDiskTemp => new(_haContext, "sensor.pupsstation_average_disk_temp");
 		///<summary>PupsStation CPU Load Average (15 min)</summary>
@@ -1103,8 +1166,6 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity WallpanelHallwayBatteryLevel => new(_haContext, "sensor.wallpanel_hallway_battery_level");
 		///<summary>Wallpanel Hallway Light</summary>
 		public NumericSensorEntity WallpanelHallwayLight => new(_haContext, "sensor.wallpanel_hallway_light");
-		///<summary>Wohnungstür Battery</summary>
-		public NumericSensorEntity WohnungsturBattery => new(_haContext, "sensor.wohnungstur_battery");
 		///<summary>2-Wochen-Gerichte Philipp</summary>
 		public SensorEntity E2WochenGerichtePhilipp => new(_haContext, "sensor.2_wochen_gerichte_philipp");
 		///<summary>Am Ende der Tausend Sterne Philipp</summary>
@@ -1175,6 +1236,24 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity FantenpadLastUpdateTrigger => new(_haContext, "sensor.fantenpad_last_update_trigger");
 		///<summary>Fantenpad SSID</summary>
 		public SensorEntity FantenpadSsid => new(_haContext, "sensor.fantenpad_ssid");
+		///<summary>FantenPhone2 Activity</summary>
+		public SensorEntity Fantenphone2Activity => new(_haContext, "sensor.fantenphone2_activity");
+		///<summary>FantenPhone2 Battery State</summary>
+		public SensorEntity Fantenphone2BatteryState => new(_haContext, "sensor.fantenphone2_battery_state");
+		///<summary>FantenPhone2 BSSID</summary>
+		public SensorEntity Fantenphone2Bssid => new(_haContext, "sensor.fantenphone2_bssid");
+		///<summary>FantenPhone2 Connection Type</summary>
+		public SensorEntity Fantenphone2ConnectionType => new(_haContext, "sensor.fantenphone2_connection_type");
+		///<summary>FantenPhone2 Geocoded Location</summary>
+		public SensorEntity Fantenphone2GeocodedLocation => new(_haContext, "sensor.fantenphone2_geocoded_location");
+		///<summary>FantenPhone2 Last Update Trigger</summary>
+		public SensorEntity Fantenphone2LastUpdateTrigger => new(_haContext, "sensor.fantenphone2_last_update_trigger");
+		///<summary>FantenPhone2 SIM 1</summary>
+		public SensorEntity Fantenphone2Sim1 => new(_haContext, "sensor.fantenphone2_sim_1");
+		///<summary>FantenPhone2 SIM 2</summary>
+		public SensorEntity Fantenphone2Sim2 => new(_haContext, "sensor.fantenphone2_sim_2");
+		///<summary>FantenPhone2 SSID</summary>
+		public SensorEntity Fantenphone2Ssid => new(_haContext, "sensor.fantenphone2_ssid");
 		///<summary>Fantenrüssel Last clean end</summary>
 		public SensorEntity FantenrusselLastCleanEnd => new(_haContext, "sensor.fantenrussel_last_clean_end");
 		///<summary>Fantenrüssel Last clean start</summary>
@@ -1386,12 +1465,24 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity NetdaemonStatus => new(_haContext, "sensor.netdaemon_status");
 		///<summary>🇫🇷 Normandie 🇫🇷 Philipp</summary>
 		public SensorEntity NormandiePhilipp => new(_haContext, "sensor.normandie_philipp");
+		///<summary>Nuki Bridge Firmware Version</summary>
+		public SensorEntity NukiBridgeFirmwareVersion => new(_haContext, "sensor.nuki_bridge_firmware_version");
+		///<summary>Nuki Bridge WiFi Firmware Version</summary>
+		public SensorEntity NukiBridgeWifiFirmwareVersion => new(_haContext, "sensor.nuki_bridge_wifi_firmware_version");
 		///<summary>Nuki Firmware version</summary>
 		public SensorEntity NukiFirmwareVersion => new(_haContext, "sensor.nuki_firmware_version");
 		///<summary>Nuki Hardware version</summary>
 		public SensorEntity NukiHardwareVersion => new(_haContext, "sensor.nuki_hardware_version");
+		///<summary>Nuki Haustür Firmware Version</summary>
+		public SensorEntity NukiHausturFirmwareVersion => new(_haContext, "sensor.nuki_haustur_firmware_version");
+		///<summary>Nuki Haustür State</summary>
+		public SensorEntity NukiHausturState => new(_haContext, "sensor.nuki_haustur_state");
 		///<summary>Nuki trigger</summary>
 		public SensorEntity NukiTrigger => new(_haContext, "sensor.nuki_trigger");
+		///<summary>Nuki Wohnungstür Firmware Version</summary>
+		public SensorEntity NukiWohnungsturFirmwareVersion => new(_haContext, "sensor.nuki_wohnungstur_firmware_version");
+		///<summary>Nuki Wohnungstür State</summary>
+		public SensorEntity NukiWohnungsturState => new(_haContext, "sensor.nuki_wohnungstur_state");
 		///<summary>🌲Nürnberg🎄🍄 Philipp</summary>
 		public SensorEntity NurnbergPhilipp => new(_haContext, "sensor.nurnberg_philipp");
 		///<summary>openwindows_count</summary>
@@ -1694,6 +1785,12 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("brightness")]
 		public double? Brightness { get; init; }
 
+		[JsonPropertyName("callback#0")]
+		public string? Callback0 { get; init; }
+
+		[JsonPropertyName("callback#1")]
+		public string? Callback1 { get; init; }
+
 		[JsonPropertyName("charging_status")]
 		public object? ChargingStatus { get; init; }
 
@@ -1796,6 +1893,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("systemCheck")]
 		public string? SystemCheck { get; init; }
 
+		[JsonPropertyName("timestamp")]
+		public string? Timestamp { get; init; }
+
 		[JsonPropertyName("update")]
 		public object? Update { get; init; }
 
@@ -1807,6 +1907,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("voltage")]
 		public double? Voltage { get; init; }
+
+		[JsonPropertyName("wifiFirmwareVersion")]
+		public string? WifiFirmwareVersion { get; init; }
 	}
 
 	public partial record ButtonEntity : Entity<ButtonEntity, EntityState<ButtonAttributes>, ButtonAttributes>
@@ -2400,9 +2503,6 @@ namespace HomeAutomations.Models.Generated
 
 	public record LockAttributes
 	{
-		[JsonPropertyName("battery_critical")]
-		public bool? BatteryCritical { get; init; }
-
 		[JsonPropertyName("child_lock")]
 		public string? ChildLock { get; init; }
 
@@ -2426,9 +2526,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("linkquality")]
 		public double? Linkquality { get; init; }
-
-		[JsonPropertyName("nuki_id")]
-		public double? NukiId { get; init; }
 
 		[JsonPropertyName("power")]
 		public double? Power { get; init; }
@@ -2508,6 +2605,29 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("unit_of_measurement")]
 		public string? UnitOfMeasurement { get; init; }
+	}
+
+	public partial record PersistentNotificationEntity : Entity<PersistentNotificationEntity, EntityState<PersistentNotificationAttributes>, PersistentNotificationAttributes>
+	{
+		public PersistentNotificationEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
+		{
+		}
+
+		public PersistentNotificationEntity(Entity entity) : base(entity)
+		{
+		}
+	}
+
+	public record PersistentNotificationAttributes
+	{
+		[JsonPropertyName("friendly_name")]
+		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
 	}
 
 	public partial record PersonEntity : Entity<PersonEntity, EntityState<PersonAttributes>, PersonAttributes>
@@ -2786,9 +2906,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("name")]
 		public string? Name { get; init; }
-
-		[JsonPropertyName("nuki_id")]
-		public double? NukiId { get; init; }
 
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
@@ -3594,7 +3711,7 @@ namespace HomeAutomations.Models.Generated
 
 		NotifyServices Notify { get; }
 
-		NukiServices Nuki { get; }
+		NukiNgServices NukiNg { get; }
 
 		NumberServices Number { get; }
 
@@ -3692,7 +3809,7 @@ namespace HomeAutomations.Models.Generated
 		public MqttServices Mqtt => new(_haContext);
 		public NetdaemonServices Netdaemon => new(_haContext);
 		public NotifyServices Notify => new(_haContext);
-		public NukiServices Nuki => new(_haContext);
+		public NukiNgServices NukiNg => new(_haContext);
 		public NumberServices Number => new(_haContext);
 		public O365Services O365 => new(_haContext);
 		public PersistentNotificationServices PersistentNotification => new(_haContext);
@@ -6992,6 +7109,22 @@ namespace HomeAutomations.Models.Generated
 			_haContext.CallService("notify", "mobile_app_fantenphone", null, new NotifyMobileAppFantenphoneParameters{Message = @message, Title = @title, Target = @target, Data = @data});
 		}
 
+		///<summary>Sends a notification message using the mobile_app_fantenphone2 integration.</summary>
+		public void MobileAppFantenphone2(NotifyMobileAppFantenphone2Parameters data)
+		{
+			_haContext.CallService("notify", "mobile_app_fantenphone2", null, data);
+		}
+
+		///<summary>Sends a notification message using the mobile_app_fantenphone2 integration.</summary>
+		///<param name="message">Message body of the notification. eg: The garage door has been open for 10 minutes.</param>
+		///<param name="title">Title for your notification. eg: Your Garage Door Friend</param>
+		///<param name="target">An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</param>
+		///<param name="data">Extended information for notification. Optional depending on the platform. eg: platform specific</param>
+		public void MobileAppFantenphone2(string @message, string? @title = null, object? @target = null, object? @data = null)
+		{
+			_haContext.CallService("notify", "mobile_app_fantenphone2", null, new NotifyMobileAppFantenphone2Parameters{Message = @message, Title = @title, Target = @target, Data = @data});
+		}
+
 		///<summary>Sends a notification message using the mobile_app_iphone_philipp integration.</summary>
 		public void MobileAppIphonePhilipp(NotifyMobileAppIphonePhilippParameters data)
 		{
@@ -7093,6 +7226,25 @@ namespace HomeAutomations.Models.Generated
 		public object? Data { get; init; }
 	}
 
+	public record NotifyMobileAppFantenphone2Parameters
+	{
+		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		///<summary>Title for your notification. eg: Your Garage Door Friend</summary>
+		[JsonPropertyName("title")]
+		public string? Title { get; init; }
+
+		///<summary>An array of targets to send the notification to. Optional depending on the platform. eg: platform specific</summary>
+		[JsonPropertyName("target")]
+		public object? Target { get; init; }
+
+		///<summary>Extended information for notification. Optional depending on the platform. eg: platform specific</summary>
+		[JsonPropertyName("data")]
+		public object? Data { get; init; }
+	}
+
 	public record NotifyMobileAppIphonePhilippParameters
 	{
 		///<summary>Message body of the notification. eg: The garage door has been open for 10 minutes.</summary>
@@ -7161,57 +7313,67 @@ namespace HomeAutomations.Models.Generated
 		public string? Title { get; init; }
 	}
 
-	public class NukiServices
+	public class NukiNgServices
 	{
 		private readonly IHaContext _haContext;
-		public NukiServices(IHaContext haContext)
+		public NukiNgServices(IHaContext haContext)
 		{
 			_haContext = haContext;
 		}
 
-		///<summary>Nuki Lock 'n' Go</summary>
+		///<summary>The callbacks currently set are exposed as attributes of the 'Bridge Callback Set' entity</summary>
 		///<param name="target">The target for this service call</param>
-		public void LockNGo(ServiceTarget target, NukiLockNGoParameters data)
+		public void BridgeDeleteCallback(ServiceTarget target, NukiNgBridgeDeleteCallbackParameters data)
 		{
-			_haContext.CallService("nuki", "lock_n_go", target, data);
+			_haContext.CallService("nuki_ng", "bridge_delete_callback", target, data);
 		}
 
-		///<summary>Nuki Lock 'n' Go</summary>
+		///<summary>The callbacks currently set are exposed as attributes of the 'Bridge Callback Set' entity</summary>
 		///<param name="target">The target for this service call</param>
-		///<param name="unlatch">Whether to unlatch the lock.</param>
-		public void LockNGo(ServiceTarget target, bool? @unlatch = null)
+		///<param name="command">URL to delete eg: http://192.168.0.0/callback</param>
+		public void BridgeDeleteCallback(ServiceTarget target, string @command)
 		{
-			_haContext.CallService("nuki", "lock_n_go", target, new NukiLockNGoParameters{Unlatch = @unlatch});
+			_haContext.CallService("nuki_ng", "bridge_delete_callback", target, new NukiNgBridgeDeleteCallbackParameters{Command = @command});
 		}
 
-		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
 		///<param name="target">The target for this service call</param>
-		public void SetContinuousMode(ServiceTarget target, NukiSetContinuousModeParameters data)
+		public void BridgeFwupdate(ServiceTarget target)
 		{
-			_haContext.CallService("nuki", "set_continuous_mode", target, data);
+			_haContext.CallService("nuki_ng", "bridge_fwupdate", target);
 		}
 
-		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
 		///<param name="target">The target for this service call</param>
-		///<param name="enable">Whether to enable or disable the feature</param>
-		public void SetContinuousMode(ServiceTarget target, bool? @enable = null)
+		public void BridgeReboot(ServiceTarget target)
 		{
-			_haContext.CallService("nuki", "set_continuous_mode", target, new NukiSetContinuousModeParameters{Enable = @enable});
+			_haContext.CallService("nuki_ng", "bridge_reboot", target);
+		}
+
+		///<param name="target">The target for this service call</param>
+		public void ExecuteAction(ServiceTarget target, NukiNgExecuteActionParameters data)
+		{
+			_haContext.CallService("nuki_ng", "execute_action", target, data);
+		}
+
+		///<param name="target">The target for this service call</param>
+		///<param name="action">Lock action to execute eg: unlock</param>
+		public void ExecuteAction(ServiceTarget target, object @action)
+		{
+			_haContext.CallService("nuki_ng", "execute_action", target, new NukiNgExecuteActionParameters{Action = @action});
 		}
 	}
 
-	public record NukiLockNGoParameters
+	public record NukiNgBridgeDeleteCallbackParameters
 	{
-		///<summary>Whether to unlatch the lock.</summary>
-		[JsonPropertyName("unlatch")]
-		public bool? Unlatch { get; init; }
+		///<summary>URL to delete eg: http://192.168.0.0/callback</summary>
+		[JsonPropertyName("command")]
+		public string? Command { get; init; }
 	}
 
-	public record NukiSetContinuousModeParameters
+	public record NukiNgExecuteActionParameters
 	{
-		///<summary>Whether to enable or disable the feature</summary>
-		[JsonPropertyName("enable")]
-		public bool? Enable { get; init; }
+		///<summary>Lock action to execute eg: unlock</summary>
+		[JsonPropertyName("action")]
+		public object? Action { get; init; }
 	}
 
 	public class NumberServices
@@ -10616,65 +10778,6 @@ namespace HomeAutomations.Models.Generated
 		public static void VolumeUp(this IEnumerable<MediaPlayerEntity> target)
 		{
 			target.CallService("volume_up");
-		}
-	}
-
-	public static class NukiEntityExtensionMethods
-	{
-		///<summary>Nuki Lock 'n' Go</summary>
-		public static void LockNGo(this LockEntity target, NukiLockNGoParameters data)
-		{
-			target.CallService("lock_n_go", data);
-		}
-
-		///<summary>Nuki Lock 'n' Go</summary>
-		public static void LockNGo(this IEnumerable<LockEntity> target, NukiLockNGoParameters data)
-		{
-			target.CallService("lock_n_go", data);
-		}
-
-		///<summary>Nuki Lock 'n' Go</summary>
-		///<param name="target">The LockEntity to call this service for</param>
-		///<param name="unlatch">Whether to unlatch the lock.</param>
-		public static void LockNGo(this LockEntity target, bool? @unlatch = null)
-		{
-			target.CallService("lock_n_go", new NukiLockNGoParameters{Unlatch = @unlatch});
-		}
-
-		///<summary>Nuki Lock 'n' Go</summary>
-		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
-		///<param name="unlatch">Whether to unlatch the lock.</param>
-		public static void LockNGo(this IEnumerable<LockEntity> target, bool? @unlatch = null)
-		{
-			target.CallService("lock_n_go", new NukiLockNGoParameters{Unlatch = @unlatch});
-		}
-
-		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
-		public static void SetContinuousMode(this LockEntity target, NukiSetContinuousModeParameters data)
-		{
-			target.CallService("set_continuous_mode", data);
-		}
-
-		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
-		public static void SetContinuousMode(this IEnumerable<LockEntity> target, NukiSetContinuousModeParameters data)
-		{
-			target.CallService("set_continuous_mode", data);
-		}
-
-		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
-		///<param name="target">The LockEntity to call this service for</param>
-		///<param name="enable">Whether to enable or disable the feature</param>
-		public static void SetContinuousMode(this LockEntity target, bool? @enable = null)
-		{
-			target.CallService("set_continuous_mode", new NukiSetContinuousModeParameters{Enable = @enable});
-		}
-
-		///<summary>Enable or disable Continuous Mode on Nuki Opener</summary>
-		///<param name="target">The IEnumerable<LockEntity> to call this service for</param>
-		///<param name="enable">Whether to enable or disable the feature</param>
-		public static void SetContinuousMode(this IEnumerable<LockEntity> target, bool? @enable = null)
-		{
-			target.CallService("set_continuous_mode", new NukiSetContinuousModeParameters{Enable = @enable});
 		}
 	}
 
