@@ -6,7 +6,7 @@ namespace HomeAutomations.Models;
 
 public record Notification
 {
-	public string? Service { get; init; } = "notify";
+	public string? Service { get; init; } = "ourphones";
 	public string? Title { get; init; }
 	public string? Template { get; init; }
 	public string? Tag { get; init; }

@@ -5,8 +5,8 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
     CallbackUrl: http://192.168.188.41:5000/Nuki/ProcessCallback
     Token: "569640"
   Token: 0GdY0L#C%IWb1BmM%W^CC2VJ
-  LockEntity: lock.wohnungstur
-  OpenerEntity: lock.haustur
+  LockEntity: lock.nuki_wohnungstur_lock
+  OpenerEntity: lock.nuki_haustur_lock
   RtoTimeout: 00:05:00
   RingSensor: binary_sensor.nuki_haustur_ring_action
   ArrivalNotification:

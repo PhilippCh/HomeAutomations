@@ -1,12 +1,6 @@
-﻿using System.Collections.Specialized;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Security.Authentication;
+﻿using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
-using HomeAutomations.Apps.DoorLock.Nuki;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
@@ -21,20 +15,19 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private IDisposable? _rtoTimeoutObserver;
 	private IDisposable? _ringSensorObserver;
 
-	private readonly HttpClient _httpClient;
+	// We need to use an explicit state because the ring event only arrives after RTO has already been disabled on the opener.
+	private bool _isRtoActive;
+
 	private readonly NotificationService _notificationService;
 
-	public DoorLock(BaseAutomationDependencyAggregate<DoorLock, DoorLockConfig> aggregate, HttpClient httpClient, NotificationService notificationService)
+	public DoorLock(BaseAutomationDependencyAggregate<DoorLock, DoorLockConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
 	{
-		_httpClient = httpClient;
 		_notificationService = notificationService;
 	}
 
-	protected override async Task StartAsync(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		await CreateBridgeCallbacksAsync();
-
 		Context.Events.Filter<EnableRtoEventData>(EnableRtoEventData.Id)
 			.SwitchMap(Authenticate)
 			.Catch<EnableRtoEventData?, AuthenticationException>(
@@ -45,50 +38,11 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 					return Observable.Empty<EnableRtoEventData>();
 				})
 			.Subscribe(_ => EnableRingToOpen());
-	}
 
-	private async Task CreateBridgeCallbacksAsync()
-	{
-		var response = await _httpClient.GetFromJsonAsync<CallbackListResponse>(GetBridgeApiCall("callback/list"));
+		// Disable RTO by default to clear up inconsistent statues due to unexpected restarts.
+		Config.OpenerEntity.Lock();
 
-		if (response.Callbacks.Any())
-		{
-			foreach (var callback in response.Callbacks)
-			{
-				await _httpClient.GetAsync(
-					GetBridgeApiCall(
-						"callback/remove", new NameValueCollection
-						{
-							{ "id", callback.Id.ToString() }
-						}));
-			}
-		}
-
-		var response2 = await _httpClient.GetAsync(
-			GetBridgeApiCall(
-				"callback/add", new NameValueCollection
-				{
-					{ "url", Config.BridgeApi.CallbackUrl }
-				}));
-	}
-
-	private Uri GetBridgeApiCall(string method, NameValueCollection? extraParameters = null)
-	{
-		var uriBuilder = new UriBuilder($"{Config.BridgeApi.BaseUrl}/{method}");
-		var queryParameters = HttpUtility.ParseQueryString(string.Empty);
-		queryParameters["token"] = Config.BridgeApi.Token;
-
-		if (extraParameters is not null)
-		{
-			foreach (string parameter in extraParameters)
-			{
-				queryParameters[parameter] = extraParameters[parameter];
-			}
-		}
-
-		uriBuilder.Query = queryParameters.ToString();
-
-		return uriBuilder.Uri;
+		return Task.CompletedTask;
 	}
 
 	private IObservable<EnableRtoEventData?> Authenticate(Event<EnableRtoEventData> e)
@@ -106,6 +60,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		_notificationService.SendNotification(Config.ArrivalNotification);
 		Config.OpenerEntity.Unlock();
 
+		_isRtoActive = true;
 		_ringSensorObserver?.Dispose();
 		_ringSensorObserver = Config.RingSensor.StateChanges()
 			.Where(s => s.New?.IsOn() ?? false)
@@ -117,10 +72,12 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 	private void OnRing()
 	{
-		// Sanity check to see if we're still in ring-to-open state.
-		if (Config.OpenerEntity.IsOff())
+		// Sanity check to see if we're still in ring-to-open state. See comment on _isRtoActive.
+		if (_isRtoActive)
 		{
 			Config.LockEntity.Open();
 		}
+
+		_isRtoActive = false;
 	}
 }
