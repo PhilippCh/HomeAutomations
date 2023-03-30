@@ -15,7 +15,7 @@ public class ZoneParser
 	{
 		return action switch
 		{
-			"Home" => Zone.Home,
+			"home" => Zone.Home,
 			"EnBW" => Zone.Enbw,
 			"Messe Karlsruhe (Festplatz)" => Zone.Festplatz,
 			"Messe Karlsruhe (dm Arena)" => Zone.DmArena,

@@ -43,7 +43,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		foreach (var person in Config.EnabledPersons)
 		{
 			person.StateChanges()
-				.Select(x => (Old: ZoneParser.Parse(x.Old?.State), New: ZoneParser.Parse(x.Old?.State)))
+				.Select(x => (Old: ZoneParser.Parse(x.Old?.State), New: ZoneParser.Parse(x.New?.State)))
 				.Where(x => x.Old != x.New && x.New == Zone.Home)
 				.Subscribe(_ => EnableRingToOpen());
 		}
