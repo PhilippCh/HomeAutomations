@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
+using HomeAutomations.Common.Models;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
@@ -38,6 +39,14 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 					return Observable.Empty<EnableRtoEventData>();
 				})
 			.Subscribe(_ => EnableRingToOpen());
+
+		foreach (var person in Config.EnabledPersons)
+		{
+			person.StateChanges()
+				.Select(x => (Old: ZoneParser.Parse(x.Old?.State), New: ZoneParser.Parse(x.Old?.State)))
+				.Where(x => x.Old != x.New && x.New == Zone.Home)
+				.Subscribe(_ => EnableRingToOpen());
+		}
 
 		// Disable RTO by default to clear up inconsistent statues due to unexpected restarts.
 		Config.OpenerEntity.Lock();

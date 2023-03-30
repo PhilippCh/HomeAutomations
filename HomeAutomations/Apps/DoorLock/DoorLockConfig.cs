@@ -13,5 +13,6 @@ public record DoorLockConfig : Config
 	public LockEntity OpenerEntity { get; init; }
 	public TimeSpan RtoTimeout { get; init; }
 	public BinarySensorEntity RingSensor { get; init; }
+	public IEnumerable<PersonEntity> EnabledPersons { get; init; }
 	public Notification ArrivalNotification { get; init; }
 }

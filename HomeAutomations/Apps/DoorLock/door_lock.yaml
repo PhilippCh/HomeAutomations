@@ -5,6 +5,9 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
   OpenerEntity: lock.nuki_haustur_lock
   RtoTimeout: 00:05:00
   RingSensor: binary_sensor.nuki_haustur_ring_action
+  EnabledPersons:
+    - person.fabienne
+    - person.philipp
   ArrivalNotification:
     Tag: nuki
     Title: Türschloss
