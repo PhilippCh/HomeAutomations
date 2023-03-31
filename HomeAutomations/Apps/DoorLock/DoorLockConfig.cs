@@ -14,5 +14,6 @@ public record DoorLockConfig : Config
 	public TimeSpan RtoTimeout { get; init; }
 	public BinarySensorEntity RingSensor { get; init; }
 	public IEnumerable<PersonEntity> EnabledPersons { get; init; }
+	public double GpsAccuracyThreshold { get; init; }
 	public Notification ArrivalNotification { get; init; }
 }

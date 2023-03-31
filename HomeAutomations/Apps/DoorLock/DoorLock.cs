@@ -43,6 +43,19 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		foreach (var person in Config.EnabledPersons)
 		{
 			person.StateChanges()
+				.Where(
+					x =>
+					{
+						var accuracy = x.New?.Attributes?.GpsAccuracy ?? double.MaxValue;
+						var isAccurateMeasurement = accuracy < Config.GpsAccuracyThreshold;
+
+						if (!isAccurateMeasurement)
+						{
+							Logger.Information("GPS accuracy of {Accuracy} did not meet reporting threshold of {Threshold}, will not trigger door automation", accuracy, Config.GpsAccuracyThreshold);
+						}
+
+						return isAccurateMeasurement;
+					})
 				.Select(x => (Old: ZoneParser.Parse(x.Old?.State), New: ZoneParser.Parse(x.New?.State)))
 				.Where(x => x.Old != x.New && x.New == Zone.Home)
 				.Subscribe(_ => EnableRingToOpen());
@@ -67,7 +80,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private void EnableRingToOpen()
 	{
 		_notificationService.SendNotification(Config.ArrivalNotification);
-		Config.OpenerEntity.Unlock();
+		// Config.OpenerEntity.Unlock();
 
 		_isRtoActive = true;
 		_ringSensorObserver?.Dispose();
@@ -84,7 +97,8 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		// Sanity check to see if we're still in ring-to-open state. See comment on _isRtoActive.
 		if (_isRtoActive)
 		{
-			Config.LockEntity.Open();
+			// TODO: Reintroduce this once location updates work properly.
+			//Config.LockEntity.Open();
 		}
 
 		_isRtoActive = false;

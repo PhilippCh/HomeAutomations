@@ -5,11 +5,12 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
   OpenerEntity: lock.nuki_haustur_lock
   RtoTimeout: 00:05:00
   RingSensor: binary_sensor.nuki_haustur_ring_action
+  GpsAccuracyThreshold: 20
   EnabledPersons:
     - person.fabienne
     - person.philipp
   ArrivalNotification:
     Tag: nuki
     Title: Türschloss
-    Template: Wenn du läutest, gehen beide Türen auf.
+    Template: "DEBUG: Wenn du läutest, gehen beide Türen auf."
     Sticky: true
