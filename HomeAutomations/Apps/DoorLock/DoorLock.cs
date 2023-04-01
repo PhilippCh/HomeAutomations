@@ -80,7 +80,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private void EnableRingToOpen()
 	{
 		_notificationService.SendNotification(Config.ArrivalNotification);
-		// Config.OpenerEntity.Unlock();
+		Config.OpenerEntity.Unlock();
 
 		_isRtoActive = true;
 		_ringSensorObserver?.Dispose();
@@ -97,8 +97,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		// Sanity check to see if we're still in ring-to-open state. See comment on _isRtoActive.
 		if (_isRtoActive)
 		{
-			// TODO: Reintroduce this once location updates work properly.
-			//Config.LockEntity.Open();
+			Config.LockEntity.Open();
 		}
 
 		_isRtoActive = false;

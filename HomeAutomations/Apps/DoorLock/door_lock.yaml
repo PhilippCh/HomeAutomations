@@ -12,5 +12,5 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
   ArrivalNotification:
     Tag: nuki
     Title: Türschloss
-    Template: "DEBUG: Wenn du läutest, gehen beide Türen auf."
+    Template: "Wenn du klingelst, gehen beide Türen auf."
     Sticky: true
