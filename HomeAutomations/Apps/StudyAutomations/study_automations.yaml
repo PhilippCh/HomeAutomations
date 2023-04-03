@@ -4,6 +4,7 @@ HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
   Computers:
     - binary_sensor.laptopphilipp
     - binary_sensor.desktopphilipp
+	- binary_sensor.laptopphilippenbw
   DeskLamp: light.study_desk_lamp
   DeskLampSwitch: sensor.study_desk_lamp_switch_action
   DeskLampOverride: input_boolean.override_desk_lamp
