@@ -31,6 +31,8 @@ public class CycleInfo
 		var previousIndex = _currentIndex;
 		_currentIndex = RotateIndex();
 
+		_logger.Debug("Current light rotation index: {Index}", _currentIndex);
+
 		if (previousIndex != -1)
 		{
 			foreach (var entity in _config.EntityCycles[previousIndex])
@@ -54,7 +56,9 @@ public class CycleInfo
 	{
 		if (_currentIndex >= _config.EntityCycles.Count - 1)
 		{
-			return -1;
+			// There is a special case where there's only a single group.
+			// If we don't return -1, we would turn the entity off, then immediately turn it back on again.
+			return _config.EntityCycles.Count == 1 ? -1 : 0;
 		}
 
 		return _currentIndex + 1;
