@@ -24,4 +24,6 @@ public record KiteReminderConfig : Config
 	public double Longitude { get; init; }
 	public WindThresholds Thresholds { get; init; }
 	public Notification Notification { get; init; }
+	public TimeSpan EnableNotificationTime { get; init; }
+	public TimeSpan DisableNotificationTime { get; init; }
 }

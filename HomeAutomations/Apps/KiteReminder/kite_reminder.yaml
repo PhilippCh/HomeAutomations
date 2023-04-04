@@ -16,3 +16,5 @@ HomeAutomations.Apps.KiteReminder.KiteReminderConfig:
     Template: Gerade sind {0} km/h Wind und {1} km/h Böen. Wollen wir Drachenfliegen?
     Image: https://ha.pupslab.de/local/kite_reminder.png
     Sticky: true
+  EnableNotificationTime: 10:00:00
+  DisableNotificationTime: 18:00:00
