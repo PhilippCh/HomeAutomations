@@ -20,6 +20,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 {
 	private Calendar? _calendar;
 	private IDisposable? _reminderObserver;
+	private bool _hasSentReminderToday;
 
 	private readonly NotificationService _notificationService;
 
@@ -45,6 +46,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 	private void StartUpdateLoop()
 	{
+		CronjobExtensions.ScheduleJob("0 0 * * *", () => _hasSentReminderToday = false);
 		ObservableExtensions.Interval(TimeSpan.FromMinutes(15), true)
 			.Subscribe(_ => UpdateNextDates(DateTime.Now));
 	}
@@ -83,6 +85,7 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 		if (_calendar == null)
 		{
 			Logger.Warning("Could not load trash calendar");
+
 			return;
 		}
 
@@ -96,9 +99,10 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 
 		var nextDate = eventsThisWeek.FirstOrDefault()?.Period.StartTime;
 
-		if (nextDate is not null)
+		if (nextDate is not null && !_hasSentReminderToday)
 		{
 			CreatePickupReminder(nextDate.AsDateTimeOffset);
+			_hasSentReminderToday = true;
 		}
 	}
 
