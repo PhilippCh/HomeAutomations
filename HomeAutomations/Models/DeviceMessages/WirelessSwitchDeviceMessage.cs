@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace HomeAutomations.Models.DeviceMessages;
 
@@ -13,33 +14,27 @@ public enum ButtonAction
 	Release,
 	Many,
 	On,
-	Off
+	Off,
+	BrightnessUp,
+	BrightnessDown,
+	BrightnessStop,
 }
 
 public static class WirelessSwitchActions
 {
-	public const string Single = "single";
-	public const string Double = "double";
-	public const string Triple = "triple";
-	public const string Hold = "hold";
-	public const string Release = "release";
-	public const string On = "on";
-	public const string Off = "off";
-
-	public static ButtonAction Map(string? action)
+	private static readonly IReadOnlyDictionary<string, ButtonAction> _buttonActions = new Dictionary<string, ButtonAction>
 	{
-		return action switch
-		{
-			"single" => ButtonAction.Single,
-			"double" => ButtonAction.Double,
-			"triple" => ButtonAction.Triple,
-			"quadruple" => ButtonAction.Quadruple,
-			"hold" => ButtonAction.Hold,
-			"release" => ButtonAction.Release,
-			"many" => ButtonAction.Many,
-			"on" => ButtonAction.On,
-			"off" => ButtonAction.Off,
-			_ => ButtonAction.Undefined
-		};
-	}
+		{ "single", ButtonAction.Single },
+		{ "double", ButtonAction.Double },
+		{ "triple", ButtonAction.Triple },
+		{ "hold", ButtonAction.Hold },
+		{ "release", ButtonAction.Release },
+		{ "on", ButtonAction.On },
+		{ "off", ButtonAction.Off },
+		{ "brightness_up", ButtonAction.BrightnessUp },
+		{ "brightness_down", ButtonAction.BrightnessDown },
+		{ "brightness_stop", ButtonAction.BrightnessStop },
+	};
+
+	public static ButtonAction Map(string? value) => _buttonActions.TryGetValue(value ?? string.Empty, out var action) ? action : ButtonAction.Undefined;
 }

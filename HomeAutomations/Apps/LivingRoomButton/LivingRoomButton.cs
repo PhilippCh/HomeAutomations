@@ -8,6 +8,8 @@ namespace HomeAutomations.Apps.LivingRoomButton;
 
 public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButtonConfig>
 {
+	private IDisposable? _brightnessLoopObserver;
+
 	public LivingRoomButton(BaseAutomationDependencyAggregate<LivingRoomButton, LivingRoomButtonConfig> aggregate)
 		: base(aggregate)
 	{
@@ -28,9 +30,23 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 			ButtonAction.Single => () => Config.StandardLamp.Toggle(),
 			ButtonAction.On => () => Config.StandardLamp.TurnOn(),
 			ButtonAction.Off => () => Config.StandardLamp.TurnOff(),
+			ButtonAction.BrightnessUp => () => _brightnessLoopObserver = StartBrightnessLoop(1),
+			ButtonAction.BrightnessDown => () => _brightnessLoopObserver = StartBrightnessLoop(-1),
+			ButtonAction.BrightnessStop => () => _brightnessLoopObserver?.Dispose(),
 			_ => () => {} // Do nothing
 		};
 
 		action();
+	}
+
+	private IDisposable StartBrightnessLoop(int increment)
+	{
+		return Observable.Interval(TimeSpan.FromMilliseconds(100))
+			.Subscribe(
+				_ =>
+				{
+					var currentBrightness = Config.StandardLamp.Attributes?.Brightness ?? 254;
+					Config.StandardLamp.TurnOn(brightness: (long) (currentBrightness + increment));
+				});
 	}
 }
