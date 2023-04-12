@@ -10,7 +10,11 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
     - person.fabienne
     - person.philipp
   ArrivalNotification:
-    Tag: nuki
+    Tag: door_lock
     Title: Türschloss
     Template: "Wenn du klingelst, gehen beide Türen auf."
     Sticky: true
+    Actions:
+      - Action: DOOR_LOCK_KEEP_ACTIVE
+        Title: Offen halten
+        Destructive: false

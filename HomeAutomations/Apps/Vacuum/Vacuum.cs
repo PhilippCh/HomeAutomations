@@ -55,13 +55,13 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 		}
 	}
 
-	private void OnNotificationActionFired(HaEvent e)
+	private void OnNotificationActionFired(string action)
 	{
-		Action callback = e.Action switch
+		Action callback = action switch
 		{
 			VacuumNotificationActions.Start => () => Config.Vacuum.Start(),
 			VacuumNotificationActions.NoStart => Reset,
-			_ => () => Logger.Warning("Fired unknown notification action {Action}", e.Action)
+			_ => () => Logger.Warning("Fired unknown notification action {Action}", action)
 		};
 
 		callback();

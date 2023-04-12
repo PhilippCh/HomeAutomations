@@ -29,15 +29,11 @@ public static class ObservableExtensions
 			.Where(e => e.EventType == eventId && e.DataElement.HasValue)
 			.Select(e => new HaEvent(e));
 
-	public static IObservable<HaEvent> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
+	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
 		events
 			.GetDataEvents(MobileAppNotificationData.Id)
-			.Where(n => allowedActions.Contains(n.Action));
-
-	public static IObservable<HaEvent> GetMobileNotificationActions(this IObservable<Event> events, Func<HaEvent, bool> actionPredicate) =>
-		events
-			.GetDataEvents(MobileAppNotificationData.Id)
-			.Where(actionPredicate);
+			.Where(x => allowedActions.Contains(x.Action))
+			.Select(x => x.Action!);
 
 	public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
 	{

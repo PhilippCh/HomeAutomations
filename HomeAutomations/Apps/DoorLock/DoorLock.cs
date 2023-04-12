@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
@@ -17,6 +18,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 	// We need to use an explicit state because the ring event only arrives after RTO has already been disabled on the opener.
 	private bool _isRtoActive;
+	private bool _keepDoorActive;
 
 	private readonly NotificationService _notificationService;
 
@@ -39,6 +41,10 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 				})
 			.Subscribe(_ => EnableRingToOpen());
 
+		Context.Events
+			.GetMobileNotificationActions(DoorLockNotificationActions.Actions)
+			.Subscribe(OnNotificationActionFired);
+
 		foreach (var person in Config.EnabledPersons)
 		{
 			person.StateChanges()
@@ -50,20 +56,44 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 						if (!isAccurateMeasurement)
 						{
-							Logger.Information("GPS accuracy of {Accuracy} did not meet reporting threshold of {Threshold}, will not trigger door automation", accuracy, Config.GpsAccuracyThreshold);
+							Logger.Information(
+								"GPS accuracy of {Accuracy} did not meet reporting threshold of {Threshold}, will not trigger door automation", accuracy,
+								Config.GpsAccuracyThreshold);
 						}
 
 						return isAccurateMeasurement;
 					})
 				.Select(x => (Old: ZoneParser.Parse(x.Old?.State), New: ZoneParser.Parse(x.New?.State)))
 				.Where(x => x.Old != x.New && x.New == Zone.Home)
-				.Subscribe(_ => EnableRingToOpen());
+				.Subscribe(
+					_ =>
+					{
+						_notificationService.SendNotification(Config.ArrivalNotification);
+						EnableRingToOpen();
+					});
 		}
 
 		// Disable RTO by default to clear up inconsistent statues due to unexpected restarts.
 		Config.OpenerEntity.Lock();
 
 		return Task.CompletedTask;
+	}
+
+	private void OnNotificationActionFired(string action)
+	{
+		Action callback = action switch
+		{
+			DoorLockNotificationActions.KeepActive => KeepDoorActive,
+			_ => () => Logger.Warning("Fired unknown notification action {Action}", action)
+		};
+
+		callback();
+	}
+
+	private void KeepDoorActive()
+	{
+		_keepDoorActive = true;
+		EnableRingToOpen();
 	}
 
 	private IObservable<EnableRtoEventData?> Authenticate(Event<EnableRtoEventData> e)
@@ -78,7 +108,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 	private void EnableRingToOpen()
 	{
-		_notificationService.SendNotification(Config.ArrivalNotification);
+		Config.OpenerEntity.Lock(); // Force state change to reset native opener RTO timer.
 		Config.OpenerEntity.Unlock();
 
 		_isRtoActive = true;
@@ -97,6 +127,11 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		if (_isRtoActive)
 		{
 			Config.LockEntity.Open();
+		}
+
+		if (_keepDoorActive)
+		{
+			EnableRingToOpen();
 		}
 
 		_isRtoActive = false;

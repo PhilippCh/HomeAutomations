@@ -37,7 +37,7 @@ public class NotificationService
 					actions = notification.Actions,
 					image = notification.Image,
 					sticky = notification.Sticky,
-					url = notification.Url
+					url = notification.Url,
 				}
 			});
 	}
