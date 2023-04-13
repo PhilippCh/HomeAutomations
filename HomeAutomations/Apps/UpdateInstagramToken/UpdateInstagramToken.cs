@@ -27,13 +27,13 @@ public class UpdateInstagramToken : BaseAutomation<UpdateInstagramToken, UpdateI
 
 	private async void UpdateToken()
 	{
-		var client = new HttpClient();
-		var response = await client.GetAsync(Config.Url);
-
-		var connectionInfo = new ConnectionInfo(Config.Target.Host, Config.Target.Username, new PasswordAuthenticationMethod(Config.Target.Username, Config.Target.Password));
-
 		try
 		{
+			var client = new HttpClient();
+			var response = await client.GetAsync(Config.Url);
+
+			var connectionInfo = new ConnectionInfo(Config.Target.Host, Config.Target.Username, new PasswordAuthenticationMethod(Config.Target.Username, Config.Target.Password));
+
 			using var sftpClient = new SftpClient(connectionInfo);
 
 			sftpClient.Connect();
