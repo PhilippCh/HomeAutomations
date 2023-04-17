@@ -56,16 +56,6 @@
       <Folder Include="Apps\Lights" />
     </ItemGroup>
 
-	<Target Name="NSwag moonlight-remote-api" BeforeTargets="Build">
-		<Exec ConsoleToMSBuild="true" ContinueOnError="true" Command="$(NSwagExe_Net60) run Nswag/moonlight-remote-api.json">
-			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
-			<Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />
-		</Exec>
-
-		<Message Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' == '0'" Importance="low" />
-		<Error Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' != '0'" />
-	</Target>
-
 	<Target Name="Copy app configs" BeforeTargets="Build">
 		<ItemGroup>
 			<ANTLR Include="Apps\**\*.yaml" />
