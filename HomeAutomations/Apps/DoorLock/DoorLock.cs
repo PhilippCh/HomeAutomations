@@ -109,10 +109,13 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private async void EnableRingToOpen()
 	{
 		Logger.Debug("Enabling RTO");
-		
-		Config.OpenerEntity.Lock(); // Force state change to reset native opener RTO timer.
-		await Task.Delay(1000);		// Delay to allow HA to update the state.
-		Config.OpenerEntity.Unlock();
+
+		if (!_isRtoActive)
+		{
+			Config.OpenerEntity.Lock(); // Force state change to reset native opener RTO timer.
+			await Task.Delay(1000);		// Delay to allow HA to update the state.
+			Config.OpenerEntity.Unlock();
+		}
 
 		_isRtoActive = true;
 		_ringSensorObserver?.Dispose();
