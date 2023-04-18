@@ -10,6 +10,7 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
     - person.fabienne
     - person.philipp
   ArrivalNotification:
+    Service: mobile_app_iphone_philipp
     Tag: door_lock
     Title: Türschloss
     Template: "Wenn du klingelst, gehen beide Türen auf."

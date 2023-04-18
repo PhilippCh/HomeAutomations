@@ -11,8 +11,12 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.DoorLock;
 
+[Focus]
 public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 {
+	private const string OpenOpenerActionId = "OPEN_OPENER";
+	private const string OpenLockActionId = "OPEN_LOCK";
+
 	private IDisposable? _rtoTimeoutObserver;
 	private IDisposable? _ringSensorObserver;
 
@@ -30,19 +34,12 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		Context.Events.Filter<EnableRtoEventData>(EnableRtoEventData.Id)
-			.SwitchMap(Authenticate)
-			.Catch<EnableRtoEventData?, AuthenticationException>(
-				ex =>
-				{
-					Logger.Warning("Authentication error: {Message}", ex.Message);
-
-					return Observable.Empty<EnableRtoEventData>();
-				})
-			.Subscribe(_ => EnableRingToOpen());
+		Context.Events
+			.GetMobileAppActions(new[] { OpenOpenerActionId, OpenLockActionId })
+			.Subscribe(OnOpenActionFired);
 
 		Context.Events
-			.GetMobileNotificationActions(DoorLockNotificationActions.Actions)
+			.GetMobileAppNotificationActions(DoorLockNotificationActions.Actions)
 			.Subscribe(OnNotificationActionFired);
 
 		foreach (var person in Config.EnabledPersons)
@@ -65,6 +62,8 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 					})
 				.Select(x => (Old: ZoneParser.Parse(x.Old?.State), New: ZoneParser.Parse(x.New?.State)))
 				.Where(x => x.Old != x.New && x.New == Zone.Home)
+				.Select(_ => new EnableRtoEventData())
+				.Merge(GetEnableRtoEvents())
 				.Subscribe(
 					_ =>
 					{
@@ -79,12 +78,37 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		return Task.CompletedTask;
 	}
 
+	private IObservable<EnableRtoEventData?> GetEnableRtoEvents()
+	{
+		return Context.Events.Filter<EnableRtoEventData>(EnableRtoEventData.Id)
+			.SwitchMap(Authenticate)
+			.Catch<EnableRtoEventData?, AuthenticationException>(
+				ex =>
+				{
+					Logger.Warning("Authentication error: {Message}", ex.Message);
+
+					return Observable.Empty<EnableRtoEventData>();
+				});
+	}
+
 	private void OnNotificationActionFired(string action)
 	{
 		Action callback = action switch
 		{
 			DoorLockNotificationActions.KeepActive => KeepDoorActive,
 			_ => () => Logger.Warning("Fired unknown notification action {Action}", action)
+		};
+
+		callback();
+	}
+
+	private void OnOpenActionFired(string action)
+	{
+		Action callback = action switch
+		{
+			OpenOpenerActionId => () => Config.OpenerEntity.Open(),
+			OpenLockActionId => () => Config.LockEntity.Open(),
+			_ => () => Logger.Warning("Fired unknown action {Action}", action)
 		};
 
 		callback();
@@ -106,16 +130,11 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		return Observable.Return(e.Data);
 	}
 
-	private async void EnableRingToOpen()
+	private void EnableRingToOpen()
 	{
 		Logger.Debug("Enabling RTO");
 
-		if (!_isRtoActive)
-		{
-			//Config.OpenerEntity.Lock(); // Force state change to reset native opener RTO timer.
-			await Task.Delay(1000);		// Delay to allow HA to update the state.
-			Config.OpenerEntity.Unlock();
-		}
+		Config.OpenerEntity.Unlock();
 
 		_isRtoActive = true;
 		_ringSensorObserver?.Dispose();

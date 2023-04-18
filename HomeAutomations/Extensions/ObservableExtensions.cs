@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reactive.Concurrency;
 using System.Text.Json;
 using System.Threading;
+using HomeAutomations.Constants;
 using HomeAutomations.Models;
 
 namespace HomeAutomations.Extensions;
@@ -29,11 +30,17 @@ public static class ObservableExtensions
 			.Where(e => e.EventType == eventId && e.DataElement.HasValue)
 			.Select(e => new HaEvent(e));
 
-	public static IObservable<string> GetMobileNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
+	public static IObservable<string> GetMobileAppNotificationActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
 		events
 			.GetDataEvents(MobileAppNotificationData.Id)
 			.Where(x => allowedActions.Contains(x.Action))
 			.Select(x => x.Action!);
+
+	public static IObservable<string> GetMobileAppActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
+		events
+			.Filter<MobileAppActionEvent>(EventConstants.IosActionFired)
+			.Where(x => allowedActions.Contains(x.Data?.ActionName))
+			.Select(x => x.Data!.ActionName);
 
 	public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
 	{

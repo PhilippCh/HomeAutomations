@@ -23,7 +23,7 @@ public class Vacuum : BaseAutomation<Vacuum, VacuumConfig>
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		Context.Events
-			.GetMobileNotificationActions(VacuumNotificationActions.Actions)
+			.GetMobileAppNotificationActions(VacuumNotificationActions.Actions)
 			.Subscribe(OnNotificationActionFired);
 		Config.Vacuum.StateChanges().Subscribe(s => OnVacuumStateUpdated(new StateChange { Old = s.Old?.State, New = s.New?.State }));
 
