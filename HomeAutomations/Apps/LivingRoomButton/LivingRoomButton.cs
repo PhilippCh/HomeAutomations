@@ -30,8 +30,8 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 			ButtonAction.Single => () => Config.StandardLamp.Toggle(),
 			ButtonAction.On => () => Config.StandardLamp.TurnOn(),
 			ButtonAction.Off => () => Config.StandardLamp.TurnOff(),
-			ButtonAction.BrightnessUp => () => _brightnessLoopObserver = StartBrightnessLoop(1),
-			ButtonAction.BrightnessDown => () => _brightnessLoopObserver = StartBrightnessLoop(-1),
+			ButtonAction.BrightnessUp => () => _brightnessLoopObserver = StartBrightnessLoop(Config.BrightnessIncrement),
+			ButtonAction.BrightnessDown => () => _brightnessLoopObserver = StartBrightnessLoop(-Config.BrightnessIncrement),
 			ButtonAction.BrightnessStop => () => _brightnessLoopObserver?.Dispose(),
 			_ => () => {} // Do nothing
 		};
@@ -41,12 +41,15 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 
 	private IDisposable StartBrightnessLoop(int increment)
 	{
-		return Observable.Interval(TimeSpan.FromMilliseconds(100))
+		return Observable.Interval(TimeSpan.FromMilliseconds(Config.BrightnessIncrementTimeoutMs))
 			.Subscribe(
 				_ =>
 				{
-					var currentBrightness = Config.StandardLamp.Attributes?.Brightness ?? 254;
-					Config.StandardLamp.TurnOn(brightness: (long) (currentBrightness + increment));
+					const double MaxBrightness = 254;
+					var currentBrightness = Config.StandardLamp.Attributes?.Brightness ?? MaxBrightness;
+					var brightness = (long) Math.Clamp(currentBrightness + increment, 0, MaxBrightness);
+
+					Config.StandardLamp.TurnOn(brightness: brightness);
 				});
 	}
 }

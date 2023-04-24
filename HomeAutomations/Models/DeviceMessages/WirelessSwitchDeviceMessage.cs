@@ -31,8 +31,8 @@ public static class WirelessSwitchActions
 		{ "release", ButtonAction.Release },
 		{ "on", ButtonAction.On },
 		{ "off", ButtonAction.Off },
-		{ "brightness_up", ButtonAction.BrightnessUp },
-		{ "brightness_down", ButtonAction.BrightnessDown },
+		{ "brightness_move_up", ButtonAction.BrightnessUp },
+		{ "brightness_move_down", ButtonAction.BrightnessDown },
 		{ "brightness_stop", ButtonAction.BrightnessStop },
 	};
 

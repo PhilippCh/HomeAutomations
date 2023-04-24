@@ -2,3 +2,5 @@
 HomeAutomations.Apps.LivingRoomButton.LivingRoomButtonConfig:
   Button: sensor.living_room_lamp_switch_action
   StandardLamp: light.living_room_standard_lamp
+  BrightnessIncrement: 10
+  BrightnessIncrementTimeoutMs: 100
