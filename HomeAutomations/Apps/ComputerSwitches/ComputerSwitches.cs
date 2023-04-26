@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
-using HomeAutomations.Models.Generated.MoonlightRemoteApi;
 using NetDaemon.HassModel.Entities;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
@@ -14,18 +13,20 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 {
 	private bool _ignoreLastStateChange;
 	private readonly HttpClient _httpClient;
+	private readonly WakeOnLanService _wakeOnLanService;
 
-	public ComputerSwitches(BaseAutomationDependencyAggregate<ComputerSwitches, ComputerSwitchesConfig> aggregate, HttpClient httpClient)
+	public ComputerSwitches(BaseAutomationDependencyAggregate<ComputerSwitches, ComputerSwitchesConfig> aggregate, HttpClient httpClient, WakeOnLanService wakeOnLanService)
 		: base(aggregate)
 	{
 		_httpClient = httpClient;
+		_wakeOnLanService = wakeOnLanService;
 	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		ObservableExtensions.Interval(Config.AvailabilityCheck.Interval, true)
 			.SelectMany(_ => Config.Hosts)
-			.SelectMany(h => Observable.FromAsync(async () => await UpdateWolSwitchStatus(h)))
+			.SelectMany(h => Observable.FromAsync(async () => await UpdateWolSwitchStatusAsync(h)))
 			.Subscribe();
 
 		foreach (var hostConfig in Config.Hosts)
@@ -54,65 +55,30 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 
 		if (isOn.Value)
 		{
-			await BootMachine(hostConfig);
+			await BootMachineAsync(hostConfig);
 		}
 		else
 		{
-			await ShutdownMachine(hostConfig);
+			await ShutdownMachineAsync(hostConfig);
 		}
 	}
 
-	private async Task BootMachine(HostConfig hostConfig)
+	private async Task BootMachineAsync(HostConfig hostConfig)
 	{
-		var client = new MoonlightRemoteApiClient(Config.ApiBaseUrl.CurrentValue, new HttpClient());
-
 		Logger.Information("Starting host {HostName}", hostConfig.Name);
 
-		await client.StartAsync(
-			new StartStreamRequest
-			{
-				Host = new StreamRequestHost
-				{
-					Host = hostConfig.Host,
-					MacAddress = hostConfig.MacAddress
-				},
-				Features = new StreamRequestFeatures
-				{
-					Bluetooth = false,
-					Harmony = false,
-					Moonlight = false,
-					Host = true
-				}
-			});
+		await _wakeOnLanService.WaitUntilAvailableAsync(hostConfig.Host, hostConfig.MacAddress);
 	}
 
-	private async Task ShutdownMachine(HostConfig hostConfig)
+	private async Task ShutdownMachineAsync(HostConfig hostConfig)
 	{
-		var client = new MoonlightRemoteApiClient(Config.ApiBaseUrl.CurrentValue, new HttpClient());
-
 		Logger.Information("Stopping host {HostName}", hostConfig.Name);
-
-		await client.StopAsync(
-			new StopStreamRequest
-			{
-				Host = new StreamRequestHost
-				{
-					Host = hostConfig.Host,
-					MacAddress = hostConfig.MacAddress
-				},
-				Features = new StreamRequestFeatures
-				{
-					Bluetooth = false,
-					Harmony = false,
-					Moonlight = false,
-					Host = true
-				}
-			});
+		await _wakeOnLanService.ShutdownAsync(hostConfig.Host);
 	}
 
-	private async Task UpdateWolSwitchStatus(HostConfig host)
+	private async Task UpdateWolSwitchStatusAsync(HostConfig host)
 	{
-		var isAvailable = await GetHostAvailability(host);
+		var isAvailable = await GetHostAvailabilityAsync(host);
 
 		if (isAvailable == host.Entity.IsOn())
 		{
@@ -132,7 +98,7 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 		}
 	}
 
-	private async Task<bool> GetHostAvailability(HostConfig hostConfig)
+	private async Task<bool> GetHostAvailabilityAsync(HostConfig hostConfig)
 	{
 		try
 		{
