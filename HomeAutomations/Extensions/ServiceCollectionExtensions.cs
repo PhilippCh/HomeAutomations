@@ -21,6 +21,7 @@ public static class ServiceCollectionExtensions
 		services
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
 			.AddSingleton<MqttService>()
+			.AddScoped<WakeOnLanService>()
 			.AddScoped<NotificationService>()
 			.AddTransient<PingService>()
 
