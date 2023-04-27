@@ -5,11 +5,10 @@ using HomeAutomations.Apps.StudyAutomations.Triggers;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
-using HomeAutomations.Models.Generated;
-using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.StudyAutomations;
 
+[Focus]
 public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomationsConfig>
 {
 	private InputBooleanEntity _deskLampOverrideSwitch;
@@ -22,13 +21,13 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		new MultiBinarySwitchTrigger(Config.Computers).GetTrigger()
-			.Subscribe(
-				x =>
-				{
-					Logger.Information("Setting speakers to {State}", x);
-					Config.Speaker.SetState(x);
-				});
+		var computerTrigger = new MultiBinarySwitchTrigger(Config.Computers).GetTrigger();
+		computerTrigger.Subscribe(
+			x =>
+			{
+				Logger.Information("Setting speakers to {State}", x);
+				Config.Speaker.SetState(x);
+			});
 
 		Observable.CombineLatest(
 				new BrightnessTrigger(Config.DeskLampTriggerConfig).GetTrigger(),
@@ -48,6 +47,19 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 		_deskLampOverrideSwitch.StateChanges().Subscribe(_ => ToggleDeskLamp(_deskLampOverrideSwitch.IsOn()));
 
 		return Task.CompletedTask;
+	}
+
+	private void ToggleForceDeskLamp()
+	{
+		_isForceDeskLampStateOn = true;
+		_forceDeskLampState = !_forceDeskLampState;
+		ToggleDeskLamp(_forceDeskLampState);
+	}
+
+	private void ResetForceDeskLamp()
+	{
+		_isForceDeskLampStateOn = false;
+		ToggleDeskLamp(false);
 	}
 
 	private void ToggleDeskLamp(bool isOn)

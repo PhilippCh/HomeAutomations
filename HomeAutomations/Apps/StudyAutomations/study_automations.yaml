@@ -1,5 +1,8 @@
 ---
 HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
+  Computers:
+    #- binary_sensor.desktopphilipp
+    - binary_sensor.laptopphilippenbw
   Speaker: switch.study_speakers_philipp_socket_1
   Computers:
     - binary_sensor.laptopphilipp
