@@ -29,6 +29,7 @@
 }</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E4BA68DD1290D648AD2D1950171669BC/UITag/@EntryValue">Class/Interface</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=appsettings/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Crons/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Dtos/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Enbw/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Festplatz/@EntryIndexedValue">True</s:Boolean>
