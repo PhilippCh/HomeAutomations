@@ -4,14 +4,11 @@ HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
     #- binary_sensor.desktopphilipp
     - binary_sensor.laptopphilippenbw
   Speaker: switch.study_speakers_philipp_socket_1
-  Computers:
-    - binary_sensor.laptopphilipp
-    - binary_sensor.desktopphilipp
-    - binary_sensor.laptopphilippenbw
-  DeskLamp: light.study_desk_lamp
-  DeskLampSwitch: sensor.study_desk_lamp_switch_action
-  DeskLampOverride: input_boolean.override_desk_lamp
-  DeskLampTriggerConfig:
-    Entity: sensor.study_motion_detector_illuminance_lux
-    MinBrightness: 0
-    MaxBrightness: 120
+  DeskLamp:
+    Entity: light.study_desk_lamp
+    SwitchAction: sensor.study_desk_lamp_switch_action
+    Timeout: 00:05:00
+    TriggerConfig:
+      Entity: sensor.study_motion_detector_illuminance_lux
+      MinBrightness: 0
+      MaxBrightness: 200

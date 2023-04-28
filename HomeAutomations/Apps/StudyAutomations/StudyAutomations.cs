@@ -11,12 +11,13 @@ namespace HomeAutomations.Apps.StudyAutomations;
 [Focus]
 public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomationsConfig>
 {
-	private InputBooleanEntity _deskLampOverrideSwitch;
+	private DateTimeOffset? _deskLampStartTime;
+	private bool _isForceDeskLampStateOn; // Determines whether force mode is on.
+	private bool _forceDeskLampState; // Determines which mode the lamp is forced to.
 
 	public StudyAutomations(BaseAutomationDependencyAggregate<StudyAutomations, StudyAutomationsConfig> aggregate)
 		: base(aggregate)
 	{
-		_deskLampOverrideSwitch = Entities.InputBoolean.OverrideDeskLamp;
 	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
@@ -29,22 +30,23 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 				Config.Speaker.SetState(x);
 			});
 
-		Observable.CombineLatest(
-				new BrightnessTrigger(Config.DeskLampTriggerConfig).GetTrigger(),
-				new MultiBinarySwitchTrigger(Config.Computers).GetTrigger()
-			)
+		Observable
+			.CombineLatest(computerTrigger, new BrightnessTrigger(Config.DeskLamp.TriggerConfig).GetTrigger())
 			.Subscribe(x => ToggleDeskLamp(x.All(y => y)));
-		Entities.Sensor.StudyDeskLampSwitchAction.StateChanges().Subscribe(
-			s =>
-			{
-				var action = WirelessSwitchActions.Map(s.New?.State);
 
-				if (action == ButtonAction.Single)
+		Config.DeskLamp.SwitchAction.StateChanges()
+			.Subscribe(
+				s =>
 				{
-					_deskLampOverrideSwitch.Toggle();
-				}
-			});
-		_deskLampOverrideSwitch.StateChanges().Subscribe(_ => ToggleDeskLamp(_deskLampOverrideSwitch.IsOn()));
+					Action action = WirelessSwitchActions.Map(s.New?.State) switch
+					{
+						ButtonAction.Single => ToggleForceDeskLamp,
+						ButtonAction.Double => ResetForceDeskLamp,
+						_ => () => {} // Do nothing.
+					};
+
+					action();
+				});
 
 		return Task.CompletedTask;
 	}
@@ -64,9 +66,14 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 	private void ToggleDeskLamp(bool isOn)
 	{
-		var state = isOn || _deskLampOverrideSwitch.IsOn();
+		var state = _isForceDeskLampStateOn ? _forceDeskLampState : isOn;
 
 		Logger.Information("Setting desk lamp to {State}", state);
-		Config.DeskLamp.SetState(state);
+		Config.DeskLamp.Entity.SetState(state);
+
+		if (state)
+		{
+			_deskLampStartTime = DateTimeOffset.Now;
+		}
 	}
 }
