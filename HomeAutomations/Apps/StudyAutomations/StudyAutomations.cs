@@ -8,6 +8,7 @@ using HomeAutomations.Models.DeviceMessages;
 
 namespace HomeAutomations.Apps.StudyAutomations;
 
+[Focus]
 public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomationsConfig>
 {
 	private InputBooleanEntity _deskLampOverrideSwitch;
