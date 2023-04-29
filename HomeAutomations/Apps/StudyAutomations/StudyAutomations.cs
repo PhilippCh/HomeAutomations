@@ -32,7 +32,11 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 		Observable
 			.CombineLatest(computerTrigger, new BrightnessTrigger(Config.DeskLamp.TriggerConfig).GetTrigger())
-			.Subscribe(x => ToggleDeskLamp(x.All(y => y)));
+			.Subscribe(x =>
+			{
+				Logger.Information("Computer trigger: {Ct} | Brightness trigger: {Bt}", x.First(), x.Last());
+				ToggleDeskLamp(x.All(y => y));
+			});
 
 		Config.DeskLamp.SwitchAction.StateChanges()
 			.Subscribe(
