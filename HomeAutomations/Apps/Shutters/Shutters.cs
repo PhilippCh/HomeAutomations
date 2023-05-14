@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
@@ -10,6 +11,8 @@ namespace HomeAutomations.Apps.Shutters;
 
 public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 {
+	private readonly Dictionary<ShutterConfig, IDisposable> _retryCloseShutterObservers = new();
+
 	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate)
 		: base(aggregate)
 	{
@@ -39,27 +42,47 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 	private void OpenAllShutters()
 	{
 		Logger.Information("Opening shutters...");
-		PerformForAllShuttersWithSafetyOverride(x => x.OpenCover());
+
+		foreach (var shutter in Config.Shutters)
+		{
+			if (!shutter.ForceOpenOverride.IsOn())
+			{
+				shutter.Entity.OpenCover();
+			}
+		}
 	}
 
 	private void CloseAllShutters()
 	{
 		Logger.Information("Closing shutters...");
-		PerformForAllShuttersWithSafetyOverride(x => x.CloseCover());
-	}
 
-	private void PerformForAllShuttersWithSafetyOverride(Action<CoverEntity> action)
-	{
 		foreach (var shutter in Config.Shutters)
 		{
 			if (shutter.ForceOpenOverride.IsOn())
 			{
-				Logger.Debug("Cannot perform action on shutter {0} due to force open override being on", shutter.Entity.EntityId);
+				RetryCloseShutter(shutter);
 
 				continue;
 			}
 
-			action(shutter.Entity);
+			shutter.Entity.CloseCover();
 		}
+	}
+
+	private void RetryCloseShutter(ShutterConfig shutter)
+	{
+		Logger.Information("Could not close {Shutter}, retrying when force open is false.", shutter.Entity.EntityId);
+
+		if (_retryCloseShutterObservers.TryGetValue(shutter, out var existingObserver))
+		{
+			existingObserver.Dispose();
+			_retryCloseShutterObservers.Remove(shutter);
+		}
+
+		var observer = shutter.ForceOpenOverride.StateChanges()
+			.Timeout(DateTimeOffset.Now.AddHours(8))
+			.Where(x => x.New?.IsOn() ?? false)
+			.Subscribe(_ => shutter.Entity.CloseCover());
+		_retryCloseShutterObservers.TryAdd(shutter, observer);
 	}
 }
