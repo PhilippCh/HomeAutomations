@@ -81,7 +81,7 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 
 		var observer = shutter.ForceOpenOverride.StateChanges()
 			.Timeout(DateTimeOffset.Now.AddHours(8))
-			.Where(x => x.New?.IsOn() ?? false)
+			.Where(x => !x.New?.IsOn() ?? false)
 			.Subscribe(_ => shutter.Entity.CloseCover());
 		_retryCloseShutterObservers.TryAdd(shutter, observer);
 	}
