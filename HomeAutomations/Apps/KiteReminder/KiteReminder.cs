@@ -35,9 +35,15 @@ public class KiteReminder : BaseAutomation<KiteReminder, KiteReminderConfig>
 
 	private async void CheckWeatherConditions()
 	{
-		var client = new HttpClient();
-		var response = await client.GetAsync(GetWeatherRequestUrl());
-		var weather = await response.Content.ReadFromJsonAsync<OpenWeatherMapResponse>();
+		OpenWeatherMapResponse? weather = null;
+
+		try
+		{
+			var client = new HttpClient();
+			var response = await client.GetAsync(GetWeatherRequestUrl());
+			weather = await response.Content.ReadFromJsonAsync<OpenWeatherMapResponse>();
+		}
+		catch (HttpRequestException) {}
 
 		if (weather == null)
 		{
@@ -54,10 +60,10 @@ public class KiteReminder : BaseAutomation<KiteReminder, KiteReminderConfig>
 		var time = DateTime.Now.TimeOfDay;
 		var windSpeed = Math.Round(weather.Wind.Speed * WindSpeedConversionFactor, 1);
 		var gustSpeed = Math.Round(weather.Wind.GustSpeed * WindSpeedConversionFactor, 1);
-		var shouldFire = windSpeed >= Config.Thresholds.Speed
-		                 && gustSpeed >= Config.Thresholds.GustSpeed
-		                 && time >= Config.EnableNotificationTime
-		                 && time < Config.DisableNotificationTime;
+		var shouldFire = windSpeed >= Config.Thresholds.Speed &&
+		                 gustSpeed >= Config.Thresholds.GustSpeed &&
+		                 time >= Config.EnableNotificationTime &&
+		                 time < Config.DisableNotificationTime;
 
 		Logger.Debug("Wind speed: {Speed} | Gust speed: {GustSpeed} | Will send notification?: {ShouldFire}", windSpeed, gustSpeed, shouldFire);
 

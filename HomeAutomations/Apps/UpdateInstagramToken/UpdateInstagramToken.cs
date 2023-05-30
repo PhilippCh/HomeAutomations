@@ -39,7 +39,7 @@ public class UpdateInstagramToken : BaseAutomation<UpdateInstagramToken, UpdateI
 			sftpClient.Connect();
 			sftpClient.UploadFile(await response.Content.ReadAsStreamAsync(), Config.FilePath);
 		}
-		catch (Exception ex)
+		catch (HttpRequestException ex)
 		{
 			_notificationService.SendNotification(Config.FailureNotification with { Template = Config.FailureNotification.RenderTemplate(ex.Message) });
 		}
