@@ -1,4 +1,6 @@
-﻿using System.Security.Authentication;
+﻿using System.Linq;
+using System.Reflection.Metadata;
+using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
@@ -45,21 +47,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		foreach (var person in Config.EnabledPersons)
 		{
 			person.StateChanges()
-				.Where(
-					x =>
-					{
-						var accuracy = x.New?.Attributes?.GpsAccuracy ?? double.MaxValue;
-						var isAccurateMeasurement = accuracy < Config.GpsAccuracyThreshold;
-
-						if (!isAccurateMeasurement)
-						{
-							Logger.Information(
-								"GPS accuracy of {Accuracy} did not meet reporting threshold of {Threshold}, will not trigger door automation", accuracy,
-								Config.GpsAccuracyThreshold);
-						}
-
-						return isAccurateMeasurement;
-					})
+				.Where(x => x.New?.Attributes?.IsGpsPositionAccurate(Config.GpsAccuracyThreshold) ?? false)
 				.Select(x => (Old: ZoneParser.Parse(x.Old?.State), New: ZoneParser.Parse(x.New?.State)))
 				.Where(x => x.Old != x.New && x.New == Zone.Home)
 				.Select(_ => new EnableRtoEventData())
@@ -143,7 +131,8 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 			.Subscribe(_ => OnRing());
 
 		_rtoTimeoutObserver?.Dispose();
-		_rtoTimeoutObserver = Observable.Timer(Config.RtoTimeout).Subscribe(_ => Config.OpenerEntity.Lock());
+		_rtoTimeoutObserver = Observable.Timer(Config.RtoTimeout)
+			.Subscribe(_ => DisableRingToOpen());
 	}
 
 	private void OnRing()
@@ -151,15 +140,39 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		// Sanity check to see if we're still in ring-to-open state. See comment on _isRtoActive.
 		if (_isRtoActive)
 		{
-			Config.LockEntity.Open();
+			PerformWithPeoplePresent(() => Config.LockEntity.Open());
 		}
 
 		if (_keepDoorActive)
 		{
 			Logger.Debug("Reenable RTO due to ringing withing timeframe");
-			EnableRingToOpen();
+			PerformWithPeoplePresent(EnableRingToOpen);
 		}
 
 		_isRtoActive = false;
+	}
+
+	private void DisableRingToOpen()
+	{
+		Config.OpenerEntity.Lock();
+		_isRtoActive = false;
+	}
+
+	private void PerformWithPeoplePresent(Action action)
+	{
+		var presentPersons = Config.EnabledPersons
+			.Where(x => (x.Attributes?.IsGpsPositionAccurate(Config.GpsAccuracyThreshold) ?? false) && ZoneParser.Parse(x.State) == Zone.Home)
+			.ToList();
+
+		if (!presentPersons.Any())
+		{
+			Logger.Warning("Will not perform action because no person is present");
+			return;
+		}
+
+		var entityNames = presentPersons.Select(x => x.GetName());
+		Logger.Information("Performing action because of present persons: {Persons}", string.Join(", ", entityNames));
+
+		action();
 	}
 }
