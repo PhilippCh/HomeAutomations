@@ -12,7 +12,7 @@ public static class PersonEntityExtensions
 {
 	public static bool IsGpsPositionAccurate(this PersonAttributes attributes, double threshold)
 	{
-		var accuracy = attributes?.GpsAccuracy ?? double.MaxValue;
+		var accuracy = attributes.GpsAccuracy ?? double.MaxValue;
 
 		return accuracy < threshold;
 	}

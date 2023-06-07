@@ -4,6 +4,7 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
   LockEntity: lock.nuki_wohnungstur_lock
   OpenerEntity: lock.nuki_haustur_lock
   RtoTimeout: 00:05:00
+  RtoTimeoutCheckInterval: 00:00:30
   RingSensor: binary_sensor.nuki_haustur_ring_action
   GpsAccuracyThreshold: 100
   EnabledPersons:
@@ -14,7 +15,3 @@ HomeAutomations.Apps.DoorLock.DoorLockConfig:
     Title: Türschloss
     Template: "Wenn du klingelst, gehen beide Türen auf."
     Sticky: true
-    Actions:
-      - Action: DOOR_LOCK_KEEP_ACTIVE
-        Title: Offen halten
-        Destructive: false

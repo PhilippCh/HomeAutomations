@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Reflection.Metadata;
 using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,12 +18,10 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private const string OpenOpenerActionId = "OPEN_OPENER";
 	private const string OpenLockActionId = "OPEN_LOCK";
 
-	private IDisposable? _rtoTimeoutObserver;
 	private IDisposable? _ringSensorObserver;
 
 	// We need to use an explicit state because the ring event only arrives after RTO has already been disabled on the opener.
-	private bool _isRtoActive;
-	private bool _keepDoorActive;
+	private DateTimeOffset? _lastRtoActivation;
 
 	private readonly NotificationService _notificationService;
 
@@ -36,13 +33,18 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
+		// Extra Security
+		// --------------
+		// - Disable RTO when automations restarted due to an unhandled exception.
+		// - Check every 30 seconds if the RTO mechanism should be disabled and if so, do so.
+		//   We do it this way instead of setting a timer when RTO is initially enabled to disable RTO after the timeout even if something
+		//   in the enabling method fails and the timer for disabling is never actually created.
+		DisableRingToOpen();
+		Observable.Interval(TimeSpan.FromSeconds(30)).Subscribe(_ => CheckDisableRingToOpen());
+
 		Context.Events
 			.GetMobileAppActions(new[] { OpenOpenerActionId, OpenLockActionId })
 			.Subscribe(OnOpenActionFired);
-
-		Context.Events
-			.GetMobileAppNotificationActions(DoorLockNotificationActions.Actions)
-			.Subscribe(OnNotificationActionFired);
 
 		foreach (var person in Config.EnabledPersons)
 		{
@@ -79,17 +81,6 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 				});
 	}
 
-	private void OnNotificationActionFired(string action)
-	{
-		Action callback = action switch
-		{
-			DoorLockNotificationActions.KeepActive => KeepDoorActive,
-			_ => () => Logger.Warning("Fired unknown notification action {Action}", action)
-		};
-
-		callback();
-	}
-
 	private void OnOpenActionFired(string action)
 	{
 		Action callback = action switch
@@ -102,20 +93,11 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		callback();
 	}
 
-	private void KeepDoorActive()
-	{
-		_keepDoorActive = true;
-		EnableRingToOpen();
-	}
-
 	private IObservable<EnableRtoEventData?> Authenticate(Event<EnableRtoEventData> e)
 	{
-		if (e.Data?.Token != Config.Token)
-		{
-			return Observable.Throw<EnableRtoEventData>(new AuthenticationException($"Token {e.Data?.Token} is not authenticated"));
-		}
-
-		return Observable.Return(e.Data);
+		return e.Data?.Token != Config.Token
+			? Observable.Throw<EnableRtoEventData>(new AuthenticationException($"Token {e.Data?.Token} is not authenticated"))
+			: Observable.Return(e.Data);
 	}
 
 	private void EnableRingToOpen()
@@ -124,38 +106,37 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 		Config.OpenerEntity.Unlock();
 
-		_isRtoActive = true;
+		_lastRtoActivation = DateTimeOffset.Now;
 		_ringSensorObserver?.Dispose();
 		_ringSensorObserver = Config.RingSensor.StateChanges()
 			.Where(s => s.New?.IsOn() ?? false)
 			.Subscribe(_ => OnRing());
-
-		_rtoTimeoutObserver?.Dispose();
-		_rtoTimeoutObserver = Observable.Timer(Config.RtoTimeout)
-			.Subscribe(_ => DisableRingToOpen());
 	}
 
 	private void OnRing()
 	{
 		// Sanity check to see if we're still in ring-to-open state. See comment on _isRtoActive.
-		if (_isRtoActive)
+		if (IsLockOpenable())
 		{
 			PerformWithPeoplePresent(() => Config.LockEntity.Open());
 		}
 
-		if (_keepDoorActive)
-		{
-			Logger.Debug("Reenable RTO due to ringing withing timeframe");
-			PerformWithPeoplePresent(EnableRingToOpen);
-		}
+		_lastRtoActivation = null;
+	}
 
-		_isRtoActive = false;
+	private void CheckDisableRingToOpen()
+	{
+		if (!IsLockOpenable() && _lastRtoActivation != null)
+		{
+			Logger.Information("Disabling RTO due to timeout exceeded");
+			DisableRingToOpen();
+		}
 	}
 
 	private void DisableRingToOpen()
 	{
 		Config.OpenerEntity.Lock();
-		_isRtoActive = false;
+		_lastRtoActivation = null;
 	}
 
 	private void PerformWithPeoplePresent(Action action)
@@ -167,6 +148,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		if (!presentPersons.Any())
 		{
 			Logger.Warning("Will not perform action because no person is present");
+
 			return;
 		}
 
@@ -174,5 +156,15 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		Logger.Information("Performing action because of present persons: {Persons}", string.Join(", ", entityNames));
 
 		action();
+	}
+
+	private bool IsLockOpenable()
+	{
+		if (_lastRtoActivation == null)
+		{
+			return false;
+		}
+
+		return DateTimeOffset.Now - _lastRtoActivation < Config.RtoTimeout;
 	}
 }
