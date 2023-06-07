@@ -23,6 +23,7 @@ public static class ServiceCollectionExtensions
 			.AddSingleton<MqttService>()
 			.AddScoped<WakeOnLanService>()
 			.AddScoped<NotificationService>()
+			.AddTransient<ActionSequencerService>()
 			.AddTransient<PingService>()
 
 			// Bluetooth

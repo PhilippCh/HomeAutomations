@@ -1,9 +1,5 @@
 ---
 HomeAutomations.Apps.MovieTime.MovieTimeConfig:
-  StatusTopic: homeautomations-client/media/status
-  EnableLightControlEntity: input_boolean.movie_time_enable_light_control
-  SupportedActivities:
-    - Kino
   Lights:
     - light.living_room_standard_lamp
-  DimBrightnessPct: 10
+  Remote: remote.fernbedienung_remote

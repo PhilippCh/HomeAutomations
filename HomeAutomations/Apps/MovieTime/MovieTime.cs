@@ -1,111 +1,65 @@
 ﻿using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Common.Models;
-using HomeAutomations.Common.Services;
+using HomeAutomations.Common.Extensions;
+using HomeAutomations.Constants;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
-using HomeAutomations.Models.Generated.HomeAutomation;
-using HomeAutomations.Common.Extensions;
-using HomeAutomations.Extensions;
-using NetDaemon.Extensions.MqttEntityManager;
-using NetDaemon.HassModel.Entities;
+using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.MovieTime;
 
+[Focus]
 public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 {
-	private MediaStatusMessage? _activeStatusMessage;
+	private const string MovieTimeActionId = "KINO";
 
-	private readonly MqttService _mqttService;
-	private readonly IMqttEntityManager _entityManager;
+	private readonly ActionSequencerService _actionSequencerService;
 
-	public MovieTime(
-		BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate,
-		MqttService mqttService,
-		IMqttEntityManager entityManager)
+	public MovieTime(BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate, ActionSequencerService actionSequencerService)
 		: base(aggregate)
 	{
-		_mqttService = mqttService;
-		_entityManager = entityManager;
+		_actionSequencerService = actionSequencerService;
 	}
 
-	protected override async Task StartAsync(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		(await _mqttService.GetMessagesForChildTopics<MediaStatusMessage>(Config.StatusTopic)).Subscribe(OnStatusMessageReceived);
-		Context.Events.Filter<RokuCommandEventData>(RokuCommandEventData.Id).Subscribe(e => OnRokuCommandReceived(e.Data));
+		Context.Events
+			.GetMobileAppActions(new[] { MovieTimeActionId })
+			.Subscribe(_ => OnActionFired());
+
+		Context.Events
+			.Filter<StateChangedEvent>(EventConstants.StateChanged)
+			.Where(x => x.Data?.EntityId == "")
+			.Subscribe();
+
+		return Task.CompletedTask;
 	}
 
-	private async void OnStatusMessageReceived(MediaStatusMessage? e)
+	private async void OnActionFired()
 	{
-		/*var currentActivity = await _harmonyHubService.GetCurrentActivity();
+		Logger.Information("Switching movie time on");
 
-		if (!Config.SupportedActivities.Contains(currentActivity))
-		{
-			return; // We're currently not watching a movie.
-		}
-
-		Action action = e?.State switch
-		{
-			MediaPlaybackState.NotPlaying => OnPause,
-			MediaPlaybackState.Playing => OnResume,
-			_ => () => Logger.Warning("No action defined for media state {State}", e?.State)
-		};
-
-		action();
-		_activeStatusMessage = e;*/
+		await _actionSequencerService.RunAsync(
+			new RunAction(() => Config.Lights.ForEach(x => x.TurnOn())),
+			new RunAction(() => SendRemoteCommand("AVReceiver", commands: "source_streambox")),
+			new RunAction(() => SendRemoteCommand("AVReceiver", commands: "power"), 1),
+			new RunAction(() => SendRemoteCommand("Beamer", commands: "power", repeats: 2, delay: 2), 1)
+		);
 	}
 
-	private void OnRokuCommandReceived(RokuCommandEventData? e)
+	private void SendRemoteCommand(string device, long repeats = 1, double delay = 0.4, params string[] commands)
 	{
-		Action action = e?.Key switch
-		{
-			"Play" => TogglePlayback,
-			"Search" => ToggleLight,
-			"Rewind" => DimLight,
-			_ => () => Logger.Warning("No action defined for key {State}", e?.Key)
-		};
-
-		action();
-	}
-
-	private async void TogglePlayback()
-	{
-		if (_activeStatusMessage == null || _activeStatusMessage.BaseUrl == null)
-		{
-			Logger.Warning("No active device to send remote command to");
-
-			return;
-		}
-
-		var client = new MediaHomeAutomationsClient(_activeStatusMessage.BaseUrl, new HttpClient());
-		await client.TogglePlaybackAsync();
-	}
-
-	private void ToggleLight()
-	{
-		Config.Lights.ForEach(l => l.Toggle());
-	}
-
-	private void DimLight()
-	{
-		Config.Lights.ForEach(l => l.TurnOn(brightnessPct: Config.DimBrightnessPct));
-	}
-
-	private void OnPause()
-	{
-		if (Config.EnableLightControlEntity.IsOn() && _activeStatusMessage?.State != MediaPlaybackState.NotPlaying)
-		{
-			Config.Lights.ForEach(l => l.TurnOn());
-		}
-	}
-
-	private void OnResume()
-	{
-		if (Config.EnableLightControlEntity.IsOn() && _activeStatusMessage?.State != MediaPlaybackState.Playing)
-		{
-			Config.Lights.ForEach(l => l.TurnOff());
-		}
+		var command = commands.Length == 1 ? commands[0] : string.Join("\n", commands.Select(x => $"- {x}"));
+		Config.Remote.SendCommand(
+			new RemoteSendCommandParameters
+			{
+				Device = device,
+				Command = command,
+				NumRepeats = repeats,
+				DelaySecs = delay,
+				HoldSecs = 0
+			});
 	}
 }
