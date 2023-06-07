@@ -17,6 +17,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 {
 	private const string OpenOpenerActionId = "OPEN_OPENER";
 	private const string OpenLockActionId = "OPEN_LOCK";
+	private const string OpenBothActionId = "OPEN_BOTH";
 
 	private IDisposable? _ringSensorObserver;
 
@@ -85,12 +86,23 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	{
 		Action callback = action switch
 		{
-			OpenOpenerActionId => () => Config.OpenerEntity.Open(),
-			OpenLockActionId => () => Config.LockEntity.Open(),
+			OpenOpenerActionId => () => PerformWithPeoplePresent(() => Config.OpenerEntity.Open()),
+			OpenLockActionId => () => PerformWithPeoplePresent(() => Config.LockEntity.Open()),
+			OpenBothActionId => OpenAllDoors,
 			_ => () => Logger.Warning("Fired unknown action {Action}", action)
 		};
 
 		callback();
+	}
+
+	private void OpenAllDoors()
+	{
+		PerformWithPeoplePresent(
+			() =>
+			{
+				Config.OpenerEntity.Open();
+				Config.LockEntity.Open();
+			});
 	}
 
 	private IObservable<EnableRtoEventData?> Authenticate(Event<EnableRtoEventData> e)
@@ -104,7 +116,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	{
 		Logger.Debug("Enabling RTO");
 
-		Config.OpenerEntity.Unlock();
+		PerformWithPeoplePresent(() => Config.OpenerEntity.Unlock());
 
 		_lastRtoActivation = DateTimeOffset.Now;
 		_ringSensorObserver?.Dispose();
