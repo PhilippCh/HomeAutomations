@@ -1,14 +1,10 @@
-using System.Linq;
 using System.Reflection;
 using HomeAutomations.Extensions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NetDaemon.Extensions.Logging;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.Extensions.Scheduler;
-using NetDaemon.Extensions.Tts;
 using NetDaemon.Runtime;
 
 #pragma warning disable CA1812
@@ -23,7 +19,6 @@ try
 		.UseCustomLogging()
 		.UseNetDaemonRuntime()
 		.UseNetDaemonMqttEntityManagement()
-		.UseNetDaemonTextToSpeech()
 		.ConfigureServices(
 			(context, services) =>
 				services
@@ -51,6 +46,7 @@ try
 }
 catch (Exception e)
 {
-    Console.WriteLine($"Failed to start host... {e}");
-    throw;
+	Console.WriteLine($"Failed to start host... {e}");
+
+	throw;
 }
