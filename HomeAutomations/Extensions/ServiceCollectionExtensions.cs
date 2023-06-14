@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 using HomeAutomations.Apps.ComputerSwitches;
+using HomeAutomations.Apps.ScaleImporter;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;

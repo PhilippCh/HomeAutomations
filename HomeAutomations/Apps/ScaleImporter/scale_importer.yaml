@@ -1,0 +1,5 @@
+HomeAutomations.Apps.ScaleImporter.ScaleImporterConfig:
+  Email: philipp@philippchristoph.de
+  Password: BT}wds,Hv}EnxfU6
+  UpdateInterval: 00:01:00
+  ImportStartDate: 2019-12-31 11:00:00 # This is a datetime offset for 01/01/2020.
