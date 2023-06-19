@@ -1,8 +1,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Apps.ScaleImporter.Vesync;
+using HomeAutomations.Apps.ScaleImporter.VeSync;
 using HomeAutomations.Models;
+using NetDaemon.Extensions.MqttEntityManager;
 using ObservableExtensions = NetDaemon.HassModel.ObservableExtensions;
 
 namespace HomeAutomations.Apps.ScaleImporter;
@@ -10,12 +11,14 @@ namespace HomeAutomations.Apps.ScaleImporter;
 [Focus]
 public class ScaleImporter : BaseAutomation<ScaleImporter, ScaleImporterConfig>
 {
-	private readonly VesyncApiClient _apiClient;
+	private readonly IMqttEntityManager _entityManager;
+	private readonly VeSyncApiClient _apiClient;
 
-	public ScaleImporter(BaseAutomationDependencyAggregate<ScaleImporter, ScaleImporterConfig> aggregate)
+	public ScaleImporter(BaseAutomationDependencyAggregate<ScaleImporter, ScaleImporterConfig> aggregate, IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
-		_apiClient = new VesyncApiClient(Config.Email, Config.Password);
+		_entityManager = entityManager;
+		_apiClient = new VeSyncApiClient(Config.Email, Config.Password);
 	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
@@ -36,15 +39,18 @@ public class ScaleImporter : BaseAutomation<ScaleImporter, ScaleImporterConfig>
 			return;
 		}
 
-		var devices = await _apiClient.GetDevicesAsync(userData.Result);
+		var devices = await _apiClient.GetDevicesAsync(userData);
 
-		if (devices.Result.List.Length == 0)
+		if (devices.List.Length == 0)
 		{
 			return;
 		}
 
-		var weightData = await _apiClient.GetWeightData(userData.Result, devices.Result.List.First(), Config.ImportStartDate);
-
+		foreach (var device in devices.List)
+		{
+			var subUsers = await _apiClient.GetAllSubUsersAsync(userData, device.ConfigModule);
+			var weightData = await _apiClient.GetWeightDataAsync(userData, devices.List.First(), Config.ImportStartDate);
+		}
 	}
 }
 

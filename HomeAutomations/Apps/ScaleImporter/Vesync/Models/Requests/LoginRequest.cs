@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-namespace HomeAutomations.Apps.ScaleImporter.Vesync.Models;
+namespace HomeAutomations.Apps.ScaleImporter.VeSync.Models;
 
 [ExcludeFromCodeCoverage]
-public class LoginBody : BaseRequestBody
+public class LoginRequest : BaseRequestBody
 {
 	[DataMember(Name = "email")]
 	public string Email { get; set; }

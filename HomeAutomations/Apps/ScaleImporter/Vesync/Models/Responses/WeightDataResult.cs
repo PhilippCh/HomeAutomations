@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace HomeAutomations.Apps.ScaleImporter.Vesync.Models;
+namespace HomeAutomations.Apps.ScaleImporter.VeSync.Models;
 
 [DataContract]
 public class WeightData

@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace HomeAutomations.Apps.ScaleImporter.Vesync.Models;
+namespace HomeAutomations.Apps.ScaleImporter.VeSync.Models;
 
 public abstract class RequestBody : BaseRequestBody
 {
