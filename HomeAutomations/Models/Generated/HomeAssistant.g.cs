@@ -2109,9 +2109,6 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("brightness")]
 		public double? Brightness { get; init; }
 
-		[JsonPropertyName("color")]
-		public object? Color { get; init; }
-
 		[JsonPropertyName("color_mode")]
 		public string? ColorMode { get; init; }
 
