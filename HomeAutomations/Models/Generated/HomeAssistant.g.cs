@@ -2106,6 +2106,21 @@ namespace HomeAutomations.Models.Generated
 
 	public record LightAttributes
 	{
+		[JsonPropertyName("brightness")]
+		public double? Brightness { get; init; }
+
+		[JsonPropertyName("color")]
+		public object? Color { get; init; }
+
+		[JsonPropertyName("color_mode")]
+		public string? ColorMode { get; init; }
+
+		[JsonPropertyName("color_temp")]
+		public double? ColorTemp { get; init; }
+
+		[JsonPropertyName("color_temp_kelvin")]
+		public double? ColorTempKelvin { get; init; }
+
 		[JsonPropertyName("color")]
 		public object? Color { get; init; }
 
