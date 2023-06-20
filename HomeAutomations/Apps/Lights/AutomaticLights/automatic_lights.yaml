@@ -21,7 +21,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
             ActiveIntervals:
               - Start: '18:30:00'
                 End: '22:30:00'
-          MaxBrightness: 254 
+          MaxBrightness: 254
         - Entity: light.kitchen_cabinet_light
           CycleTime: 00:01:30
           MaxIlluminance: 70
@@ -32,3 +32,21 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
               - Start: '02:30:00'
                 End: '07:30:00'
           MaxBrightness: 5
+    - Name: Bedroom Pups
+      Lights:
+        - Entity: light.bedroom_bedside_light_philipp
+          CycleTime: 00:01:00
+          MaxIlluminance: 70
+          MotionSensor:
+            Entity: binary_sensor.presence_bedside_light_pups
+            ActiveIntervals:
+              - Start: '13:00:00'
+                End: '23:59:59'
+        - Entity: light.bedroom_bedside_light_fabienne
+          CycleTime: 00:01:00
+          MaxIlluminance: 70
+          MotionSensor:
+            Entity: binary_sensor.presence_bedside_light_fups
+            ActiveIntervals:
+              - Start: '13:00:00'
+                End: '23:59:59'

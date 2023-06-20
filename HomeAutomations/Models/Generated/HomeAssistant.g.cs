@@ -11,8 +11,6 @@ namespace HomeAutomations.Models.Generated
 	{
 		AlarmControlPanelEntities AlarmControlPanel { get; }
 
-		AutomationEntities Automation { get; }
-
 		BinarySensorEntities BinarySensor { get; }
 
 		ButtonEntities Button { get; }
@@ -42,8 +40,6 @@ namespace HomeAutomations.Models.Generated
 		LightEntities Light { get; }
 
 		LockEntities Lock { get; }
-
-		MediaPlayerEntities MediaPlayer { get; }
 
 		NumberEntities Number { get; }
 
@@ -79,7 +75,6 @@ namespace HomeAutomations.Models.Generated
 		}
 
 		public AlarmControlPanelEntities AlarmControlPanel => new(_haContext);
-		public AutomationEntities Automation => new(_haContext);
 		public BinarySensorEntities BinarySensor => new(_haContext);
 		public ButtonEntities Button => new(_haContext);
 		public CalendarEntities Calendar => new(_haContext);
@@ -95,7 +90,6 @@ namespace HomeAutomations.Models.Generated
 		public InputTextEntities InputText => new(_haContext);
 		public LightEntities Light => new(_haContext);
 		public LockEntities Lock => new(_haContext);
-		public MediaPlayerEntities MediaPlayer => new(_haContext);
 		public NumberEntities Number => new(_haContext);
 		public PersistentNotificationEntities PersistentNotification => new(_haContext);
 		public PersonEntities Person => new(_haContext);
@@ -120,18 +114,6 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>Intrusion Detection System</summary>
 		public AlarmControlPanelEntity IntrusionDetectionSystem => new(_haContext, "alarm_control_panel.intrusion_detection_system");
-	}
-
-	public partial class AutomationEntities
-	{
-		private readonly IHaContext _haContext;
-		public AutomationEntities(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>kino</summary>
-		public AutomationEntity Kino => new(_haContext, "automation.kino");
 	}
 
 	public partial class BinarySensorEntities
@@ -220,6 +202,16 @@ namespace HomeAutomations.Models.Generated
 		public BinarySensorEntity NukiWohnungsturBatteryCritical => new(_haContext, "binary_sensor.nuki_wohnungstur_battery_critical");
 		///<summary>Nuki Wohnungstür Locked</summary>
 		public BinarySensorEntity NukiWohnungsturLocked => new(_haContext, "binary_sensor.nuki_wohnungstur_locked");
+		///<summary>Presence Bedroom</summary>
+		public BinarySensorEntity PresenceBedroom => new(_haContext, "binary_sensor.presence_bedroom");
+		///<summary>Presence Bedroom Back</summary>
+		public BinarySensorEntity PresenceBedroomBack => new(_haContext, "binary_sensor.presence_bedroom_back");
+		///<summary>Presence Bedroom Bed Fups</summary>
+		public BinarySensorEntity PresenceBedroomBedFups => new(_haContext, "binary_sensor.presence_bedroom_bed_fups");
+		///<summary>Presence Bedroom Bed Pups</summary>
+		public BinarySensorEntity PresenceBedroomBedPups => new(_haContext, "binary_sensor.presence_bedroom_bed_pups");
+		///<summary>Presence Bedroom Front</summary>
+		public BinarySensorEntity PresenceBedroomFront => new(_haContext, "binary_sensor.presence_bedroom_front");
 		///<summary>PupsStation (Drive 1) Below Min Remaining Life</summary>
 		public BinarySensorEntity PupsstationBelowMinRemainingLife => new(_haContext, "binary_sensor.pupsstation_below_min_remaining_life");
 		///<summary>PupsStation (Drive 2) Below Min Remaining Life</summary>
@@ -270,6 +262,8 @@ namespace HomeAutomations.Models.Generated
 		public ButtonEntity NukiBridgeFirmwareUpdate => new(_haContext, "button.nuki_bridge_firmware_update");
 		///<summary>Nuki Bridge Reboot</summary>
 		public ButtonEntity NukiBridgeReboot => new(_haContext, "button.nuki_bridge_reboot");
+		///<summary>Presence-Sensor-FP2-703F Identify</summary>
+		public ButtonEntity PresenceSensorFp2703fIdentify => new(_haContext, "button.presence_sensor_fp2_703f_identify");
 		///<summary>PupsStation Reboot</summary>
 		public ButtonEntity PupsstationReboot => new(_haContext, "button.pupsstation_reboot");
 		///<summary>PupsStation Shutdown</summary>
@@ -440,6 +434,8 @@ namespace HomeAutomations.Models.Generated
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsRazorBladeUsageRazorBladeUsage => new(_haContext, "input_boolean.netdaemon_home_automations_apps_razor_blade_usage_razor_blade_usage");
 		///<summary>netdaemon_home_automations_apps_reminders_reminders</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsRemindersReminders => new(_haContext, "input_boolean.netdaemon_home_automations_apps_reminders_reminders");
+		///<summary>netdaemon_home_automations_apps_scale_importer_scale_importer</summary>
+		public InputBooleanEntity NetdaemonHomeAutomationsAppsScaleImporterScaleImporter => new(_haContext, "input_boolean.netdaemon_home_automations_apps_scale_importer_scale_importer");
 		///<summary>netdaemon_home_automations_apps_shutters_shutters</summary>
 		public InputBooleanEntity NetdaemonHomeAutomationsAppsShuttersShutters => new(_haContext, "input_boolean.netdaemon_home_automations_apps_shutters_shutters");
 		///<summary>netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes</summary>
@@ -546,6 +542,8 @@ namespace HomeAutomations.Models.Generated
 
 		///<summary>bedroom/bedside_light_fabienne</summary>
 		public LightEntity BedroomBedsideLightFabienne => new(_haContext, "light.bedroom_bedside_light_fabienne");
+		///<summary>bedroom/bedside_light_philipp</summary>
+		public LightEntity BedroomBedsideLightPhilipp => new(_haContext, "light.bedroom_bedside_light_philipp");
 		///<summary>kitchen/cabinet_light</summary>
 		public LightEntity KitchenCabinetLight => new(_haContext, "light.kitchen_cabinet_light");
 		///<summary>kitchen/ceiling_light</summary>
@@ -574,20 +572,6 @@ namespace HomeAutomations.Models.Generated
 		public LockEntity NukiHausturLock => new(_haContext, "lock.nuki_haustur_lock");
 		///<summary>Nuki Wohnungstür Lock</summary>
 		public LockEntity NukiWohnungsturLock => new(_haContext, "lock.nuki_wohnungstur_lock");
-	}
-
-	public partial class MediaPlayerEntities
-	{
-		private readonly IHaContext _haContext;
-		public MediaPlayerEntities(IHaContext haContext)
-		{
-			_haContext = haContext;
-		}
-
-		///<summary>master_bedroom_speaker</summary>
-		public MediaPlayerEntity MasterBedroomSpeaker => new(_haContext, "media_player.master_bedroom_speaker");
-		///<summary>Hall Display</summary>
-		public MediaPlayerEntity Nesthub4ae6 => new(_haContext, "media_player.nesthub4ae6");
 	}
 
 	public partial class NumberEntities
@@ -622,8 +606,6 @@ namespace HomeAutomations.Models.Generated
 			_haContext = haContext;
 		}
 
-		///<summary>New devices discovered</summary>
-		public PersistentNotificationEntity ConfigEntryDiscovery => new(_haContext, "persistent_notification.config_entry_discovery");
 		///<summary>Login attempt failed</summary>
 		public PersistentNotificationEntity HttpLogin => new(_haContext, "persistent_notification.http_login");
 		///<summary>Invalid config</summary>
@@ -808,16 +790,6 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity Lufthansa => new(_haContext, "sensor.lufthansa");
 		///<summary>METRO AG</summary>
 		public NumericSensorEntity MetroAg => new(_haContext, "sensor.metro_ag");
-		///<summary>Black toner remaining</summary>
-		public NumericSensorEntity Mfc1910wBlackTonerRemaining => new(_haContext, "sensor.mfc_1910w_black_toner_remaining");
-		///<summary>Drum counter</summary>
-		public NumericSensorEntity Mfc1910wDrumCounter => new(_haContext, "sensor.mfc_1910w_drum_counter");
-		///<summary>Drum remaining life</summary>
-		public NumericSensorEntity Mfc1910wDrumRemainingLife => new(_haContext, "sensor.mfc_1910w_drum_remaining_life");
-		///<summary>Drum remaining pages</summary>
-		public NumericSensorEntity Mfc1910wDrumRemainingPages => new(_haContext, "sensor.mfc_1910w_drum_remaining_pages");
-		///<summary>Page counter</summary>
-		public NumericSensorEntity Mfc1910wPageCounter => new(_haContext, "sensor.mfc_1910w_page_counter");
 		///<summary>Nuki battery level</summary>
 		public NumericSensorEntity NukiBatteryLevel => new(_haContext, "sensor.nuki_battery_level");
 		///<summary>Nuki battery voltage</summary>
@@ -832,6 +804,8 @@ namespace HomeAutomations.Models.Generated
 		public NumericSensorEntity NukiWohnungsturBattery => new(_haContext, "sensor.nuki_wohnungstur_battery");
 		///<summary>Nuki Wohnungstür RSSI</summary>
 		public NumericSensorEntity NukiWohnungsturRssi => new(_haContext, "sensor.nuki_wohnungstur_rssi");
+		///<summary>Presence-Sensor-FP2-703F Light Sensor Light Level</summary>
+		public NumericSensorEntity PresenceSensorFp2703fLightSensorLightLevel => new(_haContext, "sensor.presence_sensor_fp2_703f_light_sensor_light_level");
 		///<summary>PupsStation (Volume 1) Average Disk Temp</summary>
 		public NumericSensorEntity PupsstationAverageDiskTemp => new(_haContext, "sensor.pupsstation_average_disk_temp");
 		///<summary>PupsStation CPU Load Average (15 min)</summary>
@@ -1161,8 +1135,6 @@ namespace HomeAutomations.Models.Generated
 		public SensorEntity LivingRoomLampSwitchClick => new(_haContext, "sensor.living_room_lamp_switch_click");
 		///<summary>Mailbox door sensor</summary>
 		public SensorEntity MailboxDoor => new(_haContext, "sensor.mailbox_door");
-		///<summary>Status</summary>
-		public SensorEntity Mfc1910wStatus => new(_haContext, "sensor.mfc_1910w_status");
 		///<summary>netdaemon_status</summary>
 		public SensorEntity NetdaemonStatus => new(_haContext, "sensor.netdaemon_status");
 		///<summary>🇫🇷 Normandie 🇫🇷 Philipp</summary>
@@ -1447,35 +1419,6 @@ namespace HomeAutomations.Models.Generated
 		public double? SupportedFeatures { get; init; }
 	}
 
-	public partial record AutomationEntity : Entity<AutomationEntity, EntityState<AutomationAttributes>, AutomationAttributes>
-	{
-		public AutomationEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
-		{
-		}
-
-		public AutomationEntity(Entity entity) : base(entity)
-		{
-		}
-	}
-
-	public record AutomationAttributes
-	{
-		[JsonPropertyName("current")]
-		public double? Current { get; init; }
-
-		[JsonPropertyName("friendly_name")]
-		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("id")]
-		public string? Id { get; init; }
-
-		[JsonPropertyName("last_triggered")]
-		public string? LastTriggered { get; init; }
-
-		[JsonPropertyName("mode")]
-		public string? Mode { get; init; }
-	}
-
 	public partial record BinarySensorEntity : Entity<BinarySensorEntity, EntityState<BinarySensorAttributes>, BinarySensorAttributes>
 	{
 		public BinarySensorEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
@@ -1667,11 +1610,32 @@ namespace HomeAutomations.Models.Generated
 
 	public record CalendarAttributes
 	{
+		[JsonPropertyName("all_day")]
+		public bool? AllDay { get; init; }
+
 		[JsonPropertyName("data")]
 		public IReadOnlyList<object>? Data { get; init; }
 
+		[JsonPropertyName("description")]
+		public string? Description { get; init; }
+
+		[JsonPropertyName("end_time")]
+		public string? EndTime { get; init; }
+
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
+
+		[JsonPropertyName("location")]
+		public string? Location { get; init; }
+
+		[JsonPropertyName("message")]
+		public string? Message { get; init; }
+
+		[JsonPropertyName("offset_reached")]
+		public bool? OffsetReached { get; init; }
+
+		[JsonPropertyName("start_time")]
+		public string? StartTime { get; init; }
 	}
 
 	public partial record CameraEntity : Entity<CameraEntity, EntityState<CameraAttributes>, CameraAttributes>
@@ -1690,14 +1654,23 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("access_token")]
 		public string? AccessToken { get; init; }
 
+		[JsonPropertyName("calibration_points")]
+		public object? CalibrationPoints { get; init; }
+
 		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
 
+		[JsonPropertyName("model")]
+		public string? Model { get; init; }
+
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
+
+		[JsonPropertyName("used_api")]
+		public string? UsedApi { get; init; }
 	}
 
 	public partial record ClimateEntity : Entity<ClimateEntity, EntityState<ClimateAttributes>, ClimateAttributes>
@@ -1860,6 +1833,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("calc_distance")]
 		public double? CalcDistance { get; init; }
 
+		[JsonPropertyName("course")]
+		public double? Course { get; init; }
+
 		[JsonPropertyName("device_status")]
 		public string? DeviceStatus { get; init; }
 
@@ -1917,6 +1893,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("source_type")]
 		public string? SourceType { get; init; }
 
+		[JsonPropertyName("speed")]
+		public double? Speed { get; init; }
+
 		[JsonPropertyName("supported_features")]
 		public double? SupportedFeatures { get; init; }
 
@@ -1942,7 +1921,7 @@ namespace HomeAutomations.Models.Generated
 		public double? VerticalAccuracy { get; init; }
 
 		[JsonPropertyName("waze_distance")]
-		public double? WazeDistance { get; init; }
+		public string? WazeDistance { get; init; }
 
 		[JsonPropertyName("zone")]
 		public string? Zone { get; init; }
@@ -2127,20 +2106,8 @@ namespace HomeAutomations.Models.Generated
 
 	public record LightAttributes
 	{
-		[JsonPropertyName("brightness")]
-		public double? Brightness { get; init; }
-
 		[JsonPropertyName("color")]
 		public object? Color { get; init; }
-
-		[JsonPropertyName("color_mode")]
-		public string? ColorMode { get; init; }
-
-		[JsonPropertyName("color_temp")]
-		public double? ColorTemp { get; init; }
-
-		[JsonPropertyName("color_temp_kelvin")]
-		public double? ColorTempKelvin { get; init; }
 
 		[JsonPropertyName("device")]
 		public object? Device { get; init; }
@@ -2150,9 +2117,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("friendly_name")]
 		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("hs_color")]
-		public IReadOnlyList<double>? HsColor { get; init; }
 
 		[JsonPropertyName("last_seen")]
 		public string? LastSeen { get; init; }
@@ -2175,9 +2139,6 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("power_on_behavior")]
 		public string? PowerOnBehavior { get; init; }
 
-		[JsonPropertyName("rgb_color")]
-		public IReadOnlyList<double>? RgbColor { get; init; }
-
 		[JsonPropertyName("supported_color_modes")]
 		public IReadOnlyList<string>? SupportedColorModes { get; init; }
 
@@ -2189,9 +2150,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("update_available")]
 		public bool? UpdateAvailable { get; init; }
-
-		[JsonPropertyName("xy_color")]
-		public IReadOnlyList<double>? XyColor { get; init; }
 	}
 
 	public partial record LockEntity : Entity<LockEntity, EntityState<LockAttributes>, LockAttributes>
@@ -2248,29 +2206,6 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("voltage")]
 		public double? Voltage { get; init; }
-	}
-
-	public partial record MediaPlayerEntity : Entity<MediaPlayerEntity, EntityState<MediaPlayerAttributes>, MediaPlayerAttributes>
-	{
-		public MediaPlayerEntity(IHaContext haContext, string entityId) : base(haContext, entityId)
-		{
-		}
-
-		public MediaPlayerEntity(Entity entity) : base(entity)
-		{
-		}
-	}
-
-	public record MediaPlayerAttributes
-	{
-		[JsonPropertyName("friendly_name")]
-		public string? FriendlyName { get; init; }
-
-		[JsonPropertyName("restored")]
-		public bool? Restored { get; init; }
-
-		[JsonPropertyName("supported_features")]
-		public double? SupportedFeatures { get; init; }
 	}
 
 	public partial record NumberEntity : NumericEntity<NumberEntity, NumericEntityState<NumberAttributes>, NumberAttributes>
@@ -2500,6 +2435,12 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("battery_low")]
 		public bool? BatteryLow { get; init; }
 
+		[JsonPropertyName("bytes_received")]
+		public double? BytesReceived { get; init; }
+
+		[JsonPropertyName("bytes_sent")]
+		public double? BytesSent { get; init; }
+
 		[JsonPropertyName("change")]
 		public double? Change { get; init; }
 
@@ -2608,9 +2549,6 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("occupancy")]
 		public bool? Occupancy { get; init; }
 
-		[JsonPropertyName("packages")]
-		public IReadOnlyList<object>? Packages { get; init; }
-
 		[JsonPropertyName("position")]
 		public double? Position { get; init; }
 
@@ -2640,6 +2578,15 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("running")]
 		public object? Running { get; init; }
+
+		[JsonPropertyName("server_country")]
+		public string? ServerCountry { get; init; }
+
+		[JsonPropertyName("server_id")]
+		public string? ServerId { get; init; }
+
+		[JsonPropertyName("server_name")]
+		public string? ServerName { get; init; }
 
 		[JsonPropertyName("shares")]
 		public double? Shares { get; init; }
@@ -2739,6 +2686,9 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("attribution")]
 		public string? Attribution { get; init; }
 
+		[JsonPropertyName("available_sources")]
+		public double? AvailableSources { get; init; }
+
 		[JsonPropertyName("battery")]
 		public double? Battery { get; init; }
 
@@ -2750,6 +2700,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("Carrier Name")]
 		public string? CarrierName { get; init; }
+
+		[JsonPropertyName("Cellular Technology")]
+		public string? CellularTechnology { get; init; }
 
 		[JsonPropertyName("charging_status")]
 		public object? ChargingStatus { get; init; }
@@ -2763,8 +2716,14 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Confidence")]
 		public string? Confidence { get; init; }
 
+		[JsonPropertyName("count")]
+		public double? Count { get; init; }
+
 		[JsonPropertyName("Country")]
 		public string? Country { get; init; }
+
+		[JsonPropertyName("count_sources")]
+		public double? CountSources { get; init; }
 
 		[JsonPropertyName("Current Radio Technology")]
 		public string? CurrentRadioTechnology { get; init; }
@@ -2777,6 +2736,9 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("device_temperature")]
 		public double? DeviceTemperature { get; init; }
+
+		[JsonPropertyName("end")]
+		public string? End { get; init; }
 
 		[JsonPropertyName("entity_picture")]
 		public string? EntityPicture { get; init; }
@@ -2835,6 +2797,12 @@ namespace HomeAutomations.Models.Generated
 		[JsonPropertyName("Low Power Mode")]
 		public bool? LowPowerMode { get; init; }
 
+		[JsonPropertyName("max_value")]
+		public double? MaxValue { get; init; }
+
+		[JsonPropertyName("min_value")]
+		public double? MinValue { get; init; }
+
 		[JsonPropertyName("Mobile Country Code")]
 		public string? MobileCountryCode { get; init; }
 
@@ -2885,6 +2853,12 @@ namespace HomeAutomations.Models.Generated
 
 		[JsonPropertyName("serial")]
 		public object? Serial { get; init; }
+
+		[JsonPropertyName("sources")]
+		public IReadOnlyList<string>? Sources { get; init; }
+
+		[JsonPropertyName("start")]
+		public string? Start { get; init; }
 
 		[JsonPropertyName("state_class")]
 		public string? StateClass { get; init; }
@@ -3189,7 +3163,7 @@ namespace HomeAutomations.Models.Generated
 		public object? ReleaseSummary { get; init; }
 
 		[JsonPropertyName("release_url")]
-		public string? ReleaseUrl { get; init; }
+		public object? ReleaseUrl { get; init; }
 
 		[JsonPropertyName("running")]
 		public object? Running { get; init; }
@@ -3201,7 +3175,7 @@ namespace HomeAutomations.Models.Generated
 		public double? SupportedFeatures { get; init; }
 
 		[JsonPropertyName("title")]
-		public string? Title { get; init; }
+		public object? Title { get; init; }
 
 		[JsonPropertyName("update")]
 		public object? Update { get; init; }
@@ -8794,89 +8768,6 @@ namespace HomeAutomations.Models.Generated
 		}
 	}
 
-	public static class AutomationEntityExtensionMethods
-	{
-		///<summary>Toggle (enable / disable) an automation.</summary>
-		public static void Toggle(this AutomationEntity target)
-		{
-			target.CallService("toggle");
-		}
-
-		///<summary>Toggle (enable / disable) an automation.</summary>
-		public static void Toggle(this IEnumerable<AutomationEntity> target)
-		{
-			target.CallService("toggle");
-		}
-
-		///<summary>Trigger the actions of an automation.</summary>
-		public static void Trigger(this AutomationEntity target, AutomationTriggerParameters data)
-		{
-			target.CallService("trigger", data);
-		}
-
-		///<summary>Trigger the actions of an automation.</summary>
-		public static void Trigger(this IEnumerable<AutomationEntity> target, AutomationTriggerParameters data)
-		{
-			target.CallService("trigger", data);
-		}
-
-		///<summary>Trigger the actions of an automation.</summary>
-		///<param name="target">The AutomationEntity to call this service for</param>
-		///<param name="skipCondition">Whether or not the conditions will be skipped.</param>
-		public static void Trigger(this AutomationEntity target, bool? @skipCondition = null)
-		{
-			target.CallService("trigger", new AutomationTriggerParameters{SkipCondition = @skipCondition});
-		}
-
-		///<summary>Trigger the actions of an automation.</summary>
-		///<param name="target">The IEnumerable<AutomationEntity> to call this service for</param>
-		///<param name="skipCondition">Whether or not the conditions will be skipped.</param>
-		public static void Trigger(this IEnumerable<AutomationEntity> target, bool? @skipCondition = null)
-		{
-			target.CallService("trigger", new AutomationTriggerParameters{SkipCondition = @skipCondition});
-		}
-
-		///<summary>Disable an automation.</summary>
-		public static void TurnOff(this AutomationEntity target, AutomationTurnOffParameters data)
-		{
-			target.CallService("turn_off", data);
-		}
-
-		///<summary>Disable an automation.</summary>
-		public static void TurnOff(this IEnumerable<AutomationEntity> target, AutomationTurnOffParameters data)
-		{
-			target.CallService("turn_off", data);
-		}
-
-		///<summary>Disable an automation.</summary>
-		///<param name="target">The AutomationEntity to call this service for</param>
-		///<param name="stopActions">Stop currently running actions.</param>
-		public static void TurnOff(this AutomationEntity target, bool? @stopActions = null)
-		{
-			target.CallService("turn_off", new AutomationTurnOffParameters{StopActions = @stopActions});
-		}
-
-		///<summary>Disable an automation.</summary>
-		///<param name="target">The IEnumerable<AutomationEntity> to call this service for</param>
-		///<param name="stopActions">Stop currently running actions.</param>
-		public static void TurnOff(this IEnumerable<AutomationEntity> target, bool? @stopActions = null)
-		{
-			target.CallService("turn_off", new AutomationTurnOffParameters{StopActions = @stopActions});
-		}
-
-		///<summary>Enable an automation.</summary>
-		public static void TurnOn(this AutomationEntity target)
-		{
-			target.CallService("turn_on");
-		}
-
-		///<summary>Enable an automation.</summary>
-		public static void TurnOn(this IEnumerable<AutomationEntity> target)
-		{
-			target.CallService("turn_on");
-		}
-	}
-
 	public static class ButtonEntityExtensionMethods
 	{
 		///<summary>Press the button entity.</summary>
@@ -10026,423 +9917,6 @@ namespace HomeAutomations.Models.Generated
 		public static void Unlock(this IEnumerable<LockEntity> target, string? @code = null)
 		{
 			target.CallService("unlock", new LockUnlockParameters{Code = @code});
-		}
-	}
-
-	public static class MediaPlayerEntityExtensionMethods
-	{
-		///<summary>Send the media player the command to clear players playlist.</summary>
-		public static void ClearPlaylist(this MediaPlayerEntity target)
-		{
-			target.CallService("clear_playlist");
-		}
-
-		///<summary>Send the media player the command to clear players playlist.</summary>
-		public static void ClearPlaylist(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("clear_playlist");
-		}
-
-		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
-		public static void Join(this MediaPlayerEntity target, MediaPlayerJoinParameters data)
-		{
-			target.CallService("join", data);
-		}
-
-		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
-		public static void Join(this IEnumerable<MediaPlayerEntity> target, MediaPlayerJoinParameters data)
-		{
-			target.CallService("join", data);
-		}
-
-		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="groupMembers">The players which will be synced with the target player. eg: - media_player.multiroom_player2 - media_player.multiroom_player3 </param>
-		public static void Join(this MediaPlayerEntity target, string @groupMembers)
-		{
-			target.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
-		}
-
-		///<summary>Group players together. Only works on platforms with support for player groups.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="groupMembers">The players which will be synced with the target player. eg: - media_player.multiroom_player2 - media_player.multiroom_player3 </param>
-		public static void Join(this IEnumerable<MediaPlayerEntity> target, string @groupMembers)
-		{
-			target.CallService("join", new MediaPlayerJoinParameters{GroupMembers = @groupMembers});
-		}
-
-		///<summary>Send the media player the command for next track.</summary>
-		public static void MediaNextTrack(this MediaPlayerEntity target)
-		{
-			target.CallService("media_next_track");
-		}
-
-		///<summary>Send the media player the command for next track.</summary>
-		public static void MediaNextTrack(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("media_next_track");
-		}
-
-		///<summary>Send the media player the command for pause.</summary>
-		public static void MediaPause(this MediaPlayerEntity target)
-		{
-			target.CallService("media_pause");
-		}
-
-		///<summary>Send the media player the command for pause.</summary>
-		public static void MediaPause(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("media_pause");
-		}
-
-		///<summary>Send the media player the command for play.</summary>
-		public static void MediaPlay(this MediaPlayerEntity target)
-		{
-			target.CallService("media_play");
-		}
-
-		///<summary>Send the media player the command for play.</summary>
-		public static void MediaPlay(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("media_play");
-		}
-
-		///<summary>Toggle media player play/pause state.</summary>
-		public static void MediaPlayPause(this MediaPlayerEntity target)
-		{
-			target.CallService("media_play_pause");
-		}
-
-		///<summary>Toggle media player play/pause state.</summary>
-		public static void MediaPlayPause(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("media_play_pause");
-		}
-
-		///<summary>Send the media player the command for previous track.</summary>
-		public static void MediaPreviousTrack(this MediaPlayerEntity target)
-		{
-			target.CallService("media_previous_track");
-		}
-
-		///<summary>Send the media player the command for previous track.</summary>
-		public static void MediaPreviousTrack(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("media_previous_track");
-		}
-
-		///<summary>Send the media player the command to seek in current playing media.</summary>
-		public static void MediaSeek(this MediaPlayerEntity target, MediaPlayerMediaSeekParameters data)
-		{
-			target.CallService("media_seek", data);
-		}
-
-		///<summary>Send the media player the command to seek in current playing media.</summary>
-		public static void MediaSeek(this IEnumerable<MediaPlayerEntity> target, MediaPlayerMediaSeekParameters data)
-		{
-			target.CallService("media_seek", data);
-		}
-
-		///<summary>Send the media player the command to seek in current playing media.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="seekPosition">Position to seek to. The format is platform dependent.</param>
-		public static void MediaSeek(this MediaPlayerEntity target, double @seekPosition)
-		{
-			target.CallService("media_seek", new MediaPlayerMediaSeekParameters{SeekPosition = @seekPosition});
-		}
-
-		///<summary>Send the media player the command to seek in current playing media.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="seekPosition">Position to seek to. The format is platform dependent.</param>
-		public static void MediaSeek(this IEnumerable<MediaPlayerEntity> target, double @seekPosition)
-		{
-			target.CallService("media_seek", new MediaPlayerMediaSeekParameters{SeekPosition = @seekPosition});
-		}
-
-		///<summary>Send the media player the stop command.</summary>
-		public static void MediaStop(this MediaPlayerEntity target)
-		{
-			target.CallService("media_stop");
-		}
-
-		///<summary>Send the media player the stop command.</summary>
-		public static void MediaStop(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("media_stop");
-		}
-
-		///<summary>Send the media player the command for playing media.</summary>
-		public static void PlayMedia(this MediaPlayerEntity target, MediaPlayerPlayMediaParameters data)
-		{
-			target.CallService("play_media", data);
-		}
-
-		///<summary>Send the media player the command for playing media.</summary>
-		public static void PlayMedia(this IEnumerable<MediaPlayerEntity> target, MediaPlayerPlayMediaParameters data)
-		{
-			target.CallService("play_media", data);
-		}
-
-		///<summary>Send the media player the command for playing media.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
-		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
-		///<param name="enqueue">If the content should be played now or be added to the queue.</param>
-		///<param name="announce">If the media should be played as an announcement. eg: true</param>
-		public static void PlayMedia(this MediaPlayerEntity target, string @mediaContentId, string @mediaContentType, object? @enqueue = null, bool? @announce = null)
-		{
-			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType, Enqueue = @enqueue, Announce = @announce});
-		}
-
-		///<summary>Send the media player the command for playing media.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="mediaContentId">The ID of the content to play. Platform dependent. eg: https://home-assistant.io/images/cast/splash.png</param>
-		///<param name="mediaContentType">The type of the content to play. Like image, music, tvshow, video, episode, channel or playlist. eg: music</param>
-		///<param name="enqueue">If the content should be played now or be added to the queue.</param>
-		///<param name="announce">If the media should be played as an announcement. eg: true</param>
-		public static void PlayMedia(this IEnumerable<MediaPlayerEntity> target, string @mediaContentId, string @mediaContentType, object? @enqueue = null, bool? @announce = null)
-		{
-			target.CallService("play_media", new MediaPlayerPlayMediaParameters{MediaContentId = @mediaContentId, MediaContentType = @mediaContentType, Enqueue = @enqueue, Announce = @announce});
-		}
-
-		///<summary>Set repeat mode</summary>
-		public static void RepeatSet(this MediaPlayerEntity target, MediaPlayerRepeatSetParameters data)
-		{
-			target.CallService("repeat_set", data);
-		}
-
-		///<summary>Set repeat mode</summary>
-		public static void RepeatSet(this IEnumerable<MediaPlayerEntity> target, MediaPlayerRepeatSetParameters data)
-		{
-			target.CallService("repeat_set", data);
-		}
-
-		///<summary>Set repeat mode</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="repeat">Repeat mode to set.</param>
-		public static void RepeatSet(this MediaPlayerEntity target, object @repeat)
-		{
-			target.CallService("repeat_set", new MediaPlayerRepeatSetParameters{Repeat = @repeat});
-		}
-
-		///<summary>Set repeat mode</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="repeat">Repeat mode to set.</param>
-		public static void RepeatSet(this IEnumerable<MediaPlayerEntity> target, object @repeat)
-		{
-			target.CallService("repeat_set", new MediaPlayerRepeatSetParameters{Repeat = @repeat});
-		}
-
-		///<summary>Send the media player the command to change sound mode.</summary>
-		public static void SelectSoundMode(this MediaPlayerEntity target, MediaPlayerSelectSoundModeParameters data)
-		{
-			target.CallService("select_sound_mode", data);
-		}
-
-		///<summary>Send the media player the command to change sound mode.</summary>
-		public static void SelectSoundMode(this IEnumerable<MediaPlayerEntity> target, MediaPlayerSelectSoundModeParameters data)
-		{
-			target.CallService("select_sound_mode", data);
-		}
-
-		///<summary>Send the media player the command to change sound mode.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="soundMode">Name of the sound mode to switch to. eg: Music</param>
-		public static void SelectSoundMode(this MediaPlayerEntity target, string? @soundMode = null)
-		{
-			target.CallService("select_sound_mode", new MediaPlayerSelectSoundModeParameters{SoundMode = @soundMode});
-		}
-
-		///<summary>Send the media player the command to change sound mode.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="soundMode">Name of the sound mode to switch to. eg: Music</param>
-		public static void SelectSoundMode(this IEnumerable<MediaPlayerEntity> target, string? @soundMode = null)
-		{
-			target.CallService("select_sound_mode", new MediaPlayerSelectSoundModeParameters{SoundMode = @soundMode});
-		}
-
-		///<summary>Send the media player the command to change input source.</summary>
-		public static void SelectSource(this MediaPlayerEntity target, MediaPlayerSelectSourceParameters data)
-		{
-			target.CallService("select_source", data);
-		}
-
-		///<summary>Send the media player the command to change input source.</summary>
-		public static void SelectSource(this IEnumerable<MediaPlayerEntity> target, MediaPlayerSelectSourceParameters data)
-		{
-			target.CallService("select_source", data);
-		}
-
-		///<summary>Send the media player the command to change input source.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="source">Name of the source to switch to. Platform dependent. eg: video1</param>
-		public static void SelectSource(this MediaPlayerEntity target, string @source)
-		{
-			target.CallService("select_source", new MediaPlayerSelectSourceParameters{Source = @source});
-		}
-
-		///<summary>Send the media player the command to change input source.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="source">Name of the source to switch to. Platform dependent. eg: video1</param>
-		public static void SelectSource(this IEnumerable<MediaPlayerEntity> target, string @source)
-		{
-			target.CallService("select_source", new MediaPlayerSelectSourceParameters{Source = @source});
-		}
-
-		///<summary>Set shuffling state.</summary>
-		public static void ShuffleSet(this MediaPlayerEntity target, MediaPlayerShuffleSetParameters data)
-		{
-			target.CallService("shuffle_set", data);
-		}
-
-		///<summary>Set shuffling state.</summary>
-		public static void ShuffleSet(this IEnumerable<MediaPlayerEntity> target, MediaPlayerShuffleSetParameters data)
-		{
-			target.CallService("shuffle_set", data);
-		}
-
-		///<summary>Set shuffling state.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="shuffle">True/false for enabling/disabling shuffle.</param>
-		public static void ShuffleSet(this MediaPlayerEntity target, bool @shuffle)
-		{
-			target.CallService("shuffle_set", new MediaPlayerShuffleSetParameters{Shuffle = @shuffle});
-		}
-
-		///<summary>Set shuffling state.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="shuffle">True/false for enabling/disabling shuffle.</param>
-		public static void ShuffleSet(this IEnumerable<MediaPlayerEntity> target, bool @shuffle)
-		{
-			target.CallService("shuffle_set", new MediaPlayerShuffleSetParameters{Shuffle = @shuffle});
-		}
-
-		///<summary>Toggles a media player power state.</summary>
-		public static void Toggle(this MediaPlayerEntity target)
-		{
-			target.CallService("toggle");
-		}
-
-		///<summary>Toggles a media player power state.</summary>
-		public static void Toggle(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("toggle");
-		}
-
-		///<summary>Turn a media player power off.</summary>
-		public static void TurnOff(this MediaPlayerEntity target)
-		{
-			target.CallService("turn_off");
-		}
-
-		///<summary>Turn a media player power off.</summary>
-		public static void TurnOff(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("turn_off");
-		}
-
-		///<summary>Turn a media player power on.</summary>
-		public static void TurnOn(this MediaPlayerEntity target)
-		{
-			target.CallService("turn_on");
-		}
-
-		///<summary>Turn a media player power on.</summary>
-		public static void TurnOn(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("turn_on");
-		}
-
-		///<summary>Unjoin the player from a group. Only works on platforms with support for player groups.</summary>
-		public static void Unjoin(this MediaPlayerEntity target)
-		{
-			target.CallService("unjoin");
-		}
-
-		///<summary>Unjoin the player from a group. Only works on platforms with support for player groups.</summary>
-		public static void Unjoin(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("unjoin");
-		}
-
-		///<summary>Turn a media player volume down.</summary>
-		public static void VolumeDown(this MediaPlayerEntity target)
-		{
-			target.CallService("volume_down");
-		}
-
-		///<summary>Turn a media player volume down.</summary>
-		public static void VolumeDown(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("volume_down");
-		}
-
-		///<summary>Mute a media player's volume.</summary>
-		public static void VolumeMute(this MediaPlayerEntity target, MediaPlayerVolumeMuteParameters data)
-		{
-			target.CallService("volume_mute", data);
-		}
-
-		///<summary>Mute a media player's volume.</summary>
-		public static void VolumeMute(this IEnumerable<MediaPlayerEntity> target, MediaPlayerVolumeMuteParameters data)
-		{
-			target.CallService("volume_mute", data);
-		}
-
-		///<summary>Mute a media player's volume.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="isVolumeMuted">True/false for mute/unmute.</param>
-		public static void VolumeMute(this MediaPlayerEntity target, bool @isVolumeMuted)
-		{
-			target.CallService("volume_mute", new MediaPlayerVolumeMuteParameters{IsVolumeMuted = @isVolumeMuted});
-		}
-
-		///<summary>Mute a media player's volume.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="isVolumeMuted">True/false for mute/unmute.</param>
-		public static void VolumeMute(this IEnumerable<MediaPlayerEntity> target, bool @isVolumeMuted)
-		{
-			target.CallService("volume_mute", new MediaPlayerVolumeMuteParameters{IsVolumeMuted = @isVolumeMuted});
-		}
-
-		///<summary>Set a media player's volume level.</summary>
-		public static void VolumeSet(this MediaPlayerEntity target, MediaPlayerVolumeSetParameters data)
-		{
-			target.CallService("volume_set", data);
-		}
-
-		///<summary>Set a media player's volume level.</summary>
-		public static void VolumeSet(this IEnumerable<MediaPlayerEntity> target, MediaPlayerVolumeSetParameters data)
-		{
-			target.CallService("volume_set", data);
-		}
-
-		///<summary>Set a media player's volume level.</summary>
-		///<param name="target">The MediaPlayerEntity to call this service for</param>
-		///<param name="volumeLevel">Volume level to set as float.</param>
-		public static void VolumeSet(this MediaPlayerEntity target, double @volumeLevel)
-		{
-			target.CallService("volume_set", new MediaPlayerVolumeSetParameters{VolumeLevel = @volumeLevel});
-		}
-
-		///<summary>Set a media player's volume level.</summary>
-		///<param name="target">The IEnumerable<MediaPlayerEntity> to call this service for</param>
-		///<param name="volumeLevel">Volume level to set as float.</param>
-		public static void VolumeSet(this IEnumerable<MediaPlayerEntity> target, double @volumeLevel)
-		{
-			target.CallService("volume_set", new MediaPlayerVolumeSetParameters{VolumeLevel = @volumeLevel});
-		}
-
-		///<summary>Turn a media player volume up.</summary>
-		public static void VolumeUp(this MediaPlayerEntity target)
-		{
-			target.CallService("volume_up");
-		}
-
-		///<summary>Turn a media player volume up.</summary>
-		public static void VolumeUp(this IEnumerable<MediaPlayerEntity> target)
-		{
-			target.CallService("volume_up");
 		}
 	}
 
