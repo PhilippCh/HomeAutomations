@@ -7,6 +7,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
           CycleTime: 00:01:30
           MaxIlluminance: 70
           ManualTriggerSensor: sensor.kitchen_ceiling_light_button_action
+          IlluminanceSensor: sensor.kitchen_motion_detector_illuminance_lux
           MotionSensor:
             Entity: binary_sensor.kitchen_motion_detector_occupancy
             ActiveIntervals:
@@ -16,6 +17,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
         - Entity: light.kitchen_cabinet_light
           CycleTime: 00:01:30
           MaxIlluminance: 70
+          IlluminanceSensor: sensor.kitchen_motion_detector_illuminance_lux
           MotionSensor:
             Entity: binary_sensor.kitchen_motion_detector_occupancy
             ActiveIntervals:
@@ -25,6 +27,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
         - Entity: light.kitchen_cabinet_light
           CycleTime: 00:01:30
           MaxIlluminance: 70
+          IlluminanceSensor: sensor.kitchen_motion_detector_illuminance_lux
           ManualTriggerSensor: sensor.kitchen_cabinet_light_button_action
           MotionSensor:
             Entity: binary_sensor.kitchen_motion_detector_occupancy
@@ -37,16 +40,18 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
         - Entity: light.bedroom_bedside_light_philipp
           CycleTime: 00:01:00
           MaxIlluminance: 70
+          IlluminanceSensor: sensor.presence_bedroom_illuminance_lux
           MotionSensor:
-            Entity: binary_sensor.presence_bedside_light_pups
+            Entity: binary_sensor.presence_bedside_light_philipp
             ActiveIntervals:
-              - Start: '13:00:00'
+              - Start: '09:00:00'
                 End: '23:59:59'
         - Entity: light.bedroom_bedside_light_fabienne
           CycleTime: 00:01:00
           MaxIlluminance: 70
+          IlluminanceSensor: sensor.presence_bedroom_illuminance_lux
           MotionSensor:
-            Entity: binary_sensor.presence_bedside_light_fups
+            Entity: binary_sensor.presence_bedside_light_fabienne
             ActiveIntervals:
-              - Start: '13:00:00'
+              - Start: '09:00:00'
                 End: '23:59:59'

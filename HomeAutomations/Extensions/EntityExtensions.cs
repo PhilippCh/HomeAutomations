@@ -6,6 +6,13 @@ namespace HomeAutomations.Extensions;
 public static class EntityExtensions
 {
 	public static string GetName(this Entity entity) => entity.EntityId[(entity.EntityId.IndexOf('.') + 1)..];
+
+	public static IObservable<StateChange<TEntity, EntityState<TAttributes>>> StateChangesWithCurrentState<TEntity, TAttributes>(this TEntity entity)
+		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
+		where TAttributes : class
+	{
+		return entity.StateChanges().StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, null));
+	}
 }
 
 public static class PersonEntityExtensions

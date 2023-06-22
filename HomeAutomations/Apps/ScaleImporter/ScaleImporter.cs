@@ -4,11 +4,9 @@ using System.Threading.Tasks;
 using HomeAutomations.Apps.ScaleImporter.VeSync;
 using HomeAutomations.Models;
 using NetDaemon.Extensions.MqttEntityManager;
-using ObservableExtensions = NetDaemon.HassModel.ObservableExtensions;
 
 namespace HomeAutomations.Apps.ScaleImporter;
 
-[Focus]
 public class ScaleImporter : BaseAutomation<ScaleImporter, ScaleImporterConfig>
 {
 	private readonly IMqttEntityManager _entityManager;

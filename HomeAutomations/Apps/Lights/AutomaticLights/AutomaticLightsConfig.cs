@@ -23,7 +23,8 @@ public record AutomaticLightEntity
 	public TimeSpan CycleTime { get; init; }
 	public int MaxIlluminance { get; init; }
 	public SensorEntity? ManualTriggerSensor { get; init; }
-	public int MaxBrightness { get; init; }
+	public int? MaxBrightness { get; init; }
+	public SensorEntity IlluminanceSensor { get; init; }
 	public MotionSensorConfig MotionSensor { get; init; }
 	public IEnumerable<BrightnessConfig>? Brightness { get; init; }
 }

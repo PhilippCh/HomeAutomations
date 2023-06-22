@@ -21,7 +21,7 @@ public class AutomaticLight
 	private readonly ILogger _logger;
 	private readonly NotificationService _notificationService;
 
-	private int _brightness = DefaultBrightnessPct;
+	private int? _brightness = DefaultBrightnessPct;
 	private IDisposable? _lightCycleObserver;
 
 	public AutomaticLight(AutomaticLightEntity entity, ILogger logger, NotificationService notificationService)
@@ -34,11 +34,24 @@ public class AutomaticLight
 	public IDisposable StartMonitoring()
 	{
 		var disposables = new CompositeDisposable();
-		disposables.Add(_entity.MotionSensor.Entity.StateChanges().Subscribe(s => OnMotionSensorStateChanged(s.New?.Attributes)));
+		var motionSensorStateChanges = _entity.MotionSensor.Entity.StateChangesWithCurrentState<BinarySensorEntity, BinarySensorAttributes>();
+		var illuminanceSensorStateChanges = _entity.IlluminanceSensor.StateChangesWithCurrentState<SensorEntity, SensorAttributes>();
+		var stateChanges = motionSensorStateChanges
+			.CombineLatest(illuminanceSensorStateChanges)
+			.Subscribe(
+				x =>
+				{
+					var (motion, illuminance) = x;
+					OnMotionSensorStateChanged(motion.New?.IsOn(), illuminance.New?.AsInt());
+				});
+
+		disposables.Add(stateChanges);
 
 		if (_entity.ManualTriggerSensor is not null)
 		{
-			disposables.Add(_entity.ManualTriggerSensor.StateChanges().Subscribe(s => OnManualTriggerStateChanged(s.New?.State)));
+			var manualTriggerStateChanges = _entity.ManualTriggerSensor.StateChanges()
+				.Subscribe(s => OnManualTriggerStateChanged(s.New?.State));
+			disposables.Add(manualTriggerStateChanges);
 		}
 
 		return disposables;
@@ -59,22 +72,17 @@ public class AutomaticLight
 		action();
 	}
 
-	private void OnMotionSensorStateChanged(BinarySensorAttributes? attributes)
+	private void OnMotionSensorStateChanged(bool? isOccupied, int? illuminance)
 	{
-		if (attributes == null)
-		{
-			return;
-		}
-
 		if (!_entity.MotionSensor.ActiveIntervals.Any(i => i.IsActiveFor(DateTime.Now.TimeOfDay)))
 		{
 			// We're not in any active motion sensor interval, so cancel.
 			return;
 		}
 
-		LastIlluminance = attributes.IlluminanceLux ?? LastIlluminance;
+		LastIlluminance = illuminance ?? LastIlluminance;
 
-		if (attributes.Occupancy != null && attributes.Occupancy.Value)
+		if (isOccupied != null && isOccupied.Value)
 		{
 			UpdateOccupancy();
 		}
@@ -87,7 +95,7 @@ public class AutomaticLight
 			return;
 		}
 
-		if (!_entity.Entity.IsOn() && LastIlluminance > _entity.MaxIlluminance)
+		if (LastIlluminance > _entity.MaxIlluminance)
 		{
 			_logger.Information("{Illuminance} lux is too bright for {Light}", LastIlluminance, _entity.Entity.GetName());
 
@@ -160,7 +168,16 @@ public class AutomaticLight
 		// ReSharper disable once TemplateIsNotCompileTimeConstantProblem
 		_logger.Information(_lightCycleObserver == null ? "Starting new light cycle for {Light}" : "Restarting running light cycle for {Light}", _entity.Entity.GetName());
 
-		_entity.Entity.TurnOn(brightness: _brightness);
+		if (_entity.MaxBrightness != null)
+		{
+			_entity.Entity.TurnOn(brightness: _brightness);
+		}
+		else
+		{
+			// For some reason the zigbee2mqtt configuration to assign brightness via the SET message doesn't seem to work for some light,
+			// so as a workaround we can disable setting brightness when turning on the lights.
+			_entity.Entity.TurnOn();
+		}
 		_lightCycleObserver?.Dispose();
 		_lightCycleObserver = Observable.Return(new Unit())
 			.Delay(_entity.CycleTime)
