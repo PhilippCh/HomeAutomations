@@ -168,6 +168,17 @@ public class AutomaticLight
 		// ReSharper disable once TemplateIsNotCompileTimeConstantProblem
 		_logger.Information(_lightCycleObserver == null ? "Starting new light cycle for {Light}" : "Restarting running light cycle for {Light}", _entity.Entity.GetName());
 
+		TurnLightOn();
+
+		_lightCycleObserver?.Dispose();
+		_lightCycleObserver = Observable.Return(new Unit())
+			.Delay(_entity.CycleTime)
+			.Do(_ => FinishOrRestartCycle())
+			.Subscribe();
+	}
+
+	private void TurnLightOn()
+	{
 		if (_entity.MaxBrightness != null)
 		{
 			_entity.Entity.TurnOn(brightness: _brightness);
@@ -178,17 +189,22 @@ public class AutomaticLight
 			// so as a workaround we can disable setting brightness when turning on the lights.
 			_entity.Entity.TurnOn();
 		}
-		_lightCycleObserver?.Dispose();
-		_lightCycleObserver = Observable.Return(new Unit())
-			.Delay(_entity.CycleTime)
-			.Do(
-				_ =>
-				{
-					_logger.Information("Light cycle ended for {Light}", _entity.Entity.GetName());
-					StopLightCycle();
-					_entity.Entity.TurnOff();
-				})
-			.Subscribe();
+	}
+
+	private void FinishOrRestartCycle()
+	{
+		if (_entity.MotionSensor.Entity.IsOn())
+		{
+			// There's still someone present, restart the cycle.
+			StartLightCycle();
+
+			return;
+		}
+
+		// There's no one present anymore, so end the cycle.
+		_logger.Information("Light cycle finished for {Light}", _entity.Entity.GetName());
+		StopLightCycle();
+		_entity.Entity.TurnOff();
 	}
 
 	private void StopLightCycle()
