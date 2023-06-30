@@ -4,6 +4,16 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
   Longitude: 8.247879062542783
   UpdateInterval: 00:00:10
   LightCycles:
+    - Name: Lava lamp
+      Interval: 24:00:00 # This is essentially not used for static lights
+      Start:
+        Hour: 00:00:00
+        HourWeekend: 01:45:00
+      End:
+        Hour: 00:50:00
+        HourWeekend: 02:45:00
+      EntityCycles:
+        - - switch.bedroom_lava_lamp
     - Name: Static lights
       Interval: 24:00:00 # This is essentially not used for static lights
       Start:
