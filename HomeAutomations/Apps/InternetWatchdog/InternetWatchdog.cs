@@ -43,6 +43,7 @@ public class InternetWatchdog : BaseAutomation<InternetWatchdog, InternetWatchdo
 		if (oldState != newState && newState != EntityStates.Unavailable)
 		{
 			// Internet is back up, send notification.
+			Debug.WriteLine($"Old: {oldState} | New: {newState}");
 			_notificationService.SendNotification(Config.InternetUpNotification);
 		}
 	}
