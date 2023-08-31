@@ -1,0 +1,13 @@
+---
+HomeAutomations.Apps.InternetWatchdog.InternetWatchdogConfig:
+  SensorEntity: sensor.speedtest_download
+  InternetDownNotification:
+    Tag: internet
+    Title: Internet Zuhause
+    Template: "Das Internet ist offline."
+    Sticky: true
+  InternetUpNotification:
+    Tag: internet
+    Title: Internet Zuhause
+    Template: "Das Internet ist wieder verfügbar."
+    Sticky: true
