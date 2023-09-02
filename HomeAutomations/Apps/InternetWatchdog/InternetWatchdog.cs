@@ -40,10 +40,11 @@ public class InternetWatchdog : BaseAutomation<InternetWatchdog, InternetWatchdo
 			_notificationService.SendNotification(Config.InternetDownNotification);
 		}
 
-		if (oldState != newState && newState != EntityStates.Unavailable)
+		if (oldState != newState &&
+		newState != EntityStates.Unavailable &&
+		oldState == EntityStates.Unavailable)
 		{
 			// Internet is back up, send notification.
-			Logger.Information("Old: {OldState} | New: {NewState}", oldState, newState);
 			_notificationService.SendNotification(Config.InternetUpNotification);
 		}
 	}
