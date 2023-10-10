@@ -19,6 +19,16 @@ public static class StringExtensions
 		return input?.ToLowerInvariant() == "on";
 	}
 
+	public static int? AsInt(this string? input)
+	{
+		if (int.TryParse(input, out var result))
+		{
+			return result;
+		}
+
+		return null;
+	}
+
 	public static string JoinAnd<T>(this IEnumerable<T> values, string separator = ", ", string? lastSeparator = " und ")
 	{
 		if (values == null)

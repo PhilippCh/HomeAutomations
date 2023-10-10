@@ -30,6 +30,11 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 	private void RegisterDeskLampTrigger()
 	{
+		new AndTrigger(
+			Config.Computers.LaptopEnbw.NetworkSensor.ToObservableState(),
+			Config.Computers.LaptopEnbw.UnlockedSensor.ToObservableState()
+		).GetTrigger().Subscribe(x => Logger.Information("Unlocked: {x}", x));
+
 		var deskLampTrigger = new AndTrigger(
 			new OrTrigger(
 				new AndTrigger(
@@ -43,7 +48,20 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 			).GetTrigger(),
 			new BrightnessTrigger(Config.DeskLamp.TriggerConfig).GetTrigger());
 
-		deskLampTrigger.GetTrigger().Subscribe(ToggleDeskLamp);
+		deskLampTrigger.GetTrigger().Subscribe(
+			x =>
+			{
+				Logger.Information("DesktopPhilipp N {Network} U {Unlocked} | LaptopEnBW N {Network} U {Unlocked}",
+					Config.Computers.DesktopPhilipp.NetworkSensor.State,
+					Config.Computers.DesktopPhilipp.UnlockedSensor.State,
+					Config.Computers.LaptopEnbw.NetworkSensor.State,
+					Config.Computers.LaptopEnbw.UnlockedSensor.State);
+
+				if (x != null)
+				{
+					ToggleDeskLamp(x.Value);
+				}
+			});
 
 		Config.DeskLamp.SwitchAction.StateChanges()
 			.Subscribe(
@@ -72,8 +90,11 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 			.Subscribe(
 				x =>
 				{
-					Logger.Information("Setting speakers to {State}", x);
-					Config.Speaker.SetState(x);
+					if (x != null)
+					{
+						Logger.Information("Setting speakers to {State}", x);
+						Config.Speaker.SetState(x.Value);
+					}
 				});
 	}
 

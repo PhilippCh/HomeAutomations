@@ -9,15 +9,13 @@ namespace HomeAutomations.Apps.StudyAutomations.Triggers;
 public class MultiBinarySwitchTrigger : ICompoundTrigger
 {
 	private readonly IEnumerable<BinarySensorEntity> _binarySensors;
-	private readonly Func<IList<bool?>, bool>? _predicate;
 
-	public MultiBinarySwitchTrigger(IEnumerable<BinarySensorEntity> binarySensors, Func<IList<bool?>, bool>? predicate = default)
+	public MultiBinarySwitchTrigger(IEnumerable<BinarySensorEntity> binarySensors)
 	{
 		_binarySensors = binarySensors;
-		_predicate = predicate ?? (states => states.Any(s => s ?? false));
 	}
 
-	public IObservable<bool> GetTrigger()
+	public IObservable<bool?> GetTrigger()
 	{
 		return _binarySensors.Select(
 				e => e.StateChanges()
@@ -25,6 +23,6 @@ public class MultiBinarySwitchTrigger : ICompoundTrigger
 					.StartWith(e.EntityState.AsBoolean())
 			)
 			.CombineLatest()
-			.Select(r => r.Any(s => s ?? false));
+			.Select(r => r.Any(s => s ?? false) as bool?);
 	}
 }

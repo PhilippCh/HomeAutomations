@@ -27,5 +27,8 @@ public static class PersonEntityExtensions
 
 public static class BinarySensorEntityExtensions
 {
-	public static IObservable<bool> ToObservableState(this BinarySensorEntity entity) => entity.StateChanges().Select(x => x.New?.AsBoolean() ?? false);
+	public static IObservable<bool?> ToObservableState(this BinarySensorEntity entity) =>
+		entity.StateChanges()
+			.Select(x => x.New?.AsBoolean())
+			.StartWith(entity.State.AsBoolean());
 }

@@ -1,4 +1,5 @@
 using HomeAutomations.Common.Extensions;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 
@@ -20,11 +21,11 @@ public class BrightnessTrigger : ICompoundTrigger
 		_config = config;
 	}
 
-	public IObservable<bool> GetTrigger()
+	public IObservable<bool?> GetTrigger()
 	{
 		return _config.Entity.StateChanges()
-			.Select(x => x.New?.State)
-			.TryParseInt()
-			.Select(x => x >= _config.MinBrightness && x < _config.MaxBrightness);
+			.Select(x => x.New?.State.AsInt())
+			.StartWith(_config.Entity.State.AsInt())
+			.Select(x => (x >= _config.MinBrightness && x < _config.MaxBrightness) as bool?);
 	}
 }
