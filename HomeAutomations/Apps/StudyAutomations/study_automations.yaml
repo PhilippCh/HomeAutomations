@@ -1,8 +1,12 @@
 ---
 HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
   Computers:
-    - binary_sensor.desktopphilipp
-    - binary_sensor.laptop_enbw_unlocked
+    DesktopPhilipp:
+      NetworkSensor: binary_sensor.desktopphilipp
+      UnlockedSensor: binary_sensor.desktop_philipp_unlocked
+    LaptopEnbw:
+      NetworkSensor: binary_sensor.laptopphilippenbw
+      UnlockedSensor: binary_sensor.laptop_enbw_unlocked
   Speaker: switch.living_room_christmas_tree_socket_1
   DeskLamp:
     Entity: light.study_desk_lamp

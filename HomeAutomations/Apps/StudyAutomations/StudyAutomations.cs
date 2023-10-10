@@ -8,6 +8,7 @@ using HomeAutomations.Models.DeviceMessages;
 
 namespace HomeAutomations.Apps.StudyAutomations;
 
+[Focus]
 public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomationsConfig>
 {
 	private DateTimeOffset? _deskLampStartTime;
@@ -21,21 +22,28 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		var computerTrigger = new MultiBinarySwitchTrigger(Config.Computers).GetTrigger();
-		computerTrigger.Subscribe(
-			x =>
-			{
-				Logger.Information("Setting speakers to {State}", x);
-				Config.Speaker.SetState(x);
-			});
+		RegisterSpeakerTrigger();
+		RegisterDeskLampTrigger();
 
-		Observable
-			.CombineLatest(computerTrigger, new BrightnessTrigger(Config.DeskLamp.TriggerConfig).GetTrigger())
-			.Subscribe(x =>
-			{
-				Logger.Information("Computer trigger: {Ct} | Brightness trigger: {Bt}", x.First(), x.Last());
-				ToggleDeskLamp(x.All(y => y));
-			});
+		return Task.CompletedTask;
+	}
+
+	private void RegisterDeskLampTrigger()
+	{
+		var deskLampTrigger = new AndTrigger(
+			new OrTrigger(
+				new AndTrigger(
+					Config.Computers.LaptopEnbw.NetworkSensor.ToObservableState(),
+					Config.Computers.LaptopEnbw.UnlockedSensor.ToObservableState()
+				).GetTrigger(),
+				new AndTrigger(
+					Config.Computers.LaptopEnbw.NetworkSensor.ToObservableState(),
+					Config.Computers.LaptopEnbw.UnlockedSensor.ToObservableState()
+				).GetTrigger()
+			).GetTrigger(),
+			new BrightnessTrigger(Config.DeskLamp.TriggerConfig).GetTrigger());
+
+		deskLampTrigger.GetTrigger().Subscribe(ToggleDeskLamp);
 
 		Config.DeskLamp.SwitchAction.StateChanges()
 			.Subscribe(
@@ -50,8 +58,23 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 					action();
 				});
+	}
 
-		return Task.CompletedTask;
+	private void RegisterSpeakerTrigger()
+	{
+		new MultiBinarySwitchTrigger(
+				new[]
+				{
+					Config.Computers.DesktopPhilipp.NetworkSensor,
+					Config.Computers.LaptopEnbw.NetworkSensor
+				})
+			.GetTrigger()
+			.Subscribe(
+				x =>
+				{
+					Logger.Information("Setting speakers to {State}", x);
+					Config.Speaker.SetState(x);
+				});
 	}
 
 	private void ToggleForceDeskLamp()

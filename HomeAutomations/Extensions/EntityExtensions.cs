@@ -24,3 +24,8 @@ public static class PersonEntityExtensions
 		return accuracy < threshold;
 	}
 }
+
+public static class BinarySensorEntityExtensions
+{
+	public static IObservable<bool> ToObservableState(this BinarySensorEntity entity) => entity.StateChanges().Select(x => x.New?.AsBoolean() ?? false);
+}

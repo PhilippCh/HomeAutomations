@@ -5,6 +5,18 @@ using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.StudyAutomations;
 
+public record ComputerConfig
+{
+	public BinarySensorEntity NetworkSensor { get; init; }
+	public BinarySensorEntity UnlockedSensor { get; init; }
+}
+
+public record ComputersConfig
+{
+	public ComputerConfig DesktopPhilipp { get; init; }
+	public ComputerConfig LaptopEnbw { get; init; }
+}
+
 public record DeskLampConfig
 {
 	public LightEntity Entity { get; init; }
@@ -16,6 +28,6 @@ public record DeskLampConfig
 public record StudyAutomationsConfig : Config
 {
 	public SwitchEntity Speaker { get; init; }
-	public IEnumerable<BinarySensorEntity> Computers { get; init; }
+	public ComputersConfig Computers { get; init; }
 	public DeskLampConfig DeskLamp { get; init; }
 }
