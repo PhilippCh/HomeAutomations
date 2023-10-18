@@ -28,6 +28,7 @@ public class BaseAutomationDependencyAggregate<T> where T : BaseAutomation<T>
 	public BaseAutomationDependencyAggregate(IHaContext context, ILogger loggerFactory)
 	{
 		Context = context;
+		// ReSharper disable once ContextualLoggerProblem
 		Logger = loggerFactory.ForContext<T>();
 	}
 }

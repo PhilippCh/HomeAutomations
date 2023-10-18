@@ -1,6 +1,7 @@
 using System.Reflection;
 using HomeAutomations.Extensions;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetDaemon.Extensions.MqttEntityManager;
@@ -19,6 +20,7 @@ try
 		.UseCustomLogging()
 		.UseNetDaemonRuntime()
 		.UseNetDaemonMqttEntityManagement()
+		.ConfigureAppConfiguration((context, config) => config.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true))
 		.ConfigureServices(
 			(context, services) =>
 				services
