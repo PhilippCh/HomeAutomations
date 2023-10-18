@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace HomeAutomations.Apps.ScaleImporter.VeSync.Models;
+namespace HomeAutomations.Apps.ScaleImporter.Vesync.Models.Responses;
 
 [DataContract]
 public class BaseResponse<T>

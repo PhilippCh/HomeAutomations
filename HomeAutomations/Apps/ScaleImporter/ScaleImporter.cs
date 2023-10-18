@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Apps.ScaleImporter.VeSync;
+using HomeAutomations.Apps.ScaleImporter.Vesync;
 using HomeAutomations.Models;
 using NetDaemon.Extensions.MqttEntityManager;
 

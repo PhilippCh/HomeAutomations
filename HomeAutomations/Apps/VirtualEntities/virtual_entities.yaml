@@ -1,0 +1,8 @@
+HomeAutomations.Apps.VirtualEntities.VirtualEntitiesConfig:
+  SleepStateEntity:
+    BedPresenceSensors:
+      - binary_sensor.presence_bedroom_bed_fups
+      - binary_sensor.presence_bedroom_bed_pups
+    SmartphoneChargingSensors:
+      - sensor.iphone_philipp_battery_state
+      - sensor.iphone_fabienne_battery_state

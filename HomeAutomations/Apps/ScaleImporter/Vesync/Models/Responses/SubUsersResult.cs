@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace HomeAutomations.Apps.ScaleImporter.VeSync.Models.Responses;
+namespace HomeAutomations.Apps.ScaleImporter.Vesync.Models.Responses;
 
 public record SubUser
 {

@@ -3,11 +3,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using HomeAutomations.Apps.ScaleImporter.VeSync.Models;
-using HomeAutomations.Apps.ScaleImporter.VeSync.Models.Requests;
-using HomeAutomations.Apps.ScaleImporter.VeSync.Models.Responses;
+using HomeAutomations.Apps.ScaleImporter.Vesync.Models.Requests;
+using HomeAutomations.Apps.ScaleImporter.Vesync.Models.Responses;
 
-namespace HomeAutomations.Apps.ScaleImporter.VeSync;
+namespace HomeAutomations.Apps.ScaleImporter.Vesync;
 
 public class VeSyncApiClient
 {
