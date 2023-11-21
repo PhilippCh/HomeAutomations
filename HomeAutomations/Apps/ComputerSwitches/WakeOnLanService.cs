@@ -47,11 +47,6 @@ public class WakeOnLanService
         }
     }
 
-    public async Task ShutdownAsync(string host)
-    {
-        await _httpClient.GetAsync(GetHostApiUrl(host, "/command/shutdown"));
-    }
-
     private string GetHostApiUrl(string host, string? endpoint = default) =>
         $"http://{host}:{_availabilityCheckConfig.Port}/api{endpoint ?? string.Empty}";
 

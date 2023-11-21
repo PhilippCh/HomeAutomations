@@ -17,6 +17,7 @@ public record HostConfig
 	public InputBooleanEntity Entity { get; init; }
 	public string Host { get; init; }
 	public string MacAddress { get; init; }
+	public ButtonEntity ShutdownButton { get; init; }
 }
 
 public record ComputerSwitchesConfig : Config

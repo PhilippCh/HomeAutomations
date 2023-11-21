@@ -13,7 +13,9 @@ HomeAutomations.Apps.ComputerSwitches.ComputerSwitchesConfig:
       Entity: input_boolean.computer_wol_desktop_philipp
       Host: 192.168.188.41
       MacAddress: 40:B0:76:DD:34:61
+      ShutdownButton: button.desktopphilipp_shutdown
     - Name: Desktop Fabienne
       Entity: input_boolean.computer_wol_desktop_fabienne
       Host: 192.168.188.34
       MacAddress: AC:9E:17:EC:5F:83
+      ShutdownButton: button.desktopfabienne_shutdown

@@ -73,7 +73,7 @@ public class ComputerSwitches : BaseAutomation<ComputerSwitches, ComputerSwitche
 	private async Task ShutdownMachineAsync(HostConfig hostConfig)
 	{
 		Logger.Information("Stopping host {HostName}", hostConfig.Name);
-		await _wakeOnLanService.ShutdownAsync(hostConfig.Host);
+		hostConfig.ShutdownButton.Press();
 	}
 
 	private async Task UpdateWolSwitchStatusAsync(HostConfig host)
