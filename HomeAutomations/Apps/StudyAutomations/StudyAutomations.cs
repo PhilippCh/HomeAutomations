@@ -30,16 +30,11 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 	private void RegisterDeskLampTrigger()
 	{
-		new AndTrigger(
-			Config.Computers.LaptopEnbw.NetworkSensor.ToObservableState(),
-			Config.Computers.LaptopEnbw.UnlockedSensor.ToObservableState()
-		).GetTrigger().Subscribe(x => Logger.Information("Unlocked: {x}", x));
-
 		var deskLampTrigger = new AndTrigger(
 			new OrTrigger(
 				new AndTrigger(
-					Config.Computers.LaptopEnbw.NetworkSensor.ToObservableState(),
-					Config.Computers.LaptopEnbw.UnlockedSensor.ToObservableState()
+					Config.Computers.DesktopPhilipp.NetworkSensor.ToObservableState(),
+					Config.Computers.DesktopPhilipp.UnlockedSensor.ToObservableState()
 				).GetTrigger(),
 				new AndTrigger(
 					Config.Computers.LaptopEnbw.NetworkSensor.ToObservableState(),
