@@ -24,7 +24,7 @@ public abstract class VirtualEntity<TOut, TConfig>
 
 	public async Task CreateAndObserveAsync()
 	{
-		await _entityManager.CreateAsync(Id, new EntityCreationOptions("BinarySensorDeviceClass.OCCUPANCY", Id, ""));
+		await _entityManager.CreateAsync(Id, new EntityCreationOptions(UniqueId: Id));
 		StateChanges().SubscribeAsync(
 			async x =>
 			{
