@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace HomeAutomations.Models.DeviceMessages;
 
@@ -36,5 +35,24 @@ public static class WirelessSwitchActions
 		{ "brightness_stop", ButtonAction.BrightnessStop },
 	};
 
-	public static ButtonAction Map(string? value) => _buttonActions.TryGetValue(value ?? string.Empty, out var action) ? action : ButtonAction.Undefined;
+	public static ButtonAction Map(string? state) => _buttonActions.TryGetValue(state ?? string.Empty, out var action) ? action : ButtonAction.Undefined;
+
+	public static bool IsPressedAction(string? state) =>
+		Map(state) switch
+		{
+			ButtonAction.Undefined => false,
+			ButtonAction.Single => true,
+			ButtonAction.Double => true,
+			ButtonAction.Triple => true,
+			ButtonAction.Quadruple => true,
+			ButtonAction.Hold => true,
+			ButtonAction.Release => false,
+			ButtonAction.Many => true,
+			ButtonAction.On => true,
+			ButtonAction.Off => false,
+			ButtonAction.BrightnessUp => true,
+			ButtonAction.BrightnessDown => true,
+			ButtonAction.BrightnessStop => false,
+			_ => false
+		};
 }

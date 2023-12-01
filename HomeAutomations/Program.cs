@@ -1,5 +1,6 @@
 using System.Reflection;
 using HomeAutomations.Extensions;
+using HomeAutomations.Models.Generated;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ try
 					.AddAppsFromAssembly(assembly)
 					.AddNetDaemonStateManager()
 					.AddNetDaemonScheduler()
+					.AddHomeAssistantGenerated()
 					.AddAutomationServices(assembly, context.Configuration)
 		);
 

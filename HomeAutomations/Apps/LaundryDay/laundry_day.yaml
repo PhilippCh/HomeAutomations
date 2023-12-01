@@ -1,0 +1,7 @@
+---
+HomeAutomations.Apps.LaundryDay.LaundryDayConfig:
+  ButtonEntity: sensor.bedroom_laundry_day_button_action
+  ResetDateSensorEntity: sensor.bedroom_laundry_day_reset_date
+  Scenarios:
+    Drying: Wäsche
+    Default: Wäsche aus
