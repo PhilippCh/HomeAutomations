@@ -26,6 +26,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
           - switch.kitchen_neon_clock_socket_1
           - switch.living_room_christmas_tree
           - switch.living_room_christmas_stars
+          - switch.living_room_lightbulbs
     - Name: Trolley lights
       Interval: 01:00:00
       Start:
