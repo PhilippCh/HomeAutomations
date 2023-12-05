@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
@@ -15,13 +14,11 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 	where TConfig : CounterConfig, new()
 {
 	private readonly IMqttEntityManager _entityManager;
-	private readonly MqttService _mqttService;
 
-	public BaseCounter(BaseAutomationDependencyAggregate<T, TConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)
+	public BaseCounter(BaseAutomationDependencyAggregate<T, TConfig> aggregate, IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
 		_entityManager = entityManager;
-		_mqttService = mqttService;
 	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
@@ -36,7 +33,9 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		Config.Button?.Sensor.StateChanges().Subscribe(s => OnButtonPressed(s.New?.State));
 	}
 
+#pragma warning disable VSTHRD200
 	private async Task CreateEntities()
+#pragma warning restore VSTHRD200
 	{
 		var persons = Context.GetAllEntities("person");
 
@@ -50,7 +49,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 	private async void ResetCounter()
 	{
-		Logger.Information("Resetting daily {name} counters.", Config.Name);
+		Logger.Information("Resetting daily {Name} counters", Config.Name);
 		var persons = Context.GetAllEntities("person");
 
 		foreach (var person in persons)
@@ -65,7 +64,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 	{
 		if (Config.Button == null)
 		{
-			Logger.Warning("Button config was null, this should never happen in {name}", nameof(OnButtonPressed));
+			Logger.Warning("Button config was null, this should never happen in {Name}", nameof(OnButtonPressed));
 
 			return;
 		}
