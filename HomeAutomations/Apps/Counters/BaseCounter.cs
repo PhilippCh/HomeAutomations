@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
@@ -84,9 +85,9 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		}
 	}
 
-	private void OnSetTarget(HaEvent e)
+	private async void OnSetTarget(HaEvent e)
 	{
-		var targetAmount = e.GetData<int?>(Config.Events.AmountProperty);
+		var targetAmount = e.GetData<float?>(Config.Events.AmountProperty);
 		var user = e.GetData<string>(Config.Events.UserProperty);
 
 		if (targetAmount == null || user == null)
@@ -94,19 +95,19 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			return;
 		}
 
-		_entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.Value.ToString());
+		await _entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.Value.ToString(CultureInfo.InvariantCulture));
 		SendAlerts(user);
 	}
 
 	private async void OnAdd(HaEvent e)
 	{
-		var increment = e.GetData<int?>(Config.Events.AmountProperty);
+		var increment = e.GetData<float?>(Config.Events.AmountProperty);
 		var user = e.GetData<string>(Config.Events.UserProperty);
 
 		await OnAdd(increment, user);
 	}
 
-	private async Task OnAdd(int? increment, string? user)
+	private async Task OnAdd(float? increment, string? user)
 	{
 		if (increment == null || user == null)
 		{
@@ -130,12 +131,10 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 	private string GetAlertEntityId(string user) => $"{GetEntityId(user)}_alert_sent";
 
-	private int GetCurrentAmount(string user) => GetAmount(GetEntityId(user));
+	private float GetCurrentAmount(string user) => GetAmount(GetEntityId(user));
 
-	private int GetTargetAmount(string user) => GetAmount(GetTargetEntityId(user));
-
-	private int GetAmount(string entityId)
+	private float GetAmount(string entityId)
 	{
-		return int.TryParse(new Entity(Context, entityId).State, out var amount) ? amount : 0;
+		return float.TryParse(new Entity(Context, entityId).State, out var amount) ? amount : 0;
 	}
 }
