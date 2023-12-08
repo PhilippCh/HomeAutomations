@@ -86,22 +86,32 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 	private async void OnSetTarget(HaEvent e)
 	{
-		var targetAmount = e.GetData<float?>(Config.Events.AmountProperty);
+		var targetAmountString = e.GetData<string?>(Config.Events.AmountProperty) ?? "";
 		var user = e.GetData<string>(Config.Events.UserProperty);
 
-		if (targetAmount == null || user == null)
+		if (user == null)
 		{
 			return;
 		}
 
-		await _entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.Value.ToString(CultureInfo.InvariantCulture));
+		if (!float.TryParse(targetAmountString, out var targetAmount))
+		{
+			targetAmount = 0;
+		}
+
+		await _entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.ToString(CultureInfo.InvariantCulture));
 		SendAlerts(user);
 	}
 
 	private async void OnAdd(HaEvent e)
 	{
-		var increment = e.GetData<float?>(Config.Events.AmountProperty);
+		var incrementString = e.GetData<string?>(Config.Events.AmountProperty) ?? "";
 		var user = e.GetData<string>(Config.Events.UserProperty);
+
+		if (!float.TryParse(incrementString, out var increment))
+		{
+			increment = 0;
+		}
 
 		await OnAdd(increment, user);
 	}
@@ -114,7 +124,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		}
 
 		var entityId = GetEntityId(user);
-		await _entityManager.SetStateAsync(entityId, (GetCurrentAmount(user) + increment.Value).ToString());
+		await _entityManager.SetStateAsync(entityId, (GetCurrentAmount(user) + increment.Value).ToString(CultureInfo.InvariantCulture));
 		await _entityManager.SetAttributesAsync(entityId, new { last_increment = increment });
 		SendAlerts(user);
 	}
