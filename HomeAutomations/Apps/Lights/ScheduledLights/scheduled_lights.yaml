@@ -15,7 +15,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
       EntityCycles:
         - - switch.bedroom_lava_lamp
     - Name: Static lights
-      Interval: 24:00:00 # This is essentially not used for static lights
+      Interval: 1.23:59:59 # This is essentially not used for static lights, but needs to be longer than 24 hours because otherwise the lights would switch off on weekends before 1AM.
       Start:
         Hour: sunset
       End:
