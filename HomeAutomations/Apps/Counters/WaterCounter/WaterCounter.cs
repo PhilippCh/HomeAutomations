@@ -8,10 +8,5 @@ public record WaterCounterConfig : CounterConfig;
 // DO NOT REMOVE
 // When debugging, this allows for counters to still work.
 [Focus]
-public class WaterCounter : BaseCounter<WaterCounter, WaterCounterConfig>
-{
-	public WaterCounter(BaseAutomationDependencyAggregate<WaterCounter, WaterCounterConfig> aggregate, IMqttEntityManager entityManager)
-		: base(aggregate, entityManager)
-	{
-	}
-}
+public class WaterCounter(BaseAutomationDependencyAggregate<WaterCounter, WaterCounterConfig> aggregate, IMqttEntityManager entityManager)
+	: BaseCounter<WaterCounter, WaterCounterConfig>(aggregate, entityManager);

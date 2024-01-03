@@ -1,0 +1,16 @@
+﻿---
+HomeAutomations.Apps.Counters.SweetsCounter.SweetsCounterConfig:
+  Name: Sweets
+  EntityPrefix: sensor.sweets_intake_
+  EntityDescriptionPrefix: Daily sweets intake
+  ResetCrontab: 0 0 * * *
+  Events:
+    AddEventId: sweets_add_event
+    SetTargetEventId: sweets_set_target_event
+    UserProperty: user
+    AmountProperty: amount
+  Alerts:
+    - User: philipp
+      Threshold: 0.5
+    - User: philipp
+      Threshold: 0.9

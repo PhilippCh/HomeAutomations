@@ -8,10 +8,5 @@ public record KratomCounterConfig : CounterConfig;
 // DO NOT REMOVE
 // When debugging, this allows for counters to still work.
 [Focus]
-public class KratomCounter : BaseCounter<KratomCounter, KratomCounterConfig>
-{
-	public KratomCounter(BaseAutomationDependencyAggregate<KratomCounter, KratomCounterConfig> aggregate, IMqttEntityManager entityManager)
-		: base(aggregate, entityManager)
-	{
-	}
-}
+public class KratomCounter(BaseAutomationDependencyAggregate<KratomCounter, KratomCounterConfig> aggregate, IMqttEntityManager entityManager)
+	: BaseCounter<KratomCounter, KratomCounterConfig>(aggregate, entityManager);
