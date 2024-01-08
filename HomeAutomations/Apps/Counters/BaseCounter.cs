@@ -124,7 +124,8 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		}
 
 		var entityId = GetEntityId(user);
-		await _entityManager.SetStateAsync(entityId, (GetCurrentAmount(user) + increment.Value).ToString(CultureInfo.InvariantCulture));
+		var newAmount = GetCurrentAmount(user) + increment.Value;
+		await _entityManager.SetStateAsync(entityId, newAmount.ToString("n2", CultureInfo.InvariantCulture));
 		await _entityManager.SetAttributesAsync(entityId, new { last_increment = increment });
 		SendAlerts(user);
 	}
@@ -144,6 +145,6 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 	private float GetAmount(string entityId)
 	{
-		return float.TryParse(new Entity(Context, entityId).State, out var amount) ? amount : 0;
+		return float.TryParse(new Entity(Context, entityId).State, CultureInfo.InvariantCulture, out var amount) ? amount : 0;
 	}
 }
