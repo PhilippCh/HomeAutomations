@@ -125,7 +125,7 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 		var entityId = GetEntityId(user);
 		var newAmount = GetCurrentAmount(user) + increment.Value;
-		await _entityManager.SetStateAsync(entityId, newAmount.ToString("n2", CultureInfo.InvariantCulture));
+		await _entityManager.SetStateAsync(entityId, string.Format(CultureInfo.InvariantCulture, "{0:0.00}", newAmount));
 		await _entityManager.SetAttributesAsync(entityId, new { last_increment = increment });
 		SendAlerts(user);
 	}
