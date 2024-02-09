@@ -10,7 +10,7 @@ HomeAutomations.Apps.LaundryDay.LaundryDayConfig:
     EndTime: 22:00:00
     WindowSensor: binary_sensor.fenster_schlafzimmer
     HumiditySensor: sensor.raumthermostat_schlafzimmer_humidity
-    MaxHumidity: 55
+    MaxHumidity: 60
     Notification:
       Tag: laundry
       Title: Fenster öffnen
