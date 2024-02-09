@@ -29,6 +29,16 @@ public static class StringExtensions
 		return null;
 	}
 
+	public static float? AsFloat(this string? input)
+	{
+		if (float.TryParse(input, out var result))
+		{
+			return result;
+		}
+
+		return null;
+	}
+
 	public static string JoinAnd<T>(this IEnumerable<T> values, string separator = ", ", string? lastSeparator = " und ")
 	{
 		if (values == null)

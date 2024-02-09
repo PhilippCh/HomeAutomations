@@ -5,3 +5,21 @@ HomeAutomations.Apps.LaundryDay.LaundryDayConfig:
   Scenarios:
     Drying: Wäsche
     Default: Wäsche aus
+  Ventilation:
+    StartTime: 09:00:00
+    EndTime: 22:00:00
+    WindowSensor: binary_sensor.fenster_schlafzimmer
+    HumiditySensor: sensor.raumthermostat_schlafzimmer_humidity
+    MaxHumidity: 55
+    Notification:
+      Tag: laundry
+      Title: Fenster öffnen
+      Template: "{0}% Luftfeuchtigkeit im Schlafzimmer. Bitte öffne das Fenster."
+      Sticky: true
+    CloseWindowNotification:
+      Tag: laundry
+      Title: Fenster schließen
+      Template: "Du kannst das Fenster im Schlafzimmer wieder schließen."
+      Sticky: true
+    ReminderDelay: 00:00:00
+    CloseWindowTimeout: 00:00:10
