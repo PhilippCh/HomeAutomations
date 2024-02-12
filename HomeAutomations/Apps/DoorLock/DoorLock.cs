@@ -17,6 +17,7 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private const string OpenOpenerActionId = "OPEN_OPENER";
 	private const string OpenLockActionId = "OPEN_LOCK";
 	private const string OpenBothActionId = "OPEN_BOTH";
+	private const string EnableRtoActionId = "ENABLE_RTO";
 
 	private IDisposable? _ringSensorObserver;
 
@@ -88,18 +89,20 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 			OpenOpenerActionId => () => PerformWithPeoplePresent(() => Config.OpenerEntity.Open()),
 			OpenLockActionId => () => PerformWithPeoplePresent(() => Config.LockEntity.Open()),
 			OpenBothActionId => OpenAllDoors,
+			EnableRtoActionId => EnableRingToOpen,
 			_ => () => Logger.Warning("Fired unknown action {Action}", action)
 		};
 
 		callback();
 	}
 
-	private void OpenAllDoors()
+	private async void OpenAllDoors()
 	{
-		PerformWithPeoplePresent(
-			() =>
+		await PerformWithPeoplePresentAsync(
+			async () =>
 			{
 				Config.OpenerEntity.Open();
+				await Task.Delay(2000);
 				Config.LockEntity.Open();
 			});
 	}
@@ -152,6 +155,26 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 
 	private void PerformWithPeoplePresent(Action action)
 	{
+		if (!IsAnyPersonPresent())
+		{
+			return;
+		}
+
+		action();
+	}
+
+	private async Task PerformWithPeoplePresentAsync(Func<Task> action)
+	{
+		if (!IsAnyPersonPresent())
+		{
+			return;
+		}
+
+		await action();
+	}
+
+	private bool IsAnyPersonPresent()
+	{
 		var presentPersons = Config.EnabledPersons
 			.Where(x => (x.Attributes?.IsGpsPositionAccurate(Config.GpsAccuracyThreshold) ?? false) && ZoneParser.Parse(x.State) == Zone.Home)
 			.ToList();
@@ -160,13 +183,13 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		{
 			Logger.Warning("Will not perform action because no person is present");
 
-			return;
+			return false;
 		}
 
 		var entityNames = presentPersons.Select(x => x.GetName());
 		Logger.Information("Performing action because of present persons: {Persons}", string.Join(", ", entityNames));
 
-		action();
+		return true;
 	}
 
 	private bool IsLockOpenable()
