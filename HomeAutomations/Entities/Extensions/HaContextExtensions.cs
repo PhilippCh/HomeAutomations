@@ -2,7 +2,7 @@
 using System.Linq;
 using NetDaemon.HassModel.Entities;
 
-namespace HomeAutomations.Extensions;
+namespace HomeAutomations.Entities.Extensions;
 
 public static class HaContextExtensions
 {

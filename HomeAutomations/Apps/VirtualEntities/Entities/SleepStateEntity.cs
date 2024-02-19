@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using HomeAutomations.Converters.Sensors;
+using HomeAutomations.Entities.Converters.Sensors;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
 using NetDaemon.Extensions.MqttEntityManager;

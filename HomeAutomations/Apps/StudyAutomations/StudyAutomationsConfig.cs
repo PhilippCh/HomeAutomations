@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using HomeAutomations.Apps.StudyAutomations.Triggers;
 using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Entities.Triggers;
 using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.StudyAutomations;

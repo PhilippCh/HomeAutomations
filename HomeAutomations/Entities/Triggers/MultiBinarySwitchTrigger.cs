@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using HomeAutomations.Extensions;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 
-namespace HomeAutomations.Apps.StudyAutomations.Triggers;
+namespace HomeAutomations.Entities.Triggers;
 
 public class MultiBinarySwitchTrigger : ICompoundTrigger
 {

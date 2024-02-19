@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
-using HomeAutomations.Constants;
+using HomeAutomations.Entities.Constants;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;

@@ -1,4 +1,5 @@
 ﻿using HomeAutomations.Client.Watchdog;
+using HomeAutomations.Client.Watchdog.Services;
 
 using var host = Host.CreateDefaultBuilder(args)
 	.UseWindowsService(options => options.ServiceName = "HomeAutomations.Client.Watchdog")

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HomeAutomations.Models;
 
-namespace HomeAutomations.Apps.StudyAutomations.Triggers;
+namespace HomeAutomations.Entities.Triggers;
 
 public class AndTrigger : ICompoundTrigger
 {

@@ -1,4 +1,4 @@
-﻿namespace HomeAutomations.Converters.Sensors;
+﻿namespace HomeAutomations.Entities.Converters.Sensors;
 
 public class SensorEntityStateConverter<TStateMap, TOut> where TStateMap : ISensorEntityStateMap<TOut>, new()
 {

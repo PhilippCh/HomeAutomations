@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Constants;
+using HomeAutomations.Entities.Constants;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using NetDaemon.Extensions.MqttEntityManager;

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using HomeAutomations.Constants;
 using HomeAutomations.Extensions;
 using NetDaemon.Extensions.MqttEntityManager;
 

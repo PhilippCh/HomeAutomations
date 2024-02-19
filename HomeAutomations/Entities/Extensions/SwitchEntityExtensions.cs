@@ -1,6 +1,6 @@
 ﻿using HomeAutomations.Models.Generated;
 
-namespace HomeAutomations.Extensions;
+namespace HomeAutomations.Entities.Extensions;
 
 public static class SwitchEntityExtensions
 {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NetDaemon.Extensions.MqttEntityManager;
 
-namespace HomeAutomations.Extensions;
+namespace HomeAutomations.Entities.Extensions;
 
 public static class IMqttEntityManagerExtensions
 {

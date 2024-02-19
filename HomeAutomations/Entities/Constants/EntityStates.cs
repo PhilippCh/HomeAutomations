@@ -1,4 +1,4 @@
-﻿namespace HomeAutomations.Constants;
+﻿namespace HomeAutomations.Entities.Constants;
 
 public static class EntityStates
 {

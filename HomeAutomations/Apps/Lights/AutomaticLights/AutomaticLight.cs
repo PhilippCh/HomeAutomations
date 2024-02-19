@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;

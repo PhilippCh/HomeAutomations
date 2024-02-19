@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using HomeAutomations.Client.Watchdog.Util;
 
-namespace HomeAutomations.Client.Watchdog;
+namespace HomeAutomations.Client.Watchdog.Services;
 
 public sealed class WatchdogService : BackgroundService
 {

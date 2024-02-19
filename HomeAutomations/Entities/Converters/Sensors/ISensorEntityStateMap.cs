@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HomeAutomations.Converters.Sensors;
+namespace HomeAutomations.Entities.Converters.Sensors;
 
 public interface ISensorEntityStateMap<TOut>
 {

@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;

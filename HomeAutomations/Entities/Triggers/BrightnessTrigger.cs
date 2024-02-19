@@ -1,9 +1,8 @@
-using HomeAutomations.Common.Extensions;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 
-namespace HomeAutomations.Apps.StudyAutomations.Triggers;
+namespace HomeAutomations.Entities.Triggers;
 
 public record BrightnessTriggerConfig
 {

@@ -1,7 +1,8 @@
-﻿using HomeAutomations.Models.Generated;
+﻿using HomeAutomations.Extensions;
+using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
 
-namespace HomeAutomations.Extensions;
+namespace HomeAutomations.Entities.Extensions;
 
 public static class EntityExtensions
 {

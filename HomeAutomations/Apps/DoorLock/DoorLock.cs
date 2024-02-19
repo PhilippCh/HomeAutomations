@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;

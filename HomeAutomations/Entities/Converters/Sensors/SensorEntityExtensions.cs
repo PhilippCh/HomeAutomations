@@ -1,6 +1,6 @@
 ﻿using HomeAutomations.Models.Generated;
 
-namespace HomeAutomations.Converters.Sensors;
+namespace HomeAutomations.Entities.Converters.Sensors;
 
 public static class SensorEntityExtensions
 {

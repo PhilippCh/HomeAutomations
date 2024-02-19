@@ -1,6 +1,7 @@
-﻿using NetDaemon.HassModel.Entities;
+﻿using HomeAutomations.Extensions;
+using NetDaemon.HassModel.Entities;
 
-namespace HomeAutomations.Extensions;
+namespace HomeAutomations.Entities.Extensions;
 
 public static class EntityStateExtensions
 {

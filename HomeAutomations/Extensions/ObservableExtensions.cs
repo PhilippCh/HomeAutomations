@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reactive.Concurrency;
 using System.Text.Json;
 using System.Threading;
-using HomeAutomations.Constants;
+using HomeAutomations.Entities.Constants;
 using HomeAutomations.Models;
 
 namespace HomeAutomations.Extensions;

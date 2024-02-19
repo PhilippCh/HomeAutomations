@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Apps.StudyAutomations.Triggers;
+using HomeAutomations.Entities.Extensions;
+using HomeAutomations.Entities.Triggers;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
