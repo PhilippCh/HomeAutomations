@@ -23,7 +23,7 @@ public class BaseAutomationDependencyAggregate<T> where T : BaseAutomation<T>
 {
 	public IHaContext Context { get; }
 	public ILogger Logger { get; }
-	public Entities Entities => new(Context);
+	public Generated.Entities Entities => new(Context);
 
 	public BaseAutomationDependencyAggregate(IHaContext context, ILogger loggerFactory)
 	{
@@ -36,7 +36,7 @@ public class BaseAutomationDependencyAggregate<T> where T : BaseAutomation<T>
 public abstract class BaseAutomation<T, TConfig> : BaseAutomation<T> where T : BaseAutomation<T, TConfig> where TConfig : Config, new()
 {
 	protected TConfig Config => _aggregate.Config.Value;
-	protected Entities Entities => _aggregate.Entities;
+	protected Generated.Entities Entities => _aggregate.Entities;
 
 	private readonly BaseAutomationDependencyAggregate<T, TConfig> _aggregate;
 

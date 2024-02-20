@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.DoorLock;
 
+[Focus]
 public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 {
 	private const string OpenOpenerActionId = "OPEN_OPENER";
@@ -20,10 +22,14 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private const string OpenBothActionId = "OPEN_BOTH";
 	private const string EnableRtoActionId = "ENABLE_RTO";
 
-	private IDisposable? _ringSensorObserver;
+	private static readonly IReadOnlyCollection<string> _allOpenerActions = new[]
+	{
+		OpenOpenerActionId, OpenLockActionId, OpenBothActionId, EnableRtoActionId
+	};
 
 	// We need to use an explicit state because the ring event only arrives after RTO has already been disabled on the opener.
 	private DateTimeOffset? _lastRtoActivation;
+	private IDisposable? _ringSensorObserver;
 
 	private readonly NotificationService _notificationService;
 
@@ -45,8 +51,8 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 		Observable.Interval(TimeSpan.FromSeconds(30)).Subscribe(_ => CheckDisableRingToOpen());
 
 		Context.Events
-			.GetMobileAppActions(new[] { OpenOpenerActionId, OpenLockActionId })
-			.Subscribe(OnOpenActionFired);
+			.GetMobileAppActions(_allOpenerActions)
+			.Subscribe(x => OnOpenActionFired(x.ActionId, x.DeviceId));
 
 		foreach (var person in Config.EnabledPersons)
 		{
@@ -83,14 +89,14 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 				});
 	}
 
-	private void OnOpenActionFired(string action)
+	private void OnOpenActionFired(string action, string deviceId)
 	{
 		Action callback = action switch
 		{
 			OpenOpenerActionId => () => PerformWithPeoplePresent(() => Config.OpenerEntity.Open()),
 			OpenLockActionId => () => PerformWithPeoplePresent(() => Config.LockEntity.Open()),
 			OpenBothActionId => OpenAllDoors,
-			EnableRtoActionId => EnableRingToOpen,
+			EnableRtoActionId => () => EnableRingToOpenFromAction(deviceId),
 			_ => () => Logger.Warning("Fired unknown action {Action}", action)
 		};
 
@@ -115,11 +121,23 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 			: Observable.Return(e.Data);
 	}
 
+	private void EnableRingToOpenFromAction(string deviceId)
+	{
+		_notificationService.SendNotification(
+			Config.ArrivalNotification with
+			{
+				Service = $"mobile_app_{deviceId}"
+			});
+		EnableRingToOpen();
+	}
+
 	private void EnableRingToOpen()
 	{
-		Logger.Debug("Enabling RTO");
-
-		PerformWithPeoplePresent(() => Config.OpenerEntity.Unlock());
+		PerformWithPeoplePresent(() =>
+		{
+			Config.OpenerEntity.Unlock();
+			Logger.Debug("Enabling RTO");
+		});
 
 		_lastRtoActivation = DateTimeOffset.Now;
 		_ringSensorObserver?.Dispose();

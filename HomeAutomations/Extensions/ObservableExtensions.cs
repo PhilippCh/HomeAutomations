@@ -36,11 +36,11 @@ public static class ObservableExtensions
 			.Where(x => allowedActions.Contains(x.Action))
 			.Select(x => x.Action!);
 
-	public static IObservable<string> GetMobileAppActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
+	public static IObservable<MobileAppActionEvent> GetMobileAppActions(this IObservable<Event> events, IEnumerable<string> allowedActions) =>
 		events
 			.Filter<MobileAppActionEvent>(EventConstants.IosActionFired)
 			.Where(x => allowedActions.Contains(x.Data?.ActionName))
-			.Select(x => x.Data!.ActionName);
+			.Select(x => x.Data!);
 
 	public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
 	{
