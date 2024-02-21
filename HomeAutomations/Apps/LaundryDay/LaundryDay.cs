@@ -12,7 +12,6 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.LaundryDay;
 
-[Focus]
 public class LaundryDay(
 	BaseAutomationDependencyAggregate<LaundryDay, LaundryDayConfig> aggregate,
 	IMqttEntityManager entityManager,

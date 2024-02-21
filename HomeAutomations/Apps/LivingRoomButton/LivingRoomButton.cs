@@ -1,13 +1,19 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Entities.Buttons;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
+using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.LivingRoomButton;
 
+[Focus]
 public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButtonConfig>
 {
+	private const int _maxBrightness = 254;
+
 	private IDisposable? _brightnessLoopObserver;
 
 	public LivingRoomButton(BaseAutomationDependencyAggregate<LivingRoomButton, LivingRoomButtonConfig> aggregate)
@@ -18,6 +24,12 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		Config.Button.StateChanges().Subscribe(s => OnButtonPressed(s.New?.State));
+
+		Config.Button.StateChanges()
+			.Buffer(() => Config.Button.StateChanges().Throttle(TimeSpan.FromMilliseconds(500)))
+			.Select(x => x.Select(y => y.New?.IsOn()))
+			.Where(x => ButtonCombinationDecoder.IsButtonCombination(x, ButtonCombination.Reset) == true)
+			.Subscribe(_ => ResetBrightness());
 
 		return Task.CompletedTask;
 	}
@@ -45,11 +57,15 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 			.Subscribe(
 				_ =>
 				{
-					const double MaxBrightness = 254;
-					var currentBrightness = Config.StandardLamp.Attributes?.Brightness ?? MaxBrightness;
-					var brightness = (long) Math.Clamp(currentBrightness + increment, 0, MaxBrightness);
+					var currentBrightness = Config.StandardLamp.Attributes?.Brightness ?? _maxBrightness;
+					var brightness = (long) Math.Clamp(currentBrightness + increment, 0, _maxBrightness);
 
 					Config.StandardLamp.TurnOn(brightness: brightness);
 				});
+	}
+
+	private void ResetBrightness()
+	{
+		Config.StandardLamp.TurnOn(brightness: _maxBrightness);
 	}
 }

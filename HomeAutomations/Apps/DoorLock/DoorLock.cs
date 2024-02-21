@@ -14,7 +14,6 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.DoorLock;
 
-[Focus]
 public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 {
 	private const string OpenOpenerActionId = "OPEN_OPENER";

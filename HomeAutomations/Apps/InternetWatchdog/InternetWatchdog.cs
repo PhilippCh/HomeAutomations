@@ -7,7 +7,6 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.InternetWatchdog;
 
-[Focus]
 public class InternetWatchdog : BaseAutomation<InternetWatchdog, InternetWatchdogConfig>
 {
 	private readonly NotificationService _notificationService;

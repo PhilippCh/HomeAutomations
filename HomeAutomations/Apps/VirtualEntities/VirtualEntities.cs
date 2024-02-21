@@ -6,7 +6,6 @@ using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.VirtualEntities;
 
-[Focus]
 public class VirtualEntities : BaseAutomation<VirtualEntities, VirtualEntitiesConfig>
 {
 	private readonly IMqttEntityManager _entityManager;
