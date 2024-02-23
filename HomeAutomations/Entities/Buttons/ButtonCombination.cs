@@ -13,7 +13,7 @@ public static class ButtonCombinationDecoder
 	private static readonly IReadOnlyDictionary<ButtonCombination, Func<IList<bool?>, bool>> _decoders = new Dictionary<ButtonCombination, Func<IList<bool?>, bool>>
 	{
 		{
-			ButtonCombination.Reset, x => x is [false, true]
+			ButtonCombination.Reset, x => x is [false, true] or [true, false]
 		}
 	};
 

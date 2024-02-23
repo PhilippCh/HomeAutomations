@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Entities.Buttons;
+using HomeAutomations.Entities.Constants;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
@@ -26,6 +28,7 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 		Config.Button.StateChanges().Subscribe(s => OnButtonPressed(s.New?.State));
 
 		Config.Button.StateChanges()
+			.Where(x => x.New?.IsValidButtonState() ?? false)
 			.Buffer(() => Config.Button.StateChanges().Throttle(TimeSpan.FromMilliseconds(500)))
 			.Select(x => x.Select(y => y.New?.IsOn()))
 			.Where(x => ButtonCombinationDecoder.IsButtonCombination(x, ButtonCombination.Reset) == true)
@@ -66,6 +69,6 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 
 	private void ResetBrightness()
 	{
-		Config.StandardLamp.TurnOn(brightness: _maxBrightness);
+		Config.StandardLamp.TurnOn(brightness: _maxBrightness, effect: LightEffects.Okay);
 	}
 }
