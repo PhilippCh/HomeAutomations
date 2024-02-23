@@ -22,11 +22,11 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - light.living_room_tv_lightstrip
-          - switch.kitchen_neon_clock_socket_1
-          - switch.living_room_christmas_tree
-          - switch.living_room_christmas_stars
-          - switch.living_room_lightbulbs
+        - - light.living_room_tv_lightstrip			# TODO: Migrate to localtuya
+          - switch.kitchen_neon_clock_socket_1	# TODO: Migrate to localtuya
+          - switch.living_room_christmas_tree		# TODO: Migrate to localtuya
+          - switch.living_room_christmas_stars	# TODO: Migrate to localtuya
+          - swich.living_room_lichterkette
     - Name: Trolley lights
       Interval: 01:00:00
       Start:
@@ -35,9 +35,9 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - switch.living_room_lightbar_socket_1
-          - switch.living_room_contract_light_socket_1
-        - - switch.living_room_twtyh_diorama_socket_1
+        - - switch.living_room_lightbar_socket_1				# TODO: Migrate to localtuya
+          - switch.living_room_contract_light_socket_1	# TODO: Migrate to localtuya
+        - - switch.living_room_twtyh_diorama_socket_1		# TODO: Migrate to localtuya
     - Name: Buddha fountain
       Interval: 00:30:00
       Start:
@@ -46,4 +46,4 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - switch.living_room_buddha_fountain_socket_1
+        - - switch.living_room_buddha_fountain_socket_1	# TODO: Migrate to localtuya
