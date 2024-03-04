@@ -65,26 +65,39 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 				continue;
 			}
 
-			shutter.Entity.CloseCover();
+			CloseShutter(shutter);
 		}
+	}
+
+	private void CloseShutter(ShutterConfig shutter)
+	{
+		shutter.Entity.CloseCover();
+		TryDisposeRetryCloseObserver(shutter);
 	}
 
 	private void RetryCloseShutter(ShutterConfig shutter)
 	{
 		Logger.Information("Could not close {Shutter}, retrying when force open is false", shutter.Entity.EntityId);
 
-		if (_retryCloseShutterObservers.TryGetValue(shutter, out var existingObserver))
-		{
-			existingObserver.Dispose();
-			_retryCloseShutterObservers.Remove(shutter);
-		}
+		TryDisposeRetryCloseObserver(shutter);
 
 		var observer = shutter.ForceOpenOverride.StateChanges()
 			.Timeout(DateTimeOffset.Now.AddHours(8))
 			.Where(x => !x.New?.IsOn() ?? false)
 			.Subscribe(
-				_ => shutter.Entity.CloseCover(),
+				_ => CloseShutter(shutter),
 				ex => Logger.Information("Shutter retry canceled due to {Exception}", ex.Message));
 		_retryCloseShutterObservers.TryAdd(shutter, observer);
+	}
+
+	private void TryDisposeRetryCloseObserver(ShutterConfig shutter)
+	{
+		if (!_retryCloseShutterObservers.TryGetValue(shutter, out var existingObserver))
+		{
+			return;
+		}
+
+		existingObserver.Dispose();
+		_retryCloseShutterObservers.Remove(shutter);
 	}
 }
