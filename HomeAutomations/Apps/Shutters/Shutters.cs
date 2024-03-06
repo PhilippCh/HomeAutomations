@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
+using HomeAutomations.Services;
 using NetDaemon.HassModel.Entities;
 using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensions;
 
@@ -11,11 +12,13 @@ namespace HomeAutomations.Apps.Shutters;
 
 public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 {
+	private readonly NotificationService _notificationService;
 	private readonly Dictionary<ShutterConfig, IDisposable> _retryCloseShutterObservers = new();
 
-	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate)
+	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, NotificationService notificationService)
 		: base(aggregate)
 	{
+		_notificationService = notificationService;
 	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
@@ -25,8 +28,25 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 			.Subscribe(_ => CloseAllShutters());
 
 		Config.OpenSensorEntity.StateChanges().Subscribe(s => OnOpenButtonPressed(s.New?.State));
+		Config.SleepStateEntity.StateChanges().Subscribe(x => OnSleepStateChanged(x.New?.IsOn()));
 
 		return Task.CompletedTask;
+	}
+
+	private void OnSleepStateChanged(bool? isAnyoneSleeping)
+	{
+		if (isAnyoneSleeping == null)
+		{
+			Logger.Warning("Expected a boolean value for sleep entity state: {State}", Config.SleepStateEntity.State);
+
+			return;
+		}
+
+		_notificationService.SendNotification(
+			Config.SleepStateDebugNotification with
+			{
+				Template = Config.SleepStateDebugNotification.RenderTemplate(isAnyoneSleeping)
+			});
 	}
 
 	private void OnOpenButtonPressed(string? state)

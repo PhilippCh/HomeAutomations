@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.Shutters;
@@ -17,4 +18,6 @@ public record ShuttersConfig : Config
 	public TimeSpan CloseDelay { get; init; }
 	public IEnumerable<ShutterConfig> Shutters { get; init; }
 	public SensorEntity OpenSensorEntity { get; init; }
+	public BinarySensorEntity SleepStateEntity { get; init; }
+	public Notification SleepStateDebugNotification { get; init; }
 }
