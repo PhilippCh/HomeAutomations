@@ -41,10 +41,7 @@ public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
 			{
 				var sleepTimeEnd = Config.SleepTimeEnd.GetActualTime(AppConstants.Latitude, AppConstants.Longitude);
 				var hasSleepTimeEnded = DateTime.Now >= sleepTimeEnd;
-				var isAnyoneInBed = x is
-				{
-					First: true, Second: true
-				};
+				var isAnyoneInBed = x.First || x.Second;
 
 				Logger.Information(
 					"Has sleep time ended?: {HasSleepTimeEnded} | Bed Presence?: {BedPresence} | Phones charging?: {PhonesCharging}",

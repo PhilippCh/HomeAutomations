@@ -8,6 +8,7 @@ HomeAutomations.Apps.Shutters.ShuttersConfig:
   SleepStateDebugNotification:
     Title: Sleep state changed to
     Template: "{0}"
+    Service: mobile_app_iphone_philipp
   Shutters:
     - Entity: cover.bedroom_roller_shutter_left
       ForceOpenOverride: binary_sensor.fenster_schlafzimmer
