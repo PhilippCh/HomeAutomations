@@ -51,7 +51,7 @@ public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
 					hasSleepTimeEnded, x.First, x.Second
 				);
 
-				return hasSleepTimeEnded && !isAnyoneInBed;
+				return !(hasSleepTimeEnded && !isAnyoneInBed);
 			});
 	}
 
