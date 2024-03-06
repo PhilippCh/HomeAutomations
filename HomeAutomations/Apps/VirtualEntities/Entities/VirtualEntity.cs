@@ -8,13 +8,15 @@ public abstract class VirtualEntity<TOut, TConfig>
 {
 	protected string Id { get; set; }
 	protected TConfig Config { get; private set; }
+	protected ILogger Logger { get; private set; }
 
 	private readonly IMqttEntityManager _entityManager;
 
-	public VirtualEntity(TConfig config, IMqttEntityManager entityManager)
+	public VirtualEntity(TConfig config, IMqttEntityManager entityManager, ILogger logger)
 	{
 		_entityManager = entityManager;
 		Config = config;
+		Logger = logger;
 	}
 
 	public abstract IObservable<TOut> StateChanges();

@@ -22,7 +22,7 @@ public class VirtualEntities : BaseAutomation<VirtualEntities, VirtualEntitiesCo
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		_sleepStateEntity = new SleepStateEntity("binary_sensor.presence_bedroom_is_anyone_sleeping", Config.SleepStateEntity, _entityManager);
+		_sleepStateEntity = new SleepStateEntity("binary_sensor.presence_bedroom_is_anyone_sleeping", Config.SleepStateEntity, _entityManager, Logger);
 		await _sleepStateEntity.CreateAndObserveAsync();
 	}
 }

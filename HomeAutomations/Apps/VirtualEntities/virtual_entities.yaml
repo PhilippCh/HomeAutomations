@@ -1,8 +1,11 @@
 HomeAutomations.Apps.VirtualEntities.VirtualEntitiesConfig:
   SleepStateEntity:
+    SleepTimeEnd:
+      Hour: 07:30:00
+      HourWeekend: 11:30:00
+    DebounceTime: 00:01:00
     BedPresenceSensors:
-      - binary_sensor.presence_bedroom_bed_fups
-      - binary_sensor.presence_bedroom_bed_pups
+      - binary_sensor.bedroom_weight_sensor_philipp_master_bed_occupied
     SmartphoneChargingSensors:
       - sensor.iphone_philipp_battery_state
       - sensor.iphone_fabienne_battery_state
