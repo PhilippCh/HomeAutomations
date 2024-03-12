@@ -2,18 +2,15 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
+using HomeAutomations.Services;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
-public class ScheduledLights : BaseAutomation<ScheduledLights, ScheduledLightsConfig>
+public class ScheduledLights(BaseAutomationDependencyAggregate<ScheduledLights, ScheduledLightsConfig> aggregate, EntityStatePriorityManager _entityStatePriorityManager)
+	: BaseAutomation<ScheduledLights, ScheduledLightsConfig>(aggregate)
 {
 	private readonly Dictionary<string, CycleInfo> _runningCycles = new();
-
-	public ScheduledLights(BaseAutomationDependencyAggregate<ScheduledLights, ScheduledLightsConfig> aggregate)
-		: base(aggregate)
-	{
-	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
@@ -42,7 +39,7 @@ public class ScheduledLights : BaseAutomation<ScheduledLights, ScheduledLightsCo
 			// Start new cycle if within schedule.
 			if (shouldRun && !_runningCycles.ContainsKey(cycle.Name))
 			{
-				_runningCycles.Add(cycle.Name, new CycleInfo(cycle, Logger));
+				_runningCycles.Add(cycle.Name, new CycleInfo(cycle, _entityStatePriorityManager, Logger));
 			}
 
 			// Stop running cycle if outside schedule.

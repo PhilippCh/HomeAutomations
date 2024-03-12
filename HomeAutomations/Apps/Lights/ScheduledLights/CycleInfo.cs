@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using HomeAutomations.Services;
+using NetDaemon.HassModel.Entities;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
@@ -8,13 +10,15 @@ public class CycleInfo
 	private int _currentIndex = -1;
 
 	private readonly ILogger _logger;
+	private readonly EntityStatePriorityManager _entityStatePriorityManager;
 	private readonly CycleConfig _config;
 	private readonly IDisposable? _subscription;
 
-	public CycleInfo(CycleConfig config, ILogger logger)
+	public CycleInfo(CycleConfig config, EntityStatePriorityManager entityStatePriorityManager, ILogger logger)
 	{
 		_config = config;
 		_logger = logger;
+		_entityStatePriorityManager = entityStatePriorityManager;
 
 		logger.Information("Starting light cycle {Name}", config.Name);
 
@@ -38,7 +42,7 @@ public class CycleInfo
 			foreach (var entity in _config.EntityCycles[previousIndex])
 			{
 				_logger.Debug("Turning off {EntityId}", entity.EntityId);
-				entity.CallService("turn_off");
+				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), false, 0);
 			}
 		}
 
@@ -47,7 +51,7 @@ public class CycleInfo
 			foreach (var entity in _config.EntityCycles[_currentIndex])
 			{
 				_logger.Debug("Turning on {EntityId}", entity.EntityId);
-				entity.CallService("turn_on");
+				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), true, 0);
 			}
 		}
 	}

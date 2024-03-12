@@ -25,6 +25,7 @@ public static class ServiceCollectionExtensions
 			.AddScoped<WakeOnLanService>()
 			.AddScoped<NotificationService>()
 			.AddTransient<ActionSequencerService>()
+			.AddSingleton<EntityStatePriorityManager>()
 			.AddTransient<PingService>()
 
 			// Bluetooth

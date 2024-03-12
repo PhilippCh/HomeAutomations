@@ -176,14 +176,19 @@
       "domain": "media_player",
       "entities": [
         {
-          "id": "media_player.rx_v4a_020d14",
-          "friendlyName": "RX-V4A 020D14",
-          "cSharpName": "RxV4a020d14"
+          "id": "media_player.living_room_av_receiver",
+          "friendlyName": "living_room/av_receiver",
+          "cSharpName": "LivingRoomAvReceiver"
         },
         {
-          "id": "media_player.rx_v4a_020d14_zone2",
-          "friendlyName": "RX-V4A 020D14 zone2",
-          "cSharpName": "RxV4a020d14Zone2"
+          "id": "media_player.living_room_av_receiver_zone2",
+          "friendlyName": "living_room/av_receiver/zone2",
+          "cSharpName": "LivingRoomAvReceiverZone2"
+        },
+        {
+          "id": "media_player.panasonic_blu_ray",
+          "friendlyName": "Panasonic Blu-Ray",
+          "cSharpName": "PanasonicBluRay"
         }
       ],
       "attributes": [
@@ -2207,6 +2212,11 @@
           "cSharpName": "BedroomLavaLampChildLock"
         },
         {
+          "id": "lock.living_room_lightbulbs_child_lock",
+          "friendlyName": "living_room/lightbulbs Child lock",
+          "cSharpName": "LivingRoomLightbulbsChildLock"
+        },
+        {
           "id": "lock.nuki",
           "friendlyName": "Nuki Nuki",
           "cSharpName": "Nuki"
@@ -2714,6 +2724,16 @@
           "id": "select.link_control",
           "friendlyName": "Link Control",
           "cSharpName": "LinkControl"
+        },
+        {
+          "id": "select.living_room_lightbulbs_indicator_mode",
+          "friendlyName": "living_room/lightbulbs Indicator mode",
+          "cSharpName": "LivingRoomLightbulbsIndicatorMode"
+        },
+        {
+          "id": "select.living_room_lightbulbs_power_outage_memory",
+          "friendlyName": "living_room/lightbulbs Power outage memory",
+          "cSharpName": "LivingRoomLightbulbsPowerOutageMemory"
         },
         {
           "id": "select.living_room_standard_lamp_power_on_behavior",
@@ -4861,6 +4881,16 @@
           "cSharpName": "LivingRoomBalconyAirQualityVocs"
         },
         {
+          "id": "sensor.living_room_lightbulbs_energy",
+          "friendlyName": "living_room/lightbulbs Energy",
+          "cSharpName": "LivingRoomLightbulbsEnergy"
+        },
+        {
+          "id": "sensor.living_room_lightbulbs_power",
+          "friendlyName": "living_room/lightbulbs Power",
+          "cSharpName": "LivingRoomLightbulbsPower"
+        },
+        {
           "id": "sensor.lufthansa",
           "friendlyName": "Lufthansa",
           "cSharpName": "Lufthansa"
@@ -6354,6 +6384,11 @@
           "id": "update.living_room_balcony_air_quality_firmware",
           "friendlyName": "living_room/balcony/air_quality",
           "cSharpName": "LivingRoomBalconyAirQualityFirmware"
+        },
+        {
+          "id": "update.living_room_lightbulbs",
+          "friendlyName": "living_room/lightbulbs",
+          "cSharpName": "LivingRoomLightbulbs"
         },
         {
           "id": "update.living_room_standard_lamp_mqtt_update",

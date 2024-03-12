@@ -3,3 +3,8 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
   Lights:
     - light.living_room_standard_lamp
   Remote: remote.fernbedienung_remote
+  AvReceiver:
+    Entity: media_player.living_room_av_receiver
+    DefaultSource: Laptop
+    DisableLights:
+      - light.living_room_tv_lightstrip

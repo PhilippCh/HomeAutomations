@@ -11,7 +11,6 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.LivingRoomButton;
 
-[Focus]
 public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButtonConfig>
 {
 	private const int _maxBrightness = 254;
