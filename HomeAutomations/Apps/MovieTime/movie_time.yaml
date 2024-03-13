@@ -5,6 +5,7 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
   Remote: remote.fernbedienung_remote
   AvReceiver:
     Entity: media_player.living_room_av_receiver
+    Subwoofer: switch.living_room_subwoofer
     DefaultSource: Laptop
     DisableLights:
       - light.living_room_tv_lightstrip

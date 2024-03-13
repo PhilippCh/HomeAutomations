@@ -70,10 +70,12 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		if (isOn == null || !isOn.Value)
 		{
 			Config.AvReceiver.DisableLights.ForEach(x => _entityStatePriorityManager.RemoveTargetStateForTag(x, nameof(MovieTime)));
+			Config.AvReceiver.Subwoofer.TurnOff();
 		}
 		else
 		{
 			Config.AvReceiver.DisableLights.ForEach(x => _entityStatePriorityManager.AddTargetState(x, nameof(MovieTime), false, 100));
+			Config.AvReceiver.Subwoofer.TurnOn();
 		}
 	}
 }

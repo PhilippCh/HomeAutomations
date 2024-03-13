@@ -9,6 +9,7 @@ public record AvReceiverConfig
 	public MediaPlayerEntity Entity { get; init; }
 	public string DefaultSource { get; init; }
 	public IEnumerable<LightEntity> DisableLights { get; init; }
+	public SwitchEntity Subwoofer { get; init; }
 }
 
 public record MovieTimeConfig : Config
