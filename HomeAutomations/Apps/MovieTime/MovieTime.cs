@@ -34,7 +34,7 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 			.Subscribe(_ => OnActionFired());
 
 		// Source is a state attribute, so we require StateAllChanges here.
-		Config.AvReceiver.Entity.StateAllChanges().Subscribe(x => OnAvReceiverStateChanged(x.New?.IsLikeOn()));
+		Config.AvReceiver.Entity.StateAllChanges().Subscribe(x => OnAvReceiverStateChanged(x.New?.IsLikeOn(), x.New?.Attributes?.Source));
 
 		return Task.CompletedTask;
 	}
@@ -65,17 +65,28 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 			});
 	}
 
-	private void OnAvReceiverStateChanged(bool? isOn)
+	private void OnAvReceiverStateChanged(bool? powerState, string? source)
 	{
-		if (isOn == null || !isOn.Value)
+		var isOff = powerState == null || !powerState.Value;
+
+		Config.AvReceiver.Subwoofer.CallService(isOff ? "turn_off" : "turn_on");
+
+		foreach (var toggleEntity in Config.AvReceiver.ToggleEntities)
 		{
-			Config.AvReceiver.DisableLights.ForEach(x => _entityStatePriorityManager.RemoveTargetStateForTag(x, nameof(MovieTime)));
-			Config.AvReceiver.Subwoofer.TurnOff();
-		}
-		else
-		{
-			Config.AvReceiver.DisableLights.ForEach(x => _entityStatePriorityManager.AddTargetState(x, nameof(MovieTime), false, 100));
-			Config.AvReceiver.Subwoofer.TurnOn();
+			var isValidSource = source != null && toggleEntity.MediaSources.Contains(source);
+
+			toggleEntity.Entities.ForEach(
+				x =>
+				{
+					if (isOff || !isValidSource)
+					{
+						_entityStatePriorityManager.RemoveTargetStateForTag(x, nameof(MovieTime));
+					}
+					else
+					{
+						_entityStatePriorityManager.AddTargetState(x, nameof(MovieTime), false, 100);
+					}
+				});
 		}
 	}
 }

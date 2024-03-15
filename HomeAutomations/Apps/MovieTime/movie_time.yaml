@@ -7,5 +7,12 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
     Entity: media_player.living_room_av_receiver
     Subwoofer: switch.living_room_subwoofer
     DefaultSource: Laptop
-    DisableLights:
-      - light.living_room_tv_lightstrip
+    ToggleEntities:
+      MediaSources:
+        - Laptop
+        - PlayStation 5
+        - Switch
+        - BD
+        - TV
+      Entities:
+        - light.living_room_tv_lightstrip
