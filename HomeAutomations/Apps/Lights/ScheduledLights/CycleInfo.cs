@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using HomeAutomations.Services;
-using NetDaemon.HassModel.Entities;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
@@ -77,7 +76,7 @@ public class CycleInfo
 		{
 			foreach (var entity in group)
 			{
-				entity.CallService("turn_off");
+				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), false, 0);
 			}
 		}
 
