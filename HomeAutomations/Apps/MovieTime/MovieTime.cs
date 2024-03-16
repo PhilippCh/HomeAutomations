@@ -75,6 +75,8 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		{
 			var isValidSource = source != null && toggleEntity.MediaSources.Contains(source);
 
+			Logger.Information($"Is {Source} valid? {IsValidSource}", source, isValidSource);
+
 			toggleEntity.Entities.ForEach(
 				x =>
 				{
