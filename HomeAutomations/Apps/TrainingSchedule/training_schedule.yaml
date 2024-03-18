@@ -1,16 +1,15 @@
----
 HomeAutomations.Apps.TrainingSchedule.TrainingScheduleConfig:
   EntityId: sensor.current_training_schedule
   MediaStatusTopic: homeautomations-client/media/status
   UpdateCrontab: 0 0 * * *
   Schedules:
-    - Week: 0
+    - Week: 1
       Trainings:
         - Title: Chest & Back
           Url: \\192.168.188.27\home-k8s-storage\global\media\shows\P90X\P90X 01 - Chest & Back.mp4
         - Title: Plyometrics
           Url: \\192.168.188.27\home-k8s-storage\global\media\shows\P90X\P90X 02 - Plyometrics.mp4
-    - Week: 1
+    - Week: 0
       Trainings:
         - Title: Shoulders & Arms
           Url: \\192.168.188.27\home-k8s-storage\global\media\shows\P90X\P90X 03 - Shoulders & Arms.mp4
