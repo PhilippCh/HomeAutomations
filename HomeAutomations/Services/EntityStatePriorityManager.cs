@@ -60,14 +60,8 @@ public class EntityStatePriorityManager(ILogger<EntityStatePriorityManager> _log
 		var targetStates = GetTargetStates(entity).Values.OrderByDescending(x => x.Priority);
 		var targetState = targetStates.FirstOrDefault();
 
-		// TODO: Remove debugging statements.
-		var logTargetStates = GetTargetStates(entity).Select(x => x).OrderByDescending(x => x.Value.Priority);
-		_logger.LogInformation(string.Join("\n", logTargetStates.Select(x => $"{x.Value.Priority}: {x.Value.TargetState} ({x.Key})")));
-
 		if (targetState == null)
 		{
-			_logger.LogWarning("Target state is null");
-
 			return;
 		}
 
