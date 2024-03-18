@@ -62,8 +62,6 @@ public class EntityStatePriorityManager(ILogger<EntityStatePriorityManager> _log
 
 		if (targetState == null)
 		{
-			_logger.LogWarning("Target state is null");
-
 			return;
 		}
 
