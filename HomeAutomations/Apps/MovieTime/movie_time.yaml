@@ -8,12 +8,12 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
     Subwoofer: switch.living_room_subwoofer
     DefaultSource: Laptop
     ToggleEntities:
-      MediaSources:
-        - Laptop
-        - PlayStation 5
-        - Switch
-        - BD
-        - BDP-S6700 # Auto-naming of current BD-Player.
-        - TV
-      Entities:
-        - light.living_room_tv_lightstrip
+      - MediaSources:
+          - Laptop
+          - PlayStation 5
+          - Switch
+          - BD
+          - BDP-S6700 # Auto-naming of current BD-Player.
+          - TV
+        Entities:
+          - light.living_room_tv_lightstrip
