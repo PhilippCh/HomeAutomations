@@ -12,8 +12,9 @@ namespace HomeAutomations.Apps.StudyAutomations;
 public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomationsConfig>
 {
 	private DateTimeOffset? _deskLampStartTime;
-	private bool _isForceDeskLampStateOn; // Determines whether force mode is on.
-	private bool _forceDeskLampState; // Determines which mode the lamp is forced to.
+	private bool _isForceDeskLampStateOn;	// Determines whether force mode is on.
+	private bool _forceDeskLampState;		// Determines which mode the lamp is forced to.
+	private bool _lastTriggerState;			// Used when resetting lamp state to last automatic trigger state.
 
 	public StudyAutomations(BaseAutomationDependencyAggregate<StudyAutomations, StudyAutomationsConfig> aggregate)
 		: base(aggregate)
@@ -46,16 +47,19 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 		deskLampTrigger.GetTrigger().Subscribe(
 			x =>
 			{
-				Logger.Information("DesktopPhilipp N {Network} U {Unlocked} | LaptopEnBW N {Network} U {Unlocked}",
+				Logger.Debug("DesktopPhilipp N {Network} U {Unlocked} | LaptopEnBW N {Network} U {Unlocked}",
 					Config.Computers.DesktopPhilipp.NetworkSensor.State,
 					Config.Computers.DesktopPhilipp.UnlockedSensor.State,
 					Config.Computers.LaptopEnbw.NetworkSensor.State,
 					Config.Computers.LaptopEnbw.UnlockedSensor.State);
 
-				if (x != null)
+				if (x == null)
 				{
-					ToggleDeskLamp(x.Value);
+					return;
 				}
+
+				_lastTriggerState = x.Value;
+				ToggleDeskLamp(x.Value);
 			});
 
 		Config.DeskLamp.SwitchAction.StateChanges()
@@ -82,14 +86,12 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 					Config.Computers.LaptopEnbw.NetworkSensor
 				})
 			.GetTrigger()
+			.WhereNotNull()
 			.Subscribe(
 				x =>
 				{
-					if (x != null)
-					{
-						Logger.Information("Setting speakers to {State}", x);
-						Config.Speaker.SetState(x.Value);
-					}
+					Logger.Information("Setting speakers to {State}", x);
+					Config.Speaker.SetState(x);
 				});
 	}
 
@@ -103,7 +105,7 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 	private void ResetForceDeskLamp()
 	{
 		_isForceDeskLampStateOn = false;
-		ToggleDeskLamp(false);
+		ToggleDeskLamp(_lastTriggerState);
 	}
 
 	private void ToggleDeskLamp(bool isOn)

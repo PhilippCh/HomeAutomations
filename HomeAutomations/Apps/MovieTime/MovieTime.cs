@@ -7,6 +7,7 @@ using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
+using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MovieTime;
 
