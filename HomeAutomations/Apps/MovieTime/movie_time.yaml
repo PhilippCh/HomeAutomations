@@ -12,6 +12,7 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
           - Laptop
           - PlayStation 5
           - Switch
+          - Apple TV
           - BD
           - BDP-S6700 # Alias of current BD-Player.
           - TV
