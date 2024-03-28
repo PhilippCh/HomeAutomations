@@ -17,7 +17,7 @@ public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscape
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		await RemoveExistingPlaylistsAsync();
+		/*await RemoveExistingPlaylistsAsync();
 
 		foreach (var soundscape in Config.Soundscapes)
 		{
@@ -27,7 +27,7 @@ public class SleepSoundscapes : BaseAutomation<SleepSoundscapes, SleepSoundscape
 		Config.Sensor.StateChanges()
 			.Select(s => Observable.FromAsync(() => OnButtonPressedAsync(s.New?.State)))
 			.Concat()
-			.Subscribe();
+			.Subscribe();*/
 	}
 
 	private async Task OnButtonPressedAsync(string? state)
