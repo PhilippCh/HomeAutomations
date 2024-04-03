@@ -11,9 +11,9 @@ public record TimeConfig
 	public string Hour { get; init; } = string.Empty;
 	public string? HourWeekend { get; init; }
 
-	public DateTime? GetActualTime(double latitude, double longitude)
+	public DateTime? GetActualTime(double latitude, double longitude, DateTime? time = null)
 	{
-		var date = DateTime.Now;
+		var date = time ?? DateTime.Now;
 		var actualHour = date.IsWeekend() ? HourWeekend ?? Hour : Hour;
 
 		try
