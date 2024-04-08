@@ -45,16 +45,14 @@ public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
 		var observable = CreatePresenceObservable(observables);
 
 		return observable
-			.DistinctUntilChanged()
-			.Throttle(TimeSpan.FromMinutes(5))
-			.Select(_ => false) // Emit false after 5 minutes of inactivity
-			.Merge(observable.Where(x => x)) // Immediately emit true when active
-			.StartWith(false); // Assume not active initially
+			.DistinctUntilChanged() // Only take distinct consecutive elements.
+			.Where(value => value == false) // Filter out only the false values.
+			.SelectMany(_ => Observable.Timer(TimeSpan.FromMinutes(5))) // Wait for 5 minutes.
+			.WithLatestFrom(observable, (_, latestValue) => latestValue); // Take the latest value from the source observable after 5 minutes.
 	}
 
 	private IObservable<bool> CreatePresenceObservable(IEnumerable<IObservable<bool?>> observables)
 	{
-		return observables.CombineLatest(x => x.Any(y => y ?? false))
-			.Throttle(Config.DebounceTime);
+		return observables.CombineLatest(x => x.Any(y => y ?? false));
 	}
 }
