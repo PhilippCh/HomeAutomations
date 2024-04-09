@@ -7,6 +7,16 @@ public static class ObservableExtensions
 {
 	public static IObservable<TResult> SwitchMap<TIn, TResult>(this IObservable<TIn> observable, Func<TIn, IObservable<TResult>> selector) => observable.Select(selector).Switch();
 
+	/// <summary>
+	/// Emits the filtered values delayed by a specified time, all other values immediately.
+	/// </summary>
+	public static IObservable<T> EmitDelayed<T>(this IObservable<T> observable, Func<T, bool> filter, TimeSpan delay) =>
+		observable
+			.DistinctUntilChanged() // Only take distinct consecutive elements.
+			.Where(filter) // Filter out only the predicate values.
+			.SelectMany(_ => Observable.Timer(delay)) // Wait for delay time.
+			.WithLatestFrom(observable, (_, latestValue) => latestValue); // Take the latest value from the source observable after 5 minutes.
+
 	public static IObservable<int> TryParseInt(this IObservable<string?> observable) =>
 		observable.Select(x => (IsSuccess: int.TryParse(x, out var Value), Value))
 			.Where(x => x.IsSuccess)

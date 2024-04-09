@@ -6,23 +6,15 @@ using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.VirtualEntities;
 
-public class VirtualEntities : BaseAutomation<VirtualEntities, VirtualEntitiesConfig>
+[Focus]
+public class VirtualEntities(BaseAutomationDependencyAggregate<VirtualEntities, VirtualEntitiesConfig> aggregate, IMqttEntityManager entityManager)
+	: BaseAutomation<VirtualEntities, VirtualEntitiesConfig>(aggregate)
 {
-	private readonly IMqttEntityManager _entityManager;
-	private readonly IHaContext _context;
-
-	private SleepStateEntity _sleepStateEntity;
-
-	public VirtualEntities(BaseAutomationDependencyAggregate<VirtualEntities, VirtualEntitiesConfig> aggregate, IMqttEntityManager entityManager, IHaContext context)
-		: base(aggregate)
-	{
-		_entityManager = entityManager;
-		_context = context;
-	}
+	private SleepStateEntity? _sleepStateEntity;
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		_sleepStateEntity = new SleepStateEntity("binary_sensor.presence_bedroom_is_anyone_sleeping", Config.SleepStateEntity, _entityManager, Logger);
+		_sleepStateEntity = new SleepStateEntity(Config.SleepStateEntity.EntityId, Config.SleepStateEntity, entityManager, Logger);
 		await _sleepStateEntity.CreateAndObserveAsync();
 	}
 }

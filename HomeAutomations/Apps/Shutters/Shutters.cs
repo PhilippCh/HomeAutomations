@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
@@ -28,25 +29,26 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 			.Subscribe(_ => CloseAllShutters());
 
 		Config.OpenSensorEntity.StateChanges().Subscribe(s => OnOpenButtonPressed(s.New?.State));
-		Config.SleepStateEntity.StateChanges().Subscribe(x => OnSleepStateChanged(x.New?.IsOn()));
+
+		// Automatically open the bedroom shutters *only* if:
+		// - No one has been sleeping for at least OpenDelay time
+		// - It is after OpenTime hours
+		Config.SleepStateEntity.StateChanges()
+			.Select(x => x.New?.IsOn() ?? true)
+			.EmitDelayed(x => x == false, Config.OpenDelay)
+			.CombineLatest(Observable.Interval(TimeSpan.FromMinutes(1)))
+			.Select(x => x.First)
+			.Where(x => x == false && DateTime.Now >= Config.OpenTime.GetActualTime(Config.Latitude, Config.Longitude))
+			.DistinctUntilChanged()
+			.Subscribe(_ => OpenShutters());
 
 		return Task.CompletedTask;
 	}
 
-	private void OnSleepStateChanged(bool? isAnyoneSleeping)
+	private void OpenShutters()
 	{
-		if (isAnyoneSleeping == null)
-		{
-			Logger.Warning("Expected a boolean value for sleep entity state: {State}", Config.SleepStateEntity.State);
-
-			return;
-		}
-
-		_notificationService.SendNotification(
-			Config.SleepStateDebugNotification with
-			{
-				Template = Config.SleepStateDebugNotification.RenderTemplate(isAnyoneSleeping)
-			});
+		// TODO: This wrapper method can be removed when the observable for automatic opening works properly. Call OpenAllShutters() in Subscribe() instead.
+		_notificationService.SendNotification(Config.SleepStateDebugNotification);
 	}
 
 	private void OnOpenButtonPressed(string? state)

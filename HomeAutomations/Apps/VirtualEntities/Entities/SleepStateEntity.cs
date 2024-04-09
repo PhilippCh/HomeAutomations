@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Entities.Converters.Sensors;
 using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Extensions;
@@ -8,12 +9,12 @@ using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.VirtualEntities.Entities;
 
-public record SleepStateEntityConfig
+public record SleepStateEntityConfig : VirtualEntityConfig
 {
 	public TimeSpan DebounceTime { get; init; }
-	public IEnumerable<BinarySensorEntity> BedPresenceSensors { get; init; }
+	public IEnumerable<BinarySensorEntity> BedPresenceSensors { get; init; } = Enumerable.Empty<BinarySensorEntity>();
 
-	public IEnumerable<SensorEntity> SmartphoneChargingSensors { get; init; }
+	public IEnumerable<SensorEntity> SmartphoneChargingSensors { get; init; } = Enumerable.Empty<SensorEntity>();
 }
 
 public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
@@ -40,19 +41,8 @@ public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
 
 	public override string StateToString(bool state) => state.ToOnOff();
 
-	private IObservable<bool> CreateThrottledPresenceObservable(IEnumerable<IObservable<bool?>> observables)
-	{
-		var observable = CreatePresenceObservable(observables);
+	private IObservable<bool> CreateThrottledPresenceObservable(IEnumerable<IObservable<bool?>> observables) =>
+		CreatePresenceObservable(observables).EmitDelayed(x => x == false, TimeSpan.FromMinutes(5));
 
-		return observable
-			.DistinctUntilChanged() // Only take distinct consecutive elements.
-			.Where(value => value == false) // Filter out only the false values.
-			.SelectMany(_ => Observable.Timer(TimeSpan.FromMinutes(5))) // Wait for 5 minutes.
-			.WithLatestFrom(observable, (_, latestValue) => latestValue); // Take the latest value from the source observable after 5 minutes.
-	}
-
-	private IObservable<bool> CreatePresenceObservable(IEnumerable<IObservable<bool?>> observables)
-	{
-		return observables.CombineLatest(x => x.Any(y => y ?? false));
-	}
+	private IObservable<bool> CreatePresenceObservable(IEnumerable<IObservable<bool?>> observables) => observables.CombineLatest(x => x.Any(y => y ?? false));
 }

@@ -1,5 +1,6 @@
 HomeAutomations.Apps.VirtualEntities.VirtualEntitiesConfig:
   SleepStateEntity:
+    EntityId: binary_sensor.presence_bedroom_is_anyone_sleeping
     SleepTimeEnd:
       Hour: 07:30:00
       HourWeekend: 11:30:00

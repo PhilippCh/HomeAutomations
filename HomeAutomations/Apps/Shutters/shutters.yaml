@@ -2,12 +2,16 @@
 HomeAutomations.Apps.Shutters.ShuttersConfig:
   Latitude: 48.985865943289255 # TODO: Use a global config for this. Also used in ScheduledLights.
   Longitude: 8.247879062542783
-  CloseDelay: 01:00:00
+  OpenTime:
+    Hour: 00:08:00
+    HourWeekend: 12:00:00
+  OpenDelay: 00:30:00
+  CloseDelay: 00:30:00
   OpenSensorEntity: sensor.bedroom_bedside_light_switch_philipp_action
   SleepStateEntity: binary_sensor.presence_bedroom_is_anyone_sleeping
   SleepStateDebugNotification:
-    Title: Sleep state changed to
-    Template: "{0}"
+    Title: Shutters
+    Template: Opening shutters automatically due to no one sleeping anymore.
     Service: mobile_app_iphone_philipp
   Shutters:
     - Entity: cover.bedroom_roller_shutter_left
