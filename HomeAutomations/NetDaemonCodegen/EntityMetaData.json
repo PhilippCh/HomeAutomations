@@ -189,6 +189,11 @@
           "id": "media_player.panasonic_blu_ray",
           "friendlyName": "Panasonic Blu-Ray",
           "cSharpName": "PanasonicBluRay"
+        },
+        {
+          "id": "media_player.wohnzimmer",
+          "friendlyName": "Wohnzimmer",
+          "cSharpName": "Wohnzimmer"
         }
       ],
       "attributes": [
@@ -525,6 +530,21 @@
           "cSharpName": "KitchenCeilingLightUpdateAvailable"
         },
         {
+          "id": "binary_sensor.kitchen_dishwasher_water_detector_battery_low",
+          "friendlyName": "kitchen/dishwasher_water_detector Battery",
+          "cSharpName": "KitchenDishwasherWaterDetectorBatteryLow"
+        },
+        {
+          "id": "binary_sensor.kitchen_dishwasher_water_detector_tamper",
+          "friendlyName": "kitchen/dishwasher_water_detector Tamper",
+          "cSharpName": "KitchenDishwasherWaterDetectorTamper"
+        },
+        {
+          "id": "binary_sensor.kitchen_dishwasher_water_detector_water_leak",
+          "friendlyName": "kitchen/dishwasher_water_detector Moisture",
+          "cSharpName": "KitchenDishwasherWaterDetectorWaterLeak"
+        },
+        {
           "id": "binary_sensor.kitchen_motion_detector_occupancy",
           "friendlyName": "kitchen/motion_detector Motion",
           "cSharpName": "KitchenMotionDetectorOccupancy"
@@ -556,7 +576,7 @@
         },
         {
           "id": "binary_sensor.nuki_battery_low",
-          "friendlyName": "Nuki Nuki battery low",
+          "friendlyName": "Nuki battery low",
           "cSharpName": "NukiBatteryLow"
         },
         {
@@ -1114,14 +1134,44 @@
       "domain": "calendar",
       "entities": [
         {
+          "id": "calendar.abfallleerungen",
+          "friendlyName": "Abfallleerungen",
+          "cSharpName": "Abfallleerungen"
+        },
+        {
+          "id": "calendar.abfallwirtschaft_germersheim",
+          "friendlyName": "Abfallwirtschaft Germersheim",
+          "cSharpName": "AbfallwirtschaftGermersheim"
+        },
+        {
+          "id": "calendar.birthdays",
+          "friendlyName": "Birthdays",
+          "cSharpName": "Birthdays"
+        },
+        {
           "id": "calendar.calendar_philipp",
           "friendlyName": "Calendar",
           "cSharpName": "CalendarPhilipp"
         },
         {
+          "id": "calendar.christoph680_gmx_de",
+          "friendlyName": "Christoph680@gmx.de",
+          "cSharpName": "Christoph680GmxDe"
+        },
+        {
           "id": "calendar.deutsche_feiertage_philipp",
           "friendlyName": "Deutsche Feiertage",
           "cSharpName": "DeutscheFeiertagePhilipp"
+        },
+        {
+          "id": "calendar.family",
+          "friendlyName": "Family",
+          "cSharpName": "Family"
+        },
+        {
+          "id": "calendar.feiertage_in_deutschland",
+          "friendlyName": "Feiertage in deutschland",
+          "cSharpName": "FeiertageInDeutschland"
         },
         {
           "id": "calendar.filiadata_philipp",
@@ -1169,6 +1219,41 @@
           "jsonName": "hex_color",
           "cSharpName": "HexColor",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "message",
+          "cSharpName": "Message",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "all_day",
+          "cSharpName": "AllDay",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "start_time",
+          "cSharpName": "StartTime",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "end_time",
+          "cSharpName": "EndTime",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "location",
+          "cSharpName": "Location",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "description",
+          "cSharpName": "Description",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "offset_reached",
+          "cSharpName": "OffsetReached",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -1445,12 +1530,12 @@
       "entities": [
         {
           "id": "device_tracker.212d3264_0bb2_4aa9_b5f5_e85d4cb79da1_tracker",
-          "friendlyName": "iPhone Philipp iPhone Philipp Tracker",
+          "friendlyName": "iPhone Philipp Tracker",
           "cSharpName": "_212d32640bb24aa9B5f5E85d4cb79da1Tracker"
         },
         {
           "id": "device_tracker.e422bfda_a806_4a39_9381_64adf2266f6f_tracker",
-          "friendlyName": "iPhone Fabienne iPhone Fabienne Tracker",
+          "friendlyName": "iPhone Fabienne Tracker",
           "cSharpName": "E422bfdaA8064a39938164adf2266f6fTracker"
         },
         {
@@ -1470,7 +1555,7 @@
         },
         {
           "id": "device_tracker.mi_band_smart_watch_043001_mb_sw_tracker",
-          "friendlyName": "Mi Band/Smart Watch-043001 MB/SW-tracker",
+          "friendlyName": "MB/SW-tracker",
           "cSharpName": "MiBandSmartWatch043001MbSwTracker"
         }
       ],
@@ -1719,6 +1804,16 @@
           "jsonName": "speed",
           "cSharpName": "Speed",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "restored",
+          "cSharpName": "Restored",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supported_features",
+          "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -1766,6 +1861,31 @@
           "id": "input_boolean.computer_wol_desktop_philipp",
           "friendlyName": "Desktop Philipp",
           "cSharpName": "ComputerWolDesktopPhilipp"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter",
+          "friendlyName": "dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter",
+          "cSharpName": "DevNetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_home_automations_apps_counters_sweets_counter_sweets_counter",
+          "friendlyName": "dev_netdaemon_home_automations_apps_counters_sweets_counter_sweets_counter",
+          "cSharpName": "DevNetdaemonHomeAutomationsAppsCountersSweetsCounterSweetsCounter"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_home_automations_apps_counters_water_counter_water_counter",
+          "friendlyName": "dev_netdaemon_home_automations_apps_counters_water_counter_water_counter",
+          "cSharpName": "DevNetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_home_automations_apps_movie_time_movie_time",
+          "friendlyName": "dev_netdaemon_home_automations_apps_movie_time_movie_time",
+          "cSharpName": "DevNetdaemonHomeAutomationsAppsMovieTimeMovieTime"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_home_automations_apps_virtual_entities_virtual_entities",
+          "friendlyName": "dev_netdaemon_home_automations_apps_virtual_entities_virtual_entities",
+          "cSharpName": "DevNetdaemonHomeAutomationsAppsVirtualEntitiesVirtualEntities"
         },
         {
           "id": "input_boolean.enable_motion_detector",
@@ -1916,11 +2036,6 @@
           "id": "input_boolean.netdaemon_home_automations_apps_virtual_entities_virtual_entities",
           "friendlyName": "netdaemon_home_automations_apps_virtual_entities_virtual_entities",
           "cSharpName": "NetdaemonHomeAutomationsAppsVirtualEntitiesVirtualEntities"
-        },
-        {
-          "id": "input_boolean.netdaemon_home_automations_apps_wall_panel_wall_panel_monitor",
-          "friendlyName": "netdaemon_home_automations_apps_wall_panel_wall_panel_monitor",
-          "cSharpName": "NetdaemonHomeAutomationsAppsWallPanelWallPanelMonitor"
         },
         {
           "id": "input_boolean.override_desk_lamp",
@@ -2217,8 +2332,13 @@
           "cSharpName": "LivingRoomLightbulbsChildLock"
         },
         {
+          "id": "lock.living_room_subwoofer_child_lock",
+          "friendlyName": "living_room/subwoofer Child lock",
+          "cSharpName": "LivingRoomSubwooferChildLock"
+        },
+        {
           "id": "lock.nuki",
-          "friendlyName": "Nuki Nuki",
+          "friendlyName": "Nuki",
           "cSharpName": "Nuki"
         },
         {
@@ -2302,6 +2422,11 @@
           "jsonName": "voltage",
           "cSharpName": "Voltage",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "restored",
+          "cSharpName": "Restored",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -2446,7 +2571,7 @@
         },
         {
           "id": "number.nuki_led_brightness",
-          "friendlyName": "Nuki Nuki LED brightness",
+          "friendlyName": "Nuki LED brightness",
           "cSharpName": "NukiLedBrightness"
         },
         {
@@ -2600,6 +2725,16 @@
           "jsonName": "voltage",
           "cSharpName": "Voltage",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "restored",
+          "cSharpName": "Restored",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supported_features",
+          "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -2677,6 +2812,11 @@
           "id": "remote.fernbedienung_remote",
           "friendlyName": "Fernbedienung",
           "cSharpName": "FernbedienungRemote"
+        },
+        {
+          "id": "remote.wohnzimmer",
+          "friendlyName": "Wohnzimmer",
+          "cSharpName": "Wohnzimmer"
         }
       ],
       "attributes": [
@@ -2739,6 +2879,16 @@
           "id": "select.living_room_standard_lamp_power_on_behavior",
           "friendlyName": "living_room/standard_lamp Power-on behavior",
           "cSharpName": "LivingRoomStandardLampPowerOnBehavior"
+        },
+        {
+          "id": "select.living_room_subwoofer_indicator_mode",
+          "friendlyName": "living_room/subwoofer Indicator mode",
+          "cSharpName": "LivingRoomSubwooferIndicatorMode"
+        },
+        {
+          "id": "select.living_room_subwoofer_power_outage_memory",
+          "friendlyName": "living_room/subwoofer Power outage memory",
+          "cSharpName": "LivingRoomSubwooferPowerOutageMemory"
         },
         {
           "id": "select.roborock_s7_pro_ultra_mop_intensity",
@@ -2894,8 +3044,13 @@
         },
         {
           "id": "sensor.212d3264_0bb2_4aa9_b5f5_e85d4cb79da1_room_presence",
-          "friendlyName": "iPhone Philipp iPhone Philipp Room Presence",
+          "friendlyName": "iPhone Philipp Room Presence",
           "cSharpName": "_212d32640bb24aa9B5f5E85d4cb79da1RoomPresence"
+        },
+        {
+          "id": "sensor.abfall",
+          "friendlyName": "Abfall",
+          "cSharpName": "Abfall"
         },
         {
           "id": "sensor.air_quality",
@@ -3109,7 +3264,7 @@
         },
         {
           "id": "sensor.e422bfda_a806_4a39_9381_64adf2266f6f_room_presence",
-          "friendlyName": "iPhone Fabienne iPhone Fabienne Room Presence",
+          "friendlyName": "iPhone Fabienne Room Presence",
           "cSharpName": "E422bfdaA8064a39938164adf2266f6fRoomPresence"
         },
         {
@@ -3174,7 +3329,7 @@
         },
         {
           "id": "sensor.hallway_cluster_leader",
-          "friendlyName": "hallway hallway Cluster Leader",
+          "friendlyName": "hallway Cluster Leader",
           "cSharpName": "HallwayClusterLeader"
         },
         {
@@ -3549,7 +3704,7 @@
         },
         {
           "id": "sensor.mi_band_smart_watch_043001_mb_sw_steps",
-          "friendlyName": "Mi Band/Smart Watch-043001 MB/SW-steps",
+          "friendlyName": "MB/SW-steps",
           "cSharpName": "MiBandSmartWatch043001MbSwSteps"
         },
         {
@@ -3574,12 +3729,12 @@
         },
         {
           "id": "sensor.nuki_firmware_version",
-          "friendlyName": "Nuki Nuki Firmware version",
+          "friendlyName": "Nuki Firmware version",
           "cSharpName": "NukiFirmwareVersion"
         },
         {
           "id": "sensor.nuki_hardware_version",
-          "friendlyName": "Nuki Nuki Hardware version",
+          "friendlyName": "Nuki Hardware version",
           "cSharpName": "NukiHardwareVersion"
         },
         {
@@ -3594,7 +3749,7 @@
         },
         {
           "id": "sensor.nuki_trigger",
-          "friendlyName": "Nuki Nuki trigger",
+          "friendlyName": "Nuki trigger",
           "cSharpName": "NukiTrigger"
         },
         {
@@ -4473,6 +4628,51 @@
           "jsonName": "power_on_behavior",
           "cSharpName": "PowerOnBehavior",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "Bioabfall",
+          "cSharpName": "Bioabfall",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Gelber Sack",
+          "cSharpName": "GelberSack",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Glasbox",
+          "cSharpName": "Glasbox",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Heckenschnitt",
+          "cSharpName": "Heckenschnitt",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Papier",
+          "cSharpName": "Papier",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Problemm\u00FCll 11.00-12.00 Uhr, Rathausplatz",
+          "cSharpName": "Problemmll11_0012_00UhrRathausplatz",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Problemm\u00FCll-W 11.00-13.00 Uhr, W\u00F6rth: zum Messplatz (Parkplatz Festhalle)",
+          "cSharpName": "ProblemmllW11_0013_00UhrWrthzumMessplatzParkplatzFesthalle",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Problemm\u00FCll-W 9.00-13.00 Uhr, W\u00F6rth: zum Messplatz (Parkplatz Festhalle)",
+          "cSharpName": "ProblemmllW9_0013_00UhrWrthzumMessplatzParkplatzFesthalle",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "Restm\u00FCll",
+          "cSharpName": "Restmll",
+          "clrType": "System.String"
         }
       ]
     },
@@ -4692,7 +4892,7 @@
         },
         {
           "id": "sensor.hallway_cluster_size",
-          "friendlyName": "hallway hallway Cluster Size",
+          "friendlyName": "hallway Cluster Size",
           "cSharpName": "HallwayClusterSize"
         },
         {
@@ -4831,6 +5031,11 @@
           "cSharpName": "KitchenCeilingLightButtonDeviceTemperature"
         },
         {
+          "id": "sensor.kitchen_dishwasher_water_detector_battery",
+          "friendlyName": "kitchen/dishwasher_water_detector Battery",
+          "cSharpName": "KitchenDishwasherWaterDetectorBattery"
+        },
+        {
           "id": "sensor.kitchen_kratom_counter_battery",
           "friendlyName": "kitchen/kratom_counter Battery",
           "cSharpName": "KitchenKratomCounterBattery"
@@ -4891,6 +5096,16 @@
           "cSharpName": "LivingRoomLightbulbsPower"
         },
         {
+          "id": "sensor.living_room_subwoofer_energy",
+          "friendlyName": "living_room/subwoofer Energy",
+          "cSharpName": "LivingRoomSubwooferEnergy"
+        },
+        {
+          "id": "sensor.living_room_subwoofer_power",
+          "friendlyName": "living_room/subwoofer Power",
+          "cSharpName": "LivingRoomSubwooferPower"
+        },
+        {
           "id": "sensor.lufthansa",
           "friendlyName": "Lufthansa",
           "cSharpName": "Lufthansa"
@@ -4902,102 +5117,102 @@
         },
         {
           "id": "sensor.mi_band_smart_watch_043001_mb_sw_act_bpm",
-          "friendlyName": "Mi Band/Smart Watch-043001 MB/SW-act_bpm",
+          "friendlyName": "MB/SW-act_bpm",
           "cSharpName": "MiBandSmartWatch043001MbSwActBpm"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB10204Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB10204Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB10204Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB10204Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB10206Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB10206Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB10206Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB10206Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB10208Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB10208Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB10208Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB10208Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.nuki_battery_level",
-          "friendlyName": "Nuki Nuki battery level",
+          "friendlyName": "Nuki battery level",
           "cSharpName": "NukiBatteryLevel"
         },
         {
           "id": "sensor.nuki_battery_voltage",
-          "friendlyName": "Nuki Nuki battery voltage",
+          "friendlyName": "Nuki battery voltage",
           "cSharpName": "NukiBatteryVoltage"
         },
         {
           "id": "sensor.nuki_bluetooth_signal_strength",
-          "friendlyName": "Nuki Nuki bluetooth signal strength",
+          "friendlyName": "Nuki bluetooth signal strength",
           "cSharpName": "NukiBluetoothSignalStrength"
         },
         {
@@ -5007,7 +5222,7 @@
         },
         {
           "id": "sensor.nuki_wifi_signal_strength",
-          "friendlyName": "Nuki Nuki wifi signal strength",
+          "friendlyName": "Nuki wifi signal strength",
           "cSharpName": "NukiWifiSignalStrength"
         },
         {
@@ -6055,6 +6270,11 @@
           "cSharpName": "LivingRoomLightbulbs"
         },
         {
+          "id": "switch.living_room_subwoofer",
+          "friendlyName": "living_room/subwoofer",
+          "cSharpName": "LivingRoomSubwoofer"
+        },
+        {
           "id": "switch.living_room_twtyh_diorama",
           "friendlyName": "living_room/twtyh_diorama",
           "cSharpName": "LivingRoomTwtyhDiorama"
@@ -6111,7 +6331,7 @@
         },
         {
           "id": "switch.nuki_button_enabled",
-          "friendlyName": "Nuki Nuki Button enabled",
+          "friendlyName": "Nuki Button enabled",
           "cSharpName": "NukiButtonEnabled"
         },
         {
@@ -6121,7 +6341,7 @@
         },
         {
           "id": "switch.nuki_led_enabled",
-          "friendlyName": "Nuki Nuki LED enabled",
+          "friendlyName": "Nuki LED enabled",
           "cSharpName": "NukiLedEnabled"
         },
         {
@@ -6394,6 +6614,11 @@
           "id": "update.living_room_standard_lamp_mqtt_update",
           "friendlyName": "living_room/standard_lamp",
           "cSharpName": "LivingRoomStandardLampMqttUpdate"
+        },
+        {
+          "id": "update.living_room_subwoofer",
+          "friendlyName": "living_room/subwoofer",
+          "cSharpName": "LivingRoomSubwoofer"
         },
         {
           "id": "update.pupsstation_dsm_update",
@@ -7138,6 +7363,16 @@
           "id": "todo.london_philipp",
           "friendlyName": "London \uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F Philipp",
           "cSharpName": "LondonPhilipp"
+        },
+        {
+          "id": "todo.urlaub_bali_philipp",
+          "friendlyName": "\uD83E\uDEB7 Urlaub Bali \uD83E\uDEB7 Philipp",
+          "cSharpName": "UrlaubBaliPhilipp"
+        },
+        {
+          "id": "todo.urlaub_rom_sardinien_philipp",
+          "friendlyName": "\uD83C\uDDEE\uD83C\uDDF9 Urlaub Rom \u0026 Sardinien \uD83C\uDDEE\uD83C\uDDF9 Philipp",
+          "cSharpName": "UrlaubRomSardinienPhilipp"
         }
       ],
       "attributes": [
@@ -7155,6 +7390,16 @@
           "jsonName": "friendly_name",
           "cSharpName": "FriendlyName",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "restored",
+          "cSharpName": "Restored",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supported_features",
+          "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
         }
       ]
     },

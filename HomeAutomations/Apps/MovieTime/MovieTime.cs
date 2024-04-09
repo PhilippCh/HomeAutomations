@@ -11,6 +11,7 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MovieTime;
 
+[Focus]
 public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 {
 	private const string MovieTimeActionId = "KINO";
@@ -32,7 +33,12 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 	{
 		Context.Events
 			.GetMobileAppActions(new[] { MovieTimeActionId })
-			.Subscribe(_ => OnActionFired());
+			.Subscribe(_ => StartMovieTime(new MovieTimeServiceData
+			{
+				AvReceiverSource = Config.AvReceiver.DefaultSource
+			}));
+
+		Context.RegisterServiceCallBack<MovieTimeServiceData>("movie_time", StartMovieTime);
 
 		// Source is a state attribute, so we require StateAllChanges here.
 		Config.AvReceiver.Entity.StateAllChanges().Subscribe(x => OnAvReceiverStateChanged(x.New?.IsLikeOn(), x.New?.Attributes?.Source));
@@ -40,14 +46,13 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		return Task.CompletedTask;
 	}
 
-	private async void OnActionFired()
+	private async void StartMovieTime(MovieTimeServiceData data)
 	{
 		Logger.Information("Switching movie time on");
 
 		await _actionSequencerService.RunAsync(
 			new RunAction(() => Config.Lights.ForEach(x => x.TurnOn())),
-			new RunAction(() => Config.AvReceiver.Entity.Toggle()),
-			new RunAction(() => Config.AvReceiver.Entity.SelectSource(Config.AvReceiver.DefaultSource)),
+			new RunAction(() => Config.AvReceiver.Entity.SelectSource(data.AvReceiverSource ?? Config.AvReceiver.DefaultSource)),
 			new RunAction(() => SendRemoteCommand("Beamer", commands: "power", repeats: 2, delay: 2), 1)
 		);
 	}

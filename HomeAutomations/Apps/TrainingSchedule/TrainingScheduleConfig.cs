@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HomeAutomations.Common.Models.Config;
+using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Apps.TrainingSchedule;
 
@@ -19,6 +20,6 @@ public record TrainingScheduleConfig : Config
 {
 	public string UpdateCrontab { get; init; }
 	public string EntityId { get; init; }
-	public string MediaStatusTopic { get; init; }
+	public MediaPlayerEntity MediaPlayer { get; init; }
 	public IEnumerable<ScheduleConfig> Schedules { get; init; }
 }

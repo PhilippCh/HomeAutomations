@@ -1,41 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Apps.MovieTime;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
-using HomeAutomations.Models.Generated.HomeAutomation;
+using HomeAutomations.Models.Generated;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.TrainingSchedule;
 
-#pragma warning disable CS8619
-
-public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingScheduleConfig>
+// TODO: Migrate creation of the schedule to a VirtualEntity.
+public class TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule, TrainingScheduleConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)
+	: BaseAutomation<TrainingSchedule, TrainingScheduleConfig>(aggregate)
 {
-	private MediaStatusMessage? _activeStatusMessage;
-
-	private readonly IMqttEntityManager _entityManager;
-	private readonly MqttService _mqttService;
-
-	public TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule, TrainingScheduleConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)
-		: base(aggregate)
-	{
-		_entityManager = entityManager;
-		_mqttService = mqttService;
-	}
-
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
 		Context.RegisterServiceCallBack<TrainingServiceData>("training_start", StartTraining);
-		(await _mqttService.GetMessagesForTopic<MediaStatusMessage>(Config.MediaStatusTopic)).Subscribe(e => _activeStatusMessage = e);
-
 		CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateSchedule, true, cancellationToken);
 	}
 
@@ -46,15 +32,15 @@ public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingSchedul
 
 		if (schedules.Count != 1)
 		{
-			Logger.Warning("Invalid number {count} of schedules for week {week}.", schedules.Count, week);
+			Logger.Warning("Invalid number {Count} of schedules for week {Week}", schedules.Count, week);
 
 			return;
 		}
 
 		var schedule = schedules.First();
-		await _entityManager.CreateAsync(Config.EntityId, new EntityCreationOptions(null, Config.EntityId, $"Current training schedule"));
-		await _entityManager.SetStateAsync(Config.EntityId, "See entity attributes.");
-		await _entityManager.SetAttributesAsync(Config.EntityId, GetEntityAttributes(schedule));
+		await entityManager.CreateAsync(Config.EntityId, new EntityCreationOptions(null, Config.EntityId, "Current training schedule"));
+		await entityManager.SetStateAsync(Config.EntityId, "See entity attributes.");
+		await entityManager.SetAttributesAsync(Config.EntityId, GetEntityAttributes(schedule));
 	}
 
 	private object GetEntityAttributes(ScheduleConfig schedule)
@@ -73,13 +59,14 @@ public class TrainingSchedule : BaseAutomation<TrainingSchedule, TrainingSchedul
 
 	private async void StartTraining(TrainingServiceData e)
 	{
-		if (_activeStatusMessage == null)
-		{
-			return;
-		}
+		Context.CallService(
+			"net_daemon", "movie_time", data: new MovieTimeServiceData
+			{
+				AvReceiverSource = "Apple TV"
+			});
+		Config.MediaPlayer.PlayMedia(e.Url, "video");
 
-		var client = new MediaHomeAutomationsClient(_activeStatusMessage.BaseUrl, new HttpClient());
-		await client.StartStreamAsync(e.Url);
+		await Task.Delay(TimeSpan.FromSeconds(5));
+		Config.MediaPlayer.MediaPause();
 	}
 }
-#pragma warning restore CS8619

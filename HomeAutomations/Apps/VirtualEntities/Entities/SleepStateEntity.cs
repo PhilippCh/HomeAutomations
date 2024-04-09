@@ -12,9 +12,9 @@ namespace HomeAutomations.Apps.VirtualEntities.Entities;
 public record SleepStateEntityConfig : VirtualEntityConfig
 {
 	public TimeSpan DebounceTime { get; init; }
-	public IEnumerable<BinarySensorEntity> BedPresenceSensors { get; init; } = Enumerable.Empty<BinarySensorEntity>();
+	public IEnumerable<BinarySensorEntity> BedPresenceSensors { get; init; }
 
-	public IEnumerable<SensorEntity> SmartphoneChargingSensors { get; init; } = Enumerable.Empty<SensorEntity>();
+	public IEnumerable<SensorEntity> SmartphoneChargingSensors { get; init; }
 }
 
 public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
