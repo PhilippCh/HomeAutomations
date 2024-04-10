@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Apps.MovieTime;
 using HomeAutomations.Common.Extensions;
-using HomeAutomations.Common.Models;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
@@ -59,6 +58,7 @@ public class TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule
 
 	private async void StartTraining(TrainingServiceData e)
 	{
+		Logger.Information("Starting training session {Url}", e.Url);
 		Context.CallService(
 			"net_daemon", "movie_time", data: new MovieTimeServiceData
 			{
@@ -66,7 +66,10 @@ public class TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule
 			});
 		Config.MediaPlayer.PlayMedia(e.Url, "video");
 
-		await Task.Delay(TimeSpan.FromSeconds(5));
-		Config.MediaPlayer.MediaPause();
+		await Task.Delay(TimeSpan.FromSeconds(10));
+		Config.Remote.SendCommand(new RemoteSendCommandParameters
+		{
+			Command = "pause"
+		});
 	}
 }

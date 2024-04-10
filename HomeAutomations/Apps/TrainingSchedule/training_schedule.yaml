@@ -1,6 +1,7 @@
 HomeAutomations.Apps.TrainingSchedule.TrainingScheduleConfig:
   EntityId: sensor.current_training_schedule
   MediaPlayer: media_player.wohnzimmer
+  Remote: remote.wohnzimmer
   UpdateCrontab: 0 0 * * *
   Schedules:
     - Week: 1
