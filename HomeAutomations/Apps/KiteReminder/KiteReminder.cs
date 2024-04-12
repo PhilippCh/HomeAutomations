@@ -69,8 +69,7 @@ public class KiteReminder : BaseAutomation<KiteReminder, KiteReminderConfig>
 
 		if (shouldFire)
 		{
-			var notification = Config.Notification with { Template = Config.Notification.RenderTemplate(windSpeed, gustSpeed) };
-			_notificationService.SendNotification(notification);
+			_notificationService.SendNotification(Config.Notification, windSpeed, gustSpeed);
 			_lastNotificationDate = DateTime.Now;
 		}
 	}

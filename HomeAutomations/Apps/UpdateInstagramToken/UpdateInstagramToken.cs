@@ -8,16 +8,9 @@ using Renci.SshNet;
 
 namespace HomeAutomations.Apps.UpdateInstagramToken;
 
-public class UpdateInstagramToken : BaseAutomation<UpdateInstagramToken, UpdateInstagramTokenConfig>
+public class UpdateInstagramToken(BaseAutomationDependencyAggregate<UpdateInstagramToken, UpdateInstagramTokenConfig> aggregate, NotificationService notificationService)
+	: BaseAutomation<UpdateInstagramToken, UpdateInstagramTokenConfig>(aggregate)
 {
-	private readonly NotificationService _notificationService;
-
-	public UpdateInstagramToken(BaseAutomationDependencyAggregate<UpdateInstagramToken, UpdateInstagramTokenConfig> aggregate, NotificationService notificationService)
-		: base(aggregate)
-	{
-		_notificationService = notificationService;
-	}
-
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateToken, true, cancellationToken);
@@ -41,7 +34,7 @@ public class UpdateInstagramToken : BaseAutomation<UpdateInstagramToken, UpdateI
 		}
 		catch (HttpRequestException ex)
 		{
-			_notificationService.SendNotification(Config.FailureNotification with { Template = Config.FailureNotification.RenderTemplate(ex.Message) });
+			notificationService.SendNotification(Config.FailureNotification, ex.Message);
 		}
 	}
 }

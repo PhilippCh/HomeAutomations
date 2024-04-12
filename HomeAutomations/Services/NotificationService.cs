@@ -1,5 +1,7 @@
-﻿using System.Reactive.Subjects;
+﻿using System.Dynamic;
+using System.Reactive.Subjects;
 using HomeAutomations.Models;
+using HomeAutomations.Common.Extensions;
 
 namespace HomeAutomations.Services;
 
@@ -24,22 +26,40 @@ public class NotificationService
 		_logger = logger.ForContext<NotificationService>();
 	}
 
-	public void SendNotification(Notification notification)
+	public void SendNotification(Notification notification, params object[] templateArgs)
 	{
-		_context.CallService(
-			"notify", notification.Service, data: new
+		dynamic data = new ExpandoObject
+		{
+			{ "message", string.Format(notification.Template ?? string.Empty, templateArgs) },
+			{ "title", notification.Title },
 			{
-				message = notification.Template,
-				title = notification.Title,
-				data = new
+				"data", new ExpandoObject
 				{
-					tag = notification.Tag,
-					actions = notification.Actions,
-					image = notification.Image,
-					sticky = notification.Sticky,
-					url = notification.Url,
+					{ "tag", notification.Tag },
+					{ "actions", notification.Actions },
+					{ "image", notification.Image },
+					{ "sticky", notification.Sticky },
+					{ "url", notification.Url }
 				}
-			});
+			}
+		};
+
+		if (notification.Critical ?? false)
+		{
+			data.data.push = new ExpandoObject
+			{
+				{
+					"sound", new ExpandoObject
+					{
+						{ "name", "LiquidDetected.caf" },
+						{ "critical", 1 },
+						{ "volume", 1.0f }
+					}
+				}
+			};
+		}
+
+		_context.CallService("notify", notification.Service, data: data);
 	}
 
 	private void OnNotificationActionFired(string action)

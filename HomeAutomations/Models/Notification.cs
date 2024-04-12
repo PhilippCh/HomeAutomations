@@ -6,16 +6,15 @@ namespace HomeAutomations.Models;
 
 public record Notification
 {
-	public string? Service { get; init; } = "ourphones";
+	public string Service { get; init; } = "ourphones";
 	public string? Title { get; init; }
 	public string? Template { get; init; }
 	public string? Tag { get; init; }
 	public string? Image { get; init; }
 	public bool? Sticky { get; init; }
 	public string? Url { get; init; }
+	public bool? Critical { get; init; }
 	public IEnumerable<NotificationAction>? Actions { get; init; }
-
-	public string RenderTemplate(params object[] args) => string.Format(Template ?? string.Empty, args);
 }
 
 public class NotificationAction

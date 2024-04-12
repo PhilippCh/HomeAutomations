@@ -24,7 +24,7 @@ public class LaundryDay(
 	private IDisposable? _ventilationReminderDelayedObserver;
 	private IDisposable? _closeWindowTimerObserver;
 	private bool _isVentilationRequested;
-	private float _currentHumidity = 0;
+	private float _currentHumidity;
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
@@ -120,11 +120,7 @@ public class LaundryDay(
 	private void SendVentilationReminder(float humidity)
 	{
 		Logger.Information("Sending ventilation reminder");
-		notificationService.SendNotification(
-			Config.Ventilation.Notification with
-			{
-				Template = Config.Ventilation.Notification.RenderTemplate(humidity)
-			});
+		notificationService.SendNotification(Config.Ventilation.Notification, humidity);
 	}
 
 	private void OnOpenWindow()

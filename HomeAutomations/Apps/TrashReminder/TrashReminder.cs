@@ -122,7 +122,6 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 			.Where(e => e.Value.IsOn())
 			.Select(e => e.Key);
 
-		var notification = Config.Notification with { Template = Config.Notification.RenderTemplate(pickUps.JoinAnd()) };
-		_notificationService.SendNotification(notification);
+		_notificationService.SendNotification(Config.Notification, pickUps.JoinAnd());
 	}
 }
