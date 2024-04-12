@@ -9,11 +9,9 @@ HomeAutomations.Apps.WaterLeaks.WaterLeaksConfig:
     Title: Wasser ausgelaufen!
     Template: "{0} ist nass geworden."
     Sticky: true
-    Service: mobile_app_iphone_philipp
+    Image: https://ha.pupslab.de/local/water_leak.png
     Critical: true
   DryNotification:
     Tag: water_leak
     Title: Wieder trocken
     Template: "{0} ist wieder trocken."
-    Sticky: true
-    Service: mobile_app_iphone_philipp
