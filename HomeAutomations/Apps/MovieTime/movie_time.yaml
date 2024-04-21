@@ -13,6 +13,7 @@ HomeAutomations.Apps.MovieTime.MovieTimeConfig:
           - PlayStation 5
           - Switch
           - Apple TV
+          - Bluetooth
           - BD
           - BDP-S6700 # Alias of current BD-Player.
           - TV
