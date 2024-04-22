@@ -6,31 +6,22 @@ using HomeAutomations.Models.Generated;
 
 namespace HomeAutomations.Models;
 
-public class BaseAutomationDependencyAggregate<T, TConfig> : BaseAutomationDependencyAggregate<T>
+public class BaseAutomationDependencyAggregate<T, TConfig>(IHaContext context, IAppConfig<TConfig> config, ILogger loggerFactory)
+	: BaseAutomationDependencyAggregate<T>(context, loggerFactory)
 	where T : BaseAutomation<T, TConfig>
 	where TConfig : Config, new()
 {
-	public IAppConfig<TConfig> Config { get; }
-
-	public BaseAutomationDependencyAggregate(IHaContext context, IAppConfig<TConfig> config, ILogger loggerFactory)
-		: base(context, loggerFactory)
-	{
-		Config = config;
-	}
+	public IAppConfig<TConfig> Config { get; } = config;
 }
 
-public class BaseAutomationDependencyAggregate<T> where T : BaseAutomation<T>
+public class BaseAutomationDependencyAggregate<T>(IHaContext context, ILogger loggerFactory)
+	where T : BaseAutomation<T>
 {
-	public IHaContext Context { get; }
-	public ILogger Logger { get; }
+	public IHaContext Context { get; } = context;
+	public ILogger Logger { get; } = loggerFactory.ForContext<T>();
 	public Generated.Entities Entities => new(Context);
 
-	public BaseAutomationDependencyAggregate(IHaContext context, ILogger loggerFactory)
-	{
-		Context = context;
-		// ReSharper disable once ContextualLoggerProblem
-		Logger = loggerFactory.ForContext<T>();
-	}
+	// ReSharper disable once ContextualLoggerProblem
 }
 
 public abstract class BaseAutomation<T, TConfig> : BaseAutomation<T> where T : BaseAutomation<T, TConfig> where TConfig : Config, new()

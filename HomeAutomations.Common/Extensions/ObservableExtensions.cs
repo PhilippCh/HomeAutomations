@@ -1,3 +1,4 @@
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using CoordinateSharp;
 
@@ -10,12 +11,14 @@ public static class ObservableExtensions
 	/// <summary>
 	/// Emits the filtered values delayed by a specified time, all other values immediately.
 	/// </summary>
-	public static IObservable<T> EmitDelayed<T>(this IObservable<T> observable, Func<T, bool> filter, TimeSpan delay) =>
-		observable
+	public static IObservable<T> EmitDelayed<T>(this IObservable<T> observable, Func<T, bool> filter, TimeSpan delay, IScheduler? scheduler = null)
+	{
+		return observable
 			.DistinctUntilChanged() // Only take distinct consecutive elements.
-			.Where(filter) // Filter out only the predicate values.
-			.SelectMany(_ => Observable.Timer(delay)) // Wait for delay time.
-			.WithLatestFrom(observable, (_, latestValue) => latestValue); // Take the latest value from the source observable after 5 minutes.
+			.Select(x => Observable.Return(x).Delay(y => Observable.Timer(filter(y) ? delay : TimeSpan.Zero, scheduler ?? Scheduler.Default))) // Wait for delay time.
+			.Switch()
+			.DistinctUntilChanged();
+	}
 
 	public static IObservable<int> TryParseInt(this IObservable<string?> observable) =>
 		observable.Select(x => (IsSuccess: int.TryParse(x, out var Value), Value))

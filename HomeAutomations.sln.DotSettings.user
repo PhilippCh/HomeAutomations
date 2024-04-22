@@ -2,6 +2,15 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.3\ref\net6.0\PresentationFramework.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a1bb46f9_002Dbd97_002D447c_002Dbd04_002D9fb19bd547a1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShouldInitializeAppAsync" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Apps.VirtualEntities.SleepStateEntityTests.ShouldInitializeAppAsync&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.ObservableExtensionTests.EmitDelayed_ShouldEmitOnceIfSameValue&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.ObservableExtensionTests.EmitDelayed_ShouldEmitOnceImmediatelyIfSameValue&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.ObservableExtensionTests.EmitDelayed_ShouldUseDelayForPredicate&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.ObservableExtensionTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	
 	
 	
