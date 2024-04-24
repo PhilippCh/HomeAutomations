@@ -2,10 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
+using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Entities;
 using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensions;
 
@@ -14,12 +16,14 @@ namespace HomeAutomations.Apps.Shutters;
 public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 {
 	private readonly NotificationService _notificationService;
+	private readonly IMqttEntityManager _entityManager;
 	private readonly Dictionary<ShutterConfig, IDisposable> _retryCloseShutterObservers = new();
 
-	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, NotificationService notificationService)
+	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, NotificationService notificationService, IMqttEntityManager entityManager)
 		: base(aggregate)
 	{
 		_notificationService = notificationService;
+		_entityManager = entityManager;
 	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
@@ -33,21 +37,31 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 		// Automatically open the bedroom shutters *only* if:
 		// - No one has been sleeping for at least OpenDelay time
 		// - It is after OpenTime hours
-		Config.SleepStateEntity.StateChanges()
-			.Select(x => x.New?.IsOn() ?? true)
+		Config.SleepStateEntity.ToObservableState()
+			.Select(x => x ?? true)
 			.EmitDelayed(x => x == false, Config.OpenDelay)
-			.CombineLatest(Observable.Interval(TimeSpan.FromMinutes(1)))
-			.Select(x => x.First)
-			.Where(x => x == false && DateTime.Now >= Config.OpenTime.GetActualTime(Config.Latitude, Config.Longitude))
+			.Where(x => !x)
+			.CombineTime()
+			.Where(x => !x.Value && x.Time >= Config.OpenTime.GetActualTime(Config.Latitude, Config.Longitude))
 			.DistinctUntilChanged()
+			.SubscribeAsync(async x => await SetOpenShuttersSensorStateAsync(x.Value));
+
+		// Open the shutters when the open sensor is triggered
+		Config.OpenSensorEntity.StateChanges()
+			.Where(x => x.New?.IsOn() ?? false)
 			.Subscribe(_ => OpenShutters());
 
 		return Task.CompletedTask;
 	}
 
+	private async Task SetOpenShuttersSensorStateAsync(bool shouldOpen)
+	{
+		await _entityManager.SetBinaryStateAsync(Config.OpenShuttersSensorEntity.EntityId, shouldOpen);
+	}
+
 	private void OpenShutters()
 	{
-		// TODO: This wrapper method can be removed when the observable for automatic opening works properly. Call OpenAllShutters() in Subscribe() instead.
+		// TODO: Actually open the shutters.
 		_notificationService.SendNotification(Config.SleepStateDebugNotification);
 	}
 

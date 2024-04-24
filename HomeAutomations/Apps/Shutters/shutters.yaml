@@ -5,9 +5,10 @@ HomeAutomations.Apps.Shutters.ShuttersConfig:
   OpenTime:
     Hour: 00:08:00
     HourWeekend: 12:00:00
-  OpenDelay: 00:30:00
-  CloseDelay: 00:30:00
+  OpenDelay: 00:15:00
+  CloseDelay: 00:15:00
   OpenSensorEntity: sensor.bedroom_bedside_light_switch_philipp_action
+  OpenShuttersSensorEntityId: binary_sensor.bedroom_open_shutters
   SleepStateEntity: binary_sensor.presence_bedroom_is_anyone_sleeping
   SleepStateDebugNotification:
     Title: Shutters

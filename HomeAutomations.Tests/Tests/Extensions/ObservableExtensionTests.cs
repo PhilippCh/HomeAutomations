@@ -15,22 +15,18 @@ public class ObservableExtensionTests(TestScheduler testScheduler)
 	public void EmitDelayed_ShouldEmitOnceIfSameValue()
 	{
 		var delay = TimeSpan.FromMinutes(5);
-		var sut = CreateSut<bool>(x => x == false, delay, out var results);
+		var sut = CreateSut<bool>(x => x == false, out var results, delay);
 
 		sut.OnNext(false);
 		sut.OnNext(false);
-
-		testScheduler.AdvanceBy(delay.Ticks);
-
-		results.Should().HaveCount(1);
-		results.Should().AllSatisfy(x => x.Should().BeFalse());
+		AdvanceAndCheckResults(delay, results, [false]);
 	}
 
 	[Fact]
 	public void EmitDelayed_ShouldUseDelayForPredicate()
 	{
 		var delay = TimeSpan.FromMinutes(5);
-		var sut = CreateSut<bool>(x => x == false, delay, out var results);
+		var sut = CreateSut<bool>(x => x == false, out var results, delay);
 
 		// True should be emitted immediately.
 		sut.OnNext(true);
@@ -45,7 +41,7 @@ public class ObservableExtensionTests(TestScheduler testScheduler)
 	public void EmitDelayed_ShouldOutputTrueIfPredicateExpires()
 	{
 		var delay = TimeSpan.FromMinutes(5);
-		var sut = CreateSut<bool>(x => x == false, delay, out var results);
+		var sut = CreateSut<bool>(x => x == false, out var results, delay);
 
 		// True should be emitted immediately.
 		sut.OnNext(true);
@@ -61,7 +57,7 @@ public class ObservableExtensionTests(TestScheduler testScheduler)
 	public void EmitDelayed_ShouldWorkForComplexSequence()
 	{
 		var delay = TimeSpan.FromMinutes(5);
-		var sut = CreateSut<bool>(x => x == false, delay, out var results);
+		var sut = CreateSut<bool>(x => x == false, out var results, delay);
 
 		// True should be emitted immediately.
 		sut.OnNext(true);
@@ -83,14 +79,42 @@ public class ObservableExtensionTests(TestScheduler testScheduler)
 		// Emitting False should be cancelled by emitting True.
 		sut.OnNext(false);
 		AdvanceAndCheckResults(delay - TimeSpan.FromMinutes(1), results, [true, false, true]);
+
 		sut.OnNext(true);
 		AdvanceAndCheckResults(delay, results, [true, false, true]);
 	}
 
-	private Subject<T> CreateSut<T>(Func<T, bool> predicate, TimeSpan delay, out List<T> results)
+	[Fact]
+	public void EmitDelayed_ShouldEmitAfterCustomDefaultDelay()
+	{
+		var filterDelay = TimeSpan.FromMinutes(5);
+		var defaultDelay = TimeSpan.FromMinutes(2);
+		var sut = CreateSut<bool>(x => x == false, out var results, filterDelay, defaultDelay);
+
+		sut.OnNext(true);
+		AdvanceAndCheckResults(TimeSpan.FromMilliseconds(1), results, []);
+		AdvanceAndCheckResults(defaultDelay, results, [true]);
+	}
+
+	[Fact]
+	public void EmitDelayed_ShouldEmitForBothCustomDelays()
+	{
+		var filterDelay = TimeSpan.FromMinutes(5);
+		var defaultDelay = TimeSpan.FromMinutes(2);
+		var sut = CreateSut<bool>(x => x == false, out var results, filterDelay, defaultDelay);
+
+		sut.OnNext(true);
+		AdvanceAndCheckResults(defaultDelay, results, [true]);
+
+		sut.OnNext(false);
+		AdvanceAndCheckResults(defaultDelay, results, [true]);
+		AdvanceAndCheckResults(filterDelay, results, [true, false]);
+	}
+
+	private Subject<T> CreateSut<T>(Func<T, bool> predicate, out List<T> results, TimeSpan filterDelay, TimeSpan? defaultDelay = null)
 	{
 		var subject = new Subject<T>();
-		subject.EmitDelayed(predicate, delay, testScheduler).SubscribeAndCapture(out results);
+		subject.EmitDelayed(predicate, filterDelay, defaultDelay, testScheduler).SubscribeAndCapture(out results);
 
 		return subject;
 	}
