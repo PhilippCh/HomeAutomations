@@ -26,8 +26,10 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 		_entityManager = entityManager;
 	}
 
-	protected override Task StartAsync(CancellationToken cancellationToken)
+	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
+		await _entityManager.CreateAsync(Config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
+
 		ObservableExtensions.IntervalSunset(Config.Latitude, Config.Longitude)
 			.Delay(Config.CloseDelay)
 			.Subscribe(_ => CloseAllShutters());
@@ -50,8 +52,6 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 		Config.OpenSensorEntity.StateChanges()
 			.Where(x => x.New?.IsOn() ?? false)
 			.Subscribe(_ => OpenShutters());
-
-		return Task.CompletedTask;
 	}
 
 	private async Task SetOpenShuttersSensorStateAsync(bool shouldOpen)
