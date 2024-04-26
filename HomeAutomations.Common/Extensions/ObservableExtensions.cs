@@ -11,13 +11,19 @@ public static class ObservableExtensions
 	/// <summary>
 	/// Emits the filtered values delayed by a specified time, all other values immediately.
 	/// </summary>
-	public static IObservable<T> EmitDelayed<T>(this IObservable<T> observable, Func<T, bool> filter, TimeSpan filterDelay, TimeSpan? defaultDelay = null, IScheduler? scheduler = null)
+	public static IObservable<T> EmitDelayed<T>(
+		this IObservable<T> observable,
+		Func<T, bool> filter,
+		TimeSpan filterDelay,
+		TimeSpan? defaultDelay = null,
+		IScheduler? scheduler = null)
 	{
 		return observable
 			.DistinctUntilChanged() // Only take distinct consecutive elements.
-			.Select(x => Observable
-				.Return(x)
-				.Delay(y => Observable.Timer(filter(y) ? filterDelay : defaultDelay ?? TimeSpan.Zero, scheduler ?? Scheduler.Default)) // Wait for delay time.
+			.Select(
+				x => Observable
+					.Return(x)
+					.Delay(y => Observable.Timer(filter(y) ? filterDelay : defaultDelay ?? TimeSpan.Zero, scheduler ?? Scheduler.Default)) // Wait for delay time.
 			)
 			.Switch()
 			.DistinctUntilChanged();
@@ -26,6 +32,9 @@ public static class ObservableExtensions
 	public static IObservable<(DateTime Time, T Value)> CombineTime<T>(this IObservable<T> observable, IScheduler? scheduler = null) =>
 		observable.CombineLatest(Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default))
 			.Select(x => (Time: DateTime.Now, Value: x.First));
+
+	public static IObservable<(TSource? Previous, TSource? Current)> PairWithPrevious<TSource>(this IObservable<TSource> source) =>
+		source.Scan((default(TSource), default(TSource)), (acc, current) => (acc.Item2, current));
 
 	public static IObservable<int> TryParseInt(this IObservable<string?> observable) =>
 		observable.Select(x => (IsSuccess: int.TryParse(x, out var Value), Value))

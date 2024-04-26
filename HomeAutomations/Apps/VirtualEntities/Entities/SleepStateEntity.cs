@@ -35,9 +35,8 @@ public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
 			Config.SmartphoneChargingSensors.Select(x => x.ToObservableState<ChargingSensorEntityStateMap, bool?>())
 		);
 
-		return bedPresenceObservable
-			.CombineLatest(phoneChargingObservable, (inBed, phoneCharging) => inBed && phoneCharging)
-			.DistinctUntilChanged();
+		return GetCombinedPresenceObservable(bedPresenceObservable, phoneChargingObservable, true)
+			.Merge(GetCombinedPresenceObservable(bedPresenceObservable, phoneChargingObservable, false));
 	}
 
 	public override string StateToString(bool state) => state.ToOnOff();
@@ -49,4 +48,9 @@ public class SleepStateEntity : VirtualEntity<bool, SleepStateEntityConfig>
 	private IObservable<bool> CreatePresenceObservable(IEnumerable<IObservable<bool?>> observables) =>
 		observables
 			.CombineLatest(x => x.Any(y => y ?? false));
+
+	private IObservable<bool> GetCombinedPresenceObservable(IObservable<bool> bedPresence, IObservable<bool> phoneCharging, bool expectedValue) =>
+		bedPresence.CombineLatest(phoneCharging)
+			.Where(x => x.First == expectedValue && x.Second == expectedValue)
+			.Select(x => expectedValue);
 }

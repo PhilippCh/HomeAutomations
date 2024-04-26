@@ -13,22 +13,14 @@ using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensi
 
 namespace HomeAutomations.Apps.Shutters;
 
-public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
+public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, NotificationService notificationService, IMqttEntityManager entityManager)
+	: BaseAutomation<Shutters, ShuttersConfig>(aggregate)
 {
-	private readonly NotificationService _notificationService;
-	private readonly IMqttEntityManager _entityManager;
 	private readonly Dictionary<ShutterConfig, IDisposable> _retryCloseShutterObservers = new();
-
-	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, NotificationService notificationService, IMqttEntityManager entityManager)
-		: base(aggregate)
-	{
-		_notificationService = notificationService;
-		_entityManager = entityManager;
-	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		await _entityManager.CreateAsync(Config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
+		await entityManager.CreateAsync(Config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
 
 		ObservableExtensions.IntervalSunset(Config.Latitude, Config.Longitude)
 			.Delay(Config.CloseDelay)
@@ -56,13 +48,13 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 
 	private async Task SetOpenShuttersSensorStateAsync(bool shouldOpen)
 	{
-		await _entityManager.SetBinaryStateAsync(Config.OpenShuttersSensorEntity.EntityId, shouldOpen);
+		await entityManager.SetBinaryStateAsync(Config.OpenShuttersSensorEntity.EntityId, shouldOpen);
 	}
 
 	private void OpenShutters()
 	{
 		// TODO: Actually open the shutters.
-		_notificationService.SendNotification(Config.SleepStateDebugNotification);
+		notificationService.SendNotification(Config.SleepStateDebugNotification);
 	}
 
 	private void OnOpenButtonPressed(string? state)

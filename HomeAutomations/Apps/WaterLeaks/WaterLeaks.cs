@@ -6,7 +6,6 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.WaterLeaks;
 
-[Focus]
 public class WaterLeaks(BaseAutomationDependencyAggregate<WaterLeaks, WaterLeaksConfig> aggregate, NotificationService notificationService)
 	: BaseAutomation<WaterLeaks, WaterLeaksConfig>(aggregate)
 {

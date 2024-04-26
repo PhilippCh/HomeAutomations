@@ -11,7 +11,6 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MovieTime;
 
-[Focus]
 public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 {
 	private const string MovieTimeActionId = "KINO";

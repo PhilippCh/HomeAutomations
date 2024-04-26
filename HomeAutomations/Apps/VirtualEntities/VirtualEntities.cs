@@ -6,7 +6,6 @@ using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.VirtualEntities;
 
-[Focus]
 public class VirtualEntities(BaseAutomationDependencyAggregate<VirtualEntities, VirtualEntitiesConfig> aggregate, IMqttEntityManager entityManager)
 	: BaseAutomation<VirtualEntities, VirtualEntitiesConfig>(aggregate)
 {
