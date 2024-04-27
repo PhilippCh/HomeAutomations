@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using HomeAutomations.Common.Extensions;
 using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
@@ -13,6 +12,7 @@ using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensi
 
 namespace HomeAutomations.Apps.Shutters;
 
+[Focus]
 public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, NotificationService notificationService, IMqttEntityManager entityManager)
 	: BaseAutomation<Shutters, ShuttersConfig>(aggregate)
 {
@@ -31,18 +31,22 @@ public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig
 		// Automatically open the bedroom shutters *only* if:
 		// - No one has been sleeping for at least OpenDelay time
 		// - It is after OpenTime hours
-		Config.SleepStateEntity.ToObservableState()
-			.Select(x => x ?? true)
-			.EmitDelayed(x => x == false, Config.OpenDelay)
-			.Where(x => !x)
-			.CombineTime()
-			.Where(x => !x.Value && x.Time >= Config.OpenTime.GetActualTime(Config.Latitude, Config.Longitude))
+		ObservableExtensions
+			.Between(Config.OpenTime.GetActualTime(AppConstants.Latitude, AppConstants.Longitude)!.Value, DateTime.Today.Add(TimeSpan.Parse("23:59:59")))
+			.CombineLatest(Config.SleepStateEntity.ToObservableState()
+				.Select(x => x ?? true))
+			.Select(x => (IsInTime: x.First, IsSleeping: x.Second))
+			.Select(x => x is
+			{
+				IsInTime: true,
+				IsSleeping: false
+			})
 			.DistinctUntilChanged()
-			.SubscribeAsync(async x => await SetOpenShuttersSensorStateAsync(x.Value));
+			.SubscribeAsync(async x => await SetOpenShuttersSensorStateAsync(x));
 
-		// Open the shutters when the open sensor is triggered
+		// Open the shutters when the open sensor is triggered.
 		Config.OpenSensorEntity.StateChanges()
-			.Where(x => x.New?.IsOn() ?? false)
+			.Where(x => (x.New?.IsOn() ?? false) && (x.Old?.IsOff() ?? false))
 			.Subscribe(_ => OpenShutters());
 	}
 

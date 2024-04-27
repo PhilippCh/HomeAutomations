@@ -29,9 +29,16 @@ public static class ObservableExtensions
 			.DistinctUntilChanged();
 	}
 
-	public static IObservable<(DateTime Time, T Value)> CombineTime<T>(this IObservable<T> observable, IScheduler? scheduler = null) =>
-		observable.CombineLatest(Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default))
-			.Select(x => (Time: DateTime.Now, Value: x.First));
+	public static IObservable<bool> Between(DateTime start, DateTime end, IScheduler? scheduler = null) =>
+		Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default)
+			.Select(
+				_ =>
+				{
+					var now = DateTime.Now;
+
+					return now >= start && now < end;
+				})
+			.DistinctUntilChanged();
 
 	public static IObservable<(TSource? Previous, TSource? Current)> PairWithPrevious<TSource>(this IObservable<TSource> source) =>
 		source.Scan((default(TSource), default(TSource)), (acc, current) => (acc.Item2, current));

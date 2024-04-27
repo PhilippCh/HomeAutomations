@@ -18,7 +18,7 @@ public record TimeConfig
 
 		try
 		{
-			return date.Date.Add(TimeSpan.Parse(actualHour!));
+			return date.Date.Add(TimeSpan.Parse(actualHour));
 		}
 		catch (Exception)
 		{
