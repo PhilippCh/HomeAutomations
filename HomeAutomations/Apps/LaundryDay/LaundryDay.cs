@@ -2,6 +2,7 @@
 using System.Reactive.Concurrency;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
@@ -21,7 +22,6 @@ public class LaundryDay(
 	: BaseAutomation<LaundryDay, LaundryDayConfig>(aggregate)
 {
 	private IDisposable? _scheduleObserver;
-	private IDisposable? _ventilationReminderDelayedObserver;
 	private IDisposable? _closeWindowTimerObserver;
 	private bool _isVentilationRequested;
 	private float _currentHumidity;
@@ -32,13 +32,15 @@ public class LaundryDay(
 		await StartExistingDryingTimerAsync();
 
 		Config.ButtonEntity.StateChanges()
-			.Subscribe(x => OnButtonPressedAsync(x.New?.State));
-		Config.Ventilation.HumiditySensor.StateChanges()
-			.Where(_ => DateTime.Now.TimeOfDay >= Config.Ventilation.StartTime && DateTime.Now.TimeOfDay < Config.Ventilation.EndTime)
-			.Subscribe(x => OnHumidityChanged(x.New?.State.AsFloat()));
+			.SubscribeAsync(async x => await OnButtonPressedAsync(x.New?.State));
 		Config.Ventilation.WindowSensor.StateChanges()
 			.Where(x => x.New?.IsOn() ?? false)
 			.Subscribe(_ => OnOpenWindow());
+		Config.Ventilation.HumiditySensor.StateChanges()
+			.Where(_ => DateTime.Now.TimeOfDay >= Config.Ventilation.StartTime && DateTime.Now.TimeOfDay < Config.Ventilation.EndTime)
+			.Select(x => x.New?.State.AsFloat())
+			.EmitDelayed(x => x >= Config.Ventilation.MaxHumidity, Config.Ventilation.ReminderDelay)
+			.Subscribe(OnHumidityChanged);
 	}
 
 	private async Task CreateEntityIfNotExistsAsync()
@@ -107,20 +109,20 @@ public class LaundryDay(
 			return;
 		}
 
-		_ventilationReminderDelayedObserver ??= Observable.Timer(Config.Ventilation.ReminderDelay)
-			.Subscribe(
-				_ =>
-				{
-					_ventilationReminderDelayedObserver?.Dispose();
-					_isVentilationRequested = true;
-					SendVentilationReminder(humidity.Value);
-				});
+		_isVentilationRequested = true;
+		SendVentilationReminder(humidity.Value);
 	}
 
 	private void SendVentilationReminder(float humidity)
 	{
 		Logger.Information("Sending ventilation reminder");
 		notificationService.SendNotification(Config.Ventilation.Notification, humidity);
+	}
+
+	private void ResetVentilationReminder()
+	{
+		Logger.Information("Resetting ventilation reminder");
+		_isVentilationRequested = false;
 	}
 
 	private void OnOpenWindow()
@@ -149,12 +151,5 @@ public class LaundryDay(
 						notificationService.SendNotification(Config.Ventilation.CloseWindowNotification);
 					}
 				});
-	}
-
-	private void ResetVentilationReminder()
-	{
-		Logger.Information("Resetting ventilation reminder");
-		_ventilationReminderDelayedObserver?.Dispose();
-		_isVentilationRequested = false;
 	}
 }
