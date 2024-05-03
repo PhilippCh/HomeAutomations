@@ -31,6 +31,7 @@ public static class ObservableExtensions
 
 	public static IObservable<bool> Between(DateTime start, DateTime end, IScheduler? scheduler = null) =>
 		Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default)
+			.StartWith(0)
 			.Select(
 				_ =>
 				{
