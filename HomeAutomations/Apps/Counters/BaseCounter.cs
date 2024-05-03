@@ -10,45 +10,36 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.Counters;
 
-public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
+public abstract class BaseCounter<T, TConfig>(BaseAutomationDependencyAggregate<T, TConfig> aggregate, IMqttEntityManager entityManager)
+	: BaseAutomation<T, TConfig>(aggregate)
 	where T : BaseAutomation<T, TConfig>
 	where TConfig : CounterConfig, new()
 {
-	private readonly IMqttEntityManager _entityManager;
-
-	public BaseCounter(BaseAutomationDependencyAggregate<T, TConfig> aggregate, IMqttEntityManager entityManager)
-		: base(aggregate)
-	{
-		_entityManager = entityManager;
-	}
-
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		await CreateEntities();
+		await CreateEntitiesAsync();
 
-		CronjobExtensions.ScheduleJob(Config.ResetCrontab, ResetCounter, cancellationToken: CancellationToken.None);
+		CronjobExtensions.ScheduleJob(Config.ResetCrontab, ResetCounterAsync, cancellationToken: CancellationToken.None);
 
-		Context.Events.GetDataEvents(Config.Events.AddEventId).Subscribe(OnAdd);
-		Context.Events.GetDataEvents(Config.Events.SetTargetEventId).Subscribe(OnSetTarget);
+		Context.Events.GetDataEvents(Config.Events.AddEventId).SubscribeAsync(OnAddAsync);
+		Context.Events.GetDataEvents(Config.Events.SetTargetEventId).SubscribeAsync(OnSetTargetAsync);
 
-		Config.Button?.Sensor.StateChanges().Subscribe(s => OnButtonPressed(s.New?.State));
+		Config.Button?.Sensor.StateChanges().SubscribeAsync(async s => await OnButtonPressedAsync(s.New?.State));
 	}
 
-#pragma warning disable VSTHRD200
-	private async Task CreateEntities()
-#pragma warning restore VSTHRD200
+	private async Task CreateEntitiesAsync()
 	{
 		var persons = Context.GetAllEntities("person");
 
 		foreach (var person in persons)
 		{
 			var name = person.GetName();
-			await _entityManager.CreateAsync(GetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "for", name));
-			await _entityManager.CreateAsync(GetTargetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "target for", name));
+			await entityManager.CreateAsync(GetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "for", name));
+			await entityManager.CreateAsync(GetTargetEntityId(name), string.Join(' ', Config.EntityDescriptionPrefix, "target for", name));
 		}
 	}
 
-	private async void ResetCounter()
+	private async Task ResetCounterAsync()
 	{
 		Logger.Information("Resetting daily {Name} counters", Config.Name);
 		var persons = Context.GetAllEntities("person");
@@ -56,16 +47,16 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		foreach (var person in persons)
 		{
 			var entityId = GetEntityId(person.GetName());
-			await _entityManager.SetStateAsync(entityId, 0.ToString());
-			await _entityManager.SetAttributesAsync(entityId, new { last_increment = 0 });
+			await entityManager.SetStateAsync(entityId, 0.ToString());
+			await entityManager.SetAttributesAsync(entityId, new { last_increment = 0 });
 		}
 	}
 
-	private async void OnButtonPressed(string? state)
+	private async Task OnButtonPressedAsync(string? state)
 	{
 		if (Config.Button == null)
 		{
-			Logger.Warning("Button config was null, this should never happen in {Name}", nameof(OnButtonPressed));
+			Logger.Warning("Button config was null, this should never happen in {Name}", nameof(OnButtonPressedAsync));
 
 			return;
 		}
@@ -75,17 +66,17 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 		// For every non-special action, increase counter by X.
 		if (action != ButtonAction.Undefined && action < ButtonDeviceMessage.SpecialActionBegin)
 		{
-			await OnAdd((int) action, Config.Button.AssociatedUser);
+			await OnAddAsync((int) action, Config.Button.AssociatedUser);
 		}
 
 		// Decrease count by 1.
 		if (action == ButtonAction.Hold)
 		{
-			await OnAdd(-1, Config.Button.AssociatedUser);
+			await OnAddAsync(-1, Config.Button.AssociatedUser);
 		}
 	}
 
-	private async void OnSetTarget(HaEvent e)
+	private async Task OnSetTargetAsync(HaEvent e)
 	{
 		var targetAmountString = e.GetData<string?>(Config.Events.AmountProperty) ?? "";
 		var user = e.GetData<string>(Config.Events.UserProperty);
@@ -100,11 +91,10 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			targetAmount = 0;
 		}
 
-		await _entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.ToString(CultureInfo.InvariantCulture));
-		SendAlerts(user);
+		await entityManager.SetStateAsync(GetTargetEntityId(user), targetAmount.ToString(CultureInfo.InvariantCulture));
 	}
 
-	private async void OnAdd(HaEvent e)
+	private async Task OnAddAsync(HaEvent e)
 	{
 		var incrementString = e.GetData<string?>(Config.Events.AmountProperty) ?? "";
 		var user = e.GetData<string>(Config.Events.UserProperty);
@@ -114,10 +104,10 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 			increment = 0;
 		}
 
-		await OnAdd(increment, user);
+		await OnAddAsync(increment, user);
 	}
 
-	private async Task OnAdd(float? increment, string? user)
+	private async Task OnAddAsync(float? increment, string? user)
 	{
 		if (increment == null || user == null)
 		{
@@ -126,21 +116,13 @@ public abstract class BaseCounter<T, TConfig> : BaseAutomation<T, TConfig>
 
 		var entityId = GetEntityId(user);
 		var newAmount = GetCurrentAmount(user) + increment.Value;
-		await _entityManager.SetStateAsync(entityId, string.Format(CultureInfo.InvariantCulture, "{0:0.00}", newAmount));
-		await _entityManager.SetAttributesAsync(entityId, new { last_increment = increment });
-		SendAlerts(user);
-	}
-
-	private void SendAlerts(string user)
-	{
-		var alertAttributes = new Entity(Context, GetAlertEntityId(user)).Attributes;
+		await entityManager.SetStateAsync(entityId, string.Format(CultureInfo.InvariantCulture, "{0:0.00}", newAmount));
+		await entityManager.SetAttributesAsync(entityId, new { last_increment = increment });
 	}
 
 	private string GetEntityId(string user) => $"{Config.EntityPrefix}{user}";
 
 	private string GetTargetEntityId(string user) => $"{GetEntityId(user)}_target";
-
-	private string GetAlertEntityId(string user) => $"{GetEntityId(user)}_alert_sent";
 
 	private float GetCurrentAmount(string user) => GetAmount(GetEntityId(user));
 
