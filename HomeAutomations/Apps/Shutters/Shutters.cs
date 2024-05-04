@@ -36,6 +36,7 @@ public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig
 			.CombineLatest(Config.SleepStateEntity.ToObservableState()
 				.Select(x => x ?? true))
 			.Select(x => (IsInTime: x.First, IsSleeping: x.Second))
+			.Do(x => Logger.Information("Open shutters: {IsInTime}, Sleep state: {IsSleeping}", x.IsInTime, x.IsSleeping))
 			.Select(x => x is
 			{
 				IsInTime: true,
