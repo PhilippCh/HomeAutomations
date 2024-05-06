@@ -6,16 +6,9 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.Reminders;
 
-public class Reminders : BaseAutomation<Reminders, RemindersConfig>
+public class Reminders(BaseAutomationDependencyAggregate<Reminders, RemindersConfig> aggregate, INotificationService notificationService)
+	: BaseAutomation<Reminders, RemindersConfig>(aggregate)
 {
-	private readonly NotificationService _notificationService;
-
-	public Reminders(BaseAutomationDependencyAggregate<Reminders, RemindersConfig> aggregate, NotificationService notificationService)
-		: base(aggregate)
-	{
-		_notificationService = notificationService;
-	}
-
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		StartReminderCrons();
@@ -27,7 +20,7 @@ public class Reminders : BaseAutomation<Reminders, RemindersConfig>
 	{
 		foreach (var reminder in Config.Reminders)
 		{
-			CronjobExtensions.ScheduleJob(reminder.Crontab, () => _notificationService.SendNotification(reminder.Notification));
+			CronjobExtensions.ScheduleJob(reminder.Crontab, () => notificationService.SendNotification(reminder.Notification));
 		}
 	}
 }

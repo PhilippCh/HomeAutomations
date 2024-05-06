@@ -15,13 +15,16 @@ public static class Startup
 	public static void ConfigureServices(IServiceCollection services)
 	{
 		services.AddLogging(x => x.AddXunitOutput());
-		services.AddTransient<Models.Generated.Entities>();
-		services.AddTransient<IServices, Models.Generated.Services>();
-		services.AddNetDaemonScheduler();
-		services.AddScoped<IHaContext, HaContextMock>();
-		services.AddScoped<TestScheduler>();
-		services.AddTransient<IScheduler>(s => s.GetRequiredService<TestScheduler>());
-		services.AddTransient<StateChangeManager>();
-		services.AddTransient<TestEntityBuilder>();
+
+		services
+			.AddNetDaemonScheduler()
+			.AddTransient<Models.Generated.Entities>()
+			.AddTransient<IServices, Models.Generated.Services>()
+			.AddTransient<IScheduler>(s => s.GetRequiredService<TestScheduler>())
+			.AddTransient<StateChangeManager>()
+			.AddTransient<TestEntityBuilder>()
+			.AddTransient<TestAppBuilder>()
+			.AddScoped<IHaContext, HaContextMock>()
+			.AddScoped<TestScheduler>();
 	}
 }

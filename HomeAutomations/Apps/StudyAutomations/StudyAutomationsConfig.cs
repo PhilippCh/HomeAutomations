@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using HomeAutomations.Common.Models.Config;
+﻿using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Entities.Triggers;
 using HomeAutomations.Models.Generated;
 

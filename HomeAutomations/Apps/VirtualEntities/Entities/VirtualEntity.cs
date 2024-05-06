@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using HomeAutomations.Extensions;
 using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.VirtualEntities.Entities;

@@ -1,11 +1,17 @@
 ﻿using System.Dynamic;
 using System.Reactive.Subjects;
-using HomeAutomations.Models;
 using HomeAutomations.Common.Extensions;
+using HomeAutomations.Models;
 
 namespace HomeAutomations.Services;
 
-public class NotificationService
+public interface INotificationService
+{
+	IObservable<string> NotificationActionFired { get; }
+	void SendNotification(Notification notification, params object[] templateArgs);
+}
+
+public class NotificationService : INotificationService
 {
 	[Obsolete("Remove and use context.Events directly for different event types.")]
 	public IObservable<string> NotificationActionFired => _notificationActionFired;

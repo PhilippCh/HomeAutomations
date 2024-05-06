@@ -7,6 +7,7 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
+[Focus]
 public class ScheduledLights(BaseAutomationDependencyAggregate<ScheduledLights, ScheduledLightsConfig> aggregate, EntityStatePriorityManager _entityStatePriorityManager)
 	: BaseAutomation<ScheduledLights, ScheduledLightsConfig>(aggregate)
 {

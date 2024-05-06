@@ -1,5 +1,4 @@
-﻿using HomeAutomations.Apps.Counters.WaterCounter;
-using HomeAutomations.Models;
+﻿using HomeAutomations.Models;
 using NetDaemon.Extensions.MqttEntityManager;
 
 namespace HomeAutomations.Apps.Counters.SweetsCounter;

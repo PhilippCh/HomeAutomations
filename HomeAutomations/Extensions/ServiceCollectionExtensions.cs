@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
 using HomeAutomations.Apps.ComputerSwitches;
-using HomeAutomations.Apps.ScaleImporter;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
@@ -9,6 +8,7 @@ using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Common.Services.Bluetooth.Commands;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
+using HomeAutomations.Services.Weather;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
@@ -23,7 +23,8 @@ public static class ServiceCollectionExtensions
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
 			.AddSingleton<MqttService>()
 			.AddScoped<WakeOnLanService>()
-			.AddScoped<NotificationService>()
+			.AddScoped<INotificationService, NotificationService>()
+			.AddTransient<IWeatherService, WeatherService>()
 			.AddTransient<ActionSequencerService>()
 			.AddSingleton<EntityStatePriorityManager>()
 			.AddTransient<PingService>()
@@ -32,6 +33,9 @@ public static class ServiceCollectionExtensions
 			.Configure<BluetoothServiceConfig>(config.GetSection("Bluetooth"))
 			.AddSingleton<BluetoothService>()
 			.AddTransient<AtCommandService>()
+
+			// Weather
+			.Configure<OpenWeatherMapConfig>(config.GetSection("Weather"))
 
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
 			.AddTransient(typeof(BaseServiceDependencyAggregate<,>))

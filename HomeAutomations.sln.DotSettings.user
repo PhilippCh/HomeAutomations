@@ -9,6 +9,9 @@
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.ObservableExtensionTests.EmitDelayed_ShouldEmitOnceImmediatelyIfSameValue&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.ObservableExtensionTests.EmitDelayed_ShouldUseDelayForPredicate&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.ObservableExtensionTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Apps.VirtualEntities.ShuttersTests.ShouldCreateOpenShuttersEntityAsync&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Apps.ShuttersTests.ShouldCreateOpenShuttersEntityAsync&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Apps.ShuttersTests.ShouldCloseShuttersAfterSunsetWithDelayAsync&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

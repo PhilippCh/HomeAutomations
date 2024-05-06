@@ -7,22 +7,16 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.Lights.AutomaticLights;
 
-public class AutomaticLights : BaseAutomation<AutomaticLights, AutomaticLightsConfig>
+public class AutomaticLights(BaseAutomationDependencyAggregate<AutomaticLights, AutomaticLightsConfig> aggregate, INotificationService notificationService)
+	: BaseAutomation<AutomaticLights, AutomaticLightsConfig>(aggregate)
 {
-	private readonly NotificationService _notificationService;
 	private List<AutomaticLight> _lights = new();
-
-	public AutomaticLights(BaseAutomationDependencyAggregate<AutomaticLights, AutomaticLightsConfig> aggregate, NotificationService notificationService)
-		: base(aggregate)
-	{
-		_notificationService = notificationService;
-	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		_lights = Config.Groups
 			.SelectMany(g => g.Lights)
-			.Select(e => new AutomaticLight(e, Logger, _notificationService))
+			.Select(e => new AutomaticLight(e, Logger, notificationService))
 			.ToList();
 
 		_lights.ForEach(l => l.StartMonitoring());

@@ -2,7 +2,6 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using HomeAutomations.Entities.Extensions;
-using HomeAutomations.Extensions;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
@@ -20,12 +19,12 @@ public class AutomaticLight
 
 	private readonly AutomaticLightEntity _entity;
 	private readonly ILogger _logger;
-	private readonly NotificationService _notificationService;
+	private readonly INotificationService _notificationService;
 
 	private int? _brightness = DefaultBrightnessPct;
 	private IDisposable? _lightCycleObserver;
 
-	public AutomaticLight(AutomaticLightEntity entity, ILogger logger, NotificationService notificationService)
+	public AutomaticLight(AutomaticLightEntity entity, ILogger logger, INotificationService notificationService)
 	{
 		_entity = entity;
 		_logger = logger;

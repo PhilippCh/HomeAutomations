@@ -17,7 +17,7 @@ public class LaundryDay(
 	BaseAutomationDependencyAggregate<LaundryDay, LaundryDayConfig> aggregate,
 	IMqttEntityManager entityManager,
 	BoschShcServices boschShcServices,
-	NotificationService notificationService,
+	INotificationService notificationService,
 	IScheduler scheduler)
 	: BaseAutomation<LaundryDay, LaundryDayConfig>(aggregate)
 {

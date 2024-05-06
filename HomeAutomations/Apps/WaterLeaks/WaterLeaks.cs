@@ -6,7 +6,7 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.WaterLeaks;
 
-public class WaterLeaks(BaseAutomationDependencyAggregate<WaterLeaks, WaterLeaksConfig> aggregate, NotificationService notificationService)
+public class WaterLeaks(BaseAutomationDependencyAggregate<WaterLeaks, WaterLeaksConfig> aggregate, INotificationService notificationService)
 	: BaseAutomation<WaterLeaks, WaterLeaksConfig>(aggregate)
 {
 	protected override Task StartAsync(CancellationToken cancellationToken)

@@ -30,9 +30,9 @@ public class DoorLock : BaseAutomation<DoorLock, DoorLockConfig>
 	private DateTimeOffset? _lastRtoActivation;
 	private IDisposable? _ringSensorObserver;
 
-	private readonly NotificationService _notificationService;
+	private readonly INotificationService _notificationService;
 
-	public DoorLock(BaseAutomationDependencyAggregate<DoorLock, DoorLockConfig> aggregate, NotificationService notificationService)
+	public DoorLock(BaseAutomationDependencyAggregate<DoorLock, DoorLockConfig> aggregate, INotificationService notificationService)
 		: base(aggregate)
 	{
 		_notificationService = notificationService;

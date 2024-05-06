@@ -22,9 +22,9 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 	private IDisposable? _reminderObserver;
 	private bool _hasSentReminderToday;
 
-	private readonly NotificationService _notificationService;
+	private readonly INotificationService _notificationService;
 
-	public TrashReminder(BaseAutomationDependencyAggregate<TrashReminder, TrashReminderConfig> aggregate, NotificationService notificationService)
+	public TrashReminder(BaseAutomationDependencyAggregate<TrashReminder, TrashReminderConfig> aggregate, INotificationService notificationService)
 		: base(aggregate)
 	{
 		_notificationService = notificationService;

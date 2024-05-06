@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using HomeAutomations.Apps.ComputerSwitches;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;

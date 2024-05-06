@@ -49,19 +49,19 @@ public static class ObservableExtensions
 			.Where(x => x.IsSuccess)
 			.Select(x => x.Value);
 
-	public static IObservable<DateTime> IntervalSunset(double latitude, double longitude) =>
-		GetIsSunUp(latitude, longitude)
+	public static IObservable<DateTime> IntervalSunset(double latitude, double longitude, IScheduler? scheduler = default) =>
+		GetIsSunUp(latitude, longitude, scheduler)
 			.Where(x => !x.IsSunUp)
 			.Select(x => x.Date);
 
-	public static IObservable<DateTime> IntervalSunrise(double latitude, double longitude) =>
-		GetIsSunUp(latitude, longitude)
+	public static IObservable<DateTime> IntervalSunrise(double latitude, double longitude, IScheduler? scheduler = default) =>
+		GetIsSunUp(latitude, longitude, scheduler)
 			.Where(x => x.IsSunUp)
 			.Select(x => x.Date);
 
-	private static IObservable<(DateTime Date, bool IsSunUp)> GetIsSunUp(double latitude, double longitude)
+	private static IObservable<(DateTime Date, bool IsSunUp)> GetIsSunUp(double latitude, double longitude, IScheduler? scheduler)
 	{
-		return Observable.Interval(TimeSpan.FromMinutes(1))
+		return Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default)
 			.Select(
 				_ =>
 				{

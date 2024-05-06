@@ -8,7 +8,7 @@ using Renci.SshNet;
 
 namespace HomeAutomations.Apps.UpdateInstagramToken;
 
-public class UpdateInstagramToken(BaseAutomationDependencyAggregate<UpdateInstagramToken, UpdateInstagramTokenConfig> aggregate, NotificationService notificationService)
+public class UpdateInstagramToken(BaseAutomationDependencyAggregate<UpdateInstagramToken, UpdateInstagramTokenConfig> aggregate, INotificationService notificationService)
 	: BaseAutomation<UpdateInstagramToken, UpdateInstagramTokenConfig>(aggregate)
 {
 	protected override Task StartAsync(CancellationToken cancellationToken)

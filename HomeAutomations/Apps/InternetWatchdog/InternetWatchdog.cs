@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Entities.Constants;
 using HomeAutomations.Models;
@@ -9,9 +8,9 @@ namespace HomeAutomations.Apps.InternetWatchdog;
 
 public class InternetWatchdog : BaseAutomation<InternetWatchdog, InternetWatchdogConfig>
 {
-	private readonly NotificationService _notificationService;
+	private readonly INotificationService _notificationService;
 
-	public InternetWatchdog(BaseAutomationDependencyAggregate<InternetWatchdog, InternetWatchdogConfig> aggregate, NotificationService notificationService)
+	public InternetWatchdog(BaseAutomationDependencyAggregate<InternetWatchdog, InternetWatchdogConfig> aggregate, INotificationService notificationService)
 		: base(aggregate)
 	{
 		_notificationService = notificationService;

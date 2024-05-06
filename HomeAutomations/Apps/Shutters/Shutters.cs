@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reactive.Concurrency;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Entities.Extensions;
@@ -13,7 +14,7 @@ using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensi
 namespace HomeAutomations.Apps.Shutters;
 
 [Focus]
-public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, NotificationService notificationService, IMqttEntityManager entityManager)
+public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, INotificationService notificationService, IMqttEntityManager entityManager, IScheduler scheduler)
 	: BaseAutomation<Shutters, ShuttersConfig>(aggregate)
 {
 	private readonly Dictionary<ShutterConfig, IDisposable> _retryCloseShutterObservers = new();
@@ -22,7 +23,7 @@ public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig
 	{
 		await entityManager.CreateAsync(Config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
 
-		ObservableExtensions.IntervalSunset(Config.Latitude, Config.Longitude)
+		ObservableExtensions.IntervalSunset(Config.Latitude, Config.Longitude, scheduler)
 			.Delay(Config.CloseDelay)
 			.Subscribe(_ => CloseAllShutters());
 
@@ -31,7 +32,7 @@ public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig
 		// Automatically open the bedroom shutters *only* if:
 		// - No one has been sleeping for at least OpenDelay time
 		// - It is after OpenTime hours
-		ObservableExtensions
+		/*ObservableExtensions
 			.Between(Config.OpenTime.GetActualTime(AppConstants.Latitude, AppConstants.Longitude)!.Value, DateTime.Today.Add(TimeSpan.Parse("23:59:59")))
 			.CombineLatest(Config.SleepStateEntity.ToObservableState()
 				.Select(x => x ?? true))
@@ -48,7 +49,7 @@ public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig
 		// Open the shutters when the open sensor is triggered.
 		Config.OpenSensorEntity.StateChanges()
 			.Where(x => (x.New?.IsOn() ?? false) && (x.Old?.IsOff() ?? false))
-			.Subscribe(_ => OpenShutters());
+			.Subscribe(_ => OpenShutters());*/
 	}
 
 	private async Task SetOpenShuttersSensorStateAsync(bool shouldOpen)
