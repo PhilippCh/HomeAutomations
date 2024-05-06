@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
 using Moq;
 using NetDaemon.Extensions.MqttEntityManager;
+using Xunit;
 
 namespace HomeAutomations.Tests.Helpers;
 
@@ -17,8 +19,13 @@ public static class MqttEntityManagerMockHelper
 			));
 	}
 
-	public static void VerifyStateChanges(this Mock<IMqttEntityManager> mock, string entityId, params string[] states)
+	public static IEnumerable<string> CaptureSetState(this Mock<IMqttEntityManager> mock, string entityId)
 	{
-		states.ForEach(x => mock.Verify(y => y.SetStateAsync(entityId, It.Is<string>(z => x == z))));
+		var invokedStates = new List<string>();
+		mock.Setup(x => x.SetStateAsync(entityId, It.IsAny<string>()))
+			.Callback<string, string>((_, z) => invokedStates.Add(z))
+			.Returns(Task.CompletedTask);
+
+		return invokedStates;
 	}
 }

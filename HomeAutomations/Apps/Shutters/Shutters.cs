@@ -51,8 +51,8 @@ public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 		// - It is after OpenTime hours
 		ObservableExtensions
 			.Between(
-				Config.OpenTime.GetActualTime(AppConstants.Latitude, AppConstants.Longitude)!.Value,
-				DateTime.Today.Add(TimeSpan.Parse("23:59:59")),
+				() => Config.OpenTime.GetActualTime(AppConstants.Latitude, AppConstants.Longitude, _clockService.Now)!.Value,
+				() => _clockService.Now.Date.Add(TimeSpan.Parse("23:59:59")),
 				() => _clockService.Now,
 				_scheduler)
 			.CombineLatest(Config.SleepStateEntity.ToObservableState()

@@ -30,7 +30,7 @@ public static class ObservableExtensions
 			.DistinctUntilChanged();
 	}
 
-	public static IObservable<bool> Between(DateTime start, DateTime end, Func<DateTime> now, IScheduler? scheduler = null) =>
+	public static IObservable<bool> Between(Func<DateTime> start, Func<DateTime> end, Func<DateTime> now, IScheduler? scheduler = null) =>
 		Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default)
 			.StartWith(0)
 			.Select(
@@ -38,7 +38,7 @@ public static class ObservableExtensions
 				{
 					var nowDate = now();
 
-					return nowDate >= start && nowDate < end;
+					return nowDate >= start() && nowDate < end();
 				})
 			.DistinctUntilChanged();
 

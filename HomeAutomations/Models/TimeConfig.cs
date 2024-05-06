@@ -11,12 +11,12 @@ public record TimeConfig
 
 	public DateTime? GetActualTime(double latitude, double longitude, DateTime? time = null)
 	{
-		var date = time ?? DateTime.Now;
+		var date = (time ?? DateTime.Now).Date;
 		var actualHour = date.IsWeekend(includeFriday: IncludeFriday) ? HourWeekend ?? Hour : Hour;
 
 		try
 		{
-			return date.Date.Add(TimeSpan.Parse(actualHour));
+			return date.Add(TimeSpan.Parse(actualHour));
 		}
 		catch (Exception)
 		{

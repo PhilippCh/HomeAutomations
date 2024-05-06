@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
@@ -16,13 +17,16 @@ using Microsoft.Reactive.Testing;
 using Moq;
 using NetDaemon.Extensions.MqttEntityManager;
 using Xunit;
-// ReSharper disable InconsistentNaming
 
+// ReSharper disable InconsistentNaming
 namespace HomeAutomations.Tests.Tests.Apps;
 
 [SuppressMessage("Style", "VSTHRD200")]
 public class ShuttersTests : IAsyncLifetime
 {
+	private const string On = "ON";
+	private const string Off = "OFF";
+
 	private readonly TestAppBuilder _testAppBuilder;
 	private readonly StateChangeManager _stateChangeManager;
 	private readonly TestScheduler _testScheduler;
@@ -33,6 +37,7 @@ public class ShuttersTests : IAsyncLifetime
 	private readonly ShuttersConfig _config;
 
 	private Shutters? _sut;
+	private IEnumerable<string> _openShutterSensorStates;
 
 	public ShuttersTests(
 		TestEntityBuilder testEntityBuilder,
@@ -52,7 +57,7 @@ public class ShuttersTests : IAsyncLifetime
 			Longitude = AppConstants.Longitude,
 			OpenTime = new TimeConfig
 			{
-				Hour = "00:08:00",
+				Hour = "08:00:00",
 				HourWeekend = "12:00:00",
 				IncludeFriday = false
 			},
@@ -87,6 +92,7 @@ public class ShuttersTests : IAsyncLifetime
 	{
 		var aggregate = _testAppBuilder.CreateAppAggregate<Shutters, ShuttersConfig>(_config);
 		_sut = new Shutters(aggregate, _notificationServiceMock.Object, _mqttEntityManagerMock.Object, _clockServiceMock, _testScheduler);
+		_openShutterSensorStates = _mqttEntityManagerMock.CaptureSetState(_config.OpenShuttersSensorEntity.EntityId);
 
 		await _sut.InitializeAsync(CancellationToken.None);
 	}
@@ -94,19 +100,18 @@ public class ShuttersTests : IAsyncLifetime
 	public Task DisposeAsync() => Task.CompletedTask;
 
 	[Fact]
-	public void ShouldCreateOpenShuttersEntity()
+	public void Common_ShouldCreateOpenShuttersEntity()
 	{
 		_mqttEntityManagerMock.VerifyCreateEntity(_config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
 	}
 
 	[Fact]
-	public void ShouldNotCloseShuttersBeforeSunset()
+	public void Closing_ShouldKeepOpenBeforeSunset()
 	{
 		var date = new DateTime(2024, 5, 6, 17, 0, 0);
 		var celestial = new Celestial(_config.Latitude, _config.Longitude, DateTime.Now, TimeZoneInfo.Local.GetUtcOffset(date).TotalHours);
 		var sunset = celestial.SunSet!.Value; // The sun always sets in Neuburg, so we can ignore null values.
 
-		_stateChangeManager.Change(_windowOpenSensor, "off");
 		SetNowAndAdvanceScheduler(date);
 		_stateChangeManager.ServiceCalls.Should().BeEmpty();
 
@@ -115,14 +120,12 @@ public class ShuttersTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public void ShouldCloseShuttersAfterSunsetWithDelay()
+	public void Closing_ShouldCloseAfterSunsetWithDelay()
 	{
 		var date = new DateTime(2024, 5, 6, 17, 0, 0);
 		var celestial = new Celestial(_config.Latitude, _config.Longitude, DateTime.Now, TimeZoneInfo.Local.GetUtcOffset(date).TotalHours);
 		var sunset = celestial.SunSet!.Value; // The sun always sets in Neuburg, so we can ignore null values.
 
-		// "Close" our test window.
-		_stateChangeManager.Change(_windowOpenSensor, "off");
 		SetNowAndAdvanceScheduler(date);
 		_stateChangeManager.ServiceCalls.Should().BeEmpty();
 
@@ -133,15 +136,79 @@ public class ShuttersTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public void ShouldOpenShutters()
+	public void Opening_ShouldKeepClosedIfTooEarly()
 	{
-		var date = new DateTime(2024, 5, 6, 8, 0, 1);
-
-		_stateChangeManager.Change(_windowOpenSensor, "off");			// "Close" our test window.
-		_stateChangeManager.Change(_config.SleepStateEntity, "off");	// No one is sleeping.
+		var date = new DateTime(2024, 5, 6, 7, 0, 0);
+		_stateChangeManager.Change(_config.SleepStateEntity, Off); // No one is sleeping.
 		SetNowAndAdvanceScheduler(date);
 
-		_mqttEntityManagerMock.VerifyStateChanges(_config.OpenShuttersSensorEntity.EntityId, "OFF", "ON");
+		Assert.Equal(new[] { Off }, _openShutterSensorStates);
+	}
+
+	[Fact]
+	public void Opening_ShouldKeepClosedIfTooEarlyAndStillSleeping()
+	{
+		var date = new DateTime(2024, 5, 6, 7, 0, 0);
+		_stateChangeManager.Change(_config.SleepStateEntity, On); // Someone is still sleeping.
+		SetNowAndAdvanceScheduler(date);
+
+		Assert.Equal(new[] { Off }, _openShutterSensorStates);
+	}
+
+	[Fact]
+	public void Opening_ShouldKeepClosedIfAfterOpeningTimeButStillSleeping()
+	{
+		var date = new DateTime(2024, 5, 6, 10, 0, 0);
+		_stateChangeManager.Change(_config.SleepStateEntity, On); // Someone is still sleeping.
+		SetNowAndAdvanceScheduler(date);
+
+		Assert.Equal(new[] { Off }, _openShutterSensorStates);
+	}
+
+	[Fact]
+	public void Opening_ShouldOpenIfAfterOpeningTime()
+	{
+		var date = new DateTime(2024, 5, 6, 7, 0, 0);
+		_stateChangeManager.Change(_config.SleepStateEntity, Off); // No one is sleeping.
+		SetNowAndAdvanceScheduler(date);
+
+		Assert.Equal(new[] { Off }, _openShutterSensorStates);
+
+		SetNowAndAdvanceScheduler(date.AddHours(1));
+
+		Assert.Equal(new[] { Off, On }, _openShutterSensorStates);
+	}
+
+	[Fact]
+	public void Opening_ShouldHandleComplexCase()
+	{
+		var date = new DateTime(2024, 5, 6, 2, 0, 0);
+		_stateChangeManager.Change(_config.SleepStateEntity, Off);			// No one is sleeping.
+		SetNowAndAdvanceScheduler(date);
+
+		// No one is sleeping, but it's too early to open the shutters.
+		Assert.Equal(new[] { Off }, _openShutterSensorStates);
+
+		_stateChangeManager.Change(_config.SleepStateEntity, On);			// We are sleeping now.
+		date = new DateTime(2024, 5, 6, 6, 37, 0);		// It's still before opening time.
+		SetNowAndAdvanceScheduler(date);
+		Assert.Equal(new[] { Off }, _openShutterSensorStates);
+
+		date = new DateTime(2024, 5, 6, 12, 0, 0);		// It's now after opening time, but we are still sleeping.
+		SetNowAndAdvanceScheduler(date);
+		Assert.Equal(new[] { Off }, _openShutterSensorStates);
+
+		_stateChangeManager.Change(_config.SleepStateEntity, Off);			// We are not sleeping anymore.
+		SetNowAndAdvanceScheduler(date);
+		Assert.Equal(new[] { Off, On }, _openShutterSensorStates);
+
+		date = new DateTime(2024, 5, 7, 0, 0, 0);		// It's again before opening time, but we are not yet sleeping.
+		SetNowAndAdvanceScheduler(date);
+		Assert.Equal(new[] { Off, On, Off }, _openShutterSensorStates);
+
+		date = new DateTime(2024, 5, 7, 9, 0, 0);		// It's after opening time, and we are not sleeping anymore.
+		SetNowAndAdvanceScheduler(date);
+		Assert.Equal(new[] { Off, On, Off, On }, _openShutterSensorStates);
 	}
 
 	private void SetNowAndAdvanceScheduler(DateTime now, TimeSpan? advanceBy = default)

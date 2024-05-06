@@ -3,7 +3,7 @@ HomeAutomations.Apps.Shutters.ShuttersConfig:
   Latitude: 48.985865943289255 # TODO: Use a global config for this. Also used in ScheduledLights.
   Longitude: 8.247879062542783
   OpenTime:
-    Hour: 00:08:00
+    Hour: 08:00:00
     HourWeekend: 12:00:00
     IncludeFriday: false
   OpenDelay: 00:15:00
