@@ -8,6 +8,7 @@ using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
+using HomeAutomations.Services.Weather;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Entities;
 
@@ -17,6 +18,7 @@ public class LaundryDay(
 	BaseAutomationDependencyAggregate<LaundryDay, LaundryDayConfig> aggregate,
 	IMqttEntityManager entityManager,
 	BoschShcServices boschShcServices,
+	IWeatherService weatherService,
 	INotificationService notificationService,
 	IScheduler scheduler)
 	: BaseAutomation<LaundryDay, LaundryDayConfig>(aggregate)
@@ -40,7 +42,7 @@ public class LaundryDay(
 			.Where(_ => DateTime.Now.TimeOfDay >= Config.Ventilation.StartTime && DateTime.Now.TimeOfDay < Config.Ventilation.EndTime)
 			.Select(x => x.New?.State.AsFloat())
 			.EmitDelayed(x => x >= Config.Ventilation.MaxHumidity, Config.Ventilation.ReminderDelay)
-			.Subscribe(OnHumidityChanged);
+			.SubscribeAsync(OnHumidityChangedAsync);
 	}
 
 	private async Task CreateEntityIfNotExistsAsync()
@@ -93,7 +95,7 @@ public class LaundryDay(
 		}
 	}
 
-	private void OnHumidityChanged(float? humidity)
+	private async Task OnHumidityChangedAsync(float? humidity)
 	{
 		if (humidity == null)
 		{
@@ -106,6 +108,13 @@ public class LaundryDay(
 		{
 			ResetVentilationReminder();
 
+			return;
+		}
+
+		var weather = await weatherService.GetCurrentAsync(AppConstants.Latitude, AppConstants.Longitude);
+		if (humidity <= weather?.Humidity)
+		{
+			Logger.Information("Humidity {Inside} is lower than outside {Outside}, no need for ventilation", humidity, weather.Humidity);
 			return;
 		}
 
