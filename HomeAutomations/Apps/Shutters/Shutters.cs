@@ -13,18 +13,35 @@ using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensi
 
 namespace HomeAutomations.Apps.Shutters;
 
-[Focus]
-public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate, INotificationService notificationService, IMqttEntityManager entityManager, IScheduler scheduler)
-	: BaseAutomation<Shutters, ShuttersConfig>(aggregate)
+public class Shutters : BaseAutomation<Shutters, ShuttersConfig>
 {
 	private readonly Dictionary<ShutterConfig, IDisposable> _retryCloseShutterObservers = new();
+	private readonly INotificationService _notificationService;
+	private readonly IMqttEntityManager _entityManager;
+	private readonly IClockService _clockService;
+	private readonly IScheduler _scheduler;
+
+	// ReSharper disable once ConvertToPrimaryConstructor | Primary constructor displays values as null, see https://github.com/dotnet/roslyn/issues/70730.
+	public Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig> aggregate,
+	                INotificationService notificationService,
+	                IMqttEntityManager entityManager,
+	                IClockService clockService,
+	                IScheduler scheduler)
+		: base(aggregate)
+	{
+		_notificationService = notificationService;
+		_entityManager = entityManager;
+		_clockService = clockService;
+		_scheduler = scheduler;
+	}
 
 	protected override async Task StartAsync(CancellationToken cancellationToken)
 	{
-		await entityManager.CreateAsync(Config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
+		await _entityManager.CreateAsync(Config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
 
-		ObservableExtensions.IntervalSunset(Config.Latitude, Config.Longitude, scheduler)
-			.Delay(Config.CloseDelay)
+		ObservableExtensions.IntervalSunset(Config.Latitude, Config.Longitude, () => _clockService.Now, _scheduler)
+			.Delay(Config.CloseDelay, _scheduler)
+			.Do(_ => Logger.Information("Closing shutters due to sunset"))
 			.Subscribe(_ => CloseAllShutters());
 
 		Config.OpenSensorEntity.StateChanges().Subscribe(s => OnOpenButtonPressed(s.New?.State));
@@ -32,12 +49,16 @@ public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig
 		// Automatically open the bedroom shutters *only* if:
 		// - No one has been sleeping for at least OpenDelay time
 		// - It is after OpenTime hours
-		/*ObservableExtensions
-			.Between(Config.OpenTime.GetActualTime(AppConstants.Latitude, AppConstants.Longitude)!.Value, DateTime.Today.Add(TimeSpan.Parse("23:59:59")))
+		ObservableExtensions
+			.Between(
+				Config.OpenTime.GetActualTime(AppConstants.Latitude, AppConstants.Longitude)!.Value,
+				DateTime.Today.Add(TimeSpan.Parse("23:59:59")),
+				() => _clockService.Now,
+				_scheduler)
 			.CombineLatest(Config.SleepStateEntity.ToObservableState()
 				.Select(x => x ?? true))
 			.Select(x => (IsInTime: x.First, IsSleeping: x.Second))
-			.Do(x => Logger.Information("Open shutters: {IsInTime}, Sleep state: {IsSleeping}", x.IsInTime, x.IsSleeping))
+			.Do(x => Logger.Information("Is in time: {IsInTime}, Is sleeping: {IsSleeping}", x.IsInTime, x.IsSleeping))
 			.Select(x => x is
 			{
 				IsInTime: true,
@@ -49,18 +70,18 @@ public class Shutters(BaseAutomationDependencyAggregate<Shutters, ShuttersConfig
 		// Open the shutters when the open sensor is triggered.
 		Config.OpenSensorEntity.StateChanges()
 			.Where(x => (x.New?.IsOn() ?? false) && (x.Old?.IsOff() ?? false))
-			.Subscribe(_ => OpenShutters());*/
+			.Subscribe(_ => OpenShutters());
 	}
 
 	private async Task SetOpenShuttersSensorStateAsync(bool shouldOpen)
 	{
-		await entityManager.SetBinaryStateAsync(Config.OpenShuttersSensorEntity.EntityId, shouldOpen);
+		await _entityManager.SetBinaryStateAsync(Config.OpenShuttersSensorEntity.EntityId, shouldOpen);
 	}
 
 	private void OpenShutters()
 	{
 		// TODO: Actually open the shutters.
-		notificationService.SendNotification(Config.SleepStateDebugNotification);
+		_notificationService.SendNotification(Config.SleepStateDebugNotification);
 	}
 
 	private void OnOpenButtonPressed(string? state)

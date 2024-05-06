@@ -11,11 +11,12 @@ namespace HomeAutomations.Tests.Helpers;
 
 public class StateChangeManager(IHaContext haContextMock, TestScheduler testScheduler)
 {
-	public ReadOnlyCollection<TestServiceCall> ServiceCalls => ((HaContextMock)haContextMock).ServiceCalls;
+	public ReadOnlyCollection<TestServiceCall> ServiceCalls => ((HaContextMock) haContextMock).ServiceCalls;
 
 	public StateChangeManager Change(Entity entity, string newStatevalue, object? attributes = null)
 	{
-		((HaContextMock)haContextMock).TriggerStateChange(entity, newStatevalue, attributes);
+		((HaContextMock) haContextMock).TriggerStateChange(entity, newStatevalue, attributes);
+
 		return this;
 	}
 
@@ -25,24 +26,35 @@ public class StateChangeManager(IHaContext haContextMock, TestScheduler testSche
 	public StateChangeManager AdvanceTo(DateTime dateTime)
 	{
 		testScheduler.AdvanceTo(dateTime.ToUniversalTime().Ticks);
+
 		return this;
 	}
 
 	public StateChangeManager AdvanceTo(TimeOnly timeOnly)
 	{
 		testScheduler.AdvanceTo(new DateTime(DateOnly.FromDateTime(testScheduler.Now.Date), timeOnly).ToUniversalTime().Ticks);
+
 		return this;
 	}
 
 	public StateChangeManager AdvanceTo(DateOnly dateOnly)
 	{
 		testScheduler.AdvanceTo(new DateTime(dateOnly, TimeOnly.FromDateTime(testScheduler.Now.DateTime)).ToUniversalTime().Ticks);
+
 		return this;
 	}
 
 	public StateChangeManager AdvanceDays(int days)
 	{
 		testScheduler.AdvanceBy(TimeSpan.FromDays(days).Ticks);
+
+		return this;
+	}
+
+	public StateChangeManager AdvanceBy(TimeSpan timeSpan)
+	{
+		testScheduler.AdvanceBy(timeSpan.Ticks);
+
 		return this;
 	}
 }

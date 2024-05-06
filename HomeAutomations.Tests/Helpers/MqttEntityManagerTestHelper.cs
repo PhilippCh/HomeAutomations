@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using HomeAutomations.Common.Extensions;
 using Moq;
 using NetDaemon.Extensions.MqttEntityManager;
 
@@ -13,5 +15,10 @@ public static class MqttEntityManagerMockHelper
 				new EntityCreationOptions(default, entityId, description, null, null, null, null, true),
 				null
 			));
+	}
+
+	public static void VerifyStateChanges(this Mock<IMqttEntityManager> mock, string entityId, params string[] states)
+	{
+		states.ForEach(x => mock.Verify(y => y.SetStateAsync(entityId, It.Is<string>(z => x == z))));
 	}
 }

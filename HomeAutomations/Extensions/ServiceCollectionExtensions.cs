@@ -24,6 +24,7 @@ public static class ServiceCollectionExtensions
 			.AddSingleton<MqttService>()
 			.AddScoped<WakeOnLanService>()
 			.AddScoped<INotificationService, NotificationService>()
+			.AddScoped<IClockService, ClockService>()
 			.AddTransient<IWeatherService, WeatherService>()
 			.AddTransient<ActionSequencerService>()
 			.AddSingleton<EntityStatePriorityManager>()

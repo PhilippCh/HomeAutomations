@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using CoordinateSharp;
@@ -29,15 +30,15 @@ public static class ObservableExtensions
 			.DistinctUntilChanged();
 	}
 
-	public static IObservable<bool> Between(DateTime start, DateTime end, IScheduler? scheduler = null) =>
+	public static IObservable<bool> Between(DateTime start, DateTime end, Func<DateTime> now, IScheduler? scheduler = null) =>
 		Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default)
 			.StartWith(0)
 			.Select(
 				_ =>
 				{
-					var now = DateTime.Now;
+					var nowDate = now();
 
-					return now >= start && now < end;
+					return nowDate >= start && nowDate < end;
 				})
 			.DistinctUntilChanged();
 
@@ -49,23 +50,23 @@ public static class ObservableExtensions
 			.Where(x => x.IsSuccess)
 			.Select(x => x.Value);
 
-	public static IObservable<DateTime> IntervalSunset(double latitude, double longitude, IScheduler? scheduler = default) =>
-		GetIsSunUp(latitude, longitude, scheduler)
+	public static IObservable<DateTime> IntervalSunset(double latitude, double longitude, Func<DateTime> now, IScheduler? scheduler = default) =>
+		GetIsSunUp(latitude, longitude, now, scheduler)
 			.Where(x => !x.IsSunUp)
 			.Select(x => x.Date);
 
-	public static IObservable<DateTime> IntervalSunrise(double latitude, double longitude, IScheduler? scheduler = default) =>
-		GetIsSunUp(latitude, longitude, scheduler)
+	public static IObservable<DateTime> IntervalSunrise(double latitude, double longitude, Func<DateTime> now, IScheduler? scheduler = default) =>
+		GetIsSunUp(latitude, longitude, now, scheduler)
 			.Where(x => x.IsSunUp)
 			.Select(x => x.Date);
 
-	private static IObservable<(DateTime Date, bool IsSunUp)> GetIsSunUp(double latitude, double longitude, IScheduler? scheduler)
+	private static IObservable<(DateTime Date, bool IsSunUp)> GetIsSunUp(double latitude, double longitude, Func<DateTime> now, IScheduler? scheduler)
 	{
 		return Observable.Interval(TimeSpan.FromMinutes(1), scheduler ?? Scheduler.Default)
 			.Select(
 				_ =>
 				{
-					var date = DateTime.Now;
+					var date = now();
 					var utcOffset = TimeZoneInfo.Local.GetUtcOffset(date);
 					var celestial = new Celestial(latitude, longitude, date, utcOffset.TotalHours);
 

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,35 +10,43 @@ using HomeAutomations.Apps.Shutters;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
-using HomeAutomations.Services.Interfaces;
 using HomeAutomations.Tests.Helpers;
+using HomeAutomations.Tests.Mocks;
 using Microsoft.Reactive.Testing;
 using Moq;
 using NetDaemon.Extensions.MqttEntityManager;
 using Xunit;
+// ReSharper disable InconsistentNaming
 
 namespace HomeAutomations.Tests.Tests.Apps;
 
+[SuppressMessage("Style", "VSTHRD200")]
 public class ShuttersTests : IAsyncLifetime
 {
+	private readonly TestAppBuilder _testAppBuilder;
 	private readonly StateChangeManager _stateChangeManager;
-
-	private readonly Shutters _sut;
+	private readonly TestScheduler _testScheduler;
+	private readonly ClockServiceMock _clockServiceMock;
 	private readonly BinarySensorEntity _windowOpenSensor;
 	private readonly Mock<IMqttEntityManager> _mqttEntityManagerMock = new();
 	private readonly Mock<INotificationService> _notificationServiceMock = new();
+	private readonly ShuttersConfig _config;
 
-	private readonly ShuttersConfig _defaultConfig;
+	private Shutters? _sut;
 
 	public ShuttersTests(
 		TestEntityBuilder testEntityBuilder,
 		TestAppBuilder testAppBuilder,
 		StateChangeManager stateChangeManager,
-		TestScheduler testScheduler)
+		TestScheduler testScheduler,
+		IClockService clockService)
 	{
+		_testAppBuilder = testAppBuilder;
 		_stateChangeManager = stateChangeManager;
+		_testScheduler = testScheduler;
+		_clockServiceMock = (ClockServiceMock) clockService;
 		_windowOpenSensor = testEntityBuilder.CreateBinarySensor("binary_sensor.window_open_sensor_unit_test");
-		_defaultConfig = new ShuttersConfig
+		_config = new ShuttersConfig
 		{
 			Latitude = AppConstants.Latitude,
 			Longitude = AppConstants.Longitude,
@@ -72,34 +81,72 @@ public class ShuttersTests : IAsyncLifetime
 				}
 			}
 		};
-
-		var aggregate = testAppBuilder.CreateAppAggregate<Shutters, ShuttersConfig>(_defaultConfig);
-		_sut = new Shutters(aggregate, _notificationServiceMock.Object, _mqttEntityManagerMock.Object, testScheduler);
 	}
 
 	public async Task InitializeAsync()
 	{
+		var aggregate = _testAppBuilder.CreateAppAggregate<Shutters, ShuttersConfig>(_config);
+		_sut = new Shutters(aggregate, _notificationServiceMock.Object, _mqttEntityManagerMock.Object, _clockServiceMock, _testScheduler);
+
 		await _sut.InitializeAsync(CancellationToken.None);
 	}
 
 	public Task DisposeAsync() => Task.CompletedTask;
 
 	[Fact]
-	public async Task ShouldCreateOpenShuttersEntityAsync()
+	public void ShouldCreateOpenShuttersEntity()
 	{
-		_mqttEntityManagerMock.VerifyCreateEntity(_defaultConfig.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
+		_mqttEntityManagerMock.VerifyCreateEntity(_config.OpenShuttersSensorEntity.EntityId, "Open shutters sensor");
 	}
 
 	[Fact]
-	public async Task ShouldCloseShuttersAfterSunsetWithDelayAsync()
+	public void ShouldNotCloseShuttersBeforeSunset()
 	{
-		var celestial = new Celestial(_defaultConfig.Latitude, _defaultConfig.Longitude, DateTime.Now, 0);
+		var date = new DateTime(2024, 5, 6, 17, 0, 0);
+		var celestial = new Celestial(_config.Latitude, _config.Longitude, DateTime.Now, TimeZoneInfo.Local.GetUtcOffset(date).TotalHours);
 		var sunset = celestial.SunSet!.Value; // The sun always sets in Neuburg, so we can ignore null values.
 
 		_stateChangeManager.Change(_windowOpenSensor, "off");
-		_stateChangeManager.AdvanceTo(DateTime.Now.AddMinutes(1));
+		SetNowAndAdvanceScheduler(date);
+		_stateChangeManager.ServiceCalls.Should().BeEmpty();
 
+		SetNowAndAdvanceScheduler(sunset.AddSeconds(-1));
+		_stateChangeManager.ServiceCalls.Should().BeEmpty();
+	}
+
+	[Fact]
+	public void ShouldCloseShuttersAfterSunsetWithDelay()
+	{
+		var date = new DateTime(2024, 5, 6, 17, 0, 0);
+		var celestial = new Celestial(_config.Latitude, _config.Longitude, DateTime.Now, TimeZoneInfo.Local.GetUtcOffset(date).TotalHours);
+		var sunset = celestial.SunSet!.Value; // The sun always sets in Neuburg, so we can ignore null values.
+
+		// "Close" our test window.
+		_stateChangeManager.Change(_windowOpenSensor, "off");
+		SetNowAndAdvanceScheduler(date);
+		_stateChangeManager.ServiceCalls.Should().BeEmpty();
+
+		// Wait until sunset. Advance by close delay + 1 minute because IntervalSunset only checks for changes once every minute.
+		SetNowAndAdvanceScheduler(sunset.AddSeconds(1), _config.CloseDelay + TimeSpan.FromMinutes(1));
 		_stateChangeManager.ServiceCalls.Should()
-			.BeEquivalentTo(_defaultConfig.Shutters.Select(x => Events.Cover.Close(x.Entity)));
+			.BeEquivalentTo(_config.Shutters.Select(x => Events.Cover.Close(x.Entity)));
+	}
+
+	[Fact]
+	public void ShouldOpenShutters()
+	{
+		var date = new DateTime(2024, 5, 6, 8, 0, 1);
+
+		_stateChangeManager.Change(_windowOpenSensor, "off");			// "Close" our test window.
+		_stateChangeManager.Change(_config.SleepStateEntity, "off");	// No one is sleeping.
+		SetNowAndAdvanceScheduler(date);
+
+		_mqttEntityManagerMock.VerifyStateChanges(_config.OpenShuttersSensorEntity.EntityId, "OFF", "ON");
+	}
+
+	private void SetNowAndAdvanceScheduler(DateTime now, TimeSpan? advanceBy = default)
+	{
+		_clockServiceMock.Now = now;
+		_stateChangeManager.AdvanceBy(advanceBy ?? TimeSpan.FromMinutes(1));
 	}
 }

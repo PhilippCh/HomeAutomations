@@ -1,5 +1,6 @@
 using System.Reactive.Concurrency;
 using HomeAutomations.Models.Generated;
+using HomeAutomations.Services;
 using HomeAutomations.Tests.Helpers;
 using HomeAutomations.Tests.Mocks;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,7 @@ public static class Startup
 			.AddTransient<TestEntityBuilder>()
 			.AddTransient<TestAppBuilder>()
 			.AddScoped<IHaContext, HaContextMock>()
+			.AddScoped<IClockService, ClockServiceMock>()
 			.AddScoped<TestScheduler>();
 	}
 }
