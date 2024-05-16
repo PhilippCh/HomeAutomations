@@ -25,6 +25,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         - - light.living_room_tv_lightstrip
           - switch.kitchen_neon_clock
           - switch.living_room_lightbulbs
+		  - switch.living_room_pineapple
     - Name: Trolley lights
       Interval: 01:00:00
       Start:
