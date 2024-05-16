@@ -7,6 +7,7 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a076bc9e_002D3e2d_002D4a8e_002Da5a6_002Da8f629bada20/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShouldCloseShuttersAfterSunsetWithDelayAsync" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Apps.ShuttersTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Triggers.CompoundTriggerTests.ShouldReturnTrueBetweenStartAndEnd&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

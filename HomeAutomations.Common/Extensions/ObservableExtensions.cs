@@ -45,6 +45,8 @@ public static class ObservableExtensions
 	public static IObservable<(TSource? Previous, TSource? Current)> PairWithPrevious<TSource>(this IObservable<TSource> source) =>
 		source.Scan((default(TSource), default(TSource)), (acc, current) => (acc.Item2, current));
 
+	public static IObservable<T> AsObservable<T>(this T input) => Observable.Return(input);
+
 	public static IObservable<int> TryParseInt(this IObservable<string?> observable) =>
 		observable.Select(x => (IsSuccess: int.TryParse(x, out var Value), Value))
 			.Where(x => x.IsSuccess)
