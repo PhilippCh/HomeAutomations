@@ -20,20 +20,16 @@ public class KiteReminder(
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		CronjobExtensions.ScheduleJob(Config.CheckCrontab, CheckWeatherConditionsAsync, true, cancellationToken);
+		weatherService.LatestWeather.Subscribe(CheckWeatherConditions);
 		CronjobExtensions.ScheduleJob(Config.ResetCrontab, Reset, false, cancellationToken);
 
 		return Task.CompletedTask;
 	}
 
-	private async Task CheckWeatherConditionsAsync()
+	private void CheckWeatherConditions(WeatherDetails? weather)
 	{
-		var weather = await weatherService.GetCurrentAsync(AppConstants.Latitude, AppConstants.Longitude);
-
 		if (weather == null)
 		{
-			Logger.Warning("Could not deserialize OpenWeatherMap response");
-
 			return;
 		}
 
@@ -42,13 +38,14 @@ public class KiteReminder(
 			return;
 		}
 
-		var time = DateTime.Now.TimeOfDay;
+		var now = DateTime.Now;
 		var windSpeed = Math.Round(weather.WindSpeed * WindSpeedConversionFactor, 1);
 		var gustSpeed = Math.Round(weather.WindGust * WindSpeedConversionFactor, 1);
 		var shouldFire = windSpeed >= Config.Thresholds.Speed &&
 		                 gustSpeed >= Config.Thresholds.GustSpeed &&
-		                 time >= Config.EnableNotificationTime &&
-		                 time < Config.DisableNotificationTime;
+		                 now.TimeOfDay >= Config.EnableNotificationTime &&
+		                 now.TimeOfDay < Config.DisableNotificationTime &&
+		                 now - _lastNotificationDate > Config.NotificationInterval;
 
 		Logger.Debug("Wind speed: {Speed} | Gust speed: {GustSpeed} | Will send notification?: {ShouldFire}", windSpeed, gustSpeed, shouldFire);
 

@@ -36,7 +36,7 @@ public static class ServiceCollectionExtensions
 			.AddTransient<AtCommandService>()
 
 			// Weather
-			.Configure<OpenWeatherMapConfig>(config.GetSection("Weather"))
+			.Configure<WeatherServiceConfig>(config.GetSection("Weather"))
 
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
 			.AddTransient(typeof(BaseServiceDependencyAggregate<,>))

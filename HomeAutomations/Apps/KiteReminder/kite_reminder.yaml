@@ -1,6 +1,5 @@
 ---
 HomeAutomations.Apps.KiteReminder.KiteReminderConfig:
-  CheckCrontab: "*/30 * * * *"
   ResetCrontab: 0 0 * * *
   Thresholds:
     Speed: 30
@@ -11,5 +10,6 @@ HomeAutomations.Apps.KiteReminder.KiteReminderConfig:
     Template: Gerade sind {0} km/h Wind und {1} km/h Böen. Wollen wir Drachenfliegen?
     Image: https://ha.pupslab.de/local/kite_reminder.png
     Sticky: true
+  NotificationInterval: 01:00:00
   EnableNotificationTime: 10:00:00
   DisableNotificationTime: 18:00:00

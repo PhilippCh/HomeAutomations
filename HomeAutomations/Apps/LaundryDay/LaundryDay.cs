@@ -42,7 +42,9 @@ public class LaundryDay(
 			.Where(_ => DateTime.Now.TimeOfDay >= Config.Ventilation.StartTime && DateTime.Now.TimeOfDay < Config.Ventilation.EndTime)
 			.Select(x => x.New?.State.AsFloat())
 			.EmitDelayed(x => x >= Config.Ventilation.MaxHumidity, Config.Ventilation.ReminderDelay)
-			.SubscribeAsync(OnHumidityChangedAsync);
+			.CombineLatest(weatherService.LatestWeather)
+			.Select(x => (Humidity: x.First, Weather: x.Second))
+			.Subscribe(x => OnHumidityChanged(x.Humidity, x.Weather));
 	}
 
 	private async Task CreateEntityIfNotExistsAsync()
@@ -95,7 +97,7 @@ public class LaundryDay(
 		}
 	}
 
-	private async Task OnHumidityChangedAsync(float? humidity)
+	private void OnHumidityChanged(float? humidity, WeatherDetails? weather)
 	{
 		if (humidity == null)
 		{
@@ -111,7 +113,6 @@ public class LaundryDay(
 			return;
 		}
 
-		var weather = await weatherService.GetCurrentAsync(AppConstants.Latitude, AppConstants.Longitude);
 		if (humidity <= weather?.Humidity)
 		{
 			Logger.Information("Humidity {Inside} is lower than outside {Outside}, no need for ventilation", humidity, weather.Humidity);

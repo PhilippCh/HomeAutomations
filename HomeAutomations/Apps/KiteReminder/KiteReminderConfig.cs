@@ -11,10 +11,10 @@ public record WindThresholds
 
 public record KiteReminderConfig : Config
 {
-	public string CheckCrontab { get; init; }
 	public string ResetCrontab { get; init; }
 	public WindThresholds Thresholds { get; init; }
 	public Notification Notification { get; init; }
+	public TimeSpan NotificationInterval { get; init; }
 	public TimeSpan EnableNotificationTime { get; init; }
 	public TimeSpan DisableNotificationTime { get; init; }
 }
