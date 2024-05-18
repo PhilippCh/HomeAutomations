@@ -10,10 +10,16 @@ public static class EntityExtensions
 
 	public static IObservable<StateChange<TEntity, EntityState<TAttributes>>> StateChangesWithCurrentState<TEntity, TAttributes>(this TEntity entity)
 		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
-		where TAttributes : class
-	{
-		return entity.StateChanges().StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, null));
-	}
+		where TAttributes : class =>
+		entity.StateChanges()
+			.StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, null));
+
+	public static IObservable<TAttributes> ValidAttributeChanges<TEntity, TAttributes>(this TEntity entity)
+		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
+		where TAttributes : class =>
+		entity.StateAllChanges()
+			.Where(x => x.New?.Attributes != null)
+			.Select(x => x.New!.Attributes!);
 
 	/// <summary>
 	/// Returns whether the current entity state is *like* on (e.g. on, playing, etc.)

@@ -10,11 +10,20 @@ namespace HomeAutomations.Tests.Tests.Triggers;
 
 public class CompoundTriggerTests(TestScheduler testScheduler)
 {
+	private class TestTrigger : ITrigger
+	{
+		public IObservable<bool> AsObservable() => _subject;
+
+		private readonly Subject<bool> _subject = new();
+
+		public void Trigger(bool value) => _subject.OnNext(value);
+	}
+
 	[Fact]
 	public void ShouldReturnTrueBetweenStartAndEnd()
 	{
-		var start = new Subject<bool>();
-		var end = new Subject<bool>();
+		var start = new TestTrigger();
+		var end = new TestTrigger();
 		var sut = new CompoundTrigger
 		{
 			Start = start,
@@ -22,20 +31,20 @@ public class CompoundTriggerTests(TestScheduler testScheduler)
 		};
 		sut.AsObservable().SubscribeAndCapture(out var results);
 
-		start.OnNext(true);
+		start.Trigger(true);
 		results.Should().HaveCount(1).And.ContainInOrder(true);
 
-		end.OnNext(true);
+		end.Trigger(true);
 		results.Should().HaveCount(2).And.ContainInOrder(true, false);
 
-		start.OnNext(false);
+		start.Trigger(false);
 		results.Should().HaveCount(2).And.ContainInOrder(true, false);
 
-		start.OnNext(true);
+		start.Trigger(true);
 		results.Should().HaveCount(3).And.ContainInOrder(true, false, true);
 
-		start.OnNext(false);
-		end.OnNext(false);
+		start.Trigger(false);
+		end.Trigger(false);
 		results.Should().HaveCount(4).And.ContainInOrder(true, false, true, false);
 	}
 }

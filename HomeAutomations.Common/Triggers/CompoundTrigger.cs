@@ -1,15 +1,20 @@
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using HomeAutomations.Common.Extensions;
 
 namespace HomeAutomations.Common.Triggers;
 
-public class CompoundTrigger
+public class CompoundTrigger : ITrigger
 {
-	public IObservable<bool> Start { get; init; } = null!;
-	public IObservable<bool> End { get; init; } = null!;
+	public ITrigger Start { get; init; } = null!;
+	public ITrigger End { get; init; } = null!;
 
-	public IObservable<bool> AsObservable() => Start
-		.SwitchMap(x => x ? End.Select(y => !y).StartWith(true) : false.AsObservable())
-		.DistinctUntilChanged();
+	public IObservable<bool> AsObservable()
+	{
+		var endTrigger = End.AsObservable().Select(y => !y).StartWith(true);
+
+		return Start
+			.AsObservable()
+			.SwitchMap(x => x ? endTrigger : false.AsObservable())
+			.DistinctUntilChanged();
+	}
 }

@@ -1,0 +1,5 @@
+{
+  "$type": "LowLightTrigger",
+  "ThresholdLux": 100,
+  "LightSensor": "sensor.balcony_light_sensor_illuminance_2"
+}

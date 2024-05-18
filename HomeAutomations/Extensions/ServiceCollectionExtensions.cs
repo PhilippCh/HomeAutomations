@@ -1,11 +1,14 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using HomeAutomations.Apps.ComputerSwitches;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Common.Services.Bluetooth.Commands;
+using HomeAutomations.Common.Triggers;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using HomeAutomations.Services.Weather;
@@ -28,6 +31,7 @@ public static class ServiceCollectionExtensions
 			.AddTransient<IWeatherService, WeatherService>()
 			.AddTransient<ActionSequencerService>()
 			.AddSingleton<EntityStatePriorityManager>()
+			.AddScoped<TriggerRepository>()
 			.AddTransient<PingService>()
 
 			// Bluetooth
@@ -38,6 +42,7 @@ public static class ServiceCollectionExtensions
 			// Weather
 			.Configure<WeatherServiceConfig>(config.GetSection("Weather"))
 
+			.Configure<TriggerRepositoryConfig>(config.GetSection("TriggerRepository"))
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
 			.AddTransient(typeof(BaseServiceDependencyAggregate<,>))
 			.AddTransient(typeof(BaseAutomationDependencyAggregate<>))

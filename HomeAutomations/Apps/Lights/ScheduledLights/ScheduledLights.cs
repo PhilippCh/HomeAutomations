@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Common.Triggers;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
@@ -8,8 +9,10 @@ using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
 [Focus]
-public class ScheduledLights(BaseAutomationDependencyAggregate<ScheduledLights, ScheduledLightsConfig> aggregate, EntityStatePriorityManager _entityStatePriorityManager)
-	: BaseAutomation<ScheduledLights, ScheduledLightsConfig>(aggregate)
+public class ScheduledLights(
+	BaseAutomationDependencyAggregate<ScheduledLights, ScheduledLightsConfig> aggregate,
+	EntityStatePriorityManager _entityStatePriorityManager,
+	TriggerRepository triggerRepository) : BaseAutomation<ScheduledLights, ScheduledLightsConfig>(aggregate)
 {
 	private readonly Dictionary<string, CycleInfo> _runningCycles = new();
 

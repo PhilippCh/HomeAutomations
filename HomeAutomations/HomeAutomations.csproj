@@ -55,9 +55,10 @@
       <Folder Include="Apps\Lights" />
     </ItemGroup>
 
-	<Target Name="Copy app configs" BeforeTargets="Build">
+	<Target Name="Copy configs" BeforeTargets="Build">
 		<ItemGroup>
 			<ANTLR Include="Apps\**\*.yaml" />
+			<ANTLR Include="Apps\**\*.trigger.json" />
 		</ItemGroup>
 		<Copy SourceFiles="@(ANTLR)" DestinationFolder="$(TargetDir)\Apps\Config" />
 	</Target>
