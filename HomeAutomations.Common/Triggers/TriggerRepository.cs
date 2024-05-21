@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using ILogger = Serilog.ILogger;
 
 namespace HomeAutomations.Common.Triggers;
 
@@ -16,15 +17,27 @@ public class TriggerRepository
 	private readonly IServiceProvider _serviceProvider;
 	private readonly IReadOnlyDictionary<string, ITrigger> _cachedTriggers;
 
-	public TriggerRepository(IOptions<TriggerRepositoryConfig> config, IServiceProvider serviceProvider)
+	public TriggerRepository(IOptions<TriggerRepositoryConfig> config, IServiceProvider serviceProvider, ILogger loggerFactory)
 	{
 		_serviceProvider = serviceProvider;
-		_cachedTriggers = LoadTriggerConfigs(config.Value.Path).ToDictionary(x => x.Id, x => x);
+		var logger = loggerFactory.ForContext<TriggerRepository>();
+
+		var triggerConfigs = LoadTriggerConfigs(config.Value.Path);
+		var missingIdTriggerConfigs = triggerConfigs
+			.Where(x => x.Trigger.Id == null)
+			.ToList();
+
+		if (missingIdTriggerConfigs.Count > 0)
+		{
+			logger.Warning("Found trigger config files with missing id: {MissingIds}", missingIdTriggerConfigs.Select(x => x.Path));
+		}
+
+		_cachedTriggers = LoadTriggerConfigs(config.Value.Path).ToDictionary(x => x.Trigger.Id!, x => x.Trigger);
 	}
 
 	public ITrigger? GetTrigger(string name) => _cachedTriggers.GetValueOrDefault(name);
 
-	private IEnumerable<ITrigger> LoadTriggerConfigs(string path)
+	private IEnumerable<(string Path, ITrigger Trigger)> LoadTriggerConfigs(string path)
 	{
 		var absolutePath = Path.Combine(AppContext.BaseDirectory, path);
 		var triggerConfigs = Directory.EnumerateFiles(absolutePath, "*.trigger.json", SearchOption.AllDirectories);
@@ -35,9 +48,9 @@ public class TriggerRepository
 			Converters = { new EntityJsonConverterFactory(_serviceProvider) }
 		};
 
-		return triggerConfigs.Select(File.ReadAllText)
-			.Select(json => JsonSerializer.Deserialize<ITrigger>(json, serializerOptions))
-			.Where(x => x != null)
-			.Select(x => x!);
+		return triggerConfigs.Select(x => (Path: x, Json: File.ReadAllText(x)))
+			.Select(x => (x.Path, Trigger: JsonSerializer.Deserialize<ITrigger>(x.Json, serializerOptions)))
+			.Where(x => x.Trigger != null)
+			.Select(x => (x.Path, Trigger: x.Trigger!));
 	}
 }
