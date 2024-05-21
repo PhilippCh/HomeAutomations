@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reactive.Disposables;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Triggers;
 using HomeAutomations.Entities.Extensions;
@@ -90,7 +88,7 @@ public class StudyAutomations(
 	private void ToggleForceDeskLamp()
 	{
 		_isForceDeskLampStateOn = true;
-		_forceDeskLampState = !_forceDeskLampState;
+		_forceDeskLampState = !Config.DeskLamp.Entity.IsOn();
 		ToggleDeskLamp(_forceDeskLampState);
 	}
 
