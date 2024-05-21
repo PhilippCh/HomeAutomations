@@ -2,19 +2,7 @@
 HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
   DeskLampTriggerId: StudyDeskLamp
   SpeakerTriggerId: StudySpeakers
-  Computers:
-    DesktopPhilipp:
-      NetworkSensor: binary_sensor.desktopphilipp
-      UnlockedSensor: binary_sensor.desktop_philipp_unlocked
-    LaptopEnbw:
-      NetworkSensor: binary_sensor.laptopphilippenbw
-      UnlockedSensor: binary_sensor.laptop_enbw_unlocked
   Speaker: switch.study_speakers_philipp
   DeskLamp:
     Entity: light.study_desk_lamp
     SwitchAction: sensor.study_desk_lamp_switch_action
-    Timeout: 00:05:00
-    TriggerConfig:
-      Entity: sensor.study_motion_detector_illuminance_lux
-      MinBrightness: 0
-      MaxBrightness: 200

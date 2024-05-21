@@ -1,43 +1,32 @@
 {
-  "$type": "And",
+  "$type": "Or",
   "Id": "StudyDeskLamp",
   "Triggers": [
     {
-      "$type": "Or",
+      "$type": "And",
       "Triggers": [
         {
-          "$type": "And",
-          "Triggers": [
-            {
-              "$type": "BinarySensorEntity",
-              "Entity": "binary_sensor.desktopphilipp"
-            },
-            {
-              "$type": "BinarySensorEntity",
-              "Entity": "binary_sensor.desktop_philipp_unlocked"
-            }
-          ]
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.desktopphilipp"
         },
         {
-          "$type": "And",
-          "Triggers": [
-            {
-              "$type": "BinarySensorEntity",
-              "Entity": "binary_sensor.laptopphilippenbw"
-            },
-            {
-              "$type": "BinarySensorEntity",
-              "Entity": "binary_sensor.laptop_enbw_unlocked"
-            }
-          ]
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.desktop_philipp_unlocked"
         }
       ]
     },
     {
-      "$type": "Brightness",
-      "Entity": "sensor.study_motion_detector_illuminance_lux",
-      "Min": 0,
-      "Max": 200
+      "$type": "And",
+      "Triggers": [
+        {
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.laptopphilippenbw"
+        },
+        {
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.laptop_enbw_unlocked"
+        }
+      ]
     }
   ]
 }

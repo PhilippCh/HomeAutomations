@@ -11,22 +11,13 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MovieTime;
 
-public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
+[Focus]
+public class MovieTime(
+	BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate,
+	ActionSequencerService actionSequencerService,
+	EntityStatePriorityManager entityStatePriorityManager) : BaseAutomation<MovieTime, MovieTimeConfig>(aggregate)
 {
 	private const string MovieTimeActionId = "KINO";
-
-	private readonly ActionSequencerService _actionSequencerService;
-	private readonly EntityStatePriorityManager _entityStatePriorityManager;
-
-	public MovieTime(
-		BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate,
-		ActionSequencerService actionSequencerService,
-		EntityStatePriorityManager entityStatePriorityManager)
-		: base(aggregate)
-	{
-		_actionSequencerService = actionSequencerService;
-		_entityStatePriorityManager = entityStatePriorityManager;
-	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
@@ -40,7 +31,9 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 		Context.RegisterServiceCallBack<MovieTimeServiceData>("movie_time", StartMovieTime);
 
 		// Source is a state attribute, so we require StateAllChanges here.
-		Config.AvReceiver.Entity.StateAllChanges().Subscribe(x => OnAvReceiverStateChanged(x.New?.IsLikeOn(), x.New?.Attributes?.Source));
+		Config.AvReceiver.Entity
+			.StateChangesWithCurrentState<MediaPlayerEntity, MediaPlayerAttributes>()
+			.Subscribe(x => OnAvReceiverStateChanged(x.New?.IsLikeOn(), x.New?.Attributes?.Source));
 
 		return Task.CompletedTask;
 	}
@@ -49,9 +42,10 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 	{
 		Logger.Information("Switching movie time on");
 
-		await _actionSequencerService.RunAsync(
+		await actionSequencerService.RunAsync(
 			new RunAction(() => Config.Lights.ForEach(x => x.TurnOn())),
-			new RunAction(() => Config.AvReceiver.Entity.SelectSource(data.AvReceiverSource ?? Config.AvReceiver.DefaultSource)),
+			new RunAction(() => Config.AvReceiver.Entity.TurnOn()),
+			new RunAction(() => Config.AvReceiver.Entity.SelectSource(data.AvReceiverSource ?? Config.AvReceiver.DefaultSource), 5),
 			new RunAction(() => SendRemoteCommand("Beamer", commands: "power", repeats: 2, delay: 2), 1)
 		);
 	}
@@ -87,11 +81,11 @@ public class MovieTime : BaseAutomation<MovieTime, MovieTimeConfig>
 				{
 					if (isOff || !isValidSource)
 					{
-						_entityStatePriorityManager.RemoveTargetStateForTag(x, nameof(MovieTime));
+						entityStatePriorityManager.RemoveTargetStateForTag(x, nameof(MovieTime));
 					}
 					else
 					{
-						_entityStatePriorityManager.AddTargetState(x, nameof(MovieTime), false, 100);
+						entityStatePriorityManager.AddTargetState(x, nameof(MovieTime), false, 100);
 					}
 				});
 		}
