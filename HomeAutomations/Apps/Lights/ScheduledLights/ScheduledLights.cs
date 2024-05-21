@@ -14,20 +14,20 @@ public class ScheduledLights(
 	EntityStatePriorityManager _entityStatePriorityManager,
 	TriggerRepository triggerRepository) : BaseAutomation<ScheduledLights, ScheduledLightsConfig>(aggregate)
 {
-	private readonly Dictionary<string, CycleInfo> _runningCycles = new();
+	private readonly Dictionary<string, CycleInfo> _activeCycles = new();
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		foreach (var cycle in Config.LightCycles)
+		foreach (var cycleConfig in Config.LightCycles)
 		{
-			var startTrigger = triggerRepository.GetTrigger(cycle.StartTriggerId);
-			var endTrigger = triggerRepository.GetTrigger(cycle.EndTriggerId);
+			var startTrigger = triggerRepository.GetTrigger(cycleConfig.StartTriggerId);
+			var endTrigger = triggerRepository.GetTrigger(cycleConfig.EndTriggerId);
 
 			if (startTrigger == null || endTrigger == null)
 			{
 				Logger.Warning(
 					"Could not find start {StartTriggerId} or end {EndTriggerId} trigger for cycle {CycleName}",
-					cycle.StartTriggerId, cycle.EndTriggerId, cycle.Name);
+					cycleConfig.StartTriggerId, cycleConfig.EndTriggerId, cycleConfig.Name);
 
 				continue;
 			}
@@ -44,16 +44,43 @@ public class ScheduledLights(
 					{
 						if (x)
 						{
-							_runningCycles.Add(cycle.Name, new CycleInfo(cycle, _entityStatePriorityManager, Logger));
+							StartLightCycle(cycleConfig);
+
+							return;
 						}
-						else if (_runningCycles.TryGetValue(cycle.Name, out var runningCycle))
-						{
-							runningCycle.Stop();
-							_runningCycles.Remove(cycle.Name);
-						}
+
+						StartStopLightCycleImmediately(cycleConfig);
 					});
 		}
 
 		return Task.CompletedTask;
+	}
+
+	private CycleInfo StartLightCycle(CycleConfig config, bool startUpdateImmediately = true)
+	{
+		var cycle = new CycleInfo(config, _entityStatePriorityManager, Logger, startUpdateImmediately);
+		_activeCycles.Add(config.Name, cycle);
+
+		return cycle;
+	}
+
+	private void StopLightCycle(CycleInfo cycle)
+	{
+		cycle.Stop();
+		_activeCycles.Remove(cycle.Config.Name);
+	}
+
+	/// <summary>
+	/// Stops an active light cycle. If there is no active light cycle found, we will start a new cycle, skip the lights update
+	/// and stop the cycle immediately to ensure all lights are off if net-daemon has been unreachable for a longer period of time.
+	/// </summary>
+	private void StartStopLightCycleImmediately(CycleConfig config)
+	{
+		if (!_activeCycles.TryGetValue(config.Name, out var activeCycle))
+		{
+			activeCycle = StartLightCycle(config, false);
+		}
+
+		StopLightCycle(activeCycle);
 	}
 }
