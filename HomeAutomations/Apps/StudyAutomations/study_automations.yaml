@@ -1,5 +1,7 @@
 ---
 HomeAutomations.Apps.StudyAutomations.StudyAutomationsConfig:
+  DeskLampTriggerId: StudyDeskLamp
+  SpeakerTriggerId: StudySpeakers
   Computers:
     DesktopPhilipp:
       NetworkSensor: binary_sensor.desktopphilipp

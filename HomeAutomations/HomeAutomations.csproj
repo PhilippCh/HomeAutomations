@@ -52,7 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Apps\Lights" />
+      <Folder Include="Entities\Triggers\" />
     </ItemGroup>
 
 	<Target Name="Copy configs" BeforeTargets="Build">

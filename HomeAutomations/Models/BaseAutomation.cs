@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Reactive.Disposables;
+using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
@@ -18,42 +19,38 @@ public class BaseAutomationDependencyAggregate<T>(IHaContext context, ILogger lo
 {
 	public IHaContext Context { get; } = context;
 	public ILogger Logger { get; } = loggerFactory.ForContext<T>();
-	public Generated.Entities Entities => new(Context);
-
-	// ReSharper disable once ContextualLoggerProblem
 }
 
-public abstract class BaseAutomation<T, TConfig> : BaseAutomation<T> where T : BaseAutomation<T, TConfig> where TConfig : Config, new()
+public abstract class BaseAutomation<T, TConfig>(BaseAutomationDependencyAggregate<T, TConfig> aggregate)
+	: BaseAutomation<T>(new BaseAutomationDependencyAggregate<T>(aggregate.Context, aggregate.Logger))
+	where T : BaseAutomation<T, TConfig>
+	where TConfig : Config, new()
 {
-	protected TConfig Config => _aggregate.Config.Value;
-	protected Generated.Entities Entities => _aggregate.Entities;
-
-	private readonly BaseAutomationDependencyAggregate<T, TConfig> _aggregate;
-
-	protected BaseAutomation(BaseAutomationDependencyAggregate<T, TConfig> aggregate)
-		: base(new BaseAutomationDependencyAggregate<T>(aggregate.Context, aggregate.Logger))
-	{
-		_aggregate = aggregate;
-	}
+	protected TConfig Config => aggregate.Config.Value;
 }
 
 [NetDaemonApp]
 [HomeAutomation]
-public abstract class BaseAutomation<T> : IAsyncInitializable where T : BaseAutomation<T>
+public abstract class BaseAutomation<T> : IAsyncInitializable, IDisposable where T : BaseAutomation<T>
 {
 	protected ILogger Logger { get; }
 	protected IHaContext Context { get; }
-	protected Generated.Services Services { get; }
+	protected CompositeDisposable Disposables { get; } = new();
 
 	private
 		protected BaseAutomation(BaseAutomationDependencyAggregate<T> aggregate)
 	{
 		Context = aggregate.Context;
-		Services = new Generated.Services(aggregate.Context);
 		Logger = aggregate.Logger;
 	}
 
 	public async Task InitializeAsync(CancellationToken cancellationToken) => await StartAsync(cancellationToken);
 
 	protected abstract Task StartAsync(CancellationToken cancellationToken);
+
+	public void Dispose()
+	{
+		Disposables.Dispose();
+		GC.SuppressFinalize(this);
+	}
 }

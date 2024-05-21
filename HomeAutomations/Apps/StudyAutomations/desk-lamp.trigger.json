@@ -1,0 +1,43 @@
+{
+  "$type": "AndTrigger",
+  "Id": "StudyDeskLamp",
+  "Triggers": [
+    {
+      "$type": "OrTrigger",
+      "Triggers": [
+        {
+          "$type": "AndTrigger",
+          "Triggers": [
+            {
+              "$type": "BinarySensorEntityTrigger",
+              "Entity": "binary_sensor.desktopphilipp"
+            },
+            {
+              "$type": "BinarySensorEntityTrigger",
+              "Entity": "binary_sensor.desktop_philipp_unlocked"
+            }
+          ]
+        },
+        {
+          "$type": "AndTrigger",
+          "Triggers": [
+            {
+              "$type": "BinarySensorEntityTrigger",
+              "Entity": "binary_sensor.laptopphilippenbw"
+            },
+            {
+              "$type": "BinarySensorEntityTrigger",
+              "Entity": "binary_sensor.laptop_enbw_unlocked"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$type": "BrightnessTrigger",
+      "Entity": "sensor.study_motion_detector_illuminance_lux",
+      "Min": 0,
+      "Max": 200
+    }
+  ]
+}

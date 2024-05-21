@@ -1,24 +1,23 @@
-﻿using System.Threading;
+﻿using System.Diagnostics;
+using System.Reactive.Disposables;
+using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Common.Triggers;
 using HomeAutomations.Entities.Extensions;
-using HomeAutomations.Entities.Triggers;
-using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.DeviceMessages;
+using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.StudyAutomations;
 
-public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomationsConfig>
+[Focus]
+public class StudyAutomations(
+	BaseAutomationDependencyAggregate<StudyAutomations, StudyAutomationsConfig> aggregate,
+	TriggerRepository triggerRepository) : BaseAutomation<StudyAutomations, StudyAutomationsConfig>(aggregate)
 {
-	private DateTimeOffset? _deskLampStartTime;
-	private bool _isForceDeskLampStateOn;	// Determines whether force mode is on.
-	private bool _forceDeskLampState;		// Determines which mode the lamp is forced to.
-	private bool _lastTriggerState;			// Used when resetting lamp state to last automatic trigger state.
-
-	public StudyAutomations(BaseAutomationDependencyAggregate<StudyAutomations, StudyAutomationsConfig> aggregate)
-		: base(aggregate)
-	{
-	}
+	private bool _isForceDeskLampStateOn; // Determines whether force mode is on.
+	private bool _forceDeskLampState; // Determines which mode the lamp is forced to.
+	private bool _lastTriggerState; // Used when resetting lamp state to last automatic trigger state.
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
@@ -30,38 +29,27 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 	private void RegisterDeskLampTrigger()
 	{
-		var deskLampTrigger = new AndTrigger(
-			new OrTrigger(
-				new AndTrigger(
-					Config.Computers.DesktopPhilipp.NetworkSensor.ToObservableState(),
-					Config.Computers.DesktopPhilipp.UnlockedSensor.ToObservableState()
-				).GetTrigger(),
-				new AndTrigger(
-					Config.Computers.LaptopEnbw.NetworkSensor.ToObservableState(),
-					Config.Computers.LaptopEnbw.UnlockedSensor.ToObservableState()
-				).GetTrigger()
-			).GetTrigger(),
-			new BrightnessTrigger(Config.DeskLamp.TriggerConfig).GetTrigger());
+		var deskLampTrigger = triggerRepository.GetTrigger(Config.DeskLampTriggerId);
 
-		deskLampTrigger.GetTrigger().Subscribe(
-			x =>
-			{
-				Logger.Debug("DesktopPhilipp N {Network} U {Unlocked} | LaptopEnBW N {Network} U {Unlocked}",
-					Config.Computers.DesktopPhilipp.NetworkSensor.State,
-					Config.Computers.DesktopPhilipp.UnlockedSensor.State,
-					Config.Computers.LaptopEnbw.NetworkSensor.State,
-					Config.Computers.LaptopEnbw.UnlockedSensor.State);
+		if (deskLampTrigger == null)
+		{
+			Logger.Error("No trigger found for desk lamp automation");
 
-				if (x == null)
+			return;
+		}
+
+		var deskLampTriggerObserver = deskLampTrigger
+			.AsObservable()
+			.Subscribe(
+				x =>
 				{
-					return;
-				}
+					_lastTriggerState = x;
+					ToggleDeskLamp(x);
+				});
+		Disposables.Add(deskLampTriggerObserver);
 
-				_lastTriggerState = x.Value;
-				ToggleDeskLamp(x.Value);
-			});
-
-		Config.DeskLamp.SwitchAction.StateChanges()
+		var deskLampSwitchObserver = Config.DeskLamp.SwitchAction
+			.StateChanges()
 			.Subscribe(
 				s =>
 				{
@@ -74,24 +62,29 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 					action();
 				});
+		Disposables.Add(deskLampSwitchObserver);
 	}
 
 	private void RegisterSpeakerTrigger()
 	{
-		new MultiBinarySwitchTrigger(
-				new[]
-				{
-					Config.Computers.DesktopPhilipp.NetworkSensor,
-					Config.Computers.LaptopEnbw.NetworkSensor
-				})
-			.GetTrigger()
-			.WhereNotNull()
+		var speakerTrigger = triggerRepository.GetTrigger(Config.SpeakerTriggerid);
+
+		if (speakerTrigger == null)
+		{
+			Logger.Error("No trigger found for computer speaker automation");
+
+			return;
+		}
+
+		var speakerTriggerObserver = speakerTrigger
+			.AsObservable()
 			.Subscribe(
 				x =>
 				{
 					Logger.Information("Setting speakers to {State}", x);
 					Config.Speaker.SetState(x);
 				});
+		Disposables.Add(speakerTriggerObserver);
 	}
 
 	private void ToggleForceDeskLamp()
@@ -113,10 +106,5 @@ public class StudyAutomations : BaseAutomation<StudyAutomations, StudyAutomation
 
 		Logger.Information("Setting desk lamp to {State}", state);
 		Config.DeskLamp.Entity.SetState(state);
-
-		if (state)
-		{
-			_deskLampStartTime = DateTimeOffset.Now;
-		}
 	}
 }

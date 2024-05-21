@@ -14,14 +14,17 @@ public record TriggerRepositoryConfig
 public class TriggerRepository
 {
 	private readonly IServiceProvider _serviceProvider;
+	private readonly IReadOnlyDictionary<string, ITrigger> _cachedTriggers;
 
 	public TriggerRepository(IOptions<TriggerRepositoryConfig> config, IServiceProvider serviceProvider)
 	{
 		_serviceProvider = serviceProvider;
-		LoadTriggerConfigs(config.Value.Path);
+		_cachedTriggers = LoadTriggerConfigs(config.Value.Path).ToDictionary(x => x.Id, x => x);
 	}
 
-	private void LoadTriggerConfigs(string path)
+	public ITrigger? GetTrigger(string name) => _cachedTriggers.GetValueOrDefault(name);
+
+	private IEnumerable<ITrigger> LoadTriggerConfigs(string path)
 	{
 		var absolutePath = Path.Combine(AppContext.BaseDirectory, path);
 		var triggerConfigs = Directory.EnumerateFiles(absolutePath, "*.trigger.json", SearchOption.AllDirectories);
@@ -31,8 +34,10 @@ public class TriggerRepository
 			TypeInfoResolver = new TriggerTypeInfoResolver(),
 			Converters = { new EntityJsonConverterFactory(_serviceProvider) }
 		};
-		var triggers = triggerConfigs.Select(File.ReadAllText)
+
+		return triggerConfigs.Select(File.ReadAllText)
 			.Select(json => JsonSerializer.Deserialize<ITrigger>(json, serializerOptions))
-			.ToList();
+			.Where(x => x != null)
+			.Select(x => x!);
 	}
 }

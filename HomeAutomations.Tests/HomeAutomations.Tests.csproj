@@ -31,4 +31,8 @@
 		<ProjectReference Include="..\HomeAutomations\HomeAutomations.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Tests\Triggers\" />
+	</ItemGroup>
+
 </Project>
