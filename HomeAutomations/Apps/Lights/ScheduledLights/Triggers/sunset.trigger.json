@@ -11,7 +11,7 @@
     {
       "$type": "SensorEntityLowerThan",
       "Entity": "sensor.balcony_light_sensor_illuminance_2",
-      "Threshold": 900
+      "Threshold": 200
     }
   ]
 }
