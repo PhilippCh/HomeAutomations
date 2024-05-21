@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Triggers;
 
@@ -15,4 +16,6 @@ public class BooleanTrigger : ITrigger
 			.AsObservable()
 			.SwitchMap(x => x ? TrueTrigger.AsObservable() : FalseTrigger.AsObservable())
 			.DistinctUntilChanged();
+
+	public IEnumerable<ITrigger> GetTriggersInternal() => new[] { Condition, TrueTrigger, FalseTrigger };
 }

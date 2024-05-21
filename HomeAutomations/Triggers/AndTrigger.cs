@@ -15,4 +15,6 @@ public class AndTrigger : ITrigger
 			.CombineLatest()
 			.Select(x => x.All(y => y))
 			.DistinctUntilChanged();
+
+	public IEnumerable<ITrigger> GetTriggersInternal() => Triggers;
 }

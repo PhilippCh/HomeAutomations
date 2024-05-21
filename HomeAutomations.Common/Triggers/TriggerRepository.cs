@@ -22,7 +22,7 @@ public class TriggerRepository
 		_serviceProvider = serviceProvider;
 		var logger = loggerFactory.ForContext<TriggerRepository>();
 
-		var triggerConfigs = LoadTriggerConfigs(config.Value.Path);
+		var triggerConfigs = LoadTriggerConfigs(config.Value.Path).ToList();
 		var missingIdTriggerConfigs = triggerConfigs
 			.Where(x => x.Trigger.Id == null)
 			.ToList();
@@ -32,7 +32,7 @@ public class TriggerRepository
 			logger.Warning("Found trigger config files with missing id: {MissingIds}", missingIdTriggerConfigs.Select(x => x.Path));
 		}
 
-		_cachedTriggers = LoadTriggerConfigs(config.Value.Path).ToDictionary(x => x.Trigger.Id!, x => x.Trigger);
+		_cachedTriggers = triggerConfigs.ToDictionary(x => x.Trigger.Id!, x => x.Trigger);
 	}
 
 	public ITrigger? GetTrigger(string name) => _cachedTriggers.GetValueOrDefault(name);
@@ -48,9 +48,27 @@ public class TriggerRepository
 			Converters = { new EntityJsonConverterFactory(_serviceProvider) }
 		};
 
-		return triggerConfigs.Select(x => (Path: x, Json: File.ReadAllText(x)))
+		var triggers = triggerConfigs.Select(x => (Path: x, Json: File.ReadAllText(x)))
 			.Select(x => (x.Path, Trigger: JsonSerializer.Deserialize<ITrigger>(x.Json, serializerOptions)))
 			.Where(x => x.Trigger != null)
-			.Select(x => (x.Path, Trigger: x.Trigger!));
+			.Select(x => (x.Path, Trigger: x.Trigger!))
+			.ToList();
+
+		ResolveTriggerRefs(triggers.Select(x => x.Trigger).ToList());
+
+		return triggers;
+	}
+
+	private void ResolveTriggerRefs(IList<ITrigger> triggers)
+	{
+		foreach (var trigger in triggers)
+		{
+			if (trigger is TriggerRefTrigger triggerRef)
+			{
+				triggerRef.ResolveRef(triggers);
+			}
+
+			ResolveTriggerRefs(trigger.GetTriggersInternal().ToList());
+		}
 	}
 }

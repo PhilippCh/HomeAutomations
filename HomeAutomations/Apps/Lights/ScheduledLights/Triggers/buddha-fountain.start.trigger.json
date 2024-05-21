@@ -1,0 +1,7 @@
+{
+  "$type": "Time",
+  "Id": "BuddhaFountainStart",
+  "Comment": "For start triggers, the timespan between From and To doesn't make a difference as only the switch to true is evaluated. Afterwards, we rely on the end trigger to stop the light cycle.",
+  "From": "09:00:00",
+  "To": "23:59:59"
+}

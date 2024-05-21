@@ -1,0 +1,17 @@
+{
+  "$type": "And",
+  "Id": "Sunset",
+  "Triggers": [
+    {
+      "$type": "Time",
+      "Comment": "For start triggers, the timespan between From and To doesn't make a difference as only the switch to true is evaluated. Afterwards, we rely on the end trigger to stop the light cycle.",
+      "From": "18:00:00",
+      "To": "23:59:59"
+    },
+    {
+      "$type": "SensorEntityLowerThan",
+      "Entity": "sensor.balcony_light_sensor_illuminance_2",
+      "Threshold": 900
+    }
+  ]
+}

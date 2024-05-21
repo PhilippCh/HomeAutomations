@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Triggers;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
-using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
@@ -18,40 +18,42 @@ public class ScheduledLights(
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		ObservableExtensions.Interval(Config.UpdateInterval, true).Subscribe(_ => UpdateCycles());
-
-		return Task.CompletedTask;
-	}
-
-	private void UpdateCycles()
-	{
 		foreach (var cycle in Config.LightCycles)
 		{
-			var start = cycle.Start.GetActualTime(Config.Latitude, Config.Longitude);
-			var end = cycle.End.GetActualTime(Config.Latitude, Config.Longitude);
+			var startTrigger = triggerRepository.GetTrigger(cycle.StartTriggerId);
+			var endTrigger = triggerRepository.GetTrigger(cycle.EndTriggerId);
 
-			if (start == null || end == null)
+			if (startTrigger == null || endTrigger == null)
 			{
-				Logger.Warning("Could not get actual start/end dates for cycle {Cycle}. Start: {Start} End: {End}", cycle.Name, cycle.Start.ToString(), cycle.End.ToString());
+				Logger.Warning(
+					"Could not find start {StartTriggerId} or end {EndTriggerId} trigger for cycle {CycleName}",
+					cycle.StartTriggerId, cycle.EndTriggerId, cycle.Name);
 
 				continue;
 			}
 
-			var time = DateTime.Now;
-			var shouldRun = time >= start && time < end;
+			var endTriggerObservable = endTrigger.AsObservable().Select(y => !y).StartWith(true);
 
-			// Start new cycle if within schedule.
-			if (shouldRun && !_runningCycles.ContainsKey(cycle.Name))
-			{
-				_runningCycles.Add(cycle.Name, new CycleInfo(cycle, _entityStatePriorityManager, Logger));
-			}
-
-			// Stop running cycle if outside schedule.
-			if (!shouldRun && _runningCycles.TryGetValue(cycle.Name, out var runningCycle))
-			{
-				runningCycle.Stop();
-				_runningCycles.Remove(cycle.Name);
-			}
+			startTrigger
+				.AsObservable()
+				.Where(x => x)
+				.SwitchMap(_ => endTriggerObservable)
+				.DistinctUntilChanged()
+				.Subscribe(
+					x =>
+					{
+						if (x)
+						{
+							_runningCycles.Add(cycle.Name, new CycleInfo(cycle, _entityStatePriorityManager, Logger));
+						}
+						else if (_runningCycles.TryGetValue(cycle.Name, out var runningCycle))
+						{
+							runningCycle.Stop();
+							_runningCycles.Remove(cycle.Name);
+						}
+					});
 		}
+
+		return Task.CompletedTask;
 	}
 }

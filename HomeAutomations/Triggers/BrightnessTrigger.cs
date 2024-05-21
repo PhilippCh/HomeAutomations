@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using HomeAutomations.Common.Triggers;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
@@ -18,4 +19,6 @@ public class BrightnessTrigger : ITrigger
 			.StartWith(Entity.State.AsInt())
 			.Select(x => x >= Min && x < Max)
 			.DistinctUntilChanged();
+
+	public IEnumerable<ITrigger> GetTriggersInternal() => [];
 }

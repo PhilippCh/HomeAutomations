@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using HomeAutomations.Common.Triggers;
 
@@ -31,6 +32,8 @@ public class WeekendTrigger : ITrigger
 			.StartWith(0)
 			.Select(_ => Predicate())
 			.DistinctUntilChanged();
+
+	public IEnumerable<ITrigger> GetTriggersInternal() => [];
 
 	private bool Predicate() => DateTime.Now.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
 }

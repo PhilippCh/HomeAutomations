@@ -12,6 +12,6 @@ public class EntityJsonConverterFactory(IServiceProvider serviceProvider) : Json
 	{
 		var converterType = typeof(EntityJsonConverter<>).MakeGenericType(typeToConvert);
 
-		return (JsonConverter) Activator.CreateInstance(converterType, serviceProvider);
+		return (JsonConverter?) Activator.CreateInstance(converterType, serviceProvider);
 	}
 }

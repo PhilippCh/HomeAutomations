@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
+using HomeAutomations.Common.Extensions;
 
 namespace HomeAutomations.Common.Triggers;
 
@@ -35,7 +36,7 @@ public class TriggerTypeInfoResolver : DefaultJsonTypeInfoResolver
 				     {
 					     IsInterface: false, IsAbstract: false
 				     })
-			.Select(x => new JsonDerivedType(x, x.Name))
+			.Select(x => new JsonDerivedType(x, x.Name.TrimEnd("Trigger")))
 			.ToList();
 
 		var options = new JsonPolymorphismOptions

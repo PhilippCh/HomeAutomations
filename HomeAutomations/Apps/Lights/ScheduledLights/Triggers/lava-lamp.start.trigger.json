@@ -1,0 +1,27 @@
+{
+  "$type": "And",
+  "Id": "LavaLampStart",
+  "Triggers": [
+    {
+      "$type": "Boolean",
+      "Condition": {
+        "$type": "Weekend"
+      },
+      "FalseTrigger": {
+        "$type": "Time",
+        "From": "00:00:00",
+        "To": "00:45:00"
+      },
+      "TrueTrigger": {
+        "$type": "Time",
+        "From": "01:45:00",
+        "To": "02:30:00"
+      }
+    },
+    {
+      "$type": "SensorEntityLowerThan",
+      "Entity": "sensor.raumthermostat_schlafzimmer_temperature",
+      "Threshold": 22.5
+    }
+  ]
+}

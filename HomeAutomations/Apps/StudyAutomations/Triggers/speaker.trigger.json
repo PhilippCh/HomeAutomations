@@ -1,13 +1,13 @@
 {
-  "$type": "OrTrigger",
+  "$type": "Or",
   "Id": "StudySpeakers",
   "Triggers": [
     {
-      "$type": "BinarySensorEntityTrigger",
+      "$type": "BinarySensorEntity",
       "Entity": "binary_sensor.desktopphilipp"
     },
     {
-      "$type": "BinarySensorEntityTrigger",
+      "$type": "BinarySensorEntity",
       "Entity": "binary_sensor.laptop_enbw_unlocked"
     }
   ]

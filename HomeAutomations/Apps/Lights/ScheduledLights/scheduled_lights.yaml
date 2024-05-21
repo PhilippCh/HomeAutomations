@@ -1,48 +1,30 @@
 ---
 HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
-  Latitude: 48.985865943289255
-  Longitude: 8.247879062542783
-  UpdateInterval: 00:00:10
   LightCycles:
     - Name: Lava lamp
-      Interval: 24:00:00 # This is essentially not used for static lights
-      Start:
-        Hour: 00:00:00
-        HourWeekend: 01:45:00
-      End:
-        Hour: 00:50:00
-        HourWeekend: 02:45:00
+      StartTriggerId: LavaLampStart
+      EndTriggerId: LavaLampEnd
       EntityCycles:
         - - switch.bedroom_lava_lamp
     - Name: Static lights
-      Interval: 1.23:59:59 # This is essentially not used for static lights, but needs to be longer than 24 hours because otherwise the lights would switch off on weekends before 1AM.
-      Start:
-        Hour: sunset
-      End:
-        Hour: 1.00:00:00 # 00:00 next day
-        HourWeekend: 1.01:00:00 # 01:00 next day
+      StartTriggerId: StaticLightsStart
+      EndTriggerId: Bedtime
       EntityCycles:
         - - light.living_room_tv_lightstrip
           - switch.kitchen_neon_clock
           - switch.living_room_lightbulbs
           - switch.living_room_pineapple
     - Name: Trolley lights
+      StartTriggerId: StaticLightsStart
+      EndTriggerId: Bedtime
       Interval: 01:00:00
-      Start:
-        Hour: sunset
-      End:
-        Hour: 1.00:00:00 # 00:00 next day
-        HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
         - - switch.living_room_lightbar
           - switch.living_room_contract_light
         - - switch.living_room_twtyh_diorama
     - Name: Buddha fountain
+      StartTriggerId: BuddhaFountainStart
+      EndTriggerId: Bedtime
       Interval: 00:30:00
-      Start:
-        Hour: 09:00:00
-      End:
-        Hour: 1.00:00:00 # 00:00 next day
-        HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
         - - switch.living_room_buddha_fountain

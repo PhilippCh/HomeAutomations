@@ -50,11 +50,7 @@
     <ItemGroup>
       <ProjectReference Include="..\HomeAutomations.Common\HomeAutomations.Common.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Entities\Triggers\" />
-    </ItemGroup>
-
+	
 	<Target Name="Copy configs" BeforeTargets="Build">
 		<ItemGroup>
 			<ANTLR Include="Apps\**\*.yaml" />

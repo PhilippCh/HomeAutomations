@@ -15,4 +15,6 @@ public class OrTrigger : ITrigger
 			.CombineLatest()
 			.Select(x => x.Any(y => y))
 			.DistinctUntilChanged();
+
+	public IEnumerable<ITrigger> GetTriggersInternal() => Triggers;
 }

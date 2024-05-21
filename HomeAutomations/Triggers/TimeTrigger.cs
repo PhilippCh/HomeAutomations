@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using HomeAutomations.Common.Triggers;
 
@@ -6,7 +7,8 @@ namespace HomeAutomations.Triggers;
 public class TimeTrigger : ITrigger
 {
 	public string? Id { get; init; }
-	public TimeOnly Time { get; init; }
+	public TimeOnly From { get; init; }
+	public TimeOnly To { get; init; }
 
 	private readonly IScheduler? _scheduler;
 
@@ -29,6 +31,15 @@ public class TimeTrigger : ITrigger
 	public IObservable<bool> AsObservable() =>
 		Observable
 			.Interval(TimeSpan.FromMinutes(1), _scheduler ?? Scheduler.Default)
-			.Select(_ => DateTime.Now.TimeOfDay > Time.ToTimeSpan())
+			.StartWith(0)
+			.Select(
+				_ =>
+				{
+					var currentTime = DateTime.Now.TimeOfDay;
+
+					return currentTime >= From.ToTimeSpan() && currentTime < To.ToTimeSpan();
+				})
 			.DistinctUntilChanged();
+
+	public IEnumerable<ITrigger> GetTriggersInternal() => [];
 }
