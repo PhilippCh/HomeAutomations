@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
 
@@ -45,7 +46,7 @@ public class CycleInfo
 			foreach (var entity in Config.EntityCycles[previousIndex])
 			{
 				_logger.Debug("Turning off {EntityId}", entity.EntityId);
-				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), false, 0);
+				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), x => x.CallService("turn_off"), 0);
 			}
 		}
 
@@ -54,7 +55,13 @@ public class CycleInfo
 			foreach (var entity in Config.EntityCycles[_currentIndex])
 			{
 				_logger.Debug("Turning on {EntityId}", entity.EntityId);
-				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), true, 0);
+				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), x =>
+				{
+					x.CallService("turn_on", new LightTurnOnParameters
+					{
+						BrightnessPct = 100
+					});
+				}, 0);
 			}
 		}
 	}
@@ -80,7 +87,7 @@ public class CycleInfo
 		{
 			foreach (var entity in group)
 			{
-				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), false, 0);
+				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), x => x.CallService("turn_off"), 0);
 			}
 		}
 

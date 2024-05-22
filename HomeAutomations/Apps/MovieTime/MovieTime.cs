@@ -23,10 +23,12 @@ public class MovieTime(
 	{
 		Context.Events
 			.GetMobileAppActions(new[] { MovieTimeActionId })
-			.Subscribe(_ => StartMovieTime(new MovieTimeServiceData
-			{
-				AvReceiverSource = Config.AvReceiver.DefaultSource
-			}));
+			.Subscribe(
+				_ => StartMovieTime(
+					new MovieTimeServiceData
+					{
+						AvReceiverSource = Config.AvReceiver.DefaultSource
+					}));
 
 		Context.RegisterServiceCallBack<MovieTimeServiceData>("movie_time", StartMovieTime);
 
@@ -85,7 +87,11 @@ public class MovieTime(
 					}
 					else
 					{
-						entityStatePriorityManager.AddTargetState(x, nameof(MovieTime), false, 100);
+						entityStatePriorityManager.AddTargetState(
+							x, nameof(MovieTime), y =>
+							{
+								y.CallService("turn_on", new LightTurnOnParameters { BrightnessPct = 30 });
+							}, 100);
 					}
 				});
 		}
