@@ -23,9 +23,9 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         - - switch.living_room_lightbar
           - switch.living_room_contract_light
         - - switch.living_room_twtyh_diorama
-    - Name: Buddha fountain
+    - Name: Cat fountain
       StartTriggerId: BuddhaFountainStart
       EndTriggerId: Bedtime
       Interval: 00:30:00
       EntityCycles:
-        - - switch.living_room_buddha_fountain
+        - - switch.living_room_cat_fountain
