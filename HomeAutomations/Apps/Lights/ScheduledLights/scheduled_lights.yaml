@@ -14,7 +14,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
           - switch.kitchen_neon_clock
           - switch.kitchen_pineapple_string_lights_usb_relay
           - switch.living_room_lightbulbs
-          - switch.living_room_pineapple
+          - switch.living_roompineapple_neon_light_usb_relay
     - Name: Trolley lights
       StartTriggerId: StaticLightsStart
       EndTriggerId: Bedtime
