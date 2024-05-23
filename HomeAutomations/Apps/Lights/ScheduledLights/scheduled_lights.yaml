@@ -37,7 +37,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         - - switch.living_room_lightbar
           - switch.living_room_contract_light
         - - switch.living_room_twtyh_diorama
-    - Name: Buddha fountain
+    - Name: Cat fountain
       Interval: 00:30:00
       Start:
         Hour: 09:00:00
@@ -45,4 +45,4 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
         Hour: 1.00:00:00 # 00:00 next day
         HourWeekend: 1.01:00:00 # 01:00 next day
       EntityCycles:
-        - - switch.living_room_buddha_fountain
+        - - switch.living_room_cat_fountain
