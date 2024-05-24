@@ -35,7 +35,7 @@ public class TriggerRepository
 		_cachedTriggers = triggerConfigs.ToDictionary(x => x.Trigger.Id!, x => x.Trigger);
 	}
 
-	public ITrigger? GetTrigger(string name) => _cachedTriggers.GetValueOrDefault(name);
+	public virtual ITrigger? GetTrigger(string name) => _cachedTriggers.GetValueOrDefault(name);
 
 	private IEnumerable<(string Path, ITrigger Trigger)> LoadTriggerConfigs(string path)
 	{

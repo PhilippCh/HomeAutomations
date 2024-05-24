@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
@@ -57,10 +58,17 @@ public class CycleInfo
 				_logger.Debug("Turning on {EntityId}", entity.EntityId);
 				_entityStatePriorityManager.AddTargetState(entity, nameof(CycleInfo), x =>
 				{
-					x.CallService("turn_on", new LightTurnOnParameters
+					if (x.Is<LightEntity>())
 					{
-						BrightnessPct = 100
-					});
+						x.CallService("turn_on", new LightTurnOnParameters
+						{
+							BrightnessPct = 100
+						});
+					}
+					else
+					{
+						x.CallService("turn_on");
+					}
 				}, 0);
 			}
 		}

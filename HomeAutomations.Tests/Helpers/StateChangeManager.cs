@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Tests.Mocks;
 using Microsoft.Reactive.Testing;
@@ -12,6 +13,7 @@ namespace HomeAutomations.Tests.Helpers;
 public class StateChangeManager(IHaContext haContextMock, TestScheduler testScheduler)
 {
 	public ReadOnlyCollection<TestServiceCall> ServiceCalls => ((HaContextMock) haContextMock).ServiceCalls;
+	public TestServiceCall LastServiceCall => ((HaContextMock) haContextMock).ServiceCalls.Last();
 
 	public StateChangeManager Change(Entity entity, string newStatevalue, object? attributes = null)
 	{

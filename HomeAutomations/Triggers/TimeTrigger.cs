@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using HomeAutomations.Common.Triggers;
+using HomeAutomations.Services;
 
 namespace HomeAutomations.Triggers;
 
@@ -11,6 +12,7 @@ public class TimeTrigger : ITrigger
 	public TimeOnly To { get; init; }
 
 	private readonly IScheduler? _scheduler;
+	private readonly IClockService? _clockService;
 
 	/// <summary>
 	/// Default constructor for JSON deserialization.
@@ -20,12 +22,14 @@ public class TimeTrigger : ITrigger
 	}
 
 	/// <summary>
-	/// If you want to use a custom scheduler (e.g. for testing), you can use this constructor.
+	/// Constructor for unit/integration tests.
 	/// </summary>
 	/// <param name="scheduler">The custom scheduler</param>
-	public TimeTrigger(IScheduler scheduler)
+	/// <param name="clockService"></param>
+	public TimeTrigger(IScheduler scheduler, IClockService clockService)
 	{
 		_scheduler = scheduler;
+		_clockService = clockService;
 	}
 
 	public IObservable<bool> AsObservable() =>
@@ -35,7 +39,7 @@ public class TimeTrigger : ITrigger
 			.Select(
 				_ =>
 				{
-					var currentTime = DateTime.Now.TimeOfDay;
+					var currentTime = (_clockService?.Now ?? DateTime.Now).TimeOfDay;
 
 					return currentTime >= From.ToTimeSpan() && currentTime < To.ToTimeSpan();
 				})

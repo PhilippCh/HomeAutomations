@@ -1,4 +1,6 @@
-﻿using HomeAutomations.Extensions;
+﻿using System.Runtime.CompilerServices;
+using HomeAutomations.Common.Extensions;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
 
@@ -28,6 +30,14 @@ public static class EntityExtensions
 	/// <returns>Is state like on</returns>
 	public static bool IsLikeOn<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
 		state.IsOn() || string.Equals(state.State, "playing", StringComparison.OrdinalIgnoreCase);
+
+	public static bool Is<TEntity>(this Entity entity)
+	{
+		var type = typeof(TEntity);
+		var domain = type.Name.TrimEnd("Entity");
+
+		return entity.EntityId.StartsWith(domain, StringComparison.OrdinalIgnoreCase);
+	}
 }
 
 public static class PersonEntityExtensions
