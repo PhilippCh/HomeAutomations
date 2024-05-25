@@ -13,7 +13,7 @@
   "TrueTrigger": {
     "$type": "Time",
     "Comment": "We are limited between a 5 minute interval, so the trigger doesn't fire immediately after the start trigger. This is a limitation of the current implementation.",
-    "Time": "02:30:00",
-    "To": "02:35:00"
+    "From": "02:30:00",
+    "To": "02:45:00"
   }
 }

@@ -27,6 +27,7 @@ public interface ITrigger
 	{
 		dynamic expando = new ExpandoObject();
 		expando.Id = Id;
+		expando.Type = GetType().Name;
 		expando.Value = LatestValue;
 		expando.Children = GetTriggersInternal().Select(x => x.GetDebugInfoInternal());
 
