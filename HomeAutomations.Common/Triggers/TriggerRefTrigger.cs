@@ -5,6 +5,7 @@ namespace HomeAutomations.Common.Triggers;
 public class TriggerRefTrigger : ITrigger
 {
 	public string? Id { get; init; }
+	public bool LatestValue { get; private set; }
 	public string? RefId { get; init; }
 
 	private ITrigger? _ref;
@@ -15,7 +16,11 @@ public class TriggerRefTrigger : ITrigger
 		_ref = refTrigger;
 	}
 
-	public IObservable<bool> AsObservable() => _ref?.AsObservable() ?? Observable.Throw<bool>(new InvalidOperationException($"Ref trigger {RefId} not resolved."));
+	public IObservable<bool> AsObservable() =>
+		_ref?
+			.AsObservable()
+			.Do(x => LatestValue = x) ??
+		Observable.Throw<bool>(new InvalidOperationException($"Ref trigger {RefId} not resolved."));
 
 	/// <summary>
 	/// This method always returns an empty collection in TriggerRefTrigger, so that recursion used in resolving trigger references is stopped at this point.

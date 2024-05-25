@@ -8,6 +8,7 @@ namespace HomeAutomations.Triggers;
 public class TimeTrigger : ITrigger
 {
 	public string? Id { get; init; }
+	public bool LatestValue { get; private set; }
 	public TimeOnly From { get; init; }
 	public TimeOnly To { get; init; }
 
@@ -43,6 +44,7 @@ public class TimeTrigger : ITrigger
 
 					return currentTime >= From.ToTimeSpan() && currentTime < To.ToTimeSpan();
 				})
+			.Do(x => LatestValue = x)
 			.DistinctUntilChanged();
 
 	public IEnumerable<ITrigger> GetTriggersInternal() => [];

@@ -7,6 +7,7 @@ namespace HomeAutomations.Triggers;
 public class WeekendTrigger : ITrigger
 {
 	public string? Id { get; init; }
+	public bool LatestValue { get; private set; }
 
 	private readonly IScheduler? _scheduler;
 
@@ -31,6 +32,7 @@ public class WeekendTrigger : ITrigger
 			.Interval(TimeSpan.FromHours(1), _scheduler ?? Scheduler.Default)
 			.StartWith(0)
 			.Select(_ => Predicate())
+			.Do(x => LatestValue = x)
 			.DistinctUntilChanged();
 
 	public IEnumerable<ITrigger> GetTriggersInternal() => [];

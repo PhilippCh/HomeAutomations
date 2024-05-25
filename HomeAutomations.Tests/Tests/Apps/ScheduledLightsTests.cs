@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,9 +24,10 @@ public class ScheduledLightsTests
 	private class TestTrigger : ITrigger
 	{
 		public string? Id { get; init; }
+		public bool LatestValue { get; private set; }
 		public readonly Subject<bool> Subject = new();
 
-		public IObservable<bool> AsObservable() => Subject;
+		public IObservable<bool> AsObservable() => Subject.Do(x => LatestValue = x);
 
 		public IEnumerable<ITrigger> GetTriggersInternal() => [];
 	}
