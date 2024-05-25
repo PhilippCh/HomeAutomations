@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Models;
 using NetDaemon.HassModel.Entities;
@@ -11,7 +12,7 @@ public record CycleConfig
 	public string StartTriggerId { get; init; }
 	public string EndTriggerId { get; init; }
 	public TimeSpan? Interval { get; init; }
-	public IReadOnlyList<IEnumerable<Entity>> EntityCycles { get; init; }
+	public IReadOnlyList<IEnumerable<Entity>> EntityCycles { get; init; } = new[] { Enumerable.Empty<Entity>() };
 }
 
 public record ScheduledLightsConfig : Config
