@@ -12,7 +12,7 @@ public record CycleConfig
 	public string StartTriggerId { get; init; }
 	public string EndTriggerId { get; init; }
 	public TimeSpan? Interval { get; init; }
-	public IReadOnlyList<IEnumerable<Entity>> EntityCycles { get; init; } = new[] { Enumerable.Empty<Entity>() };
+	public IReadOnlyList<IEnumerable<Entity>> EntityCycles { get; init; }
 }
 
 public record ScheduledLightsConfig : Config
