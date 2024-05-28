@@ -4,24 +4,28 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
     - Name: Lava lamp
       StartTriggerId: LavaLampStart
       EndTriggerId: LavaLampEnd
-        #- - switch.bedroom_lava_lamp
+      EntityCycles:
+        - - switch.bedroom_lava_lamp
     - Name: Static lights
       StartTriggerId: StaticLightsStart
       EndTriggerId: Bedtime
-        #- - light.living_room_tv_lightstrip
-        #  - switch.kitchen_neon_clock
-        #  - switch.kitchen_pineapple_string_lights_usb_relay
-        #  - switch.living_room_lightbulbs
-        #  - switch.living_room_pineapple_neon_light_usb_relay
+      EntityCycles:
+        - - light.living_room_tv_lightstrip
+          - switch.kitchen_neon_clock
+          - switch.kitchen_pineapple_string_lights_usb_relay
+          - switch.living_room_lightbulbs
+          - switch.living_room_pineapple_neon_light_usb_relay
     - Name: Trolley lights
       StartTriggerId: StaticLightsStart
       EndTriggerId: Bedtime
       Interval: 01:00:00
-        #- - switch.living_room_lightbar
-        #  - switch.living_room_contract_light
-        #- - switch.living_room_twtyh_diorama
+      EntityCycles:
+        - - switch.living_room_lightbar
+          - switch.living_room_contract_light
+        - - switch.living_room_twtyh_diorama
     - Name: Cat fountain
       StartTriggerId: BuddhaFountainStart
       EndTriggerId: Bedtime
       Interval: 00:30:00
-        #- - switch.living_room_cat_fountain
+      EntityCycles:
+        - - switch.living_room_cat_fountain
