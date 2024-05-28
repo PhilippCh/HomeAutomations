@@ -10,8 +10,8 @@
     },
     {
       "$type": "SensorEntityLowerThan",
-      "Entity": "sensor.living_room_balcony_motion_detector_illuminance_lux",
-      "Threshold": 100
+      "Entity": "sensor.living_room_balcony_light_sensor_illuminance_lux",
+      "Threshold": 400
     }
   ]
 }
