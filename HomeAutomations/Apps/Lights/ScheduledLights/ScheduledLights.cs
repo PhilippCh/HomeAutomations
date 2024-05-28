@@ -37,9 +37,7 @@ public class ScheduledLights(
 			startTrigger
 				.AsObservable()
 				.Where(x => x)
-				.Do(_ => Logger.Information("Start trigger state: {StartTriggerState}", startTrigger.GetDebugInfo()))
 				.SwitchMap(_ => endTriggerObservable)
-				.Do(_ => Logger.Information("End trigger state: {EndTriggerState}", endTrigger.GetDebugInfo()))
 				.DistinctUntilChanged()
 				.Subscribe(
 					x =>
