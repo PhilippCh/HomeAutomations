@@ -37,14 +37,16 @@ public class ScheduledLights(
 			startTrigger
 				.AsObservable()
 				.Where(x => x)
+				.Do(_ => Logger.Information("Start trigger state: {StartTriggerState}", startTrigger.GetDebugInfo()))
 				.SwitchMap(_ => endTriggerObservable)
+				.Do(_ => Logger.Information("End trigger state: {EndTriggerState}", endTrigger.GetDebugInfo()))
 				.DistinctUntilChanged()
 				.Subscribe(
 					x =>
 					{
 						if (x)
 						{
-							StartLightCycle(cycleConfig);
+							//StartLightCycle(cycleConfig);
 
 							return;
 						}
@@ -52,7 +54,7 @@ public class ScheduledLights(
 						// TODO: Implement proper logic with StartStopImmediate to ensure all lights are off when net-daemon restarts mid-cycle.
 						if (_activeCycles.TryGetValue(cycleConfig.Name, out var activeCycle))
 						{
-							StopLightCycle(activeCycle);
+							//StopLightCycle(activeCycle);
 						}
 					});
 		}
