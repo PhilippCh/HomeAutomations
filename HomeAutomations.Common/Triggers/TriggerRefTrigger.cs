@@ -25,5 +25,5 @@ public class TriggerRefTrigger : ITrigger
 	/// <summary>
 	/// This method always returns an empty collection in TriggerRefTrigger, so that recursion used in resolving trigger references is stopped at this point.
 	/// </summary>
-	public IEnumerable<ITrigger> GetTriggersInternal() => [];
+	public IEnumerable<ITrigger> GetTriggersInternal() => new[] { _ref! };
 }
