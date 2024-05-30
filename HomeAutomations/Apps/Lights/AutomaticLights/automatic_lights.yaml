@@ -5,7 +5,7 @@ HomeAutomations.Apps.Lights.AutomaticLights.AutomaticLightsConfig:
       Lights:
         - Entity: light.kitchen_ceiling_light
           CycleTime: 00:01:30
-          MaxIlluminance: 70
+          MaxIlluminance: 200
           ManualTriggerSensor: sensor.kitchen_ceiling_light_button_action
           IlluminanceSensor: sensor.kitchen_motion_detector_illuminance_lux
           MotionSensor:
