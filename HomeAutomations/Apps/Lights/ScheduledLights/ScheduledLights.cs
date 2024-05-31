@@ -46,7 +46,7 @@ public class ScheduledLights(
 					{
 						if (x)
 						{
-							//StartLightCycle(cycleConfig);
+							StartLightCycle(cycleConfig);
 
 							return;
 						}
@@ -54,7 +54,7 @@ public class ScheduledLights(
 						// TODO: Implement proper logic with StartStopImmediate to ensure all lights are off when net-daemon restarts mid-cycle.
 						if (_activeCycles.TryGetValue(cycleConfig.Name, out var activeCycle))
 						{
-							//StopLightCycle(activeCycle);
+							StopLightCycle(activeCycle);
 						}
 					});
 		}
