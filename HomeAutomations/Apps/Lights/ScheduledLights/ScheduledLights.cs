@@ -40,6 +40,8 @@ public class ScheduledLights(
 				.Do(_ => Logger.Information("Start trigger state: {StartTriggerState}", startTrigger.GetDebugInfo()))
 				.SwitchMap(_ => endTriggerObservable)
 				.Do(_ => Logger.Information("End trigger state: {EndTriggerState}", endTrigger.GetDebugInfo()))
+				// This is a lazy attempt to fix the issue with endTriggerObservable returning to false which causes the cycle to start again because start has not yet emitted a new value.
+				.SwitchMap(x => x ? endTriggerObservable : startTrigger.AsObservable())
 				.DistinctUntilChanged()
 				.Subscribe(
 					x =>
