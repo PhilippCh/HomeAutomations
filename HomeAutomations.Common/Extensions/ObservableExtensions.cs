@@ -9,6 +9,8 @@ public static class ObservableExtensions
 {
 	public static IObservable<TResult> SwitchMap<TIn, TResult>(this IObservable<TIn> observable, Func<TIn, IObservable<TResult>> selector) => observable.Select(selector).Switch();
 
+	public static IObservable<TResult> ConcatMap<TIn, TResult>(this IObservable<TIn> observable, Func<TIn, IObservable<TResult>> selector) => observable.Select(selector).Concat();
+
 	/// <summary>
 	/// Emits the filtered values delayed by a specified time, all other values immediately.
 	/// </summary>

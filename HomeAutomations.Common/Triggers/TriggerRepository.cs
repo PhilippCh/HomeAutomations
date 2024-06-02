@@ -1,4 +1,7 @@
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Text.Json;
+using HomeAutomations.Common.Extensions;
 using Microsoft.Extensions.Options;
 using ILogger = Serilog.ILogger;
 
@@ -12,6 +15,8 @@ public record TriggerRepositoryConfig
 // This class needs to be scoped to a NetDaemonApp, because creating entity classes from within the
 // EntityJsonConverter requires a service instance of AppScopedHaContextProvider, which is only
 // available in the scope of a NetDaemonApp.
+
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global # Virtual methods are required for mocking in tests.
 public class TriggerRepository
 {
 	private readonly IServiceProvider _serviceProvider;
@@ -37,7 +42,31 @@ public class TriggerRepository
 
 	public virtual ITrigger? GetTrigger(string name) => _cachedTriggers.GetValueOrDefault(name);
 
-	private IEnumerable<(string Path, ITrigger Trigger)> LoadTriggerConfigs(string path)
+	public IObservable<bool> GetStartEndTrigger(ITrigger startTrigger, ITrigger endTrigger)
+	{
+		var activeTriggerState = new BehaviorSubject<ActiveTriggerState>(ActiveTriggerState.Start);
+
+		return activeTriggerState
+			.ConcatMap(
+				x =>
+				{
+					var nextTriggerState = x == ActiveTriggerState.Start ? ActiveTriggerState.End : ActiveTriggerState.Start;
+					var currentObservable = x == ActiveTriggerState.Start ? startTrigger : endTrigger;
+
+					return currentObservable
+						.AsObservable()
+						.Where(y => y)
+						.Select(
+							_ =>
+							{
+								activeTriggerState.OnNext(nextTriggerState);
+
+								return x == ActiveTriggerState.Start;
+							});
+				});
+	}
+
+	private List<(string Path, ITrigger Trigger)> LoadTriggerConfigs(string path)
 	{
 		var absolutePath = Path.Combine(AppContext.BaseDirectory, path);
 		var triggerConfigs = Directory.EnumerateFiles(absolutePath, "*.trigger.json", SearchOption.AllDirectories);

@@ -318,6 +318,8 @@ dotnet_naming_symbols.any_async_methods.required_modifiers = async
 dotnet_naming_style.end_in_async.required_suffix = Async
 dotnet_naming_style.end_in_async.capitalization = pascal_case
 
+dotnet_diagnostic.CA1822.severity = none
+
 #These settings similar to prettier, but provide immediate IDE support even without it.
 [*.{ts,js}]
 ij_typescript_use_double_quotes = false
