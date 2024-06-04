@@ -32,7 +32,7 @@ public class ScheduledLights(
 				continue;
 			}
 
-			var triggerObservable = startTrigger
+			startTrigger
 				.WithEnd(endTrigger)
 				.Subscribe(
 					x =>
@@ -50,34 +50,6 @@ public class ScheduledLights(
 							StopLightCycle(activeCycle);
 						}
 					});
-
-			/*var endTriggerObservable = endTrigger.AsObservable().Select(y => !y).StartWith(true);
-
-			startTrigger
-				.AsObservable()
-				.Where(x => x)
-				.Do(_ => Logger.Information("Start trigger state: {StartTriggerState}", startTrigger.GetDebugInfo()))
-				.SwitchMap(_ => endTriggerObservable)
-				.Do(_ => Logger.Information("End trigger state: {EndTriggerState}", endTrigger.GetDebugInfo()))
-				// This is a lazy attempt to fix the issue with endTriggerObservable returning to false which causes the cycle to start again because start has not yet emitted a new value.
-				.SwitchMap(x => x ? endTriggerObservable : startTrigger.AsObservable())
-				.DistinctUntilChanged()
-				.Subscribe(
-					x =>
-					{
-						if (x)
-						{
-							StartLightCycle(cycleConfig);
-
-							return;
-						}
-
-						// TODO: Implement proper logic with StartStopImmediate to ensure all lights are off when net-daemon restarts mid-cycle.
-						if (_activeCycles.TryGetValue(cycleConfig.Name, out var activeCycle))
-						{
-							StopLightCycle(activeCycle);
-						}
-					});*/
 		}
 
 		return Task.CompletedTask;
