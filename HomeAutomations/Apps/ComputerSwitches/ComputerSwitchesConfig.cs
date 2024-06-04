@@ -15,6 +15,7 @@ public record HostConfig
 {
 	public string Name { get; init; }
 	public InputBooleanEntity Entity { get; init; }
+	public SensorEntity AvailabilitySensor { get; init; }
 	public string Host { get; init; }
 	public string MacAddress { get; init; }
 	public ButtonEntity ShutdownButton { get; init; }

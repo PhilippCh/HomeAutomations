@@ -3,7 +3,7 @@ using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
 
-namespace HomeAutomations.Apps.MovieTime;
+namespace HomeAutomations.Apps.AvReceiver;
 
 public record ToggleEntitiesByMediaSourceConfig {
 public IEnumerable<string> MediaSources { get; init; }

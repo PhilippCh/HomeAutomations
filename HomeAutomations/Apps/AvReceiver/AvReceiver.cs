@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Apps.MovieTime;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Extensions;
@@ -11,7 +12,7 @@ using HomeAutomations.Services;
 using NetDaemon.HassModel.Entities;
 using NetDaemon.HassModel.Integration;
 
-namespace HomeAutomations.Apps.MovieTime;
+namespace HomeAutomations.Apps.AvReceiver;
 
 [Focus]
 public class AvReceiver(

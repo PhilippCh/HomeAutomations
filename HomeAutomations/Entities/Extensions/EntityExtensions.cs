@@ -14,7 +14,7 @@ public static class EntityExtensions
 		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
 		where TAttributes : class =>
 		entity.StateChanges()
-			.StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, null));
+			.StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, entity.EntityState));
 
 	public static IObservable<TAttributes> ValidAttributeChanges<TEntity, TAttributes>(this TEntity entity)
 		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
@@ -51,6 +51,15 @@ public static class BinarySensorEntityExtensions
 		entity.StateChanges()
 			.Select(x => x.New?.AsBoolean())
 			.StartWith(entity.State.AsBoolean());
+}
+
+public static class InputBooleanExtensions
+{
+	public static void Switch(this InputBooleanEntity entity, bool isOn)
+	{
+		var action = (Action) (isOn ? entity.TurnOn : entity.TurnOff);
+		action();
+	}
 }
 
 public static class SwitchEntityExtensions

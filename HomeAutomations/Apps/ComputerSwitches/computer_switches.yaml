@@ -1,21 +1,9 @@
 ---
 HomeAutomations.Apps.ComputerSwitches.ComputerSwitchesConfig:
-  ApiBaseUrl:
-    Values:
-      Development: https://moonlight-remote-api.pupslab.de
-      Production: http://moonlight-remote-api:8080
-  AvailabilityCheck:
-    Port: 5000
-    Interval: 00:00:30
-    Timeout: 00:00:05
   Hosts:
     - Name: Desktop Philipp
       Entity: input_boolean.computer_wol_desktop_philipp
+      AvailabilitySensor: sensor.home_desktop_ph_satellite_home_desktop_ph_satellite_servicestate
       Host: 192.168.188.41
       MacAddress: 40:B0:76:DD:34:61
       ShutdownButton: button.desktopphilipp_shutdown
-    - Name: Desktop Fabienne
-      Entity: input_boolean.computer_wol_desktop_fabienne
-      Host: 192.168.188.34
-      MacAddress: AC:9E:17:EC:5F:83
-      ShutdownButton: button.desktopfabienne_shutdown
