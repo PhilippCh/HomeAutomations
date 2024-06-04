@@ -10,17 +10,19 @@ public IEnumerable<string> MediaSources { get; init; }
 public IEnumerable<Entity> Entities { get; init; }
 }
 
-public record AvReceiverConfig
+public record AvReceiverEntityConfig
 {
 	public MediaPlayerEntity Entity { get; init; }
 	public string DefaultSource { get; init; }
+	public string RecordPlayerSource { get; init; }
 	public IEnumerable<ToggleEntitiesByMediaSourceConfig> ToggleEntities { get; init; }
 	public SwitchEntity Subwoofer { get; init; }
 }
 
-public record MovieTimeConfig : Config
+public record AvReceiverConfig : Config
 {
 	public IEnumerable<LightEntity> Lights { get; init; }
 	public RemoteEntity Remote { get; init; }
-	public AvReceiverConfig AvReceiver { get; init; }
+	public AvReceiverEntityConfig AvReceiver { get; init; }
+	public SwitchEntity RecordPlayer { get; init; }
 }

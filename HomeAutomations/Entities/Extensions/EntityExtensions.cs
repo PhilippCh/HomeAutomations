@@ -52,3 +52,21 @@ public static class BinarySensorEntityExtensions
 			.Select(x => x.New?.AsBoolean())
 			.StartWith(entity.State.AsBoolean());
 }
+
+public static class SwitchEntityExtensions
+{
+	public static void Switch(this SwitchEntity entity, bool isOn)
+	{
+		var action = (Action) (isOn ? entity.TurnOn : entity.TurnOff);
+		action();
+	}
+}
+
+public static class MediaPlayerEntityExtensions
+{
+	public static void Switch(this MediaPlayerEntity entity, bool isOn)
+	{
+		var action = (Action) (isOn ? entity.TurnOn : entity.TurnOff);
+		action();
+	}
+}

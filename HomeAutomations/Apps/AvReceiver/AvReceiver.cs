@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
@@ -7,30 +8,36 @@ using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
+using NetDaemon.HassModel.Entities;
 using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.MovieTime;
 
 [Focus]
-public class MovieTime(
-	BaseAutomationDependencyAggregate<MovieTime, MovieTimeConfig> aggregate,
+public class AvReceiver(
+	BaseAutomationDependencyAggregate<AvReceiver, AvReceiverConfig> aggregate,
 	ActionSequencerService actionSequencerService,
-	EntityStatePriorityManager entityStatePriorityManager) : BaseAutomation<MovieTime, MovieTimeConfig>(aggregate)
+	EntityStatePriorityManager entityStatePriorityManager) : BaseAutomation<AvReceiver, AvReceiverConfig>(aggregate)
 {
 	private const string MovieTimeActionId = "KINO";
+	private const string RecordPlayerActionId = "PLAY_RECORD";
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		Context.Events
 			.GetMobileAppActions(new[] { MovieTimeActionId })
 			.Subscribe(
-				_ => StartMovieTime(
+				_ => SwitchMovieTime(
 					new MovieTimeServiceData
 					{
 						AvReceiverSource = Config.AvReceiver.DefaultSource
 					}));
 
-		Context.RegisterServiceCallBack<MovieTimeServiceData>("movie_time", StartMovieTime);
+		Context.Events
+			.GetMobileAppActions(new[] { RecordPlayerActionId })
+			.Subscribe(_ => SwitchRecordPlayer());
+
+		Context.RegisterServiceCallBack<MovieTimeServiceData>("movie_time", SwitchMovieTime);
 
 		// Source is a state attribute, so we require StateAllChanges here.
 		Config.AvReceiver.Entity
@@ -40,16 +47,38 @@ public class MovieTime(
 		return Task.CompletedTask;
 	}
 
-	private async void StartMovieTime(MovieTimeServiceData data)
+	private async void SwitchMovieTime(MovieTimeServiceData data)
 	{
-		Logger.Information("Switching movie time on");
+		var source = data.AvReceiverSource ?? Config.AvReceiver.DefaultSource;
+		var targetState = !Config.AvReceiver.Entity.IsOff() && Config.AvReceiver.Entity.Attributes?.Source == source;
+
+		Logger.Information("Switching movie time {TargetState}", targetState ? "on" : "off");
 
 		await actionSequencerService.RunAsync(
 			new RunAction(() => Config.Lights.ForEach(x => x.TurnOn())),
-			new RunAction(() => Config.AvReceiver.Entity.TurnOn()),
-			new RunAction(() => Config.AvReceiver.Entity.SelectSource(data.AvReceiverSource ?? Config.AvReceiver.DefaultSource), 5),
+			new RunAction(() => Config.AvReceiver.Entity.Switch(targetState)),
+			new RunAction(() => Config.AvReceiver.Entity.SelectSource(source), 5),
 			new RunAction(() => SendRemoteCommand("Beamer", commands: "power", repeats: 2, delay: 2), 1)
 		);
+	}
+
+	private async void SwitchRecordPlayer()
+	{
+		var targetState = !Config.RecordPlayer.IsOff();
+		Logger.Information("Switching record player {TargetState}", targetState ? "on" : "off");
+
+		var runActions = new List<RunAction>
+		{
+			new(() => Config.AvReceiver.Entity.Switch(targetState)),
+			new(() => Config.RecordPlayer.Switch(targetState))
+		};
+
+		if (targetState)
+		{
+			runActions.Add(new RunAction(() => Config.AvReceiver.Entity.SelectSource(Config.AvReceiver.RecordPlayerSource), 5));
+		}
+
+		await actionSequencerService.RunAsync(runActions);
 	}
 
 	private void SendRemoteCommand(string device, long repeats = 1, double delay = 0.4, params string[] commands)
@@ -83,12 +112,12 @@ public class MovieTime(
 				{
 					if (isOff || !isValidSource)
 					{
-						entityStatePriorityManager.RemoveTargetStateForTag(x, nameof(MovieTime));
+						entityStatePriorityManager.RemoveTargetStateForTag(x, nameof(AvReceiver));
 					}
 					else
 					{
 						entityStatePriorityManager.AddTargetState(
-							x, nameof(MovieTime), y =>
+							x, nameof(AvReceiver), y =>
 							{
 								y.CallService("turn_on", new LightTurnOnParameters { BrightnessPct = 30 });
 							}, 100);

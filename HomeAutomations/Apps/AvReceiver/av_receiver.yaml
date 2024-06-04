@@ -1,12 +1,14 @@
 ---
-HomeAutomations.Apps.MovieTime.MovieTimeConfig:
+HomeAutomations.Apps.AvReceiver.AvReceiverConfig:
   Lights:
     - light.living_room_standard_lamp
   Remote: remote.fernbedienung_remote
+  RecordPlayer: switch.living_room_record_player
   AvReceiver:
     Entity: media_player.living_room_av_receiver
     Subwoofer: switch.living_room_subwoofer
     DefaultSource: Laptop
+    RecordPlayerSource: Bluetooth
     ToggleEntities:
       - MediaSources:
           - Laptop

@@ -80,7 +80,7 @@ public class StudyAutomations(
 				x =>
 				{
 					Logger.Information("Setting speakers to {State}", x);
-					Config.Speaker.SetState(x);
+					Config.Speaker.Switch(x);
 				});
 		Disposables.Add(speakerTriggerObserver);
 	}
