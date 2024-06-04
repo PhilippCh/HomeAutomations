@@ -1,0 +1,32 @@
+{
+  "$type": "Or",
+  "Id": "StudyDeskLamp",
+  "Triggers": [
+    {
+      "$type": "And",
+      "Triggers": [
+        {
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.desktopphilipp"
+        },
+        {
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.desktop_philipp_unlocked"
+        }
+      ]
+    },
+    {
+      "$type": "And",
+      "Triggers": [
+        {
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.laptopphilippenbw"
+        },
+        {
+          "$type": "BinarySensorEntity",
+          "Entity": "binary_sensor.laptop_enbw_unlocked"
+        }
+      ]
+    }
+  ]
+}

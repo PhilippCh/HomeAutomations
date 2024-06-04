@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace HomeAutomations.Extensions;
@@ -31,7 +32,7 @@ public static class StringExtensions
 
 	public static float? AsFloat(this string? input)
 	{
-		if (float.TryParse(input, out var result))
+		if (float.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
 		{
 			return result;
 		}

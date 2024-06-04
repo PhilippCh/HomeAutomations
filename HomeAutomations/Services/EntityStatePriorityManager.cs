@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Logging;
 using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Services;
@@ -8,27 +7,27 @@ namespace HomeAutomations.Services;
 public record EntityStateTarget
 {
 	public int Priority { get; init; }
-	public bool TargetState { get; init; }
+	public Action<Entity> TargetState { get; init; }
 }
 
-public class EntityStatePriorityManager(ILogger<EntityStatePriorityManager> _logger)
+public class EntityStatePriorityManager
 {
-	private readonly Dictionary<string, Dictionary<string, EntityStateTarget>> _targetStates = new();
+	private readonly Dictionary<string, Dictionary<string, EntityStateTarget>> _targetStateSetters = new();
 
-	public void AddTargetState(Entity entity, string tag, bool state, int priority)
+	public void AddTargetState<T>(T entity, string tag, Action<T> stateSetter, int priority) where T : Entity
 	{
 		var targetStates = GetTargetStates(entity);
 
 		if (!targetStates.TryGetValue(tag, out var targetState))
 		{
-			targetState = new EntityStateTarget { Priority = priority, TargetState = state };
+			targetState = new EntityStateTarget { Priority = priority, TargetState = (Action<Entity>) stateSetter };
 			targetStates.Add(tag, targetState);
 		}
 
 		targetStates[tag] = new EntityStateTarget
 		{
 			Priority = priority,
-			TargetState = state
+			TargetState = (Action<Entity>) stateSetter
 		};
 
 		UpdateEntity(entity);
@@ -44,13 +43,13 @@ public class EntityStatePriorityManager(ILogger<EntityStatePriorityManager> _log
 
 	private Dictionary<string, EntityStateTarget> GetTargetStates(Entity entity)
 	{
-		if (_targetStates.TryGetValue(entity.EntityId, out var targetStates))
+		if (_targetStateSetters.TryGetValue(entity.EntityId, out var targetStates))
 		{
 			return targetStates;
 		}
 
 		targetStates = new Dictionary<string, EntityStateTarget>();
-		_targetStates.Add(entity.EntityId, targetStates);
+		_targetStateSetters.Add(entity.EntityId, targetStates);
 
 		return targetStates;
 	}
@@ -60,12 +59,6 @@ public class EntityStatePriorityManager(ILogger<EntityStatePriorityManager> _log
 		var targetStates = GetTargetStates(entity).Values.OrderByDescending(x => x.Priority);
 		var targetState = targetStates.FirstOrDefault();
 
-		if (targetState == null)
-		{
-			return;
-		}
-
-		var service = targetState.TargetState ? "turn_on" : "turn_off";
-		entity.CallService(service);
+		targetState?.TargetState(entity);
 	}
 }

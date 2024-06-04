@@ -2,11 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations", "HomeAutomations\HomeAutomations.csproj", "{566FEBB3-9832-4360-91AA-5F7395C6CEF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations.Client", "HomeAutomations.Client\HomeAutomations.Client.csproj", "{53AD4027-4C78-4F52-A2CF-B778883BDE64}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations.Common", "HomeAutomations.Common\HomeAutomations.Common.csproj", "{59AE20EA-A4F4-4413-B4AA-A43D22CEF7E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations.Client.Watchdog", "HomeAutomations.Client.Watchdog\HomeAutomations.Client.Watchdog.csproj", "{F9CE2459-86D9-40DD-8F69-C17FC5871966}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomations.Tests", "HomeAutomations.Tests\HomeAutomations.Tests.csproj", "{27F1525F-9FEE-49B1-BB52-D6786B790272}"
 EndProject

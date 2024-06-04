@@ -31,4 +31,11 @@
 		<ProjectReference Include="..\HomeAutomations\HomeAutomations.csproj" />
 	</ItemGroup>
 
+	<Target Name="Copy configs" BeforeTargets="Build">
+		<ItemGroup>
+			<ANTLR Include="Tests\Triggers\Integration\TestData\*.trigger.json" />
+		</ItemGroup>
+		<Copy SourceFiles="@(ANTLR)" DestinationFolder="$(TargetDir)\Tests\Triggers\Integration\TestData" />
+	</Target>
+
 </Project>

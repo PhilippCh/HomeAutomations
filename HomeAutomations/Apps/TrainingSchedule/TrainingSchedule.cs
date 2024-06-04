@@ -5,17 +5,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Apps.MovieTime;
 using HomeAutomations.Common.Extensions;
-using HomeAutomations.Common.Services;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
+using HomeAutomations.Services;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.TrainingSchedule;
 
 // TODO: Migrate creation of the schedule to a VirtualEntity.
-public class TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule, TrainingScheduleConfig> aggregate, IMqttEntityManager entityManager, MqttService mqttService)
+public class TrainingSchedule(
+	BaseAutomationDependencyAggregate<TrainingSchedule, TrainingScheduleConfig> aggregate,
+	IMqttEntityManager entityManager,
+	ActionSequencerService sequencerService)
 	: BaseAutomation<TrainingSchedule, TrainingScheduleConfig>(aggregate)
 {
 	protected override async Task StartAsync(CancellationToken cancellationToken)
@@ -59,12 +62,19 @@ public class TrainingSchedule(BaseAutomationDependencyAggregate<TrainingSchedule
 	private async void StartTraining(TrainingServiceData e)
 	{
 		Logger.Information("Starting training session {Url}", e.Url);
-		Context.CallService(
-			"net_daemon", "movie_time", data: new MovieTimeServiceData
-			{
-				AvReceiverSource = "Apple TV"
-			});
-		Config.MediaPlayer.PlayMedia(e.Url, "video");
+
+		sequencerService.RunAsync(
+			new RunAction(
+				() =>
+				{
+					Context.CallService(
+						"net_daemon", "movie_time", data: new MovieTimeServiceData
+						{
+							AvReceiverSource = "Apple TV"
+						});
+				}),
+			new RunAction(() => Config.MediaPlayer.PlayMedia(e.Url, "video"))
+		);
 
 		await Task.Delay(TimeSpan.FromSeconds(10));
 		Config.Remote.SendCommand(new RemoteSendCommandParameters

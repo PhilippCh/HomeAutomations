@@ -1,0 +1,5 @@
+{
+  "$type": "TriggerRef",
+  "Id": "StaticLightsStart",
+  "RefId": "Sunset"
+}

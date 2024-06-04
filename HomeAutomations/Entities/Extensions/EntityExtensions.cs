@@ -1,4 +1,6 @@
-﻿using HomeAutomations.Extensions;
+﻿using System.Runtime.CompilerServices;
+using HomeAutomations.Common.Extensions;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
 
@@ -10,10 +12,16 @@ public static class EntityExtensions
 
 	public static IObservable<StateChange<TEntity, EntityState<TAttributes>>> StateChangesWithCurrentState<TEntity, TAttributes>(this TEntity entity)
 		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
-		where TAttributes : class
-	{
-		return entity.StateChanges().StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, null));
-	}
+		where TAttributes : class =>
+		entity.StateChanges()
+			.StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, null));
+
+	public static IObservable<TAttributes> ValidAttributeChanges<TEntity, TAttributes>(this TEntity entity)
+		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
+		where TAttributes : class =>
+		entity.StateAllChanges()
+			.Where(x => x.New?.Attributes != null)
+			.Select(x => x.New!.Attributes!);
 
 	/// <summary>
 	/// Returns whether the current entity state is *like* on (e.g. on, playing, etc.)
@@ -22,6 +30,14 @@ public static class EntityExtensions
 	/// <returns>Is state like on</returns>
 	public static bool IsLikeOn<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
 		state.IsOn() || string.Equals(state.State, "playing", StringComparison.OrdinalIgnoreCase);
+
+	public static bool Is<TEntity>(this Entity entity)
+	{
+		var type = typeof(TEntity);
+		var domain = type.Name.TrimEnd("Entity");
+
+		return entity.EntityId.StartsWith(domain, StringComparison.OrdinalIgnoreCase);
+	}
 }
 
 public static class PersonEntityExtensions
