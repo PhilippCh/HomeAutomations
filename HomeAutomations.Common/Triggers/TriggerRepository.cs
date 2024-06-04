@@ -42,30 +42,6 @@ public class TriggerRepository
 
 	public virtual ITrigger? GetTrigger(string name) => _cachedTriggers.GetValueOrDefault(name);
 
-	public IObservable<bool> GetStartEndTrigger(ITrigger startTrigger, ITrigger endTrigger)
-	{
-		var activeTriggerState = new BehaviorSubject<ActiveTriggerState>(ActiveTriggerState.Start);
-
-		return activeTriggerState
-			.ConcatMap(
-				x =>
-				{
-					var nextTriggerState = x == ActiveTriggerState.Start ? ActiveTriggerState.End : ActiveTriggerState.Start;
-					var currentObservable = x == ActiveTriggerState.Start ? startTrigger : endTrigger;
-
-					return currentObservable
-						.AsObservable()
-						.Where(y => y)
-						.Select(
-							_ =>
-							{
-								activeTriggerState.OnNext(nextTriggerState);
-
-								return x == ActiveTriggerState.Start;
-							});
-				});
-	}
-
 	private List<(string Path, ITrigger Trigger)> LoadTriggerConfigs(string path)
 	{
 		var absolutePath = Path.Combine(AppContext.BaseDirectory, path);

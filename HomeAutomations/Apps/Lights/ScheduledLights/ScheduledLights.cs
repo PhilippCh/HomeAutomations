@@ -32,8 +32,8 @@ public class ScheduledLights(
 				continue;
 			}
 
-			var triggerObservable = triggerRepository
-				.GetStartEndTrigger(startTrigger, endTrigger)
+			var triggerObservable = startTrigger
+				.WithEnd(endTrigger)
 				.Subscribe(
 					x =>
 					{

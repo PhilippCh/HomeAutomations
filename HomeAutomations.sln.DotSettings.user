@@ -9,6 +9,7 @@
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Triggers.CompoundTriggerTests.ShouldReturnTrueBetweenStartAndEnd&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Apps.ScheduledLightsTests.ShouldInitializeAsync&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Triggers.Integration.SunsetTriggerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.TriggerExtensionsTests.WithEnd_ShouldTriggerProperly&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
@@ -18,6 +19,8 @@
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Triggers.CompoundTriggerTests.ShouldReturnTrueBetweenStartAndEnd&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Apps.ScheduledLightsTests.ShouldInitializeAsync&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Triggers.Integration.SunsetTriggerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.TriggerExtensionsTests.WithEnd_ShouldTriggerProperly&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::27F1525F-9FEE-49B1-BB52-D6786B790272::net8.0::HomeAutomations.Tests.Tests.Extensions.TriggerExtensionsTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

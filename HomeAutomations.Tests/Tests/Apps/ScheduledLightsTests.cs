@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -10,7 +7,6 @@ using HomeAutomations.Apps.Lights.ScheduledLights;
 using HomeAutomations.Common.Triggers;
 using HomeAutomations.Services;
 using HomeAutomations.Tests.Helpers;
-using HomeAutomations.Tests.Mocks;
 using Microsoft.Extensions.Options;
 using Microsoft.Reactive.Testing;
 using Moq;
@@ -21,17 +17,6 @@ namespace HomeAutomations.Tests.Tests.Apps;
 
 public class ScheduledLightsTests
 {
-	private class TestTrigger : ITrigger
-	{
-		public string? Id { get; init; }
-		public bool LatestValue { get; private set; }
-		public readonly Subject<bool> Subject = new();
-
-		public IObservable<bool> AsObservable() => Subject.Do(x => LatestValue = x);
-
-		public IEnumerable<ITrigger> GetTriggersInternal() => [];
-	}
-
 	private const string TestLightEntityId = "TestLight1";
 
 	private readonly StateChangeManager _stateChangeManager;
