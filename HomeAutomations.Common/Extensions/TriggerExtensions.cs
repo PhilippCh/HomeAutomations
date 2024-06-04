@@ -9,7 +9,7 @@ public static class TriggerExtensions
 	public static IObservable<bool> WithEnd(this ITrigger start, ITrigger end)
 	{
 		var activeTriggerState = new BehaviorSubject<ActiveTriggerState>(ActiveTriggerState.Start);
-		var result = new Subject<bool>();
+		var result = new BehaviorSubject<bool>(false);
 
 		activeTriggerState
 			.SwitchMap(
