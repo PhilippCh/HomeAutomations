@@ -1,19 +1,32 @@
 {
-  "$type": "Boolean",
+  "$type": "Or",
   "Id": "LavaLampEnd",
-  "Condition": {
-    "$type": "Weekend"
-  },
-  "FalseTrigger": {
-    "$type": "Time",
-    "Comment": "We are limited between a 5 minute interval, so the trigger doesn't fire immediately after the start trigger. This is a limitation of the current implementation.",
-    "From": "00:45:00",
-    "To": "00:50:00"
-  },
-  "TrueTrigger": {
-    "$type": "Time",
-    "Comment": "We are limited between a 5 minute interval, so the trigger doesn't fire immediately after the start trigger. This is a limitation of the current implementation.",
-    "From": "02:30:00",
-    "To": "02:45:00"
-  }
+  "Triggers": [
+    {
+      "$type": "Boolean",
+      "Id": "LavaLampEnd",
+      "Condition": {
+        "$type": "Weekend"
+      },
+      "FalseTrigger": {
+        "$type": "Time",
+        "Comment": "We are limited between a 5 minute interval, so the trigger doesn't fire immediately after the start trigger. This is a limitation of the current implementation.",
+        "From": "00:45:00",
+        "To": "00:50:00"
+      },
+      "TrueTrigger": {
+        "$type": "Time",
+        "Comment": "We are limited between a 5 minute interval, so the trigger doesn't fire immediately after the start trigger. This is a limitation of the current implementation.",
+        "From": "02:30:00",
+        "To": "02:45:00"
+      }
+    },
+    {
+      "$type": "SensorEntityComparison",
+      "Comment": "If the temperature is above 21 degrees, we don't want to turn on the lava lamp as it produces additional unwanted heat.",
+      "Entity": "sensor.raumthermostat_schlafzimmer_temperature",
+      "Threshold": 21,
+      "Operator": "GreaterThan"
+    }
+  ]
 }

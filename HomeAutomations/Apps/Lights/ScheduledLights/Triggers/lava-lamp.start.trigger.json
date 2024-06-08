@@ -19,9 +19,11 @@
       }
     },
     {
-      "$type": "SensorEntityLowerThan",
+      "$type": "SensorEntityComparison",
+      "Comment": "If the temperature is above 21 degrees, we don't want to turn on the lava lamp as it produces additional unwanted heat.",
       "Entity": "sensor.raumthermostat_schlafzimmer_temperature",
-      "Threshold": 22.5
+      "Threshold": 21,
+      "Operator": "LowerThan"
     }
   ]
 }

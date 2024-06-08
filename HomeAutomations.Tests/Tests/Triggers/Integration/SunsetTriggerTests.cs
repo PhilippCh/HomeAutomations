@@ -48,7 +48,7 @@ public class SunsetTriggerTests
 					From = TimeOnly.Parse("18:00:00"),
 					To = TimeOnly.Parse("23:59:59")
 				},
-				new SensorEntityLowerThanTrigger
+				new SensorEntityComparisonTrigger
 				{
 					Entity = _illuminanceSensor,
 					Threshold = 200f

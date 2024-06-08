@@ -9,9 +9,10 @@
       "To": "23:59:59"
     },
     {
-      "$type": "SensorEntityLowerThan",
+      "$type": "SensorEntityComparison",
       "Entity": "sensor.living_room_balcony_light_sensor_illuminance_lux",
-      "Threshold": 400
+      "Threshold": 400,
+      "Operator": "LowerThan"
     }
   ]
 }
