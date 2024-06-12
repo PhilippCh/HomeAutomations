@@ -63,18 +63,23 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 				continue;
 			}
 
-			targetBucket.Entity.DeleteAllItems();
+			Logger.Debug("Deleting all todos in bucket {BucketName}", targetBucket.Name);
+			await targetBucket.Entity.DeleteAllItemsAsync();
 
 			foreach (var item in group)
 			{
+				Logger.Debug("Creating todo for item {ItemName} in bucket {BucketName}", item.ItemName, targetBucket.Name);
 				Services.O365.NewTodo(new ServiceTarget
 				{
 					EntityIds = [targetBucket.Entity.EntityId]
 				}, item.ItemName);
+
+				// We need to wait between MS Graph calls to not cause throttling.
+				await Task.Delay(TimeSpan.FromMilliseconds(500));
 			}
 		}
 
-		Logger.Information("Sorting of {Count} items completed", addedItems.Count());
+		Logger.Information("Sorting of {Count} items completed", addedItems.Count);
 	}
 
 	private string CreateSystemPrompt()

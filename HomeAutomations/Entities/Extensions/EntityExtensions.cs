@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
@@ -87,7 +88,7 @@ public static class TodoEntityExtensions
 {
 	public static IEnumerable<TodoItem>? GetAllItems(this TodoEntity entity) => TodoItem.FromJsonElements(entity.Attributes?.AllTodos?.OfType<JsonElement>());
 
-	public static void DeleteAllItems(this TodoEntity entity)
+	public static async Task DeleteAllItemsAsync(this TodoEntity entity)
 	{
 		var services = new Models.Generated.Services(entity.HaContext);
 		var todos = entity.GetAllItems();
@@ -101,6 +102,9 @@ public static class TodoEntityExtensions
 					{
 						EntityIds = [entity.EntityId]
 					}, new O365DeleteTodoParameters { TodoId = todo.Id });
+
+				// We need to wait between MS Graph calls to not cause throttling.
+				await Task.Delay(TimeSpan.FromMilliseconds(500));
 			}
 		}
 	}

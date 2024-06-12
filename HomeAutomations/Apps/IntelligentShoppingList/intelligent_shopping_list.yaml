@@ -6,6 +6,21 @@ HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
     - Name: Gemüse
       Entity: todo.einkauf_gemuse_philipp
       Predicate: Obst und Gemüse
+    - Name: Frühstück
+      Entity: todo.einkauf_fruhstuck_philipp
+      Predicate: Alle Dinge, die zum Frühstück gehören, ausgenommen gekühlter Waren
+    - Name: Pasta & Konserven
+      Entity: todo.einkauf_pasta_konserven_philipp
+      Predicate: Pasta und Konserven, ungekühlte Spezialitäten
+    - Name: Getränke
+      Entity: todo.einkauf_getranke_philipp
+      Predicate: Ungekühlte Getränke
+    - Name: Getränke
+      Entity: todo.einkauf_kuhlregal_philipp
+      Predicate: Gekühlte Ware, keine Tiefkühlware
+    - Name: Getränke
+      Entity: todo.einkauf_tiefkuhl_philipp
+      Predicate: Ware, die tiefgekühlt werden muss. Keine Kühlschranktemperaturen
     - Name: Sonstiges
       Entity: todo.einkauf_sonstiges_philipp
       Predicate: Alles andere
