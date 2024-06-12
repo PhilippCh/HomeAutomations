@@ -5,16 +5,23 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Models;
 using HomeAutomations.Services.LLM;
+using NetDaemon.HassModel.Entities;
 using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.IntelligentShoppingList;
 
 [Focus]
-public class IntelligentShoppingList(
-	BaseAutomationDependencyAggregate<IntelligentShoppingList, IntelligentShoppingListConfig> aggregate,
-	ILlmService llmService) : BaseAutomation<IntelligentShoppingList, IntelligentShoppingListConfig>(aggregate)
+public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, IntelligentShoppingListConfig>
 {
 	private string? _systemPrompt;
+	private readonly ILlmService _llmService;
+
+	// ReSharper disable once ConvertToPrimaryConstructor | Primary constructor displays values as null, see https://github.com/dotnet/roslyn/issues/70730.
+	public IntelligentShoppingList(BaseAutomationDependencyAggregate<IntelligentShoppingList, IntelligentShoppingListConfig> aggregate, ILlmService llmService)
+		: base(aggregate)
+	{
+		_llmService = llmService;
+	}
 
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
@@ -31,6 +38,29 @@ public class IntelligentShoppingList(
 		var addedItems = delta.Added.Where(x => !Config.IgnoredItems.Contains(x.Id));
 
 		var sortedItems = await SortItemsWithLlmAsync(addedItems);
+
+		if (sortedItems == null)
+		{
+			Logger.Warning("An error occurred when getting the LLM response");
+
+			return;
+		}
+
+		foreach (var item in sortedItems)
+		{
+			var targetBucket = Config.Buckets.FirstOrDefault(x => x.Entity.EntityId == item.BucketId);
+
+			if (targetBucket == null)
+			{
+				Logger.Warning("Could not copy item {ItemName} into bucket {BucketId} as the bucket does not exist", item.ItemName, item.BucketId);
+				continue;
+			}
+
+			Services.O365.NewTodo(new ServiceTarget
+			{
+				EntityIds = [targetBucket.Entity.EntityId]
+			}, item.ItemName);
+		}
 	}
 
 	private string CreateSystemPrompt()
@@ -53,7 +83,7 @@ public class IntelligentShoppingList(
 		var itemList = string.Join("\r\n", items.Select(x => x.Name));
 		var prompt = _systemPrompt.Replace("%ITEMS%", itemList);
 
-		var result = await llmService.CreateCompletionAsync(prompt);
+		var result = await _llmService.CreateCompletionAsync(prompt);
 
 		if (result == null)
 		{

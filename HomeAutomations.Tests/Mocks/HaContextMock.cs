@@ -28,7 +28,21 @@ public sealed class HaContextMock : IHaContext
 
     public void CallService(string domain, string service, ServiceTarget? target = null, object? data = null)
     {
+	    var dataElement = new
+	    {
+		    domain,
+		    service,
+		    service_data = data
+	    };
+	    var dataElementJson = JsonSerializer.Serialize(dataElement);
+	    var dataElementJsonElement = JsonDocument.Parse(dataElementJson).RootElement;
+
         _serviceCalls.Add(new TestServiceCall(domain, service, target, data));
+        EventsSubject.OnNext(new Event
+        {
+	        EventType = "call_service",
+	        DataElement = dataElementJsonElement
+        });
     }
 
     public Task<JsonElement?> CallServiceWithResponseAsync(string domain, string service, ServiceTarget? target = null, object? data = null)

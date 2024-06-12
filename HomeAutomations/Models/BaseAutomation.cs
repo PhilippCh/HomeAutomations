@@ -35,6 +35,7 @@ public abstract class BaseAutomation<T> : IAsyncInitializable, IDisposable where
 {
 	protected ILogger Logger { get; }
 	protected IHaContext Context { get; }
+	protected Generated.Services Services { get; }
 	protected CompositeDisposable Disposables { get; } = new();
 
 	private
@@ -42,6 +43,7 @@ public abstract class BaseAutomation<T> : IAsyncInitializable, IDisposable where
 	{
 		Context = aggregate.Context;
 		Logger = aggregate.Logger;
+		Services = new Generated.Services(Context);
 	}
 
 	public async Task InitializeAsync(CancellationToken cancellationToken) => await StartAsync(cancellationToken);

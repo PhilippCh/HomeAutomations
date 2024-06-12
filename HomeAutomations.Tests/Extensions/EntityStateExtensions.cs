@@ -9,7 +9,7 @@ public static class EntityStateExtensions
 	public static EntityState WithAttributes(this EntityState entityState, object attributes)
 	{
 		var copy = entityState with { };
-		entityState.GetType().GetProperty("AttributesJson", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(copy, attributes.AsJsonElement());
+		entityState.GetType().GetProperty("AttributesJson")!.SetValue(copy, attributes.AsJsonElement());
 		return copy;
 	}
 }

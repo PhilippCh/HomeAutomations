@@ -951,6 +951,443 @@
       "fields": {}
     }
   },
+  "conversation": {
+    "process": {
+      "name": "Process",
+      "description": "Launches a conversation from a transcribed text.",
+      "fields": {
+        "text": {
+          "example": "Turn all lights on",
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Text",
+          "description": "Transcribed text input."
+        },
+        "language": {
+          "example": "NL",
+          "selector": {
+            "text": null
+          },
+          "name": "Language",
+          "description": "Language of text. Defaults to server language."
+        },
+        "agent_id": {
+          "example": "homeassistant",
+          "selector": {
+            "conversation_agent": null
+          },
+          "name": "Agent",
+          "description": "Conversation agent to process your request. The conversation agent is the brains of your assistant. It processes the incoming text commands."
+        },
+        "conversation_id": {
+          "example": "my_conversation_1",
+          "selector": {
+            "text": null
+          },
+          "name": "Conversation ID",
+          "description": "ID of the conversation, to be able to continue a previous conversation"
+        }
+      },
+      "response": {
+        "optional": true
+      }
+    },
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads the intent configuration.",
+      "fields": {
+        "language": {
+          "example": "NL",
+          "selector": {
+            "text": null
+          },
+          "name": "Language",
+          "description": "Language to clear cached intents for. Defaults to server language."
+        },
+        "agent_id": {
+          "example": "homeassistant",
+          "selector": {
+            "conversation_agent": null
+          },
+          "name": "Agent",
+          "description": "Conversation agent to reload."
+        }
+      }
+    }
+  },
+  "logbook": {
+    "log": {
+      "name": "Log",
+      "description": "Creates a custom entry in the logbook.",
+      "fields": {
+        "name": {
+          "required": true,
+          "example": "Kitchen",
+          "selector": {
+            "text": null
+          },
+          "name": "Name",
+          "description": "Custom name for an entity, can be referenced using an \u0060entity_id\u0060."
+        },
+        "message": {
+          "required": true,
+          "example": "is being used",
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "Message of the logbook entry."
+        },
+        "entity_id": {
+          "selector": {
+            "entity": null
+          },
+          "name": "Entity ID",
+          "description": "Entity to reference in the logbook entry."
+        },
+        "domain": {
+          "example": "light",
+          "selector": {
+            "text": null
+          },
+          "name": "Domain",
+          "description": "Determines which icon is used in the logbook entry. The icon illustrates the integration domain related to this logbook entry."
+        }
+      }
+    }
+  },
+  "nuki_ng": {
+    "bridge_reboot": {
+      "name": "Reboot Bridge",
+      "description": "",
+      "fields": {},
+      "target": {
+        "device": [
+          {
+            "integration": "nuki_ng"
+          }
+        ]
+      }
+    },
+    "bridge_fwupdate": {
+      "name": "Perform Bridge software update",
+      "description": "",
+      "fields": {},
+      "target": {
+        "device": [
+          {
+            "integration": "nuki_ng"
+          }
+        ]
+      }
+    },
+    "bridge_delete_callback": {
+      "name": "Delete callback URL from Bridge callbacks list",
+      "description": "The callbacks currently set are exposed as attributes of the \u0027Bridge Callback Set\u0027 entity",
+      "fields": {
+        "command": {
+          "name": "Callback URL",
+          "description": "URL to delete",
+          "required": true,
+          "example": "http://192.168.0.0/callback",
+          "selector": {
+            "text": {}
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "nuki_ng"
+          }
+        ]
+      }
+    },
+    "execute_action": {
+      "name": "Execute arbitrary lock action via the Bridge or Web API",
+      "description": "",
+      "fields": {
+        "action": {
+          "name": "Action",
+          "description": "Lock action to execute",
+          "example": "unlock",
+          "required": true,
+          "selector": {
+            "select": {
+              "options": [
+                "unlock",
+                "lock",
+                "open",
+                "lock_n_go",
+                "lock_n_go_open",
+                "activate_rto",
+                "deactivate_rto",
+                "electric_strike_actuation",
+                "activate_continuous_mode",
+                "deactivate_continuous_mode"
+              ]
+            }
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "nuki_ng"
+          }
+        ]
+      }
+    }
+  },
+  "number": {
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value of a number.",
+      "fields": {
+        "value": {
+          "example": 42,
+          "selector": {
+            "text": null
+          },
+          "name": "Value",
+          "description": "The target value to set."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "number"
+            ]
+          }
+        ]
+      }
+    },
+    "max": {
+      "name": "Set maximum value \uD83D\uDC7B",
+      "description": "Set a number entity to its maximum value.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "number"
+            ]
+          }
+        ]
+      }
+    },
+    "decrement": {
+      "name": "Decrease value \uD83D\uDC7B",
+      "description": "Decrease a number entity value by a certain amount.",
+      "fields": {
+        "amount": {
+          "name": "Amount",
+          "description": "The amount to decrease the number with. If not provided, the step of the number entity will be used.",
+          "required": false,
+          "selector": {
+            "number": null
+          }
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "number"
+            ]
+          }
+        ]
+      }
+    },
+    "min": {
+      "name": "Set minimum value \uD83D\uDC7B",
+      "description": "Set a number entity to its minimum value.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "number"
+            ]
+          }
+        ]
+      }
+    },
+    "increment": {
+      "name": "Increase value \uD83D\uDC7B",
+      "description": "Increase a number entity value by a certain amount.",
+      "fields": {
+        "amount": {
+          "name": "Amount",
+          "description": "The amount to increase the number with. If not provided, the step of the number entity will be used.",
+          "required": false,
+          "selector": {
+            "number": null
+          }
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "number"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "select": {
+    "select_first": {
+      "name": "First",
+      "description": "Selects the first option.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_last": {
+      "name": "Last",
+      "description": "Selects the last option.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_next": {
+      "name": "Next",
+      "description": "Selects the next option.",
+      "fields": {
+        "cycle": {
+          "default": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Cycle",
+          "description": "If the option should cycle from the last to the first."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_option": {
+      "name": "Select",
+      "description": "Selects an option.",
+      "fields": {
+        "option": {
+          "required": true,
+          "example": "\u0022Item A\u0022",
+          "selector": {
+            "text": null
+          },
+          "name": "Option",
+          "description": "Option to be selected."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_previous": {
+      "name": "Previous",
+      "description": "Selects the previous option.",
+      "fields": {
+        "cycle": {
+          "default": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Cycle",
+          "description": "If the option should cycle from the first to the last."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "random": {
+      "name": "Select random option \uD83D\uDC7B",
+      "description": "Select an random option for a select entity.",
+      "fields": {
+        "options": {
+          "name": "Options",
+          "description": "Limits the options to select from. If not provided, all options will be considered.",
+          "required": false,
+          "selector": {
+            "object": null
+          }
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "localtuya": {
+    "reload": {
+      "name": "",
+      "description": "Reload localtuya and reconnect to all devices.",
+      "fields": {}
+    },
+    "set_dp": {
+      "name": "",
+      "description": "Change the value of a datapoint (DP)",
+      "fields": {
+        "device_id": {
+          "description": "Device ID of device to change datapoint value for",
+          "example": "11100118278aab4de001"
+        },
+        "dp": {
+          "description": "Datapoint index",
+          "example": 1
+        },
+        "value": {
+          "description": "New value to set",
+          "example": false
+        }
+      }
+    }
+  },
   "scene": {
     "reload": {
       "name": "Reload",
@@ -1059,93 +1496,97 @@
       }
     }
   },
-  "localtuya": {
-    "reload": {
-      "name": "",
-      "description": "Reload localtuya and reconnect to all devices.",
-      "fields": {}
-    },
-    "set_dp": {
-      "name": "",
-      "description": "Change the value of a datapoint (DP)",
+  "webrtc": {
+    "create_link": {
+      "name": "Create Link",
+      "description": "Create a temporary or permanent link to a stream (enter \u0022url\u0022 or \u0022entity\u0022)",
       "fields": {
-        "device_id": {
-          "description": "Device ID of device to change datapoint value for",
-          "example": "11100118278aab4de001"
-        },
-        "dp": {
-          "description": "Datapoint index",
-          "example": 1
-        },
-        "value": {
-          "description": "New value to set",
-          "example": false
-        }
-      }
-    }
-  },
-  "conversation": {
-    "process": {
-      "name": "Process",
-      "description": "Launches a conversation from a transcribed text.",
-      "fields": {
-        "text": {
-          "example": "Turn all lights on",
+        "link_id": {
+          "description": "Create a random or permanent ID for your link",
+          "example": "fd0a53ca-e9ab-4e7a-86a2-441642b16ae1",
           "required": true,
           "selector": {
             "text": null
-          },
-          "name": "Text",
-          "description": "Transcribed text input."
+          }
         },
-        "language": {
-          "example": "NL",
+        "url": {
+          "description": "Link to RTSP-stream",
+          "example": "rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0",
           "selector": {
             "text": null
-          },
-          "name": "Language",
-          "description": "Language of text. Defaults to server language."
+          }
         },
-        "agent_id": {
-          "example": "homeassistant",
+        "entity": {
+          "description": "Camera entity",
+          "example": "camera.generic_stream",
           "selector": {
-            "conversation_agent": null
-          },
-          "name": "Agent",
-          "description": "Conversation agent to process your request. The conversation agent is the brains of your assistant. It processes the incoming text commands."
+            "entity": {
+              "domain": "camera"
+            }
+          }
         },
-        "conversation_id": {
-          "example": "my_conversation_1",
+        "open_limit": {
+          "description": "How many times a link can be opened (0 - unlimit)",
+          "example": 1,
+          "default": 1,
           "selector": {
-            "text": null
-          },
-          "name": "Conversation ID",
-          "description": "ID of the conversation, to be able to continue a previous conversation"
+            "number": {
+              "min": 0,
+              "max": 100,
+              "unit_of_measurement": "times"
+            }
+          }
+        },
+        "time_to_live": {
+          "description": "How many seconds will the link live (0 - unlimit)",
+          "example": 60,
+          "default": 60,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 100000,
+              "unit_of_measurement": "seconds"
+            }
+          }
         }
-      },
-      "response": {
-        "optional": true
       }
     },
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads the intent configuration.",
+    "dash_cast": {
+      "name": "DashCast",
+      "description": "Cast stream to Chromecast device via DashCast application",
       "fields": {
-        "language": {
-          "example": "NL",
+        "entity_id": {
+          "description": "Media player entity",
+          "example": "media_player.mibox4",
+          "required": true,
+          "selector": {
+            "entity": {
+              "integration": "cast",
+              "domain": "media_player"
+            }
+          }
+        },
+        "url": {
+          "description": "Link to RTSP-stream",
+          "example": "rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0",
           "selector": {
             "text": null
-          },
-          "name": "Language",
-          "description": "Language to clear cached intents for. Defaults to server language."
+          }
         },
-        "agent_id": {
-          "example": "homeassistant",
+        "force": {
+          "description": "Force restart DashCast application",
           "selector": {
-            "conversation_agent": null
-          },
-          "name": "Agent",
-          "description": "Conversation agent to reload."
+            "boolean": null
+          }
+        },
+        "entity": {
+          "description": "Camera entity",
+          "example": "camera.generic_stream",
+          "selector": {
+            "entity": {
+              "domain": "camera"
+            }
+          }
         }
       }
     }
@@ -1404,89 +1845,6 @@
       }
     }
   },
-  "nuki_ng": {
-    "bridge_reboot": {
-      "name": "Reboot Bridge",
-      "description": "",
-      "fields": {},
-      "target": {
-        "device": [
-          {
-            "integration": "nuki_ng"
-          }
-        ]
-      }
-    },
-    "bridge_fwupdate": {
-      "name": "Perform Bridge software update",
-      "description": "",
-      "fields": {},
-      "target": {
-        "device": [
-          {
-            "integration": "nuki_ng"
-          }
-        ]
-      }
-    },
-    "bridge_delete_callback": {
-      "name": "Delete callback URL from Bridge callbacks list",
-      "description": "The callbacks currently set are exposed as attributes of the \u0027Bridge Callback Set\u0027 entity",
-      "fields": {
-        "command": {
-          "name": "Callback URL",
-          "description": "URL to delete",
-          "required": true,
-          "example": "http://192.168.0.0/callback",
-          "selector": {
-            "text": {}
-          }
-        }
-      },
-      "target": {
-        "device": [
-          {
-            "integration": "nuki_ng"
-          }
-        ]
-      }
-    },
-    "execute_action": {
-      "name": "Execute arbitrary lock action via the Bridge or Web API",
-      "description": "",
-      "fields": {
-        "action": {
-          "name": "Action",
-          "description": "Lock action to execute",
-          "example": "unlock",
-          "required": true,
-          "selector": {
-            "select": {
-              "options": [
-                "unlock",
-                "lock",
-                "open",
-                "lock_n_go",
-                "lock_n_go_open",
-                "activate_rto",
-                "deactivate_rto",
-                "electric_strike_actuation",
-                "activate_continuous_mode",
-                "deactivate_continuous_mode"
-              ]
-            }
-          }
-        }
-      },
-      "target": {
-        "device": [
-          {
-            "integration": "nuki_ng"
-          }
-        ]
-      }
-    }
-  },
   "wake_on_lan": {
     "send_magic_packet": {
       "name": "Send magic packet",
@@ -1521,371 +1879,6 @@
           "description": "Port where to send the magic packet."
         }
       }
-    }
-  },
-  "logbook": {
-    "log": {
-      "name": "Log",
-      "description": "Creates a custom entry in the logbook.",
-      "fields": {
-        "name": {
-          "required": true,
-          "example": "Kitchen",
-          "selector": {
-            "text": null
-          },
-          "name": "Name",
-          "description": "Custom name for an entity, can be referenced using an \u0060entity_id\u0060."
-        },
-        "message": {
-          "required": true,
-          "example": "is being used",
-          "selector": {
-            "text": null
-          },
-          "name": "Message",
-          "description": "Message of the logbook entry."
-        },
-        "entity_id": {
-          "selector": {
-            "entity": null
-          },
-          "name": "Entity ID",
-          "description": "Entity to reference in the logbook entry."
-        },
-        "domain": {
-          "example": "light",
-          "selector": {
-            "text": null
-          },
-          "name": "Domain",
-          "description": "Determines which icon is used in the logbook entry. The icon illustrates the integration domain related to this logbook entry."
-        }
-      }
-    }
-  },
-  "select": {
-    "select_first": {
-      "name": "First",
-      "description": "Selects the first option.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_last": {
-      "name": "Last",
-      "description": "Selects the last option.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_next": {
-      "name": "Next",
-      "description": "Selects the next option.",
-      "fields": {
-        "cycle": {
-          "default": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Cycle",
-          "description": "If the option should cycle from the last to the first."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_option": {
-      "name": "Select",
-      "description": "Selects an option.",
-      "fields": {
-        "option": {
-          "required": true,
-          "example": "\u0022Item A\u0022",
-          "selector": {
-            "text": null
-          },
-          "name": "Option",
-          "description": "Option to be selected."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_previous": {
-      "name": "Previous",
-      "description": "Selects the previous option.",
-      "fields": {
-        "cycle": {
-          "default": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Cycle",
-          "description": "If the option should cycle from the first to the last."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "random": {
-      "name": "Select random option \uD83D\uDC7B",
-      "description": "Select an random option for a select entity.",
-      "fields": {
-        "options": {
-          "name": "Options",
-          "description": "Limits the options to select from. If not provided, all options will be considered.",
-          "required": false,
-          "selector": {
-            "object": null
-          }
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "webrtc": {
-    "create_link": {
-      "name": "Create Link",
-      "description": "Create a temporary or permanent link to a stream (enter \u0022url\u0022 or \u0022entity\u0022)",
-      "fields": {
-        "link_id": {
-          "description": "Create a random or permanent ID for your link",
-          "example": "fd0a53ca-e9ab-4e7a-86a2-441642b16ae1",
-          "required": true,
-          "selector": {
-            "text": null
-          }
-        },
-        "url": {
-          "description": "Link to RTSP-stream",
-          "example": "rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0",
-          "selector": {
-            "text": null
-          }
-        },
-        "entity": {
-          "description": "Camera entity",
-          "example": "camera.generic_stream",
-          "selector": {
-            "entity": {
-              "domain": "camera"
-            }
-          }
-        },
-        "open_limit": {
-          "description": "How many times a link can be opened (0 - unlimit)",
-          "example": 1,
-          "default": 1,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 100,
-              "unit_of_measurement": "times"
-            }
-          }
-        },
-        "time_to_live": {
-          "description": "How many seconds will the link live (0 - unlimit)",
-          "example": 60,
-          "default": 60,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 100000,
-              "unit_of_measurement": "seconds"
-            }
-          }
-        }
-      }
-    },
-    "dash_cast": {
-      "name": "DashCast",
-      "description": "Cast stream to Chromecast device via DashCast application",
-      "fields": {
-        "entity_id": {
-          "description": "Media player entity",
-          "example": "media_player.mibox4",
-          "required": true,
-          "selector": {
-            "entity": {
-              "integration": "cast",
-              "domain": "media_player"
-            }
-          }
-        },
-        "url": {
-          "description": "Link to RTSP-stream",
-          "example": "rtsp://rtsp:12345678@192.168.1.123:554/av_stream/ch0",
-          "selector": {
-            "text": null
-          }
-        },
-        "force": {
-          "description": "Force restart DashCast application",
-          "selector": {
-            "boolean": null
-          }
-        },
-        "entity": {
-          "description": "Camera entity",
-          "example": "camera.generic_stream",
-          "selector": {
-            "entity": {
-              "domain": "camera"
-            }
-          }
-        }
-      }
-    }
-  },
-  "number": {
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the value of a number.",
-      "fields": {
-        "value": {
-          "example": 42,
-          "selector": {
-            "text": null
-          },
-          "name": "Value",
-          "description": "The target value to set."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "number"
-            ]
-          }
-        ]
-      }
-    },
-    "max": {
-      "name": "Set maximum value \uD83D\uDC7B",
-      "description": "Set a number entity to its maximum value.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "number"
-            ]
-          }
-        ]
-      }
-    },
-    "decrement": {
-      "name": "Decrease value \uD83D\uDC7B",
-      "description": "Decrease a number entity value by a certain amount.",
-      "fields": {
-        "amount": {
-          "name": "Amount",
-          "description": "The amount to decrease the number with. If not provided, the step of the number entity will be used.",
-          "required": false,
-          "selector": {
-            "number": null
-          }
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "number"
-            ]
-          }
-        ]
-      }
-    },
-    "min": {
-      "name": "Set minimum value \uD83D\uDC7B",
-      "description": "Set a number entity to its minimum value.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "number"
-            ]
-          }
-        ]
-      }
-    },
-    "increment": {
-      "name": "Increase value \uD83D\uDC7B",
-      "description": "Increase a number entity value by a certain amount.",
-      "fields": {
-        "amount": {
-          "name": "Amount",
-          "description": "The amount to increase the number with. If not provided, the step of the number entity will be used.",
-          "required": false,
-          "selector": {
-            "number": null
-          }
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "number"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "waste_collection_schedule": {
-    "fetch_data": {
-      "name": "Fetch data from all sources.",
-      "description": "Fetch data from all sources.",
-      "fields": {}
     }
   },
   "openplantbook": {
@@ -1946,6 +1939,13 @@
       }
     }
   },
+  "waste_collection_schedule": {
+    "fetch_data": {
+      "name": "Fetch data from all sources.",
+      "description": "Fetch data from all sources.",
+      "fields": {}
+    }
+  },
   "ffmpeg": {
     "start": {
       "name": "Start",
@@ -2003,125 +2003,11 @@
       "fields": {}
     }
   },
-  "timer": {
+  "schedule": {
     "reload": {
       "name": "Reload",
-      "description": "Reloads timers from the YAML-configuration.",
+      "description": "Reloads schedules from the YAML-configuration.",
       "fields": {}
-    },
-    "start": {
-      "name": "Start",
-      "description": "Starts a timer.",
-      "fields": {
-        "duration": {
-          "example": "00:01:00 or 60",
-          "selector": {
-            "text": null
-          },
-          "name": "Duration",
-          "description": "Duration the timer requires to finish. [optional]."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "pause": {
-      "name": "Pause",
-      "description": "Pauses a timer.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "cancel": {
-      "name": "Cancel",
-      "description": "Cancels a timer.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "finish": {
-      "name": "Finish",
-      "description": "Finishes a timer.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "change": {
-      "name": "Change",
-      "description": "Changes a timer.",
-      "fields": {
-        "duration": {
-          "default": 0,
-          "required": true,
-          "example": "00:01:00, 60 or -60",
-          "selector": {
-            "text": null
-          },
-          "name": "Duration",
-          "description": "Duration to add or subtract to the running timer."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "set_duration": {
-      "name": "Set duration \uD83D\uDC7B",
-      "description": "Set duration for an existing timer.",
-      "fields": {
-        "duration": {
-          "name": "Duration",
-          "description": "New duration for the timer, as a timedelta string.",
-          "required": true,
-          "example": "00:01:00, 60",
-          "selector": {
-            "text": null
-          }
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
     }
   },
   "notify": {
@@ -2356,55 +2242,6 @@
       }
     }
   },
-  "script": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads all the available scripts.",
-      "fields": {}
-    },
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Runs the sequence of actions defined in a script.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "script"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Stops a running script.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "script"
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggle a script. Starts it, if isn\u0027t running, stops it otherwise.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "script"
-            ]
-          }
-        ]
-      }
-    }
-  },
   "automation": {
     "trigger": {
       "name": "Trigger",
@@ -2486,11 +2323,74 @@
       "fields": {}
     }
   },
-  "schedule": {
+  "script": {
     "reload": {
       "name": "Reload",
-      "description": "Reloads schedules from the YAML-configuration.",
+      "description": "Reloads all the available scripts.",
       "fields": {}
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Runs the sequence of actions defined in a script.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "script"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Stops a running script.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "script"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggle a script. Starts it, if isn\u0027t running, stops it otherwise.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "script"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "input_button": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "press": {
+      "name": "Press",
+      "description": "Mimics the physical button press on the device.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_button"
+            ]
+          }
+        ]
+      }
     }
   },
   "input_datetime": {
@@ -2550,21 +2450,121 @@
       }
     }
   },
-  "input_button": {
+  "timer": {
     "reload": {
       "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
+      "description": "Reloads timers from the YAML-configuration.",
       "fields": {}
     },
-    "press": {
-      "name": "Press",
-      "description": "Mimics the physical button press on the device.",
+    "start": {
+      "name": "Start",
+      "description": "Starts a timer.",
+      "fields": {
+        "duration": {
+          "example": "00:01:00 or 60",
+          "selector": {
+            "text": null
+          },
+          "name": "Duration",
+          "description": "Duration the timer requires to finish. [optional]."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "pause": {
+      "name": "Pause",
+      "description": "Pauses a timer.",
       "fields": {},
       "target": {
         "entity": [
           {
             "domain": [
-              "input_button"
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "cancel": {
+      "name": "Cancel",
+      "description": "Cancels a timer.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "finish": {
+      "name": "Finish",
+      "description": "Finishes a timer.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "change": {
+      "name": "Change",
+      "description": "Changes a timer.",
+      "fields": {
+        "duration": {
+          "default": 0,
+          "required": true,
+          "example": "00:01:00, 60 or -60",
+          "selector": {
+            "text": null
+          },
+          "name": "Duration",
+          "description": "Duration to add or subtract to the running timer."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "set_duration": {
+      "name": "Set duration \uD83D\uDC7B",
+      "description": "Set duration for an existing timer.",
+      "fields": {
+        "duration": {
+          "name": "Duration",
+          "description": "New duration for the timer, as a timedelta string.",
+          "required": true,
+          "example": "00:01:00, 60",
+          "selector": {
+            "text": null
+          }
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
             ]
           }
         ]
@@ -2662,6 +2662,11 @@
       "fields": {}
     },
     "movie_time": {
+      "name": "",
+      "description": "",
+      "fields": {}
+    },
+    "sort_shopping_list": {
       "name": "",
       "description": "",
       "fields": {}
@@ -2981,306 +2986,6 @@
       }
     }
   },
-  "remote": {
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns the device off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Sends the power on command.",
-      "fields": {
-        "activity": {
-          "example": "BedroomTV",
-          "filter": {
-            "supported_features": [
-              4
-            ]
-          },
-          "selector": {
-            "text": null
-          },
-          "name": "Activity",
-          "description": "Activity ID or activity name to be started."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles a device on/off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "send_command": {
-      "name": "Send command",
-      "description": "Sends a command or a list of commands to a device.",
-      "fields": {
-        "device": {
-          "example": "32756745",
-          "selector": {
-            "text": null
-          },
-          "name": "Device",
-          "description": "Device ID to send command to."
-        },
-        "command": {
-          "required": true,
-          "example": "Play",
-          "selector": {
-            "object": null
-          },
-          "name": "Command",
-          "description": "A single command or a list of commands to send."
-        },
-        "num_repeats": {
-          "default": 1,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 255
-            }
-          },
-          "name": "Repeats",
-          "description": "The number of times you want to repeat the commands."
-        },
-        "delay_secs": {
-          "default": 0.4,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 60,
-              "step": 0.1,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Delay seconds",
-          "description": "The time you want to wait in between repeated commands."
-        },
-        "hold_secs": {
-          "default": 0,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 60,
-              "step": 0.1,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Hold seconds",
-          "description": "The time you want to have it held before the release is send."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "learn_command": {
-      "name": "Learn command",
-      "description": "Learns a command or a list of commands from a device.",
-      "fields": {
-        "device": {
-          "example": "television",
-          "selector": {
-            "text": null
-          },
-          "name": "Device",
-          "description": "Device ID to learn command from."
-        },
-        "command": {
-          "example": "Turn on",
-          "selector": {
-            "object": null
-          },
-          "name": "Command",
-          "description": "A single command or a list of commands to learn."
-        },
-        "command_type": {
-          "default": "ir",
-          "selector": {
-            "select": {
-              "options": [
-                "ir",
-                "rf"
-              ]
-            }
-          },
-          "name": "Command type",
-          "description": "The type of command to be learned."
-        },
-        "alternative": {
-          "selector": {
-            "boolean": null
-          },
-          "name": "Alternative",
-          "description": "If code must be stored as an alternative. This is useful for discrete codes. Discrete codes are used for toggles that only perform one function. For example, a code to only turn a device on. If it is on already, sending the code won\u0027t change the state."
-        },
-        "timeout": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 60,
-              "step": 5,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Timeout",
-          "description": "Timeout for the command to be learned."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "delete_command": {
-      "name": "Delete command",
-      "description": "Deletes a command or a list of commands from the database.",
-      "fields": {
-        "device": {
-          "example": "television",
-          "selector": {
-            "text": null
-          },
-          "name": "Device",
-          "description": "Device from which commands will be deleted."
-        },
-        "command": {
-          "required": true,
-          "example": "Mute",
-          "selector": {
-            "object": null
-          },
-          "name": "Command",
-          "description": "The single command or the list of commands to be deleted."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "template": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads template entities from the YAML-configuration.",
-      "fields": {}
-    }
-  },
-  "counter": {
-    "increment": {
-      "name": "Increment",
-      "description": "Increments a counter.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    },
-    "decrement": {
-      "name": "Decrement",
-      "description": "Decrements a counter.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    },
-    "reset": {
-      "name": "Reset",
-      "description": "Resets a counter.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    },
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the counter value.",
-      "fields": {
-        "value": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 9223372036854775807,
-              "mode": "box"
-            }
-          },
-          "name": "Value",
-          "description": "The new counter value the entity should be set to."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    }
-  },
   "mqtt": {
     "publish": {
       "name": "Publish",
@@ -3369,430 +3074,148 @@
       "fields": {}
     }
   },
-  "browser_mod": {
-    "sequence": {
-      "name": "",
-      "description": "Run a sequence of services",
-      "fields": {
-        "sequence": {
-          "name": "Actions",
-          "description": "List of services to run",
-          "selector": {
-            "object": null
-          }
-        }
-      },
-      "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
-        "entity": [
-          {
-            "integration": "browser_mod_none"
-          }
-        ]
-      }
+  "template": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads template entities from the YAML-configuration.",
+      "fields": {}
+    }
+  },
+  "input_text": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
     },
-    "delay": {
-      "name": "",
-      "description": "Wait for a time",
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value.",
       "fields": {
-        "time": {
-          "name": "Time",
-          "description": "Time to wait (ms)",
-          "selector": {
-            "number": {
-              "mode": "box"
-            }
-          }
-        }
-      },
-      "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
-        "entity": [
-          {
-            "integration": "browser_mod_none"
-          }
-        ]
-      }
-    },
-    "popup": {
-      "name": "",
-      "description": "Display a popup",
-      "fields": {
-        "title": {
-          "name": "Title",
-          "description": "Popup title",
-          "selector": {
-            "text": null
-          }
-        },
-        "content": {
-          "name": "Content",
+        "value": {
           "required": true,
-          "description": "Popup content (Test or lovelace card configuration)",
-          "selector": {
-            "object": null
-          }
-        },
-        "size": {
-          "name": "Size",
-          "description": "",
-          "selector": {
-            "select": {
-              "mode": "dropdown",
-              "options": [
-                "normal",
-                "wide",
-                "fullscreen"
-              ]
-            }
-          }
-        },
-        "right_button": {
-          "name": "Right button",
-          "description": "Text of the right button",
+          "example": "This is an example text",
           "selector": {
             "text": null
-          }
-        },
-        "right_button_action": {
-          "name": "Right button action",
-          "description": "Action to perform when the right button is pressed",
-          "selector": {
-            "object": null
-          }
-        },
-        "left_button": {
-          "name": "Left button",
-          "description": "Text of the left button",
-          "selector": {
-            "text": null
-          }
-        },
-        "left_button_action": {
-          "name": "Left button action",
-          "description": "Action to perform when left button is pressed",
-          "selector": {
-            "object": null
-          }
-        },
-        "dismissable": {
-          "name": "User dismissable",
-          "description": "Whether the popup can be closed by the user without action",
-          "default": true,
-          "selector": {
-            "boolean": null
-          }
-        },
-        "dismiss_action": {
-          "name": "Dismiss action",
-          "description": "Action to perform when popup is dismissed",
-          "selector": {
-            "object": null
-          }
-        },
-        "autoclose": {
-          "name": "Auto close",
-          "description": "Close the popup automatically on mouse, pointer or keyboard activity",
-          "default": false,
-          "selector": {
-            "boolean": null
-          }
-        },
-        "timeout": {
-          "name": "Auto close timeout",
-          "description": "Time before closing (ms)",
-          "selector": {
-            "number": {
-              "mode": "box"
-            }
-          }
-        },
-        "timeout_action": {
-          "name": "Timeout action",
-          "description": "Action to perform when popup is closed by timeout",
-          "selector": {
-            "object": null
-          }
-        },
-        "style": {
-          "name": "Styles",
-          "description": "CSS code to apply to the popup window",
-          "selector": {
-            "text": {
-              "multiline": true
-            }
-          }
+          },
+          "name": "Value",
+          "description": "The target value."
         }
       },
       "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
         "entity": [
           {
-            "integration": "browser_mod_none"
+            "domain": [
+              "input_text"
+            ]
           }
         ]
       }
+    }
+  },
+  "input_number": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
     },
-    "more_info": {
-      "name": "",
-      "description": "Show more-info dialog",
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value.",
       "fields": {
-        "entity": {
-          "name": "Entity ID",
-          "description": "",
+        "value": {
           "required": true,
           "selector": {
-            "text": null
-          }
-        },
-        "large": {
-          "name": "Large size",
-          "description": "",
-          "default": false,
-          "selector": {
-            "boolean": null
-          }
-        },
-        "ignore_popup_card": {
-          "name": "Ignore any active popup-card overrides",
-          "description": "",
-          "default": false,
-          "selector": {
-            "boolean": null
-          }
+            "number": {
+              "min": 0,
+              "max": 9223372036854775807,
+              "step": 0.001,
+              "mode": "box"
+            }
+          },
+          "name": "Value",
+          "description": "The target value."
         }
       },
       "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
         "entity": [
           {
-            "integration": "browser_mod_none"
+            "domain": [
+              "input_number"
+            ]
           }
         ]
       }
     },
-    "close_popup": {
-      "name": "",
-      "description": "Close a popup",
+    "max": {
+      "name": "Set maximum value \uD83D\uDC7B",
+      "description": "Set an input number entity to its maximum value.",
       "fields": {},
       "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
         "entity": [
           {
-            "integration": "browser_mod_none"
+            "domain": [
+              "input_number"
+            ]
           }
         ]
       }
     },
-    "notification": {
-      "name": "",
-      "description": "Display a short notification",
+    "decrement": {
+      "name": "Decrease value \uD83D\uDC7B",
+      "description": "Decrease an input number entity value by a certain amount.",
       "fields": {
-        "message": {
-          "name": "Message",
-          "description": "Message to display",
-          "required": true,
+        "amount": {
+          "name": "Amount",
+          "description": "The amount to decrease the input number with. If not provided, the step of the number entity will be used.",
+          "required": false,
           "selector": {
-            "text": null
-          }
-        },
-        "duration": {
-          "name": "Auto close timeout",
-          "description": "Time before closing (ms)",
-          "selector": {
-            "number": {
-              "mode": "box"
-            }
-          }
-        },
-        "action_text": {
-          "name": "Action button text",
-          "description": "Text of optional action button",
-          "selector": {
-            "text": null
-          }
-        },
-        "action": {
-          "name": "Button action",
-          "description": "Action to perform when the action button is pressed",
-          "selector": {
-            "object": null
+            "number": null
           }
         }
       },
       "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
         "entity": [
           {
-            "integration": "browser_mod_none"
+            "domain": [
+              "input_number"
+            ]
           }
         ]
       }
     },
-    "navigate": {
-      "name": "",
-      "description": "Navigate browser to a different page",
-      "fields": {
-        "path": {
-          "name": "Path",
-          "description": "Target path",
-          "selector": {
-            "text": null
-          }
-        }
-      },
-      "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
-        "entity": [
-          {
-            "integration": "browser_mod_none"
-          }
-        ]
-      }
-    },
-    "refresh": {
-      "name": "",
-      "description": "Refresh page",
+    "min": {
+      "name": "Set minimum value \uD83D\uDC7B",
+      "description": "Set an input number entity to its minimum value.",
       "fields": {},
       "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
         "entity": [
           {
-            "integration": "browser_mod_none"
+            "domain": [
+              "input_number"
+            ]
           }
         ]
       }
     },
-    "set_theme": {
-      "name": "",
-      "description": "Change the current theme",
+    "increment": {
+      "name": "Increase value \uD83D\uDC7B",
+      "description": "Increase an input number entity value by a certain amount.",
       "fields": {
-        "theme": {
-          "name": "Theme",
-          "description": "Name of theme or \u0027auto\u0027",
+        "amount": {
+          "name": "Amount",
+          "description": "The amount to increase the input number with. If not provided, the step of the number entity will be used.",
+          "required": false,
           "selector": {
-            "text": null
-          }
-        },
-        "dark": {
-          "name": "Mode",
-          "description": "Dark/light mode",
-          "selector": {
-            "select": {
-              "options": [
-                "auto",
-                "light",
-                "dark"
-              ]
-            }
-          }
-        },
-        "primaryColor": {
-          "name": "Primary Color",
-          "description": "Primary theme color",
-          "selector": {
-            "color_rgb": null
-          }
-        },
-        "accentColor": {
-          "name": "Accent Color",
-          "description": "Accent theme color",
-          "selector": {
-            "color_rgb": null
+            "number": null
           }
         }
       },
       "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
         "entity": [
           {
-            "integration": "browser_mod_none"
-          }
-        ]
-      }
-    },
-    "console": {
-      "name": "",
-      "description": "Print text to browser console",
-      "fields": {
-        "message": {
-          "name": "Message",
-          "description": "Text to print",
-          "selector": {
-            "text": null
-          }
-        }
-      },
-      "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
-        "entity": [
-          {
-            "integration": "browser_mod_none"
-          }
-        ]
-      }
-    },
-    "javascript": {
-      "name": "",
-      "description": "Run arbitrary JavaScript code",
-      "fields": {
-        "code": {
-          "name": "Code",
-          "description": "JavaScript code to run",
-          "selector": {
-            "object": null
-          }
-        }
-      },
-      "target": {
-        "device": [
-          {
-            "integration": "browser_mod"
-          }
-        ],
-        "entity": [
-          {
-            "integration": "browser_mod_none"
+            "domain": [
+              "input_number"
+            ]
           }
         ]
       }
@@ -5333,140 +4756,525 @@
       }
     }
   },
-  "input_number": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
+  "media_player": {
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Turns on the power of the media player.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              128
+            ]
+          }
+        ]
+      }
     },
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the value.",
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns off the power of the media player.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              256
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles a media player on/off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              384
+            ]
+          }
+        ]
+      }
+    },
+    "volume_up": {
+      "name": "Turn up volume",
+      "description": "Turns up the volume.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              4,
+              1024
+            ]
+          }
+        ]
+      }
+    },
+    "volume_down": {
+      "name": "Turn down volume",
+      "description": "Turns down the volume.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              4,
+              1024
+            ]
+          }
+        ]
+      }
+    },
+    "media_play_pause": {
+      "name": "Play/Pause",
+      "description": "Toggles play/pause.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              16385
+            ]
+          }
+        ]
+      }
+    },
+    "media_play": {
+      "name": "Play",
+      "description": "Starts playing.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              16384
+            ]
+          }
+        ]
+      }
+    },
+    "media_pause": {
+      "name": "Pause",
+      "description": "Pauses.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "media_stop": {
+      "name": "Stop",
+      "description": "Stops playing.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              4096
+            ]
+          }
+        ]
+      }
+    },
+    "media_next_track": {
+      "name": "Next",
+      "description": "Selects the next track.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              32
+            ]
+          }
+        ]
+      }
+    },
+    "media_previous_track": {
+      "name": "Previous",
+      "description": "Selects the previous track.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              16
+            ]
+          }
+        ]
+      }
+    },
+    "clear_playlist": {
+      "name": "Clear playlist",
+      "description": "Clears the playlist.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              8192
+            ]
+          }
+        ]
+      }
+    },
+    "volume_set": {
+      "name": "Set volume",
+      "description": "Sets the volume level.",
       "fields": {
-        "value": {
+        "volume_level": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 1,
+              "step": 0.01
+            }
+          },
+          "name": "Level",
+          "description": "The volume. 0 is inaudible, 1 is the maximum volume."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              4
+            ]
+          }
+        ]
+      }
+    },
+    "volume_mute": {
+      "name": "Mute/unmute volume",
+      "description": "Mutes or unmutes the media player.",
+      "fields": {
+        "is_volume_muted": {
+          "required": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Muted",
+          "description": "Defines whether or not it is muted."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              8
+            ]
+          }
+        ]
+      }
+    },
+    "media_seek": {
+      "name": "Seek",
+      "description": "Allows you to go to a different part of the media that is currently playing.",
+      "fields": {
+        "seek_position": {
           "required": true,
           "selector": {
             "number": {
               "min": 0,
               "max": 9223372036854775807,
-              "step": 0.001,
+              "step": 0.01,
               "mode": "box"
             }
           },
-          "name": "Value",
-          "description": "The target value."
+          "name": "Position",
+          "description": "Target position in the currently playing media. The format is platform dependent."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "input_number"
+              "media_player"
+            ],
+            "supported_features": [
+              2
             ]
           }
         ]
       }
     },
-    "max": {
-      "name": "Set maximum value \uD83D\uDC7B",
-      "description": "Set an input number entity to its maximum value.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    },
-    "decrement": {
-      "name": "Decrease value \uD83D\uDC7B",
-      "description": "Decrease an input number entity value by a certain amount.",
+    "join": {
+      "name": "Join",
+      "description": "Groups media players together for synchronous playback. Only works on supported multiroom audio systems.",
       "fields": {
-        "amount": {
-          "name": "Amount",
-          "description": "The amount to decrease the input number with. If not provided, the step of the number entity will be used.",
-          "required": false,
-          "selector": {
-            "number": null
-          }
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    },
-    "min": {
-      "name": "Set minimum value \uD83D\uDC7B",
-      "description": "Set an input number entity to its minimum value.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    },
-    "increment": {
-      "name": "Increase value \uD83D\uDC7B",
-      "description": "Increase an input number entity value by a certain amount.",
-      "fields": {
-        "amount": {
-          "name": "Amount",
-          "description": "The amount to increase the input number with. If not provided, the step of the number entity will be used.",
-          "required": false,
-          "selector": {
-            "number": null
-          }
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "input_text": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the value.",
-      "fields": {
-        "value": {
+        "group_members": {
           "required": true,
-          "example": "This is an example text",
+          "example": "- media_player.multiroom_player2\n- media_player.multiroom_player3\n",
+          "selector": {
+            "entity": {
+              "multiple": true,
+              "domain": "media_player"
+            }
+          },
+          "name": "Group members",
+          "description": "The players which will be synced with the playback specified in \u0060target\u0060."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              524288
+            ]
+          }
+        ]
+      }
+    },
+    "select_source": {
+      "name": "Select source",
+      "description": "Sends the media player the command to change input source.",
+      "fields": {
+        "source": {
+          "required": true,
+          "example": "video1",
           "selector": {
             "text": null
           },
-          "name": "Value",
-          "description": "The target value."
+          "name": "Source",
+          "description": "Name of the source to switch to. Platform dependent."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "input_text"
+              "media_player"
+            ],
+            "supported_features": [
+              2048
+            ]
+          }
+        ]
+      }
+    },
+    "select_sound_mode": {
+      "name": "Select sound mode",
+      "description": "Selects a specific sound mode.",
+      "fields": {
+        "sound_mode": {
+          "example": "Music",
+          "selector": {
+            "text": null
+          },
+          "name": "Sound mode",
+          "description": "Name of the sound mode to switch to."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              65536
+            ]
+          }
+        ]
+      }
+    },
+    "play_media": {
+      "name": "Play media",
+      "description": "Starts playing specified media.",
+      "fields": {
+        "media_content_id": {
+          "required": true,
+          "example": "https://home-assistant.io/images/cast/splash.png",
+          "selector": {
+            "text": null
+          },
+          "name": "Content ID",
+          "description": "The ID of the content to play. Platform dependent."
+        },
+        "media_content_type": {
+          "required": true,
+          "example": "music",
+          "selector": {
+            "text": null
+          },
+          "name": "Content type",
+          "description": "The type of the content to play. Such as image, music, tv show, video, episode, channel, or playlist."
+        },
+        "enqueue": {
+          "filter": {
+            "supported_features": [
+              2097152
+            ]
+          },
+          "required": false,
+          "selector": {
+            "select": {
+              "options": [
+                "play",
+                "next",
+                "add",
+                "replace"
+              ],
+              "translation_key": "enqueue"
+            }
+          },
+          "name": "Enqueue",
+          "description": "If the content should be played now or be added to the queue."
+        },
+        "announce": {
+          "filter": {
+            "supported_features": [
+              1048576
+            ]
+          },
+          "required": false,
+          "example": "true",
+          "selector": {
+            "boolean": null
+          },
+          "name": "Announce",
+          "description": "If the media should be played as an announcement."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              512
+            ]
+          }
+        ]
+      }
+    },
+    "shuffle_set": {
+      "name": "Shuffle",
+      "description": "Playback mode that selects the media in randomized order.",
+      "fields": {
+        "shuffle": {
+          "required": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Shuffle",
+          "description": "Whether or not shuffle mode is enabled."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              32768
+            ]
+          }
+        ]
+      }
+    },
+    "unjoin": {
+      "name": "Unjoin",
+      "description": "Removes the player from a group. Only works on platforms which support player groups.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              524288
+            ]
+          }
+        ]
+      }
+    },
+    "repeat_set": {
+      "name": "Repeat",
+      "description": "Playback mode that plays the media in a loop.",
+      "fields": {
+        "repeat": {
+          "required": true,
+          "selector": {
+            "select": {
+              "options": [
+                "off",
+                "all",
+                "one"
+              ],
+              "translation_key": "repeat"
+            }
+          },
+          "name": "Repeat mode",
+          "description": "Repeat mode to set."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "media_player"
+            ],
+            "supported_features": [
+              262144
             ]
           }
         ]
@@ -5647,6 +5455,555 @@
           {
             "domain": [
               "input_select"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "counter": {
+    "increment": {
+      "name": "Increment",
+      "description": "Increments a counter.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    },
+    "decrement": {
+      "name": "Decrement",
+      "description": "Decrements a counter.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    },
+    "reset": {
+      "name": "Reset",
+      "description": "Resets a counter.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    },
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the counter value.",
+      "fields": {
+        "value": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 9223372036854775807,
+              "mode": "box"
+            }
+          },
+          "name": "Value",
+          "description": "The new counter value the entity should be set to."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "browser_mod": {
+    "sequence": {
+      "name": "",
+      "description": "Run a sequence of services",
+      "fields": {
+        "sequence": {
+          "name": "Actions",
+          "description": "List of services to run",
+          "selector": {
+            "object": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "delay": {
+      "name": "",
+      "description": "Wait for a time",
+      "fields": {
+        "time": {
+          "name": "Time",
+          "description": "Time to wait (ms)",
+          "selector": {
+            "number": {
+              "mode": "box"
+            }
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "popup": {
+      "name": "",
+      "description": "Display a popup",
+      "fields": {
+        "title": {
+          "name": "Title",
+          "description": "Popup title",
+          "selector": {
+            "text": null
+          }
+        },
+        "content": {
+          "name": "Content",
+          "required": true,
+          "description": "Popup content (Test or lovelace card configuration)",
+          "selector": {
+            "object": null
+          }
+        },
+        "size": {
+          "name": "Size",
+          "description": "",
+          "selector": {
+            "select": {
+              "mode": "dropdown",
+              "options": [
+                "normal",
+                "wide",
+                "fullscreen"
+              ]
+            }
+          }
+        },
+        "right_button": {
+          "name": "Right button",
+          "description": "Text of the right button",
+          "selector": {
+            "text": null
+          }
+        },
+        "right_button_action": {
+          "name": "Right button action",
+          "description": "Action to perform when the right button is pressed",
+          "selector": {
+            "object": null
+          }
+        },
+        "left_button": {
+          "name": "Left button",
+          "description": "Text of the left button",
+          "selector": {
+            "text": null
+          }
+        },
+        "left_button_action": {
+          "name": "Left button action",
+          "description": "Action to perform when left button is pressed",
+          "selector": {
+            "object": null
+          }
+        },
+        "dismissable": {
+          "name": "User dismissable",
+          "description": "Whether the popup can be closed by the user without action",
+          "default": true,
+          "selector": {
+            "boolean": null
+          }
+        },
+        "dismiss_action": {
+          "name": "Dismiss action",
+          "description": "Action to perform when popup is dismissed",
+          "selector": {
+            "object": null
+          }
+        },
+        "autoclose": {
+          "name": "Auto close",
+          "description": "Close the popup automatically on mouse, pointer or keyboard activity",
+          "default": false,
+          "selector": {
+            "boolean": null
+          }
+        },
+        "timeout": {
+          "name": "Auto close timeout",
+          "description": "Time before closing (ms)",
+          "selector": {
+            "number": {
+              "mode": "box"
+            }
+          }
+        },
+        "timeout_action": {
+          "name": "Timeout action",
+          "description": "Action to perform when popup is closed by timeout",
+          "selector": {
+            "object": null
+          }
+        },
+        "style": {
+          "name": "Styles",
+          "description": "CSS code to apply to the popup window",
+          "selector": {
+            "text": {
+              "multiline": true
+            }
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "more_info": {
+      "name": "",
+      "description": "Show more-info dialog",
+      "fields": {
+        "entity": {
+          "name": "Entity ID",
+          "description": "",
+          "required": true,
+          "selector": {
+            "text": null
+          }
+        },
+        "large": {
+          "name": "Large size",
+          "description": "",
+          "default": false,
+          "selector": {
+            "boolean": null
+          }
+        },
+        "ignore_popup_card": {
+          "name": "Ignore any active popup-card overrides",
+          "description": "",
+          "default": false,
+          "selector": {
+            "boolean": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "close_popup": {
+      "name": "",
+      "description": "Close a popup",
+      "fields": {},
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "notification": {
+      "name": "",
+      "description": "Display a short notification",
+      "fields": {
+        "message": {
+          "name": "Message",
+          "description": "Message to display",
+          "required": true,
+          "selector": {
+            "text": null
+          }
+        },
+        "duration": {
+          "name": "Auto close timeout",
+          "description": "Time before closing (ms)",
+          "selector": {
+            "number": {
+              "mode": "box"
+            }
+          }
+        },
+        "action_text": {
+          "name": "Action button text",
+          "description": "Text of optional action button",
+          "selector": {
+            "text": null
+          }
+        },
+        "action": {
+          "name": "Button action",
+          "description": "Action to perform when the action button is pressed",
+          "selector": {
+            "object": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "navigate": {
+      "name": "",
+      "description": "Navigate browser to a different page",
+      "fields": {
+        "path": {
+          "name": "Path",
+          "description": "Target path",
+          "selector": {
+            "text": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "refresh": {
+      "name": "",
+      "description": "Refresh page",
+      "fields": {},
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "set_theme": {
+      "name": "",
+      "description": "Change the current theme",
+      "fields": {
+        "theme": {
+          "name": "Theme",
+          "description": "Name of theme or \u0027auto\u0027",
+          "selector": {
+            "text": null
+          }
+        },
+        "dark": {
+          "name": "Mode",
+          "description": "Dark/light mode",
+          "selector": {
+            "select": {
+              "options": [
+                "auto",
+                "light",
+                "dark"
+              ]
+            }
+          }
+        },
+        "primaryColor": {
+          "name": "Primary Color",
+          "description": "Primary theme color",
+          "selector": {
+            "color_rgb": null
+          }
+        },
+        "accentColor": {
+          "name": "Accent Color",
+          "description": "Accent theme color",
+          "selector": {
+            "color_rgb": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "console": {
+      "name": "",
+      "description": "Print text to browser console",
+      "fields": {
+        "message": {
+          "name": "Message",
+          "description": "Text to print",
+          "selector": {
+            "text": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    },
+    "javascript": {
+      "name": "",
+      "description": "Run arbitrary JavaScript code",
+      "fields": {
+        "code": {
+          "name": "Code",
+          "description": "JavaScript code to run",
+          "selector": {
+            "object": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "browser_mod"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "browser_mod_none"
+          }
+        ]
+      }
+    }
+  },
+  "input_boolean": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Turns on the helper.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_boolean"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns off the helper.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_boolean"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles the helper on/off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_boolean"
             ]
           }
         ]
@@ -6633,587 +6990,6 @@
       }
     }
   },
-  "media_player": {
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns on the power of the media player.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              128
-            ]
-          }
-        ]
-      }
-    },
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns off the power of the media player.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              256
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles a media player on/off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              384
-            ]
-          }
-        ]
-      }
-    },
-    "volume_up": {
-      "name": "Turn up volume",
-      "description": "Turns up the volume.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              4,
-              1024
-            ]
-          }
-        ]
-      }
-    },
-    "volume_down": {
-      "name": "Turn down volume",
-      "description": "Turns down the volume.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              4,
-              1024
-            ]
-          }
-        ]
-      }
-    },
-    "media_play_pause": {
-      "name": "Play/Pause",
-      "description": "Toggles play/pause.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              16385
-            ]
-          }
-        ]
-      }
-    },
-    "media_play": {
-      "name": "Play",
-      "description": "Starts playing.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              16384
-            ]
-          }
-        ]
-      }
-    },
-    "media_pause": {
-      "name": "Pause",
-      "description": "Pauses.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              1
-            ]
-          }
-        ]
-      }
-    },
-    "media_stop": {
-      "name": "Stop",
-      "description": "Stops playing.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              4096
-            ]
-          }
-        ]
-      }
-    },
-    "media_next_track": {
-      "name": "Next",
-      "description": "Selects the next track.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              32
-            ]
-          }
-        ]
-      }
-    },
-    "media_previous_track": {
-      "name": "Previous",
-      "description": "Selects the previous track.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              16
-            ]
-          }
-        ]
-      }
-    },
-    "clear_playlist": {
-      "name": "Clear playlist",
-      "description": "Clears the playlist.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              8192
-            ]
-          }
-        ]
-      }
-    },
-    "volume_set": {
-      "name": "Set volume",
-      "description": "Sets the volume level.",
-      "fields": {
-        "volume_level": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 1,
-              "step": 0.01
-            }
-          },
-          "name": "Level",
-          "description": "The volume. 0 is inaudible, 1 is the maximum volume."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              4
-            ]
-          }
-        ]
-      }
-    },
-    "volume_mute": {
-      "name": "Mute/unmute volume",
-      "description": "Mutes or unmutes the media player.",
-      "fields": {
-        "is_volume_muted": {
-          "required": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Muted",
-          "description": "Defines whether or not it is muted."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              8
-            ]
-          }
-        ]
-      }
-    },
-    "media_seek": {
-      "name": "Seek",
-      "description": "Allows you to go to a different part of the media that is currently playing.",
-      "fields": {
-        "seek_position": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 9223372036854775807,
-              "step": 0.01,
-              "mode": "box"
-            }
-          },
-          "name": "Position",
-          "description": "Target position in the currently playing media. The format is platform dependent."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              2
-            ]
-          }
-        ]
-      }
-    },
-    "join": {
-      "name": "Join",
-      "description": "Groups media players together for synchronous playback. Only works on supported multiroom audio systems.",
-      "fields": {
-        "group_members": {
-          "required": true,
-          "example": "- media_player.multiroom_player2\n- media_player.multiroom_player3\n",
-          "selector": {
-            "entity": {
-              "multiple": true,
-              "domain": "media_player"
-            }
-          },
-          "name": "Group members",
-          "description": "The players which will be synced with the playback specified in \u0060target\u0060."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              524288
-            ]
-          }
-        ]
-      }
-    },
-    "select_source": {
-      "name": "Select source",
-      "description": "Sends the media player the command to change input source.",
-      "fields": {
-        "source": {
-          "required": true,
-          "example": "video1",
-          "selector": {
-            "text": null
-          },
-          "name": "Source",
-          "description": "Name of the source to switch to. Platform dependent."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              2048
-            ]
-          }
-        ]
-      }
-    },
-    "select_sound_mode": {
-      "name": "Select sound mode",
-      "description": "Selects a specific sound mode.",
-      "fields": {
-        "sound_mode": {
-          "example": "Music",
-          "selector": {
-            "text": null
-          },
-          "name": "Sound mode",
-          "description": "Name of the sound mode to switch to."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              65536
-            ]
-          }
-        ]
-      }
-    },
-    "play_media": {
-      "name": "Play media",
-      "description": "Starts playing specified media.",
-      "fields": {
-        "media_content_id": {
-          "required": true,
-          "example": "https://home-assistant.io/images/cast/splash.png",
-          "selector": {
-            "text": null
-          },
-          "name": "Content ID",
-          "description": "The ID of the content to play. Platform dependent."
-        },
-        "media_content_type": {
-          "required": true,
-          "example": "music",
-          "selector": {
-            "text": null
-          },
-          "name": "Content type",
-          "description": "The type of the content to play. Such as image, music, tv show, video, episode, channel, or playlist."
-        },
-        "enqueue": {
-          "filter": {
-            "supported_features": [
-              2097152
-            ]
-          },
-          "required": false,
-          "selector": {
-            "select": {
-              "options": [
-                "play",
-                "next",
-                "add",
-                "replace"
-              ],
-              "translation_key": "enqueue"
-            }
-          },
-          "name": "Enqueue",
-          "description": "If the content should be played now or be added to the queue."
-        },
-        "announce": {
-          "filter": {
-            "supported_features": [
-              1048576
-            ]
-          },
-          "required": false,
-          "example": "true",
-          "selector": {
-            "boolean": null
-          },
-          "name": "Announce",
-          "description": "If the media should be played as an announcement."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              512
-            ]
-          }
-        ]
-      }
-    },
-    "shuffle_set": {
-      "name": "Shuffle",
-      "description": "Playback mode that selects the media in randomized order.",
-      "fields": {
-        "shuffle": {
-          "required": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Shuffle",
-          "description": "Whether or not shuffle mode is enabled."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              32768
-            ]
-          }
-        ]
-      }
-    },
-    "unjoin": {
-      "name": "Unjoin",
-      "description": "Removes the player from a group. Only works on platforms which support player groups.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              524288
-            ]
-          }
-        ]
-      }
-    },
-    "repeat_set": {
-      "name": "Repeat",
-      "description": "Playback mode that plays the media in a loop.",
-      "fields": {
-        "repeat": {
-          "required": true,
-          "selector": {
-            "select": {
-              "options": [
-                "off",
-                "all",
-                "one"
-              ],
-              "translation_key": "repeat"
-            }
-          },
-          "name": "Repeat mode",
-          "description": "Repeat mode to set."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "supported_features": [
-              262144
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "input_boolean": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns on the helper.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_boolean"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns off the helper.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_boolean"
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles the helper on/off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_boolean"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "average": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reload all average sensor entities",
-      "fields": {}
-    }
-  },
   "zone": {
     "reload": {
       "name": "Reload",
@@ -7389,6 +7165,13 @@
       }
     }
   },
+  "average": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reload all average sensor entities",
+      "fields": {}
+    }
+  },
   "camera": {
     "enable_motion_detection": {
       "name": "Enable motion detection",
@@ -7556,84 +7339,6 @@
       }
     }
   },
-  "weather": {
-    "get_forecast": {
-      "name": "Get forecast",
-      "description": "Get weather forecast.",
-      "fields": {
-        "type": {
-          "required": true,
-          "selector": {
-            "select": {
-              "options": [
-                "daily",
-                "hourly",
-                "twice_daily"
-              ],
-              "translation_key": "forecast_type"
-            }
-          },
-          "name": "Forecast type",
-          "description": "Forecast type: daily, hourly or twice daily."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "weather"
-            ],
-            "supported_features": [
-              1,
-              2,
-              4
-            ]
-          }
-        ]
-      },
-      "response": {
-        "optional": false
-      }
-    },
-    "get_forecasts": {
-      "name": "Get forecasts",
-      "description": "Get weather forecasts.",
-      "fields": {
-        "type": {
-          "required": true,
-          "selector": {
-            "select": {
-              "options": [
-                "daily",
-                "hourly",
-                "twice_daily"
-              ],
-              "translation_key": "forecast_type"
-            }
-          },
-          "name": "Forecast type",
-          "description": "Forecast type: daily, hourly or twice daily."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "weather"
-            ],
-            "supported_features": [
-              1,
-              2,
-              4
-            ]
-          }
-        ]
-      },
-      "response": {
-        "optional": false
-      }
-    }
-  },
   "plant": {
     "replace_sensor": {
       "name": "Replace sensor",
@@ -7661,111 +7366,6 @@
               "domain": "sensor"
             }
           }
-        }
-      }
-    }
-  },
-  "bosch_shc": {
-    "trigger_scenario": {
-      "name": "Trigger Scenario",
-      "description": "Triggers a scenario on Bosch SHC.",
-      "fields": {
-        "title": {
-          "example": "shc012345",
-          "required": false,
-          "selector": {
-            "text": null
-          },
-          "name": "SHC name",
-          "description": "Title of the SHC"
-        },
-        "name": {
-          "example": "Scenario Name",
-          "required": true,
-          "selector": {
-            "text": null
-          },
-          "name": "Scenario name",
-          "description": "Name of the scenario to trigger"
-        }
-      }
-    },
-    "trigger_rawscan": {
-      "name": "Trigger Rawscan",
-      "description": "Triggers a rawscan on Bosch SHC to discover devices. Result streamed to info logger.",
-      "fields": {
-        "title": {
-          "example": "shc012345",
-          "required": false,
-          "selector": {
-            "text": null
-          },
-          "name": "SHC name",
-          "description": "Title of the SHC"
-        },
-        "command": {
-          "example": "devices",
-          "required": true,
-          "selector": {
-            "text": null
-          },
-          "name": "Rawscan command",
-          "description": "Rawscan command to trigger. Possible commands are \u0027devices\u0027, \u0027device\u0027, \u0027services\u0027, \u0027device_services\u0027, \u0027device_service\u0027, \u0027rooms\u0027, \u0027scenarios\u0027, \u0027info\u0027, \u0027information\u0027, \u0027public_information\u0027, \u0027intrusion_detection\u0027"
-        },
-        "device_id": {
-          "example": "hdm:ZigBee:000d6",
-          "selector": {
-            "text": null
-          },
-          "name": "Device id",
-          "description": "Device id in case the command is \u0027device\u0027, \u0027device_services\u0027 or \u0027device_service\u0027"
-        },
-        "service_id": {
-          "example": "BatteryLevel",
-          "selector": {
-            "text": null
-          },
-          "name": "Service id",
-          "description": "Service id in case the command is \u0027device_service\u0027"
-        }
-      }
-    },
-    "smokedetector_check": {
-      "name": "Smokedetector Check",
-      "description": "Calls test routine of a smoke detector.",
-      "fields": {
-        "entity_id": {
-          "example": "binary_sensor.smokedetector_living_room",
-          "required": true,
-          "selector": {
-            "text": null
-          },
-          "name": "Entity id",
-          "description": "Name of the smoke detector entity."
-        }
-      }
-    },
-    "smokedetector_alarmstate": {
-      "name": "Smokedetector Alarmstate",
-      "description": "Name of the smoke detector entity to set",
-      "fields": {
-        "entity_id": {
-          "example": "binary_sensor.smokedetector_living_room",
-          "required": true,
-          "selector": {
-            "text": null
-          },
-          "name": "Entity id",
-          "description": "Name of the smoke detector entity."
-        },
-        "command": {
-          "example": "CUSTOM_COMMAND",
-          "required": true,
-          "selector": {
-            "text": null
-          },
-          "name": "Custom command",
-          "description": "Command string to send to the smoke detector."
         }
       }
     }
@@ -7921,123 +7521,485 @@
       }
     }
   },
-  "synology_dsm": {
-    "reboot": {
-      "name": "Reboot",
-      "description": "Reboots the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.",
+  "bosch_shc": {
+    "trigger_scenario": {
+      "name": "Trigger Scenario",
+      "description": "Triggers a scenario on Bosch SHC.",
       "fields": {
-        "serial": {
-          "example": "1NDVC86409",
+        "title": {
+          "example": "shc012345",
+          "required": false,
           "selector": {
             "text": null
           },
-          "name": "Serial",
-          "description": "Serial of the NAS to reboot; required when multiple NAS are configured."
+          "name": "SHC name",
+          "description": "Title of the SHC"
+        },
+        "name": {
+          "example": "Scenario Name",
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Scenario name",
+          "description": "Name of the scenario to trigger"
         }
       }
     },
-    "shutdown": {
-      "name": "Shutdown",
-      "description": "Shutdowns the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.",
+    "trigger_rawscan": {
+      "name": "Trigger Rawscan",
+      "description": "Triggers a rawscan on Bosch SHC to discover devices. Result streamed to info logger.",
       "fields": {
-        "serial": {
-          "example": "1NDVC86409",
+        "title": {
+          "example": "shc012345",
+          "required": false,
           "selector": {
             "text": null
           },
-          "name": "Serial",
-          "description": "Serial of the NAS to shutdown; required when multiple NAS are configured."
+          "name": "SHC name",
+          "description": "Title of the SHC"
+        },
+        "command": {
+          "example": "devices",
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Rawscan command",
+          "description": "Rawscan command to trigger. Possible commands are \u0027devices\u0027, \u0027device\u0027, \u0027services\u0027, \u0027device_services\u0027, \u0027device_service\u0027, \u0027rooms\u0027, \u0027scenarios\u0027, \u0027info\u0027, \u0027information\u0027, \u0027public_information\u0027, \u0027intrusion_detection\u0027"
+        },
+        "device_id": {
+          "example": "hdm:ZigBee:000d6",
+          "selector": {
+            "text": null
+          },
+          "name": "Device id",
+          "description": "Device id in case the command is \u0027device\u0027, \u0027device_services\u0027 or \u0027device_service\u0027"
+        },
+        "service_id": {
+          "example": "BatteryLevel",
+          "selector": {
+            "text": null
+          },
+          "name": "Service id",
+          "description": "Service id in case the command is \u0027device_service\u0027"
+        }
+      }
+    },
+    "smokedetector_check": {
+      "name": "Smokedetector Check",
+      "description": "Calls test routine of a smoke detector.",
+      "fields": {
+        "entity_id": {
+          "example": "binary_sensor.smokedetector_living_room",
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Entity id",
+          "description": "Name of the smoke detector entity."
+        }
+      }
+    },
+    "smokedetector_alarmstate": {
+      "name": "Smokedetector Alarmstate",
+      "description": "Name of the smoke detector entity to set",
+      "fields": {
+        "entity_id": {
+          "example": "binary_sensor.smokedetector_living_room",
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Entity id",
+          "description": "Name of the smoke detector entity."
+        },
+        "command": {
+          "example": "CUSTOM_COMMAND",
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Custom command",
+          "description": "Command string to send to the smoke detector."
         }
       }
     }
   },
-  "device_tracker": {
-    "icloud3_update": {
-      "name": "",
-      "description": "",
-      "fields": {}
-    },
-    "icloud3_restart": {
-      "name": "",
-      "description": "",
-      "fields": {}
-    },
-    "icloud3_set_interval": {
-      "name": "",
-      "description": "",
-      "fields": {}
-    },
-    "icloud3_find_iphone_alert": {
-      "name": "",
-      "description": "",
-      "fields": {}
-    },
-    "see": {
-      "name": "See",
-      "description": "Records a seen tracked device.",
+  "google": {
+    "add_event": {
+      "name": "Add event",
+      "description": "Adds a new calendar event.",
       "fields": {
-        "mac": {
-          "example": "FF:FF:FF:FF:FF:FF",
+        "calendar_id": {
+          "required": true,
+          "example": "Your email",
           "selector": {
             "text": null
           },
-          "name": "MAC address",
-          "description": "MAC address of the device."
+          "name": "Calendar ID",
+          "description": "The id of the calendar you want."
         },
-        "dev_id": {
-          "example": "phonedave",
+        "summary": {
+          "required": true,
+          "example": "Bowling",
           "selector": {
             "text": null
           },
-          "name": "Device ID",
-          "description": "ID of the device (find the ID in \u0060known_devices.yaml\u0060)."
+          "name": "Summary",
+          "description": "Acts as the title of the event."
         },
-        "host_name": {
-          "example": "Dave",
+        "description": {
+          "example": "Birthday bowling",
           "selector": {
             "text": null
           },
-          "name": "Hostname",
-          "description": "Hostname of the device."
+          "name": "Description",
+          "description": "The description of the event. Optional."
         },
-        "location_name": {
-          "example": "home",
+        "start_date_time": {
+          "example": "2019-03-22 20:00:00",
+          "selector": {
+            "text": null
+          },
+          "name": "Start time",
+          "description": "The date and time the event should start."
+        },
+        "end_date_time": {
+          "example": "2019-03-22 22:00:00",
+          "selector": {
+            "text": null
+          },
+          "name": "End time",
+          "description": "The date and time the event should end."
+        },
+        "start_date": {
+          "example": "2019-03-10",
+          "selector": {
+            "text": null
+          },
+          "name": "Start date",
+          "description": "The date the whole day event should start."
+        },
+        "end_date": {
+          "example": "2019-03-11",
+          "selector": {
+            "text": null
+          },
+          "name": "End date",
+          "description": "The date the whole day event should end."
+        },
+        "in": {
+          "example": "\u0022days\u0022: 2 or \u0022weeks\u0022: 2",
+          "selector": {
+            "object": null
+          },
+          "name": "In",
+          "description": "Days or weeks that you want to create the event in."
+        }
+      }
+    },
+    "create_event": {
+      "name": "Creates event",
+      "description": "Add a new calendar event.",
+      "fields": {
+        "summary": {
+          "required": true,
+          "example": "Bowling",
+          "selector": {
+            "text": null
+          },
+          "name": "Summary",
+          "description": "Acts as the title of the event."
+        },
+        "description": {
+          "example": "Birthday bowling",
+          "selector": {
+            "text": null
+          },
+          "name": "Description",
+          "description": "The description of the event. Optional."
+        },
+        "start_date_time": {
+          "example": "2022-03-22 20:00:00",
+          "selector": {
+            "text": null
+          },
+          "name": "Start time",
+          "description": "The date and time the event should start."
+        },
+        "end_date_time": {
+          "example": "2022-03-22 22:00:00",
+          "selector": {
+            "text": null
+          },
+          "name": "End time",
+          "description": "The date and time the event should end."
+        },
+        "start_date": {
+          "example": "2022-03-10",
+          "selector": {
+            "text": null
+          },
+          "name": "Start date",
+          "description": "The date the whole day event should start."
+        },
+        "end_date": {
+          "example": "2022-03-11",
+          "selector": {
+            "text": null
+          },
+          "name": "End date",
+          "description": "The date the whole day event should end."
+        },
+        "in": {
+          "example": "\u0022days\u0022: 2 or \u0022weeks\u0022: 2",
+          "selector": {
+            "object": null
+          },
+          "name": "In",
+          "description": "Days or weeks that you want to create the event in."
+        },
+        "location": {
+          "example": "Conference Room - F123, Bldg. 002",
           "selector": {
             "text": null
           },
           "name": "Location",
-          "description": "Name of the location where the device is located. The options are: \u0060home\u0060, \u0060not_home\u0060, or the name of the zone."
+          "description": "The location of the event. Optional."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "integration": "google",
+            "domain": [
+              "calendar"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "remote": {
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns the device off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Sends the power on command.",
+      "fields": {
+        "activity": {
+          "example": "BedroomTV",
+          "filter": {
+            "supported_features": [
+              4
+            ]
+          },
+          "selector": {
+            "text": null
+          },
+          "name": "Activity",
+          "description": "Activity ID or activity name to be started."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles a device on/off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "send_command": {
+      "name": "Send command",
+      "description": "Sends a command or a list of commands to a device.",
+      "fields": {
+        "device": {
+          "example": "32756745",
+          "selector": {
+            "text": null
+          },
+          "name": "Device",
+          "description": "Device ID to send command to."
         },
-        "gps": {
-          "example": "[51.509802, -0.086692]",
+        "command": {
+          "required": true,
+          "example": "Play",
           "selector": {
             "object": null
           },
-          "name": "GPS coordinates",
-          "description": "GPS coordinates where the device is located, specified by latitude and longitude (for example: [51.513845, -0.100539])."
+          "name": "Command",
+          "description": "A single command or a list of commands to send."
         },
-        "gps_accuracy": {
+        "num_repeats": {
+          "default": 1,
           "selector": {
             "number": {
               "min": 0,
-              "mode": "box",
-              "unit_of_measurement": "m"
+              "max": 255
             }
           },
-          "name": "GPS accuracy",
-          "description": "Accuracy of the GPS coordinates."
+          "name": "Repeats",
+          "description": "The number of times you want to repeat the commands."
         },
-        "battery": {
+        "delay_secs": {
+          "default": 0.4,
           "selector": {
             "number": {
               "min": 0,
-              "max": 100,
-              "unit_of_measurement": "%"
+              "max": 60,
+              "step": 0.1,
+              "unit_of_measurement": "seconds"
             }
           },
-          "name": "Battery level",
-          "description": "Battery level of the device."
+          "name": "Delay seconds",
+          "description": "The time you want to wait in between repeated commands."
+        },
+        "hold_secs": {
+          "default": 0,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 60,
+              "step": 0.1,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Hold seconds",
+          "description": "The time you want to have it held before the release is send."
         }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "learn_command": {
+      "name": "Learn command",
+      "description": "Learns a command or a list of commands from a device.",
+      "fields": {
+        "device": {
+          "example": "television",
+          "selector": {
+            "text": null
+          },
+          "name": "Device",
+          "description": "Device ID to learn command from."
+        },
+        "command": {
+          "example": "Turn on",
+          "selector": {
+            "object": null
+          },
+          "name": "Command",
+          "description": "A single command or a list of commands to learn."
+        },
+        "command_type": {
+          "default": "ir",
+          "selector": {
+            "select": {
+              "options": [
+                "ir",
+                "rf"
+              ]
+            }
+          },
+          "name": "Command type",
+          "description": "The type of command to be learned."
+        },
+        "alternative": {
+          "selector": {
+            "boolean": null
+          },
+          "name": "Alternative",
+          "description": "If code must be stored as an alternative. This is useful for discrete codes. Discrete codes are used for toggles that only perform one function. For example, a code to only turn a device on. If it is on already, sending the code won\u0027t change the state."
+        },
+        "timeout": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 60,
+              "step": 5,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Timeout",
+          "description": "Timeout for the command to be learned."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "delete_command": {
+      "name": "Delete command",
+      "description": "Deletes a command or a list of commands from the database.",
+      "fields": {
+        "device": {
+          "example": "television",
+          "selector": {
+            "text": null
+          },
+          "name": "Device",
+          "description": "Device from which commands will be deleted."
+        },
+        "command": {
+          "required": true,
+          "example": "Mute",
+          "selector": {
+            "object": null
+          },
+          "name": "Command",
+          "description": "The single command or the list of commands to be deleted."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
       }
     }
   },
@@ -8275,6 +8237,196 @@
     }
   },
   "o365": {
+    "scan_for_todo_lists": {
+      "name": "Scan for new todo lists",
+      "description": "Scan for newly available todo lists",
+      "fields": {}
+    },
+    "new_todo": {
+      "name": "Create a ToDo",
+      "description": "Create a new ToDo",
+      "fields": {
+        "subject": {
+          "name": "Subject",
+          "description": "The subject of the todo",
+          "example": "Pick up the mail",
+          "required": true,
+          "selector": {
+            "text": null
+          }
+        },
+        "description": {
+          "name": "Description",
+          "description": "Description of the todo",
+          "example": "Walk to the post box and collect the mail",
+          "selector": {
+            "text": null
+          }
+        },
+        "due": {
+          "name": "Due date",
+          "description": "When the todo is due by",
+          "example": "YYYY-MM-DD",
+          "selector": {
+            "date": null
+          }
+        },
+        "reminder": {
+          "name": "Reminder date \u0026 time",
+          "description": "When a reminder is needed",
+          "example": "2025-01-01T12:00:00\u002B0000",
+          "selector": {
+            "datetime": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "o365"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "o365",
+            "domain": [
+              "todo"
+            ]
+          }
+        ]
+      }
+    },
+    "update_todo": {
+      "name": "Update a ToDo",
+      "description": "Update a ToDo",
+      "fields": {
+        "todo_id": {
+          "name": "ToDo ID",
+          "description": "ID for the todo, can be found as an attribute on your todo",
+          "example": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "required": true,
+          "selector": {
+            "text": null
+          }
+        },
+        "subject": {
+          "name": "Subject",
+          "description": "The subject of the todo",
+          "example": "Pick up the mail",
+          "selector": {
+            "text": null
+          }
+        },
+        "description": {
+          "name": "Description",
+          "description": "Description of the todo",
+          "example": "Walk to the post box and collect the mail",
+          "selector": {
+            "text": null
+          }
+        },
+        "due": {
+          "name": "Due date",
+          "description": "When the todo is due by",
+          "example": "2025-01-01",
+          "selector": {
+            "date": null
+          }
+        },
+        "reminder": {
+          "name": "reminder date \u0026 time",
+          "description": "When a reminder is needed",
+          "example": "2025-01-01T12:00:00\u002B0000",
+          "selector": {
+            "datetime": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "o365"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "o365",
+            "domain": [
+              "todo"
+            ]
+          }
+        ]
+      }
+    },
+    "delete_todo": {
+      "name": "Delete a ToDo",
+      "description": "Delete a ToDo",
+      "fields": {
+        "todo_id": {
+          "name": "ToDo ID",
+          "description": "ID for the todo, can be found as an attribute on your todo",
+          "example": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "required": true,
+          "selector": {
+            "text": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "o365"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "o365",
+            "domain": [
+              "todo"
+            ]
+          }
+        ]
+      }
+    },
+    "complete_todo": {
+      "name": "Complete a ToDo",
+      "description": "Complete a ToDo",
+      "fields": {
+        "todo_id": {
+          "name": "Todo ID",
+          "description": "ID for the todo, can be found as an attribute on your todo",
+          "example": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "required": true,
+          "selector": {
+            "text": null
+          }
+        },
+        "completed": {
+          "name": "Completed",
+          "description": "Set whether todo is completed or not",
+          "example": true,
+          "required": true,
+          "selector": {
+            "boolean": null
+          }
+        }
+      },
+      "target": {
+        "device": [
+          {
+            "integration": "o365"
+          }
+        ],
+        "entity": [
+          {
+            "integration": "o365",
+            "domain": [
+              "todo"
+            ]
+          }
+        ]
+      }
+    },
     "create_calendar_event": {
       "name": "Create a new event",
       "description": "Create new calendar event",
@@ -8672,158 +8824,123 @@
       "fields": {}
     }
   },
-  "google": {
-    "add_event": {
-      "name": "Add event",
-      "description": "Adds a new calendar event.",
+  "synology_dsm": {
+    "reboot": {
+      "name": "Reboot",
+      "description": "Reboots the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.",
       "fields": {
-        "calendar_id": {
-          "required": true,
-          "example": "Your email",
+        "serial": {
+          "example": "1NDVC86409",
           "selector": {
             "text": null
           },
-          "name": "Calendar ID",
-          "description": "The id of the calendar you want."
-        },
-        "summary": {
-          "required": true,
-          "example": "Bowling",
-          "selector": {
-            "text": null
-          },
-          "name": "Summary",
-          "description": "Acts as the title of the event."
-        },
-        "description": {
-          "example": "Birthday bowling",
-          "selector": {
-            "text": null
-          },
-          "name": "Description",
-          "description": "The description of the event. Optional."
-        },
-        "start_date_time": {
-          "example": "2019-03-22 20:00:00",
-          "selector": {
-            "text": null
-          },
-          "name": "Start time",
-          "description": "The date and time the event should start."
-        },
-        "end_date_time": {
-          "example": "2019-03-22 22:00:00",
-          "selector": {
-            "text": null
-          },
-          "name": "End time",
-          "description": "The date and time the event should end."
-        },
-        "start_date": {
-          "example": "2019-03-10",
-          "selector": {
-            "text": null
-          },
-          "name": "Start date",
-          "description": "The date the whole day event should start."
-        },
-        "end_date": {
-          "example": "2019-03-11",
-          "selector": {
-            "text": null
-          },
-          "name": "End date",
-          "description": "The date the whole day event should end."
-        },
-        "in": {
-          "example": "\u0022days\u0022: 2 or \u0022weeks\u0022: 2",
-          "selector": {
-            "object": null
-          },
-          "name": "In",
-          "description": "Days or weeks that you want to create the event in."
+          "name": "Serial",
+          "description": "Serial of the NAS to reboot; required when multiple NAS are configured."
         }
       }
     },
-    "create_event": {
-      "name": "Creates event",
-      "description": "Add a new calendar event.",
+    "shutdown": {
+      "name": "Shutdown",
+      "description": "Shutdowns the NAS. This service is deprecated and will be removed in future release. Please use the corresponding button entity.",
       "fields": {
-        "summary": {
-          "required": true,
-          "example": "Bowling",
+        "serial": {
+          "example": "1NDVC86409",
           "selector": {
             "text": null
           },
-          "name": "Summary",
-          "description": "Acts as the title of the event."
-        },
-        "description": {
-          "example": "Birthday bowling",
+          "name": "Serial",
+          "description": "Serial of the NAS to shutdown; required when multiple NAS are configured."
+        }
+      }
+    }
+  },
+  "device_tracker": {
+    "icloud3_update": {
+      "name": "",
+      "description": "",
+      "fields": {}
+    },
+    "icloud3_restart": {
+      "name": "",
+      "description": "",
+      "fields": {}
+    },
+    "icloud3_set_interval": {
+      "name": "",
+      "description": "",
+      "fields": {}
+    },
+    "icloud3_find_iphone_alert": {
+      "name": "",
+      "description": "",
+      "fields": {}
+    },
+    "see": {
+      "name": "See",
+      "description": "Records a seen tracked device.",
+      "fields": {
+        "mac": {
+          "example": "FF:FF:FF:FF:FF:FF",
           "selector": {
             "text": null
           },
-          "name": "Description",
-          "description": "The description of the event. Optional."
+          "name": "MAC address",
+          "description": "MAC address of the device."
         },
-        "start_date_time": {
-          "example": "2022-03-22 20:00:00",
+        "dev_id": {
+          "example": "phonedave",
           "selector": {
             "text": null
           },
-          "name": "Start time",
-          "description": "The date and time the event should start."
+          "name": "Device ID",
+          "description": "ID of the device (find the ID in \u0060known_devices.yaml\u0060)."
         },
-        "end_date_time": {
-          "example": "2022-03-22 22:00:00",
+        "host_name": {
+          "example": "Dave",
           "selector": {
             "text": null
           },
-          "name": "End time",
-          "description": "The date and time the event should end."
+          "name": "Hostname",
+          "description": "Hostname of the device."
         },
-        "start_date": {
-          "example": "2022-03-10",
-          "selector": {
-            "text": null
-          },
-          "name": "Start date",
-          "description": "The date the whole day event should start."
-        },
-        "end_date": {
-          "example": "2022-03-11",
-          "selector": {
-            "text": null
-          },
-          "name": "End date",
-          "description": "The date the whole day event should end."
-        },
-        "in": {
-          "example": "\u0022days\u0022: 2 or \u0022weeks\u0022: 2",
-          "selector": {
-            "object": null
-          },
-          "name": "In",
-          "description": "Days or weeks that you want to create the event in."
-        },
-        "location": {
-          "example": "Conference Room - F123, Bldg. 002",
+        "location_name": {
+          "example": "home",
           "selector": {
             "text": null
           },
           "name": "Location",
-          "description": "The location of the event. Optional."
+          "description": "Name of the location where the device is located. The options are: \u0060home\u0060, \u0060not_home\u0060, or the name of the zone."
+        },
+        "gps": {
+          "example": "[51.509802, -0.086692]",
+          "selector": {
+            "object": null
+          },
+          "name": "GPS coordinates",
+          "description": "GPS coordinates where the device is located, specified by latitude and longitude (for example: [51.513845, -0.100539])."
+        },
+        "gps_accuracy": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "mode": "box",
+              "unit_of_measurement": "m"
+            }
+          },
+          "name": "GPS accuracy",
+          "description": "Accuracy of the GPS coordinates."
+        },
+        "battery": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 100,
+              "unit_of_measurement": "%"
+            }
+          },
+          "name": "Battery level",
+          "description": "Battery level of the device."
         }
-      },
-      "target": {
-        "entity": [
-          {
-            "integration": "google",
-            "domain": [
-              "calendar"
-            ]
-          }
-        ]
       }
     }
   }
