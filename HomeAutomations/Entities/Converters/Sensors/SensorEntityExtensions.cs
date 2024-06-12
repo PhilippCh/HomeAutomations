@@ -1,4 +1,5 @@
 ﻿using HomeAutomations.Models.Generated;
+using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Entities.Converters.Sensors;
 

@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Entities.Extensions;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
@@ -32,14 +33,14 @@ public class ComputerSwitches(
 
 	private void OnAvailabilitySensorChanged(HostConfig hostConfig, string? state)
 	{
-		if (state == null)
+		if (state.IsInvalidEntityState())
 		{
-			Logger.Warning("Invalid state for computer availability sensor for {Name}", hostConfig.Name);
+			Logger.Warning("Invalid state {State} for computer availability sensor for {Name}", state, hostConfig.Name);
 
 			return;
 		}
 
-		hostConfig.Entity.Switch(state.Equals(RunningState, StringComparison.OrdinalIgnoreCase));
+		hostConfig.Entity.Switch(state!.Equals(RunningState, StringComparison.OrdinalIgnoreCase));
 	}
 
 	private async Task OnSwitchStateChangedAsync(HostConfig hostConfig, bool? isOn)

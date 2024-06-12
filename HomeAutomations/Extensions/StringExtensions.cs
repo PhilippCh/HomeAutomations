@@ -84,4 +84,6 @@ public static class StringExtensions
 
 		return sb.ToString();
 	}
+
+	public static bool IsInvalidEntityState(this string? state) => state == null || state.Equals("unknown", StringComparison.OrdinalIgnoreCase);
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Services.LLM;
 using NetDaemon.HassModel.Entities;
@@ -33,7 +34,7 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 
 	private async void SortShoppingList()
 	{
-		var todoItems = TodoItem.FromJsonElements(Config.InputListEntity.Attributes?.AllTodos?.OfType<JsonElement>());
+		var todoItems = Config.InputListEntity.GetAllItems();
 		var delta = TodoItemDelta.ById(null, todoItems?.ToList());
 		var addedItems = delta.Added.Where(x => !Config.IgnoredItems.Contains(x.Id));
 
@@ -46,20 +47,27 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 			return;
 		}
 
-		foreach (var item in sortedItems)
+		var itemsByTargetBucket = sortedItems.GroupBy(x => x.BucketId);
+
+		foreach (var group in itemsByTargetBucket)
 		{
-			var targetBucket = Config.Buckets.FirstOrDefault(x => x.Entity.EntityId == item.BucketId);
+			var targetBucket = Config.Buckets.FirstOrDefault(x => x.Entity.EntityId == group.Key);
 
 			if (targetBucket == null)
 			{
-				Logger.Warning("Could not copy item {ItemName} into bucket {BucketId} as the bucket does not exist", item.ItemName, item.BucketId);
+				Logger.Warning("Could not find bucket with id {BucketId}", group.Key);
 				continue;
 			}
 
-			Services.O365.NewTodo(new ServiceTarget
+			targetBucket.Entity.DeleteAllItems();
+
+			foreach (var item in group)
 			{
-				EntityIds = [targetBucket.Entity.EntityId]
-			}, item.ItemName);
+				Services.O365.NewTodo(new ServiceTarget
+				{
+					EntityIds = [targetBucket.Entity.EntityId]
+				}, item.ItemName);
+			}
 		}
 	}
 

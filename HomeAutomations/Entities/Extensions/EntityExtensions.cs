@@ -1,6 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Extensions;
+using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
 
@@ -77,5 +80,28 @@ public static class MediaPlayerEntityExtensions
 	{
 		var action = (Action) (isOn ? entity.TurnOn : entity.TurnOff);
 		action();
+	}
+}
+
+public static class TodoEntityExtensions
+{
+	public static IEnumerable<TodoItem>? GetAllItems(this TodoEntity entity) => TodoItem.FromJsonElements(entity.Attributes?.AllTodos?.OfType<JsonElement>());
+
+	public static void DeleteAllItems(this TodoEntity entity)
+	{
+		var services = new Models.Generated.Services(entity.HaContext);
+		var todos = entity.GetAllItems();
+
+		if (todos != null)
+		{
+			foreach (var todo in todos)
+			{
+				services.O365.DeleteTodo(
+					new ServiceTarget
+					{
+						EntityIds = [entity.EntityId]
+					}, new O365DeleteTodoParameters { TodoId = todo.Id });
+			}
+		}
 	}
 }
