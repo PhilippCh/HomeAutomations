@@ -34,9 +34,13 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 
 	private async void SortShoppingList()
 	{
+		Logger.Information("Begin sorting shopping list via LLM prompt");
+
 		var todoItems = Config.InputListEntity.GetAllItems();
 		var delta = TodoItemDelta.ById(null, todoItems?.ToList());
-		var addedItems = delta.Added.Where(x => !Config.IgnoredItems.Contains(x.Id));
+		var addedItems = delta.Added
+			.Where(x => !Config.IgnoredItems.Contains(x.Id))
+			.ToList();
 
 		var sortedItems = await SortItemsWithLlmAsync(addedItems);
 
@@ -69,6 +73,8 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 				}, item.ItemName);
 			}
 		}
+
+		Logger.Information("Sorting of {Count} items completed", addedItems.Count());
 	}
 
 	private string CreateSystemPrompt()
