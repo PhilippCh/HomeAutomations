@@ -1,0 +1,50 @@
+---
+HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
+  ServiceName: "sort_shopping_list"
+  InputListEntity: todo.einkaufen_philipp
+  Buckets:
+    - Name: Gemüse
+      Entity: todo.einkauf_gemuse_philipp
+      Predicate: Obst und Gemüse
+    - Name: Sonstiges
+      Entity: todo.einkauf_sonstiges_philipp
+      Predicate: Alles andere
+  IgnoredItems:
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABzbgL3QAAAA= # Dm
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABzS-qEsAAAA= # Katzen 🐈‍⬛
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAByqwqckAAAA= # Dänisches Bettenladen
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABxLEUB8AAAA= # Online
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABqbbgR0AAAA= # Nicht holen!!!!! Säfte
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABmvc92EAAAA= # Alldrink Hagenbach
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABkKPOeAAAAA= # IKEA
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABf8DdTEAAAA= # Passformen und Verrechnung
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABf3YUjYAAAA= # Getränkeladen
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABEuOiiIAAAA= # Apotheke
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAAzS5d1oAAAA= # Frankreich
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAAzS5d1kAAAA= # Bioladen
+    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAAzS5d1gAAAA= # Asia Laden (goAsia)
+  SystemPrompt: |
+    Deine Aufgabe ist es, eine Einkaufsliste in verschiedene Buckets zu ordnen.
+    Du erhältst eine Liste aller einzukaufenden Dinge sowie eine Liste aller verfügbaren Buckets mit einer Beschreibung, welche Dinge in den jeweiligen Bucket gehören.
+
+    Vorgehensweise:
+
+    1. Lies die Liste der einzukaufenden Dinge.
+    2. Lies die Liste der verfügbaren Buckets und deren Beschreibungen.
+    3. Ordne jedes einzukaufende Ding dem passenden Bucket zu, basierend auf der Beschreibung des Buckets.
+    4. Gib eine Liste als JSON-Array mit den Properties "item" für den Namen des Dings und "bucketId" für den Namen des Buckets zurück, die anzeigt, welches Ding in welchem Bucket landet.
+
+    Regeln:
+
+    - Wenn ein Ding in mehrere Buckets passen könnte, wähle den passendsten Bucket basierend auf der Beschreibung.
+    - Falls ein Ding in keinen der beschriebenen Buckets passt, sortiere es in den Bucket Sonstiges.
+    - Deine Antwort sollte alle einzukaufenden Dinge enthalten, aber nicht mehr als einmal.
+    - Deine Antwort sollte ausschließlich aus einem JSON-Array bestehen und keinen anderen Text oder Markdown enthalten.
+
+    Hier sind deine Daten:
+
+    Einkaufslisten:
+    %ITEMS%
+
+    Buckets und Beschreibungen:
+    %BUCKETS%

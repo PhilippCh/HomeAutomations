@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using System.Text.Json.Serialization;
 using HomeAutomations.Apps.ComputerSwitches;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Models.Config;
@@ -11,6 +9,7 @@ using HomeAutomations.Common.Services.Bluetooth.Commands;
 using HomeAutomations.Common.Triggers;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
+using HomeAutomations.Services.LLM;
 using HomeAutomations.Services.Weather;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +40,10 @@ public static class ServiceCollectionExtensions
 
 			// Weather
 			.Configure<WeatherServiceConfig>(config.GetSection("Weather"))
+
+			// OpenAI
+			.Configure<OpenAiConfig>(config.GetSection("OpenAi"))
+			.AddScoped<ILlmService, OpenAiService>()
 
 			.Configure<TriggerRepositoryConfig>(config.GetSection("TriggerRepository"))
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))

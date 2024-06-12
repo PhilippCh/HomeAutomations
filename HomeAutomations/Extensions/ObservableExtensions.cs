@@ -57,17 +57,12 @@ public static class ObservableExtensions
 		return new ThrottleFirstObservable<T>(source, timeSource, timespan);
 	}
 
-	public static IObservable<T> WhereNotNull<T>(this IObservable<T?> source) where T: struct
-	{
-		return source.Where(i => i.HasValue).Select(i => i!.Value);
-	}
+	public static IObservable<T> WhereNotNull<T>(this IObservable<T?> source) where T : struct => source.Where(i => i.HasValue).Select(i => i!.Value);
 
 	sealed class ThrottleFirstObservable<T> : IObservable<T>
 	{
 		readonly IObservable<T> source;
-
 		readonly IScheduler timeSource;
-
 		readonly TimeSpan timespan;
 
 		internal ThrottleFirstObservable(

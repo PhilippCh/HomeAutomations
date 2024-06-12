@@ -9,4 +9,6 @@ public static class EnumerableExtensions
 			action(e);
 		}
 	}
+
+	public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source) where T : class => source.Where(i => i != null).Select(i => i!);
 }
