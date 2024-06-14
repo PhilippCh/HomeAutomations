@@ -8,7 +8,6 @@ using HomeAutomations.Services;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
 
-[Focus]
 public class ScheduledLights(
 	BaseAutomationDependencyAggregate<ScheduledLights, ScheduledLightsConfig> aggregate,
 	EntityStatePriorityManager _entityStatePriorityManager,

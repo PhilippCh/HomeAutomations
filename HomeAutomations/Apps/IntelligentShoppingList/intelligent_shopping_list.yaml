@@ -1,43 +1,44 @@
 ---
 HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
   ServiceName: "sort_shopping_list"
-  InputListEntity: todo.einkaufen_philipp
+  ProgressEntity: switch.intelligent_shopping_list_active
+  InputListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAAA==
   Buckets:
     - Name: Gemüse
-      Entity: todo.einkauf_gemuse_philipp
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPHwAAAA==
       Predicate: Obst und Gemüse
     - Name: Frühstück
-      Entity: todo.einkauf_fruhstuck_philipp
       Predicate: Alle Dinge, die zum Frühstück gehören, ausgenommen gekühlter Waren
-    - Name: Pasta & Konserven
-      Entity: todo.einkauf_pasta_konserven_philipp
-      Predicate: Pasta und Konserven, ungekühlte Spezialitäten
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPJgAAAA==
+    - Name: Pasta, Konserven, Gewürze
+      Predicate: Pasta und Konserven, ungekühlte Spezialitäten, Gewürze
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIgAAAA==
     - Name: Getränke
-      Entity: todo.einkauf_getranke_philipp
       Predicate: Ungekühlte Getränke
-    - Name: Getränke
-      Entity: todo.einkauf_kuhlregal_philipp
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPJQAAAA==
+    - Name: Kühlregal
       Predicate: Gekühlte Ware, keine Tiefkühlware
-    - Name: Getränke
-      Entity: todo.einkauf_tiefkuhl_philipp
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPJAAAAA==
+    - Name: Tiefkühl
       Predicate: Ware, die tiefgekühlt werden muss. Keine Kühlschranktemperaturen
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIwAAAA==
     - Name: Sonstiges
-      Entity: todo.einkauf_sonstiges_philipp
       Predicate: Alles andere
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIAAAAA==
   IgnoredItems:
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABzbgL3QAAAA= # Dm
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABzS-qEsAAAA= # Katzen 🐈‍⬛
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAByqwqckAAAA= # Dänisches Bettenladen
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABxLEUB8AAAA= # Online
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABqbbgR0AAAA= # Nicht holen!!!!! Säfte
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABmvc92EAAAA= # Alldrink Hagenbach
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABkKPOeAAAAA= # IKEA
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABf8DdTEAAAA= # Passformen und Verrechnung
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABf3YUjYAAAA= # Getränkeladen
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AABEuOiiIAAAA= # Apotheke
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAAzS5d1oAAAA= # Frankreich
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAAzS5d1kAAAA= # Bioladen
-    - AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgBGAAADcqaoUC5sEUqWKNDAdENTpQcAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAALfzilm8m6dKpphzFRQ_p-AAAzS5d1gAAAA= # Asia Laden (goAsia)
+    - Dm
+    - Katzen 🐈‍⬛
+    - Dänisches Bettenladen
+    - Online
+    - Nicht holen!!!!! Säfte ausschließlich bio (Johannisbeer, Multisaft, Ocenspray, Traubensaft, auf tierische Stoffe gucke, nur naturtrüb)
+    - Alldrink Hagenbach
+    - IKEA
+    - Passformen und Verrechnung
+    - Getränkeladen
+    - Apotheke
+    - Frankreich
+    - Bioladen
+    - Asia Laden (goAsia)
   SystemPrompt: |
     Deine Aufgabe ist es, eine Einkaufsliste in verschiedene Buckets zu ordnen.
     Du erhältst eine Liste aller einzukaufenden Dinge sowie eine Liste aller verfügbaren Buckets mit einer Beschreibung, welche Dinge in den jeweiligen Bucket gehören.
@@ -57,8 +58,7 @@ HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
     - Deine Antwort sollte ausschließlich aus einem JSON-Array bestehen und keinen anderen Text oder Markdown enthalten.
 
     Hier sind deine Daten:
-
-    Einkaufslisten:
+    Einkaufsliste:
     %ITEMS%
 
     Buckets und Beschreibungen:

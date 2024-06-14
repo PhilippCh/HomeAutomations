@@ -1,11 +1,14 @@
 ﻿using System.Linq;
 using System.Reflection;
 using HomeAutomations.Apps.ComputerSwitches;
+using HomeAutomations.Apps.IntelligentShoppingList;
 using HomeAutomations.Attributes;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Common.Services.Bluetooth.Commands;
+using HomeAutomations.Common.Services.Graph;
 using HomeAutomations.Common.Triggers;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
@@ -41,9 +44,10 @@ public static class ServiceCollectionExtensions
 			// Weather
 			.Configure<WeatherServiceConfig>(config.GetSection("Weather"))
 
-			// OpenAI
+			// Intelligent shopping list
 			.Configure<OpenAiConfig>(config.GetSection("OpenAi"))
 			.AddScoped<ILlmService, OpenAiService>()
+			.AddMicrosoftGraphClient(config.GetSection("Graph"))
 
 			.Configure<TriggerRepositoryConfig>(config.GetSection("TriggerRepository"))
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))

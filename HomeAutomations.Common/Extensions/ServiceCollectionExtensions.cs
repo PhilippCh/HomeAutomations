@@ -1,5 +1,6 @@
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
+using HomeAutomations.Common.Services.Graph;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,5 +13,12 @@ public static class ServiceCollectionExtensions
 		return services
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
 			.AddSingleton<MqttService>();
+	}
+
+	public static IServiceCollection AddMicrosoftGraphClient(this IServiceCollection services, IConfigurationSection config)
+	{
+		return services
+			.Configure<MicrosoftGraphConfig>(config)
+			.AddSingleton<GraphTodoClient>();
 	}
 }

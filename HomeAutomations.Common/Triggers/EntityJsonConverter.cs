@@ -1,8 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using HomeAutomations.Models.Generated;
 using Microsoft.Extensions.DependencyInjection;
 using NetDaemon.HassModel.Entities;
+
+namespace HomeAutomations.Common.Triggers;
 
 public class EntityJsonConverter<T>(IServiceProvider serviceProvider) : JsonConverter<T>
 	where T : Entity

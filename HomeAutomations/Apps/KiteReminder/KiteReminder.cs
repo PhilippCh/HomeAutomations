@@ -7,7 +7,7 @@ using HomeAutomations.Services.Weather;
 
 namespace HomeAutomations.Apps.KiteReminder;
 
-[Focus]
+
 public class KiteReminder(
 	BaseAutomationDependencyAggregate<KiteReminder, KiteReminderConfig> aggregate,
 	INotificationService notificationService,

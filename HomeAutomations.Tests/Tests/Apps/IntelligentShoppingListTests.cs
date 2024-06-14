@@ -7,6 +7,7 @@ using HomeAutomations.Models.Generated;
 using HomeAutomations.Services.LLM;
 using HomeAutomations.Tests.Helpers;
 using HomeAutomations.Tests.Mocks;
+using Microsoft.Extensions.Options;
 using Microsoft.Reactive.Testing;
 using Moq;
 using NetDaemon.HassModel;
@@ -91,7 +92,7 @@ public class IntelligentShoppingListTests : IAsyncLifetime
 	public async Task InitializeAsync()
 	{
 		var aggregate = _testAppBuilder.CreateAppAggregate<IntelligentShoppingList, IntelligentShoppingListConfig>(_config);
-		_sut = new IntelligentShoppingList(aggregate, _llmServiceMock.Object);
+		_sut = new IntelligentShoppingList(aggregate, _llmServiceMock.Object, );
 
 		await _sut.InitializeAsync(CancellationToken.None);
 	}

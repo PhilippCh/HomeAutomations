@@ -14,7 +14,6 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.AvReceiver;
 
-[Focus]
 public class AvReceiver(
 	BaseAutomationDependencyAggregate<AvReceiver, AvReceiverConfig> aggregate,
 	ActionSequencerService actionSequencerService,

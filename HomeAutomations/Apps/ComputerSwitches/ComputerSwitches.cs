@@ -8,7 +8,7 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.ComputerSwitches;
 
-[Focus]
+
 public class ComputerSwitches(
 	BaseAutomationDependencyAggregate<ComputerSwitches, ComputerSwitchesConfig> aggregate,
 	WakeOnLanService wakeOnLanService) : BaseAutomation<ComputerSwitches, ComputerSwitchesConfig>(aggregate)
