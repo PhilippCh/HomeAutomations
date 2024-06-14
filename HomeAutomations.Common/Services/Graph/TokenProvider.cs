@@ -19,7 +19,7 @@ public class TokenProvider : IAccessTokenProvider
 
         // Building StorageCreationProperties
         var storageProperties = new StorageCreationPropertiesBuilder(CacheSettings.CacheFileName, CacheSettings.CacheDirectory)
-        WithLinuxKeyring(
+        .WithLinuxKeyring(
                  CacheSettings.LinuxKeyRingSchema,
                  CacheSettings.LinuxKeyRingCollection,
                  CacheSettings.LinuxKeyRingLabel,
