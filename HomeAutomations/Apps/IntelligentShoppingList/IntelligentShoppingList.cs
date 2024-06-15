@@ -11,6 +11,8 @@ using HomeAutomations.Services.LLM;
 using Microsoft.Graph.Models;
 using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Integration;
+using Polly;
+using Polly.Retry;
 
 namespace HomeAutomations.Apps.IntelligentShoppingList;
 
@@ -76,27 +78,32 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 
 		foreach (var group in itemsByTargetBucket)
 		{
-			var targetBucket = Config.Buckets.FirstOrDefault(x => x.Name == group.Key);
-
-			if (targetBucket == null)
-			{
-				Logger.Warning("Could not find bucket with id {BucketId}", group.Key);
-
-				continue;
-			}
-
-			Logger.Debug("Deleting all todos in bucket {BucketName}", targetBucket.Name);
-			await _graphTodoClient.DeleteAllTodosAsync(targetBucket.ListId);
-
-			foreach (var item in group)
-			{
-				Logger.Debug("Creating todo for item {ItemName} in bucket {BucketName}", item.ItemName, targetBucket.Name);
-				await _graphTodoClient.AddTaskToListAsync(targetBucket.ListId, item.ItemName);
-			}
+			await SortTasksIntoTargetBucketAsync(group);
 		}
 
 		Logger.Information("Sorting of {Count} items completed", tasks.Count);
 		Config.ProgressEntity.TurnOff();
+	}
+
+	private async Task SortTasksIntoTargetBucketAsync(IGrouping<string, ShoppingListSorting> group)
+	{
+		var targetBucket = Config.Buckets.FirstOrDefault(x => x.Name == group.Key);
+
+		if (targetBucket == null)
+		{
+			Logger.Warning("Could not find bucket with id {BucketId}", group.Key);
+
+			return;
+		}
+
+		Logger.Debug("Deleting all todos in bucket {BucketName}", targetBucket.Name);
+		await _graphTodoClient.DeleteAllTodosAsync(targetBucket.ListId);
+
+		foreach (var item in group)
+		{
+			Logger.Debug("Creating todo for item {ItemName} in bucket {BucketName}", item.ItemName, targetBucket.Name);
+			await _graphTodoClient.AddTaskToListAsync(targetBucket.ListId, item.ItemName);
+		}
 	}
 
 	private string CreateSystemPrompt()
@@ -120,14 +127,17 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 		var prompt = _systemPrompt.Replace("%ITEMS%", itemList);
 
 		Logger.Debug("Calling LLM");
-		var result = await _llmService.CreateCompletionAsync(prompt);
+		var pipeline = new ResiliencePipelineBuilder()
+			.AddRetry(new RetryStrategyOptions())
+			.Build();
 
-		if (result == null)
-		{
-			return [];
-		}
+		var sortedItems = await pipeline.ExecuteAsync(
+			async _ =>
+			{
+				var result = await _llmService.CreateCompletionAsync(prompt) ?? "invalid";
 
-		var sortedItems = JsonSerializer.Deserialize<IEnumerable<ShoppingListSorting>>(result);
+				return JsonSerializer.Deserialize<IEnumerable<ShoppingListSorting>>(result);
+			});
 
 		return sortedItems;
 	}
