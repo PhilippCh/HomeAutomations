@@ -10,6 +10,9 @@ HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
     - Name: Frühstück
       Predicate: Alle Dinge, die zum Frühstück gehören, ausgenommen gekühlter Waren
       ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPJgAAAA==
+    - Name: Backen
+      Predicate: Alle Backwaren, Mehl, Zucker, Backpulver, gemahlene Mandeln, Lebensmittelfarbe, etc.
+      ListId:  AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHREDrFAAAAA==
     - Name: Pasta, Konserven, Gewürze
       Predicate: Pasta und Konserven, ungekühlte Spezialitäten, Gewürze
       ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIgAAAA==
