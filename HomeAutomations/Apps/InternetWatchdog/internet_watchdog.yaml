@@ -1,6 +1,9 @@
 ---
 HomeAutomations.Apps.InternetWatchdog.InternetWatchdogConfig:
-  SensorEntity: sensor.speedtest_download
+  Check:
+    Host: example.com # Yes, this domain was actually set up to query for example purposes, which this automation falls under.
+    Interval: 00:01:00
+    ResultEntity: binary_sensor.internet_availability
   InternetDownNotification:
     Tag: internet
     Title: Internet Zuhause

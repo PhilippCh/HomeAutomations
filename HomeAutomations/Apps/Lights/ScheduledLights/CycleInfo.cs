@@ -2,7 +2,7 @@
 using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
-using ObservableExtensions = HomeAutomations.Extensions.ObservableExtensions;
+using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensions;
 
 namespace HomeAutomations.Apps.Lights.ScheduledLights;
 

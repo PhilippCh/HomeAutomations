@@ -42,13 +42,6 @@ public static class ObservableExtensions
 			.Where(x => allowedActions.Contains(x.Data?.ActionName))
 			.Select(x => x.Data!);
 
-	public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
-	{
-		var observable = Observable.Interval(interval);
-
-		return emitImmediately ? observable.StartWith(-1) : observable;
-	}
-
 	public static IObservable<T> ThrottleFirst<T>(
 		this IObservable<T> source,
 		TimeSpan timespan,

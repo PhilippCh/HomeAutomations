@@ -78,4 +78,11 @@ public static class ObservableExtensions
 				})
 			.DistinctUntilChanged(x => x.IsSunUp);
 	}
+
+	public static IObservable<long> Interval(TimeSpan interval, bool emitImmediately = false)
+	{
+		var observable = Observable.Interval(interval);
+
+		return emitImmediately ? observable.StartWith(-1) : observable;
+	}
 }
