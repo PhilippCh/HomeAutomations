@@ -22,6 +22,10 @@
         <PackageReference Include="Flurl.Http" Version="3.2.4" />
         <PackageReference Include="Ical.Net" Version="4.2.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+        <PackageReference Include="MSBuildGitHash" Version="2.0.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="NetDaemon.AppModel" Version="23.46.1" />
         <PackageReference Include="NetDaemon.Extensions.Mqtt" Version="23.46.1" />
         <PackageReference Include="NetDaemon.Runtime" Version="23.46.1" />

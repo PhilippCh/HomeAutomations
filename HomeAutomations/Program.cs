@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Reflection;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
@@ -14,11 +15,14 @@ using NetDaemon.Runtime;
 try
 {
 	var assembly = Assembly.GetExecutingAssembly();
-
 	var builder = WebApplication.CreateBuilder(args);
+	var logger = builder.Host.UseHomeAutomationsLogging();
+
+	// Log the git hash of the current build, so we can make sure we're actually running the latest version.
+	LogGitHashFromAssembly(assembly, logger);
+
 	builder.Host
 		.UseNetDaemonAppSettings()
-		.UseCustomLogging()
 		.UseNetDaemonRuntime()
 		.UseNetDaemonMqttEntityManagement()
 		.ConfigureAppConfiguration((context, config) => config.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true))
@@ -50,7 +54,17 @@ try
 }
 catch (Exception e)
 {
-	Console.WriteLine($"Failed to start host... {e}");
+	Console.WriteLine($"Failed to start host: {e}");
 
 	throw;
+}
+
+return;
+
+void LogGitHashFromAssembly(Assembly assembly, ILogger logger)
+{
+	var attributes = assembly.GetCustomAttributes<AssemblyMetadataAttribute>();
+	var gitHash = attributes.FirstOrDefault(a => a.Key == "GitHash");
+
+	logger.Information("Starting HomeAutomations with git hash {GitHash}", gitHash?.Value ?? "unknown");
 }

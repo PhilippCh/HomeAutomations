@@ -1,11 +1,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Serilog.Core;
 
 namespace HomeAutomations.Extensions;
 
 public static class HostBuilderExtensions
 {
-	public static IHostBuilder UseCustomLogging(this IHostBuilder builder)
+	public static Logger UseHomeAutomationsLogging(this IHostBuilder builder)
 	{
 		var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Development";
 		var configuration = new ConfigurationBuilder()
@@ -17,6 +18,8 @@ public static class HostBuilderExtensions
 			.ReadFrom.Configuration(configuration)
 			.CreateLogger();
 
-		return builder.UseSerilog(logger);
+		builder.UseSerilog(logger);
+
+		return logger;
 	}
 }
