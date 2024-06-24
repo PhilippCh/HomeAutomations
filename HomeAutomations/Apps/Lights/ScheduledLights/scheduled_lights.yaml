@@ -4,11 +4,13 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
     - Name: Lava lamp
       StartTriggerId: LavaLampStart
       EndTriggerId: LavaLampEnd
+      StateEntity: binary_sensor.scheduled_lights_lava_lamp_state
       EntityCycles:
         - - switch.bedroom_lava_lamp
     - Name: Static lights
       StartTriggerId: StaticLightsStart
       EndTriggerId: Bedtime
+      StateEntity: binary_sensor.scheduled_lights_static_lights_state
       EntityCycles:
         - - light.living_room_tv_lightstrip
           - switch.kitchen_neon_clock
@@ -21,6 +23,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
       StartTriggerId: StaticLightsStart
       EndTriggerId: Bedtime
       Interval: 01:00:00
+      StateEntity: binary_sensor.scheduled_lights_trolley_lights_state
       EntityCycles:
         - - switch.living_room_lightbar
           - switch.living_room_contract_light
@@ -29,5 +32,6 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
       StartTriggerId: CatFountainStart
       EndTriggerId: Bedtime
       Interval: 00:30:00
+      StateEntity: binary_sensor.scheduled_lights_cat_fountain_state
       EntityCycles:
         - - switch.living_room_cat_fountain

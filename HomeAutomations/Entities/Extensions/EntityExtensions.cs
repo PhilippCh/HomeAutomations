@@ -1,4 +1,5 @@
 ﻿using HomeAutomations.Common.Extensions;
+using HomeAutomations.Entities.Constants;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
 using NetDaemon.HassModel.Entities;
@@ -28,7 +29,13 @@ public static class EntityExtensions
 	/// <param name="state">Entity state</param>
 	/// <returns>Is state like on</returns>
 	public static bool IsLikeOn<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
-		state.IsOn() || string.Equals(state.State, "playing", StringComparison.OrdinalIgnoreCase);
+		state.IsOn() || string.Equals(state.State, EntityStates.Playing, StringComparison.OrdinalIgnoreCase);
+
+	public static bool IsOffOrUnavailable<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
+		state.IsOff() || state.IsUnavailable();
+
+	public static bool IsUnavailable<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
+		string.Equals(state.State, EntityStates.Unavailable, StringComparison.OrdinalIgnoreCase);
 
 	public static bool Is<TEntity>(this Entity entity)
 	{
