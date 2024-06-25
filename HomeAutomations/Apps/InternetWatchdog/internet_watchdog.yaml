@@ -1,7 +1,7 @@
 ---
 HomeAutomations.Apps.InternetWatchdog.InternetWatchdogConfig:
   Check:
-    Host: example.com # Yes, this domain was actually set up to query for example purposes, which this automation falls under.
+    Host: https://example.com # Yes, this domain was actually set up to query for example purposes, which this automation falls under.
     Interval: 00:01:00
     ResultEntity: binary_sensor.internet_availability
   InternetDownNotification:
