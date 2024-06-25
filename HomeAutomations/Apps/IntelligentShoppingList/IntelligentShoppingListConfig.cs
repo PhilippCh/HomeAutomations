@@ -12,6 +12,7 @@ public record IntelligentShoppingListConfig : Config
 	public IEnumerable<string> IgnoredItems { get; init; }
 	public IEnumerable<ShoppingListBucket> Buckets { get; init; }
 	public string SystemPrompt { get; init; }
+	public InputBooleanEntity DryRunEntity { get; init; }
 }
 
 public record ShoppingListBucket

@@ -26,6 +26,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Mscc.GenerativeAI.Google" Version="1.5.0" />
         <PackageReference Include="NetDaemon.AppModel" Version="23.46.1" />
         <PackageReference Include="NetDaemon.Extensions.Mqtt" Version="23.46.1" />
         <PackageReference Include="NetDaemon.Runtime" Version="23.46.1" />

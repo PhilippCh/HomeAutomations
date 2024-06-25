@@ -5,11 +5,13 @@ using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
 
-namespace HomeAutomations.Services.LLM;
+namespace HomeAutomations.Services.LLM.OpenAi;
 
-public class OpenAiService(IOptions<OpenAiConfig> config) : ILlmService
+public class OpenAiLlmService(IOptionsSnapshot<LlmConfig> config) : ILlmService
 {
-	private readonly OpenAIAPI _apiClient = new(config.Value.ApiKey);
+	public const string OptionsKey = "OpenAi";
+
+	private readonly OpenAIAPI _apiClient = new(config.Get(OptionsKey).ApiKey);
 
 	public async Task<string?> CreateCompletionAsync(string prompt)
 	{

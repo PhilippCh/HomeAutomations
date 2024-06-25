@@ -2,6 +2,7 @@
 HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
   ServiceName: "sort_shopping_list"
   ProgressEntity: switch.intelligent_shopping_list_active
+  DryRunEntity: input_boolean.intelligent_shopping_list_dry_run
   InputListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AADNLljmgAAAA==
   Buckets:
     - Name: Gemüse
@@ -13,8 +14,8 @@ HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
     - Name: Backen
       Predicate: Alle Backwaren, Mehl, Zucker, Backpulver, gemahlene Mandeln, Lebensmittelfarbe, etc.
       ListId:  AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHREDrFAAAAA==
-    - Name: Pasta, Konserven, Gewürze
-      Predicate: Pasta und Konserven, ungekühlte Spezialitäten, Gewürze
+    - Name: Pasta, Konserven, Gewürze, Soßen
+      Predicate: Pasta und Konserven, ungekühlte Spezialitäten, Gewürze und Soßen (auch Mayonnaise)
       ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIgAAAA==
     - Name: Getränke
       Predicate: Ungekühlte Getränke
@@ -25,12 +26,13 @@ HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
     - Name: Tiefkühl
       Predicate: Ware, die tiefgekühlt werden muss. Keine Kühlschranktemperaturen
       ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIwAAAA==
+    - Name: dm
+      Predicate: Drogerieartikel und alle Artikel, die mit "dm" als Präfix oder Suffix gekennzeichnet sind
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHREDrGAAAAA==
     - Name: Sonstiges
       Predicate: Alles andere
       ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIAAAAA==
   IgnoredItems:
-    - Dm
-    - Katzen 🐈‍⬛
     - Dänisches Bettenladen
     - Online
     - Nicht holen!!!!! Säfte ausschließlich bio (Johannisbeer, Multisaft, Ocenspray, Traubensaft, auf tierische Stoffe gucke, nur naturtrüb)

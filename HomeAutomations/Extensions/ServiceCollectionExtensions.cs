@@ -1,18 +1,18 @@
 ﻿using System.Linq;
 using System.Reflection;
 using HomeAutomations.Apps.ComputerSwitches;
-using HomeAutomations.Apps.IntelligentShoppingList;
 using HomeAutomations.Attributes;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Common.Services.Bluetooth;
 using HomeAutomations.Common.Services.Bluetooth.Commands;
-using HomeAutomations.Common.Services.Graph;
 using HomeAutomations.Common.Triggers;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using HomeAutomations.Services.LLM;
+using HomeAutomations.Services.LLM.Gemini;
+using HomeAutomations.Services.LLM.OpenAi;
 using HomeAutomations.Services.Weather;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,8 +45,7 @@ public static class ServiceCollectionExtensions
 			.Configure<WeatherServiceConfig>(config.GetSection("Weather"))
 
 			// Intelligent shopping list
-			.Configure<OpenAiConfig>(config.GetSection("OpenAi"))
-			.AddScoped<ILlmService, OpenAiService>()
+			.AddLlm(config)
 			.AddMicrosoftGraphClient(config.GetSection("Graph"))
 
 			.Configure<TriggerRepositoryConfig>(config.GetSection("TriggerRepository"))
@@ -76,6 +75,16 @@ public static class ServiceCollectionExtensions
 			var addServicesMethod = app.GetMethod("AddServices");
 			addServicesMethod?.Invoke(null, new object?[] { services, config });
 		}
+
+		return services;
+	}
+
+	private static IServiceCollection AddLlm(this IServiceCollection services, IConfiguration config)
+	{
+		services
+			.Configure<LlmConfig>(OpenAiLlmService.OptionsKey, config.GetSection(OpenAiLlmService.OptionsKey))
+			.Configure<LlmConfig>(GeminiLlmService.OptionsKey, config.GetSection(GeminiLlmService.OptionsKey))
+			.AddScoped<ILlmService, GeminiLlmService>();
 
 		return services;
 	}

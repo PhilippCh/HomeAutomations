@@ -3,13 +3,16 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Services.Graph;
 using HomeAutomations.Common.Services.Graph.Filters;
+using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services.LLM;
 using Microsoft.Graph.Models;
 using NetDaemon.Extensions.MqttEntityManager;
+using NetDaemon.HassModel.Entities;
 using NetDaemon.HassModel.Integration;
 using Polly;
 using Polly.Retry;
@@ -43,13 +46,14 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 		_systemPrompt = CreateSystemPrompt();
 		Context.RegisterServiceCallBack<SortShoppingListServiceData>(Config.ServiceName, _ => SortShoppingList());
 
-		await _entityManager.CreateAsync(Config.ProgressEntity.EntityId, new EntityCreationOptions(null, Config.ProgressEntity.EntityId, "Intelligent shopping list sort in progress"));
+		await _entityManager.CreateAsync(
+			Config.ProgressEntity.EntityId, new EntityCreationOptions(null, Config.ProgressEntity.EntityId, "Intelligent shopping list sort in progress"));
 		Config.ProgressEntity.TurnOff();
 	}
 
 	private async void SortShoppingList()
 	{
-		Logger.Information("Begin sorting shopping list via LLM prompt");
+		Logger.Information("Begin sorting shopping list via LLM prompt ({RunType})", Config.DryRunEntity.IsOn() ? "dry run" : "live");
 		Config.ProgressEntity.TurnOn();
 
 		var response = await _graphTodoClient.GetTodoTasksAsync(Config.InputListId, new TaskNotStartedFilter());
@@ -78,14 +82,14 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 
 		foreach (var group in itemsByTargetBucket)
 		{
-			await SortTasksIntoTargetBucketAsync(group);
+			await SortTasksIntoTargetBucketAsync(group, tasks);
 		}
 
 		Logger.Information("Sorting of {Count} items completed", tasks.Count);
 		Config.ProgressEntity.TurnOff();
 	}
 
-	private async Task SortTasksIntoTargetBucketAsync(IGrouping<string, ShoppingListSorting> group)
+	private async Task SortTasksIntoTargetBucketAsync(IGrouping<string, ShoppingListSorting> group, List<TodoTask> originalTasks)
 	{
 		var targetBucket = Config.Buckets.FirstOrDefault(x => x.Name == group.Key);
 
@@ -97,13 +101,8 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 		}
 
 		Logger.Debug("Deleting all todos in bucket {BucketName}", targetBucket.Name);
-		await _graphTodoClient.DeleteAllTodosAsync(targetBucket.ListId);
-
-		foreach (var item in group)
-		{
-			Logger.Debug("Creating todo for item {ItemName} in bucket {BucketName}", item.ItemName, targetBucket.Name);
-			await _graphTodoClient.AddTaskToListAsync(targetBucket.ListId, item.ItemName);
-		}
+		await OnlyInWetRunAsync(async () => await _graphTodoClient.DeleteAllTodosAsync(targetBucket.ListId));
+		await group.ForEachAsync(async x => await MoveToTargetBucket(x, targetBucket, originalTasks));
 	}
 
 	private string CreateSystemPrompt()
@@ -140,5 +139,21 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 			});
 
 		return sortedItems;
+	}
+
+	private async Task OnlyInWetRunAsync(Func<Task> action)
+	{
+		if (Config.DryRunEntity.EntityState?.IsOffOrUnavailable() ?? false)
+		{
+			await action();
+		}
+	}
+
+	private async Task MoveToTargetBucket(ShoppingListSorting item, ShoppingListBucket targetBucket, List<TodoTask> originalTasks)
+	{
+		Logger.Debug("Creating todo for item {ItemName} in bucket {BucketName}", item.ItemName, targetBucket.Name);
+
+		var originalTask = originalTasks.FirstOrDefault(x => x.Title == item.ItemName);
+		await OnlyInWetRunAsync(async () => await _graphTodoClient.CloneTaskToListAsync(targetBucket.ListId, originalTask));
 	}
 }
