@@ -18,14 +18,9 @@ public class TokenProvider : IAccessTokenProvider
         AllowedHostsValidator = new AllowedHostsValidator();
 
         // Building StorageCreationProperties
-        var storageProperties = new StorageCreationPropertiesBuilder(CacheSettings.CacheFileName, CacheSettings.CacheDirectory)
-        .WithLinuxKeyring(
-                 CacheSettings.LinuxKeyRingSchema,
-                 CacheSettings.LinuxKeyRingCollection,
-                 CacheSettings.LinuxKeyRingLabel,
-                 CacheSettings.LinuxKeyRingAttr1,
-                 CacheSettings.LinuxKeyRingAttr2)
-        .Build();
+        var storageProperties = new StorageCreationPropertiesBuilder("msal.contoso.cach", "/data/msal")
+	        .WithLinuxUnprotectedFile()
+	        .Build();
 
         // This hooks up the cross-platform cache into MSAL
         var cacheHelper = CreateCacheHelper(storageProperties).Result; //await MsalCacheHelper.CreateAsync(storageProperties);
