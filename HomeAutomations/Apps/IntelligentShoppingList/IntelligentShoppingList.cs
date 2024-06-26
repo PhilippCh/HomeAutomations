@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Services.Graph;
 using HomeAutomations.Common.Services.Graph.Filters;
+using HomeAutomations.Entities.Constants;
 using HomeAutomations.Entities.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Models.Generated;
 using HomeAutomations.Services.LLM;
 using Microsoft.Graph.Models;
-using NetDaemon.Extensions.MqttEntityManager;
 using NetDaemon.HassModel.Entities;
 using NetDaemon.HassModel.Integration;
 using Polly;
@@ -24,7 +24,6 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 {
 	private readonly ILlmService _llmService;
 	private readonly GraphTodoClient _graphTodoClient;
-	private readonly IMqttEntityManager _entityManager;
 
 	private string? _systemPrompt;
 
@@ -32,23 +31,24 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 	public IntelligentShoppingList(
 		BaseAutomationDependencyAggregate<IntelligentShoppingList, IntelligentShoppingListConfig> aggregate,
 		ILlmService llmService,
-		GraphTodoClient graphTodoClient,
-		IMqttEntityManager entityManager)
+		GraphTodoClient graphTodoClient)
 		: base(aggregate)
 	{
 		_llmService = llmService;
 		_graphTodoClient = graphTodoClient;
-		_entityManager = entityManager;
 	}
 
-	protected override async Task StartAsync(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		_systemPrompt = CreateSystemPrompt();
-		Context.RegisterServiceCallBack<SortShoppingListServiceData>(Config.ServiceName, _ => SortShoppingList());
 
-		await _entityManager.CreateAsync(
-			Config.ProgressEntity.EntityId, new EntityCreationOptions(null, Config.ProgressEntity.EntityId, "Intelligent shopping list sort in progress"));
+		// Push authentication device requests to the frontend.
+		_graphTodoClient.DeviceCodeRequest.Subscribe(x => Config.AuthenticationDeviceCodeEntity.SetValue(x ?? EntityStates.Unavailable));
+
+		Context.RegisterServiceCallBack<SortShoppingListServiceData>(Config.ServiceName, _ => SortShoppingList());
 		Config.ProgressEntity.TurnOff();
+
+		return Task.CompletedTask;
 	}
 
 	private async void SortShoppingList()

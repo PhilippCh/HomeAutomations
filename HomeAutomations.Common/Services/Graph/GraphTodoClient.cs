@@ -1,20 +1,23 @@
+using System.Reactive.Subjects;
 using HomeAutomations.Common.Services.Graph.Filters;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph;
+using Microsoft.Graph.Me.Todo.Lists.Item.Tasks;
 using Microsoft.Graph.Models;
 using Microsoft.Kiota.Abstractions.Authentication;
-using Microsoft.Graph.Me.Todo.Lists.Item.Tasks;
-using TaskStatus = Microsoft.Graph.Models.TaskStatus;
 
 namespace HomeAutomations.Common.Services.Graph;
 
 public class GraphTodoClient
 {
+	public IObservable<string?> DeviceCodeRequest => _deviceCodeRequest;
+
 	private readonly GraphServiceClient _userClient;
+	private readonly BehaviorSubject<string?> _deviceCodeRequest = new(null); // Reset device code requirement in HA frontend on every restart.
 
 	public GraphTodoClient(IOptions<MicrosoftGraphConfig> config)
 	{
-		_userClient = GetClient(config.Value.TenantId, config.Value.ClientId);
+		_userClient = GetClient(config.Value.TenantId, config.Value.ClientId).Result;
 	}
 
 	/// <summary>
@@ -81,11 +84,13 @@ public class GraphTodoClient
 
 	private async Task AddTaskToListAsync(string listId, TodoTask task) => await _userClient.Me.Todo.Lists[listId].Tasks.PostAsync(task);
 
-	private GraphServiceClient GetClient(string tenantId, string clientId)
+	private async Task<GraphServiceClient> GetClient(string tenantId, string clientId)
 	{
 		// Multi-tenant apps can use "common",
 		// single-tenant apps must use the tenant ID from the Azure portal
-		var authenticationProvider = new BaseBearerTokenAuthenticationProvider(new TokenProvider(clientId, tenantId));
+		var tokenProvider = new TokenProvider(clientId, tenantId, x => _deviceCodeRequest.OnNext(x));
+		await tokenProvider.ClearCacheAsync();
+		var authenticationProvider = new BaseBearerTokenAuthenticationProvider(tokenProvider);
 
 		return new GraphServiceClient(authenticationProvider);
 	}

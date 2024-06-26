@@ -8,11 +8,12 @@ public record IntelligentShoppingListConfig : Config
 {
 	public string ServiceName { get; init; }
 	public string InputListId { get; init; }
-	public SwitchEntity ProgressEntity { get; init; }
+	public InputBooleanEntity ProgressEntity { get; init; }
+	public InputBooleanEntity DryRunEntity { get; init; }
+	public InputTextEntity AuthenticationDeviceCodeEntity { get; init; }
 	public IEnumerable<string> IgnoredItems { get; init; }
 	public IEnumerable<ShoppingListBucket> Buckets { get; init; }
 	public string SystemPrompt { get; init; }
-	public InputBooleanEntity DryRunEntity { get; init; }
 }
 
 public record ShoppingListBucket
