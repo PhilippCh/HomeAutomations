@@ -56,12 +56,12 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 		Logger.Information("Begin sorting shopping list via LLM prompt ({RunType})", Config.DryRunEntity.IsOn() ? "dry run" : "live");
 		Config.ProgressEntity.TurnOn();
 
-		var response = await _graphTodoClient.GetTodoTasksAsync(Config.InputListId, new TaskNotStartedFilter());
-		var tasks = response?.Value?
+		var response = await _graphTodoClient.GetAllTodoTasksAsync(Config.InputListId, new TaskNotStartedFilter());
+		var tasks = response
 			.Where(x => !Config.IgnoredItems.Contains(x.Title))
 			.ToList();
 
-		if (tasks == null)
+		if (tasks.Count == 0)
 		{
 			Logger.Warning("Did not receive a task list from Graph call");
 			Config.ProgressEntity.TurnOff();

@@ -11,7 +11,7 @@ public record IntelligentShoppingListConfig : Config
 	public InputBooleanEntity ProgressEntity { get; init; }
 	public InputBooleanEntity DryRunEntity { get; init; }
 	public InputTextEntity AuthenticationDeviceCodeEntity { get; init; }
-	public IEnumerable<string> IgnoredItems { get; init; }
+	public IEnumerable<string> IgnoredItems { get; init; } = []; // TODO: This can probably be removed after some time, as it's not used anymore.
 	public IEnumerable<ShoppingListBucket> Buckets { get; init; }
 	public string SystemPrompt { get; init; }
 }

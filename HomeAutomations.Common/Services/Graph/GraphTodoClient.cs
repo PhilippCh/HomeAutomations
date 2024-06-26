@@ -17,7 +17,7 @@ public class GraphTodoClient
 
 	public GraphTodoClient(IOptions<MicrosoftGraphConfig> config)
 	{
-		_userClient = GetClient(config.Value.TenantId, config.Value.ClientId).Result;
+		_userClient = GetClient(config.Value.TenantId, config.Value.ClientId);
 	}
 
 	/// <summary>
@@ -26,21 +26,10 @@ public class GraphTodoClient
 	/// <param name="listId">The id of the task list</param>
 	public async Task<BatchResponseContentCollection?> DeleteAllTodosAsync(string listId)
 	{
-		var tasks = await GetTodoTasksAsync(listId);
+		var tasks = await GetAllTodoTasksAsync(listId);
 
-		return await DeleteTodosAsync(listId, tasks?.Value?.Select(x => x.Id!) ?? []);
+		return await DeleteTodosAsync(listId, tasks.Select(x => x.Id!));
 	}
-
-	public Task<TodoTaskCollectionResponse?> GetTodoTasksAsync(string listId, IOdataFilterBuilder? filter = default) =>
-		_userClient.Me
-			.Todo
-			.Lists[listId]
-			.Tasks
-			.GetAsync(
-				config =>
-				{
-					config.QueryParameters.Filter = filter?.Build();
-				});
 
 	public async Task CloneTaskToListAsync(string listId, TodoTask task, DateTime? dueDate = default)
 	{
@@ -84,51 +73,62 @@ public class GraphTodoClient
 
 	private async Task AddTaskToListAsync(string listId, TodoTask task) => await _userClient.Me.Todo.Lists[listId].Tasks.PostAsync(task);
 
-	private async Task<GraphServiceClient> GetClient(string tenantId, string clientId)
+	private GraphServiceClient GetClient(string tenantId, string clientId)
 	{
 		// Multi-tenant apps can use "common",
 		// single-tenant apps must use the tenant ID from the Azure portal
 		var tokenProvider = new TokenProvider(clientId, tenantId, x => _deviceCodeRequest.OnNext(x));
-		await tokenProvider.ClearCacheAsync();
 		var authenticationProvider = new BaseBearerTokenAuthenticationProvider(tokenProvider);
 
 		return new GraphServiceClient(authenticationProvider);
 	}
 
-	private async Task<IEnumerable<TodoTask>> GetAllTodosInternalAsync(
-		string listId,
-		IOdataFilterBuilder? filter = default,
-		string? odataNextLink = default,
-		List<TodoTask>? allTasks = default)
+	public async Task<IEnumerable<TodoTask>> GetAllTodoTasksAsync(string listId, IOdataFilterBuilder? filter = default)
 	{
-		while (true)
+		var allTasks = new List<TodoTask>();
+		var initialTasks = await GetInitialTodoTasks(listId, filter);
+
+		allTasks.AddRange(initialTasks?.Value ?? []);
+
+		if (initialTasks?.OdataNextLink != null)
 		{
-			allTasks ??= [];
-
-			var response = odataNextLink == null ? await GetTodoTasksAsync(listId, filter) : await GetTodoTaskNextPageAsync(odataNextLink);
-
-			if (response?.Value != null)
-			{
-				allTasks.AddRange(response.Value);
-			}
-
-			if (response?.OdataNextLink != null)
-			{
-				odataNextLink = response.OdataNextLink;
-
-				continue;
-			}
-
-			break;
+			var otherTasks = await GetNextTodoTasks(initialTasks.OdataNextLink);
+			allTasks.AddRange(otherTasks);
 		}
 
 		return allTasks;
 	}
 
-	private async Task<TodoTaskCollectionResponse?> GetTodoTaskNextPageAsync(string odataNextLink)
-	{
-		var nextPageRequest = new TasksRequestBuilder(odataNextLink, _userClient.RequestAdapter);
+	private Task<TodoTaskCollectionResponse?> GetInitialTodoTasks(string listId, IOdataFilterBuilder? filter = default) =>
+		_userClient.Me
+			.Todo
+			.Lists[listId]
+			.Tasks
+			.GetAsync(
+				config =>
+				{
+					config.QueryParameters.Filter = filter?.Build();
+				});
 
-		return await nextPageRequest.GetAsync();
+	private async Task<IEnumerable<TodoTask>> GetNextTodoTasks(string? odataNextLink)
+	{
+		var tasks = new List<TodoTask>();
+
+		while (true)
+		{
+			if (odataNextLink == null)
+			{
+				break;
+			}
+
+			var nextPageRequest = new TasksRequestBuilder(odataNextLink, _userClient.RequestAdapter);
+			var response = await nextPageRequest.GetAsync();
+
+			tasks.AddRange(response?.Value ?? []);
+
+			odataNextLink = response?.OdataNextLink;
+		}
+
+		return tasks;
 	}
 }

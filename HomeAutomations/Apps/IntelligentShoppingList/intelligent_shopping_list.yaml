@@ -30,21 +30,12 @@ HomeAutomations.Apps.IntelligentShoppingList.IntelligentShoppingListConfig:
     - Name: dm
       Predicate: Drogerieartikel und alle Artikel, die mit "dm" als Präfix oder Suffix gekennzeichnet sind
       ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHREDrGAAAAA==
+    - Name: Süßigkeiten
+      Predicate: Schokolade zum sofort essen, Gummibärchen, Bonbons, Chips, etc. Nur ungekühltes!
+      ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHREDrFwAAAA==
     - Name: Sonstiges
       Predicate: Alles andere
       ListId: AQMkADAwATM0MDAAMS04MzE4LWJjNDYtMDACLTAwCgAuAAADcqaoUC5sEUqWKNDAdENTpQEAt-OKWbybp0qmmHMVFD6n8AAHPfFPIAAAAA==
-  IgnoredItems:
-    - Dänisches Bettenladen
-    - Online
-    - Nicht holen!!!!! Säfte ausschließlich bio (Johannisbeer, Multisaft, Ocenspray, Traubensaft, auf tierische Stoffe gucke, nur naturtrüb)
-    - Alldrink Hagenbach
-    - IKEA
-    - Passformen und Verrechnung
-    - Getränkeladen
-    - Apotheke
-    - Frankreich
-    - Bioladen
-    - Asia Laden (goAsia)
   SystemPrompt: |
     Deine Aufgabe ist es, eine Einkaufsliste in verschiedene Buckets zu ordnen.
     Du erhältst eine Liste aller einzukaufenden Dinge sowie eine Liste aller verfügbaren Buckets mit einer Beschreibung, welche Dinge in den jeweiligen Bucket gehören.
