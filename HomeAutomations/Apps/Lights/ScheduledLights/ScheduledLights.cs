@@ -42,9 +42,9 @@ public class ScheduledLights(
 
 			// Restore last cycle state if automation fails/restarts for any reason.
 			// This prevents <End> not being fired if net-daemon restarted during an active cycle because after a restart <Start> would have to be triggered first.
-			var initialState = cycleConfig.StateEntity.EntityState?.IsOffOrUnavailable() ?? true ? ActiveTriggerState.Start : ActiveTriggerState.End;
+			var initialState = cycleConfig.StateEntity.EntityState?.IsLikeOff() ?? true ? ActiveTriggerState.Start : ActiveTriggerState.End;
 
-			Logger.Information("Restoring from last cycle state {State} to {InitialState}", cycleConfig.StateEntity.State, initialState);
+			Logger.Information("Restoring {CycleName} from last cycle state {State} to {InitialState}", cycleConfig.Name, cycleConfig.StateEntity.State, initialState);
 
 			startTrigger
 				.WithEnd(endTrigger, initialState)

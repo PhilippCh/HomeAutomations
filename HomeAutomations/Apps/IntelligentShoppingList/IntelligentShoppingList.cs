@@ -143,7 +143,7 @@ public class IntelligentShoppingList : BaseAutomation<IntelligentShoppingList, I
 
 	private async Task OnlyInWetRunAsync(Func<Task> action)
 	{
-		if (Config.DryRunEntity.EntityState?.IsOffOrUnavailable() ?? false)
+		if (Config.DryRunEntity.EntityState?.IsLikeOff() ?? false)
 		{
 			await action();
 		}
