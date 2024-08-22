@@ -12,7 +12,7 @@ HomeAutomations.Apps.Lights.ScheduledLights.ScheduledLightsConfig:
       EndTriggerId: Bedtime
       StateEntity: binary_sensor.scheduled_lights_static_lights_state
       EntityCycles:
-        - - light.living_room/lightstrip
+        - - light.living_room_lightstrip
           - switch.kitchen_neon_clock
           - switch.kitchen_pineapple_string_lights_usb_relay
           - switch.living_room_lightbulbs
