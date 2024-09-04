@@ -1,0 +1,41 @@
+HomeAutomations.Apps.WaterLeaks.WaterLeaksConfig:
+  Sensors:
+    - Name: Spülmaschine
+      Entity: binary_sensor.kitchen_dishwasher_water_leak_sensor_water_leak
+      OnNotification:
+        Tag: water_leak
+        Title: Wasserschaden
+        Template: Die Spülmaschine hat Leck geschlagen.
+        Sticky: true
+        Image: https://ha.pupslab.de/local/water_leak_dishwasher.png
+        Critical: true
+      OffNotification:
+        Tag: water_leak
+        Title: Wieder trocken
+        Template: Spülmaschine ist wieder trocken.
+    - Name: Waschmaschine
+      Entity: binary_sensor.bathroom_washing_machine_water_leak_sensor_water_leak
+      OnNotification:
+        Tag: water_leak
+        Title: Wasserschaden
+        Template: Die Waschmaschine hat Leck geschlagen.
+        Sticky: true
+        Image: https://ha.pupslab.de/local/water_leak_washing_machine.png
+        Critical: true
+      OffNotification:
+        Tag: water_leak
+        Title: Wieder trocken
+        Template: Waschmaschine ist wieder trocken.
+    - Name: Feuermelder Wohnzimmer
+      Entity: binary_sensor.living_room_smoke_detector_smoke
+      OnNotification:
+        Tag: smoke_detected
+        Title: Feuer
+        Template: Es wurde Rauch im Wohnzimmer erkannt!
+        Sticky: true
+        Image: https://ha.pupslab.de/local/water_leak_washing_machine.png
+        Critical: true
+      OffNotification:
+        Tag: smoke_detected
+        Title: Feuer gelöscht
+        Template: Kein Rauch im Wohnzimmer mehr.

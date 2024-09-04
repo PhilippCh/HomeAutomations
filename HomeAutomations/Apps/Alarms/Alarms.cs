@@ -4,10 +4,10 @@ using HomeAutomations.Models;
 using HomeAutomations.Services;
 using NetDaemon.HassModel.Entities;
 
-namespace HomeAutomations.Apps.WaterLeaks;
+namespace HomeAutomations.Apps.Alarms;
 
-public class WaterLeaks(BaseAutomationDependencyAggregate<WaterLeaks, WaterLeaksConfig> aggregate, INotificationService notificationService)
-	: BaseAutomation<WaterLeaks, WaterLeaksConfig>(aggregate)
+public class Alarms(BaseAutomationDependencyAggregate<Alarms, AlarmsConfig> aggregate, INotificationService notificationService)
+	: BaseAutomation<Alarms, AlarmsConfig>(aggregate)
 {
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
@@ -19,7 +19,7 @@ public class WaterLeaks(BaseAutomationDependencyAggregate<WaterLeaks, WaterLeaks
 		return Task.CompletedTask;
 	}
 
-	private void OnSensorStateChanged(WaterLeakSensorConfig sensor, bool? oldState, bool? newState)
+	private void OnSensorStateChanged(AlarmSensorConfig sensor, bool? oldState, bool? newState)
 	{
 		if (newState == null)
 		{
@@ -31,14 +31,14 @@ public class WaterLeaks(BaseAutomationDependencyAggregate<WaterLeaks, WaterLeaks
 		var states = (Old: oldState ?? false, New: newState);
 		var notification = states switch
 		{
-			(false, true) => Config.WetNotification,
-			(true, false) => Config.DryNotification,
+			(false, true) => sensor.OnNotification,
+			(true, false) => sensor.OffNotification,
 			_ => null
 		};
 
 		if (notification != null)
 		{
-			notificationService.SendNotification(notification, sensor.Name);
+			notificationService.SendNotification(notification);
 		}
 	}
 }
