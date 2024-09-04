@@ -7,6 +7,7 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.Alarms;
 
+[Focus]
 public class Alarms(BaseAutomationDependencyAggregate<Alarms, AlarmsConfig> aggregate, INotificationService notificationService)
 	: BaseAutomation<Alarms, AlarmsConfig>(aggregate)
 {

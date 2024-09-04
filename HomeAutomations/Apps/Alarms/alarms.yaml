@@ -1,4 +1,4 @@
-HomeAutomations.Apps.WaterLeaks.WaterLeaksConfig:
+HomeAutomations.Apps.Alarms.AlarmsConfig:
   ReplaceBatteryThreshold: 25
   ReplaceBatteryNotification:
     Tag: replace_battery
