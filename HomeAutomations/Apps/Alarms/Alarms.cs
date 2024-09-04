@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using HomeAutomations.Extensions;
 using HomeAutomations.Models;
 using HomeAutomations.Services;
 using NetDaemon.HassModel.Entities;
@@ -14,6 +15,7 @@ public class Alarms(BaseAutomationDependencyAggregate<Alarms, AlarmsConfig> aggr
 		foreach (var sensor in Config.Sensors)
 		{
 			sensor.Entity.StateChanges().Subscribe(x => OnSensorStateChanged(sensor, x.Old?.IsOn(), x.New?.IsOn()));
+			sensor.BatteryEntity.StateChanges().Subscribe(x => OnBatteryStateChanged(sensor, x.New?.State.AsInt()));
 		}
 
 		return Task.CompletedTask;
@@ -39,6 +41,26 @@ public class Alarms(BaseAutomationDependencyAggregate<Alarms, AlarmsConfig> aggr
 		if (notification != null)
 		{
 			notificationService.SendNotification(notification);
+		}
+	}
+
+	private void OnBatteryStateChanged(AlarmSensorConfig sensor, int? batteryLevel)
+	{
+		if (batteryLevel == null)
+		{
+			Logger.Warning("{EntityId} sensor state is null", sensor.BatteryEntity.EntityId);
+
+			return;
+		}
+
+		if (batteryLevel > Config.ReplaceBatteryThreshold)
+		{
+			return;
+		}
+
+		if (Config.ReplaceBatteryNotification != null)
+		{
+			notificationService.SendNotification(Config.ReplaceBatteryNotification);
 		}
 	}
 }

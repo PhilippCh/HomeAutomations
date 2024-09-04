@@ -1,7 +1,15 @@
 HomeAutomations.Apps.WaterLeaks.WaterLeaksConfig:
+  ReplaceBatteryThreshold: 25
+  ReplaceBatteryNotification:
+    Tag: replace_battery
+    Title: Batterie ersetzen
+    Template: Die Batterie von {{name}} ist schwach. Bitte ersetzen.
+    Sticky: true
+    Image: https://ha.pupslab.de/local/replace_battery.png
+    Critical: false
   Sensors:
-    - Name: Spülmaschine
-      Entity: binary_sensor.kitchen_dishwasher_water_leak_sensor_water_leak
+    - Entity: binary_sensor.kitchen_dishwasher_water_leak_sensor_water_leak
+      BatteryEntity: sensor.kitchen_dishwasher_water_leak_sensor_battery
       OnNotification:
         Tag: water_leak
         Title: Wasserschaden
@@ -13,8 +21,8 @@ HomeAutomations.Apps.WaterLeaks.WaterLeaksConfig:
         Tag: water_leak
         Title: Wieder trocken
         Template: Spülmaschine ist wieder trocken.
-    - Name: Waschmaschine
-      Entity: binary_sensor.bathroom_washing_machine_water_leak_sensor_water_leak
+    - Entity: binary_sensor.bathroom_washing_machine_water_leak_sensor_water_leak
+      BatteryEntity: sensor.bathroom_washing_machine_water_leak_sensor_battery
       OnNotification:
         Tag: water_leak
         Title: Wasserschaden
@@ -26,8 +34,8 @@ HomeAutomations.Apps.WaterLeaks.WaterLeaksConfig:
         Tag: water_leak
         Title: Wieder trocken
         Template: Waschmaschine ist wieder trocken.
-    - Name: Feuermelder Wohnzimmer
-      Entity: binary_sensor.living_room_smoke_detector_smoke
+    - Entity: binary_sensor.living_room_smoke_detector_smoke
+      BatteryEntity: sensor.living_room_smoke_detector_battery
       OnNotification:
         Tag: smoke_detected
         Title: Feuer

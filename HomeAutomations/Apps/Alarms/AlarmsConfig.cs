@@ -9,13 +9,15 @@ namespace HomeAutomations.Apps.Alarms;
 [UsedImplicitly]
 public record AlarmSensorConfig
 {
-	public string Name { get; init; }
 	public BinarySensorEntity Entity { get; init; }
-	public Notification OnNotification { get; init; }
-	public Notification OffNotification { get; init; }
+	public SensorEntity BatteryEntity { get; init; }
+	public Notification? OnNotification { get; init; }
+	public Notification? OffNotification { get; init; }
 }
 
 public record AlarmsConfig : Config
 {
+	public int ReplaceBatteryThreshold { get; init; }
+	public Notification? ReplaceBatteryNotification { get; init; }
 	public IEnumerable<AlarmSensorConfig> Sensors { get; init; }
 }
