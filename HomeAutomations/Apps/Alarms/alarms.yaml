@@ -33,7 +33,7 @@ HomeAutomations.Apps.WaterLeaks.WaterLeaksConfig:
         Title: Feuer
         Template: Es wurde Rauch im Wohnzimmer erkannt!
         Sticky: true
-        Image: https://ha.pupslab.de/local/water_leak_washing_machine.png
+        Image: https://ha.pupslab.de/local/smoke_detected.png
         Critical: true
       OffNotification:
         Tag: smoke_detected
