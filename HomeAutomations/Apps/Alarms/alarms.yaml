@@ -3,7 +3,7 @@ HomeAutomations.Apps.Alarms.AlarmsConfig:
   ReplaceBatteryNotification:
     Tag: replace_battery
     Title: Batterie ersetzen
-    Template: Die Batterie von {{name}} ist schwach. Bitte ersetzen.
+    Template: Die Batterie von {0} ist schwach. Bitte ersetzen.
     Sticky: true
     Image: https://ha.pupslab.de/local/replace_battery.png
     Critical: false
