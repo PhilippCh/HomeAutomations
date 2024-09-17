@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
@@ -61,7 +61,7 @@ public class Alarms(BaseAutomationDependencyAggregate<Alarms, AlarmsConfig> aggr
 
 		if (Config.ReplaceBatteryNotification != null)
 		{
-			notificationService.SendNotification(Config.ReplaceBatteryNotification);
+			notificationService.SendNotification(Config.ReplaceBatteryNotification, sensor.BatteryEntity.Name);
 		}
 	}
 }
