@@ -20,10 +20,12 @@ public class UpdateInstagramToken(BaseAutomationDependencyAggregate<UpdateInstag
 
 	private async void UpdateToken()
 	{
+		Logger.Information("Refreshing instagram token");
+
 		try
 		{
 			var client = new HttpClient();
-			var response = await client.GetAsync(Config.Url);
+			var response = await client.GetAsync($"{Config.BaseUrl}?grant_type=ig_refresh_token&access_token={Config.Token}");
 
 			var connectionInfo = new ConnectionInfo(Config.Target.Host, Config.Target.Username, new PasswordAuthenticationMethod(Config.Target.Username, Config.Target.Password));
 

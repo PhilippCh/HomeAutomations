@@ -1,6 +1,5 @@
 ---
 HomeAutomations.Apps.DoorLock.DoorLockConfig:
-  Token: 0GdY0L#C%IWb1BmM%W^CC2VJ
   LockEntity: lock.nuki_wohnungstur_lock
   OpenerEntity: lock.nuki_haustur_lock
   RtoTimeout: 00:05:00

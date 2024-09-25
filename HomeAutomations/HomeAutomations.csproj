@@ -50,13 +50,12 @@
 		<PackageReference Include="NSwag.MSBuild" Version="13.19.0">
 			<PrivateAssets>All</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="VaultSharp.Extensions.Configuration" Version="0.4.2" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\HomeAutomations.Common\HomeAutomations.Common.csproj" />
     </ItemGroup>
-	
+
 	<Target Name="Copy configs" BeforeTargets="Build">
 		<ItemGroup>
 			<ANTLR Include="Apps\**\*.yaml" />

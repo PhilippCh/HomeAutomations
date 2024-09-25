@@ -9,7 +9,7 @@ namespace HomeAutomations.Apps.Alarms;
 [UsedImplicitly]
 public record AlarmSensorConfig
 {
-	public BinarySensorEntity Entity { get; init; }
+	public IEnumerable<BinarySensorEntity> Entities { get; init; }
 	public SensorEntity BatteryEntity { get; init; }
 	public Notification? OnNotification { get; init; }
 	public Notification? OffNotification { get; init; }

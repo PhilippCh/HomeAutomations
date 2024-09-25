@@ -25,7 +25,13 @@ try
 		.UseNetDaemonAppSettings()
 		.UseNetDaemonRuntime()
 		.UseNetDaemonMqttEntityManagement()
-		.ConfigureAppConfiguration((context, config) => config.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true))
+		.ConfigureAppConfiguration((context, config) =>
+		{
+			config.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true);
+
+			// Secrets like API keys are stored as Kubernetes secrets and need to be imported as a separate appsettings file.
+			config.AddJsonFile("/config/appsettings.ExternalSecret.json", true);
+		})
 		.ConfigureServices(
 			(context, services) =>
 				services

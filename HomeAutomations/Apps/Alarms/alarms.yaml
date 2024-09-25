@@ -8,7 +8,8 @@ HomeAutomations.Apps.Alarms.AlarmsConfig:
     Image: https://ha.pupslab.de/local/replace_battery.png
     Critical: false
   Sensors:
-    - Entity: binary_sensor.kitchen_dishwasher_water_leak_sensor_water_leak
+    - Entities:
+        - binary_sensor.kitchen_dishwasher_water_leak_sensor_water_leak
       BatteryEntity: sensor.kitchen_dishwasher_water_leak_sensor_battery
       OnNotification:
         Tag: water_leak
@@ -21,7 +22,8 @@ HomeAutomations.Apps.Alarms.AlarmsConfig:
         Tag: water_leak
         Title: Wieder trocken
         Template: Spülmaschine ist wieder trocken.
-    - Entity: binary_sensor.bathroom_washing_machine_water_leak_sensor_water_leak
+    - Entities:
+        - binary_sensor.bathroom_washing_machine_water_leak_sensor_water_leak
       BatteryEntity: sensor.bathroom_washing_machine_water_leak_sensor_battery
       OnNotification:
         Tag: water_leak
@@ -34,7 +36,9 @@ HomeAutomations.Apps.Alarms.AlarmsConfig:
         Tag: water_leak
         Title: Wieder trocken
         Template: Waschmaschine ist wieder trocken.
-    - Entity: binary_sensor.living_room_smoke_detector_smoke
+    - Entities:
+        - binary_sensor.living_room_smoke_detector_smoke
+        - binary_sensor.living_room_smoke_detector_test
       BatteryEntity: sensor.living_room_smoke_detector_battery
       OnNotification:
         Tag: smoke_detected

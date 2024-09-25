@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models;
+using HomeAutomations.Models.Generated;
 using HomeAutomations.Services;
 using NetDaemon.HassModel.Entities;
 
@@ -15,18 +16,22 @@ public class Alarms(BaseAutomationDependencyAggregate<Alarms, AlarmsConfig> aggr
 	{
 		foreach (var sensor in Config.Sensors)
 		{
-			sensor.Entity.StateChanges().Subscribe(x => OnSensorStateChanged(sensor, x.Old?.IsOn(), x.New?.IsOn()));
+			foreach (var entity in sensor.Entities)
+			{
+				entity.StateChanges().Subscribe(x => OnSensorStateChanged(sensor, entity, x.Old?.IsOn(), x.New?.IsOn()));
+			}
+
 			sensor.BatteryEntity.StateChanges().Subscribe(x => OnBatteryStateChanged(sensor, x.New?.State.AsInt()));
 		}
 
 		return Task.CompletedTask;
 	}
 
-	private void OnSensorStateChanged(AlarmSensorConfig sensor, bool? oldState, bool? newState)
+	private void OnSensorStateChanged(AlarmSensorConfig sensor, BinarySensorEntity entity, bool? oldState, bool? newState)
 	{
 		if (newState == null)
 		{
-			Logger.Warning("{EntityId} sensor state is null", sensor.Entity.EntityId);
+			Logger.Warning("{EntityId} sensor state is null", entity.EntityId);
 
 			return;
 		}
@@ -61,7 +66,7 @@ public class Alarms(BaseAutomationDependencyAggregate<Alarms, AlarmsConfig> aggr
 
 		if (Config.ReplaceBatteryNotification != null)
 		{
-			notificationService.SendNotification(Config.ReplaceBatteryNotification, sensor.BatteryEntity.Name);
+			notificationService.SendNotification(Config.ReplaceBatteryNotification, sensor.BatteryEntity.EntityId);
 		}
 	}
 }

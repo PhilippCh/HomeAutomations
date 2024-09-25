@@ -10,6 +10,7 @@ using HomeAutomations.Tests.Helpers;
 using Microsoft.Extensions.Options;
 using Microsoft.Reactive.Testing;
 using Moq;
+using NetDaemon.Extensions.MqttEntityManager;
 using Serilog;
 using Xunit;
 
@@ -23,6 +24,7 @@ public class ScheduledLightsTests
 	private readonly TestScheduler _testScheduler;
 
 	private readonly Mock<EntityStatePriorityManager> _entityStatePriorityManagerMock = new();
+	private readonly Mock<IMqttEntityManager> _mqttEntityManagerMock = new();
 	private readonly Mock<TriggerRepository> _triggerRepositoryMock;
 
 	private readonly ScheduledLights _sut;
@@ -48,6 +50,7 @@ public class ScheduledLightsTests
 					Name = "Test",
 					StartTriggerId = "TestStart",
 					EndTriggerId = "TestEnd",
+					StateEntity = testEntityBuilder.CreateBinarySensor(""),
 					Interval = TimeSpan.FromMinutes(5),
 					EntityCycles = new[]
 					{
@@ -61,7 +64,7 @@ public class ScheduledLightsTests
 		};
 
 		var aggregate = testAppBuilder.CreateAppAggregate<ScheduledLights, ScheduledLightsConfig>(config);
-		_sut = new ScheduledLights(aggregate, _entityStatePriorityManagerMock.Object, _triggerRepositoryMock.Object);
+		_sut = new ScheduledLights(aggregate, _entityStatePriorityManagerMock.Object, _mqttEntityManagerMock.Object, _triggerRepositoryMock.Object);
 	}
 
 	[Fact]

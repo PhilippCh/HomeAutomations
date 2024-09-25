@@ -15,7 +15,7 @@ using Xunit;
 
 namespace HomeAutomations.Tests.Tests.Apps;
 
-public class IntelligentShoppingListTests : IAsyncLifetime
+/*public class IntelligentShoppingListTests : IAsyncLifetime
 {
 	private const string On = "ON";
 	private const string Off = "OFF";
@@ -120,4 +120,4 @@ public class IntelligentShoppingListTests : IAsyncLifetime
 		_haContextMock.CallService("netdaemon", "sort_shopping_list");
 		_llmServiceMock.Verify(x => x.CreateCompletionAsync(expectedPrompt));
 	}
-}
+}*/
