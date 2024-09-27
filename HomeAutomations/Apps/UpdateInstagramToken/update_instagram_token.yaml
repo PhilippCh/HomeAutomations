@@ -3,10 +3,7 @@ HomeAutomations.Apps.UpdateInstagramToken.UpdateInstagramTokenConfig:
   BaseUrl: https://graph.instagram.com/refresh_access_token
   UpdateCrontab: 0 */2 * * *
   FilePath: instagram-token.dat
-  Target:
-    Host: ssh.strato.de
-    Username: sftp@fabienne-herion.de
-    Password: REMOVED
+  Target: {} # Set in production through ExternalSecret
   FailureNotification:
     Tag: instagram-token
     Title: Fabienne-Herion.de

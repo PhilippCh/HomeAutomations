@@ -2,7 +2,6 @@
 using System.Reflection;
 using HomeAutomations.Apps.ComputerSwitches;
 using HomeAutomations.Attributes;
-using HomeAutomations.Common.Extensions;
 using HomeAutomations.Common.Models.Config;
 using HomeAutomations.Common.Services;
 using HomeAutomations.Common.Services.Bluetooth;
@@ -46,7 +45,6 @@ public static class ServiceCollectionExtensions
 
 			// Intelligent shopping list
 			.AddLlm(config)
-			.AddMicrosoftGraphClient(config.GetSection("Graph"))
 
 			.Configure<TriggerRepositoryConfig>(config.GetSection("TriggerRepository"))
 			.AddTransient(typeof(BaseServiceDependencyAggregate<>))
