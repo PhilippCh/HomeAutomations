@@ -27,7 +27,7 @@ public class UpdateInstagramToken(BaseAutomationDependencyAggregate<UpdateInstag
 			var client = new HttpClient();
 			var response = await client.GetAsync($"{Config.BaseUrl}?grant_type=ig_refresh_token&access_token={Config.Token}");
 
-			var connectionInfo = new ConnectionInfo(Config.Target.Host, Config.Target.Username, new PasswordAuthenticationMethod(Config.Target.Username, Config.Target.Password));
+			var connectionInfo = new ConnectionInfo(Config.Host, Config.Username, new PasswordAuthenticationMethod(Config.Username, Config.Password));
 
 			using var sftpClient = new SftpClient(connectionInfo);
 

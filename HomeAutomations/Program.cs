@@ -52,6 +52,7 @@ try
 
 	if (app.Environment.IsDevelopment())
 	{
+		builder.Configuration.LogConfigurationAsJson();
 		app.UseSwagger();
 		app.UseSwaggerUI();
 	}
