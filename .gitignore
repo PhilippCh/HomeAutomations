@@ -4,3 +4,7 @@ bin
 .vs
 *.gen
 .idea
+expressions.txt
+findings.json
+git-filter-repo.py
+appsettings.*.json
