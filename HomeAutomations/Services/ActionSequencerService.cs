@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace HomeAutomations.Services;
 
-public record RunAction(Action Action, double Delay = 0);
+public record RunAction(Action Action, double DelayMs = 0);
 
 public class ActionSequencerService
 {
@@ -14,9 +14,9 @@ public class ActionSequencerService
 	{
 		foreach (var runAction in actions)
 		{
-			if (runAction.Delay > 0)
+			if (runAction.DelayMs > 0)
 			{
-				await Task.Delay(TimeSpan.FromSeconds(runAction.Delay));
+				await Task.Delay(TimeSpan.FromMilliseconds(runAction.DelayMs));
 			}
 
 			runAction.Action();

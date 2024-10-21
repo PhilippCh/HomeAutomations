@@ -15,16 +15,19 @@ using NetDaemon.HassModel.Integration;
 namespace HomeAutomations.Apps.TrainingSchedule;
 
 // TODO: Migrate creation of the schedule to a VirtualEntity.
+[Focus]
 public class TrainingSchedule(
 	BaseAutomationDependencyAggregate<TrainingSchedule, TrainingScheduleConfig> aggregate,
 	IMqttEntityManager entityManager,
 	ActionSequencerService sequencerService)
 	: BaseAutomation<TrainingSchedule, TrainingScheduleConfig>(aggregate)
 {
-	protected override async Task StartAsync(CancellationToken cancellationToken)
+	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
-		Context.RegisterServiceCallBack<TrainingServiceData>("training_start", StartTraining);
+		Context.RegisterServiceCallBack<TrainingServiceData>("start_training", StartTraining);
 		CronjobExtensions.ScheduleJob(Config.UpdateCrontab, UpdateSchedule, true, cancellationToken);
+
+		return Task.CompletedTask;
 	}
 
 	private async void UpdateSchedule()
@@ -63,17 +66,18 @@ public class TrainingSchedule(
 	{
 		Logger.Information("Starting training session {Url}", e.Url);
 
-		sequencerService.RunAsync(
+		await sequencerService.RunAsync(
 			new RunAction(
 				() =>
 				{
 					Context.CallService(
-						"net_daemon", "movie_time", data: new MovieTimeServiceData
+						"netdaemon", "movie_time", data: new MovieTimeServiceData
 						{
 							AvReceiverSource = "Apple TV"
 						});
 				}),
-			new RunAction(() => Config.MediaPlayer.PlayMedia(e.Url, "video"))
+			new RunAction(() => Config.MediaPlayer.TurnOn()),
+			new RunAction(() => Config.MediaPlayer.PlayMedia(e.Url, "video"), 5000)
 		);
 
 		await Task.Delay(TimeSpan.FromSeconds(10));
