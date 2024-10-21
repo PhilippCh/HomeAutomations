@@ -66,12 +66,13 @@ public class TrashReminder : BaseAutomation<TrashReminder, TrashReminderConfig>
 		}
 
 		var client = new RestClient(new RestClientOptions(Config.Calendar.BaseUrl));
-		client.CookieContainer.Add(new Cookie("csrf_https-contao_csrf_token", csrfToken, "/", "www.abfallwirtschaft-germersheim.de"));
+		client.Options.CookieContainer?.Add(new Cookie("csrf_https-contao_csrf_token", csrfToken, "/", "www.abfallwirtschaft-germersheim.de"));
 
 		var response = await client.DownloadDataAsync(request);
 
 		if (response == null)
 		{
+			Logger.Warning("Could not retrieve trash calendar ICS from {Url}", Config.Calendar.BaseUrl);
 			return null;
 		}
 

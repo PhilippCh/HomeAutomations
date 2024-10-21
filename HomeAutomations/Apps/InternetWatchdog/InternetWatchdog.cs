@@ -12,7 +12,6 @@ using ObservableExtensions = HomeAutomations.Common.Extensions.ObservableExtensi
 
 namespace HomeAutomations.Apps.InternetWatchdog;
 
-[Focus]
 public class InternetWatchdog : BaseAutomation<InternetWatchdog, InternetWatchdogConfig>
 {
 	private readonly INotificationService _notificationService;

@@ -14,6 +14,7 @@ using NetDaemon.HassModel.Integration;
 
 namespace HomeAutomations.Apps.AvReceiver;
 
+[Focus]
 public class AvReceiver(
 	BaseAutomationDependencyAggregate<AvReceiver, AvReceiverConfig> aggregate,
 	ActionSequencerService actionSequencerService,
@@ -25,7 +26,7 @@ public class AvReceiver(
 	protected override Task StartAsync(CancellationToken cancellationToken)
 	{
 		Context.Events
-			.GetMobileAppActions(new[] { MovieTimeActionId })
+			.GetMobileAppActions([MovieTimeActionId])
 			.Subscribe(
 				_ => SwitchMovieTime(
 					new MovieTimeServiceData

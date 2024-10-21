@@ -13,7 +13,8 @@ public static class EntityExtensions
 	public static IObservable<StateChange<TEntity, EntityState<TAttributes>>> StateChangesWithCurrentState<TEntity, TAttributes>(this TEntity entity)
 		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
 		where TAttributes : class =>
-		entity.StateChanges()
+		entity
+			.StateAllChanges()
 			.StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, entity.EntityState));
 
 	public static IObservable<TAttributes> ValidAttributeChanges<TEntity, TAttributes>(this TEntity entity)
@@ -31,8 +32,7 @@ public static class EntityExtensions
 	public static bool IsLikeOn<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
 		state.IsOn() || string.Equals(state.State, EntityStates.Playing, StringComparison.OrdinalIgnoreCase);
 
-	public static bool IsLikeOff<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
-		state.IsOff() || state.IsUnavailable() || state.IsUnknown();
+	public static bool IsLikeOff<TEntityState>(this TEntityState state) where TEntityState : EntityState => state.IsOff() || state.IsUnavailable() || state.IsUnknown();
 
 	public static bool IsUnavailable<TEntityState>(this TEntityState state) where TEntityState : EntityState =>
 		string.Equals(state.State, EntityStates.Unavailable, StringComparison.OrdinalIgnoreCase);

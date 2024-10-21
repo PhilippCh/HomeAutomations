@@ -40,7 +40,7 @@
         <PackageReference Include="OpenAI" Version="1.11.0" />
         <PackageReference Include="Polly" Version="8.2.0" />
         <PackageReference Include="Polly.Extensions.Http" Version="3.0.0" />
-        <PackageReference Include="RestSharp" Version="107.3.0" />
+        <PackageReference Include="RestSharp" Version="112.1.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
         <PackageReference Include="Simple.MPD" Version="0.6.3.2" />
         <PackageReference Include="SSH.NET" Version="2020.0.2" />
