@@ -65,7 +65,7 @@ public class AvReceiver(
 
 	private async void SwitchRecordPlayer()
 	{
-		var targetState = !Config.RecordPlayer.IsOff();
+		var targetState = !Config.RecordPlayer.IsOn();
 		Logger.Information("Switching record player {TargetState}", targetState ? "on" : "off");
 
 		var runActions = new List<RunAction>
@@ -76,7 +76,7 @@ public class AvReceiver(
 
 		if (targetState)
 		{
-			runActions.Add(new RunAction(() => Config.AvReceiver.Entity.SelectSource(Config.AvReceiver.RecordPlayerSource), 5));
+			runActions.Add(new RunAction(() => Config.AvReceiver.Entity.SelectSource(Config.AvReceiver.RecordPlayerSource), 5000));
 		}
 
 		await actionSequencerService.RunAsync(runActions);

@@ -8,7 +8,6 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.StudyAutomations;
 
-
 public class StudyAutomations(
 	BaseAutomationDependencyAggregate<StudyAutomations, StudyAutomationsConfig> aggregate,
 	TriggerRepository triggerRepository) : BaseAutomation<StudyAutomations, StudyAutomationsConfig>(aggregate)
