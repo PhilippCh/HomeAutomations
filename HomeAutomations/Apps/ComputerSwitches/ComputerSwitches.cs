@@ -8,10 +8,8 @@ using NetDaemon.HassModel.Entities;
 
 namespace HomeAutomations.Apps.ComputerSwitches;
 
-
-public class ComputerSwitches(
-	BaseAutomationDependencyAggregate<ComputerSwitches, ComputerSwitchesConfig> aggregate,
-	WakeOnLanService wakeOnLanService) : BaseAutomation<ComputerSwitches, ComputerSwitchesConfig>(aggregate)
+public class ComputerSwitches(BaseAutomationDependencyAggregate<ComputerSwitches, ComputerSwitchesConfig> aggregate)
+	: BaseAutomation<ComputerSwitches, ComputerSwitchesConfig>(aggregate)
 {
 	private const string RunningState = "Running";
 
@@ -23,9 +21,9 @@ public class ComputerSwitches(
 				.StateChangesWithCurrentState<SensorEntity, SensorAttributes>()
 				.Subscribe(x => OnAvailabilitySensorChanged(hostConfig, x.New?.State));
 
-			hostConfig.Entity
+			hostConfig.TriggerEntity
 				.StateChanges()
-				.SubscribeAsync(async x => await OnSwitchStateChangedAsync(hostConfig, x.New?.IsOn()));
+				.Subscribe(x => OnSwitchStateChanged(hostConfig, x.New?.IsOn()));
 		}
 
 		return Task.CompletedTask;
@@ -40,10 +38,12 @@ public class ComputerSwitches(
 			return;
 		}
 
-		hostConfig.Entity.Switch(state!.Equals(RunningState, StringComparison.OrdinalIgnoreCase));
+		Logger.Information("{Host} Availability changed to {State}", hostConfig.Host, state);
+
+		hostConfig.TriggerEntity.Switch(state!.Equals(RunningState, StringComparison.OrdinalIgnoreCase));
 	}
 
-	private async Task OnSwitchStateChangedAsync(HostConfig hostConfig, bool? isOn)
+	private void OnSwitchStateChanged(HostConfig hostConfig, bool? isOn)
 	{
 		if (isOn == null)
 		{
@@ -52,9 +52,11 @@ public class ComputerSwitches(
 			return;
 		}
 
-		if (isOn.Value && !hostConfig.AvailabilitySensor.State!.Equals(RunningState, StringComparison.OrdinalIgnoreCase))
+		Logger.Information("{Switch} state changed to {State}", hostConfig.TriggerEntity.GetName(), isOn);
+
+		if (isOn.Value)
 		{
-			await BootMachineAsync(hostConfig);
+			BootMachine(hostConfig);
 		}
 		else if (!isOn.Value)
 		{
@@ -62,11 +64,12 @@ public class ComputerSwitches(
 		}
 	}
 
-	private async Task BootMachineAsync(HostConfig hostConfig)
+	private void BootMachine(HostConfig hostConfig)
 	{
 		Logger.Information("Starting host {HostName}", hostConfig.Name);
 
-		await wakeOnLanService.WaitUntilAvailableAsync(hostConfig.Host, hostConfig.MacAddress);
+		var wakeOnLanService = new WakeOnLanServices(Context);
+		wakeOnLanService.SendMagicPacket(hostConfig.MacAddress);
 	}
 
 	private void ShutdownMachine(HostConfig hostConfig)

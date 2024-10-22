@@ -26,7 +26,6 @@ public static class ServiceCollectionExtensions
 		services
 			.Configure<MqttConfig>(config.GetSection("MQTT"))
 			.AddSingleton<MqttService>()
-			.AddScoped<WakeOnLanService>()
 			.AddScoped<INotificationService, NotificationService>()
 			.AddScoped<IClockService, ClockService>()
 			.AddTransient<IWeatherService, WeatherService>()
@@ -64,7 +63,7 @@ public static class ServiceCollectionExtensions
 		return services;
 	}
 
-	private static IServiceCollection AddAutomationDependencies(this IServiceCollection services, Assembly assembly, IConfiguration config)
+	private static void AddAutomationDependencies(this IServiceCollection services, Assembly assembly, IConfiguration config)
 	{
 		var apps = assembly.GetTypes().Where(t => t.GetCustomAttribute<HomeAutomationAttribute>() != null);
 
@@ -73,8 +72,6 @@ public static class ServiceCollectionExtensions
 			var addServicesMethod = app.GetMethod("AddServices");
 			addServicesMethod?.Invoke(null, new object?[] { services, config });
 		}
-
-		return services;
 	}
 
 	private static IServiceCollection AddLlm(this IServiceCollection services, IConfiguration config)
