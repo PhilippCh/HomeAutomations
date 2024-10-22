@@ -1,10 +1,6 @@
 ---
 HomeAutomations.Apps.ComputerSwitches.ComputerSwitchesConfig:
   Hosts:
-    - Name: Desktop Philipp
-      TriggerEntity: input_boolean.computer_wol_desktop_philipp
-      StateEntity: binary_sensor.home_desktop_ph_powerstate
-      AvailabilitySensor: sensor.home_desktop_ph_satellite_home_desktop_ph_satellite_servicestate
-      Host: 192.168.188.41
+    - Id: desktop_philipp
       MacAddress: 40:B0:76:DD:34:61
       ShutdownButton: button.desktopphilipp_shutdown
