@@ -1,4 +1,6 @@
-﻿using HomeAutomations.Common.Extensions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using HomeAutomations.Common.Extensions;
 using HomeAutomations.Entities.Constants;
 using HomeAutomations.Extensions;
 using HomeAutomations.Models.Generated;
@@ -16,6 +18,13 @@ public static class EntityExtensions
 		entity
 			.StateAllChanges()
 			.StartWith(new StateChange<TEntity, EntityState<TAttributes>>(entity, null, entity.EntityState));
+
+	public static IObservable<IEnumerable<StateChange<TEntity, EntityState<TAttributes>>>> StateChangesWithCurrentState<TEntity, TAttributes>(this IEnumerable<TEntity> entities)
+		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>
+		where TAttributes : class =>
+		entities
+			.Select(x => x.StateAllChanges().StartWith(new StateChange<TEntity, EntityState<TAttributes>>(x, null, x.EntityState)))
+			.CombineLatest();
 
 	public static IObservable<TAttributes> ValidAttributeChanges<TEntity, TAttributes>(this TEntity entity)
 		where TEntity : Entity<TEntity, EntityState<TAttributes>, TAttributes>

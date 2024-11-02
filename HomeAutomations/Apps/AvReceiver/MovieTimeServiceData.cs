@@ -1,4 +1,4 @@
-namespace HomeAutomations.Apps.MovieTime;
+namespace HomeAutomations.Apps.AvReceiver;
 
 public record MovieTimeServiceData
 {
