@@ -17,6 +17,7 @@ public class Heating(BaseAutomationDependencyAggregate<Heating, HeatingConfig> a
 		{
 			thermostat.WindowSensors
 				.StateChangesWithCurrentState<BinarySensorEntity, BinarySensorAttributes>()
+				.Throttle(Config.SensorDebounceTime)
 				.Select(x => x.Select(y => y.New?.IsLikeOn() ?? false))
 				.Subscribe(x => OnWindowSensorsChange(thermostat, x));
 		}

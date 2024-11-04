@@ -13,5 +13,6 @@ public record ThermostatConfig
 
 public record HeatingConfig : Config
 {
+	public TimeSpan SensorDebounceTime { get; init; }
 	public IEnumerable<ThermostatConfig> Thermostats { get; init; }
 }

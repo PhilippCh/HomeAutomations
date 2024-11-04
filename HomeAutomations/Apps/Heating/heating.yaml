@@ -1,5 +1,6 @@
 ---
 HomeAutomations.Apps.Heating.HeatingConfig:
+  SensorDebounceTime: 00:00:10
   Thermostats:
     - Name: Bathroom
       WindowOpenSwitch: switch.bathroom_radiator_thermostat_window_detection
