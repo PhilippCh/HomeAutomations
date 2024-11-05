@@ -1,17 +1,30 @@
 {
-  "$type": "And",
+  "$type": "Or",
   "Id": "Sunset",
   "Triggers": [
     {
-      "$type": "Time",
-      "Comment": "For start triggers, the timespan between From and To doesn't make a difference as only the switch to true is evaluated. Afterwards, we rely on the end trigger to stop the light cycle.",
-      "From": "17:30:00",
-      "To": "23:59:59"
+      "$type": "And",
+      "Comment": "In summer, the sun sets after 17:30, so we can rely on the time trigger to usually start the light cycle.",
+      "Triggers": [
+        {
+          "$type": "Time",
+          "Comment": "For start triggers, the timespan between From and To doesn't make a difference as only the switch to true is evaluated. Afterwards, we rely on the end trigger to stop the light cycle.",
+          "From": "17:30:00",
+          "To": "23:59:59"
+        },
+        {
+          "$type": "SensorEntityComparison",
+          "Entity": "sensor.living_room_balcony_light_sensor_illuminance_lux",
+          "Threshold": 400,
+          "Operator": "LowerThan"
+        }
+      ]
     },
     {
       "$type": "SensorEntityComparison",
+      "Comment": "In winter, the sun sets before 17:30, so we need to trigger the lights on earlier.",
       "Entity": "sensor.living_room_balcony_light_sensor_illuminance_lux",
-      "Threshold": 400,
+      "Threshold": 50,
       "Operator": "LowerThan"
     }
   ]
