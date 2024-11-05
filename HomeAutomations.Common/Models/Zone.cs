@@ -4,9 +4,8 @@ public enum Zone
 {
 	Unknown,
 	Home,
-	Enbw,
-	Festplatz,
-	DmArena
+	WorkPup,
+	WorkFant
 }
 
 public class ZoneParser
@@ -16,9 +15,8 @@ public class ZoneParser
 		return action switch
 		{
 			"home" => Zone.Home,
-			"EnBW" => Zone.Enbw,
-			"Messe Karlsruhe (Festplatz)" => Zone.Festplatz,
-			"Messe Karlsruhe (dm Arena)" => Zone.DmArena,
+			"Work Pup" => Zone.WorkPup,
+			"Work Fant" => Zone.WorkFant,
 			_ => Zone.Unknown
 		};
 	}
