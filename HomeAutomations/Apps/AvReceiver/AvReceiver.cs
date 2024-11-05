@@ -57,8 +57,8 @@ public class AvReceiver(
 		await actionSequencerService.RunAsync(
 			new RunAction(() => Config.Lights.ForEach(x => x.TurnOn())),
 			new RunAction(() => Config.AvReceiver.Entity.Switch(targetState)),
-			new RunAction(() => Config.AvReceiver.Entity.SelectSource(source), 5),
-			new RunAction(() => SendRemoteCommand("Beamer", commands: "power", repeats: 2, delay: 2), 1)
+			new RunAction(() => Config.AvReceiver.Entity.SelectSource(source), 5000),
+			new RunAction(() => SendRemoteCommand("Beamer", commands: "power", repeats: 2, delaySecs: 2), 1000)
 		);
 	}
 
@@ -81,7 +81,7 @@ public class AvReceiver(
 		await actionSequencerService.RunAsync(runActions);
 	}
 
-	private void SendRemoteCommand(string device, long repeats = 1, double delay = 0.4, params string[] commands)
+	private void SendRemoteCommand(string device, long repeats = 1, double delaySecs = 0.4, params string[] commands)
 	{
 		var command = commands.Length == 1 ? commands[0] : string.Join("\n", commands.Select(x => $"- {x}"));
 		Config.Remote.SendCommand(
@@ -90,7 +90,7 @@ public class AvReceiver(
 				Device = device,
 				Command = command,
 				NumRepeats = repeats,
-				DelaySecs = delay,
+				DelaySecs = delaySecs,
 				HoldSecs = 0
 			});
 	}
