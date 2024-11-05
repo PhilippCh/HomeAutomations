@@ -12,7 +12,7 @@ RUN dotnet restore
 # Copy everything else and build
 RUN dotnet build -c Release HomeAutomations/HomeAutomations.csproj
 
-FROM netdaemon/netdaemon4:24.3.1
+FROM netdaemon/netdaemon4:24.43.0
 
 WORKDIR /data
 
