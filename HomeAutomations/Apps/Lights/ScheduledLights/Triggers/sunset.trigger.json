@@ -21,11 +21,23 @@
       ]
     },
     {
-      "$type": "SensorEntityComparison",
-      "Comment": "In winter, the sun sets before 17:30, so we need to trigger the lights on earlier.",
-      "Entity": "sensor.living_room_balcony_light_sensor_illuminance_lux",
-      "Threshold": 50,
-      "Operator": "LowerThan"
+      "$type": "And",
+      "Comment": "In summer, the sun sets after 17:30, so we can rely on the time trigger to usually start the light cycle.",
+      "Triggers": [
+        {
+          "$type": "Time",
+          "Comment": "We need to add an arbitrary start time trigger after the sun is up to prevent a start/stop cycle from crashing the system at the end of the automation (usually midnight).",
+          "From": "10:00:00",
+          "To": "23:59:59"
+        },
+        {
+          "$type": "SensorEntityComparison",
+          "Comment": "In winter, the sun sets before 17:30, so we need to trigger the lights on earlier.",
+          "Entity": "sensor.living_room_balcony_light_sensor_illuminance_lux",
+          "Threshold": 50,
+          "Operator": "LowerThan"
+        }
+      ]
     }
   ]
 }
