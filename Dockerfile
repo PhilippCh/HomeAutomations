@@ -1,9 +1,9 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get upgrade \
-    && apt-get install git
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install git -y
 
 # Copy csproj and restore as distinct layers
 COPY . ./
