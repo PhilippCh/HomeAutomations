@@ -6,17 +6,17 @@ HomeAutomations.Apps.Heating.HeatingConfig:
       WindowOpenSwitch: switch.bathroom_radiator_thermostat_window_detection
       WindowSensors:
         - binary_sensor.fenster_badezimmer
-    - Name: Bedroom
+    - Name: Living room
       WindowOpenSwitch: switch.living_room_radiator_thermostat_window_detection
       WindowSensors:
-        - binary_sensor.balkontur_links
-        - binary_sensor.balkontur_rechts
-    - Name: Living Room
+        - binary_sensor.living_room_window_sensor_left_contact
+        - binary_sensor.living_room_window_sensor_right_contact
+    - Name: Study
       WindowOpenSwitch: switch.study_radiator_thermostat_window_detection
       WindowSensors:
-        - binary_sensor.fenster_arbeitszimmer
+        - binary_sensor.study_window_sensor_contact
     # TODO: Move this to z2m when we can switch off the Smart Home app as well
-    #- Name: Study
+    #- Name: Bedroom
     #  WindowOpenSwitch: switch.study_radiator_thermostat_window_detection
     #  WindowSensors:
     #    - binary_sensor.fenster_schlafzimmer
