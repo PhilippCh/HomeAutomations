@@ -145,7 +145,7 @@ public class AutomaticLight
 		_logger.Information("Turning {Light} on permanently", _entity.Entity.GetName());
 
 		// Always turn on permanent lights with default brightness because it is a manual decision.
-		_entity.Entity.TurnOn(brightnessPct: DefaultBrightnessPct);
+		_entity.Entity.TurnOn(brightness: DefaultBrightnessPct * _entity.MaxBrightness);
 	}
 
 	private void ToggleWithCycle()
@@ -181,7 +181,7 @@ public class AutomaticLight
 	{
 		if (_entity.MaxBrightness != null)
 		{
-			_entity.Entity.TurnOn(brightnessPct: _brightness);
+			_entity.Entity.TurnOn(brightness: _brightness);
 		}
 		else
 		{
