@@ -9,10 +9,13 @@ public record ThermostatConfig
 	public string Name { get; init; }
 	public SwitchEntity WindowOpenSwitch { get; init; }
 	public IEnumerable<BinarySensorEntity> WindowSensors { get; init; }
+	public ClimateEntity? RemoteTemperatureSource { get; init; }
+	public NumberEntity? RemoteTemperatureTarget { get; init; }
 }
 
 public record HeatingConfig : Config
 {
 	public TimeSpan SensorDebounceTime { get; init; }
+	public TimeSpan RemoteTemperatureUpdateInterval { get; init; }
 	public IEnumerable<ThermostatConfig> Thermostats { get; init; }
 }

@@ -1,6 +1,7 @@
 ---
 HomeAutomations.Apps.Heating.HeatingConfig:
   SensorDebounceTime: 00:00:10
+  RemoteTemperatureUpdateInterval: 00:01:00
   Thermostats:
     - Name: Bathroom
       WindowOpenSwitch: switch.bathroom_radiator_thermostat_window_detection
@@ -17,5 +18,7 @@ HomeAutomations.Apps.Heating.HeatingConfig:
         - binary_sensor.study_window_sensor_contact
     - Name: Bedroom
       WindowOpenSwitch: switch.bedroom_radiator_thermostat_window_detection
+      RemoteTemperatureSource: climate.bedroom_room_thermostat
+      RemoteTemperatureTarget: number.bedroom_radiator_thermostat_remote_temperature
       WindowSensors:
         - binary_sensor.bedroom_window_sensor_contact

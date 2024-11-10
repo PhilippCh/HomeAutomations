@@ -61,13 +61,11 @@ public class LivingRoomButton : BaseAutomation<LivingRoomButton, LivingRoomButto
 				{
 					var currentBrightness = Config.StandardLamp.Attributes?.Brightness ?? _maxBrightness;
 					var brightness = (long) Math.Clamp(currentBrightness + increment, 0, _maxBrightness);
+					var brightnessPct = (int) Math.Round(brightness / (double) _maxBrightness * 100);
 
-					Config.StandardLamp.TurnOn(brightness: brightness);
+					Config.StandardLamp.TurnOn(brightnessPct: brightnessPct);
 				});
 	}
 
-	private void ResetBrightness()
-	{
-		Config.StandardLamp.TurnOn(brightness: _maxBrightness, effect: LightEffects.Okay);
-	}
+	private void ResetBrightness() => Config.StandardLamp.TurnOn(brightnessPct: 100, effect: LightEffects.Okay);
 }

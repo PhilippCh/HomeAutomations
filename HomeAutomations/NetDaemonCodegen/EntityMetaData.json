@@ -24,14 +24,14 @@
           "cSharpName": "KitchenCeilingLight"
         },
         {
+          "id": "light.living_room_lightstrip",
+          "friendlyName": "living_room/lightstrip",
+          "cSharpName": "LivingRoomLightstrip"
+        },
+        {
           "id": "light.living_room_standard_lamp",
           "friendlyName": "living_room/standard_lamp",
           "cSharpName": "LivingRoomStandardLamp"
-        },
-        {
-          "id": "light.living_room_tv_lightstrip",
-          "friendlyName": "living_room/tv_lightstrip",
-          "cSharpName": "LivingRoomTvLightstrip"
         },
         {
           "id": "light.study_desk_lamp",
@@ -169,6 +169,21 @@
           "jsonName": "color_options",
           "cSharpName": "ColorOptions",
           "clrType": "System.Object"
+        },
+        {
+          "jsonName": "icon",
+          "cSharpName": "Icon",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "color_power_on_behavior",
+          "cSharpName": "ColorPowerOnBehavior",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "do_not_disturb",
+          "cSharpName": "DoNotDisturb",
+          "clrType": "System.Object"
         }
       ]
     },
@@ -177,18 +192,18 @@
       "entities": [
         {
           "id": "media_player.living_room_av_receiver",
-          "friendlyName": "living_room/av_receiver",
+          "friendlyName": "RX-V4A 020D14",
           "cSharpName": "LivingRoomAvReceiver"
-        },
-        {
-          "id": "media_player.living_room_av_receiver_zone2",
-          "friendlyName": "living_room/av_receiver/zone2",
-          "cSharpName": "LivingRoomAvReceiverZone2"
         },
         {
           "id": "media_player.panasonic_blu_ray",
           "friendlyName": "Panasonic Blu-Ray",
           "cSharpName": "PanasonicBluRay"
+        },
+        {
+          "id": "media_player.rx_v4a_020d14_zone2",
+          "friendlyName": "RX-V4A 020D14 zone2",
+          "cSharpName": "RxV4a020d14Zone2"
         },
         {
           "id": "media_player.wohnzimmer",
@@ -395,26 +410,6 @@
       "domain": "binary_sensor",
       "entities": [
         {
-          "id": "binary_sensor.balkontur_links",
-          "friendlyName": "Balkont\u00FCr links",
-          "cSharpName": "BalkonturLinks"
-        },
-        {
-          "id": "binary_sensor.balkontur_links_battery",
-          "friendlyName": "Balkont\u00FCr links Battery",
-          "cSharpName": "BalkonturLinksBattery"
-        },
-        {
-          "id": "binary_sensor.balkontur_rechts",
-          "friendlyName": "Balkont\u00FCr rechts",
-          "cSharpName": "BalkonturRechts"
-        },
-        {
-          "id": "binary_sensor.balkontur_rechts_battery",
-          "friendlyName": "Balkont\u00FCr rechts Battery",
-          "cSharpName": "BalkonturRechtsBattery"
-        },
-        {
           "id": "binary_sensor.bathroom_washing_machine_water_leak_sensor_battery_low",
           "friendlyName": "bathroom/washing_machine_water_leak_sensor Battery",
           "cSharpName": "BathroomWashingMachineWaterLeakSensorBatteryLow"
@@ -423,6 +418,11 @@
           "id": "binary_sensor.bathroom_washing_machine_water_leak_sensor_water_leak",
           "friendlyName": "bathroom/washing_machine_water_leak_sensor Moisture",
           "cSharpName": "BathroomWashingMachineWaterLeakSensorWaterLeak"
+        },
+        {
+          "id": "binary_sensor.bathroom_window_sensor_contact",
+          "friendlyName": "bathroom/window_sensor Door",
+          "cSharpName": "BathroomWindowSensorContact"
         },
         {
           "id": "binary_sensor.bedroom_lava_lamp_update_available",
@@ -470,6 +470,16 @@
           "cSharpName": "BedroomWeightSensorPhilippMasterBedOccupied"
         },
         {
+          "id": "binary_sensor.bedroom_window_sensor_battery_low",
+          "friendlyName": "bedroom/window_sensor Battery",
+          "cSharpName": "BedroomWindowSensorBatteryLow"
+        },
+        {
+          "id": "binary_sensor.bedroom_window_sensor_contact",
+          "friendlyName": "bedroom/window_sensor Door",
+          "cSharpName": "BedroomWindowSensorContact"
+        },
+        {
           "id": "binary_sensor.desktop_philipp_unlocked",
           "friendlyName": "Desktop Philipp Unlocked",
           "cSharpName": "DesktopPhilippUnlocked"
@@ -485,34 +495,9 @@
           "cSharpName": "Desktopphilipp"
         },
         {
-          "id": "binary_sensor.fenster_arbeitszimmer",
-          "friendlyName": "Fenster Arbeitszimmer",
-          "cSharpName": "FensterArbeitszimmer"
-        },
-        {
-          "id": "binary_sensor.fenster_arbeitszimmer_battery",
-          "friendlyName": "Fenster Arbeitszimmer Battery",
-          "cSharpName": "FensterArbeitszimmerBattery"
-        },
-        {
-          "id": "binary_sensor.fenster_badezimmer",
-          "friendlyName": "Fenster Badezimmer",
-          "cSharpName": "FensterBadezimmer"
-        },
-        {
-          "id": "binary_sensor.fenster_badezimmer_battery",
-          "friendlyName": "Fenster Badezimmer Battery",
-          "cSharpName": "FensterBadezimmerBattery"
-        },
-        {
-          "id": "binary_sensor.fenster_schlafzimmer",
-          "friendlyName": "Fenster Schlafzimmer",
-          "cSharpName": "FensterSchlafzimmer"
-        },
-        {
-          "id": "binary_sensor.fenster_schlafzimmer_battery",
-          "friendlyName": "Fenster Schlafzimmer Battery",
-          "cSharpName": "FensterSchlafzimmerBattery"
+          "id": "binary_sensor.internet_availability",
+          "friendlyName": "Internet status",
+          "cSharpName": "InternetAvailability"
         },
         {
           "id": "binary_sensor.iphone_fabienne_focus",
@@ -540,19 +525,19 @@
           "cSharpName": "KitchenDishwasherWaterLeakSensorBatteryLow"
         },
         {
-          "id": "binary_sensor.kitchen_dishwasher_water_leak_sensor_tamper",
-          "friendlyName": "kitchen/dishwasher_water_leak_sensor Tamper",
-          "cSharpName": "KitchenDishwasherWaterLeakSensorTamper"
-        },
-        {
           "id": "binary_sensor.kitchen_dishwasher_water_leak_sensor_water_leak",
           "friendlyName": "kitchen/dishwasher_water_leak_sensor Moisture",
           "cSharpName": "KitchenDishwasherWaterLeakSensorWaterLeak"
         },
         {
           "id": "binary_sensor.kitchen_motion_detector_occupancy",
-          "friendlyName": "kitchen/motion_detector Motion",
+          "friendlyName": "kitchen/motion_detector Occupancy",
           "cSharpName": "KitchenMotionDetectorOccupancy"
+        },
+        {
+          "id": "binary_sensor.kitchen_neon_clock_fault",
+          "friendlyName": "kitchen/neon_clock Fault",
+          "cSharpName": "KitchenNeonClockFault"
         },
         {
           "id": "binary_sensor.laptop_enbw_unlocked",
@@ -580,9 +565,39 @@
           "cSharpName": "LivingRoomBalconyAirQualityBattery"
         },
         {
-          "id": "binary_sensor.living_room_balcony_motion_detector_occupancy",
-          "friendlyName": "living_room/balcony/motion_detector Motion",
-          "cSharpName": "LivingRoomBalconyMotionDetectorOccupancy"
+          "id": "binary_sensor.living_room_contract_light_fault",
+          "friendlyName": "living_room/contract_light Fault",
+          "cSharpName": "LivingRoomContractLightFault"
+        },
+        {
+          "id": "binary_sensor.living_room_lightbar_fault",
+          "friendlyName": "living_room/lightbar Fault",
+          "cSharpName": "LivingRoomLightbarFault"
+        },
+        {
+          "id": "binary_sensor.living_room_smoke_detector_device_fault",
+          "friendlyName": "living_room/smoke_detector Device fault",
+          "cSharpName": "LivingRoomSmokeDetectorDeviceFault"
+        },
+        {
+          "id": "binary_sensor.living_room_smoke_detector_smoke",
+          "friendlyName": "living_room/smoke_detector Smoke",
+          "cSharpName": "LivingRoomSmokeDetectorSmoke"
+        },
+        {
+          "id": "binary_sensor.living_room_smoke_detector_test",
+          "friendlyName": "living_room/smoke_detector Test",
+          "cSharpName": "LivingRoomSmokeDetectorTest"
+        },
+        {
+          "id": "binary_sensor.living_room_window_sensor_left_contact",
+          "friendlyName": "living_room/window_sensor_left Door",
+          "cSharpName": "LivingRoomWindowSensorLeftContact"
+        },
+        {
+          "id": "binary_sensor.living_room_window_sensor_right_contact",
+          "friendlyName": "living_room/window_sensor_right Door",
+          "cSharpName": "LivingRoomWindowSensorRightContact"
         },
         {
           "id": "binary_sensor.nuki_battery_low",
@@ -705,11 +720,6 @@
           "cSharpName": "PupsstationSecurityStatus"
         },
         {
-          "id": "binary_sensor.raumthermostat_schlafzimmer_battery",
-          "friendlyName": "Raumthermostat Schlafzimmer Battery",
-          "cSharpName": "RaumthermostatSchlafzimmerBattery"
-        },
-        {
           "id": "binary_sensor.roborock_s7_pro_ultra_cleaning",
           "friendlyName": "Roborock S7 Pro Ultra Cleaning",
           "cSharpName": "RoborockS7ProUltraCleaning"
@@ -730,29 +740,49 @@
           "cSharpName": "RoborockS7ProUltraWaterShortage"
         },
         {
-          "id": "binary_sensor.thermostat_arbeitszimmer_battery",
-          "friendlyName": "Thermostat Arbeitszimmer Battery",
-          "cSharpName": "ThermostatArbeitszimmerBattery"
+          "id": "binary_sensor.scheduled_lights_cat_fountain_state",
+          "friendlyName": "Cat fountain light cycle state",
+          "cSharpName": "ScheduledLightsCatFountainState"
         },
         {
-          "id": "binary_sensor.thermostat_badezimmer_battery",
-          "friendlyName": "Thermostat Badezimmer Battery",
-          "cSharpName": "ThermostatBadezimmerBattery"
+          "id": "binary_sensor.scheduled_lights_lava_lamp_state",
+          "friendlyName": "Lava lamp light cycle state",
+          "cSharpName": "ScheduledLightsLavaLampState"
         },
         {
-          "id": "binary_sensor.thermostat_kuche_battery",
-          "friendlyName": "Thermostat K\u00FCche Battery",
-          "cSharpName": "ThermostatKucheBattery"
+          "id": "binary_sensor.scheduled_lights_static_lights_state",
+          "friendlyName": "Static lights light cycle state",
+          "cSharpName": "ScheduledLightsStaticLightsState"
         },
         {
-          "id": "binary_sensor.thermostat_schlafzimmer_battery",
-          "friendlyName": "Thermostat Schlafzimmer Battery",
-          "cSharpName": "ThermostatSchlafzimmerBattery"
+          "id": "binary_sensor.scheduled_lights_trolley_lights_state",
+          "friendlyName": "Trolley lights light cycle state",
+          "cSharpName": "ScheduledLightsTrolleyLightsState"
         },
         {
-          "id": "binary_sensor.thermostat_wohnzimmer_battery",
-          "friendlyName": "Thermostat Wohnzimmer Battery",
-          "cSharpName": "ThermostatWohnzimmerBattery"
+          "id": "binary_sensor.study_smoke_detector_device_fault",
+          "friendlyName": "study/smoke_detector Device fault",
+          "cSharpName": "StudySmokeDetectorDeviceFault"
+        },
+        {
+          "id": "binary_sensor.study_smoke_detector_smoke",
+          "friendlyName": "study/smoke_detector Smoke",
+          "cSharpName": "StudySmokeDetectorSmoke"
+        },
+        {
+          "id": "binary_sensor.study_smoke_detector_test",
+          "friendlyName": "study/smoke_detector Test",
+          "cSharpName": "StudySmokeDetectorTest"
+        },
+        {
+          "id": "binary_sensor.study_speakers_philipp_fault",
+          "friendlyName": "study/speakers_philipp Fault",
+          "cSharpName": "StudySpeakersPhilippFault"
+        },
+        {
+          "id": "binary_sensor.study_window_sensor_contact",
+          "friendlyName": "study/window_sensor Door",
+          "cSharpName": "StudyWindowSensorContact"
         },
         {
           "id": "binary_sensor.updater",
@@ -1055,6 +1085,96 @@
           "jsonName": "color_options",
           "cSharpName": "ColorOptions",
           "clrType": "System.Object"
+        },
+        {
+          "jsonName": "callback#1",
+          "cSharpName": "Callback1",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "raw_state",
+          "cSharpName": "RawState",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "Error",
+          "cSharpName": "Error",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "countdown",
+          "cSharpName": "Countdown",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "motor_speed",
+          "cSharpName": "MotorSpeed",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "trigger_count",
+          "cSharpName": "TriggerCount",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "device_fault",
+          "cSharpName": "DeviceFault",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "silence",
+          "cSharpName": "Silence",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "smoke",
+          "cSharpName": "Smoke",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "smoke_concentration",
+          "cSharpName": "SmokeConcentration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "test",
+          "cSharpName": "Test",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "ac_status",
+          "cSharpName": "AcStatus",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "action",
+          "cSharpName": "Action",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "battery_defect",
+          "cSharpName": "BatteryDefect",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "restore_reports",
+          "cSharpName": "RestoreReports",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supervision_reports",
+          "cSharpName": "SupervisionReports",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "trouble",
+          "cSharpName": "Trouble",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "vibration",
+          "cSharpName": "Vibration",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -1062,9 +1182,19 @@
       "domain": "button",
       "entities": [
         {
+          "id": "button.bedroom_laundry_day_button_identify",
+          "friendlyName": "bedroom/laundry_day_button Identify",
+          "cSharpName": "BedroomLaundryDayButtonIdentify"
+        },
+        {
           "id": "button.desktopphilipp_shutdown",
           "friendlyName": "DesktopPhilipp DesktopPhilipp_shutdown",
           "cSharpName": "DesktopphilippShutdown"
+        },
+        {
+          "id": "button.home_desktop_ph_satellite_desktopphilipp_powershell_abort_shutdown",
+          "friendlyName": "HOME-DESKTOP-PH-satellite DesktopPhilipp_powershell_abort_shutdown",
+          "cSharpName": "HomeDesktopPhSatelliteDesktopphilippPowershellAbortShutdown"
         },
         {
           "id": "button.homeassistant_reload",
@@ -1082,9 +1212,24 @@
           "cSharpName": "IgnoreAllIssues"
         },
         {
+          "id": "button.kitchen_cabinet_light_identify",
+          "friendlyName": "kitchen/cabinet_light Identify",
+          "cSharpName": "KitchenCabinetLightIdentify"
+        },
+        {
+          "id": "button.kitchen_ceiling_light_identify",
+          "friendlyName": "kitchen/ceiling_light Identify",
+          "cSharpName": "KitchenCeilingLightIdentify"
+        },
+        {
           "id": "button.kitchen_pineapple_string_lights_restart",
           "friendlyName": "kitchen/pineapple_string_lights Restart",
           "cSharpName": "KitchenPineappleStringLightsRestart"
+        },
+        {
+          "id": "button.living_room_lamp_switch_identify",
+          "friendlyName": "living_room/lamp_switch Identify",
+          "cSharpName": "LivingRoomLampSwitchIdentify"
         },
         {
           "id": "button.living_roompineapple_neon_light_restart",
@@ -1122,6 +1267,11 @@
           "cSharpName": "StudyunusedUsbRelay1Restart"
         },
         {
+          "id": "button.studyunused_usb_relay_2_restart",
+          "friendlyName": "study/unused_usb_relay_2 Restart",
+          "cSharpName": "StudyunusedUsbRelay2Restart"
+        },
+        {
           "id": "button.unignore_all_issues",
           "friendlyName": "Repairs Unignore all",
           "cSharpName": "UnignoreAllIssues"
@@ -1146,6 +1296,71 @@
         {
           "jsonName": "icon",
           "cSharpName": "Icon",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "brightness",
+          "cSharpName": "Brightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "device",
+          "cSharpName": "Device",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "last_seen",
+          "cSharpName": "LastSeen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "linkquality",
+          "cSharpName": "Linkquality",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "power_on_behavior",
+          "cSharpName": "PowerOnBehavior",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "update",
+          "cSharpName": "Update",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "update_available",
+          "cSharpName": "UpdateAvailable",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "color_mode",
+          "cSharpName": "ColorMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "color_options",
+          "cSharpName": "ColorOptions",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "color_temp",
+          "cSharpName": "ColorTemp",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "action",
+          "cSharpName": "Action",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "battery",
+          "cSharpName": "Battery",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "click",
+          "cSharpName": "Click",
           "clrType": "System.String"
         }
       ]
@@ -1338,29 +1553,29 @@
       "domain": "climate",
       "entities": [
         {
-          "id": "climate.room_climate_arbeitszimmer",
-          "friendlyName": "Room Climate Arbeitszimmer",
-          "cSharpName": "RoomClimateArbeitszimmer"
+          "id": "climate.bathroom_radiator_thermostat",
+          "friendlyName": "Thermostat Badezimmer",
+          "cSharpName": "BathroomRadiatorThermostat"
         },
         {
-          "id": "climate.room_climate_badezimmer",
-          "friendlyName": "Room Climate Badezimmer",
-          "cSharpName": "RoomClimateBadezimmer"
+          "id": "climate.bedroom_radiator_thermostat",
+          "friendlyName": "Thermostat Schlafzimmer",
+          "cSharpName": "BedroomRadiatorThermostat"
         },
         {
-          "id": "climate.room_climate_kuche",
-          "friendlyName": "Room Climate K\u00FCche",
-          "cSharpName": "RoomClimateKuche"
+          "id": "climate.bedroom_room_thermostat",
+          "friendlyName": "bedroom/room_thermostat",
+          "cSharpName": "BedroomRoomThermostat"
         },
         {
-          "id": "climate.room_climate_schlafzimmer",
-          "friendlyName": "Room Climate Schlafzimmer",
-          "cSharpName": "RoomClimateSchlafzimmer"
+          "id": "climate.living_room_radiator_thermostat",
+          "friendlyName": "Thermostat Wohnzimmer",
+          "cSharpName": "LivingRoomRadiatorThermostat"
         },
         {
-          "id": "climate.room_climate_wohnzimmer",
-          "friendlyName": "Room Climate Wohnzimmer",
-          "cSharpName": "RoomClimateWohnzimmer"
+          "id": "climate.study_radiator_thermostat",
+          "friendlyName": "Thermostat Arbeitszimmer",
+          "cSharpName": "StudyRadiatorThermostat"
         }
       ],
       "attributes": [
@@ -1412,6 +1627,166 @@
         {
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "hvac_action",
+          "cSharpName": "HvacAction",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "battery",
+          "cSharpName": "Battery",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "boost",
+          "cSharpName": "Boost",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "boost_heating",
+          "cSharpName": "BoostHeating",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "child_lock",
+          "cSharpName": "ChildLock",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "device",
+          "cSharpName": "Device",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "display_brightness",
+          "cSharpName": "DisplayBrightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_ontime",
+          "cSharpName": "DisplayOntime",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_orientation",
+          "cSharpName": "DisplayOrientation",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "displayed_temperature",
+          "cSharpName": "DisplayedTemperature",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_seen",
+          "cSharpName": "LastSeen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "linkquality",
+          "cSharpName": "Linkquality",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "local_temperature",
+          "cSharpName": "LocalTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "local_temperature_calibration",
+          "cSharpName": "LocalTemperatureCalibration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "occupied_heating_setpoint",
+          "cSharpName": "OccupiedHeatingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "operating_mode",
+          "cSharpName": "OperatingMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "pi_heating_demand",
+          "cSharpName": "PiHeatingDemand",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "remote_temperature",
+          "cSharpName": "RemoteTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "running_state",
+          "cSharpName": "RunningState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "setpoint_change_source",
+          "cSharpName": "SetpointChangeSource",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "system_mode",
+          "cSharpName": "SystemMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "update",
+          "cSharpName": "Update",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "update_available",
+          "cSharpName": "UpdateAvailable",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "valve_adapt_process",
+          "cSharpName": "ValveAdaptProcess",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "valve_adapt_status",
+          "cSharpName": "ValveAdaptStatus",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_detection",
+          "cSharpName": "WindowDetection",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_open",
+          "cSharpName": "WindowOpen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "target_temp_high",
+          "cSharpName": "TargetTempHigh",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "target_temp_low",
+          "cSharpName": "TargetTempLow",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "keypad_lockout",
+          "cSharpName": "KeypadLockout",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "occupied_cooling_setpoint",
+          "cSharpName": "OccupiedCoolingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "voltage",
+          "cSharpName": "Voltage",
           "clrType": "System.Double"
         }
       ]
@@ -1542,6 +1917,11 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "motor_speed",
+          "cSharpName": "MotorSpeed",
+          "clrType": "System.Object"
         }
       ]
     },
@@ -1888,54 +2268,19 @@
           "cSharpName": "ComputerWolDesktopPhilipp"
         },
         {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_av_receiver_av_receiver",
-          "friendlyName": "dev_netdaemon_home_automations_apps_av_receiver_av_receiver",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsAvReceiverAvReceiver"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_computer_switches_computer_switches",
-          "friendlyName": "dev_netdaemon_home_automations_apps_computer_switches_computer_switches",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsComputerSwitchesComputerSwitches"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter",
-          "friendlyName": "dev_netdaemon_home_automations_apps_counters_kratom_counter_kratom_counter",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsCountersKratomCounterKratomCounter"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_counters_sweets_counter_sweets_counter",
-          "friendlyName": "dev_netdaemon_home_automations_apps_counters_sweets_counter_sweets_counter",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsCountersSweetsCounterSweetsCounter"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_counters_water_counter_water_counter",
-          "friendlyName": "dev_netdaemon_home_automations_apps_counters_water_counter_water_counter",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsCountersWaterCounterWaterCounter"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_intelligent_shopping_list_intelligent_shopping_list",
-          "friendlyName": "dev_netdaemon_home_automations_apps_intelligent_shopping_list_intelligent_shopping_list",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsIntelligentShoppingListIntelligentShoppingList"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_kite_reminder_kite_reminder",
-          "friendlyName": "dev_netdaemon_home_automations_apps_kite_reminder_kite_reminder",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsKiteReminderKiteReminder"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_lights_scheduled_lights_scheduled_lights",
-          "friendlyName": "dev_netdaemon_home_automations_apps_lights_scheduled_lights_scheduled_lights",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsLightsScheduledLightsScheduledLights"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_home_automations_apps_study_automations_study_automations",
-          "friendlyName": "dev_netdaemon_home_automations_apps_study_automations_study_automations",
-          "cSharpName": "DevNetdaemonHomeAutomationsAppsStudyAutomationsStudyAutomations"
-        },
-        {
           "id": "input_boolean.enable_motion_detector",
           "friendlyName": "Enable motion detector",
           "cSharpName": "EnableMotionDetector"
+        },
+        {
+          "id": "input_boolean.intelligent_shopping_list_active",
+          "friendlyName": "Intelligent Shopping List Active",
+          "cSharpName": "IntelligentShoppingListActive"
+        },
+        {
+          "id": "input_boolean.intelligent_shopping_list_dry_run",
+          "friendlyName": "Intelligent shopping list dry run",
+          "cSharpName": "IntelligentShoppingListDryRun"
         },
         {
           "id": "input_boolean.living_room_canvas_active",
@@ -1961,6 +2306,11 @@
           "id": "input_boolean.movie_time_enable_light_control",
           "friendlyName": "Kontrolliere Kino-Lichter",
           "cSharpName": "MovieTimeEnableLightControl"
+        },
+        {
+          "id": "input_boolean.netdaemon_home_automations_apps_alarms_alarms",
+          "friendlyName": "netdaemon_home_automations_apps_alarms_alarms",
+          "cSharpName": "NetdaemonHomeAutomationsAppsAlarmsAlarms"
         },
         {
           "id": "input_boolean.netdaemon_home_automations_apps_av_receiver_av_receiver",
@@ -1998,9 +2348,9 @@
           "cSharpName": "NetdaemonHomeAutomationsAppsDoorLockDoorLock"
         },
         {
-          "id": "input_boolean.netdaemon_home_automations_apps_intelligent_shopping_list_intelligent_shopping_list",
-          "friendlyName": "netdaemon_home_automations_apps_intelligent_shopping_list_intelligent_shopping_list",
-          "cSharpName": "NetdaemonHomeAutomationsAppsIntelligentShoppingListIntelligentShoppingList"
+          "id": "input_boolean.netdaemon_home_automations_apps_heating_heating",
+          "friendlyName": "netdaemon_home_automations_apps_heating_heating",
+          "cSharpName": "NetdaemonHomeAutomationsAppsHeatingHeating"
         },
         {
           "id": "input_boolean.netdaemon_home_automations_apps_internet_watchdog_internet_watchdog",
@@ -2043,19 +2393,9 @@
           "cSharpName": "NetdaemonHomeAutomationsAppsRemindersReminders"
         },
         {
-          "id": "input_boolean.netdaemon_home_automations_apps_scale_importer_scale_importer",
-          "friendlyName": "netdaemon_home_automations_apps_scale_importer_scale_importer",
-          "cSharpName": "NetdaemonHomeAutomationsAppsScaleImporterScaleImporter"
-        },
-        {
           "id": "input_boolean.netdaemon_home_automations_apps_shutters_shutters",
           "friendlyName": "netdaemon_home_automations_apps_shutters_shutters",
           "cSharpName": "NetdaemonHomeAutomationsAppsShuttersShutters"
-        },
-        {
-          "id": "input_boolean.netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes",
-          "friendlyName": "netdaemon_home_automations_apps_sleep_soundscapes_sleep_soundscapes",
-          "cSharpName": "NetdaemonHomeAutomationsAppsSleepSoundscapesSleepSoundscapes"
         },
         {
           "id": "input_boolean.netdaemon_home_automations_apps_study_automations_study_automations",
@@ -2081,11 +2421,6 @@
           "id": "input_boolean.netdaemon_home_automations_apps_virtual_entities_virtual_entities",
           "friendlyName": "netdaemon_home_automations_apps_virtual_entities_virtual_entities",
           "cSharpName": "NetdaemonHomeAutomationsAppsVirtualEntitiesVirtualEntities"
-        },
-        {
-          "id": "input_boolean.netdaemon_home_automations_apps_water_leaks_water_leaks",
-          "friendlyName": "netdaemon_home_automations_apps_water_leaks_water_leaks",
-          "cSharpName": "NetdaemonHomeAutomationsAppsWaterLeaksWaterLeaks"
         },
         {
           "id": "input_boolean.override_desk_lamp",
@@ -2300,6 +2635,11 @@
           "cSharpName": "CalorieCounter"
         },
         {
+          "id": "input_text.intelligent_shopping_list_device_code",
+          "friendlyName": "Intelligent Shopping List Device Code",
+          "cSharpName": "IntelligentShoppingListDeviceCode"
+        },
+        {
           "id": "input_text.kitchen_scale_nutriscore_grade",
           "friendlyName": "Kitchen scale nutriscore grade",
           "cSharpName": "KitchenScaleNutriscoreGrade"
@@ -2365,6 +2705,11 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "icon",
+          "cSharpName": "Icon",
+          "clrType": "System.String"
         }
       ]
     },
@@ -2487,6 +2832,11 @@
           "jsonName": "restored",
           "cSharpName": "Restored",
           "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "countdown",
+          "cSharpName": "Countdown",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -2494,6 +2844,66 @@
       "domain": "number",
       "isNumeric": true,
       "entities": [
+        {
+          "id": "number.bathroom_radiator_thermostat_display_brightness",
+          "friendlyName": "bathroom/radiator_thermostat Display brightness",
+          "cSharpName": "BathroomRadiatorThermostatDisplayBrightness"
+        },
+        {
+          "id": "number.bathroom_radiator_thermostat_display_ontime",
+          "friendlyName": "bathroom/radiator_thermostat Display ontime",
+          "cSharpName": "BathroomRadiatorThermostatDisplayOntime"
+        },
+        {
+          "id": "number.bathroom_radiator_thermostat_local_temperature_calibration",
+          "friendlyName": "bathroom/radiator_thermostat Temperature",
+          "cSharpName": "BathroomRadiatorThermostatLocalTemperatureCalibration"
+        },
+        {
+          "id": "number.bathroom_radiator_thermostat_remote_temperature",
+          "friendlyName": "bathroom/radiator_thermostat Remote temperature",
+          "cSharpName": "BathroomRadiatorThermostatRemoteTemperature"
+        },
+        {
+          "id": "number.bedroom_lava_lamp_countdown",
+          "friendlyName": "bedroom/lava_lamp Countdown",
+          "cSharpName": "BedroomLavaLampCountdown"
+        },
+        {
+          "id": "number.bedroom_radiator_thermostat_display_brightness",
+          "friendlyName": "bedroom/radiator_thermostat Display brightness",
+          "cSharpName": "BedroomRadiatorThermostatDisplayBrightness"
+        },
+        {
+          "id": "number.bedroom_radiator_thermostat_display_ontime",
+          "friendlyName": "bedroom/radiator_thermostat Display ontime",
+          "cSharpName": "BedroomRadiatorThermostatDisplayOntime"
+        },
+        {
+          "id": "number.bedroom_radiator_thermostat_local_temperature_calibration",
+          "friendlyName": "bedroom/radiator_thermostat Temperature",
+          "cSharpName": "BedroomRadiatorThermostatLocalTemperatureCalibration"
+        },
+        {
+          "id": "number.bedroom_radiator_thermostat_remote_temperature",
+          "friendlyName": "bedroom/radiator_thermostat Remote temperature",
+          "cSharpName": "BedroomRadiatorThermostatRemoteTemperature"
+        },
+        {
+          "id": "number.bedroom_room_thermostat_display_brightness",
+          "friendlyName": "bedroom/room_thermostat Display brightness",
+          "cSharpName": "BedroomRoomThermostatDisplayBrightness"
+        },
+        {
+          "id": "number.bedroom_room_thermostat_display_ontime",
+          "friendlyName": "bedroom/room_thermostat Display ontime",
+          "cSharpName": "BedroomRoomThermostatDisplayOntime"
+        },
+        {
+          "id": "number.bedroom_room_thermostat_local_temperature_calibration",
+          "friendlyName": "bedroom/room_thermostat Temperature",
+          "cSharpName": "BedroomRoomThermostatLocalTemperatureCalibration"
+        },
         {
           "id": "number.bedroom_weight_sensor_philipp_weight_sensor_philipp_trigger_level",
           "friendlyName": "bedroom/weight_sensor_philipp Weight sensor Philipp trigger level",
@@ -2630,9 +3040,64 @@
           "cSharpName": "KitchenBalconyLightSensorDetectionPeriod"
         },
         {
+          "id": "number.kitchen_neon_clock_switch_1_timer",
+          "friendlyName": "kitchen/neon_clock Switch 1 Timer",
+          "cSharpName": "KitchenNeonClockSwitch1Timer"
+        },
+        {
           "id": "number.living_room_balcony_light_sensor_detection_period",
           "friendlyName": "living_room/balcony/light _sensor Detection period",
           "cSharpName": "LivingRoomBalconyLightSensorDetectionPeriod"
+        },
+        {
+          "id": "number.living_room_cat_fountain_countdown",
+          "friendlyName": "living_room/cat_fountain Countdown",
+          "cSharpName": "LivingRoomCatFountainCountdown"
+        },
+        {
+          "id": "number.living_room_contract_light_switch_1_timer",
+          "friendlyName": "living_room/contract_light Switch 1 Timer",
+          "cSharpName": "LivingRoomContractLightSwitch1Timer"
+        },
+        {
+          "id": "number.living_room_lightbar_switch_1_timer",
+          "friendlyName": "living_room/lightbar Switch 1 Timer",
+          "cSharpName": "LivingRoomLightbarSwitch1Timer"
+        },
+        {
+          "id": "number.living_room_lightbulbs_countdown",
+          "friendlyName": "living_room/lightbulbs Countdown",
+          "cSharpName": "LivingRoomLightbulbsCountdown"
+        },
+        {
+          "id": "number.living_room_radiator_thermostat_display_brightness",
+          "friendlyName": "living_room/radiator_thermostat Display brightness",
+          "cSharpName": "LivingRoomRadiatorThermostatDisplayBrightness"
+        },
+        {
+          "id": "number.living_room_radiator_thermostat_display_ontime",
+          "friendlyName": "living_room/radiator_thermostat Display ontime",
+          "cSharpName": "LivingRoomRadiatorThermostatDisplayOntime"
+        },
+        {
+          "id": "number.living_room_radiator_thermostat_local_temperature_calibration",
+          "friendlyName": "living_room/radiator_thermostat Temperature",
+          "cSharpName": "LivingRoomRadiatorThermostatLocalTemperatureCalibration"
+        },
+        {
+          "id": "number.living_room_radiator_thermostat_remote_temperature",
+          "friendlyName": "living_room/radiator_thermostat Remote temperature",
+          "cSharpName": "LivingRoomRadiatorThermostatRemoteTemperature"
+        },
+        {
+          "id": "number.living_room_record_player_countdown",
+          "friendlyName": "living_room/record_player Countdown",
+          "cSharpName": "LivingRoomRecordPlayerCountdown"
+        },
+        {
+          "id": "number.living_room_subwoofer_countdown",
+          "friendlyName": "living_room/subwoofer Countdown",
+          "cSharpName": "LivingRoomSubwooferCountdown"
         },
         {
           "id": "number.nuki_led_brightness",
@@ -2640,44 +3105,44 @@
           "cSharpName": "NukiLedBrightness"
         },
         {
-          "id": "number.raumthermostat_schlafzimmer_offset",
-          "friendlyName": "Raumthermostat Schlafzimmer Offset",
-          "cSharpName": "RaumthermostatSchlafzimmerOffset"
-        },
-        {
           "id": "number.roborock_s7_pro_ultra_volume",
           "friendlyName": "Roborock S7 Pro Ultra Volume",
           "cSharpName": "RoborockS7ProUltraVolume"
         },
         {
+          "id": "number.study_desk_lamp_light_1_timer",
+          "friendlyName": "study/desk_lamp Light 1 Timer",
+          "cSharpName": "StudyDeskLampLight1Timer"
+        },
+        {
+          "id": "number.study_radiator_thermostat_display_brightness",
+          "friendlyName": "study/radiator_thermostat Display brightness",
+          "cSharpName": "StudyRadiatorThermostatDisplayBrightness"
+        },
+        {
+          "id": "number.study_radiator_thermostat_display_ontime",
+          "friendlyName": "study/radiator_thermostat Display ontime",
+          "cSharpName": "StudyRadiatorThermostatDisplayOntime"
+        },
+        {
+          "id": "number.study_radiator_thermostat_local_temperature_calibration",
+          "friendlyName": "study/radiator_thermostat Temperature",
+          "cSharpName": "StudyRadiatorThermostatLocalTemperatureCalibration"
+        },
+        {
+          "id": "number.study_radiator_thermostat_remote_temperature",
+          "friendlyName": "study/radiator_thermostat Remote temperature",
+          "cSharpName": "StudyRadiatorThermostatRemoteTemperature"
+        },
+        {
+          "id": "number.study_speakers_philipp_switch_1_timer",
+          "friendlyName": "study/speakers_philipp Switch 1 Timer",
+          "cSharpName": "StudySpeakersPhilippSwitch1Timer"
+        },
+        {
           "id": "number.subwoofer_volume",
           "friendlyName": "Subwoofer Volume",
           "cSharpName": "SubwooferVolume"
-        },
-        {
-          "id": "number.thermostat_arbeitszimmer_offset",
-          "friendlyName": "Thermostat Arbeitszimmer Offset",
-          "cSharpName": "ThermostatArbeitszimmerOffset"
-        },
-        {
-          "id": "number.thermostat_badezimmer_offset",
-          "friendlyName": "Thermostat Badezimmer Offset",
-          "cSharpName": "ThermostatBadezimmerOffset"
-        },
-        {
-          "id": "number.thermostat_kuche_offset",
-          "friendlyName": "Thermostat K\u00FCche Offset",
-          "cSharpName": "ThermostatKucheOffset"
-        },
-        {
-          "id": "number.thermostat_schlafzimmer_offset",
-          "friendlyName": "Thermostat Schlafzimmer Offset",
-          "cSharpName": "ThermostatSchlafzimmerOffset"
-        },
-        {
-          "id": "number.thermostat_wohnzimmer_offset",
-          "friendlyName": "Thermostat Wohnzimmer Offset",
-          "cSharpName": "ThermostatWohnzimmerOffset"
         },
         {
           "id": "number.tone_control_bass",
@@ -2800,6 +3265,156 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "raw_state",
+          "cSharpName": "RawState",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "boost",
+          "cSharpName": "Boost",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "boost_heating",
+          "cSharpName": "BoostHeating",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "child_lock",
+          "cSharpName": "ChildLock",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "display_brightness",
+          "cSharpName": "DisplayBrightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_ontime",
+          "cSharpName": "DisplayOntime",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_orientation",
+          "cSharpName": "DisplayOrientation",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "displayed_temperature",
+          "cSharpName": "DisplayedTemperature",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "local_temperature",
+          "cSharpName": "LocalTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "local_temperature_calibration",
+          "cSharpName": "LocalTemperatureCalibration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "occupied_heating_setpoint",
+          "cSharpName": "OccupiedHeatingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "operating_mode",
+          "cSharpName": "OperatingMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "pi_heating_demand",
+          "cSharpName": "PiHeatingDemand",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "remote_temperature",
+          "cSharpName": "RemoteTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "running_state",
+          "cSharpName": "RunningState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "setpoint_change_source",
+          "cSharpName": "SetpointChangeSource",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "system_mode",
+          "cSharpName": "SystemMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "valve_adapt_process",
+          "cSharpName": "ValveAdaptProcess",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "valve_adapt_status",
+          "cSharpName": "ValveAdaptStatus",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_detection",
+          "cSharpName": "WindowDetection",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_open",
+          "cSharpName": "WindowOpen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "countdown",
+          "cSharpName": "Countdown",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "current",
+          "cSharpName": "Current",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "energy",
+          "cSharpName": "Energy",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "indicator_mode",
+          "cSharpName": "IndicatorMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "power",
+          "cSharpName": "Power",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "power_outage_memory",
+          "cSharpName": "PowerOutageMemory",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "humidity",
+          "cSharpName": "Humidity",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "keypad_lockout",
+          "cSharpName": "KeypadLockout",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "occupied_cooling_setpoint",
+          "cSharpName": "OccupiedCoolingSetpoint",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -2901,6 +3516,21 @@
       "domain": "select",
       "entities": [
         {
+          "id": "select.bathroom_radiator_thermostat_display_orientation",
+          "friendlyName": "bathroom/radiator_thermostat Display orientation",
+          "cSharpName": "BathroomRadiatorThermostatDisplayOrientation"
+        },
+        {
+          "id": "select.bathroom_radiator_thermostat_displayed_temperature",
+          "friendlyName": "bathroom/radiator_thermostat Displayed temperature",
+          "cSharpName": "BathroomRadiatorThermostatDisplayedTemperature"
+        },
+        {
+          "id": "select.bathroom_radiator_thermostat_operating_mode",
+          "friendlyName": "bathroom/radiator_thermostat Operating mode",
+          "cSharpName": "BathroomRadiatorThermostatOperatingMode"
+        },
+        {
           "id": "select.bedroom_lava_lamp_indicator_mode",
           "friendlyName": "bedroom/lava_lamp Indicator mode",
           "cSharpName": "BedroomLavaLampIndicatorMode"
@@ -2909,6 +3539,36 @@
           "id": "select.bedroom_lava_lamp_power_outage_memory",
           "friendlyName": "bedroom/lava_lamp Power outage memory",
           "cSharpName": "BedroomLavaLampPowerOutageMemory"
+        },
+        {
+          "id": "select.bedroom_radiator_thermostat_display_orientation",
+          "friendlyName": "bedroom/radiator_thermostat Display orientation",
+          "cSharpName": "BedroomRadiatorThermostatDisplayOrientation"
+        },
+        {
+          "id": "select.bedroom_radiator_thermostat_displayed_temperature",
+          "friendlyName": "bedroom/radiator_thermostat Displayed temperature",
+          "cSharpName": "BedroomRadiatorThermostatDisplayedTemperature"
+        },
+        {
+          "id": "select.bedroom_radiator_thermostat_operating_mode",
+          "friendlyName": "bedroom/radiator_thermostat Operating mode",
+          "cSharpName": "BedroomRadiatorThermostatOperatingMode"
+        },
+        {
+          "id": "select.bedroom_roller_shutter_left_motor_speed",
+          "friendlyName": "bedroom/roller_shutter_left Motor speed",
+          "cSharpName": "BedroomRollerShutterLeftMotorSpeed"
+        },
+        {
+          "id": "select.bedroom_roller_shutter_right_motor_speed",
+          "friendlyName": "bedroom/roller_shutter_right Motor speed",
+          "cSharpName": "BedroomRollerShutterRightMotorSpeed"
+        },
+        {
+          "id": "select.bedroom_room_thermostat_operating_mode",
+          "friendlyName": "bedroom/room_thermostat Operating mode",
+          "cSharpName": "BedroomRoomThermostatOperatingMode"
         },
         {
           "id": "select.kitchen_cabinet_light_power_on_behavior",
@@ -2951,6 +3611,26 @@
           "cSharpName": "LivingRoomLightbulbsPowerOutageMemory"
         },
         {
+          "id": "select.living_room_lightstrip_color_power_on_behavior",
+          "friendlyName": "living_room/lightstrip Color power on behavior",
+          "cSharpName": "LivingRoomLightstripColorPowerOnBehavior"
+        },
+        {
+          "id": "select.living_room_radiator_thermostat_display_orientation",
+          "friendlyName": "living_room/radiator_thermostat Display orientation",
+          "cSharpName": "LivingRoomRadiatorThermostatDisplayOrientation"
+        },
+        {
+          "id": "select.living_room_radiator_thermostat_displayed_temperature",
+          "friendlyName": "living_room/radiator_thermostat Displayed temperature",
+          "cSharpName": "LivingRoomRadiatorThermostatDisplayedTemperature"
+        },
+        {
+          "id": "select.living_room_radiator_thermostat_operating_mode",
+          "friendlyName": "living_room/radiator_thermostat Operating mode",
+          "cSharpName": "LivingRoomRadiatorThermostatOperatingMode"
+        },
+        {
           "id": "select.living_room_record_player_indicator_mode",
           "friendlyName": "living_room/record_player Indicator mode",
           "cSharpName": "LivingRoomRecordPlayerIndicatorMode"
@@ -2986,9 +3666,39 @@
           "cSharpName": "RoborockS7ProUltraMopMode"
         },
         {
+          "id": "select.roborock_s7_pro_ultra_selected_map",
+          "friendlyName": "Roborock S7 Pro Ultra Selected map",
+          "cSharpName": "RoborockS7ProUltraSelectedMap"
+        },
+        {
           "id": "select.sleep_timer",
           "friendlyName": "Sleep Timer",
           "cSharpName": "SleepTimer"
+        },
+        {
+          "id": "select.study_radiator_thermostat_display_orientation",
+          "friendlyName": "study/radiator_thermostat Display orientation",
+          "cSharpName": "StudyRadiatorThermostatDisplayOrientation"
+        },
+        {
+          "id": "select.study_radiator_thermostat_displayed_temperature",
+          "friendlyName": "study/radiator_thermostat Displayed temperature",
+          "cSharpName": "StudyRadiatorThermostatDisplayedTemperature"
+        },
+        {
+          "id": "select.study_radiator_thermostat_operating_mode",
+          "friendlyName": "study/radiator_thermostat Operating mode",
+          "cSharpName": "StudyRadiatorThermostatOperatingMode"
+        },
+        {
+          "id": "select.study_speakers_philipp_light_mode",
+          "friendlyName": "study/speakers_philipp Light Mode",
+          "cSharpName": "StudySpeakersPhilippLightMode"
+        },
+        {
+          "id": "select.study_speakers_philipp_power_on_behavior",
+          "friendlyName": "study/speakers_philipp Power-on behavior",
+          "cSharpName": "StudySpeakersPhilippPowerOnBehavior"
         },
         {
           "id": "select.surround_decoder_device",
@@ -3116,6 +3826,176 @@
           "jsonName": "color_options",
           "cSharpName": "ColorOptions",
           "clrType": "System.Object"
+        },
+        {
+          "jsonName": "raw_state",
+          "cSharpName": "RawState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "countdown",
+          "cSharpName": "Countdown",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "color",
+          "cSharpName": "Color",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "color_power_on_behavior",
+          "cSharpName": "ColorPowerOnBehavior",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "do_not_disturb",
+          "cSharpName": "DoNotDisturb",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "battery",
+          "cSharpName": "Battery",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "boost",
+          "cSharpName": "Boost",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "boost_heating",
+          "cSharpName": "BoostHeating",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "display_brightness",
+          "cSharpName": "DisplayBrightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_ontime",
+          "cSharpName": "DisplayOntime",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_orientation",
+          "cSharpName": "DisplayOrientation",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "displayed_temperature",
+          "cSharpName": "DisplayedTemperature",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "local_temperature",
+          "cSharpName": "LocalTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "local_temperature_calibration",
+          "cSharpName": "LocalTemperatureCalibration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "occupied_heating_setpoint",
+          "cSharpName": "OccupiedHeatingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "operating_mode",
+          "cSharpName": "OperatingMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "pi_heating_demand",
+          "cSharpName": "PiHeatingDemand",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "remote_temperature",
+          "cSharpName": "RemoteTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "running_state",
+          "cSharpName": "RunningState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "setpoint_change_source",
+          "cSharpName": "SetpointChangeSource",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "system_mode",
+          "cSharpName": "SystemMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "valve_adapt_process",
+          "cSharpName": "ValveAdaptProcess",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "valve_adapt_status",
+          "cSharpName": "ValveAdaptStatus",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_detection",
+          "cSharpName": "WindowDetection",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_open",
+          "cSharpName": "WindowOpen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "charging_status",
+          "cSharpName": "ChargingStatus",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "device_temperature",
+          "cSharpName": "DeviceTemperature",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "motor_speed",
+          "cSharpName": "MotorSpeed",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "motor_state",
+          "cSharpName": "MotorState",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "position",
+          "cSharpName": "Position",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "running",
+          "cSharpName": "Running",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "humidity",
+          "cSharpName": "Humidity",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "keypad_lockout",
+          "cSharpName": "KeypadLockout",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "occupied_cooling_setpoint",
+          "cSharpName": "OccupiedCoolingSetpoint",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -3188,6 +4068,16 @@
           "cSharpName": "BaseCaloriesForPhilipp"
         },
         {
+          "id": "sensor.bathroom_radiator_thermostat_setpoint_change_source",
+          "friendlyName": "bathroom/radiator_thermostat Setpoint change source",
+          "cSharpName": "BathroomRadiatorThermostatSetpointChangeSource"
+        },
+        {
+          "id": "sensor.bathroom_radiator_thermostat_valve_adapt_status",
+          "friendlyName": "bathroom/radiator_thermostat Valve adapt status",
+          "cSharpName": "BathroomRadiatorThermostatValveAdaptStatus"
+        },
+        {
           "id": "sensor.bathroom_razor_blade_usage_action",
           "friendlyName": "bathroom/razor_blade_usage Action",
           "cSharpName": "BathroomRazorBladeUsageAction"
@@ -3248,6 +4138,16 @@
           "cSharpName": "BedroomLaundryDayResetDate"
         },
         {
+          "id": "sensor.bedroom_radiator_thermostat_setpoint_change_source",
+          "friendlyName": "bedroom/radiator_thermostat Setpoint change source",
+          "cSharpName": "BedroomRadiatorThermostatSetpointChangeSource"
+        },
+        {
+          "id": "sensor.bedroom_radiator_thermostat_valve_adapt_status",
+          "friendlyName": "bedroom/radiator_thermostat Valve adapt status",
+          "cSharpName": "BedroomRadiatorThermostatValveAdaptStatus"
+        },
+        {
           "id": "sensor.bedroom_roller_shutter_left_motor_state",
           "friendlyName": "bedroom/roller_shutter_left Motor state",
           "cSharpName": "BedroomRollerShutterLeftMotorState"
@@ -3256,6 +4156,11 @@
           "id": "sensor.bedroom_roller_shutter_right_motor_state",
           "friendlyName": "bedroom/roller_shutter_right Motor state",
           "cSharpName": "BedroomRollerShutterRightMotorState"
+        },
+        {
+          "id": "sensor.bedroom_window_sensor_action",
+          "friendlyName": "bedroom/window_sensor Action",
+          "cSharpName": "BedroomWindowSensorAction"
         },
         {
           "id": "sensor.binary_sensors",
@@ -3373,6 +4278,21 @@
           "cSharpName": "Fans"
         },
         {
+          "id": "sensor.fantenphone_app_version",
+          "friendlyName": "FantenPhone App Version",
+          "cSharpName": "FantenphoneAppVersion"
+        },
+        {
+          "id": "sensor.fantenphone_location_permission",
+          "friendlyName": "FantenPhone Location permission",
+          "cSharpName": "FantenphoneLocationPermission"
+        },
+        {
+          "id": "sensor.fantenphone_watch_battery_state",
+          "friendlyName": "FantenPhone Watch Battery State",
+          "cSharpName": "FantenphoneWatchBatteryState"
+        },
+        {
           "id": "sensor.finger_food_evening_philipp",
           "friendlyName": "\uD83C\uDF54 Finger Food evening \uD83C\uDF5F Philipp",
           "cSharpName": "FingerFoodEveningPhilipp"
@@ -3418,6 +4338,11 @@
           "cSharpName": "HochzeitPhilipp"
         },
         {
+          "id": "sensor.home_desktop_ph_satellite_home_desktop_ph_satellite_lastsystemstatechange",
+          "friendlyName": "HOME-DESKTOP-PH-satellite HOME-DESKTOP-PH-satellite_lastsystemstatechange",
+          "cSharpName": "HomeDesktopPhSatelliteHomeDesktopPhSatelliteLastsystemstatechange"
+        },
+        {
           "id": "sensor.home_desktop_ph_satellite_home_desktop_ph_satellite_servicestate",
           "friendlyName": "HOME-DESKTOP-PH-satellite HOME-DESKTOP-PH-satellite_servicestate",
           "cSharpName": "HomeDesktopPhSatelliteHomeDesktopPhSatelliteServicestate"
@@ -3436,11 +4361,6 @@
           "id": "sensor.humidifiers",
           "friendlyName": "Home Assistant Humidifiers",
           "cSharpName": "Humidifiers"
-        },
-        {
-          "id": "sensor.icloud3_event_log",
-          "friendlyName": null,
-          "cSharpName": "Icloud3EventLog"
         },
         {
           "id": "sensor.images",
@@ -3533,9 +4453,9 @@
           "cSharpName": "IphonePhilippActivity"
         },
         {
-          "id": "sensor.iphone_philipp_badge",
-          "friendlyName": "Philipp",
-          "cSharpName": "IphonePhilippBadge"
+          "id": "sensor.iphone_philipp_app_version",
+          "friendlyName": "iPhone Philipp App Version",
+          "cSharpName": "IphonePhilippAppVersion"
         },
         {
           "id": "sensor.iphone_philipp_battery_state",
@@ -3553,39 +4473,9 @@
           "cSharpName": "IphonePhilippConnectionType"
         },
         {
-          "id": "sensor.iphone_philipp_dir_of_travel",
-          "friendlyName": "iPhone-Philipp Direction",
-          "cSharpName": "IphonePhilippDirOfTravel"
-        },
-        {
           "id": "sensor.iphone_philipp_geocoded_location",
           "friendlyName": "iPhone Philipp Geocoded Location",
           "cSharpName": "IphonePhilippGeocodedLocation"
-        },
-        {
-          "id": "sensor.iphone_philipp_gps_accuracy",
-          "friendlyName": "iPhone-Philipp GPS Accuracy",
-          "cSharpName": "IphonePhilippGpsAccuracy"
-        },
-        {
-          "id": "sensor.iphone_philipp_info",
-          "friendlyName": "iPhone-Philipp Info",
-          "cSharpName": "IphonePhilippInfo"
-        },
-        {
-          "id": "sensor.iphone_philipp_interval",
-          "friendlyName": "iPhone-Philipp Interval",
-          "cSharpName": "IphonePhilippInterval"
-        },
-        {
-          "id": "sensor.iphone_philipp_last_located",
-          "friendlyName": "iPhone-Philipp Last Located",
-          "cSharpName": "IphonePhilippLastLocated"
-        },
-        {
-          "id": "sensor.iphone_philipp_last_update",
-          "friendlyName": "iPhone-Philipp Last Update",
-          "cSharpName": "IphonePhilippLastUpdate"
         },
         {
           "id": "sensor.iphone_philipp_last_update_trigger",
@@ -3593,24 +4483,9 @@
           "cSharpName": "IphonePhilippLastUpdateTrigger"
         },
         {
-          "id": "sensor.iphone_philipp_last_zone",
-          "friendlyName": "iPhone-Philipp Last Zone",
-          "cSharpName": "IphonePhilippLastZone"
-        },
-        {
-          "id": "sensor.iphone_philipp_last_zone_fname",
-          "friendlyName": "iPhone-Philipp  Last Zone Fname",
-          "cSharpName": "IphonePhilippLastZoneFname"
-        },
-        {
-          "id": "sensor.iphone_philipp_next_update",
-          "friendlyName": "iPhone-Philipp Next Update",
-          "cSharpName": "IphonePhilippNextUpdate"
-        },
-        {
-          "id": "sensor.iphone_philipp_poll_count",
-          "friendlyName": "iPhone-Philipp Poll Count",
-          "cSharpName": "IphonePhilippPollCount"
+          "id": "sensor.iphone_philipp_location_permission",
+          "friendlyName": "iPhone Philipp Location permission",
+          "cSharpName": "IphonePhilippLocationPermission"
         },
         {
           "id": "sensor.iphone_philipp_sim_1",
@@ -3628,34 +4503,9 @@
           "cSharpName": "IphonePhilippSsid"
         },
         {
-          "id": "sensor.iphone_philipp_trigger",
-          "friendlyName": "iPhone-Philipp Trigger",
-          "cSharpName": "IphonePhilippTrigger"
-        },
-        {
-          "id": "sensor.iphone_philipp_zone",
-          "friendlyName": "iPhone-Philipp Zone",
-          "cSharpName": "IphonePhilippZone"
-        },
-        {
-          "id": "sensor.iphone_philipp_zone_fname",
-          "friendlyName": "iPhone-Philipp  Zone Fname",
-          "cSharpName": "IphonePhilippZoneFname"
-        },
-        {
-          "id": "sensor.iphone_philipp_zone_name",
-          "friendlyName": "iPhone-Philipp  Zone Name",
-          "cSharpName": "IphonePhilippZoneName"
-        },
-        {
-          "id": "sensor.iphone_philipp_zone_timestamp",
-          "friendlyName": "iPhone-Philipp Zone Timestamp",
-          "cSharpName": "IphonePhilippZoneTimestamp"
-        },
-        {
-          "id": "sensor.iphone_philipp_zone_title",
-          "friendlyName": "iPhone-Philipp  Zone Title",
-          "cSharpName": "IphonePhilippZoneTitle"
+          "id": "sensor.iphone_philipp_watch_battery_state",
+          "friendlyName": "iPhone Philipp Watch Battery State",
+          "cSharpName": "IphonePhilippWatchBatteryState"
         },
         {
           "id": "sensor.kitchen_cabinet_light_button_action",
@@ -3691,21 +4541,6 @@
           "id": "sensor.kitchen_ceiling_light_color_options",
           "friendlyName": "kitchen/ceiling_light Color options",
           "cSharpName": "KitchenCeilingLightColorOptions"
-        },
-        {
-          "id": "sensor.kitchen_kratom_counter_action",
-          "friendlyName": "kitchen/kratom_counter Action",
-          "cSharpName": "KitchenKratomCounterAction"
-        },
-        {
-          "id": "sensor.kitchen_kratom_counter_click",
-          "friendlyName": "kitchen/kratom_counter Click",
-          "cSharpName": "KitchenKratomCounterClick"
-        },
-        {
-          "id": "sensor.kitchen_kratom_counter_power_outage_count",
-          "friendlyName": "kitchen/kratom_counter Power outage count",
-          "cSharpName": "KitchenKratomCounterPowerOutageCount"
         },
         {
           "id": "sensor.kitchen_motion_detector_power_outage_count",
@@ -3763,11 +4598,6 @@
           "cSharpName": "LivingRoomBalconyAirQualityAirQuality"
         },
         {
-          "id": "sensor.living_room_balcony_motion_detector_power_outage_count",
-          "friendlyName": "living_room/balcony/motion_detector Power outage count",
-          "cSharpName": "LivingRoomBalconyMotionDetectorPowerOutageCount"
-        },
-        {
           "id": "sensor.living_room_lamp_switch_action",
           "friendlyName": "living_room/lamp_switch Action",
           "cSharpName": "LivingRoomLampSwitchAction"
@@ -3776,6 +4606,16 @@
           "id": "sensor.living_room_lamp_switch_click",
           "friendlyName": "living_room/lamp_switch Click",
           "cSharpName": "LivingRoomLampSwitchClick"
+        },
+        {
+          "id": "sensor.living_room_radiator_thermostat_setpoint_change_source",
+          "friendlyName": "living_room/radiator_thermostat Setpoint change source",
+          "cSharpName": "LivingRoomRadiatorThermostatSetpointChangeSource"
+        },
+        {
+          "id": "sensor.living_room_radiator_thermostat_valve_adapt_status",
+          "friendlyName": "living_room/radiator_thermostat Valve adapt status",
+          "cSharpName": "LivingRoomRadiatorThermostatValveAdaptStatus"
         },
         {
           "id": "sensor.living_roombluetooth_proxy_ble_devices_scanner",
@@ -3989,7 +4829,7 @@
         },
         {
           "id": "sensor.seventeentrack_package_1z14597w6808897066",
-          "friendlyName": "Seventeentrack Package: 1Z14597W6808897066",
+          "friendlyName": "17Track Package 1Z14597W6808897066",
           "cSharpName": "SeventeentrackPackage1z14597w6808897066"
         },
         {
@@ -4021,6 +4861,16 @@
           "id": "sensor.study_desk_lamp_switch_power_outage_count",
           "friendlyName": "study/desk_lamp_switch Power outage count",
           "cSharpName": "StudyDeskLampSwitchPowerOutageCount"
+        },
+        {
+          "id": "sensor.study_radiator_thermostat_setpoint_change_source",
+          "friendlyName": "study/radiator_thermostat Setpoint change source",
+          "cSharpName": "StudyRadiatorThermostatSetpointChangeSource"
+        },
+        {
+          "id": "sensor.study_radiator_thermostat_valve_adapt_status",
+          "friendlyName": "study/radiator_thermostat Valve adapt status",
+          "cSharpName": "StudyRadiatorThermostatValveAdaptStatus"
         },
         {
           "id": "sensor.sun_next_dawn",
@@ -4096,21 +4946,6 @@
           "id": "sensor.the_millionaires_bucket_list_philipp",
           "friendlyName": "\uD83D\uDCB8 The Millionaire\u2019s Bucket List \uD83D\uDCB8 Philipp",
           "cSharpName": "TheMillionairesBucketListPhilipp"
-        },
-        {
-          "id": "sensor.thermostat_arbeitszimmer",
-          "friendlyName": "Thermostat Arbeitszimmer",
-          "cSharpName": "ThermostatArbeitszimmer"
-        },
-        {
-          "id": "sensor.thermostat_badezimmer",
-          "friendlyName": "Thermostat Badezimmer",
-          "cSharpName": "ThermostatBadezimmer"
-        },
-        {
-          "id": "sensor.thermostat_wohnzimmer",
-          "friendlyName": "Thermostat Wohnzimmer",
-          "cSharpName": "ThermostatWohnzimmer"
         },
         {
           "id": "sensor.times",
@@ -4763,6 +5598,156 @@
           "jsonName": "Restm\u00FCll",
           "cSharpName": "Restmll",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "motor_speed",
+          "cSharpName": "MotorSpeed",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "trigger_count",
+          "cSharpName": "TriggerCount",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "boost",
+          "cSharpName": "Boost",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "boost_heating",
+          "cSharpName": "BoostHeating",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "child_lock",
+          "cSharpName": "ChildLock",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "display_brightness",
+          "cSharpName": "DisplayBrightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_ontime",
+          "cSharpName": "DisplayOntime",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_orientation",
+          "cSharpName": "DisplayOrientation",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "displayed_temperature",
+          "cSharpName": "DisplayedTemperature",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "local_temperature",
+          "cSharpName": "LocalTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "local_temperature_calibration",
+          "cSharpName": "LocalTemperatureCalibration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "occupied_heating_setpoint",
+          "cSharpName": "OccupiedHeatingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "operating_mode",
+          "cSharpName": "OperatingMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "pi_heating_demand",
+          "cSharpName": "PiHeatingDemand",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "remote_temperature",
+          "cSharpName": "RemoteTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "running_state",
+          "cSharpName": "RunningState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "setpoint_change_source",
+          "cSharpName": "SetpointChangeSource",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "system_mode",
+          "cSharpName": "SystemMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "valve_adapt_process",
+          "cSharpName": "ValveAdaptProcess",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "valve_adapt_status",
+          "cSharpName": "ValveAdaptStatus",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_detection",
+          "cSharpName": "WindowDetection",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_open",
+          "cSharpName": "WindowOpen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "ac_status",
+          "cSharpName": "AcStatus",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "battery_defect",
+          "cSharpName": "BatteryDefect",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "contact",
+          "cSharpName": "Contact",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "restore_reports",
+          "cSharpName": "RestoreReports",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supervision_reports",
+          "cSharpName": "SupervisionReports",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "test",
+          "cSharpName": "Test",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "trouble",
+          "cSharpName": "Trouble",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "vibration",
+          "cSharpName": "Vibration",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -4786,6 +5771,16 @@
           "cSharpName": "AmcEntertainmentHoldingsInc"
         },
         {
+          "id": "sensor.bathroom_radiator_thermostat_battery",
+          "friendlyName": "bathroom/radiator_thermostat Battery",
+          "cSharpName": "BathroomRadiatorThermostatBattery"
+        },
+        {
+          "id": "sensor.bathroom_radiator_thermostat_pi_heating_demand",
+          "friendlyName": "bathroom/radiator_thermostat PI heating demand",
+          "cSharpName": "BathroomRadiatorThermostatPiHeatingDemand"
+        },
+        {
           "id": "sensor.bathroom_razor_blade_usage_battery",
           "friendlyName": "bathroom/razor_blade_usage Battery",
           "cSharpName": "BathroomRazorBladeUsageBattery"
@@ -4804,6 +5799,16 @@
           "id": "sensor.bathroom_washing_machine_water_leak_sensor_device_temperature",
           "friendlyName": "bathroom/washing_machine_water_leak_sensor Temperature",
           "cSharpName": "BathroomWashingMachineWaterLeakSensorDeviceTemperature"
+        },
+        {
+          "id": "sensor.bathroom_window_sensor_battery",
+          "friendlyName": "bathroom/window_sensor Battery",
+          "cSharpName": "BathroomWindowSensorBattery"
+        },
+        {
+          "id": "sensor.bathroom_window_sensor_device_temperature",
+          "friendlyName": "bathroom/window_sensor Temperature",
+          "cSharpName": "BathroomWindowSensorDeviceTemperature"
         },
         {
           "id": "sensor.bedroom_bedside_light_switch_fabienne_battery",
@@ -4846,6 +5851,16 @@
           "cSharpName": "BedroomMotionDetectorTemperature"
         },
         {
+          "id": "sensor.bedroom_radiator_thermostat_battery",
+          "friendlyName": "bedroom/radiator_thermostat Battery",
+          "cSharpName": "BedroomRadiatorThermostatBattery"
+        },
+        {
+          "id": "sensor.bedroom_radiator_thermostat_pi_heating_demand",
+          "friendlyName": "bedroom/radiator_thermostat PI heating demand",
+          "cSharpName": "BedroomRadiatorThermostatPiHeatingDemand"
+        },
+        {
           "id": "sensor.bedroom_roller_shutter_left_battery",
           "friendlyName": "bedroom/roller_shutter_left Battery",
           "cSharpName": "BedroomRollerShutterLeftBattery"
@@ -4866,9 +5881,24 @@
           "cSharpName": "BedroomRollerShutterRightDeviceTemperature"
         },
         {
+          "id": "sensor.bedroom_room_thermostat_battery",
+          "friendlyName": "bedroom/room_thermostat Battery",
+          "cSharpName": "BedroomRoomThermostatBattery"
+        },
+        {
+          "id": "sensor.bedroom_room_thermostat_humidity",
+          "friendlyName": "bedroom/room_thermostat Humidity",
+          "cSharpName": "BedroomRoomThermostatHumidity"
+        },
+        {
           "id": "sensor.bedroom_weight_sensor_philipp_weight_sensor_philipp",
           "friendlyName": "bedroom/weight_sensor_philipp Weight Sensor Philipp",
           "cSharpName": "BedroomWeightSensorPhilippWeightSensorPhilipp"
+        },
+        {
+          "id": "sensor.bedroom_window_sensor_battery",
+          "friendlyName": "bedroom/window_sensor Battery",
+          "cSharpName": "BedroomWindowSensorBattery"
         },
         {
           "id": "sensor.blackberry_ltd",
@@ -4879,6 +5909,11 @@
           "id": "sensor.core_dax",
           "friendlyName": "Core DAX",
           "cSharpName": "CoreDax"
+        },
+        {
+          "id": "sensor.fantenphone_watch_battery",
+          "friendlyName": "FantenPhone Watch Battery",
+          "cSharpName": "FantenphoneWatchBattery"
         },
         {
           "id": "sensor.farn_air_humidity",
@@ -5021,19 +6056,9 @@
           "cSharpName": "IphonePhilippAverageActivePace"
         },
         {
-          "id": "sensor.iphone_philipp_battery",
-          "friendlyName": "iPhone-Philipp Battery",
-          "cSharpName": "IphonePhilippBattery"
-        },
-        {
           "id": "sensor.iphone_philipp_battery_level",
           "friendlyName": "iPhone Philipp Battery Level",
           "cSharpName": "IphonePhilippBatteryLevel"
-        },
-        {
-          "id": "sensor.iphone_philipp_calc_distance",
-          "friendlyName": "iPhone-Philipp Calc Dist",
-          "cSharpName": "IphonePhilippCalcDistance"
         },
         {
           "id": "sensor.iphone_philipp_distance",
@@ -5061,29 +6086,9 @@
           "cSharpName": "IphonePhilippStorage"
         },
         {
-          "id": "sensor.iphone_philipp_travel_distance",
-          "friendlyName": "iPhone-Philipp Travel Dist",
-          "cSharpName": "IphonePhilippTravelDistance"
-        },
-        {
-          "id": "sensor.iphone_philipp_travel_time",
-          "friendlyName": "iPhone-Philipp Travel Time",
-          "cSharpName": "IphonePhilippTravelTime"
-        },
-        {
-          "id": "sensor.iphone_philipp_travel_time_min",
-          "friendlyName": "iPhone-Philipp Travel Time",
-          "cSharpName": "IphonePhilippTravelTimeMin"
-        },
-        {
-          "id": "sensor.iphone_philipp_waze_distance",
-          "friendlyName": "iPhone-Philipp Waze Dist",
-          "cSharpName": "IphonePhilippWazeDistance"
-        },
-        {
-          "id": "sensor.iphone_philipp_zone_distance",
-          "friendlyName": "iPhone-Philipp Zone Distance",
-          "cSharpName": "IphonePhilippZoneDistance"
+          "id": "sensor.iphone_philipp_watch_battery",
+          "friendlyName": "iPhone Philipp Watch Battery",
+          "cSharpName": "IphonePhilippWatchBattery"
         },
         {
           "id": "sensor.issues",
@@ -5126,16 +6131,6 @@
           "cSharpName": "KitchenDishwasherWaterLeakSensorBattery"
         },
         {
-          "id": "sensor.kitchen_kratom_counter_battery",
-          "friendlyName": "kitchen/kratom_counter Battery",
-          "cSharpName": "KitchenKratomCounterBattery"
-        },
-        {
-          "id": "sensor.kitchen_kratom_counter_device_temperature",
-          "friendlyName": "kitchen/kratom_counter Temperature",
-          "cSharpName": "KitchenKratomCounterDeviceTemperature"
-        },
-        {
           "id": "sensor.kitchen_motion_detector_battery",
           "friendlyName": "kitchen/motion_detector Battery",
           "cSharpName": "KitchenMotionDetectorBattery"
@@ -5154,6 +6149,26 @@
           "id": "sensor.kitchen_motion_detector_temperature",
           "friendlyName": "kitchen/motion_detector_temperature",
           "cSharpName": "KitchenMotionDetectorTemperature"
+        },
+        {
+          "id": "sensor.kitchen_neon_clock_current_2",
+          "friendlyName": "kitchen/neon_clock Current",
+          "cSharpName": "KitchenNeonClockCurrent2"
+        },
+        {
+          "id": "sensor.kitchen_neon_clock_electricity",
+          "friendlyName": "kitchen/neon_clock Electricity",
+          "cSharpName": "KitchenNeonClockElectricity"
+        },
+        {
+          "id": "sensor.kitchen_neon_clock_power",
+          "friendlyName": "kitchen/neon_clock Power",
+          "cSharpName": "KitchenNeonClockPower"
+        },
+        {
+          "id": "sensor.kitchen_neon_clock_voltage_2",
+          "friendlyName": "kitchen/neon_clock Voltage",
+          "cSharpName": "KitchenNeonClockVoltage2"
         },
         {
           "id": "sensor.kitchen_pineapple_string_lights_wifi_status",
@@ -5191,21 +6206,6 @@
           "cSharpName": "LivingRoomBalconyLightSensorIlluminanceLux"
         },
         {
-          "id": "sensor.living_room_balcony_motion_detector_battery",
-          "friendlyName": "living_room/balcony/motion_detector Battery",
-          "cSharpName": "LivingRoomBalconyMotionDetectorBattery"
-        },
-        {
-          "id": "sensor.living_room_balcony_motion_detector_device_temperature",
-          "friendlyName": "living_room/balcony/motion_detector Temperature",
-          "cSharpName": "LivingRoomBalconyMotionDetectorDeviceTemperature"
-        },
-        {
-          "id": "sensor.living_room_balcony_motion_detector_illuminance_lux",
-          "friendlyName": "living_room/balcony/motion_detector Illuminance",
-          "cSharpName": "LivingRoomBalconyMotionDetectorIlluminanceLux"
-        },
-        {
           "id": "sensor.living_room_cat_fountain_energy",
           "friendlyName": "living_room/cat_fountain Energy",
           "cSharpName": "LivingRoomCatFountainEnergy"
@@ -5214,6 +6214,46 @@
           "id": "sensor.living_room_cat_fountain_power",
           "friendlyName": "living_room/cat_fountain Power",
           "cSharpName": "LivingRoomCatFountainPower"
+        },
+        {
+          "id": "sensor.living_room_contract_light_current",
+          "friendlyName": "living_room/contract_light Current",
+          "cSharpName": "LivingRoomContractLightCurrent"
+        },
+        {
+          "id": "sensor.living_room_contract_light_electricity",
+          "friendlyName": "living_room/contract_light Electricity",
+          "cSharpName": "LivingRoomContractLightElectricity"
+        },
+        {
+          "id": "sensor.living_room_contract_light_power",
+          "friendlyName": "living_room/contract_light Power",
+          "cSharpName": "LivingRoomContractLightPower"
+        },
+        {
+          "id": "sensor.living_room_contract_light_voltage",
+          "friendlyName": "living_room/contract_light Voltage",
+          "cSharpName": "LivingRoomContractLightVoltage"
+        },
+        {
+          "id": "sensor.living_room_lightbar_current_2",
+          "friendlyName": "living_room/lightbar Current",
+          "cSharpName": "LivingRoomLightbarCurrent2"
+        },
+        {
+          "id": "sensor.living_room_lightbar_electricity",
+          "friendlyName": "living_room/lightbar Electricity",
+          "cSharpName": "LivingRoomLightbarElectricity"
+        },
+        {
+          "id": "sensor.living_room_lightbar_power",
+          "friendlyName": "living_room/lightbar Power",
+          "cSharpName": "LivingRoomLightbarPower"
+        },
+        {
+          "id": "sensor.living_room_lightbar_voltage_2",
+          "friendlyName": "living_room/lightbar Voltage",
+          "cSharpName": "LivingRoomLightbarVoltage2"
         },
         {
           "id": "sensor.living_room_lightbulbs_energy",
@@ -5226,6 +6266,16 @@
           "cSharpName": "LivingRoomLightbulbsPower"
         },
         {
+          "id": "sensor.living_room_radiator_thermostat_battery",
+          "friendlyName": "living_room/radiator_thermostat Battery",
+          "cSharpName": "LivingRoomRadiatorThermostatBattery"
+        },
+        {
+          "id": "sensor.living_room_radiator_thermostat_pi_heating_demand",
+          "friendlyName": "living_room/radiator_thermostat PI heating demand",
+          "cSharpName": "LivingRoomRadiatorThermostatPiHeatingDemand"
+        },
+        {
           "id": "sensor.living_room_record_player_energy",
           "friendlyName": "living_room/record_player Energy",
           "cSharpName": "LivingRoomRecordPlayerEnergy"
@@ -5236,6 +6286,16 @@
           "cSharpName": "LivingRoomRecordPlayerPower"
         },
         {
+          "id": "sensor.living_room_smoke_detector_battery",
+          "friendlyName": "living_room/smoke_detector Battery",
+          "cSharpName": "LivingRoomSmokeDetectorBattery"
+        },
+        {
+          "id": "sensor.living_room_smoke_detector_smoke_concentration",
+          "friendlyName": "living_room/smoke_detector Smoke concentration",
+          "cSharpName": "LivingRoomSmokeDetectorSmokeConcentration"
+        },
+        {
           "id": "sensor.living_room_subwoofer_energy",
           "friendlyName": "living_room/subwoofer Energy",
           "cSharpName": "LivingRoomSubwooferEnergy"
@@ -5244,6 +6304,26 @@
           "id": "sensor.living_room_subwoofer_power",
           "friendlyName": "living_room/subwoofer Power",
           "cSharpName": "LivingRoomSubwooferPower"
+        },
+        {
+          "id": "sensor.living_room_window_sensor_left_battery",
+          "friendlyName": "living_room/window_sensor_left Battery",
+          "cSharpName": "LivingRoomWindowSensorLeftBattery"
+        },
+        {
+          "id": "sensor.living_room_window_sensor_left_device_temperature",
+          "friendlyName": "living_room/window_sensor_left Temperature",
+          "cSharpName": "LivingRoomWindowSensorLeftDeviceTemperature"
+        },
+        {
+          "id": "sensor.living_room_window_sensor_right_battery",
+          "friendlyName": "living_room/window_sensor_right Battery",
+          "cSharpName": "LivingRoomWindowSensorRightBattery"
+        },
+        {
+          "id": "sensor.living_room_window_sensor_right_device_temperature",
+          "friendlyName": "living_room/window_sensor_right Temperature",
+          "cSharpName": "LivingRoomWindowSensorRightDeviceTemperature"
         },
         {
           "id": "sensor.living_roombluetooth_proxy_xiaomi_hhccjcy01_1_battery_level",
@@ -5317,162 +6397,162 @@
         },
         {
           "id": "sensor.miflora_12aefa_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-12AEFA HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "Miflora12aefaHhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_12aefa_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-12AEFA HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "Miflora12aefaHhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_12aefa_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-12AEFA HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "Miflora12aefaHhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_12aefa_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-12AEFA HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "Miflora12aefaHhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_12afc7_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-12AFC7 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "Miflora12afc7Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_12afc7_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-12AFC7 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "Miflora12afc7Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_12afc7_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-12AFC7 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "Miflora12afc7Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_12afc7_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-12AFC7 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "Miflora12afc7Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_12afe4_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-12AFE4 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "Miflora12afe4Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_12afe4_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-12AFE4 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "Miflora12afe4Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_12afe4_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-12AFE4 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "Miflora12afe4Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_12afe4_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-12AFE4 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "Miflora12afe4Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_12aff3_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-12AFF3 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "Miflora12aff3Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_12aff3_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-12AFF3 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "Miflora12aff3Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_12aff3_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-12AFF3 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "Miflora12aff3Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_12aff3_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-12AFF3 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "Miflora12aff3Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB10204Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB10204Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB10204Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b10204_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B10204 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB10204Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB10206Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB10206Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB10206Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b10206_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B10206 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB10206Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB10208Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB10208Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB10208Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b10208_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B10208 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB10208Hhccjcy01hhccTempc"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_fer",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-fer",
+          "friendlyName": "HHCCJCY01HHCC-fer",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccFer"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_lux",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-lux",
+          "friendlyName": "HHCCJCY01HHCC-lux",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccLux"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_moi",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-moi",
+          "friendlyName": "HHCCJCY01HHCC-moi",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccMoi"
         },
         {
           "id": "sensor.miflora_b102e6_hhccjcy01hhcc_tempc",
-          "friendlyName": "MiFlora-B102E6 HHCCJCY01HHCC-tempc",
+          "friendlyName": "HHCCJCY01HHCC-tempc",
           "cSharpName": "MifloraB102e6Hhccjcy01hhccTempc"
         },
         {
@@ -5606,16 +6686,6 @@
           "cSharpName": "PupsstationVolumeUsed"
         },
         {
-          "id": "sensor.raumthermostat_schlafzimmer_humidity",
-          "friendlyName": "Raumthermostat Schlafzimmer Humidity",
-          "cSharpName": "RaumthermostatSchlafzimmerHumidity"
-        },
-        {
-          "id": "sensor.raumthermostat_schlafzimmer_temperature",
-          "friendlyName": "Raumthermostat Schlafzimmer Temperature",
-          "cSharpName": "RaumthermostatSchlafzimmerTemperature"
-        },
-        {
           "id": "sensor.roborock_s7_pro_ultra_battery",
           "friendlyName": "Roborock S7 Pro Ultra Battery",
           "cSharpName": "RoborockS7ProUltraBattery"
@@ -5662,37 +6732,37 @@
         },
         {
           "id": "sensor.seventeentrack_packages_delivered",
-          "friendlyName": "Seventeentrack Packages Delivered",
+          "friendlyName": "17Track Delivered",
           "cSharpName": "SeventeentrackPackagesDelivered"
         },
         {
           "id": "sensor.seventeentrack_packages_expired",
-          "friendlyName": "Seventeentrack Packages Expired",
+          "friendlyName": "17Track Expired",
           "cSharpName": "SeventeentrackPackagesExpired"
         },
         {
           "id": "sensor.seventeentrack_packages_in_transit",
-          "friendlyName": "Seventeentrack Packages In Transit",
+          "friendlyName": "17Track In transit",
           "cSharpName": "SeventeentrackPackagesInTransit"
         },
         {
           "id": "sensor.seventeentrack_packages_not_found",
-          "friendlyName": "Seventeentrack Packages Not Found",
+          "friendlyName": "17Track Not found",
           "cSharpName": "SeventeentrackPackagesNotFound"
         },
         {
           "id": "sensor.seventeentrack_packages_ready_to_be_picked_up",
-          "friendlyName": "Seventeentrack Packages Ready to be Picked Up",
+          "friendlyName": "17Track Ready to be picked up",
           "cSharpName": "SeventeentrackPackagesReadyToBePickedUp"
         },
         {
           "id": "sensor.seventeentrack_packages_returned",
-          "friendlyName": "Seventeentrack Packages Returned",
+          "friendlyName": "17Track Returned",
           "cSharpName": "SeventeentrackPackagesReturned"
         },
         {
           "id": "sensor.seventeentrack_packages_undelivered",
-          "friendlyName": "Seventeentrack Packages Undelivered",
+          "friendlyName": "17Track Undelivered",
           "cSharpName": "SeventeentrackPackagesUndelivered"
         },
         {
@@ -5786,31 +6856,6 @@
           "cSharpName": "StockMetroAgTotalvalue"
         },
         {
-          "id": "sensor.study_air_quality_sensor_carbon_dioxide",
-          "friendlyName": "study/air_quality_sensor Carbon dioxide",
-          "cSharpName": "StudyAirQualitySensorCarbonDioxide"
-        },
-        {
-          "id": "sensor.study_air_quality_sensor_formaldehyd",
-          "friendlyName": "study/air_quality_sensor Formaldehyd",
-          "cSharpName": "StudyAirQualitySensorFormaldehyd"
-        },
-        {
-          "id": "sensor.study_air_quality_sensor_humidity",
-          "friendlyName": "study/air_quality_sensor Humidity",
-          "cSharpName": "StudyAirQualitySensorHumidity"
-        },
-        {
-          "id": "sensor.study_air_quality_sensor_temperature",
-          "friendlyName": "study/air_quality_sensor Temperature",
-          "cSharpName": "StudyAirQualitySensorTemperature"
-        },
-        {
-          "id": "sensor.study_air_quality_sensor_voc",
-          "friendlyName": "study/air_quality_sensor VOC",
-          "cSharpName": "StudyAirQualitySensorVoc"
-        },
-        {
           "id": "sensor.study_desk_lamp_switch_battery",
           "friendlyName": "study/desk_lamp_switch Battery",
           "cSharpName": "StudyDeskLampSwitchBattery"
@@ -5821,59 +6866,64 @@
           "cSharpName": "StudyDeskLampSwitchDeviceTemperature"
         },
         {
+          "id": "sensor.study_radiator_thermostat_battery",
+          "friendlyName": "study/radiator_thermostat Battery",
+          "cSharpName": "StudyRadiatorThermostatBattery"
+        },
+        {
+          "id": "sensor.study_radiator_thermostat_pi_heating_demand",
+          "friendlyName": "study/radiator_thermostat PI heating demand",
+          "cSharpName": "StudyRadiatorThermostatPiHeatingDemand"
+        },
+        {
+          "id": "sensor.study_smoke_detector_battery",
+          "friendlyName": "study/smoke_detector Battery",
+          "cSharpName": "StudySmokeDetectorBattery"
+        },
+        {
+          "id": "sensor.study_smoke_detector_smoke_concentration",
+          "friendlyName": "study/smoke_detector Smoke concentration",
+          "cSharpName": "StudySmokeDetectorSmokeConcentration"
+        },
+        {
+          "id": "sensor.study_speakers_philipp_current",
+          "friendlyName": "study/speakers_philipp Current",
+          "cSharpName": "StudySpeakersPhilippCurrent"
+        },
+        {
+          "id": "sensor.study_speakers_philipp_electricity",
+          "friendlyName": "study/speakers_philipp Electricity",
+          "cSharpName": "StudySpeakersPhilippElectricity"
+        },
+        {
+          "id": "sensor.study_speakers_philipp_power",
+          "friendlyName": "study/speakers_philipp Power",
+          "cSharpName": "StudySpeakersPhilippPower"
+        },
+        {
+          "id": "sensor.study_speakers_philipp_voltage",
+          "friendlyName": "study/speakers_philipp Voltage",
+          "cSharpName": "StudySpeakersPhilippVoltage"
+        },
+        {
+          "id": "sensor.study_window_sensor_battery",
+          "friendlyName": "study/window_sensor Battery",
+          "cSharpName": "StudyWindowSensorBattery"
+        },
+        {
+          "id": "sensor.study_window_sensor_device_temperature",
+          "friendlyName": "study/window_sensor Temperature",
+          "cSharpName": "StudyWindowSensorDeviceTemperature"
+        },
+        {
           "id": "sensor.studyunused_usb_relay_1_wifi_status",
           "friendlyName": "living_room/picture_lights WiFi Status",
           "cSharpName": "StudyunusedUsbRelay1WifiStatus"
         },
         {
-          "id": "sensor.thermostat_arbeitszimmer_temperature",
-          "friendlyName": "Thermostat Arbeitszimmer Temperature",
-          "cSharpName": "ThermostatArbeitszimmerTemperature"
-        },
-        {
-          "id": "sensor.thermostat_arbeitszimmer_valvetappet",
-          "friendlyName": "Thermostat Arbeitszimmer Valvetappet",
-          "cSharpName": "ThermostatArbeitszimmerValvetappet"
-        },
-        {
-          "id": "sensor.thermostat_badezimmer_temperature",
-          "friendlyName": "Thermostat Badezimmer Temperature",
-          "cSharpName": "ThermostatBadezimmerTemperature"
-        },
-        {
-          "id": "sensor.thermostat_badezimmer_valvetappet",
-          "friendlyName": "Thermostat Badezimmer Valvetappet",
-          "cSharpName": "ThermostatBadezimmerValvetappet"
-        },
-        {
-          "id": "sensor.thermostat_kuche_temperature",
-          "friendlyName": "Thermostat K\u00FCche Temperature",
-          "cSharpName": "ThermostatKucheTemperature"
-        },
-        {
-          "id": "sensor.thermostat_kuche_valvetappet",
-          "friendlyName": "Thermostat K\u00FCche Valvetappet",
-          "cSharpName": "ThermostatKucheValvetappet"
-        },
-        {
-          "id": "sensor.thermostat_schlafzimmer_temperature",
-          "friendlyName": "Thermostat Schlafzimmer Temperature",
-          "cSharpName": "ThermostatSchlafzimmerTemperature"
-        },
-        {
-          "id": "sensor.thermostat_schlafzimmer_valvetappet",
-          "friendlyName": "Thermostat Schlafzimmer Valvetappet",
-          "cSharpName": "ThermostatSchlafzimmerValvetappet"
-        },
-        {
-          "id": "sensor.thermostat_wohnzimmer_temperature",
-          "friendlyName": "Thermostat Wohnzimmer Temperature",
-          "cSharpName": "ThermostatWohnzimmerTemperature"
-        },
-        {
-          "id": "sensor.thermostat_wohnzimmer_valvetappet",
-          "friendlyName": "Thermostat Wohnzimmer Valvetappet",
-          "cSharpName": "ThermostatWohnzimmerValvetappet"
+          "id": "sensor.studyunused_usb_relay_2_wifi_status",
+          "friendlyName": "study/unused_usb_relay_2 WiFi Status",
+          "cSharpName": "StudyunusedUsbRelay2WifiStatus"
         },
         {
           "id": "sensor.wallpanel_hallway_battery_level",
@@ -6376,6 +7426,186 @@
           "jsonName": "detection_period",
           "cSharpName": "DetectionPeriod",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "raw_state",
+          "cSharpName": "RawState",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "countdown",
+          "cSharpName": "Countdown",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "motor_speed",
+          "cSharpName": "MotorSpeed",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "trigger_count",
+          "cSharpName": "TriggerCount",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "device_fault",
+          "cSharpName": "DeviceFault",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "silence",
+          "cSharpName": "Silence",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "smoke",
+          "cSharpName": "Smoke",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "smoke_concentration",
+          "cSharpName": "SmokeConcentration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "test",
+          "cSharpName": "Test",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "boost",
+          "cSharpName": "Boost",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "boost_heating",
+          "cSharpName": "BoostHeating",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "display_brightness",
+          "cSharpName": "DisplayBrightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_ontime",
+          "cSharpName": "DisplayOntime",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_orientation",
+          "cSharpName": "DisplayOrientation",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "displayed_temperature",
+          "cSharpName": "DisplayedTemperature",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "local_temperature",
+          "cSharpName": "LocalTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "local_temperature_calibration",
+          "cSharpName": "LocalTemperatureCalibration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "occupied_heating_setpoint",
+          "cSharpName": "OccupiedHeatingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "operating_mode",
+          "cSharpName": "OperatingMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "pi_heating_demand",
+          "cSharpName": "PiHeatingDemand",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "remote_temperature",
+          "cSharpName": "RemoteTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "running_state",
+          "cSharpName": "RunningState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "setpoint_change_source",
+          "cSharpName": "SetpointChangeSource",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "system_mode",
+          "cSharpName": "SystemMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "valve_adapt_process",
+          "cSharpName": "ValveAdaptProcess",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "valve_adapt_status",
+          "cSharpName": "ValveAdaptStatus",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_detection",
+          "cSharpName": "WindowDetection",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_open",
+          "cSharpName": "WindowOpen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "keypad_lockout",
+          "cSharpName": "KeypadLockout",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "occupied_cooling_setpoint",
+          "cSharpName": "OccupiedCoolingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "ac_status",
+          "cSharpName": "AcStatus",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "battery_defect",
+          "cSharpName": "BatteryDefect",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "restore_reports",
+          "cSharpName": "RestoreReports",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supervision_reports",
+          "cSharpName": "SupervisionReports",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "trouble",
+          "cSharpName": "Trouble",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "vibration",
+          "cSharpName": "Vibration",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -6450,6 +7680,26 @@
           "cSharpName": "AdaptiveDrc"
         },
         {
+          "id": "switch.bathroom_radiator_thermostat_boost_heating",
+          "friendlyName": "bathroom/radiator_thermostat Boost heating",
+          "cSharpName": "BathroomRadiatorThermostatBoostHeating"
+        },
+        {
+          "id": "switch.bathroom_radiator_thermostat_child_lock",
+          "friendlyName": "bathroom/radiator_thermostat Child lock",
+          "cSharpName": "BathroomRadiatorThermostatChildLock"
+        },
+        {
+          "id": "switch.bathroom_radiator_thermostat_valve_adapt_process",
+          "friendlyName": "bathroom/radiator_thermostat Trigger adaptation process",
+          "cSharpName": "BathroomRadiatorThermostatValveAdaptProcess"
+        },
+        {
+          "id": "switch.bathroom_radiator_thermostat_window_detection",
+          "friendlyName": "bathroom/radiator_thermostat Window detection",
+          "cSharpName": "BathroomRadiatorThermostatWindowDetection"
+        },
+        {
           "id": "switch.bathroomdiffuser_bathroom_diffuser",
           "friendlyName": "bathroom/diffuser Bathroom diffuser",
           "cSharpName": "BathroomdiffuserBathroomDiffuser"
@@ -6458,6 +7708,41 @@
           "id": "switch.bedroom_lava_lamp",
           "friendlyName": "bedroom/lava_lamp",
           "cSharpName": "BedroomLavaLamp"
+        },
+        {
+          "id": "switch.bedroom_radiator_thermostat_boost_heating",
+          "friendlyName": "bedroom/radiator_thermostat Boost heating",
+          "cSharpName": "BedroomRadiatorThermostatBoostHeating"
+        },
+        {
+          "id": "switch.bedroom_radiator_thermostat_child_lock",
+          "friendlyName": "bedroom/radiator_thermostat Child lock",
+          "cSharpName": "BedroomRadiatorThermostatChildLock"
+        },
+        {
+          "id": "switch.bedroom_radiator_thermostat_valve_adapt_process",
+          "friendlyName": "bedroom/radiator_thermostat Trigger adaptation process",
+          "cSharpName": "BedroomRadiatorThermostatValveAdaptProcess"
+        },
+        {
+          "id": "switch.bedroom_radiator_thermostat_window_detection",
+          "friendlyName": "bedroom/radiator_thermostat Window detection",
+          "cSharpName": "BedroomRadiatorThermostatWindowDetection"
+        },
+        {
+          "id": "switch.bedroom_room_thermostat_boost_heating",
+          "friendlyName": "bedroom/room_thermostat Boost heating",
+          "cSharpName": "BedroomRoomThermostatBoostHeating"
+        },
+        {
+          "id": "switch.bedroom_room_thermostat_child_lock",
+          "friendlyName": "bedroom/room_thermostat Child lock",
+          "cSharpName": "BedroomRoomThermostatChildLock"
+        },
+        {
+          "id": "switch.bedroom_room_thermostat_window_detection",
+          "friendlyName": "bedroom/room_thermostat Window detection",
+          "cSharpName": "BedroomRoomThermostatWindowDetection"
         },
         {
           "id": "switch.cloud_alexa",
@@ -6505,14 +7790,19 @@
           "cSharpName": "ExtraBass"
         },
         {
-          "id": "switch.fenster_schlafzimmer",
-          "friendlyName": "Fenster Schlafzimmer",
-          "cSharpName": "FensterSchlafzimmer"
+          "id": "switch.intelligent_shopping_list_active",
+          "friendlyName": "Intelligent shopping list sort in progress",
+          "cSharpName": "IntelligentShoppingListActive"
         },
         {
-          "id": "switch.kitchen_neon_clock",
-          "friendlyName": "kitchen/neon_clock",
-          "cSharpName": "KitchenNeonClock"
+          "id": "switch.intelligent_shopping_list_dry_run",
+          "friendlyName": "Dry run",
+          "cSharpName": "IntelligentShoppingListDryRun"
+        },
+        {
+          "id": "switch.kitchen_neon_clock_switch_1",
+          "friendlyName": "kitchen/neon_clock Switch 1",
+          "cSharpName": "KitchenNeonClockSwitch1"
         },
         {
           "id": "switch.kitchen_pineapple_string_lights_usb_relay",
@@ -6520,24 +7810,19 @@
           "cSharpName": "KitchenPineappleStringLightsUsbRelay"
         },
         {
-          "id": "switch.living_room_buddha_fountain",
-          "friendlyName": "living_room/buddha_fountain",
-          "cSharpName": "LivingRoomBuddhaFountain"
-        },
-        {
           "id": "switch.living_room_cat_fountain",
           "friendlyName": "living_room/cat_fountain",
           "cSharpName": "LivingRoomCatFountain"
         },
         {
-          "id": "switch.living_room_contract_light",
-          "friendlyName": "living_room/contract_light",
-          "cSharpName": "LivingRoomContractLight"
+          "id": "switch.living_room_contract_light_switch_1",
+          "friendlyName": "living_room/contract_light Switch 1",
+          "cSharpName": "LivingRoomContractLightSwitch1"
         },
         {
-          "id": "switch.living_room_lightbar",
-          "friendlyName": "living_room/lightbar",
-          "cSharpName": "LivingRoomLightbar"
+          "id": "switch.living_room_lightbar_switch_1",
+          "friendlyName": "living_room/lightbar Switch 1",
+          "cSharpName": "LivingRoomLightbarSwitch1"
         },
         {
           "id": "switch.living_room_lightbulbs",
@@ -6545,9 +7830,34 @@
           "cSharpName": "LivingRoomLightbulbs"
         },
         {
+          "id": "switch.living_room_lightstrip_do_not_disturb",
+          "friendlyName": "living_room/lightstrip Do not disturb",
+          "cSharpName": "LivingRoomLightstripDoNotDisturb"
+        },
+        {
           "id": "switch.living_room_pineapple_neon_light_usb_relay",
           "friendlyName": "living_room/pineapple_neon_light USB Relay",
           "cSharpName": "LivingRoomPineappleNeonLightUsbRelay"
+        },
+        {
+          "id": "switch.living_room_radiator_thermostat_boost_heating",
+          "friendlyName": "living_room/radiator_thermostat Boost heating",
+          "cSharpName": "LivingRoomRadiatorThermostatBoostHeating"
+        },
+        {
+          "id": "switch.living_room_radiator_thermostat_child_lock",
+          "friendlyName": "living_room/radiator_thermostat Child lock",
+          "cSharpName": "LivingRoomRadiatorThermostatChildLock"
+        },
+        {
+          "id": "switch.living_room_radiator_thermostat_valve_adapt_process",
+          "friendlyName": "living_room/radiator_thermostat Trigger adaptation process",
+          "cSharpName": "LivingRoomRadiatorThermostatValveAdaptProcess"
+        },
+        {
+          "id": "switch.living_room_radiator_thermostat_window_detection",
+          "friendlyName": "living_room/radiator_thermostat Window detection",
+          "cSharpName": "LivingRoomRadiatorThermostatWindowDetection"
         },
         {
           "id": "switch.living_room_record_player",
@@ -6555,14 +7865,14 @@
           "cSharpName": "LivingRoomRecordPlayer"
         },
         {
+          "id": "switch.living_room_smoke_detector_silence",
+          "friendlyName": "living_room/smoke_detector Silence",
+          "cSharpName": "LivingRoomSmokeDetectorSilence"
+        },
+        {
           "id": "switch.living_room_subwoofer",
           "friendlyName": "living_room/subwoofer",
           "cSharpName": "LivingRoomSubwoofer"
-        },
-        {
-          "id": "switch.living_room_twtyh_diorama",
-          "friendlyName": "living_room/twtyh_diorama",
-          "cSharpName": "LivingRoomTwtyhDiorama"
         },
         {
           "id": "switch.living_roompicture_lights_usb_relay",
@@ -6640,11 +7950,6 @@
           "cSharpName": "PureDirect"
         },
         {
-          "id": "switch.raumthermostat_schlafzimmer_childlock",
-          "friendlyName": "Raumthermostat Schlafzimmer ChildLock",
-          "cSharpName": "RaumthermostatSchlafzimmerChildlock"
-        },
-        {
           "id": "switch.roborock_s7_pro_ultra_child_lock",
           "friendlyName": "Roborock S7 Pro Ultra Child lock",
           "cSharpName": "RoborockS7ProUltraChildLock"
@@ -6655,34 +7960,84 @@
           "cSharpName": "RoborockS7ProUltraDoNotDisturb"
         },
         {
-          "id": "switch.study_speakers_philipp",
-          "friendlyName": "study/speakers_philipp",
-          "cSharpName": "StudySpeakersPhilipp"
+          "id": "switch.schedule_2cdbb9",
+          "friendlyName": "Schedule #2cdbb9",
+          "cSharpName": "Schedule2cdbb9"
         },
         {
-          "id": "switch.thermostat_arbeitszimmer_childlock",
-          "friendlyName": "Thermostat Arbeitszimmer ChildLock",
-          "cSharpName": "ThermostatArbeitszimmerChildlock"
+          "id": "switch.schedule_3b5dc8",
+          "friendlyName": "Schedule #3b5dc8",
+          "cSharpName": "Schedule3b5dc8"
         },
         {
-          "id": "switch.thermostat_badezimmer_childlock",
-          "friendlyName": "Thermostat Badezimmer ChildLock",
-          "cSharpName": "ThermostatBadezimmerChildlock"
+          "id": "switch.schedule_3e8efe",
+          "friendlyName": "Schedule #3e8efe",
+          "cSharpName": "Schedule3e8efe"
         },
         {
-          "id": "switch.thermostat_kuche_childlock",
-          "friendlyName": "Thermostat K\u00FCche ChildLock",
-          "cSharpName": "ThermostatKucheChildlock"
+          "id": "switch.schedule_7a33cd",
+          "friendlyName": "Schedule #7a33cd",
+          "cSharpName": "Schedule7a33cd"
         },
         {
-          "id": "switch.thermostat_schlafzimmer_childlock",
-          "friendlyName": "Thermostat Schlafzimmer ChildLock",
-          "cSharpName": "ThermostatSchlafzimmerChildlock"
+          "id": "switch.schedule_95ad53",
+          "friendlyName": "Schedule #95ad53",
+          "cSharpName": "Schedule95ad53"
         },
         {
-          "id": "switch.thermostat_wohnzimmer_childlock",
-          "friendlyName": "Thermostat Wohnzimmer ChildLock",
-          "cSharpName": "ThermostatWohnzimmerChildlock"
+          "id": "switch.schedule_9f7c7e",
+          "friendlyName": "Schedule #9f7c7e",
+          "cSharpName": "Schedule9f7c7e"
+        },
+        {
+          "id": "switch.schedule_b94c59",
+          "friendlyName": "Schedule #b94c59",
+          "cSharpName": "ScheduleB94c59"
+        },
+        {
+          "id": "switch.study_radiator_thermostat_boost_heating",
+          "friendlyName": "study/radiator_thermostat Boost heating",
+          "cSharpName": "StudyRadiatorThermostatBoostHeating"
+        },
+        {
+          "id": "switch.study_radiator_thermostat_child_lock",
+          "friendlyName": "study/radiator_thermostat Child lock",
+          "cSharpName": "StudyRadiatorThermostatChildLock"
+        },
+        {
+          "id": "switch.study_radiator_thermostat_valve_adapt_process",
+          "friendlyName": "study/radiator_thermostat Trigger adaptation process",
+          "cSharpName": "StudyRadiatorThermostatValveAdaptProcess"
+        },
+        {
+          "id": "switch.study_radiator_thermostat_window_detection",
+          "friendlyName": "study/radiator_thermostat Window detection",
+          "cSharpName": "StudyRadiatorThermostatWindowDetection"
+        },
+        {
+          "id": "switch.study_smoke_detector_silence",
+          "friendlyName": "study/smoke_detector Silence",
+          "cSharpName": "StudySmokeDetectorSilence"
+        },
+        {
+          "id": "switch.study_speakers_philipp_child_lock",
+          "friendlyName": "study/speakers_philipp Child Lock",
+          "cSharpName": "StudySpeakersPhilippChildLock"
+        },
+        {
+          "id": "switch.study_speakers_philipp_overcharge",
+          "friendlyName": "study/speakers_philipp Overcharge",
+          "cSharpName": "StudySpeakersPhilippOvercharge"
+        },
+        {
+          "id": "switch.study_speakers_philipp_switch_1",
+          "friendlyName": "study/speakers_philipp Switch 1",
+          "cSharpName": "StudySpeakersPhilippSwitch1"
+        },
+        {
+          "id": "switch.studyunused_usb_relay_2_usb_relay",
+          "friendlyName": "study/unused_usb_relay_2 USB Relay",
+          "cSharpName": "StudyunusedUsbRelay2UsbRelay"
         },
         {
           "id": "switch.windows",
@@ -6795,6 +8150,216 @@
           "jsonName": "raw_state",
           "cSharpName": "RawState",
           "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "weekdays",
+          "cSharpName": "Weekdays",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "timeslots",
+          "cSharpName": "Timeslots",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "entities",
+          "cSharpName": "Entities",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "actions",
+          "cSharpName": "Actions",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.Object]"
+        },
+        {
+          "jsonName": "current_slot",
+          "cSharpName": "CurrentSlot",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "next_slot",
+          "cSharpName": "NextSlot",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "next_trigger",
+          "cSharpName": "NextTrigger",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "tags",
+          "cSharpName": "Tags",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.Object]"
+        },
+        {
+          "jsonName": "countdown",
+          "cSharpName": "Countdown",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "brightness",
+          "cSharpName": "Brightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "color",
+          "cSharpName": "Color",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "color_mode",
+          "cSharpName": "ColorMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "color_power_on_behavior",
+          "cSharpName": "ColorPowerOnBehavior",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "do_not_disturb",
+          "cSharpName": "DoNotDisturb",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "battery",
+          "cSharpName": "Battery",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "boost",
+          "cSharpName": "Boost",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "boost_heating",
+          "cSharpName": "BoostHeating",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "display_brightness",
+          "cSharpName": "DisplayBrightness",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_ontime",
+          "cSharpName": "DisplayOntime",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_orientation",
+          "cSharpName": "DisplayOrientation",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "displayed_temperature",
+          "cSharpName": "DisplayedTemperature",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "local_temperature",
+          "cSharpName": "LocalTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "local_temperature_calibration",
+          "cSharpName": "LocalTemperatureCalibration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "occupied_heating_setpoint",
+          "cSharpName": "OccupiedHeatingSetpoint",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "operating_mode",
+          "cSharpName": "OperatingMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "pi_heating_demand",
+          "cSharpName": "PiHeatingDemand",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "remote_temperature",
+          "cSharpName": "RemoteTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "running_state",
+          "cSharpName": "RunningState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "setpoint_change_source",
+          "cSharpName": "SetpointChangeSource",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "system_mode",
+          "cSharpName": "SystemMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "valve_adapt_process",
+          "cSharpName": "ValveAdaptProcess",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "valve_adapt_status",
+          "cSharpName": "ValveAdaptStatus",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_detection",
+          "cSharpName": "WindowDetection",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "window_open",
+          "cSharpName": "WindowOpen",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "device_fault",
+          "cSharpName": "DeviceFault",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "silence",
+          "cSharpName": "Silence",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "smoke",
+          "cSharpName": "Smoke",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "smoke_concentration",
+          "cSharpName": "SmokeConcentration",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "test",
+          "cSharpName": "Test",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "humidity",
+          "cSharpName": "Humidity",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "keypad_lockout",
+          "cSharpName": "KeypadLockout",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "occupied_cooling_setpoint",
+          "cSharpName": "OccupiedCoolingSetpoint",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -6856,6 +8421,11 @@
           "cSharpName": "_0x90ab96fffe180250"
         },
         {
+          "id": "update.bathroom_radiator_thermostat",
+          "friendlyName": "bathroom/radiator_thermostat",
+          "cSharpName": "BathroomRadiatorThermostat"
+        },
+        {
           "id": "update.bedroom_laundry_day_button_firmware",
           "friendlyName": "bedroom/laundry_day_button",
           "cSharpName": "BedroomLaundryDayButtonFirmware"
@@ -6866,6 +8436,11 @@
           "cSharpName": "BedroomLavaLamp"
         },
         {
+          "id": "update.bedroom_radiator_thermostat",
+          "friendlyName": "bedroom/radiator_thermostat",
+          "cSharpName": "BedroomRadiatorThermostat"
+        },
+        {
           "id": "update.bedroom_roller_shutter_left",
           "friendlyName": "bedroom/roller_shutter_left",
           "cSharpName": "BedroomRollerShutterLeft"
@@ -6874,6 +8449,11 @@
           "id": "update.bedroom_roller_shutter_right",
           "friendlyName": "bedroom/roller_shutter_right",
           "cSharpName": "BedroomRollerShutterRight"
+        },
+        {
+          "id": "update.bedroom_room_thermostat",
+          "friendlyName": "bedroom/room_thermostat",
+          "cSharpName": "BedroomRoomThermostat"
         },
         {
           "id": "update.kitchen_balcony_light_sensor",
@@ -6911,6 +8491,11 @@
           "cSharpName": "LivingRoomLightbulbs"
         },
         {
+          "id": "update.living_room_radiator_thermostat",
+          "friendlyName": "living_room/radiator_thermostat",
+          "cSharpName": "LivingRoomRadiatorThermostat"
+        },
+        {
           "id": "update.living_room_record_player",
           "friendlyName": "living_room/record_player",
           "cSharpName": "LivingRoomRecordPlayer"
@@ -6929,6 +8514,11 @@
           "id": "update.pupsstation_dsm_update",
           "friendlyName": "PupsStation DSM update",
           "cSharpName": "PupsstationDsmUpdate"
+        },
+        {
+          "id": "update.study_radiator_thermostat",
+          "friendlyName": "study/radiator_thermostat",
+          "cSharpName": "StudyRadiatorThermostat"
         }
       ],
       "attributes": [
@@ -7141,6 +8731,16 @@
           "jsonName": "voc",
           "cSharpName": "Voc",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "display_precision",
+          "cSharpName": "DisplayPrecision",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "update_percentage",
+          "cSharpName": "UpdatePercentage",
+          "clrType": "System.Object"
         }
       ]
     },
@@ -7287,29 +8887,19 @@
       "domain": "zone",
       "entities": [
         {
-          "id": "zone.enbw",
-          "friendlyName": "EnBW",
-          "cSharpName": "Enbw"
-        },
-        {
           "id": "zone.home",
           "friendlyName": "Home",
           "cSharpName": "Home"
         },
         {
-          "id": "zone.iphone_philipp_stationary",
-          "friendlyName": "iphone_philipp_stationary",
-          "cSharpName": "IphonePhilippStationary"
+          "id": "zone.work_fant",
+          "friendlyName": "Work Fant",
+          "cSharpName": "WorkFant"
         },
         {
-          "id": "zone.messe_karlsruhe_dm_arena",
-          "friendlyName": "Messe Karlsruhe (dm Arena)",
-          "cSharpName": "MesseKarlsruheDmArena"
-        },
-        {
-          "id": "zone.messe_karlsruhe_festplatz",
-          "friendlyName": "Messe Karlsruhe (Festplatz)",
-          "cSharpName": "MesseKarlsruheFestplatz"
+          "id": "zone.work_pup",
+          "friendlyName": "Work Pup",
+          "cSharpName": "WorkPup"
         }
       ],
       "attributes": [
@@ -7486,16 +9076,6 @@
           "id": "event.repair",
           "friendlyName": "Repairs",
           "cSharpName": "Repair"
-        },
-        {
-          "id": "event.scenario_wasche",
-          "friendlyName": "W\u00E4sche Scenario",
-          "cSharpName": "ScenarioWasche"
-        },
-        {
-          "id": "event.scenario_wasche_aus",
-          "friendlyName": "W\u00E4sche aus Scenario",
-          "cSharpName": "ScenarioWascheAus"
         }
       ],
       "attributes": [
@@ -7660,9 +9240,74 @@
       "domain": "todo",
       "entities": [
         {
+          "id": "todo.apotheke_philipp",
+          "friendlyName": "Apotheke Philipp",
+          "cSharpName": "ApothekePhilipp"
+        },
+        {
+          "id": "todo.asialaden_philipp",
+          "friendlyName": "Asialaden Philipp",
+          "cSharpName": "AsialadenPhilipp"
+        },
+        {
+          "id": "todo.bioladen_philipp",
+          "friendlyName": "Bioladen Philipp",
+          "cSharpName": "BioladenPhilipp"
+        },
+        {
+          "id": "todo.danisches_bettenlager_philipp",
+          "friendlyName": "D\u00E4nisches Bettenlager Philipp",
+          "cSharpName": "DanischesBettenlagerPhilipp"
+        },
+        {
+          "id": "todo.einkauf_backen_todo_philipp",
+          "friendlyName": "Einkauf - Backen Philipp",
+          "cSharpName": "EinkaufBackenTodoPhilipp"
+        },
+        {
+          "id": "todo.einkauf_dm_philipp",
+          "friendlyName": "Einkauf - dm \uD83E\uDDF4\uD83E\uDEE7 Philipp",
+          "cSharpName": "EinkaufDmPhilipp"
+        },
+        {
+          "id": "todo.einkauf_fruhstuck_philipp",
+          "friendlyName": "Einkauf - Fr\u00FChst\u00FCck Philipp",
+          "cSharpName": "EinkaufFruhstuckPhilipp"
+        },
+        {
           "id": "todo.einkauf_gemuse_philipp",
           "friendlyName": "Einkauf - Gem\u00FCse Philipp",
           "cSharpName": "EinkaufGemusePhilipp"
+        },
+        {
+          "id": "todo.einkauf_getranke_philipp",
+          "friendlyName": "Einkauf - Getr\u00E4nke Philipp",
+          "cSharpName": "EinkaufGetrankePhilipp"
+        },
+        {
+          "id": "todo.einkauf_kuhlregal_philipp",
+          "friendlyName": "Einkauf - K\u00FChlregal Philipp",
+          "cSharpName": "EinkaufKuhlregalPhilipp"
+        },
+        {
+          "id": "todo.einkauf_pasta_konserven_philipp",
+          "friendlyName": "Einkauf - Pasta \u0026 Konserven Philipp",
+          "cSharpName": "EinkaufPastaKonservenPhilipp"
+        },
+        {
+          "id": "todo.einkauf_sonstiges_philipp",
+          "friendlyName": "Einkauf - Sonstiges Philipp",
+          "cSharpName": "EinkaufSonstigesPhilipp"
+        },
+        {
+          "id": "todo.einkauf_sussigkeiten_todo_philipp",
+          "friendlyName": "Einkauf - S\u00FC\u00DFigkeiten (TODO) Philipp",
+          "cSharpName": "EinkaufSussigkeitenTodoPhilipp"
+        },
+        {
+          "id": "todo.einkauf_tiefkuhl_philipp",
+          "friendlyName": "Einkauf - Tiefk\u00FChl Philipp",
+          "cSharpName": "EinkaufTiefkuhlPhilipp"
         },
         {
           "id": "todo.einkaufen_philipp",
@@ -7670,14 +9315,44 @@
           "cSharpName": "EinkaufenPhilipp"
         },
         {
+          "id": "todo.frankreich_philipp",
+          "friendlyName": "Frankreich Philipp",
+          "cSharpName": "FrankreichPhilipp"
+        },
+        {
           "id": "todo.haushaltstag_philipp",
           "friendlyName": "Haushaltstag Philipp",
           "cSharpName": "HaushaltstagPhilipp"
         },
         {
+          "id": "todo.ikea_philipp",
+          "friendlyName": "IKEA Philipp",
+          "cSharpName": "IkeaPhilipp"
+        },
+        {
+          "id": "todo.katzenfutter_philipp",
+          "friendlyName": "Katzenfutter Philipp",
+          "cSharpName": "KatzenfutterPhilipp"
+        },
+        {
           "id": "todo.london_philipp",
           "friendlyName": "London \uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F Philipp",
           "cSharpName": "LondonPhilipp"
+        },
+        {
+          "id": "todo.online_philipp",
+          "friendlyName": "Online Philipp",
+          "cSharpName": "OnlinePhilipp"
+        },
+        {
+          "id": "todo.pass_und_verrechnungsformen_philipp",
+          "friendlyName": "Pass- und Verrechnungsformen Philipp",
+          "cSharpName": "PassUndVerrechnungsformenPhilipp"
+        },
+        {
+          "id": "todo.rom_philipp",
+          "friendlyName": "\uD83E\uDED2 Rom \uD83C\uDF55 Philipp",
+          "cSharpName": "RomPhilipp"
         },
         {
           "id": "todo.urlaub_bali_philipp",
@@ -7767,6 +9442,80 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        }
+      ]
+    },
+    {
+      "domain": "conversation",
+      "entities": [
+        {
+          "id": "conversation.home_assistant",
+          "friendlyName": "Home Assistant",
+          "cSharpName": "HomeAssistant"
+        }
+      ],
+      "attributes": [
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "supported_features",
+          "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
+        }
+      ]
+    },
+    {
+      "domain": "tag",
+      "entities": [
+        {
+          "id": "tag.263ee6b3_183f_4162_ad7f_2212761337ba",
+          "friendlyName": "Tag 263ee6b3-183f-4162-ad7f-2212761337ba",
+          "cSharpName": "_263ee6b3183f4162Ad7f2212761337ba"
+        },
+        {
+          "id": "tag.475e71fd_cac4_4226_9023_33fe7d58cc07",
+          "friendlyName": "Tag 475e71fd-cac4-4226-9023-33fe7d58cc07",
+          "cSharpName": "_475e71fdCac44226902333fe7d58cc07"
+        },
+        {
+          "id": "tag.9a379275_57b8_4a1e_ae76_a038c064b4c7",
+          "friendlyName": "Tag 9a379275-57b8-4a1e-ae76-a038c064b4c7",
+          "cSharpName": "_9a37927557b84a1eAe76A038c064b4c7"
+        },
+        {
+          "id": "tag.desktop_philipp",
+          "friendlyName": "Desktop Philipp",
+          "cSharpName": "DesktopPhilipp"
+        },
+        {
+          "id": "tag.fa185cfa_28bb_4069_843c_b03c2a604dbc",
+          "friendlyName": "Tag fa185cfa-28bb-4069-843c-b03c2a604dbc",
+          "cSharpName": "Fa185cfa28bb4069843cB03c2a604dbc"
+        },
+        {
+          "id": "tag.test",
+          "friendlyName": "Test",
+          "cSharpName": "Test"
+        }
+      ],
+      "attributes": [
+        {
+          "jsonName": "tag_id",
+          "cSharpName": "TagId",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_scanned_by_device_id",
+          "cSharpName": "LastScannedByDeviceId",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
         }
       ]
     }
